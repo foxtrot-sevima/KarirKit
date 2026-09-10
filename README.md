@@ -19,7 +19,7 @@ bagian [Brand & Logo](#brand--logo).
   (sidebar + tab), tabel, callout/alert, progress bar, dan tooltip.
 - **Style guide interaktif** (`index.html`) — dokumentasi visual setiap
   token dan komponen, bisa dibuka langsung tanpa server.
-- **Dashboard contoh** (`dashboard.html`) — implementasi nyata: AI Career
+- **Dashboard contoh** (`templates/dashboard.html`) — implementasi nyata: AI Career
   Coach, ringkasan lamaran kerja, grafik performa, tabel lamaran, dan
   aktivitas terbaru — semua memakai komponen dari design system yang sama.
 - **Sepenuhnya offline** — CSS sudah di-build (`dist/output.css`) dan font
@@ -29,18 +29,18 @@ bagian [Brand & Logo](#brand--logo).
 
 ```
 src/input.css              Design tokens (@theme) + komponen (@layer components)
-dist/output.css            CSS hasil build — dimuat oleh index.html & dashboard.html
+dist/output.css            CSS hasil build — dimuat oleh index.html & templates/dashboard.html
 assets/fonts/InstrumentSans/  Font self-hosted (lihat bagian Font di bawah)
 assets/logo/                  Logo KarirLink dipakai di kedua halaman (lihat Brand & Logo)
 index.html                 Style guide: warna, tipografi, ikon, dan semua komponen
-dashboard.html             Dashboard KarirKit yang memakai design system tersebut
+templates/dashboard.html   Dashboard KarirKit yang memakai design system tersebut
 moodboard/                 Referensi visual (tidak dipakai runtime)
 logo/                      Aset logo asli dari tim brand (sumber, tidak dipakai runtime)
 ```
 
 Kedua file HTML adalah statis (tanpa build tool saat dibuka) dan bisa
 langsung dibuka di browser — cukup double-click `index.html` atau
-`dashboard.html`.
+`templates/dashboard.html`.
 
 ## Tech stack
 
@@ -66,7 +66,7 @@ bagian Logo di `index.html` untuk contoh visual & kapan memakai masing-masing:
 | `karirlink-logo-white.svg` | Lockup, putih | Lockup di atas latar gelap |
 
 `karirlink-mark.svg` dipakai sebagai favicon kedua halaman; `karirlink-logo.svg`
-dipakai di header `index.html` dan sidebar `dashboard.html`.
+dipakai di header `index.html` dan sidebar `templates/dashboard.html`.
 
 Warna **primary** dan **secondary** design system diambil langsung dari
 warna logo tersebut (lihat `src/input.css`, `@theme`):
@@ -100,8 +100,8 @@ npm run build     # build sekali, hasil di-minify
 
 Ubah token warna/shadow/font di `src/input.css` bagian `@theme`, atau tambah
 komponen baru di `@layer components`. Karena Tailwind v4 men-scan kelas yang
-benar-benar dipakai di `index.html`/`dashboard.html`, kelas baru otomatis
-ikut ter-build tanpa perlu ubah konfigurasi apa pun.
+benar-benar dipakai di `index.html`/`templates/dashboard.html`, kelas baru
+otomatis ikut ter-build tanpa perlu ubah konfigurasi apa pun.
 
 **Catatan Tailwind v4:** `@apply` hanya bisa memanggil utility asli (bawaan
 atau `@utility` kustom) — bukan class komponen lain. Jadi varian seperti

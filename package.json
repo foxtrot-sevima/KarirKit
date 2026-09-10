@@ -1,10 +1,10 @@
 {
-  "name": "karirkit-design-system",
-  "version": "1.1.0",
+  "name": "karirkit",
+  "version": "1.0.0",
   "private": true,
   "license": "UNLICENSED",
   "author": "Ahmad Dimas <ahmad.dimas@sevima.id>",
-  "description": "KarirKit design system — tokens and components built with Tailwind CSS.",
+  "description": "KarirKit design system - tokens and components built with Tailwind CSS.",
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
     "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
