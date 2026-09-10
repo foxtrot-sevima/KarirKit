@@ -1,0 +1,25 @@
+Copyright (c) 2026 PT Sentra Vidya Utama (SEVIMA). All rights reserved.
+
+This repository and its contents (including but not limited to source code,
+design tokens, markup, styles, and documentation) are the proprietary and
+confidential property of SEVIMA, developed as part of the Foxtrot / KarirKit
+initiative.
+
+No part of this repository may be used, copied, modified, merged, published,
+distributed, sublicensed, and/or sold outside of SEVIMA, in whole or in part,
+without prior written permission from SEVIMA.
+
+Internal use within SEVIMA is permitted for employees and contractors working
+on SEVIMA projects, subject to the company's internal policies.
+
+This license does NOT apply to third-party assets bundled in this repository
+(fonts, icon sets, etc.), which remain under their own respective licenses.
+See THIRD-PARTY-LICENSES.md for details.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

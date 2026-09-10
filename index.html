@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KarirKit — Design System</title>
+<link rel="stylesheet" href="dist/output.css" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= HEADER ============================= -->
+<header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+      </span>
+      <span class="font-display text-[17px] font-bold text-slate-900">KarirKit</span>
+    </a>
+    <nav class="flex items-center gap-1 rounded-xl bg-slate-100/80 p-1">
+      <a href="index.html" class="tab tab-active">Design System</a>
+      <a href="dashboard.html" class="tab">Dashboard</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================= HERO ============================= -->
+<section class="mx-auto max-w-7xl px-6 pt-14 pb-8">
+  <div class="flex max-w-3xl flex-col gap-4">
+    <span class="badge-primary w-fit"><span class="badge-dot bg-primary-600"></span>v1.0 — dibangun dengan Tailwind CSS v4</span>
+    <h1 class="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+      Design System <span class="text-gradient-brand">KarirKit</span>
+    </h1>
+    <p class="text-base leading-relaxed text-slate-500">
+      Bahasa desain untuk produk karier berbasis AI — token warna, tipografi, ikon, dan pustaka
+      komponen yang konsisten. Semua elemen di halaman ini dipakai langsung pada
+      <a href="dashboard.html" class="font-medium text-primary-600 hover:underline">halaman Dashboard</a>.
+    </p>
+    <div class="flex flex-wrap items-center gap-3 pt-2">
+      <a href="dashboard.html" class="btn-primary btn-md">
+        Lihat Dashboard
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4.5 19.5L19.5 4.5M19.5 4.5H8.25M19.5 4.5V15.75" /></svg>
+      </a>
+      <a href="#colors" class="btn-outline btn-md">Jelajahi Komponen</a>
+    </div>
+  </div>
+
+  <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+    <div class="card p-4">
+      <p class="font-display text-2xl font-bold text-slate-900">5</p>
+      <p class="text-sm text-slate-500">Palet warna</p>
+    </div>
+    <div class="card p-4">
+      <p class="font-display text-2xl font-bold text-slate-900">1</p>
+      <p class="text-sm text-slate-500">Font family (self-hosted)</p>
+    </div>
+    <div class="card p-4">
+      <p class="font-display text-2xl font-bold text-slate-900">12+</p>
+      <p class="text-sm text-slate-500">Komponen UI</p>
+    </div>
+    <div class="card p-4">
+      <p class="font-display text-2xl font-bold text-slate-900">100%</p>
+      <p class="text-sm text-slate-500">Tailwind utility</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION ANCHOR NAV ======================= -->
+<div class="sticky top-16 z-30 border-b border-slate-200/70 bg-shell/90 backdrop-blur-md">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="flex gap-1 overflow-x-auto py-2.5">
+      <a href="#colors" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Warna</a>
+      <a href="#typography" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tipografi</a>
+      <a href="#icons" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Ikon</a>
+      <a href="#buttons" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tombol</a>
+      <a href="#badges" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Badge</a>
+      <a href="#avatars" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Avatar</a>
+      <a href="#cards" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Kartu</a>
+      <a href="#forms" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Formulir</a>
+      <a href="#navigation" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Navigasi</a>
+      <a href="#tables" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tabel</a>
+      <a href="#alerts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Alert</a>
+      <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Lainnya</a>
+    </div>
+  </div>
+</div>
+
+<main class="mx-auto max-w-7xl px-6">
+
+  <!-- ============================= COLORS ============================= -->
+  <section id="colors" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Colors</h2>
+      <p class="mt-1 text-sm text-slate-500">Palet primer dan warna semantik. Tersedia sebagai utility <code class="kbd">bg-*</code>, <code class="kbd">text-*</code>, <code class="kbd">border-*</code>.</p>
+    </div>
+
+    <div class="card p-6 sm:p-8">
+      <p class="nav-eyebrow mb-3 px-0">Primary — violet</p>
+      <div class="grid grid-cols-3 gap-3 sm:grid-cols-6 lg:grid-cols-11 mb-8">
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl border border-slate-200/70 bg-primary-50"></div><p class="text-xs font-medium text-slate-600">50</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-100"></div><p class="text-xs font-medium text-slate-600">100</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-200"></div><p class="text-xs font-medium text-slate-600">200</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-300"></div><p class="text-xs font-medium text-slate-600">300</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-400"></div><p class="text-xs font-medium text-slate-600">400</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-500"></div><p class="text-xs font-medium text-slate-600">500</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-600"></div><p class="text-xs font-medium text-slate-600">600 <span class="text-slate-400">base</span></p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-700"></div><p class="text-xs font-medium text-slate-600">700</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-800"></div><p class="text-xs font-medium text-slate-600">800</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-900"></div><p class="text-xs font-medium text-slate-600">900</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-950"></div><p class="text-xs font-medium text-slate-600">950</p></div>
+      </div>
+
+      <p class="nav-eyebrow mb-3 px-0">Semantic</p>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <p class="mb-2 text-sm font-semibold text-slate-700">Success</p>
+          <div class="grid grid-cols-5 gap-2">
+            <div class="h-10 rounded-lg border border-slate-200/70 bg-success-50"></div>
+            <div class="h-10 rounded-lg bg-success-100"></div>
+            <div class="h-10 rounded-lg bg-success-500"></div>
+            <div class="h-10 rounded-lg bg-success-600"></div>
+            <div class="h-10 rounded-lg bg-success-700"></div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-2 text-sm font-semibold text-slate-700">Warning</p>
+          <div class="grid grid-cols-5 gap-2">
+            <div class="h-10 rounded-lg border border-slate-200/70 bg-warning-50"></div>
+            <div class="h-10 rounded-lg bg-warning-100"></div>
+            <div class="h-10 rounded-lg bg-warning-500"></div>
+            <div class="h-10 rounded-lg bg-warning-600"></div>
+            <div class="h-10 rounded-lg bg-warning-700"></div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-2 text-sm font-semibold text-slate-700">Danger</p>
+          <div class="grid grid-cols-5 gap-2">
+            <div class="h-10 rounded-lg border border-slate-200/70 bg-danger-50"></div>
+            <div class="h-10 rounded-lg bg-danger-100"></div>
+            <div class="h-10 rounded-lg bg-danger-500"></div>
+            <div class="h-10 rounded-lg bg-danger-600"></div>
+            <div class="h-10 rounded-lg bg-danger-700"></div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-2 text-sm font-semibold text-slate-700">Info</p>
+          <div class="grid grid-cols-5 gap-2">
+            <div class="h-10 rounded-lg border border-slate-200/70 bg-info-50"></div>
+            <div class="h-10 rounded-lg bg-info-100"></div>
+            <div class="h-10 rounded-lg bg-info-500"></div>
+            <div class="h-10 rounded-lg bg-info-600"></div>
+            <div class="h-10 rounded-lg bg-info-700"></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="nav-eyebrow mb-3 mt-8 px-0">Gradient & shell</p>
+      <div class="grid gap-4 sm:grid-cols-3">
+        <div class="flex h-20 items-end rounded-xl bg-brand-gradient p-3 text-xs font-medium text-white">bg-brand-gradient</div>
+        <div class="flex h-20 items-end rounded-xl bg-brand-gradient-soft border border-slate-200/70 p-3 text-xs font-medium text-slate-500">bg-brand-gradient-soft</div>
+        <div class="flex h-20 items-end rounded-xl bg-shell border border-slate-200/70 p-3 text-xs font-medium text-slate-500">bg-shell (app background)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= TYPOGRAPHY ============================= -->
+  <section id="typography" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Typography</h2>
+      <p class="mt-1 text-sm text-slate-500">Instrument Sans — satu keluarga font untuk judul, branding, dan teks antarmuka. Di-hosting lokal dari Quantum design system SEVIMA.</p>
+    </div>
+    <div class="card p-6 sm:p-8">
+      <div class="mb-8">
+        <p class="nav-eyebrow mb-2 px-0">Instrument Sans</p>
+        <p class="font-display text-4xl font-bold text-slate-900">Aa Bb Cc 123</p>
+      </div>
+      <div class="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div class="rounded-xl border border-slate-100 p-3">
+          <p class="font-normal text-lg text-slate-800">Aa Bb Cc</p>
+          <p class="mt-1 text-xs text-slate-400">Regular · 400</p>
+        </div>
+        <div class="rounded-xl border border-slate-100 p-3">
+          <p class="font-medium text-lg text-slate-800">Aa Bb Cc</p>
+          <p class="mt-1 text-xs text-slate-400">Medium · 500</p>
+        </div>
+        <div class="rounded-xl border border-slate-100 p-3">
+          <p class="font-semibold text-lg text-slate-800">Aa Bb Cc</p>
+          <p class="mt-1 text-xs text-slate-400">SemiBold · 600</p>
+        </div>
+        <div class="rounded-xl border border-slate-100 p-3">
+          <p class="font-bold text-lg text-slate-800">Aa Bb Cc</p>
+          <p class="mt-1 text-xs text-slate-400">Bold · 700</p>
+        </div>
+      </div>
+      <div class="divide-y divide-slate-100">
+        <div class="flex flex-col gap-2 py-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <p class="font-display text-3xl font-bold text-slate-900">Selamat pagi, Ahmad</p>
+          <p class="kbd">font-display · text-3xl · font-bold</p>
+        </div>
+        <div class="flex flex-col gap-2 py-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <p class="font-display text-2xl font-bold text-slate-900">Ringkasan Performa Lamaran</p>
+          <p class="kbd">font-display · text-2xl · font-bold</p>
+        </div>
+        <div class="flex flex-col gap-2 py-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <p class="text-lg font-semibold text-slate-800">Perlu Aksi Hari Ini</p>
+          <p class="kbd">text-lg · font-semibold</p>
+        </div>
+        <div class="flex flex-col gap-2 py-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <p class="text-sm text-slate-600">Teks antarmuka standar untuk deskripsi kartu dan isi tabel.</p>
+          <p class="kbd">text-sm · text-slate-600</p>
+        </div>
+        <div class="flex flex-col gap-2 py-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <p class="text-xs text-slate-500">Teks kecil untuk keterangan, metadata, dan timestamp.</p>
+          <p class="kbd">text-xs · text-slate-500</p>
+        </div>
+        <div class="flex flex-col gap-2 py-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <p class="nav-eyebrow px-0">Label Grup Navigasi</p>
+          <p class="kbd">text-[11px] · uppercase · tracking-wider</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= ICONS ============================= -->
+  <section id="icons" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Icons</h2>
+      <p class="mt-1 text-sm text-slate-500">SVG inline bergaya outline, stroke 1.75, mewarisi <code class="kbd">currentColor</code>.</p>
+    </div>
+    <div class="card p-6 sm:p-8">
+      <div class="grid grid-cols-4 gap-4 sm:grid-cols-6 lg:grid-cols-10">
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75" /></svg></span><p class="text-[11px] text-slate-400">home</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0" /></svg></span><p class="text-[11px] text-slate-400">briefcase</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12h-9m9 3.75h-9M9.75 3.75h-3a1.5 1.5 0 00-1.5 1.5v13.5a1.5 1.5 0 001.5 1.5h9a1.5 1.5 0 001.5-1.5V9.75a3.375 3.375 0 00-3.375-3.375H9.75V3.75z" /></svg></span><p class="text-[11px] text-slate-400">document</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" /></svg></span><p class="text-[11px] text-slate-400">calendar</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" /></svg></span><p class="text-[11px] text-slate-400">bookmark</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg></span><p class="text-[11px] text-slate-400">message</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg></span><p class="text-[11px] text-slate-400">settings</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg></span><p class="text-[11px] text-slate-400">search</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" /></svg></span><p class="text-[11px] text-slate-400">bell</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /><path d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" /></svg></span><p class="text-[11px] text-slate-400">sparkles</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg></span><p class="text-[11px] text-slate-400">eye</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg></span><p class="text-[11px] text-slate-400">chart-bar</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span><p class="text-[11px] text-slate-400">check-circle</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-8.25 3.75h.008v.008h-.008v-.008z" /></svg></span><p class="text-[11px] text-slate-400">warning</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span><p class="text-[11px] text-slate-400">clock</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M12 4.5v15m7.5-7.5h-15" /></svg></span><p class="text-[11px] text-slate-400">plus</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" /></svg></span><p class="text-[11px] text-slate-400">logout</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg></span><p class="text-[11px] text-slate-400">star</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg></span><p class="text-[11px] text-slate-400">shield-check</p></div>
+        <div class="flex flex-col items-center gap-2"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-50 text-slate-600"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg></span><p class="text-[11px] text-slate-400">chevron-right</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= BUTTONS ============================= -->
+  <section id="buttons" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Buttons</h2>
+      <p class="mt-1 text-sm text-slate-500">Enam varian, tiga ukuran, mendukung ikon &amp; state disabled.</p>
+    </div>
+    <div class="card space-y-8 p-6 sm:p-8">
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Variants</p>
+        <div class="flex flex-wrap items-center gap-3">
+          <button class="btn-primary btn-md">Primary</button>
+          <button class="btn-secondary btn-md">Secondary</button>
+          <button class="btn-outline btn-md">Outline</button>
+          <button class="btn-ghost btn-md">Ghost</button>
+          <button class="btn-danger btn-md">Danger</button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Sizes</p>
+        <div class="flex flex-wrap items-center gap-3">
+          <button class="btn-primary btn-sm">Small</button>
+          <button class="btn-primary btn-md">Medium</button>
+          <button class="btn-primary btn-lg">Large</button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Dengan ikon &amp; state</p>
+        <div class="flex flex-wrap items-center gap-3">
+          <button class="btn-primary btn-md">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M12 4.5v15m7.5-7.5h-15" /></svg>
+            Tambah Lamaran
+          </button>
+          <button class="btn-outline btn-md">
+            Cari Lowongan
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+          </button>
+          <button class="btn-primary btn-md" disabled>Disabled</button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Di atas gradient</p>
+        <div class="flex flex-wrap items-center gap-3 rounded-xl bg-brand-gradient p-5">
+          <button class="btn-white btn-md">Lihat Rekomendasi</button>
+          <button class="btn btn-md border border-white/30 text-white hover:bg-white/10 focus-visible:ring-white">Atur Preferensi</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= BADGES ============================= -->
+  <section id="badges" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Badges</h2>
+      <p class="mt-1 text-sm text-slate-500">Status pill untuk lamaran, prioritas, dan tag AI.</p>
+    </div>
+    <div class="card space-y-8 p-6 sm:p-8">
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Soft</p>
+        <div class="flex flex-wrap gap-3">
+          <span class="badge-success"><span class="badge-dot bg-success-600"></span>Diterima</span>
+          <span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span>
+          <span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Menunggu</span>
+          <span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span>
+          <span class="badge-primary"><span class="badge-dot bg-primary-600"></span>Baru</span>
+          <span class="badge-neutral"><span class="badge-dot bg-slate-400"></span>Draf</span>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Solid</p>
+        <div class="flex flex-wrap gap-3">
+          <span class="badge bg-success-600 text-white">Success</span>
+          <span class="badge bg-info-600 text-white">Info</span>
+          <span class="badge bg-warning-600 text-white">Warning</span>
+          <span class="badge bg-danger-600 text-white">Danger</span>
+          <span class="badge bg-slate-800 text-white">Neutral</span>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Tag AI / kepercayaan</p>
+        <div class="flex flex-wrap gap-3">
+          <span class="badge-success">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="h-3 w-3"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+            96% Confidence
+          </span>
+          <span class="badge-danger">CRITICAL</span>
+          <span class="badge-warning">NEEDS ATTENTION</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= AVATARS ============================= -->
+  <section id="avatars" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Avatars</h2>
+      <p class="mt-1 text-sm text-slate-500">Inisial sebagai fallback, status dot, dan grup bertumpuk.</p>
+    </div>
+    <div class="card space-y-8 p-6 sm:p-8">
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Ukuran</p>
+        <div class="flex items-center gap-3">
+          <span class="avatar h-8 w-8 text-xs">AD</span>
+          <span class="avatar h-10 w-10 text-sm">AD</span>
+          <span class="avatar h-12 w-12 text-base">AD</span>
+          <span class="avatar h-14 w-14 text-lg">AD</span>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Dengan status &amp; grup</p>
+        <div class="flex flex-wrap items-center gap-8">
+          <span class="relative inline-flex">
+            <span class="avatar h-11 w-11">AD</span>
+            <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-success-500 ring-2 ring-white"></span>
+          </span>
+          <div class="flex -space-x-3">
+            <span class="avatar h-9 w-9 bg-info-100 text-info-700 ring-2 ring-white">GJ</span>
+            <span class="avatar h-9 w-9 bg-warning-100 text-warning-700 ring-2 ring-white">TP</span>
+            <span class="avatar h-9 w-9 bg-success-100 text-success-700 ring-2 ring-white">TV</span>
+            <span class="avatar h-9 w-9 bg-slate-200 text-slate-600 ring-2 ring-white">+5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= CARDS ============================= -->
+  <section id="cards" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Cards</h2>
+      <p class="mt-1 text-sm text-slate-500">Kartu dasar, kartu statistik, dan kartu hero bergradasi.</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3">
+      <div class="card p-5">
+        <p class="mb-1 text-sm font-semibold text-slate-800">Basic Card</p>
+        <p class="text-sm text-slate-500">Kontainer default untuk mengelompokkan konten — border tipis, sudut membulat, dan shadow lembut.</p>
+        <p class="kbd mt-4 inline-block">.card</p>
+      </div>
+      <div class="card card-hover p-5">
+        <div class="mb-3 flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+          </span>
+          <span class="badge-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M4.5 19.5L19.5 4.5M19.5 4.5H8.25M19.5 4.5V15.75" /></svg>
+            12%
+          </span>
+        </div>
+        <p class="font-display text-2xl font-bold text-slate-900">248</p>
+        <p class="text-sm text-slate-500">Lamaran Terkirim</p>
+        <p class="kbd mt-4 inline-block">.card + stat layout</p>
+      </div>
+      <div class="rounded-2xl bg-brand-gradient p-5 text-white shadow-glow-primary">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+        </span>
+        <p class="mt-3 font-display text-lg font-bold">AI Career Coach</p>
+        <p class="mt-1 text-sm text-white/80">Kartu hero bergradasi untuk fitur unggulan &amp; highlight AI.</p>
+        <p class="mt-4 inline-block rounded-md border border-white/20 px-1.5 py-0.5 text-[11px] font-medium text-white/70">.bg-brand-gradient</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FORMS ============================= -->
+  <section id="forms" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Forms</h2>
+      <p class="mt-1 text-sm text-slate-500">Input, select, textarea, checkbox, radio, toggle, dan search.</p>
+    </div>
+    <div class="card grid gap-8 p-6 sm:p-8 md:grid-cols-2">
+      <div class="space-y-5">
+        <div>
+          <label class="form-label">Nama Lengkap</label>
+          <input class="input" placeholder="Ahmad Dimas" />
+        </div>
+        <div>
+          <label class="form-label">Posisi yang dicari</label>
+          <div class="relative">
+            <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+            </span>
+            <input class="input pl-10" placeholder="Product Designer" />
+          </div>
+          <p class="form-hint">Contoh: Product Designer, Data Analyst</p>
+        </div>
+        <div>
+          <label class="form-label">Level Pengalaman</label>
+          <select class="input appearance-none">
+            <option>Entry Level</option>
+            <option>Mid Level</option>
+            <option>Senior</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Ringkasan Profil</label>
+          <textarea class="input h-24 py-2.5" placeholder="Ceritakan pengalamanmu secara singkat..."></textarea>
+        </div>
+      </div>
+      <div class="space-y-6">
+        <div>
+          <p class="form-label mb-2.5">Checkbox</p>
+          <div class="space-y-2.5">
+            <label class="flex items-center gap-2.5 text-sm text-slate-600"><input type="checkbox" checked class="h-4 w-4 rounded border-slate-300 accent-primary-600" /> Notifikasi lamaran baru via email</label>
+            <label class="flex items-center gap-2.5 text-sm text-slate-600"><input type="checkbox" class="h-4 w-4 rounded border-slate-300 accent-primary-600" /> Newsletter tips karier mingguan</label>
+          </div>
+        </div>
+        <div>
+          <p class="form-label mb-2.5">Radio</p>
+          <div class="space-y-2.5">
+            <label class="flex items-center gap-2.5 text-sm text-slate-600"><input type="radio" name="wfh" checked class="h-4 w-4 border-slate-300 accent-primary-600" /> Remote</label>
+            <label class="flex items-center gap-2.5 text-sm text-slate-600"><input type="radio" name="wfh" class="h-4 w-4 border-slate-300 accent-primary-600" /> Hybrid</label>
+          </div>
+        </div>
+        <div>
+          <p class="form-label mb-2.5">Toggle</p>
+          <label class="inline-flex cursor-pointer items-center gap-3">
+            <span class="relative">
+              <input type="checkbox" checked class="peer sr-only" />
+              <span class="block h-6 w-11 rounded-full bg-slate-200 transition-colors peer-checked:bg-primary-600"></span>
+              <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform peer-checked:translate-x-5"></span>
+            </span>
+            <span class="text-sm text-slate-600">Mode pencarian aktif</span>
+          </label>
+        </div>
+        <div>
+          <p class="form-label mb-2.5">Search dengan shortcut</p>
+          <div class="relative">
+            <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+            </span>
+            <input class="input pl-10 pr-14" placeholder="Cari sesuatu..." />
+            <span class="kbd absolute right-2.5 top-1/2 -translate-y-1/2">⌘K</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= NAVIGATION ============================= -->
+  <section id="navigation" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Navigation</h2>
+      <p class="mt-1 text-sm text-slate-500">Item sidebar, label grup, dan tab bersegmen.</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="card p-4">
+        <p class="nav-eyebrow mb-2">Sidebar nav item</p>
+        <div class="space-y-1">
+          <a class="nav-item nav-item-active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75" /></svg>
+            Dashboard
+          </a>
+          <a class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+            Lowongan Cocok
+          </a>
+          <a class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12h-9m9 3.75h-9M9.75 3.75h-3a1.5 1.5 0 00-1.5 1.5v13.5a1.5 1.5 0 001.5 1.5h9a1.5 1.5 0 001.5-1.5V9.75a3.375 3.375 0 00-3.375-3.375H9.75V3.75z" /></svg>
+            Lamaran Saya
+            <span class="badge-neutral ml-auto">12</span>
+          </a>
+        </div>
+      </div>
+      <div class="card flex flex-col gap-4 p-4">
+        <div>
+          <p class="nav-eyebrow mb-2">Segmented tabs</p>
+          <div class="inline-flex w-fit gap-1 rounded-xl bg-slate-100 p-1">
+            <span class="tab tab-active">Semua</span>
+            <span class="tab">Aktif</span>
+            <span class="tab">Selesai</span>
+          </div>
+        </div>
+        <div>
+          <p class="nav-eyebrow mb-2">Eyebrow label</p>
+          <p class="nav-eyebrow px-0">Alat Karier</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= TABLES ============================= -->
+  <section id="tables" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Tables</h2>
+      <p class="mt-1 text-sm text-slate-500">Tabel data dengan avatar, badge status, dan hover baris.</p>
+    </div>
+    <div class="card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Perusahaan</th>
+              <th>Posisi</th>
+              <th>Skor Kecocokan</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">GJ</span><span class="font-medium text-slate-800">Gojek</span></div></td>
+              <td>Product Designer</td>
+              <td>92%</td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Interview</span></td>
+              <td class="text-right text-slate-300">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto h-4 w-4"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+              </td>
+            </tr>
+            <tr>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">TP</span><span class="font-medium text-slate-800">Tokopedia</span></div></td>
+              <td>UI/UX Researcher</td>
+              <td>78%</td>
+              <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
+              <td class="text-right text-slate-300">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto h-4 w-4"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+              </td>
+            </tr>
+            <tr>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-danger-100 text-danger-700">TV</span><span class="font-medium text-slate-800">Traveloka</span></div></td>
+              <td>Frontend Engineer</td>
+              <td>54%</td>
+              <td><span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
+              <td class="text-right text-slate-300">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto h-4 w-4"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= ALERTS ============================= -->
+  <section id="alerts" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Alerts &amp; Callouts</h2>
+      <p class="mt-1 text-sm text-slate-500">Aksen border kiri untuk tingkat urgensi, plus kotak rekomendasi AI.</p>
+    </div>
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div class="callout-critical">
+        <p class="mb-1 text-sm font-semibold text-slate-800">Critical</p>
+        <p class="text-sm text-slate-500">Dipakai untuk kondisi yang butuh tindakan segera, mis. interview dalam hitungan jam.</p>
+      </div>
+      <div class="callout-warning">
+        <p class="mb-1 text-sm font-semibold text-slate-800">Needs Attention</p>
+        <p class="text-sm text-slate-500">Kondisi penting namun belum mendesak, mis. CV belum diperbarui.</p>
+      </div>
+      <div class="callout-info">
+        <p class="mb-1 text-sm font-semibold text-slate-800">Info</p>
+        <p class="text-sm text-slate-500">Informasi netral, mis. pembaruan fitur atau tips umum.</p>
+      </div>
+      <div class="callout-success">
+        <p class="mb-1 text-sm font-semibold text-slate-800">Success</p>
+        <p class="text-sm text-slate-500">Konfirmasi hasil positif, mis. lamaran berhasil dikirim.</p>
+      </div>
+    </div>
+    <div class="mt-4 rounded-xl border border-warning-100 bg-warning-50 p-4">
+      <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-warning-600">AI Recommendation &amp; Impact</p>
+      <p class="text-sm text-slate-700">Kotak rekomendasi bertingkat di dalam kartu aksi — memberi konteks kenapa AI menyarankan sesuatu dan dampaknya.</p>
+    </div>
+  </section>
+
+  <!-- ============================= PROGRESS / MISC ============================= -->
+  <section id="progress" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Progress &amp; Lainnya</h2>
+      <p class="mt-1 text-sm text-slate-500">Progress bar, tooltip, dan divider.</p>
+    </div>
+    <div class="card space-y-8 p-6 sm:p-8">
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Progress bar</p>
+        <div class="max-w-md space-y-4">
+          <div>
+            <div class="mb-1.5 flex justify-between text-xs text-slate-500"><span>Kelengkapan Profil</span><span>83%</span></div>
+            <div class="progress-track"><div class="progress-bar w-[83%]"></div></div>
+          </div>
+          <div>
+            <div class="mb-1.5 flex justify-between text-xs text-slate-500"><span>Skor Kecocokan CV</span><span>65%</span></div>
+            <div class="progress-track"><div class="progress-bar bg-warning-500 w-[65%]"></div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Tooltip</p>
+        <span class="group relative inline-flex">
+          <button class="btn-outline btn-sm">Hover aku</button>
+          <span class="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">Ini contoh tooltip</span>
+        </span>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Divider vertikal</p>
+        <div class="flex h-10 items-center gap-4 text-sm text-slate-500">
+          <span>Item A</span><span class="divider-v"></span><span>Item B</span><span class="divider-v"></span><span>Item C</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="mt-10 border-t border-slate-200/70 py-8">
+  <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-xs text-slate-400 sm:flex-row">
+    <p>© 2026 KarirKit. Dibangun dengan Tailwind CSS.</p>
+    <p>Design System v1.0</p>
+  </div>
+</footer>
+
+</body>
+</html>

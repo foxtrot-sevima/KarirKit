@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Local webfont — Instrument Sans, sourced from SEVIMA's Quantum design
+   system (D:\laragon\QUANTUM). Self-hosted so both pages work fully offline.
+   ========================================================================== */
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("../assets/fonts/InstrumentSans/InstrumentSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("../assets/fonts/InstrumentSans/InstrumentSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("../assets/fonts/InstrumentSans/InstrumentSans-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("../assets/fonts/InstrumentSans/InstrumentSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   KarirKit Design System — Design Tokens
+   Every var below is auto-exposed as a Tailwind utility by v4's theme engine:
+   color tokens generate bg-, text-, border- and ring- utilities; shadow
+   tokens generate shadow- utilities; font tokens generate font- utilities.
+   ========================================================================== */
+@theme {
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Brand — primary violet scale */
+  --color-primary-50: #f5f3ff;
+  --color-primary-100: #ede9fe;
+  --color-primary-200: #ddd6fe;
+  --color-primary-300: #c4b5fd;
+  --color-primary-400: #a78bfa;
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #7c3aed;
+  --color-primary-700: #6d28d9;
+  --color-primary-800: #5b21b6;
+  --color-primary-900: #4c1d95;
+  --color-primary-950: #2e1065;
+
+  /* Semantic — success */
+  --color-success-50: #ecfdf5;
+  --color-success-100: #d1fae5;
+  --color-success-300: #6ee7b7;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+  --color-success-700: #047857;
+
+  /* Semantic — warning */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-300: #fcd34d;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+
+  /* Semantic — danger */
+  --color-danger-50: #fef2f2;
+  --color-danger-100: #fee2e2;
+  --color-danger-300: #fca5a5;
+  --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
+
+  /* Semantic — info */
+  --color-info-50: #f0f9ff;
+  --color-info-100: #e0f2fe;
+  --color-info-300: #7dd3fc;
+  --color-info-500: #0ea5e9;
+  --color-info-600: #0284c7;
+  --color-info-700: #0369a1;
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px 0 rgb(15 23 42 / 0.04), 0 12px 24px -10px rgb(15 23 42 / 0.10);
+  --shadow-card-lg: 0 4px 8px 0 rgb(15 23 42 / 0.04), 0 24px 48px -12px rgb(15 23 42 / 0.18);
+  --shadow-glow-primary: 0 8px 30px -6px rgb(124 58 237 / 0.45);
+
+  --animate-fade-in: fade-in 0.4s ease-out;
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ==========================================================================
+   Brand utilities — gradients unique to KarirKit's visual identity
+   ========================================================================== */
+@utility bg-shell {
+  background-color: #f8fafc;
+  background-image:
+    radial-gradient(1200px 600px at 0% -10%, color-mix(in srgb, var(--color-primary-200) 40%, transparent), transparent),
+    radial-gradient(1000px 500px at 100% 0%, color-mix(in srgb, #7dd3fc 35%, transparent), transparent);
+  background-attachment: fixed;
+}
+
+@utility bg-brand-gradient {
+  background-image: linear-gradient(135deg, var(--color-primary-600) 0%, #a855f7 55%, #6366f1 100%);
+}
+
+@utility bg-brand-gradient-soft {
+  background-image: linear-gradient(135deg, var(--color-primary-50) 0%, #faf5ff 50%, #f0f9ff 100%);
+}
+
+@utility text-gradient-brand {
+  background-image: linear-gradient(135deg, var(--color-primary-600), #6366f1);
+  background-clip: text;
+  color: transparent;
+}
+
+/* ==========================================================================
+   Component layer — reusable primitives composed from tokens above
+   ========================================================================== */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold whitespace-nowrap
+           transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer;
+  }
+  .btn-sm { @apply h-8 px-3 text-xs; }
+  .btn-md { @apply h-10 px-4 text-sm; }
+  .btn-lg { @apply h-12 px-6 text-[15px]; }
+
+  .btn-primary, .btn-secondary, .btn-outline, .btn-ghost, .btn-danger, .btn-white {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold whitespace-nowrap
+           transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer;
+  }
+  .btn-primary { @apply bg-primary-600 text-white shadow-sm hover:bg-primary-700 focus-visible:ring-primary-500; }
+  .btn-secondary { @apply bg-primary-50 text-primary-700 hover:bg-primary-100 focus-visible:ring-primary-300; }
+  .btn-outline { @apply border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 focus-visible:ring-slate-300; }
+  .btn-ghost { @apply text-slate-500 hover:bg-slate-100 hover:text-slate-800 focus-visible:ring-slate-300; }
+  .btn-danger { @apply bg-danger-600 text-white hover:bg-danger-700 focus-visible:ring-danger-300; }
+  .btn-white { @apply bg-white text-primary-700 hover:bg-white/90 focus-visible:ring-white shadow-sm; }
+
+  /* Badges / status pills */
+  .badge, .badge-success, .badge-warning, .badge-danger, .badge-info, .badge-neutral, .badge-primary {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium leading-none;
+  }
+  .badge-dot { @apply h-1.5 w-1.5 rounded-full shrink-0; }
+  .badge-success { @apply bg-success-50 text-success-700; }
+  .badge-warning { @apply bg-warning-50 text-warning-700; }
+  .badge-danger { @apply bg-danger-50 text-danger-700; }
+  .badge-info { @apply bg-info-50 text-info-700; }
+  .badge-neutral { @apply bg-slate-100 text-slate-600; }
+  .badge-primary { @apply bg-primary-50 text-primary-700; }
+
+  /* Surfaces */
+  .card { @apply rounded-2xl border border-slate-200/70 bg-white shadow-card; }
+  .card-hover { @apply transition-shadow duration-200 hover:shadow-card-lg; }
+
+  /* Forms */
+  .input {
+    @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 h-10 text-sm text-slate-700
+           placeholder:text-slate-400 outline-none transition-shadow
+           focus:ring-4 focus:ring-primary-500/10 focus:border-primary-400;
+  }
+  .form-label { @apply block text-xs font-medium text-slate-600 mb-1.5; }
+  .form-hint { @apply mt-1.5 text-xs text-slate-400; }
+
+  /* Navigation */
+  .nav-item {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500
+           hover:bg-slate-100/80 hover:text-slate-900 transition-colors;
+  }
+  .nav-item-active { @apply bg-primary-50! text-primary-700! hover:bg-primary-50!; }
+  .nav-eyebrow { @apply px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400; }
+
+  /* Tables */
+  .table { @apply w-full text-left text-sm border-collapse; }
+  .table th { @apply px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 border-b border-slate-100; }
+  .table td { @apply px-4 py-4 border-b border-slate-100 text-slate-700 align-middle; }
+  .table tbody tr:last-child td { @apply border-b-0; }
+  .table tbody tr { @apply hover:bg-slate-50/70 transition-colors; }
+
+  /* Avatars */
+  .avatar { @apply inline-flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-semibold shrink-0; }
+
+  /* Callouts / alerts */
+  .callout, .callout-critical, .callout-warning, .callout-info, .callout-success {
+    @apply rounded-xl border-l-4 bg-white p-4;
+  }
+  .callout-critical { @apply border-l-danger-500; }
+  .callout-warning { @apply border-l-warning-500; }
+  .callout-info { @apply border-l-info-500; }
+  .callout-success { @apply border-l-success-500; }
+
+  /* Misc */
+  .kbd { @apply inline-flex items-center justify-center rounded-md border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[11px] font-medium text-slate-500; }
+  .divider-v { @apply w-px self-stretch bg-slate-200; }
+  .progress-track { @apply h-2 w-full overflow-hidden rounded-full bg-slate-100; }
+  .progress-bar { @apply h-full rounded-full bg-primary-600; }
+  .tab { @apply rounded-lg px-3.5 py-1.5 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors; }
+  .tab-active { @apply bg-white text-slate-900 shadow-sm; }
+}
