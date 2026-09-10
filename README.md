@@ -1,18 +1,20 @@
 # KarirKit Design System
 
-Design system dan dashboard contoh untuk **KarirKit** — produk karier
-berbasis AI — dibangun dengan Tailwind CSS v4. Proyek internal SEVIMA
-(Foxtrot).
+**KarirKit** adalah UI kit/design system internal SEVIMA untuk **KarirLink**
+— platform karier berbasis AI. Dibangun dengan Tailwind CSS v4. Proyek
+internal SEVIMA (Foxtrot).
 
 Referensi visual ada di `moodboard/`: SaaS dashboard bertema AI dengan
-sidebar tergrup, kartu statistik bertren, aksen gradasi violet, badge status,
-dan panel rekomendasi AI.
+sidebar tergrup, kartu statistik bertren, badge status, dan panel
+rekomendasi AI. Warna dan logo mengikuti identitas resmi KarirLink — lihat
+bagian [Brand & Logo](#brand--logo).
 
 ## Fitur
 
-- **Design tokens** — palet warna primer (violet) & semantik
-  (success/warning/danger/info), tipografi, shadow, dan gradasi brand,
-  didefinisikan sekali di `src/input.css` lewat `@theme` Tailwind v4.
+- **Design tokens** — palet warna primary & secondary (diturunkan dari logo
+  KarirLink) & semantik (success/warning/danger/info), tipografi, shadow,
+  dan gradasi brand, didefinisikan sekali di `src/input.css` lewat `@theme`
+  Tailwind v4.
 - **Pustaka komponen** — button, badge, avatar, card, form, navigasi
   (sidebar + tab), tabel, callout/alert, progress bar, dan tooltip.
 - **Style guide interaktif** (`index.html`) — dokumentasi visual setiap
@@ -29,9 +31,11 @@ dan panel rekomendasi AI.
 src/input.css              Design tokens (@theme) + komponen (@layer components)
 dist/output.css            CSS hasil build — dimuat oleh index.html & dashboard.html
 assets/fonts/InstrumentSans/  Font self-hosted (lihat bagian Font di bawah)
+assets/logo/                  Logo KarirLink dipakai di kedua halaman (lihat Brand & Logo)
 index.html                 Style guide: warna, tipografi, ikon, dan semua komponen
 dashboard.html             Dashboard KarirKit yang memakai design system tersebut
 moodboard/                 Referensi visual (tidak dipakai runtime)
+logo/                      Aset logo asli dari tim brand (sumber, tidak dipakai runtime)
 ```
 
 Kedua file HTML adalah statis (tanpa build tool saat dibuka) dan bisa
@@ -48,11 +52,37 @@ langsung dibuka di browser — cukup double-click `index.html` atau
 - [Instrument Sans](https://github.com/Instrument/instrument-sans) sebagai
   font, di-hosting lokal.
 
+## Brand & Logo
+
+Logo resmi **KarirLink** (`logo/new/`, dari tim brand SEVIMA) adalah aset
+visual utama proyek ini, tersedia dalam 4 varian di `assets/logo/` — lihat
+bagian Logo di `index.html` untuk contoh visual & kapan memakai masing-masing:
+
+| File | Varian | Fungsi |
+| --- | --- | --- |
+| `karirlink-mark.svg` | Mark, warna | Favicon, ikon aplikasi, ruang sempit |
+| `karirlink-mark-white.svg` | Mark, putih | Mark di atas latar gelap/gradasi |
+| `karirlink-logo.svg` | Lockup, warna | Header & sidebar (penempatan utama) |
+| `karirlink-logo-white.svg` | Lockup, putih | Lockup di atas latar gelap |
+
+`karirlink-mark.svg` dipakai sebagai favicon kedua halaman; `karirlink-logo.svg`
+dipakai di header `index.html` dan sidebar `dashboard.html`.
+
+Warna **primary** dan **secondary** design system diambil langsung dari
+warna logo tersebut (lihat `src/input.css`, `@theme`):
+
+| Token | Base (600) | Sumber |
+| --- | --- | --- |
+| `primary` (biru) | `#22489e` | Warna mark "L" & teks "Karir" pada logo |
+| `secondary` (oranye) | `#f05925` | Warna mark panah "K" & teks "link" pada logo |
+
+Skala 50–950 tiap warna diturunkan dari base tersebut (lihat bagian Colors
+di `index.html` untuk swatch lengkap). `bg-brand-gradient` dan
+`shadow-glow-primary` juga sudah memakai biru brand ini.
+
 ## Font
 
-Satu keluarga font untuk semua teks: **Instrument Sans** (400/500/600/700),
-di-hosting lokal di `assets/fonts/InstrumentSans/` — diambil dari Quantum
-design system SEVIMA (`D:\laragon\QUANTUM`) alih-alih Google Fonts, supaya
+Satu keluarga font untuk semua teks: **Instrument Sans** (400/500/600/700), supaya
 kedua halaman tetap konsisten dengan produk SEVIMA lain dan bisa dibuka tanpa
 koneksi internet. `@font-face` didefinisikan di awal `src/input.css`; lisensi
 OFL font ini ada di `assets/fonts/InstrumentSans/OFL.txt` (lihat juga

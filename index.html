@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KarirKit — Design System</title>
+<title>KarirKit - Design System</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="dist/output.css" />
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
@@ -11,11 +12,9 @@
 <!-- ============================= HEADER ============================= -->
 <header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
   <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-    <a href="index.html" class="flex items-center gap-2.5">
-      <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow-primary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
-      </span>
-      <span class="font-display text-[17px] font-bold text-slate-900">KarirKit</span>
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-6 w-auto sm:h-7" />
+      <span class="badge-neutral hidden sm:inline-flex">KarirKit UI Kit</span>
     </a>
     <nav class="flex items-center gap-1 rounded-xl bg-slate-100/80 p-1">
       <a href="index.html" class="tab tab-active">Design System</a>
@@ -29,7 +28,7 @@
   <div class="flex max-w-3xl flex-col gap-4">
     <span class="badge-primary w-fit"><span class="badge-dot bg-primary-600"></span>v1.0 — dibangun dengan Tailwind CSS v4</span>
     <h1 class="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-      Design System <span class="text-gradient-brand">KarirKit</span>
+      Design System <span class="text-primary-600">Karir</span><span class="text-secondary-600">Kit</span>
     </h1>
     <p class="text-base leading-relaxed text-slate-500">
       Bahasa desain untuk produk karier berbasis AI — token warna, tipografi, ikon, dan pustaka
@@ -47,7 +46,7 @@
 
   <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
     <div class="card p-4">
-      <p class="font-display text-2xl font-bold text-slate-900">5</p>
+      <p class="font-display text-2xl font-bold text-slate-900">6</p>
       <p class="text-sm text-slate-500">Palet warna</p>
     </div>
     <div class="card p-4">
@@ -69,6 +68,7 @@
 <div class="sticky top-16 z-30 border-b border-slate-200/70 bg-shell/90 backdrop-blur-md">
   <div class="mx-auto max-w-7xl px-6">
     <div class="flex gap-1 overflow-x-auto py-2.5">
+      <a href="#logo" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Logo</a>
       <a href="#colors" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Warna</a>
       <a href="#typography" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tipografi</a>
       <a href="#icons" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Ikon</a>
@@ -87,15 +87,62 @@
 
 <main class="mx-auto max-w-7xl px-6">
 
+  <!-- ============================= LOGO ============================= -->
+  <section id="logo" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Logo</h2>
+      <p class="mt-1 text-sm text-slate-500">Logo resmi KarirLink — mark &amp; lockup, versi warna dan putih. Palet primary &amp; secondary di bawah diturunkan langsung dari warna logo ini.</p>
+    </div>
+    <div class="card p-6 sm:p-8">
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-xl border border-slate-200/70 p-5">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-50">
+            <img src="assets/logo/karirlink-mark.svg" alt="KarirLink mark" class="h-12 w-auto" />
+          </div>
+          <p class="mt-3 text-sm font-semibold text-slate-800">Mark — Color</p>
+          <p class="mt-1 text-xs text-slate-500">Favicon, ikon aplikasi, dan ruang sempit yang tidak cukup untuk lockup penuh.</p>
+          <p class="kbd mt-2 inline-block">karirlink-mark.svg</p>
+        </div>
+        <div class="rounded-xl border border-slate-200/70 p-5">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-800">
+            <img src="assets/logo/karirlink-mark-white.svg" alt="KarirLink mark putih" class="h-12 w-auto" />
+          </div>
+          <p class="mt-3 text-sm font-semibold text-slate-800">Mark — White</p>
+          <p class="mt-1 text-xs text-slate-500">Mark di atas latar gelap atau bergradasi, mis. kartu AI Career Coach.</p>
+          <p class="kbd mt-2 inline-block">karirlink-mark-white.svg</p>
+        </div>
+        <div class="rounded-xl border border-slate-200/70 p-5">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-50">
+            <img src="assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+          </div>
+          <p class="mt-3 text-sm font-semibold text-slate-800">Lockup — Color</p>
+          <p class="mt-1 text-xs text-slate-500">Penempatan utama: header dan sidebar, area dengan cukup ruang horizontal.</p>
+          <p class="kbd mt-2 inline-block">karirlink-logo.svg</p>
+        </div>
+        <div class="rounded-xl border border-slate-200/70 p-5">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-800">
+            <img src="assets/logo/karirlink-logo-white.svg" alt="KarirLink putih" class="h-8 w-auto" />
+          </div>
+          <p class="mt-3 text-sm font-semibold text-slate-800">Lockup — White</p>
+          <p class="mt-1 text-xs text-slate-500">Lockup di atas latar gelap, mis. footer gelap atau splash screen.</p>
+          <p class="kbd mt-2 inline-block">karirlink-logo-white.svg</p>
+        </div>
+      </div>
+      <div class="mt-6 rounded-xl bg-slate-50 p-3">
+        <p class="text-xs text-slate-500">Primary <code class="kbd">#22489e</code> &amp; secondary <code class="kbd">#f05925</code> diambil langsung dari warna logo di atas — lihat skala lengkap di bagian Colors.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================= COLORS ============================= -->
   <section id="colors" class="scroll-mt-32 py-12">
     <div class="mb-6">
       <h2 class="font-display text-2xl font-bold text-slate-900">Colors</h2>
-      <p class="mt-1 text-sm text-slate-500">Palet primer dan warna semantik. Tersedia sebagai utility <code class="kbd">bg-*</code>, <code class="kbd">text-*</code>, <code class="kbd">border-*</code>.</p>
+      <p class="mt-1 text-sm text-slate-500">Primary &amp; secondary diturunkan langsung dari logo KarirLink, plus warna semantik. Tersedia sebagai utility <code class="kbd">bg-*</code>, <code class="kbd">text-*</code>, <code class="kbd">border-*</code>.</p>
     </div>
 
     <div class="card p-6 sm:p-8">
-      <p class="nav-eyebrow mb-3 px-0">Primary — violet</p>
+      <p class="nav-eyebrow mb-3 px-0">Primary — Blue</p>
       <div class="grid grid-cols-3 gap-3 sm:grid-cols-6 lg:grid-cols-11 mb-8">
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl border border-slate-200/70 bg-primary-50"></div><p class="text-xs font-medium text-slate-600">50</p></div>
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-100"></div><p class="text-xs font-medium text-slate-600">100</p></div>
@@ -108,6 +155,21 @@
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-800"></div><p class="text-xs font-medium text-slate-600">800</p></div>
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-900"></div><p class="text-xs font-medium text-slate-600">900</p></div>
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-950"></div><p class="text-xs font-medium text-slate-600">950</p></div>
+      </div>
+
+      <p class="nav-eyebrow mb-3 px-0">Secondary — Orange</p>
+      <div class="grid grid-cols-3 gap-3 sm:grid-cols-6 lg:grid-cols-11 mb-8">
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl border border-slate-200/70 bg-secondary-50"></div><p class="text-xs font-medium text-slate-600">50</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-100"></div><p class="text-xs font-medium text-slate-600">100</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-200"></div><p class="text-xs font-medium text-slate-600">200</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-300"></div><p class="text-xs font-medium text-slate-600">300</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-400"></div><p class="text-xs font-medium text-slate-600">400</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-500"></div><p class="text-xs font-medium text-slate-600">500</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-600"></div><p class="text-xs font-medium text-slate-600">600 <span class="text-slate-400">base</span></p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-700"></div><p class="text-xs font-medium text-slate-600">700</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-800"></div><p class="text-xs font-medium text-slate-600">800</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-900"></div><p class="text-xs font-medium text-slate-600">900</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-950"></div><p class="text-xs font-medium text-slate-600">950</p></div>
       </div>
 
       <p class="nav-eyebrow mb-3 px-0">Semantic</p>
@@ -167,7 +229,7 @@
   <section id="typography" class="scroll-mt-32 py-12">
     <div class="mb-6">
       <h2 class="font-display text-2xl font-bold text-slate-900">Typography</h2>
-      <p class="mt-1 text-sm text-slate-500">Instrument Sans — satu keluarga font untuk judul, branding, dan teks antarmuka. Di-hosting lokal dari Quantum design system SEVIMA.</p>
+      <p class="mt-1 text-sm text-slate-500">Instrument Sans — satu keluarga font untuk judul, branding, dan teks antarmuka.</p>
     </div>
     <div class="card p-6 sm:p-8">
       <div class="mb-8">
@@ -265,6 +327,7 @@
         <div class="flex flex-wrap items-center gap-3">
           <button class="btn-primary btn-md">Primary</button>
           <button class="btn-secondary btn-md">Secondary</button>
+          <button class="btn-accent btn-md">Accent</button>
           <button class="btn-outline btn-md">Outline</button>
           <button class="btn-ghost btn-md">Ghost</button>
           <button class="btn-danger btn-md">Danger</button>
@@ -317,6 +380,7 @@
           <span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Menunggu</span>
           <span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span>
           <span class="badge-primary"><span class="badge-dot bg-primary-600"></span>Baru</span>
+          <span class="badge-secondary"><span class="badge-dot bg-secondary-600"></span>Rekomendasi</span>
           <span class="badge-neutral"><span class="badge-dot bg-slate-400"></span>Draf</span>
         </div>
       </div>

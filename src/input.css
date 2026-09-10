@@ -43,18 +43,31 @@
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
-  /* Brand — primary violet scale */
-  --color-primary-50: #f5f3ff;
-  --color-primary-100: #ede9fe;
-  --color-primary-200: #ddd6fe;
-  --color-primary-300: #c4b5fd;
-  --color-primary-400: #a78bfa;
-  --color-primary-500: #8b5cf6;
-  --color-primary-600: #7c3aed;
-  --color-primary-700: #6d28d9;
-  --color-primary-800: #5b21b6;
-  --color-primary-900: #4c1d95;
-  --color-primary-950: #2e1065;
+  /* Brand — primary, derived from the KarirLink logo blue (#22489e @ 600) */
+  --color-primary-50: #f2f5fd;
+  --color-primary-100: #e2e9f9;
+  --color-primary-200: #c1d0f0;
+  --color-primary-300: #95ade4;
+  --color-primary-400: #6185d6;
+  --color-primary-500: #2f5fca;
+  --color-primary-600: #22489e;
+  --color-primary-700: #1d3a7c;
+  --color-primary-800: #1a3165;
+  --color-primary-900: #182a53;
+  --color-primary-950: #111b32;
+
+  /* Brand — secondary, derived from the KarirLink logo orange (#f05925 @ 600) */
+  --color-secondary-50: #fef4f0;
+  --color-secondary-100: #fde6dd;
+  --color-secondary-200: #fac9b7;
+  --color-secondary-300: #f69d7e;
+  --color-secondary-400: #f37c53;
+  --color-secondary-500: #f16a3b;
+  --color-secondary-600: #f05925;
+  --color-secondary-700: #d94512;
+  --color-secondary-800: #b53c12;
+  --color-secondary-900: #963413;
+  --color-secondary-950: #5b2310;
 
   /* Semantic — success */
   --color-success-50: #ecfdf5;
@@ -91,7 +104,7 @@
   /* Elevation */
   --shadow-card: 0 1px 2px 0 rgb(15 23 42 / 0.04), 0 12px 24px -10px rgb(15 23 42 / 0.10);
   --shadow-card-lg: 0 4px 8px 0 rgb(15 23 42 / 0.04), 0 24px 48px -12px rgb(15 23 42 / 0.18);
-  --shadow-glow-primary: 0 8px 30px -6px rgb(124 58 237 / 0.45);
+  --shadow-glow-primary: 0 8px 30px -6px rgb(34 72 158 / 0.45);
 
   --animate-fade-in: fade-in 0.4s ease-out;
 
@@ -102,28 +115,38 @@
 }
 
 /* ==========================================================================
+   Base — interactive elements always get a pointer cursor. Browsers only do
+   this natively for <a href>; plain <button>, tabs, and nav items default to
+   a text/arrow cursor unless told otherwise, which reads as "not clickable".
+   ========================================================================== */
+@layer base {
+  button:not(:disabled),
+  [role="button"],
+  select,
+  summary,
+  label:has(input[type="checkbox"]),
+  label:has(input[type="radio"]) {
+    cursor: pointer;
+  }
+}
+
+/* ==========================================================================
    Brand utilities — gradients unique to KarirKit's visual identity
    ========================================================================== */
 @utility bg-shell {
   background-color: #f8fafc;
   background-image:
     radial-gradient(1200px 600px at 0% -10%, color-mix(in srgb, var(--color-primary-200) 40%, transparent), transparent),
-    radial-gradient(1000px 500px at 100% 0%, color-mix(in srgb, #7dd3fc 35%, transparent), transparent);
+    radial-gradient(1000px 500px at 100% 0%, color-mix(in srgb, var(--color-secondary-200) 35%, transparent), transparent);
   background-attachment: fixed;
 }
 
 @utility bg-brand-gradient {
-  background-image: linear-gradient(135deg, var(--color-primary-600) 0%, #a855f7 55%, #6366f1 100%);
+  background-image: linear-gradient(135deg, var(--color-primary-700) 0%, var(--color-primary-600) 55%, var(--color-primary-500) 100%);
 }
 
 @utility bg-brand-gradient-soft {
-  background-image: linear-gradient(135deg, var(--color-primary-50) 0%, #faf5ff 50%, #f0f9ff 100%);
-}
-
-@utility text-gradient-brand {
-  background-image: linear-gradient(135deg, var(--color-primary-600), #6366f1);
-  background-clip: text;
-  color: transparent;
+  background-image: linear-gradient(135deg, var(--color-primary-50) 0%, #f5f8ff 50%, var(--color-secondary-50) 100%);
 }
 
 /* ==========================================================================
@@ -140,20 +163,21 @@
   .btn-md { @apply h-10 px-4 text-sm; }
   .btn-lg { @apply h-12 px-6 text-[15px]; }
 
-  .btn-primary, .btn-secondary, .btn-outline, .btn-ghost, .btn-danger, .btn-white {
+  .btn-primary, .btn-secondary, .btn-accent, .btn-outline, .btn-ghost, .btn-danger, .btn-white {
     @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold whitespace-nowrap
            transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer;
   }
   .btn-primary { @apply bg-primary-600 text-white shadow-sm hover:bg-primary-700 focus-visible:ring-primary-500; }
   .btn-secondary { @apply bg-primary-50 text-primary-700 hover:bg-primary-100 focus-visible:ring-primary-300; }
+  .btn-accent { @apply bg-secondary-600 text-white shadow-sm hover:bg-secondary-700 focus-visible:ring-secondary-300; }
   .btn-outline { @apply border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 focus-visible:ring-slate-300; }
   .btn-ghost { @apply text-slate-500 hover:bg-slate-100 hover:text-slate-800 focus-visible:ring-slate-300; }
   .btn-danger { @apply bg-danger-600 text-white hover:bg-danger-700 focus-visible:ring-danger-300; }
   .btn-white { @apply bg-white text-primary-700 hover:bg-white/90 focus-visible:ring-white shadow-sm; }
 
   /* Badges / status pills */
-  .badge, .badge-success, .badge-warning, .badge-danger, .badge-info, .badge-neutral, .badge-primary {
+  .badge, .badge-success, .badge-warning, .badge-danger, .badge-info, .badge-neutral, .badge-primary, .badge-secondary {
     @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium leading-none;
   }
   .badge-dot { @apply h-1.5 w-1.5 rounded-full shrink-0; }
@@ -163,6 +187,7 @@
   .badge-info { @apply bg-info-50 text-info-700; }
   .badge-neutral { @apply bg-slate-100 text-slate-600; }
   .badge-primary { @apply bg-primary-50 text-primary-700; }
+  .badge-secondary { @apply bg-secondary-50 text-secondary-700; }
 
   /* Surfaces */
   .card { @apply rounded-2xl border border-slate-200/70 bg-white shadow-card; }
@@ -179,7 +204,7 @@
 
   /* Navigation */
   .nav-item {
-    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500
+    @apply flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500
            hover:bg-slate-100/80 hover:text-slate-900 transition-colors;
   }
   .nav-item-active { @apply bg-primary-50! text-primary-700! hover:bg-primary-50!; }
@@ -209,6 +234,6 @@
   .divider-v { @apply w-px self-stretch bg-slate-200; }
   .progress-track { @apply h-2 w-full overflow-hidden rounded-full bg-slate-100; }
   .progress-bar { @apply h-full rounded-full bg-primary-600; }
-  .tab { @apply rounded-lg px-3.5 py-1.5 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors; }
+  .tab { @apply cursor-pointer rounded-lg px-3.5 py-1.5 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors; }
   .tab-active { @apply bg-white text-slate-900 shadow-sm; }
 }
