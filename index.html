@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KarirKit — Design System</title>
+<title>KarirKit - Design System</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="dist/output.css" />
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
@@ -11,15 +12,13 @@
 <!-- ============================= HEADER ============================= -->
 <header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
   <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-    <a href="index.html" class="flex items-center gap-2.5">
-      <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow-primary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
-      </span>
-      <span class="font-display text-[17px] font-bold text-slate-900">KarirKit</span>
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-6 w-auto sm:h-7" />
+      <span class="badge-neutral hidden sm:inline-flex">KarirKit UI Kit</span>
     </a>
     <nav class="flex items-center gap-1 rounded-xl bg-slate-100/80 p-1">
       <a href="index.html" class="tab tab-active">Design System</a>
-      <a href="dashboard.html" class="tab">Dashboard</a>
+      <a href="templates/dashboard.html" class="tab">Template</a>
     </nav>
   </div>
 </header>
@@ -27,18 +26,18 @@
 <!-- ============================= HERO ============================= -->
 <section class="mx-auto max-w-7xl px-6 pt-14 pb-8">
   <div class="flex max-w-3xl flex-col gap-4">
-    <span class="badge-primary w-fit"><span class="badge-dot bg-primary-600"></span>v1.0 — dibangun dengan Tailwind CSS v4</span>
+    <span class="badge-primary w-fit"><span class="badge-dot bg-primary-600"></span>v1.0 - dibangun dengan Tailwind CSS v4</span>
     <h1 class="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-      Design System <span class="text-gradient-brand">KarirKit</span>
+      <span class="text-primary-600">Karir</span><span class="text-secondary-600">Kit</span> Design System
     </h1>
     <p class="text-base leading-relaxed text-slate-500">
-      Bahasa desain untuk produk karier berbasis AI — token warna, tipografi, ikon, dan pustaka
+      Bahasa desain untuk platform KarirLink - token warna, tipografi, ikon, dan pustaka
       komponen yang konsisten. Semua elemen di halaman ini dipakai langsung pada
-      <a href="dashboard.html" class="font-medium text-primary-600 hover:underline">halaman Dashboard</a>.
+      <a href="templates/dashboard.html" class="font-medium text-primary-600 hover:underline">halaman Template</a>.
     </p>
     <div class="flex flex-wrap items-center gap-3 pt-2">
-      <a href="dashboard.html" class="btn-primary btn-md">
-        Lihat Dashboard
+      <a href="templates/dashboard.html" class="btn-primary btn-md">
+        Lihat Template
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4.5 19.5L19.5 4.5M19.5 4.5H8.25M19.5 4.5V15.75" /></svg>
       </a>
       <a href="#colors" class="btn-outline btn-md">Jelajahi Komponen</a>
@@ -47,7 +46,7 @@
 
   <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
     <div class="card p-4">
-      <p class="font-display text-2xl font-bold text-slate-900">5</p>
+      <p class="font-display text-2xl font-bold text-slate-900">6</p>
       <p class="text-sm text-slate-500">Palet warna</p>
     </div>
     <div class="card p-4">
@@ -68,7 +67,8 @@
 <!-- ======================= SECTION ANCHOR NAV ======================= -->
 <div class="sticky top-16 z-30 border-b border-slate-200/70 bg-shell/90 backdrop-blur-md">
   <div class="mx-auto max-w-7xl px-6">
-    <div class="flex gap-1 overflow-x-auto py-2.5">
+    <div class="flex gap-1 overflow-x-auto scrollbar-none py-2.5">
+      <a href="#logo" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Logo</a>
       <a href="#colors" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Warna</a>
       <a href="#typography" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tipografi</a>
       <a href="#icons" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Ikon</a>
@@ -79,6 +79,7 @@
       <a href="#forms" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Formulir</a>
       <a href="#navigation" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Navigasi</a>
       <a href="#tables" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tabel</a>
+      <a href="#datatable" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">DataTable</a>
       <a href="#alerts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Alert</a>
       <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Lainnya</a>
     </div>
@@ -87,15 +88,62 @@
 
 <main class="mx-auto max-w-7xl px-6">
 
+  <!-- ============================= LOGO ============================= -->
+  <section id="logo" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Logo</h2>
+      <p class="mt-1 text-sm text-slate-500">Logo resmi KarirLink - mark &amp; lockup, versi warna dan putih. Palet primary &amp; secondary di bawah diturunkan langsung dari warna logo ini.</p>
+    </div>
+    <div class="card p-6 sm:p-8">
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-xl border border-slate-200/70 p-5">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-50">
+            <img src="assets/logo/karirlink-mark.svg" alt="KarirLink mark" class="h-12 w-auto" />
+          </div>
+          <p class="mt-3 text-sm font-semibold text-slate-800">Mark - Color</p>
+          <p class="mt-1 text-xs text-slate-500">Favicon, ikon aplikasi, dan ruang sempit yang tidak cukup untuk lockup penuh.</p>
+          <p class="kbd mt-2 inline-block">karirlink-mark.svg</p>
+        </div>
+        <div class="rounded-xl border border-slate-200/70 p-5">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-800">
+            <img src="assets/logo/karirlink-mark-white.svg" alt="KarirLink mark putih" class="h-12 w-auto" />
+          </div>
+          <p class="mt-3 text-sm font-semibold text-slate-800">Mark - White</p>
+          <p class="mt-1 text-xs text-slate-500">Mark di atas latar gelap atau bergradasi, mis. kartu AI Career Coach.</p>
+          <p class="kbd mt-2 inline-block">karirlink-mark-white.svg</p>
+        </div>
+        <div class="rounded-xl border border-slate-200/70 p-5">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-50">
+            <img src="assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+          </div>
+          <p class="mt-3 text-sm font-semibold text-slate-800">Lockup - Color</p>
+          <p class="mt-1 text-xs text-slate-500">Penempatan utama: header dan sidebar, area dengan cukup ruang horizontal.</p>
+          <p class="kbd mt-2 inline-block">karirlink-logo.svg</p>
+        </div>
+        <div class="rounded-xl border border-slate-200/70 p-5">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-800">
+            <img src="assets/logo/karirlink-logo-white.svg" alt="KarirLink putih" class="h-8 w-auto" />
+          </div>
+          <p class="mt-3 text-sm font-semibold text-slate-800">Lockup - White</p>
+          <p class="mt-1 text-xs text-slate-500">Lockup di atas latar gelap, mis. footer gelap atau splash screen.</p>
+          <p class="kbd mt-2 inline-block">karirlink-logo-white.svg</p>
+        </div>
+      </div>
+      <div class="mt-6 rounded-xl bg-slate-50 p-3">
+        <p class="text-xs text-slate-500">Primary <code class="kbd">#2361e7</code> &amp; secondary <code class="kbd">#f67e28</code> - satu keluarga warna dengan biru &amp; oranye logo di atas, disesuaikan supaya lebih hidup untuk UI - lihat skala lengkap di bagian Colors.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================= COLORS ============================= -->
   <section id="colors" class="scroll-mt-32 py-12">
     <div class="mb-6">
       <h2 class="font-display text-2xl font-bold text-slate-900">Colors</h2>
-      <p class="mt-1 text-sm text-slate-500">Palet primer dan warna semantik. Tersedia sebagai utility <code class="kbd">bg-*</code>, <code class="kbd">text-*</code>, <code class="kbd">border-*</code>.</p>
+      <p class="mt-1 text-sm text-slate-500">Primary &amp; secondary diturunkan langsung dari logo KarirLink, plus warna semantik. Tersedia sebagai utility <code class="kbd">bg-*</code>, <code class="kbd">text-*</code>, <code class="kbd">border-*</code>.</p>
     </div>
 
     <div class="card p-6 sm:p-8">
-      <p class="nav-eyebrow mb-3 px-0">Primary — violet</p>
+      <p class="nav-eyebrow mb-3 px-0">Primary - Blue</p>
       <div class="grid grid-cols-3 gap-3 sm:grid-cols-6 lg:grid-cols-11 mb-8">
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl border border-slate-200/70 bg-primary-50"></div><p class="text-xs font-medium text-slate-600">50</p></div>
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-100"></div><p class="text-xs font-medium text-slate-600">100</p></div>
@@ -108,6 +156,21 @@
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-800"></div><p class="text-xs font-medium text-slate-600">800</p></div>
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-900"></div><p class="text-xs font-medium text-slate-600">900</p></div>
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-primary-950"></div><p class="text-xs font-medium text-slate-600">950</p></div>
+      </div>
+
+      <p class="nav-eyebrow mb-3 px-0">Secondary - Orange</p>
+      <div class="grid grid-cols-3 gap-3 sm:grid-cols-6 lg:grid-cols-11 mb-8">
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl border border-slate-200/70 bg-secondary-50"></div><p class="text-xs font-medium text-slate-600">50</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-100"></div><p class="text-xs font-medium text-slate-600">100</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-200"></div><p class="text-xs font-medium text-slate-600">200</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-300"></div><p class="text-xs font-medium text-slate-600">300</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-400"></div><p class="text-xs font-medium text-slate-600">400</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-500"></div><p class="text-xs font-medium text-slate-600">500</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-600"></div><p class="text-xs font-medium text-slate-600">600 <span class="text-slate-400">base</span></p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-700"></div><p class="text-xs font-medium text-slate-600">700</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-800"></div><p class="text-xs font-medium text-slate-600">800</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-900"></div><p class="text-xs font-medium text-slate-600">900</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-950"></div><p class="text-xs font-medium text-slate-600">950</p></div>
       </div>
 
       <p class="nav-eyebrow mb-3 px-0">Semantic</p>
@@ -167,7 +230,7 @@
   <section id="typography" class="scroll-mt-32 py-12">
     <div class="mb-6">
       <h2 class="font-display text-2xl font-bold text-slate-900">Typography</h2>
-      <p class="mt-1 text-sm text-slate-500">Instrument Sans — satu keluarga font untuk judul, branding, dan teks antarmuka. Di-hosting lokal dari Quantum design system SEVIMA.</p>
+      <p class="mt-1 text-sm text-slate-500">Instrument Sans - satu keluarga font untuk judul, branding, dan teks antarmuka.</p>
     </div>
     <div class="card p-6 sm:p-8">
       <div class="mb-8">
@@ -265,6 +328,7 @@
         <div class="flex flex-wrap items-center gap-3">
           <button class="btn-primary btn-md">Primary</button>
           <button class="btn-secondary btn-md">Secondary</button>
+          <button class="btn-accent btn-md">Accent</button>
           <button class="btn-outline btn-md">Outline</button>
           <button class="btn-ghost btn-md">Ghost</button>
           <button class="btn-danger btn-md">Danger</button>
@@ -317,6 +381,7 @@
           <span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Menunggu</span>
           <span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span>
           <span class="badge-primary"><span class="badge-dot bg-primary-600"></span>Baru</span>
+          <span class="badge-secondary"><span class="badge-dot bg-secondary-600"></span>Rekomendasi</span>
           <span class="badge-neutral"><span class="badge-dot bg-slate-400"></span>Draf</span>
         </div>
       </div>
@@ -387,7 +452,7 @@
     <div class="grid gap-6 md:grid-cols-3">
       <div class="card p-5">
         <p class="mb-1 text-sm font-semibold text-slate-800">Basic Card</p>
-        <p class="text-sm text-slate-500">Kontainer default untuk mengelompokkan konten — border tipis, sudut membulat, dan shadow lembut.</p>
+        <p class="text-sm text-slate-500">Kontainer default untuk mengelompokkan konten - border tipis, sudut membulat, dan shadow lembut.</p>
         <p class="kbd mt-4 inline-block">.card</p>
       </div>
       <div class="card card-hover p-5">
@@ -502,7 +567,7 @@
         <div class="space-y-1">
           <a class="nav-item nav-item-active">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75" /></svg>
-            Dashboard
+            Template
           </a>
           <a class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
@@ -584,6 +649,614 @@
     </div>
   </section>
 
+  <!-- ============================= DATATABLE ============================= -->
+  <section id="datatable" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">DataTable</h2>
+      <p class="mt-1 text-sm text-slate-500">Tabel lengkap: cari, filter status, urutkan kolom, pilih baris massal, menu aksi per baris, tooltip, dan pagination — semua benar-benar berfungsi (vanilla JS, tanpa dependency).</p>
+    </div>
+
+    <div class="card overflow-hidden">
+      <!-- Toolbar -->
+      <div class="flex flex-col gap-3 border-b border-slate-100 p-4">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex gap-1 overflow-x-auto scrollbar-none rounded-xl bg-slate-100 p-1" id="dtStatusTabs">
+            <button type="button" data-status="all" class="tab tab-active">Semua</button>
+            <button type="button" data-status="interview" class="tab">Interview</button>
+            <button type="button" data-status="ditinjau" class="tab">Ditinjau</button>
+            <button type="button" data-status="ditawari" class="tab">Ditawari</button>
+            <button type="button" data-status="ditolak" class="tab">Ditolak</button>
+          </div>
+          <button class="btn-primary btn-sm hidden sm:inline-flex">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M12 4.5v15m7.5-7.5h-15" /></svg>
+            Tambah Lamaran
+          </button>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="relative w-full sm:w-64">
+            <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+            </span>
+            <input id="dtSearch" class="input h-9 pl-9" placeholder="Cari perusahaan atau posisi..." />
+          </div>
+          <div class="relative">
+            <button type="button" id="dtSortBtn" class="btn-outline btn-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M3 7.5h10.5m-10.5 4.5h7.5m-7.5 4.5h4.5M17.25 6v12m0 0l3.75-3.75M17.25 18L13.5 14.25" /></svg>
+              Urutkan
+            </button>
+            <div id="dtSortMenu" class="dropdown-menu hidden w-56">
+              <p class="nav-eyebrow px-3 pb-1 pt-2">Nama</p>
+              <label class="dropdown-item"><input type="radio" name="dtSort" value="name:asc" class="accent-primary-600" /> A ke Z</label>
+              <label class="dropdown-item"><input type="radio" name="dtSort" value="name:desc" class="accent-primary-600" /> Z ke A</label>
+              <p class="nav-eyebrow px-3 pb-1 pt-2">Skor Kecocokan</p>
+              <label class="dropdown-item"><input type="radio" name="dtSort" value="score:desc" class="accent-primary-600" /> Tertinggi</label>
+              <label class="dropdown-item"><input type="radio" name="dtSort" value="score:asc" class="accent-primary-600" /> Terendah</label>
+              <p class="nav-eyebrow px-3 pb-1 pt-2">Tanggal Lamar</p>
+              <label class="dropdown-item"><input type="radio" name="dtSort" value="date:desc" class="accent-primary-600" /> Terbaru</label>
+              <label class="dropdown-item"><input type="radio" name="dtSort" value="date:asc" class="accent-primary-600" /> Terlama</label>
+            </div>
+          </div>
+          <button class="btn-primary btn-sm sm:hidden">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M12 4.5v15m7.5-7.5h-15" /></svg>
+            Tambah Lamaran
+          </button>
+        </div>
+      </div>
+
+      <!-- Bulk action bar -->
+      <div id="dtBulkBar" class="hidden items-center justify-between gap-3 border-b border-primary-100 bg-primary-50 px-4 py-2.5 text-sm">
+        <span class="font-medium text-primary-700"><span id="dtSelectedCount">0</span> dipilih</span>
+        <div class="flex items-center gap-2">
+          <button id="dtBulkDelete" class="btn-ghost btn-sm text-danger-600 hover:bg-danger-50 hover:text-danger-700">Hapus</button>
+          <button id="dtBulkCancel" class="btn-ghost btn-sm">Batal</button>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="table" id="dtTable">
+          <thead>
+            <tr>
+              <th class="w-10"><input type="checkbox" id="dtSelectAll" class="h-4 w-4 rounded border-slate-300 accent-primary-600" /></th>
+              <th class="th-sortable" data-sort="name" role="button" tabindex="0">
+                <span class="inline-flex items-center gap-1">Perusahaan
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="sort-icon h-3 w-3"><path d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                </span>
+              </th>
+              <th class="th-sortable" data-sort="position" role="button" tabindex="0">
+                <span class="inline-flex items-center gap-1">Posisi
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="sort-icon h-3 w-3"><path d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                </span>
+              </th>
+              <th class="th-sortable" data-sort="date" role="button" tabindex="0">
+                <span class="inline-flex items-center gap-1">Tanggal Lamar
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="sort-icon h-3 w-3"><path d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                </span>
+              </th>
+              <th class="th-sortable" data-sort="score" role="button" tabindex="0">
+                <span class="inline-flex items-center gap-1">Skor
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="sort-icon h-3 w-3"><path d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                </span>
+              </th>
+              <th>Status</th>
+              <th class="text-right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="dtBody">
+            <tr data-name="Gojek" data-position="Product Designer" data-date="2026-09-03" data-score="92" data-status="interview">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">GJ</span><span class="font-medium text-slate-800">Gojek</span></div></td>
+              <td>Product Designer</td>
+              <td>3 Sep 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[92%]"></div></div><span class="text-xs text-slate-500">92%</span></div></td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Interview</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Tokopedia" data-position="UI/UX Researcher" data-date="2026-09-01" data-score="78" data-status="ditinjau">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">TP</span><span class="font-medium text-slate-800">Tokopedia</span></div></td>
+              <td>UI/UX Researcher</td>
+              <td>1 Sep 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[78%]"></div></div><span class="text-xs text-slate-500">78%</span></div></td>
+              <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Bank Jago" data-position="Business Analyst" data-date="2026-08-25" data-score="81" data-status="ditawari">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">BJ</span><span class="font-medium text-slate-800">Bank Jago</span></div></td>
+              <td>Business Analyst</td>
+              <td>25 Agu 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[81%]"></div></div><span class="text-xs text-slate-500">81%</span></div></td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Ditawari</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Traveloka" data-position="Frontend Engineer" data-date="2026-08-18" data-score="54" data-status="ditolak">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-danger-100 text-danger-700">TV</span><span class="font-medium text-slate-800">Traveloka</span></div></td>
+              <td>Frontend Engineer</td>
+              <td>18 Agu 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-danger-500 w-[54%]"></div></div><span class="text-xs text-slate-500">54%</span></div></td>
+              <td><span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Bukalapak" data-position="Data Analyst" data-date="2026-08-12" data-score="88" data-status="interview">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">BL</span><span class="font-medium text-slate-800">Bukalapak</span></div></td>
+              <td>Data Analyst</td>
+              <td>12 Agu 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[88%]"></div></div><span class="text-xs text-slate-500">88%</span></div></td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Interview</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Shopee" data-position="Marketing Associate" data-date="2026-08-10" data-score="65" data-status="ditinjau">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">SP</span><span class="font-medium text-slate-800">Shopee</span></div></td>
+              <td>Marketing Associate</td>
+              <td>10 Agu 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[65%]"></div></div><span class="text-xs text-slate-500">65%</span></div></td>
+              <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Blibli" data-position="Product Manager" data-date="2026-08-05" data-score="73" data-status="ditinjau">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">BB</span><span class="font-medium text-slate-800">Blibli</span></div></td>
+              <td>Product Manager</td>
+              <td>5 Agu 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[73%]"></div></div><span class="text-xs text-slate-500">73%</span></div></td>
+              <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="OVO" data-position="Backend Engineer" data-date="2026-07-30" data-score="90" data-status="interview">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">OV</span><span class="font-medium text-slate-800">OVO</span></div></td>
+              <td>Backend Engineer</td>
+              <td>30 Jul 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[90%]"></div></div><span class="text-xs text-slate-500">90%</span></div></td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Interview</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="DANA" data-position="QA Engineer" data-date="2026-07-28" data-score="60" data-status="ditolak">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">DN</span><span class="font-medium text-slate-800">DANA</span></div></td>
+              <td>QA Engineer</td>
+              <td>28 Jul 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-danger-500 w-[60%]"></div></div><span class="text-xs text-slate-500">60%</span></div></td>
+              <td><span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Ruangguru" data-position="UX Writer" data-date="2026-07-22" data-score="84" data-status="ditawari">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-success-100 text-success-700">RG</span><span class="font-medium text-slate-800">Ruangguru</span></div></td>
+              <td>UX Writer</td>
+              <td>22 Jul 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[84%]"></div></div><span class="text-xs text-slate-500">84%</span></div></td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Ditawari</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Kredivo" data-position="Data Scientist" data-date="2026-07-15" data-score="77" data-status="ditinjau">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">KV</span><span class="font-medium text-slate-800">Kredivo</span></div></td>
+              <td>Data Scientist</td>
+              <td>15 Jul 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[77%]"></div></div><span class="text-xs text-slate-500">77%</span></div></td>
+              <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Halodoc" data-position="Mobile Developer" data-date="2026-07-10" data-score="82" data-status="interview">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">HD</span><span class="font-medium text-slate-800">Halodoc</span></div></td>
+              <td>Mobile Developer</td>
+              <td>10 Jul 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[82%]"></div></div><span class="text-xs text-slate-500">82%</span></div></td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Interview</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Xendit" data-position="DevOps Engineer" data-date="2026-07-05" data-score="68" data-status="ditolak">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">XD</span><span class="font-medium text-slate-800">Xendit</span></div></td>
+              <td>DevOps Engineer</td>
+              <td>5 Jul 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-danger-500 w-[68%]"></div></div><span class="text-xs text-slate-500">68%</span></div></td>
+              <td><span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="SiCepat" data-position="Operations Analyst" data-date="2026-06-28" data-score="71" data-status="ditinjau">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">SC</span><span class="font-medium text-slate-800">SiCepat</span></div></td>
+              <td>Operations Analyst</td>
+              <td>28 Jun 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[71%]"></div></div><span class="text-xs text-slate-500">71%</span></div></td>
+              <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Kitabisa" data-position="Growth Marketer" data-date="2026-06-20" data-score="86" data-status="ditawari">
+              <td><input type="checkbox" class="dt-row-checkbox h-4 w-4 rounded border-slate-300 accent-primary-600" /></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-success-100 text-success-700">KB</span><span class="font-medium text-slate-800">Kitabisa</span></div></td>
+              <td>Growth Marketer</td>
+              <td>20 Jun 2026</td>
+              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[86%]"></div></div><span class="text-xs text-slate-500">86%</span></div></td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Ditawari</span></td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                    <span class="tooltip-content">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      Lihat Detail
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                      Edit
+                    </button>
+                    <button type="button" class="dropdown-item dropdown-item-danger dt-row-delete">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination footer -->
+      <div class="flex flex-col gap-3 border-t border-slate-100 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span>Baris per halaman</span>
+          <select id="dtPageSize" class="input h-8 w-auto py-0 text-xs">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+          </select>
+        </div>
+        <p class="text-xs text-slate-500" id="dtRangeText">Menampilkan 1-10 dari 15 lamaran</p>
+        <div class="flex items-center gap-1" id="dtPagination"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================= ALERTS ============================= -->
   <section id="alerts" class="scroll-mt-32 py-12">
     <div class="mb-6">
@@ -610,7 +1283,7 @@
     </div>
     <div class="mt-4 rounded-xl border border-warning-100 bg-warning-50 p-4">
       <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-warning-600">AI Recommendation &amp; Impact</p>
-      <p class="text-sm text-slate-700">Kotak rekomendasi bertingkat di dalam kartu aksi — memberi konteks kenapa AI menyarankan sesuatu dan dampaknya.</p>
+      <p class="text-sm text-slate-700">Kotak rekomendasi bertingkat di dalam kartu aksi - memberi konteks kenapa AI menyarankan sesuatu dan dampaknya.</p>
     </div>
   </section>
 
@@ -660,5 +1333,258 @@
   </div>
 </footer>
 
+<script>
+  (function () {
+    const table = document.getElementById('dtTable');
+    if (!table) return;
+
+    const tbody = document.getElementById('dtBody');
+    const allRows = Array.from(tbody.querySelectorAll('tr'));
+    const searchInput = document.getElementById('dtSearch');
+    const statusTabs = document.getElementById('dtStatusTabs');
+    const sortBtn = document.getElementById('dtSortBtn');
+    const sortMenu = document.getElementById('dtSortMenu');
+    const pageSizeSelect = document.getElementById('dtPageSize');
+    const selectAll = document.getElementById('dtSelectAll');
+    const bulkBar = document.getElementById('dtBulkBar');
+    const bulkCount = document.getElementById('dtSelectedCount');
+    const bulkDelete = document.getElementById('dtBulkDelete');
+    const bulkCancel = document.getElementById('dtBulkCancel');
+    const rangeText = document.getElementById('dtRangeText');
+    const paginationEl = document.getElementById('dtPagination');
+    const headers = Array.from(table.querySelectorAll('th.th-sortable'));
+
+    const state = {
+      search: '',
+      status: 'all',
+      sortKey: null,
+      sortDir: 'asc',
+      page: 1,
+      pageSize: parseInt(pageSizeSelect.value, 10),
+    };
+
+    function getFiltered() {
+      return allRows.filter((row) => {
+        if (row.dataset.removed === '1') return false;
+        const haystack = (row.dataset.name + ' ' + row.dataset.position).toLowerCase();
+        const matchesSearch = !state.search || haystack.includes(state.search.toLowerCase());
+        const matchesStatus = state.status === 'all' || row.dataset.status === state.status;
+        return matchesSearch && matchesStatus;
+      });
+    }
+
+    function getSorted(rows) {
+      if (!state.sortKey) return rows;
+      const key = state.sortKey;
+      const dir = state.sortDir === 'asc' ? 1 : -1;
+      return [...rows].sort((a, b) => {
+        let av = a.dataset[key];
+        let bv = b.dataset[key];
+        if (key === 'score') {
+          av = Number(av);
+          bv = Number(bv);
+        }
+        if (av < bv) return -1 * dir;
+        if (av > bv) return 1 * dir;
+        return 0;
+      });
+    }
+
+    function updateBulkBar() {
+      const checkedCount = allRows.filter((r) => r.querySelector('.dt-row-checkbox')?.checked).length;
+      if (bulkCount) bulkCount.textContent = String(checkedCount);
+      if (bulkBar) bulkBar.classList.toggle('hidden', checkedCount === 0);
+    }
+
+    function updateSelectAllState() {
+      const visible = allRows.filter((r) => r.style.display !== 'none' && !r.classList.contains('dt-empty-row'));
+      const boxes = visible.map((r) => r.querySelector('.dt-row-checkbox')).filter(Boolean);
+      const checkedCount = boxes.filter((c) => c.checked).length;
+      if (selectAll) {
+        selectAll.checked = boxes.length > 0 && checkedCount === boxes.length;
+        selectAll.indeterminate = checkedCount > 0 && checkedCount < boxes.length;
+      }
+      updateBulkBar();
+    }
+
+    function render() {
+      const filtered = getFiltered();
+      const sorted = getSorted(filtered);
+      const totalPages = Math.max(1, Math.ceil(sorted.length / state.pageSize));
+      state.page = Math.min(state.page, totalPages);
+      const start = (state.page - 1) * state.pageSize;
+      const pageRows = sorted.slice(start, start + state.pageSize);
+
+      allRows.forEach((r) => { r.style.display = 'none'; });
+      tbody.querySelectorAll('.dt-empty-row').forEach((r) => r.remove());
+
+      if (pageRows.length === 0) {
+        const tr = document.createElement('tr');
+        tr.className = 'dt-empty-row';
+        tr.innerHTML = '<td colspan="7" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada lamaran yang cocok.</td>';
+        tbody.appendChild(tr);
+      } else {
+        pageRows.forEach((r) => {
+          r.style.display = '';
+          tbody.appendChild(r);
+        });
+      }
+
+      const total = sorted.length;
+      const from = total === 0 ? 0 : start + 1;
+      const to = Math.min(start + state.pageSize, total);
+      if (rangeText) rangeText.textContent = `Menampilkan ${from}-${to} dari ${total} lamaran`;
+
+      if (paginationEl) {
+        paginationEl.innerHTML = '';
+        const mkBtn = (label, page, opts) => {
+          opts = opts || {};
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'pagination-btn' + (opts.active ? ' pagination-btn-active' : '');
+          b.innerHTML = label;
+          b.disabled = !!opts.disabled;
+          b.addEventListener('click', () => { state.page = page; render(); });
+          return b;
+        };
+        paginationEl.appendChild(mkBtn('&lsaquo;', state.page - 1, { disabled: state.page <= 1 }));
+        for (let i = 1; i <= totalPages; i++) {
+          paginationEl.appendChild(mkBtn(String(i), i, { active: i === state.page }));
+        }
+        paginationEl.appendChild(mkBtn('&rsaquo;', state.page + 1, { disabled: state.page >= totalPages }));
+      }
+
+      headers.forEach((h) => {
+        const icon = h.querySelector('.sort-icon');
+        const active = h.dataset.sort === state.sortKey;
+        h.classList.toggle('is-sorted', active);
+        if (icon) icon.style.transform = active && state.sortDir === 'asc' ? 'rotate(180deg)' : 'rotate(0deg)';
+      });
+
+      // keep the "Urutkan" dropdown radios in sync with whatever set the sort (header click or the menu itself)
+      const currentSortValue = state.sortKey ? `${state.sortKey}:${state.sortDir}` : null;
+      sortMenu?.querySelectorAll('input[name="dtSort"]').forEach((r) => { r.checked = r.value === currentSortValue; });
+
+      updateSelectAllState();
+    }
+
+    // status label -> a short, contextual primary action per row (set once; status never changes at runtime here)
+    const PRIMARY_ACTION_LABEL = {
+      interview: 'Detail Interview',
+      ditinjau: 'Lihat Progres',
+      ditawari: 'Terima Tawaran',
+      ditolak: 'Lihat Feedback',
+    };
+    allRows.forEach((r) => {
+      const btn = r.querySelector('.dt-primary-action');
+      if (btn) btn.textContent = PRIMARY_ACTION_LABEL[r.dataset.status] || 'Lihat Detail';
+    });
+
+    searchInput?.addEventListener('input', () => { state.search = searchInput.value; state.page = 1; render(); });
+    pageSizeSelect?.addEventListener('change', () => { state.pageSize = parseInt(pageSizeSelect.value, 10); state.page = 1; render(); });
+
+    statusTabs?.querySelectorAll('button[data-status]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        statusTabs.querySelectorAll('button[data-status]').forEach((b) => b.classList.remove('tab-active'));
+        btn.classList.add('tab-active');
+        state.status = btn.dataset.status;
+        state.page = 1;
+        render();
+      });
+    });
+
+    sortBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sortMenu.classList.toggle('hidden');
+    });
+    sortMenu?.querySelectorAll('input[name="dtSort"]').forEach((radio) => {
+      radio.addEventListener('change', () => {
+        const [key, dir] = radio.value.split(':');
+        state.sortKey = key;
+        state.sortDir = dir;
+        render();
+        sortMenu.classList.add('hidden');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (sortMenu && !sortMenu.classList.contains('hidden') && !sortMenu.contains(e.target) && e.target !== sortBtn) {
+        sortMenu.classList.add('hidden');
+      }
+    });
+
+    headers.forEach((h) => {
+      h.addEventListener('click', () => {
+        const key = h.dataset.sort;
+        if (state.sortKey === key) {
+          state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          state.sortKey = key;
+          state.sortDir = 'asc';
+        }
+        render();
+      });
+      h.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          h.click();
+        }
+      });
+    });
+
+    selectAll?.addEventListener('change', () => {
+      const visible = allRows.filter((r) => r.style.display !== 'none' && !r.classList.contains('dt-empty-row'));
+      visible.forEach((r) => {
+        const cb = r.querySelector('.dt-row-checkbox');
+        if (cb) cb.checked = selectAll.checked;
+      });
+      updateBulkBar();
+    });
+
+    tbody.addEventListener('change', (e) => {
+      if (e.target.classList.contains('dt-row-checkbox')) updateSelectAllState();
+    });
+
+    bulkCancel?.addEventListener('click', () => {
+      allRows.forEach((r) => {
+        const cb = r.querySelector('.dt-row-checkbox');
+        if (cb) cb.checked = false;
+      });
+      updateBulkBar();
+      if (selectAll) { selectAll.checked = false; selectAll.indeterminate = false; }
+    });
+
+    bulkDelete?.addEventListener('click', () => {
+      allRows.forEach((r) => {
+        const cb = r.querySelector('.dt-row-checkbox');
+        if (cb && cb.checked) r.dataset.removed = '1';
+      });
+      if (selectAll) { selectAll.checked = false; selectAll.indeterminate = false; }
+      render();
+    });
+
+    tbody.querySelectorAll('.dt-menu-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const menu = btn.nextElementSibling;
+        const isOpen = !menu.classList.contains('hidden');
+        tbody.querySelectorAll('.dropdown-menu').forEach((m) => m.classList.add('hidden'));
+        if (!isOpen) menu.classList.remove('hidden');
+      });
+    });
+    document.addEventListener('click', () => {
+      tbody.querySelectorAll('.dropdown-menu').forEach((m) => m.classList.add('hidden'));
+    });
+
+    tbody.querySelectorAll('.dt-row-delete').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const row = btn.closest('tr');
+        row.dataset.removed = '1';
+        render();
+      });
+    });
+
+    render();
+  })();
+</script>
 </body>
 </html>

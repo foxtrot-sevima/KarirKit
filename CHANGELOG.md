@@ -1,20 +1,107 @@
 # Changelog
 
-Format mengikuti [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [1.0.0] — 2026-09-10
+## [Unreleased]
+
+### Changed
+- Warna **primary** (`#22489e` → `#2361e7`) dan **secondary** (`#f05925` →
+  `#f67e28`) disesuaikan ke versi yang lebih vivid/hidup, tetap satu
+  keluarga hue biru & oranye dengan logo tapi tidak lagi hex logo persis.
+  `.btn-accent` diganti dari teks putih ke `text-slate-900` karena oranye
+  baru punya kontras lebih rendah terhadap putih (2.65:1) dibanding gelap
+  (6.74:1).
 
 ### Added
-- Design tokens (`src/input.css`): palet warna primer (violet) & semantik
-  (success/warning/danger/info), shadow, dan gradasi brand, dibangun dengan
-  Tailwind CSS v4 (`@theme` + `@utility`).
-- Pustaka komponen: button, badge, avatar, card, form, navigasi, tabel,
-  callout/alert, progress bar, tab, dan tooltip (`@layer components`).
-- `index.html` — style guide/dokumentasi visual seluruh token & komponen.
-- `dashboard.html` — dashboard KarirKit (AI Career Coach untuk pencari
-  kerja) sebagai implementasi nyata dari design system.
-- Font Instrument Sans di-hosting lokal (diambil dari Quantum design system
-  SEVIMA), menggantikan Google Fonts agar kedua halaman berjalan offline.
+- Section "DataTable" baru di `index.html`: pola tabel lengkap dan benar-benar
+  berfungsi (vanilla JS, tanpa dependency) dengan pencarian live, filter
+  status via tab bersegmen, kolom yang bisa diurutkan (klik header atau
+  dropdown "Urutkan" dengan opsi radio terkelompok — keduanya saling
+  sinkron), pilih baris massal (checkbox + select-all + bulk delete), tombol
+  aksi utama per baris yang menyesuaikan status ("Detail Interview", "Lihat
+  Progres", dst.) plus menu overflow (Lihat Detail/Edit/Hapus) dengan
+  tooltip, dan pagination (ubah jumlah baris per halaman, navigasi halaman).
+  Komponen baru: `.th-sortable`, `.dropdown-menu`, `.dropdown-item`,
+  `.pagination-btn`, `.tooltip-content`.
+
+### Changed
+- Header tabel (`.table th`) diubah dari label kecil huruf kapital
+  (`uppercase tracking-wider`) menjadi teks normal yang lebih besar dan
+  jelas, mengikuti referensi desain yang lebih bersih — berlaku untuk semua
+  tabel, bukan cuma DataTable.
+
+## [1.0.0] - 2026-09-10
+
+### Added
+- Design tokens (`src/input.css`): palet warna primary & secondary (diambil
+  dari logo resmi KarirLink) & semantik (success/warning/danger/info),
+  shadow, dan gradasi brand, dibangun dengan Tailwind CSS v4 (`@theme` +
+  `@utility`).
+- Pustaka komponen: button (termasuk `.btn-accent`), badge (termasuk
+  `.badge-secondary`), avatar, card, form, navigasi, tabel, callout/alert,
+  progress bar, tab, dan tooltip (`@layer components`).
+- `index.html` - style guide/dokumentasi visual seluruh token & komponen,
+  termasuk section "Logo" yang memperagakan keempat varian logo (mark/lockup
+  x warna/putih) beserta kapan masing-masing dipakai.
+- `templates/dashboard.html` - dashboard KarirKit (AI Career Coach untuk
+  pencari kerja) sebagai implementasi nyata dari design system.
+- Font Instrument Sans di-hosting lokal, menggantikan Google Fonts agar
+  kedua halaman berjalan offline.
+- Scrollbar kustom (tipis, thumb rounded mengambang, warna brand saat
+  hover) dan smooth scroll untuk navigasi anchor, berlaku di semua area
+  scroll (halaman utama, sidebar, nav pill horizontal, tabel).
 - Dokumen proyek: README, LICENSE, THIRD-PARTY-LICENSES, CHANGELOG.
 
-Rilis internal pertama — belum ada remote git untuk proyek ini.
+### Changed
+- Palet warna **primary** (biru `#22489e`) dan **secondary** (oranye
+  `#f05925`) diambil langsung dari logo resmi KarirLink, menggantikan
+  placeholder violet; `bg-brand-gradient`, `bg-brand-gradient-soft`,
+  `shadow-glow-primary`, dan wash `bg-shell` memakai warna brand ini.
+- Placeholder logo (ikon briefcase generik) di header `index.html` dan
+  sidebar dashboard diganti dengan logo KarirLink asli, lalu diperbarui lagi
+  ke format resmi terbaru dari tim brand (`logo/new/`): dirapikan jadi
+  `assets/logo/karirlink-mark(.svg|-white.svg)` dan
+  `karirlink-logo(.svg|-white.svg)` - mark (ikon saja) untuk favicon/ruang
+  sempit, lockup (ikon+teks) untuk header/sidebar, masing-masing versi warna
+  & putih.
+- Heading "Design System KarirKit" memakai dua warna solid (Karir = primary,
+  Kit = secondary) mengikuti gaya split-warna logo KarirLink.
+- Callout/alert (`.callout` dan kotak "AI Recommendation & Impact" di
+  dashboard) diberi border penuh yang lembut, bukan cuma aksen border kiri
+  saja, supaya kotaknya lebih terdefinisi.
+- Badge dibuat sedikit lebih besar (padding & dot lebih besar) supaya lebih
+  mudah dibaca.
+- `dashboard.html` dipindah ke `templates/dashboard.html`; seluruh path
+  relatif di dalamnya (favicon, `dist/output.css`, logo, link kembali ke
+  `index.html`) disesuaikan ke `../`, dan link menuju dashboard di
+  `index.html` diperbarui ke `templates/dashboard.html`.
+
+### Fixed
+- Tombol aksi di header dashboard ("30 Hari" / "Cari Lowongan Baru") dan di
+  kartu AI Career Coach ("Atur Preferensi" / "Lihat Rekomendasi") overflow/
+  terpotong di lebar 320-375px karena baris flex-nya tidak bisa wrap, dan
+  masih rata kiri (bukan kanan) di rentang 768-1023px karena breakpoint
+  `lg:flex-row` terlalu tinggi serta induknya tidak diberi `min-w-0` untuk
+  menyempit. Sekarang `flex-wrap` + full-width di mobile, breakpoint
+  diturunkan ke `md` (768px), dan label "30 Hari" dipersingkat (konsisten
+  dengan tombol periode di kartu grafik) supaya kedua tombol muat satu baris
+  mulai 768px.
+- Tabel "Lamaran Terbaru" memaksa seluruh halaman melebar (horizontal
+  scroll di seluruh body) di layar sempit karena grid item induknya tidak
+  diberi `min-w-0` - default `min-width: auto` pada flex/grid item mencegah
+  `overflow-x-auto` di dalamnya bekerja. Sekarang tabel scroll-horizontal
+  di dalam kartunya sendiri, halaman tidak lagi melebar.
+- Elemen yang terlihat bisa diklik (sidebar nav-item, segmented tabs, dan
+  semua `<button>` polos yang belum pakai class `.btn-*`) tidak menunjukkan
+  `cursor: pointer` - browser hanya memberi cursor pointer otomatis untuk
+  `<a href>`, bukan untuk `<button>`, `<a>` tanpa `href`, atau `<span>`.
+  Ditambahkan aturan `@layer base` di `src/input.css` yang memberi
+  `cursor: pointer` ke semua `button`, `[role="button"]`, `select`,
+  `summary`, serta label checkbox/radio - plus `cursor-pointer` langsung di
+  `.nav-item` dan `.tab`.
+- Diverifikasi dengan Playwright (headless Chromium) di 320/360/375/390/
+  414/428/768/1024/1440px pada kedua halaman: tidak ada horizontal
+  overflow, konten terpotong, maupun elemen interaktif tanpa
+  `cursor: pointer` di lebar manapun.
+
+Rilis internal pertama.

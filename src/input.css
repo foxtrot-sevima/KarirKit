@@ -43,18 +43,31 @@
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
-  /* Brand — primary violet scale */
-  --color-primary-50: #f5f3ff;
-  --color-primary-100: #ede9fe;
-  --color-primary-200: #ddd6fe;
-  --color-primary-300: #c4b5fd;
-  --color-primary-400: #a78bfa;
-  --color-primary-500: #8b5cf6;
-  --color-primary-600: #7c3aed;
-  --color-primary-700: #6d28d9;
-  --color-primary-800: #5b21b6;
-  --color-primary-900: #4c1d95;
-  --color-primary-950: #2e1065;
+  /* Brand — primary */
+  --color-primary-50: #f0f5fe;
+  --color-primary-100: #e2ebfd;
+  --color-primary-200: #c6d7fb;
+  --color-primary-300: #98b6f6;
+  --color-primary-400: #5d8bef;
+  --color-primary-500: #3d74eb;
+  --color-primary-600: #2361e7;
+  --color-primary-700: #1950c8;
+  --color-primary-800: #1843a0;
+  --color-primary-900: #173678;
+  --color-primary-950: #112245;
+
+  /* Brand — secondary */
+  --color-secondary-50: #fff6f0;
+  --color-secondary-100: #feeadd;
+  --color-secondary-200: #fcd3b6;
+  --color-secondary-300: #fab380;
+  --color-secondary-400: #f89854;
+  --color-secondary-500: #f7893b;
+  --color-secondary-600: #f67e28;
+  --color-secondary-700: #d56515;
+  --color-secondary-800: #ac5415;
+  --color-secondary-900: #8c4817;
+  --color-secondary-950: #502b11;
 
   /* Semantic — success */
   --color-success-50: #ecfdf5;
@@ -91,7 +104,7 @@
   /* Elevation */
   --shadow-card: 0 1px 2px 0 rgb(15 23 42 / 0.04), 0 12px 24px -10px rgb(15 23 42 / 0.10);
   --shadow-card-lg: 0 4px 8px 0 rgb(15 23 42 / 0.04), 0 24px 48px -12px rgb(15 23 42 / 0.18);
-  --shadow-glow-primary: 0 8px 30px -6px rgb(124 58 237 / 0.45);
+  --shadow-glow-primary: 0 8px 30px -6px rgb(35 97 231 / 0.45);
 
   --animate-fade-in: fade-in 0.4s ease-out;
 
@@ -102,28 +115,94 @@
 }
 
 /* ==========================================================================
+   Base — interactive elements always get a pointer cursor. Browsers only do
+   this natively for <a href>; plain <button>, tabs, and nav items default to
+   a text/arrow cursor unless told otherwise, which reads as "not clickable".
+   ========================================================================== */
+@layer base {
+  button:not(:disabled),
+  [role="button"],
+  select,
+  summary,
+  label:has(input[type="checkbox"]),
+  label:has(input[type="radio"]) {
+    cursor: pointer;
+  }
+}
+
+/* ==========================================================================
+   Base — smooth in-page scrolling for anchor links (the style guide's
+   section nav), skipped for users who've asked for reduced motion.
+   ========================================================================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ==========================================================================
+   Base — custom scrollbar. Thin, rounded, brand-neutral track with a
+   floating pill thumb (inset via a transparent border) that darkens on
+   hover — applied globally so every scroll area (page, sidebar nav,
+   horizontal pill nav, table overflow) shares the same look.
+   ========================================================================== */
+@layer base {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-slate-200) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-slate-100);
+    border-radius: 9999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-300);
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ==========================================================================
    Brand utilities — gradients unique to KarirKit's visual identity
    ========================================================================== */
 @utility bg-shell {
   background-color: #f8fafc;
   background-image:
     radial-gradient(1200px 600px at 0% -10%, color-mix(in srgb, var(--color-primary-200) 40%, transparent), transparent),
-    radial-gradient(1000px 500px at 100% 0%, color-mix(in srgb, #7dd3fc 35%, transparent), transparent);
+    radial-gradient(1000px 500px at 100% 0%, color-mix(in srgb, var(--color-secondary-200) 35%, transparent), transparent);
   background-attachment: fixed;
 }
 
 @utility bg-brand-gradient {
-  background-image: linear-gradient(135deg, var(--color-primary-600) 0%, #a855f7 55%, #6366f1 100%);
+  background-image: linear-gradient(135deg, var(--color-primary-700) 0%, var(--color-primary-600) 55%, var(--color-primary-500) 100%);
 }
 
 @utility bg-brand-gradient-soft {
-  background-image: linear-gradient(135deg, var(--color-primary-50) 0%, #faf5ff 50%, #f0f9ff 100%);
-}
-
-@utility text-gradient-brand {
-  background-image: linear-gradient(135deg, var(--color-primary-600), #6366f1);
-  background-clip: text;
-  color: transparent;
+  background-image: linear-gradient(135deg, var(--color-primary-50) 0%, #f5f8ff 50%, var(--color-secondary-50) 100%);
 }
 
 /* ==========================================================================
@@ -140,29 +219,31 @@
   .btn-md { @apply h-10 px-4 text-sm; }
   .btn-lg { @apply h-12 px-6 text-[15px]; }
 
-  .btn-primary, .btn-secondary, .btn-outline, .btn-ghost, .btn-danger, .btn-white {
+  .btn-primary, .btn-secondary, .btn-accent, .btn-outline, .btn-ghost, .btn-danger, .btn-white {
     @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold whitespace-nowrap
            transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer;
   }
   .btn-primary { @apply bg-primary-600 text-white shadow-sm hover:bg-primary-700 focus-visible:ring-primary-500; }
   .btn-secondary { @apply bg-primary-50 text-primary-700 hover:bg-primary-100 focus-visible:ring-primary-300; }
+  .btn-accent { @apply bg-secondary-600 text-slate-900 shadow-sm hover:bg-secondary-700 focus-visible:ring-secondary-300; }
   .btn-outline { @apply border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 focus-visible:ring-slate-300; }
   .btn-ghost { @apply text-slate-500 hover:bg-slate-100 hover:text-slate-800 focus-visible:ring-slate-300; }
   .btn-danger { @apply bg-danger-600 text-white hover:bg-danger-700 focus-visible:ring-danger-300; }
   .btn-white { @apply bg-white text-primary-700 hover:bg-white/90 focus-visible:ring-white shadow-sm; }
 
   /* Badges / status pills */
-  .badge, .badge-success, .badge-warning, .badge-danger, .badge-info, .badge-neutral, .badge-primary {
-    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium leading-none;
+  .badge, .badge-success, .badge-warning, .badge-danger, .badge-info, .badge-neutral, .badge-primary, .badge-secondary {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium leading-none;
   }
-  .badge-dot { @apply h-1.5 w-1.5 rounded-full shrink-0; }
+  .badge-dot { @apply h-2 w-2 rounded-full shrink-0; }
   .badge-success { @apply bg-success-50 text-success-700; }
   .badge-warning { @apply bg-warning-50 text-warning-700; }
   .badge-danger { @apply bg-danger-50 text-danger-700; }
   .badge-info { @apply bg-info-50 text-info-700; }
   .badge-neutral { @apply bg-slate-100 text-slate-600; }
   .badge-primary { @apply bg-primary-50 text-primary-700; }
+  .badge-secondary { @apply bg-secondary-50 text-secondary-700; }
 
   /* Surfaces */
   .card { @apply rounded-2xl border border-slate-200/70 bg-white shadow-card; }
@@ -179,7 +260,7 @@
 
   /* Navigation */
   .nav-item {
-    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500
+    @apply flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500
            hover:bg-slate-100/80 hover:text-slate-900 transition-colors;
   }
   .nav-item-active { @apply bg-primary-50! text-primary-700! hover:bg-primary-50!; }
@@ -187,17 +268,35 @@
 
   /* Tables */
   .table { @apply w-full text-left text-sm border-collapse; }
-  .table th { @apply px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 border-b border-slate-100; }
+  .table th { @apply px-4 py-3.5 text-sm font-semibold text-slate-500 border-b border-slate-100; }
   .table td { @apply px-4 py-4 border-b border-slate-100 text-slate-700 align-middle; }
   .table tbody tr:last-child td { @apply border-b-0; }
   .table tbody tr { @apply hover:bg-slate-50/70 transition-colors; }
+
+  /* DataTable extras — sortable headers, row menu, pagination, tooltip */
+  .th-sortable { @apply cursor-pointer select-none hover:text-slate-600; }
+  .th-sortable .sort-icon { @apply inline-flex opacity-40 transition-opacity; }
+  .th-sortable.is-sorted .sort-icon { @apply text-primary-600 opacity-100; }
+
+  .dropdown-menu { @apply absolute right-0 z-20 mt-1 w-44 rounded-xl border border-slate-200/70 bg-white p-1 shadow-card-lg; }
+  .dropdown-item { @apply flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900; }
+  .dropdown-item-danger { @apply text-danger-600 hover:bg-danger-50 hover:text-danger-700; }
+
+  .pagination-btn { @apply flex h-8 min-w-8 cursor-pointer items-center justify-center rounded-lg px-2 text-sm font-medium text-slate-500 hover:bg-slate-100 disabled:pointer-events-none disabled:opacity-40; }
+  .pagination-btn-active { @apply bg-primary-600! text-white! hover:bg-primary-600!; }
+
+  .tooltip-content {
+    @apply pointer-events-none absolute bottom-full left-1/2 z-30 mb-2 -translate-x-1/2 whitespace-nowrap
+           rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg
+           transition-opacity duration-150 group-hover:opacity-100;
+  }
 
   /* Avatars */
   .avatar { @apply inline-flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-semibold shrink-0; }
 
   /* Callouts / alerts */
   .callout, .callout-critical, .callout-warning, .callout-info, .callout-success {
-    @apply rounded-xl border-l-4 bg-white p-4;
+    @apply rounded-xl border border-l-4 border-slate-200/70 bg-white p-4;
   }
   .callout-critical { @apply border-l-danger-500; }
   .callout-warning { @apply border-l-warning-500; }
@@ -209,6 +308,6 @@
   .divider-v { @apply w-px self-stretch bg-slate-200; }
   .progress-track { @apply h-2 w-full overflow-hidden rounded-full bg-slate-100; }
   .progress-bar { @apply h-full rounded-full bg-primary-600; }
-  .tab { @apply rounded-lg px-3.5 py-1.5 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors; }
+  .tab { @apply cursor-pointer rounded-lg px-3.5 py-1.5 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors; }
   .tab-active { @apply bg-white text-slate-900 shadow-sm; }
 }
