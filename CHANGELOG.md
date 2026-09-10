@@ -4,6 +4,32 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+- Warna **primary** (`#22489e` → `#2361e7`) dan **secondary** (`#f05925` →
+  `#f67e28`) disesuaikan ke versi yang lebih vivid/hidup, tetap satu
+  keluarga hue biru & oranye dengan logo tapi tidak lagi hex logo persis.
+  `.btn-accent` diganti dari teks putih ke `text-slate-900` karena oranye
+  baru punya kontras lebih rendah terhadap putih (2.65:1) dibanding gelap
+  (6.74:1).
+
+### Added
+- Section "DataTable" baru di `index.html`: pola tabel lengkap dan benar-benar
+  berfungsi (vanilla JS, tanpa dependency) dengan pencarian live, filter
+  status via tab bersegmen, kolom yang bisa diurutkan (klik header atau
+  dropdown "Urutkan" dengan opsi radio terkelompok — keduanya saling
+  sinkron), pilih baris massal (checkbox + select-all + bulk delete), tombol
+  aksi utama per baris yang menyesuaikan status ("Detail Interview", "Lihat
+  Progres", dst.) plus menu overflow (Lihat Detail/Edit/Hapus) dengan
+  tooltip, dan pagination (ubah jumlah baris per halaman, navigasi halaman).
+  Komponen baru: `.th-sortable`, `.dropdown-menu`, `.dropdown-item`,
+  `.pagination-btn`, `.tooltip-content`.
+
+### Changed
+- Header tabel (`.table th`) diubah dari label kecil huruf kapital
+  (`uppercase tracking-wider`) menjadi teks normal yang lebih besar dan
+  jelas, mengikuti referensi desain yang lebih bersih — berlaku untuk semua
+  tabel, bukan cuma DataTable.
+
 ## [1.0.0] - 2026-09-10
 
 ### Added

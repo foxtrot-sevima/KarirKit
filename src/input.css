@@ -43,31 +43,31 @@
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
-  /* Brand — primary, derived from the KarirLink logo blue (#22489e @ 600) */
-  --color-primary-50: #f2f5fd;
-  --color-primary-100: #e2e9f9;
-  --color-primary-200: #c1d0f0;
-  --color-primary-300: #95ade4;
-  --color-primary-400: #6185d6;
-  --color-primary-500: #2f5fca;
-  --color-primary-600: #22489e;
-  --color-primary-700: #1d3a7c;
-  --color-primary-800: #1a3165;
-  --color-primary-900: #182a53;
-  --color-primary-950: #111b32;
+  /* Brand — primary */
+  --color-primary-50: #f0f5fe;
+  --color-primary-100: #e2ebfd;
+  --color-primary-200: #c6d7fb;
+  --color-primary-300: #98b6f6;
+  --color-primary-400: #5d8bef;
+  --color-primary-500: #3d74eb;
+  --color-primary-600: #2361e7;
+  --color-primary-700: #1950c8;
+  --color-primary-800: #1843a0;
+  --color-primary-900: #173678;
+  --color-primary-950: #112245;
 
-  /* Brand — secondary, derived from the KarirLink logo orange (#f05925 @ 600) */
-  --color-secondary-50: #fef4f0;
-  --color-secondary-100: #fde6dd;
-  --color-secondary-200: #fac9b7;
-  --color-secondary-300: #f69d7e;
-  --color-secondary-400: #f37c53;
-  --color-secondary-500: #f16a3b;
-  --color-secondary-600: #f05925;
-  --color-secondary-700: #d94512;
-  --color-secondary-800: #b53c12;
-  --color-secondary-900: #963413;
-  --color-secondary-950: #5b2310;
+  /* Brand — secondary */
+  --color-secondary-50: #fff6f0;
+  --color-secondary-100: #feeadd;
+  --color-secondary-200: #fcd3b6;
+  --color-secondary-300: #fab380;
+  --color-secondary-400: #f89854;
+  --color-secondary-500: #f7893b;
+  --color-secondary-600: #f67e28;
+  --color-secondary-700: #d56515;
+  --color-secondary-800: #ac5415;
+  --color-secondary-900: #8c4817;
+  --color-secondary-950: #502b11;
 
   /* Semantic — success */
   --color-success-50: #ecfdf5;
@@ -104,7 +104,7 @@
   /* Elevation */
   --shadow-card: 0 1px 2px 0 rgb(15 23 42 / 0.04), 0 12px 24px -10px rgb(15 23 42 / 0.10);
   --shadow-card-lg: 0 4px 8px 0 rgb(15 23 42 / 0.04), 0 24px 48px -12px rgb(15 23 42 / 0.18);
-  --shadow-glow-primary: 0 8px 30px -6px rgb(34 72 158 / 0.45);
+  --shadow-glow-primary: 0 8px 30px -6px rgb(35 97 231 / 0.45);
 
   --animate-fade-in: fade-in 0.4s ease-out;
 
@@ -155,7 +155,7 @@
 @layer base {
   html {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-slate-300) transparent;
+    scrollbar-color: var(--color-slate-200) transparent;
   }
 
   ::-webkit-scrollbar {
@@ -168,14 +168,21 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: var(--color-slate-300);
+    background-color: var(--color-slate-100);
     border-radius: 9999px;
-    border: 2px solid transparent;
+    border: 3px solid transparent;
     background-clip: content-box;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-primary-400);
+    background-color: var(--color-primary-300);
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -219,7 +226,7 @@
   }
   .btn-primary { @apply bg-primary-600 text-white shadow-sm hover:bg-primary-700 focus-visible:ring-primary-500; }
   .btn-secondary { @apply bg-primary-50 text-primary-700 hover:bg-primary-100 focus-visible:ring-primary-300; }
-  .btn-accent { @apply bg-secondary-600 text-white shadow-sm hover:bg-secondary-700 focus-visible:ring-secondary-300; }
+  .btn-accent { @apply bg-secondary-600 text-slate-900 shadow-sm hover:bg-secondary-700 focus-visible:ring-secondary-300; }
   .btn-outline { @apply border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 focus-visible:ring-slate-300; }
   .btn-ghost { @apply text-slate-500 hover:bg-slate-100 hover:text-slate-800 focus-visible:ring-slate-300; }
   .btn-danger { @apply bg-danger-600 text-white hover:bg-danger-700 focus-visible:ring-danger-300; }
@@ -261,10 +268,28 @@
 
   /* Tables */
   .table { @apply w-full text-left text-sm border-collapse; }
-  .table th { @apply px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 border-b border-slate-100; }
+  .table th { @apply px-4 py-3.5 text-sm font-semibold text-slate-500 border-b border-slate-100; }
   .table td { @apply px-4 py-4 border-b border-slate-100 text-slate-700 align-middle; }
   .table tbody tr:last-child td { @apply border-b-0; }
   .table tbody tr { @apply hover:bg-slate-50/70 transition-colors; }
+
+  /* DataTable extras — sortable headers, row menu, pagination, tooltip */
+  .th-sortable { @apply cursor-pointer select-none hover:text-slate-600; }
+  .th-sortable .sort-icon { @apply inline-flex opacity-40 transition-opacity; }
+  .th-sortable.is-sorted .sort-icon { @apply text-primary-600 opacity-100; }
+
+  .dropdown-menu { @apply absolute right-0 z-20 mt-1 w-44 rounded-xl border border-slate-200/70 bg-white p-1 shadow-card-lg; }
+  .dropdown-item { @apply flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900; }
+  .dropdown-item-danger { @apply text-danger-600 hover:bg-danger-50 hover:text-danger-700; }
+
+  .pagination-btn { @apply flex h-8 min-w-8 cursor-pointer items-center justify-center rounded-lg px-2 text-sm font-medium text-slate-500 hover:bg-slate-100 disabled:pointer-events-none disabled:opacity-40; }
+  .pagination-btn-active { @apply bg-primary-600! text-white! hover:bg-primary-600!; }
+
+  .tooltip-content {
+    @apply pointer-events-none absolute bottom-full left-1/2 z-30 mb-2 -translate-x-1/2 whitespace-nowrap
+           rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg
+           transition-opacity duration-150 group-hover:opacity-100;
+  }
 
   /* Avatars */
   .avatar { @apply inline-flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-semibold shrink-0; }

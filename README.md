@@ -68,17 +68,21 @@ bagian Logo di `index.html` untuk contoh visual & kapan memakai masing-masing:
 `karirlink-mark.svg` dipakai sebagai favicon kedua halaman; `karirlink-logo.svg`
 dipakai di header `index.html` dan sidebar `templates/dashboard.html`.
 
-Warna **primary** dan **secondary** design system diambil langsung dari
-warna logo tersebut (lihat `src/input.css`, `@theme`):
+Warna **primary** dan **secondary** design system satu keluarga hue dengan
+warna logo (biru & oranye), tapi saturasi/lightness-nya disesuaikan supaya
+lebih hidup untuk UI — bukan hex logo yang persis sama (lihat `src/input.css`,
+`@theme`):
 
 | Token | Base (600) | Sumber |
 | --- | --- | --- |
-| `primary` (biru) | `#22489e` | Warna mark "L" & teks "Karir" pada logo |
-| `secondary` (oranye) | `#f05925` | Warna mark panah "K" & teks "link" pada logo |
+| `primary` (biru) | `#2361e7` | Hue sama dengan mark "L" & teks "Karir" pada logo, dibuat lebih vivid |
+| `secondary` (oranye) | `#f67e28` | Hue sama dengan mark panah "K" & teks "link" pada logo, dibuat lebih hangat |
 
 Skala 50–950 tiap warna diturunkan dari base tersebut (lihat bagian Colors
 di `index.html` untuk swatch lengkap). `bg-brand-gradient` dan
-`shadow-glow-primary` juga sudah memakai biru brand ini.
+`shadow-glow-primary` juga sudah memakai biru brand ini. Karena oranye
+punya kontras lebih rendah terhadap putih, `.btn-accent` memakai teks gelap
+(`text-slate-900`), bukan putih, supaya tetap mudah dibaca.
 
 ## Font
 
