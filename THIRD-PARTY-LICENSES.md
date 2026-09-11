@@ -11,9 +11,6 @@ own licenses — they are **not** covered by SEVIMA's proprietary license.
   (https://github.com/Instrument/instrument-sans)
 - **License:** SIL Open Font License, Version 1.1 (OFL-1.1)
 - **Full license text:** `assets/fonts/InstrumentSans/OFL.txt`
-- **Source:** sourced from SEVIMA's Quantum design system
-  (`D:\laragon\QUANTUM\pwa-laravel\public\fonts\InstrumentSans`), which in
-  turn bundles the font as distributed via Google Fonts.
 
 The OFL permits bundling, embedding, and redistributing the font (including
 in a proprietary product) as long as the font itself is not sold on its own

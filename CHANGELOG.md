@@ -4,14 +4,6 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Changed
-- Warna **primary** (`#22489e` → `#2361e7`) dan **secondary** (`#f05925` →
-  `#f67e28`) disesuaikan ke versi yang lebih vivid/hidup, tetap satu
-  keluarga hue biru & oranye dengan logo tapi tidak lagi hex logo persis.
-  `.btn-accent` diganti dari teks putih ke `text-slate-900` karena oranye
-  baru punya kontras lebih rendah terhadap putih (2.65:1) dibanding gelap
-  (6.74:1).
-
 ### Added
 - Section "DataTable" baru di `index.html`: pola tabel lengkap dan benar-benar
   berfungsi (vanilla JS, tanpa dependency) dengan pencarian live, filter
@@ -23,12 +15,68 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   tooltip, dan pagination (ubah jumlah baris per halaman, navigasi halaman).
   Komponen baru: `.th-sortable`, `.dropdown-menu`, `.dropdown-item`,
   `.pagination-btn`, `.tooltip-content`.
+- Section "Dropdown" baru beserta komponen combobox generik (`.combo`) yang
+  memposisikan diri otomatis ke sisi dengan ruang paling lega (bawah/atas,
+  rata-kiri/rata-kanan), relatif terhadap viewport atau kontainer pembatas
+  opsional (`data-combo-boundary`). Dipakai untuk tiga pola: menu aksi biasa,
+  combobox pencarian single-select (`data-combo-search`), dan combobox
+  multi-pilih dengan checkbox + tag yang bisa dihapus langsung
+  (`data-combo-multi`, `.chip`).
+- Field baru di Forms: "Pilih Posisi" (combobox dengan pencarian) dan "Pilih
+  Skill" (combobox multi-pilih dengan checkbox & tag); "Level Pengalaman"
+  kini juga memakai komponen combobox yang sama menggantikan `<select>`
+  bawaan browser, supaya konsisten.
+- Textarea `.textarea-autogrow` (field "Ringkasan Profil") yang tingginya
+  menyesuaikan panjang teks secara otomatis (CSS `field-sizing: content`,
+  dengan fallback JS berbasis `scrollHeight` untuk browser yang belum
+  mendukungnya) — tidak ada lagi scrollbar atau resize handle manual.
+- Checkbox & radio custom (`.form-check`, `.form-radio`) - kotak/lingkaran
+  dengan tanda centang & titik ber-SVG, transisi, ring fokus, dan state
+  disabled - menggantikan gaya `accent-color` bawaan browser.
+- Swatch warna "Neutral - Slate" (skala 50-950) dan "Base - Light & Dark"
+  (putih & hitam) di section Colors, yang sebelumnya belum ada preview-nya
+  sama sekali.
 
 ### Changed
+- Warna **primary** (`#22489e` → `#2361e7`) dan **secondary** (`#f05925` →
+  `#f67e28`) disesuaikan ke versi yang lebih vivid/hidup, tetap satu
+  keluarga hue biru & oranye dengan logo tapi tidak lagi hex logo persis.
+  `.btn-accent` diganti dari teks putih ke `text-slate-900` karena oranye
+  baru punya kontras lebih rendah terhadap putih (2.65:1) dibanding gelap
+  (6.74:1).
 - Header tabel (`.table th`) diubah dari label kecil huruf kapital
   (`uppercase tracking-wider`) menjadi teks normal yang lebih besar dan
   jelas, mengikuti referensi desain yang lebih bersih — berlaku untuk semua
   tabel, bukan cuma DataTable.
+- Tabel didesain ulang mengikuti referensi Kolaj "Orders": avatar + nama
+  perusahaan pada kolom utama, progress bar skor kecocokan, badge status,
+  dan menu aksi kebab per baris.
+- Scrollbar didesain ulang meniru Quantum: thumb tipis dan nyaris tak
+  terlihat (`slate-100`) di atas track transparan, disembunyikan total di
+  sidebar nav & tab-strip horizontal lewat utility `.scrollbar-none` baru.
+- Swatch warna Semantic sekarang menampilkan token code di bawah tiap warna
+  (`success-600`, `warning-500`, dst.), bukan cuma kotak warna tanpa label.
+- Field "Search dalam dropdown" dan "Checkbox & tag dalam dropdown"
+  dipindah dari section Dropdown ke section Forms karena keduanya memang
+  komponen form; section Dropdown kini fokus ke demo auto-placement saja.
+- Ikon pencarian di dalam combobox (`.combo-search-icon`) diberi jarak yang
+  lebih pas dari tepi input (dipisah ke wrapper `.combo-search-field`
+  sendiri) — sebelumnya terlalu mepet ke kiri karena berbagi posisi dengan
+  padding kontainer luar.
+- Trigger combobox "Pilih Skill" sekarang tumbuh tingginya (`min-h-10`, tag
+  boleh wrap ke baris berikutnya) mengikuti jumlah tag terpilih, alih-alih
+  tinggi tetap `h-10` yang memotong tag ke-3 dan seterusnya.
+
+### Fixed
+- Checkbox pada combobox multi-pilih dobel-toggle saat item berupa `<label>`
+  yang membungkus `<input type="checkbox">` - klik label memicu toggle
+  native dari browser sekaligus toggle manual di JS, saling membatalkan.
+  Sekarang state checkbox dibaca lewat event `change`, bukan di-toggle
+  manual lagi.
+- Menu dropdown yang lebih lebar dari ruang yang tersedia di kedua sisi
+  (viewport atau kontainer pembatas sempit) selalu jatuh ke perataan
+  "start" meski itu yang paling terpotong; sekarang otomatis memilih sisi
+  dengan ruang paling lega.
 
 ## [1.0.0] - 2026-09-10
 
