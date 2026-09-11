@@ -36,6 +36,20 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Swatch warna "Neutral - Slate" (skala 50-950) dan "Base - Light & Dark"
   (putih & hitam) di section Colors, yang sebelumnya belum ada preview-nya
   sama sekali.
+- Field "Ekspektasi Gaji" (`[data-currency-input]`) di Forms: input angka
+  berprefiks "Rp." yang otomatis menambahkan titik pemisah ribuan saat
+  mengetik (mis. `1000000000` → `1.000.000.000`), membuang karakter
+  non-digit, dan mempertahankan posisi kursor saat memformat ulang.
+- Field "Tanggal Mulai Kerja" di Forms: date picker kalender custom
+  (`[data-date-picker]`) dibangun di atas komponen combobox yang sama.
+  Tanggal bisa diketik langsung dalam format `dd/mm/yyyy` (dengan mask "/"
+  otomatis dan validasi tanggal asli, menolak input seperti `31/02/2026`),
+  atau dipilih lewat kalender dengan navigasi bertingkat ala Google
+  Calendar — klik judul header untuk *drill-up* dari tampilan hari ke
+  bulan lalu ke tahun (grid 12 tahun per halaman, bukan dropdown yang bisa
+  kepanjangan), lalu pilih tahun → bulan untuk *drill-down* kembali ke
+  tanggal. Highlight hari ini & tanggal terpilih di ketiga tampilan, plus
+  pintasan "Hari ini" dan "Hapus".
 
 ### Changed
 - Warna **primary** (`#22489e` → `#2361e7`) dan **secondary** (`#f05925` →
@@ -77,6 +91,17 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   (viewport atau kontainer pembatas sempit) selalu jatuh ke perataan
   "start" meski itu yang paling terpotong; sekarang otomatis memilih sisi
   dengan ruang paling lega.
+- Menu combobox yang lebih lebar dari ruang di kedua sisi trigger sekaligus
+  (mis. kalender date picker di layar 320px) masih bisa terpotong walau
+  perataan "start"/"end" sudah dipilih sebaik mungkin, karena keduanya
+  tetap dihitung relatif ke trigger, bukan ke batas layar. Sekarang posisi
+  akhir menu di-clamp lewat offset inline supaya selalu penuh berada di
+  dalam boundary.
+- Kalender date picker sama sekali tidak terbuka saat input teks di dalam
+  trigger-nya ditambahkan - `stopPropagation()` pada klik input mencegah
+  event mencapai listener buka/tutup milik trigger. Dihapus; listener pada
+  trigger sendiri sudah cukup untuk membuka saat tertutup dan membiarkan
+  tetap terbuka saat pengguna mengetik.
 
 ## [1.0.0] - 2026-09-10
 

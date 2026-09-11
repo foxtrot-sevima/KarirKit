@@ -351,6 +351,51 @@
            transition-colors hover:bg-primary-100 hover:text-primary-700;
   }
 
+  /* Date picker — a calendar built on top of the .combo trigger/placement
+     system (its month grid supplies its own click handling; the combo
+     engine only supplies the open/close/auto-placement plumbing). */
+  .date-picker-menu {
+    @apply w-72 min-w-0 p-3;
+    max-width: calc(100vw - 2rem);
+  }
+  .date-cal-header { @apply mb-2 flex items-center justify-between px-0.5; }
+  .date-cal-nav-btn {
+    @apply flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-slate-500
+           transition-colors hover:bg-slate-100 hover:text-slate-900;
+  }
+  .date-cal-title-btn {
+    @apply cursor-pointer rounded-lg px-2 py-1 text-sm font-semibold text-slate-800
+           transition-colors hover:bg-slate-100;
+  }
+  .date-text-input {
+    @apply w-full min-w-0 border-none bg-transparent p-0 text-sm text-slate-700 outline-none
+           placeholder:text-slate-400;
+  }
+  .date-cal-weekdays { @apply grid grid-cols-7 px-0.5 pb-1 text-center text-[11px] font-medium text-slate-400; }
+
+  /* Day view */
+  .date-cal-grid { @apply grid grid-cols-7 gap-y-1 px-0.5; }
+  .date-cal-day {
+    @apply mx-auto flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-sm text-slate-600
+           transition-colors hover:bg-slate-100;
+  }
+  .date-cal-day.is-outside { @apply text-slate-300; }
+  .date-cal-day.is-today:not(.is-selected) { @apply font-semibold text-primary-600; }
+  .date-cal-day.is-selected { @apply bg-primary-600 font-semibold text-white hover:bg-primary-600; }
+
+  /* Month & year drill-up views (Google Calendar-style: pick a year, then a
+     month within it, before landing back on the day grid) */
+  .date-cal-grid-cells { @apply grid grid-cols-3 gap-2 px-0.5 py-1; }
+  .date-cal-cell {
+    @apply cursor-pointer rounded-lg py-3 text-center text-sm text-slate-600 transition-colors hover:bg-slate-100;
+  }
+  .date-cal-cell.is-today:not(.is-selected) { @apply font-semibold text-primary-600; }
+  .date-cal-cell.is-selected { @apply bg-primary-600 font-semibold text-white hover:bg-primary-600; }
+
+  .date-cal-footer { @apply mt-2 flex items-center justify-between border-t border-slate-100 pt-2; }
+  .date-cal-today-btn { @apply cursor-pointer text-xs font-semibold text-primary-600 hover:text-primary-700; }
+  .date-cal-clear-btn { @apply cursor-pointer text-xs font-medium text-slate-400 hover:text-slate-600; }
+
   /* Navigation */
   .nav-item {
     @apply flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500
