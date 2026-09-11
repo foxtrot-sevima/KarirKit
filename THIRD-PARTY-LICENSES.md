@@ -25,8 +25,21 @@ and the license text travels with it — both conditions are met here.
   this repository beyond the generated CSS output, which is a compiled
   artifact of this project's own token/component definitions.
 
-## Icons
+## Icons (Phosphor Icons)
 
-All icons used in `index.html` and `dashboard.html` are hand-authored inline
-SVG (outline style, stroke-based), not sourced from a third-party icon
-library requiring attribution.
+- **Location:** `assets/icons/{regular,thin,light,bold,fill,duotone}/`
+  (self-hosted SVG source files — the canonical copy of each icon token,
+  one per Phosphor weight; base64-encoded into the `.kk-*` CSS mask-image
+  rules in `src/input.css`, used as `<i class="kk kk-name">` — add a
+  `kk-thin`/`kk-light`/`kk-bold`/`kk-fill`/`kk-duotone` modifier class for
+  a weight other than Regular — in `index.html`,
+  `templates/dashboard.html`, and `templates/karirlink/index.html`)
+- **Copyright:** 2023 Phosphor Icons
+  (https://github.com/phosphor-icons/core)
+- **License:** MIT
+
+The MIT license permits bundling, embedding, and redistributing the icons
+(including in a proprietary product) without attribution in the product UI
+itself, as long as the copyright/license notice is retained somewhere in the
+project — this file is that notice. The icons are presented to end users as
+part of KarirKit's own icon set, not branded as Phosphor Icons.

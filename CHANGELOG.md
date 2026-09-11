@@ -4,6 +4,31 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-09-11
+
+### Changed
+- Seluruh ikon (203 pemakaian di `index.html`, `templates/dashboard.html`,
+  dan `templates/karirlink/index.html`) diganti dari SVG outline
+  hand-authored - tidak ada lagi ikon custom yang digambar sendiri.
+- Ikon dijadikan token gaya icon font: tidak ada lagi markup SVG di HTML
+  sama sekali. Tiap ikon kini dipakai sebagai `<i class="kk kk-nama"></i>`
+  (mis. `<i class="kk kk-home"></i>`), didefinisikan sekali per ikon di
+  `src/input.css` (`.kk` + 38 kelas `.kk-*`) lewat CSS `mask-image` yang
+  meng-encode SVG dari `assets/icons/` sebagai data URI ber-base64 -
+  mewarisi `currentColor` dan diberi ukuran lewat utility `h-*`/`w-*`
+  seperti biasa. Data URI dipakai (bukan file sprite eksternal atau SVG
+  `<use>` lintas-dokumen) karena keduanya diblokir kebijakan CORS Chrome
+  saat halaman dibuka langsung lewat `file://` alih-alih lewat server -
+  begitu cara situs offline-first ini dipakai.
+- Ikon KarirKit kini mendukung 6 ketebalan sekaligus - Thin,
+  Light, Regular, Bold, Fill, dan Duotone - bukan cuma Regular. Ketebalan
+  dipilih lewat class modifier tambahan di samping `kk-nama` (mis.
+  `<i class="kk kk-home kk-bold"></i>`); tanpa modifier tetap Regular
+  seperti semula, jadi 203 pemakaian yang sudah ada tidak berubah. Duotone
+  didekati dengan satu warna (bagian sekunder pada SVG asli sudah
+  memakai opacity lebih rendah, yang otomatis terbawa oleh alpha mask),
+  bukan dua warna sungguhan.
+
 ### Added
 - `templates/karirlink/index.html` — dashboard admin khusus untuk platform
   KarirLink (Panel Admin Karir kampus), terpisah dari dashboard pencari
