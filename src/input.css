@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   Local webfont — Instrument Sans, sourced from SEVIMA's Quantum design
-   system (D:\laragon\QUANTUM). Self-hosted so both pages work fully offline.
+   Instrument Sans
    ========================================================================== */
 @font-face {
   font-family: "Instrument Sans";
@@ -257,6 +256,100 @@
   }
   .form-label { @apply block text-xs font-medium text-slate-600 mb-1.5; }
   .form-hint { @apply mt-1.5 text-xs text-slate-400; }
+
+  /* Auto-growing textarea — height tracks content, no resize handle or scrollbar */
+  .textarea-autogrow {
+    @apply resize-none overflow-hidden leading-relaxed;
+    field-sizing: content;
+  }
+
+  /* Checkboxes & radios */
+  .form-check, .form-radio {
+    @apply relative inline-block h-[18px] w-[18px] shrink-0 cursor-pointer appearance-none
+           border-2 border-slate-300 bg-white align-middle
+           transition-all duration-150 ease-out
+           hover:border-primary-400
+           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/15
+           disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-50 disabled:hover:border-slate-200;
+  }
+  .form-check { @apply rounded-[6px]; }
+  .form-radio { @apply rounded-full; }
+
+  .form-check:checked, .form-radio:checked {
+    @apply border-primary-600 bg-primary-600 shadow-sm hover:border-primary-700 hover:bg-primary-700;
+  }
+  .form-check:checked, .form-check:indeterminate {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 65%;
+  }
+  .form-check:checked {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.3l3 3 6-6.6'/%3E%3C/svg%3E");
+  }
+  .form-check:indeterminate {
+    @apply border-primary-600 bg-primary-600;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.75' stroke-linecap='round'%3E%3Cpath d='M4 8h8'/%3E%3C/svg%3E");
+  }
+  .form-radio:checked {
+    background-image: radial-gradient(circle, white 32%, transparent 34%);
+  }
+  .form-check:disabled:checked, .form-radio:disabled:checked {
+    @apply border-slate-300 bg-slate-300;
+  }
+  .form-check-sm, .form-radio-sm { @apply h-[15px] w-[15px]; }
+
+  /* Combobox — a dropdown that self-positions to whichever side (down/up,
+     start/end) has room, optionally with an in-menu search box, checkbox
+     multi-select, and removable tag chips in the trigger. */
+  .combo { @apply relative inline-block; }
+  .combo-full { @apply block w-full; }
+
+  .combo-trigger {
+    @apply flex w-full min-h-10 cursor-pointer items-center justify-between gap-2 rounded-xl border border-slate-200
+           bg-white px-3.5 py-2 text-left text-sm text-slate-700 transition-shadow
+           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/10 focus-visible:border-primary-400;
+  }
+  .combo[data-open="true"] .combo-trigger { @apply ring-4 ring-primary-500/10 border-primary-400; }
+  .combo-tags { @apply flex flex-1 flex-wrap items-center gap-1.5; }
+  .combo-placeholder { @apply text-slate-400; }
+  .combo-chevron { @apply h-4 w-4 shrink-0 text-slate-400 transition-transform duration-150; }
+  .combo[data-open="true"] .combo-chevron { @apply rotate-180 text-primary-500; }
+
+  .combo-menu {
+    @apply invisible absolute z-30 w-full min-w-56 origin-top scale-95 rounded-xl border border-slate-200/70
+           bg-white p-1.5 opacity-0 shadow-card-lg transition duration-150 ease-out;
+  }
+  .combo-menu.is-open { @apply visible scale-100 opacity-100; }
+  .combo-menu[data-placement^="top"] { @apply top-auto bottom-full mb-1.5 origin-bottom; }
+  .combo-menu[data-placement^="bottom"] { @apply top-full bottom-auto mt-1.5 origin-top; }
+  .combo-menu[data-placement$="start"] { @apply left-0 right-auto; }
+  .combo-menu[data-placement$="end"] { @apply right-0 left-auto; }
+
+  .combo-search-wrap { @apply sticky -top-1.5 -mx-1.5 -mt-1.5 mb-1.5 border-b border-slate-100 bg-white p-2; }
+  .combo-search-field { @apply relative; }
+  .combo-search {
+    @apply h-9 w-full rounded-lg border border-slate-200 bg-slate-50 pl-9 pr-2.5 text-sm text-slate-700
+           placeholder:text-slate-400 outline-none transition-colors focus:border-primary-400 focus:bg-white;
+  }
+  .combo-search-icon { @apply pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400; }
+
+  .combo-list { @apply max-h-56 space-y-0.5 overflow-y-auto; }
+  .combo-item {
+    @apply flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-sm
+           text-slate-600 transition-colors hover:bg-slate-50;
+  }
+  .combo-item.is-selected { @apply bg-primary-50 text-primary-700; }
+  .combo-item .form-check { @apply pointer-events-none; }
+  .combo-empty { @apply px-3 py-6 text-center text-sm text-slate-400; }
+  .combo-group-label { @apply px-2.5 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400; }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full bg-primary-50 py-1 pl-2.5 pr-1 text-xs font-medium text-primary-700;
+  }
+  .chip-remove {
+    @apply flex h-4 w-4 cursor-pointer items-center justify-center rounded-full text-primary-400
+           transition-colors hover:bg-primary-100 hover:text-primary-700;
+  }
 
   /* Navigation */
   .nav-item {
