@@ -5,6 +5,22 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- `templates/karirlink/index.html` — dashboard admin khusus untuk platform
+  KarirLink (Panel Admin Karir kampus), terpisah dari dashboard pencari
+  kerja di `templates/dashboard.html`. Sidebar disusun ulang sesuai
+  struktur produk: Dashboard, grup "Tracer" (Kuesioner), grup "Portal
+  Karir" (Kerjasama, Lowongan, Event), dan grup "General"
+  (Mahasiswa/Alumni, Aktivitas Lamaran, Report, Pengaturan Landing Page).
+  Konten dashboard disesuaikan untuk kebutuhan admin: KPI (mahasiswa/alumni
+  terdata, lowongan aktif, mitra kerjasama, partisipasi tracer study), tren
+  partisipasi tracer study per angkatan, lowongan mitra yang menunggu
+  persetujuan (Setujui/Tolak), event mendatang, aktivitas lamaran terbaru,
+  kerjasama terbaru, dan pintasan laporan & publikasi.
+- Tombol on/off sidebar di topbar `templates/karirlink/index.html` (khusus
+  desktop, terpisah dari toggle overlay mobile) yang menyembunyikan
+  sidebar sepenuhnya dan melebarkan konten ke penuh saat dimatikan -
+  bukan versi mini/ciutkan, jadi ukuran logo tidak berubah. Preferensi
+  disimpan di `localStorage` agar bertahan setelah reload.
 - Section "DataTable" baru di `index.html`: pola tabel lengkap dan benar-benar
   berfungsi (vanilla JS, tanpa dependency) dengan pencarian live, filter
   status via tab bersegmen, kolom yang bisa diurutkan (klik header atau
@@ -52,6 +68,10 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   pintasan "Hari ini" dan "Hapus".
 
 ### Changed
+- Profil admin di `templates/karirlink/index.html` dipindah dari footer
+  sidebar ke topbar (avatar + nama + peran, menyatu dengan tombol), dan
+  label institusi ("Universitas Nusantara Raya · Panel Admin Karir") yang
+  sebelumnya nempel di bawah logo sidebar dihapus.
 - Warna **primary** (`#22489e` → `#2361e7`) dan **secondary** (`#f05925` →
   `#f67e28`) disesuaikan ke versi yang lebih vivid/hidup, tetap satu
   keluarga hue biru & oranye dengan logo tapi tidak lagi hex logo persis.
