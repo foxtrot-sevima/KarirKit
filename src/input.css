@@ -33,16 +33,33 @@
 }
 
 /* ==========================================================================
-   KarirKit Design System — Design Tokens
-   Every var below is auto-exposed as a Tailwind utility by v4's theme engine:
-   color tokens generate bg-, text-, border- and ring- utilities; shadow
-   tokens generate shadow- utilities; font tokens generate font- utilities.
+   KarirKit Design Tokens — three layers
+
+   1. Primitive  — raw scales (neutral, brand, status)
+   2. Semantic   — purpose aliases (background, fg, border, …)
+   3. Component  — control sizing / radius used by @layer components
+
+   Dark mode: light-only for now. Theme switching is deferred; do not add
+   ad-hoc dark: utilities until semantic tokens get a .dark override map.
    ========================================================================== */
 @theme {
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
-  /* Brand — primary */
+  /* ---------- Primitive: neutral (owned; was Tailwind slate) ---------- */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+  --color-neutral-950: #020617;
+
+  /* ---------- Primitive: brand primary ---------- */
   --color-primary-50: #f0f5fe;
   --color-primary-100: #e2ebfd;
   --color-primary-200: #c6d7fb;
@@ -55,7 +72,7 @@
   --color-primary-900: #173678;
   --color-primary-950: #112245;
 
-  /* Brand — secondary */
+  /* ---------- Primitive: brand secondary ---------- */
   --color-secondary-50: #fff6f0;
   --color-secondary-100: #feeadd;
   --color-secondary-200: #fcd3b6;
@@ -68,44 +85,97 @@
   --color-secondary-900: #8c4817;
   --color-secondary-950: #502b11;
 
-  /* Semantic — success */
+  /* Soft mid-stop for brand gradient (was hardcoded #f5f8ff) */
+  --color-brand-soft-mid: #f5f8ff;
+
+  /* ---------- Primitive: status (full 50–950) ---------- */
   --color-success-50: #ecfdf5;
   --color-success-100: #d1fae5;
+  --color-success-200: #a7f3d0;
   --color-success-300: #6ee7b7;
+  --color-success-400: #34d399;
   --color-success-500: #10b981;
   --color-success-600: #059669;
   --color-success-700: #047857;
+  --color-success-800: #065f46;
+  --color-success-900: #064e3b;
+  --color-success-950: #022c22;
 
-  /* Semantic — warning */
   --color-warning-50: #fffbeb;
   --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
   --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
   --color-warning-500: #f59e0b;
   --color-warning-600: #d97706;
   --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+  --color-warning-950: #451a03;
 
-  /* Semantic — danger */
   --color-danger-50: #fef2f2;
   --color-danger-100: #fee2e2;
+  --color-danger-200: #fecaca;
   --color-danger-300: #fca5a5;
+  --color-danger-400: #f87171;
   --color-danger-500: #ef4444;
   --color-danger-600: #dc2626;
   --color-danger-700: #b91c1c;
+  --color-danger-800: #991b1b;
+  --color-danger-900: #7f1d1d;
+  --color-danger-950: #450a0a;
 
-  /* Semantic — info */
   --color-info-50: #f0f9ff;
   --color-info-100: #e0f2fe;
+  --color-info-200: #bae6fd;
   --color-info-300: #7dd3fc;
+  --color-info-400: #38bdf8;
   --color-info-500: #0ea5e9;
   --color-info-600: #0284c7;
   --color-info-700: #0369a1;
+  --color-info-800: #075985;
+  --color-info-900: #0c4a6e;
+  --color-info-950: #082f49;
 
-  /* Elevation */
-  --shadow-card: 0 1px 2px 0 rgb(15 23 42 / 0.04), 0 12px 24px -10px rgb(15 23 42 / 0.10);
-  --shadow-card-lg: 0 4px 8px 0 rgb(15 23 42 / 0.04), 0 24px 48px -12px rgb(15 23 42 / 0.18);
-  --shadow-glow-primary: 0 8px 30px -6px rgb(35 97 231 / 0.45);
+  /* ---------- Semantic: surfaces & text ---------- */
+  --color-background: var(--color-neutral-50);
+  --color-surface: #ffffff;
+  --color-fg: var(--color-neutral-900);
+  --color-fg-muted: var(--color-neutral-500);
+  --color-fg-subtle: var(--color-neutral-400);
+  --color-border: var(--color-neutral-200);
+  --color-border-subtle: var(--color-neutral-100);
+  --color-ring: var(--color-primary-500);
 
-  --animate-fade-in: fade-in 0.4s ease-out;
+  /* ---------- Component / scale tokens ---------- */
+  --radius-control: 0.75rem;   /* rounded-control ≈ xl */
+  --radius-card: 1rem;         /* rounded-card ≈ 2xl */
+  --radius-check: 0.375rem;    /* 6px checkbox */
+
+  --text-btn-lg: 0.9375rem;    /* 15px */
+  --text-micro: 0.6875rem;     /* 11px */
+
+  --spacing-check: 1.125rem;   /* 18px */
+  --spacing-check-sm: 0.9375rem; /* 15px */
+
+  --z-dropdown: 20;
+  --z-sticky: 30;
+  --z-overlay: 40;
+  --z-toast: 50;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+
+  /* Elevation — RGB channels reference owned neutrals / brand */
+  --shadow-card: 0 1px 2px 0 color-mix(in srgb, var(--color-neutral-900) 4%, transparent),
+    0 12px 24px -10px color-mix(in srgb, var(--color-neutral-900) 10%, transparent);
+  --shadow-card-lg: 0 4px 8px 0 color-mix(in srgb, var(--color-neutral-900) 4%, transparent),
+    0 24px 48px -12px color-mix(in srgb, var(--color-neutral-900) 18%, transparent);
+  --shadow-glow-primary: 0 8px 30px -6px color-mix(in srgb, var(--color-primary-600) 45%, transparent);
+
+  --animate-fade-in: fade-in 0.4s var(--ease-out-soft);
+  --animate-spin-slow: spin 0.7s linear infinite;
 
   @keyframes fade-in {
     from { opacity: 0; transform: translateY(4px); }
@@ -114,9 +184,7 @@
 }
 
 /* ==========================================================================
-   Base — interactive elements always get a pointer cursor. Browsers only do
-   this natively for <a href>; plain <button>, tabs, and nav items default to
-   a text/arrow cursor unless told otherwise, which reads as "not clickable".
+   Base — interactive cursor
    ========================================================================== */
 @layer base {
   button:not(:disabled),
@@ -130,8 +198,7 @@
 }
 
 /* ==========================================================================
-   Base — smooth in-page scrolling for anchor links (the style guide's
-   section nav), skipped for users who've asked for reduced motion.
+   Base — smooth scroll (honours reduced motion)
    ========================================================================== */
 @layer base {
   html {
@@ -142,19 +209,24 @@
     html {
       scroll-behavior: auto;
     }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 /* ==========================================================================
-   Base — custom scrollbar. Thin, rounded, brand-neutral track with a
-   floating pill thumb (inset via a transparent border) that darkens on
-   hover — applied globally so every scroll area (page, sidebar nav,
-   horizontal pill nav, table overflow) shares the same look.
+   Base — scrollbar
    ========================================================================== */
 @layer base {
   html {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-slate-200) transparent;
+    scrollbar-color: var(--color-neutral-200) transparent;
   }
 
   ::-webkit-scrollbar {
@@ -167,7 +239,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: var(--color-slate-100);
+    background-color: var(--color-neutral-100);
     border-radius: 9999px;
     border: 3px solid transparent;
     background-clip: content-box;
@@ -186,10 +258,10 @@
 }
 
 /* ==========================================================================
-   Brand utilities — gradients unique to KarirKit's visual identity
+   Brand utilities
    ========================================================================== */
 @utility bg-shell {
-  background-color: #f8fafc;
+  background-color: var(--color-background);
   background-image:
     radial-gradient(1200px 600px at 0% -10%, color-mix(in srgb, var(--color-primary-200) 40%, transparent), transparent),
     radial-gradient(1000px 500px at 100% 0%, color-mix(in srgb, var(--color-secondary-200) 35%, transparent), transparent);
@@ -201,38 +273,97 @@
 }
 
 @utility bg-brand-gradient-soft {
-  background-image: linear-gradient(135deg, var(--color-primary-50) 0%, #f5f8ff 50%, var(--color-secondary-50) 100%);
+  background-image: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-brand-soft-mid) 50%, var(--color-secondary-50) 100%);
 }
 
 /* ==========================================================================
-   Component layer — reusable primitives composed from tokens above
+   Component layer
    ========================================================================== */
 @layer components {
-  /* Buttons */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold whitespace-nowrap
-           transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none
+  /* ----- Buttons: one shared base, variants = color only ----- */
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-accent,
+  .btn-outline,
+  .btn-ghost,
+  .btn-ghost-inverse,
+  .btn-danger,
+  .btn-white {
+    @apply inline-flex items-center justify-center gap-2 rounded-control font-semibold whitespace-nowrap
+           transition-colors disabled:opacity-50 disabled:pointer-events-none
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer;
+    transition-duration: var(--duration-fast);
   }
+
+  .btn:active:not(:disabled),
+  .btn-primary:active:not(:disabled),
+  .btn-secondary:active:not(:disabled),
+  .btn-accent:active:not(:disabled),
+  .btn-outline:active:not(:disabled),
+  .btn-ghost:active:not(:disabled),
+  .btn-ghost-inverse:active:not(:disabled),
+  .btn-danger:active:not(:disabled),
+  .btn-white:active:not(:disabled) {
+    @apply scale-[0.98];
+  }
+
   .btn-sm { @apply h-8 px-3 text-xs; }
   .btn-md { @apply h-10 px-4 text-sm; }
-  .btn-lg { @apply h-12 px-6 text-[15px]; }
+  .btn-lg { @apply h-12 px-6 text-btn-lg; }
 
-  .btn-primary, .btn-secondary, .btn-accent, .btn-outline, .btn-ghost, .btn-danger, .btn-white {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold whitespace-nowrap
-           transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer;
-  }
   .btn-primary { @apply bg-primary-600 text-white shadow-sm hover:bg-primary-700 focus-visible:ring-primary-500; }
   .btn-secondary { @apply bg-primary-50 text-primary-700 hover:bg-primary-100 focus-visible:ring-primary-300; }
-  .btn-accent { @apply bg-secondary-600 text-slate-900 shadow-sm hover:bg-secondary-700 focus-visible:ring-secondary-300; }
-  .btn-outline { @apply border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 focus-visible:ring-slate-300; }
-  .btn-ghost { @apply text-slate-500 hover:bg-slate-100 hover:text-slate-800 focus-visible:ring-slate-300; }
+  .btn-accent { @apply bg-secondary-600 text-neutral-900 shadow-sm hover:bg-secondary-700 focus-visible:ring-secondary-300; }
+  .btn-outline { @apply border border-border bg-surface text-neutral-700 hover:bg-neutral-50 focus-visible:ring-neutral-300; }
+  .btn-ghost { @apply text-fg-muted hover:bg-neutral-100 hover:text-neutral-800 focus-visible:ring-neutral-300; }
+  .btn-ghost-inverse {
+    @apply border border-white/30 text-white hover:bg-white/10 focus-visible:ring-white;
+  }
   .btn-danger { @apply bg-danger-600 text-white hover:bg-danger-700 focus-visible:ring-danger-300; }
-  .btn-white { @apply bg-white text-primary-700 hover:bg-white/90 focus-visible:ring-white shadow-sm; }
+  .btn-white { @apply bg-surface text-primary-700 hover:bg-white/90 focus-visible:ring-white shadow-sm; }
 
-  /* Badges / status pills */
-  .badge, .badge-success, .badge-warning, .badge-danger, .badge-info, .badge-neutral, .badge-primary, .badge-secondary {
+  .btn-loading {
+    @apply relative pointer-events-none text-transparent!;
+  }
+  .btn-loading::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 9999px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    animation: spin 0.7s linear infinite;
+    color: inherit;
+  }
+  .btn-primary.btn-loading::after,
+  .btn-danger.btn-loading::after,
+  .btn-ghost-inverse.btn-loading::after {
+    color: white;
+  }
+  .btn-secondary.btn-loading::after,
+  .btn-outline.btn-loading::after,
+  .btn-ghost.btn-loading::after,
+  .btn-white.btn-loading::after,
+  .btn-accent.btn-loading::after {
+    color: var(--color-primary-600);
+  }
+  .btn-accent.btn-loading::after {
+    color: var(--color-neutral-900);
+  }
+
+  /* ----- Badges ----- */
+  .badge,
+  .badge-success,
+  .badge-warning,
+  .badge-danger,
+  .badge-info,
+  .badge-neutral,
+  .badge-primary,
+  .badge-secondary {
     @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium leading-none;
   }
   .badge-dot { @apply h-2 w-2 rounded-full shrink-0; }
@@ -240,45 +371,56 @@
   .badge-warning { @apply bg-warning-50 text-warning-700; }
   .badge-danger { @apply bg-danger-50 text-danger-700; }
   .badge-info { @apply bg-info-50 text-info-700; }
-  .badge-neutral { @apply bg-slate-100 text-slate-600; }
+  .badge-neutral { @apply bg-neutral-100 text-neutral-600; }
   .badge-primary { @apply bg-primary-50 text-primary-700; }
   .badge-secondary { @apply bg-secondary-50 text-secondary-700; }
 
-  /* Surfaces */
-  .card { @apply rounded-2xl border border-slate-200/70 bg-white shadow-card; }
-  .card-hover { @apply transition-shadow duration-200 hover:shadow-card-lg; }
+  /* ----- Surfaces ----- */
+  .card { @apply rounded-card border border-border/70 bg-surface shadow-card; }
+  .card-hover { @apply transition-shadow hover:shadow-card-lg; transition-duration: var(--duration-normal); }
 
-  /* Forms */
+  /* ----- Forms ----- */
   .input {
-    @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 h-10 text-sm text-slate-700
-           placeholder:text-slate-400 outline-none transition-shadow
-           focus:ring-4 focus:ring-primary-500/10 focus:border-primary-400;
+    @apply w-full rounded-control border border-border bg-surface px-3.5 h-10 text-sm text-neutral-700
+           placeholder:text-fg-subtle outline-none transition-shadow
+           focus:ring-4 focus:ring-primary-500/10 focus:border-primary-400
+           disabled:cursor-not-allowed disabled:bg-neutral-50 disabled:text-fg-subtle disabled:border-border-subtle;
   }
-  .form-label { @apply block text-xs font-medium text-slate-600 mb-1.5; }
-  .form-hint { @apply mt-1.5 text-xs text-slate-400; }
+  .input-error,
+  .input[aria-invalid="true"] {
+    @apply border-danger-400 focus:border-danger-500 focus:ring-danger-500/10;
+  }
+  .form-label { @apply block text-xs font-medium text-neutral-600 mb-1.5; }
+  .form-hint { @apply mt-1.5 text-xs text-fg-subtle; }
+  .form-error { @apply mt-1.5 text-xs text-danger-600; }
 
-  /* Auto-growing textarea — height tracks content, no resize handle or scrollbar */
   .textarea-autogrow {
     @apply resize-none overflow-hidden leading-relaxed;
     field-sizing: content;
   }
 
   /* Checkboxes & radios */
-  .form-check, .form-radio {
-    @apply relative inline-block h-[18px] w-[18px] shrink-0 cursor-pointer appearance-none
-           border-2 border-slate-300 bg-white align-middle
-           transition-all duration-150 ease-out
+  .form-check,
+  .form-radio {
+    @apply relative inline-block shrink-0 cursor-pointer appearance-none
+           border-2 border-neutral-300 bg-surface align-middle
+           transition-all ease-out
            hover:border-primary-400
            focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/15
-           disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-50 disabled:hover:border-slate-200;
+           disabled:cursor-not-allowed disabled:border-border disabled:bg-neutral-50 disabled:hover:border-border;
+    width: var(--spacing-check);
+    height: var(--spacing-check);
+    transition-duration: var(--duration-fast);
   }
-  .form-check { @apply rounded-[6px]; }
+  .form-check { border-radius: var(--radius-check); }
   .form-radio { @apply rounded-full; }
 
-  .form-check:checked, .form-radio:checked {
+  .form-check:checked,
+  .form-radio:checked {
     @apply border-primary-600 bg-primary-600 shadow-sm hover:border-primary-700 hover:bg-primary-700;
   }
-  .form-check:checked, .form-check:indeterminate {
+  .form-check:checked,
+  .form-check:indeterminate {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 65%;
@@ -293,31 +435,65 @@
   .form-radio:checked {
     background-image: radial-gradient(circle, white 32%, transparent 34%);
   }
-  .form-check:disabled:checked, .form-radio:disabled:checked {
-    @apply border-slate-300 bg-slate-300;
+  .form-check:disabled:checked,
+  .form-radio:disabled:checked {
+    @apply border-neutral-300 bg-neutral-300;
   }
-  .form-check-sm, .form-radio-sm { @apply h-[15px] w-[15px]; }
+  .form-check-sm,
+  .form-radio-sm {
+    width: var(--spacing-check-sm);
+    height: var(--spacing-check-sm);
+  }
 
-  /* Combobox — a dropdown that self-positions to whichever side (down/up,
-     start/end) has room, optionally with an in-menu search box, checkbox
-     multi-select, and removable tag chips in the trigger. */
+  /* Toggle — plain CSS :checked / :focus-visible (peer utilities not @apply-able) */
+  .toggle {
+    @apply relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center;
+  }
+  .toggle-input {
+    @apply sr-only;
+  }
+  .toggle-track {
+    @apply block h-6 w-11 rounded-full bg-neutral-200 transition-colors;
+    transition-duration: var(--duration-fast);
+  }
+  .toggle-input:checked + .toggle-track {
+    @apply bg-primary-600;
+  }
+  .toggle-input:focus-visible + .toggle-track {
+    @apply ring-4 ring-primary-500/15;
+  }
+  .toggle-input:disabled + .toggle-track {
+    @apply cursor-not-allowed opacity-50;
+  }
+  .toggle-track::after {
+    content: "";
+    @apply absolute left-1 top-1 h-4 w-4 rounded-full bg-surface shadow-sm transition-transform;
+    transition-duration: var(--duration-fast);
+  }
+  .toggle-input:checked + .toggle-track::after {
+    transform: translateX(1.25rem);
+  }
+
+  /* Combobox */
   .combo { @apply relative inline-block; }
   .combo-full { @apply block w-full; }
 
   .combo-trigger {
-    @apply flex w-full min-h-10 cursor-pointer items-center justify-between gap-2 rounded-xl border border-slate-200
-           bg-white px-3.5 py-2 text-left text-sm text-slate-700 transition-shadow
+    @apply flex w-full min-h-10 cursor-pointer items-center justify-between gap-2 rounded-control border border-border
+           bg-surface px-3.5 py-2 text-left text-sm text-neutral-700 transition-shadow
            focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/10 focus-visible:border-primary-400;
   }
   .combo[data-open="true"] .combo-trigger { @apply ring-4 ring-primary-500/10 border-primary-400; }
   .combo-tags { @apply flex flex-1 flex-wrap items-center gap-1.5; }
-  .combo-placeholder { @apply text-slate-400; }
-  .combo-chevron { @apply h-4 w-4 shrink-0 text-slate-400 transition-transform duration-150; }
+  .combo-placeholder { @apply text-fg-subtle; }
+  .combo-chevron { @apply h-4 w-4 shrink-0 text-fg-subtle transition-transform; transition-duration: var(--duration-fast); }
   .combo[data-open="true"] .combo-chevron { @apply rotate-180 text-primary-500; }
 
   .combo-menu {
-    @apply invisible absolute z-30 w-full min-w-56 origin-top scale-95 rounded-xl border border-slate-200/70
-           bg-white p-1.5 opacity-0 shadow-card-lg transition duration-150 ease-out;
+    @apply invisible absolute w-full min-w-56 origin-top scale-95 rounded-control border border-border/70
+           bg-surface p-1.5 opacity-0 shadow-card-lg transition ease-out;
+    z-index: var(--z-sticky);
+    transition-duration: var(--duration-fast);
   }
   .combo-menu.is-open { @apply visible scale-100 opacity-100; }
   .combo-menu[data-placement^="top"] { @apply top-auto bottom-full mb-1.5 origin-bottom; }
@@ -325,23 +501,23 @@
   .combo-menu[data-placement$="start"] { @apply left-0 right-auto; }
   .combo-menu[data-placement$="end"] { @apply right-0 left-auto; }
 
-  .combo-search-wrap { @apply sticky -top-1.5 -mx-1.5 -mt-1.5 mb-1.5 border-b border-slate-100 bg-white p-2; }
+  .combo-search-wrap { @apply sticky -top-1.5 -mx-1.5 -mt-1.5 mb-1.5 border-b border-border-subtle bg-surface p-2; }
   .combo-search-field { @apply relative; }
   .combo-search {
-    @apply h-9 w-full rounded-lg border border-slate-200 bg-slate-50 pl-9 pr-2.5 text-sm text-slate-700
-           placeholder:text-slate-400 outline-none transition-colors focus:border-primary-400 focus:bg-white;
+    @apply h-9 w-full rounded-lg border border-border bg-neutral-50 pl-9 pr-2.5 text-sm text-neutral-700
+           placeholder:text-fg-subtle outline-none transition-colors focus:border-primary-400 focus:bg-surface;
   }
-  .combo-search-icon { @apply pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400; }
+  .combo-search-icon { @apply pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle; }
 
   .combo-list { @apply max-h-56 space-y-0.5 overflow-y-auto; }
   .combo-item {
     @apply flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-sm
-           text-slate-600 transition-colors hover:bg-slate-50;
+           text-neutral-600 transition-colors hover:bg-neutral-50;
   }
   .combo-item.is-selected { @apply bg-primary-50 text-primary-700; }
   .combo-item .form-check { @apply pointer-events-none; }
-  .combo-empty { @apply px-3 py-6 text-center text-sm text-slate-400; }
-  .combo-group-label { @apply px-2.5 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400; }
+  .combo-empty { @apply px-3 py-6 text-center text-sm text-fg-subtle; }
+  .combo-group-label { @apply px-2.5 pt-2 pb-1 text-micro font-semibold uppercase tracking-wider text-fg-subtle; }
 
   .chip {
     @apply inline-flex items-center gap-1 rounded-full bg-primary-50 py-1 pl-2.5 pr-1 text-xs font-medium text-primary-700;
@@ -353,43 +529,53 @@
 
   /* Navigation */
   .nav-item {
-    @apply flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500
-           hover:bg-slate-100/80 hover:text-slate-900 transition-colors;
+    @apply flex cursor-pointer items-center gap-3 rounded-control px-3 py-2.5 text-sm font-medium text-fg-muted
+           hover:bg-neutral-100/80 hover:text-fg transition-colors;
   }
   .nav-item-active { @apply bg-primary-50! text-primary-700! hover:bg-primary-50!; }
-  .nav-eyebrow { @apply px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400; }
+  .nav-eyebrow { @apply px-3 text-micro font-semibold uppercase tracking-wider text-fg-subtle; }
 
   /* Tables */
   .table { @apply w-full text-left text-sm border-collapse; }
-  .table th { @apply px-4 py-3.5 text-sm font-semibold text-slate-500 border-b border-slate-100; }
-  .table td { @apply px-4 py-4 border-b border-slate-100 text-slate-700 align-middle; }
+  .table th { @apply px-4 py-3.5 text-sm font-semibold text-fg-muted border-b border-border-subtle; }
+  .table td { @apply px-4 py-4 border-b border-border-subtle text-neutral-700 align-middle; }
   .table tbody tr:last-child td { @apply border-b-0; }
-  .table tbody tr { @apply hover:bg-slate-50/70 transition-colors; }
+  .table tbody tr { @apply hover:bg-neutral-50/70 transition-colors; }
 
-  /* DataTable extras — sortable headers, row menu, pagination, tooltip */
-  .th-sortable { @apply cursor-pointer select-none hover:text-slate-600; }
+  .th-sortable { @apply cursor-pointer select-none hover:text-neutral-600; }
   .th-sortable .sort-icon { @apply inline-flex opacity-40 transition-opacity; }
   .th-sortable.is-sorted .sort-icon { @apply text-primary-600 opacity-100; }
 
-  .dropdown-menu { @apply absolute right-0 z-20 mt-1 w-44 rounded-xl border border-slate-200/70 bg-white p-1 shadow-card-lg; }
-  .dropdown-item { @apply flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900; }
+  .dropdown-menu {
+    @apply absolute right-0 mt-1 w-44 rounded-control border border-border/70 bg-surface p-1 shadow-card-lg;
+    z-index: var(--z-dropdown);
+  }
+  .dropdown-item { @apply flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-neutral-600 hover:bg-neutral-50 hover:text-fg; }
   .dropdown-item-danger { @apply text-danger-600 hover:bg-danger-50 hover:text-danger-700; }
 
-  .pagination-btn { @apply flex h-8 min-w-8 cursor-pointer items-center justify-center rounded-lg px-2 text-sm font-medium text-slate-500 hover:bg-slate-100 disabled:pointer-events-none disabled:opacity-40; }
+  .pagination-btn { @apply flex h-8 min-w-8 cursor-pointer items-center justify-center rounded-lg px-2 text-sm font-medium text-fg-muted hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-40; }
   .pagination-btn-active { @apply bg-primary-600! text-white! hover:bg-primary-600!; }
 
+  /* Tooltip — hover + keyboard focus (group-focus-within) */
   .tooltip-content {
-    @apply pointer-events-none absolute bottom-full left-1/2 z-30 mb-2 -translate-x-1/2 whitespace-nowrap
-           rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg
-           transition-opacity duration-150 group-hover:opacity-100;
+    @apply pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap
+           rounded-lg bg-neutral-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg
+           transition-opacity
+           group-hover:opacity-100 group-focus-within:opacity-100;
+    z-index: var(--z-sticky);
+    transition-duration: var(--duration-fast);
   }
 
   /* Avatars */
   .avatar { @apply inline-flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-semibold shrink-0; }
 
-  /* Callouts / alerts */
-  .callout, .callout-critical, .callout-warning, .callout-info, .callout-success {
-    @apply rounded-xl border border-l-4 border-slate-200/70 bg-white p-4;
+  /* Callouts */
+  .callout,
+  .callout-critical,
+  .callout-warning,
+  .callout-info,
+  .callout-success {
+    @apply rounded-control border border-l-4 border-border/70 bg-surface p-4;
   }
   .callout-critical { @apply border-l-danger-500; }
   .callout-warning { @apply border-l-warning-500; }
@@ -397,10 +583,10 @@
   .callout-success { @apply border-l-success-500; }
 
   /* Misc */
-  .kbd { @apply inline-flex items-center justify-center rounded-md border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[11px] font-medium text-slate-500; }
-  .divider-v { @apply w-px self-stretch bg-slate-200; }
-  .progress-track { @apply h-2 w-full overflow-hidden rounded-full bg-slate-100; }
+  .kbd { @apply inline-flex items-center justify-center rounded-md border border-border bg-neutral-50 px-1.5 py-0.5 text-micro font-medium text-fg-muted; }
+  .divider-v { @apply w-px self-stretch bg-border; }
+  .progress-track { @apply h-2 w-full overflow-hidden rounded-full bg-neutral-100; }
   .progress-bar { @apply h-full rounded-full bg-primary-600; }
-  .tab { @apply cursor-pointer rounded-lg px-3.5 py-1.5 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors; }
-  .tab-active { @apply bg-white text-slate-900 shadow-sm; }
+  .tab { @apply cursor-pointer rounded-lg px-3.5 py-1.5 text-sm font-medium text-fg-muted hover:text-neutral-800 transition-colors; }
+  .tab-active { @apply bg-surface text-fg shadow-sm; }
 }

@@ -11,12 +11,13 @@ bagian [Brand & Logo](#brand--logo).
 
 ## Fitur
 
-- **Design tokens** — palet warna primary & secondary (diturunkan dari logo
-  KarirLink) & semantik (success/warning/danger/info), tipografi, shadow,
-  dan gradasi brand, didefinisikan sekali di `src/input.css` lewat `@theme`
-  Tailwind v4.
-- **Pustaka komponen** — button, badge, avatar, card, form, navigasi
-  (sidebar + tab), tabel, callout/alert, progress bar, dan tooltip.
+- **Design tokens** — tiga lapisan di `src/input.css` `@theme`: primitive
+  (neutral / primary / secondary / status), semantic surfaces (`background`,
+  `surface`, `fg`, `border`, …), dan komponen (radius/control size/z/motion).
+  Tipografi Instrument Sans, shadow, dan gradasi brand ikut di situ.
+- **Pustaka komponen** — button (incl. ghost-inverse + loading), badge, avatar,
+  card, form (error/disabled/toggle), navigasi (sidebar + tab), tabel, callout,
+  progress bar, dan tooltip (hover + focus).
 - **Style guide interaktif** (`index.html`) — dokumentasi visual setiap
   token dan komponen, bisa dibuka langsung tanpa server.
 - **Dashboard contoh** (`templates/dashboard.html`) — implementasi nyata: AI Career
@@ -24,6 +25,8 @@ bagian [Brand & Logo](#brand--logo).
   aktivitas terbaru — semua memakai komponen dari design system yang sama.
 - **Sepenuhnya offline** — CSS sudah di-build (`dist/output.css`) dan font
   di-hosting lokal, tidak bergantung pada CDN atau koneksi internet.
+- **Light-only** — dark mode sengaja ditunda. Pakai semantic tokens supaya
+  nanti cukup override map di `.dark`, bukan rewrite komponen.
 
 ## Struktur
 
@@ -82,7 +85,26 @@ Skala 50–950 tiap warna diturunkan dari base tersebut (lihat bagian Colors
 di `index.html` untuk swatch lengkap). `bg-brand-gradient` dan
 `shadow-glow-primary` juga sudah memakai biru brand ini. Karena oranye
 punya kontras lebih rendah terhadap putih, `.btn-accent` memakai teks gelap
-(`text-slate-900`), bukan putih, supaya tetap mudah dibaca.
+(`text-neutral-900`), bukan putih, supaya tetap mudah dibaca.
+
+## Arsitektur token (3 layer)
+
+Semua token hidup di `src/input.css` → `@theme`.
+
+| Layer | Contoh | Kapan ubah |
+| --- | --- | --- |
+| **Primitive** | `neutral-*`, `primary-*`, `success-*` | Jarang — fondasi brand |
+| **Semantic** | `background`, `surface`, `fg`, `fg-muted`, `border` | Theme / meaning |
+| **Component** | `radius-control`, `radius-card`, `text-btn-lg`, `--z-dropdown` | Per-komponen |
+
+**Aturan:** komponen baru pakai semantic (`bg-surface`, `text-fg`, `border-border`)
+atau class kit (`.btn-primary`, `.card`). Hindari `bg-white` / `text-slate-*`
+langsung di komponen bersama. Neutral owned (`neutral-*`) menggantikan
+pinjaman Tailwind `slate` untuk DS.
+
+**Dark mode:** belum. Keputusan eksplisit = light-only sampai semantic map
+punya pasangan `.dark { --color-background: … }`. Jangan tambah `dark:`
+ad-hoc di template sebelum itu.
 
 ## Font
 
@@ -108,8 +130,9 @@ benar-benar dipakai di `index.html`/`templates/dashboard.html`, kelas baru
 otomatis ikut ter-build tanpa perlu ubah konfigurasi apa pun.
 
 **Catatan Tailwind v4:** `@apply` hanya bisa memanggil utility asli (bawaan
-atau `@utility` kustom) — bukan class komponen lain. Jadi varian seperti
-`.btn-primary` menulis ulang base style-nya sendiri, bukan `@apply btn`.
+atau `@utility` kustom) — bukan class komponen lain. Base button digabung
+lewat selector list bersama (`.btn, .btn-primary, …`); varian hanya menambah
+warna.
 
 ## Creator
 
