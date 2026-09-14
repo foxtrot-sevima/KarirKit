@@ -5,22 +5,99 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+
+- Footer di kelima halaman `templates/karirlink/` (`index.html`,
+  `kuesioner.html`, `kuesioner-builder.html`, `yudisium.html`,
+  `yudisium-detail.html`) yang sebelumnya belum punya footer sama sekali:
+  "© 2005-2026 SEVIMA. All Rights Reserved." rata kiri dan "KarirLink" rata
+  kanan (bertumpuk-tengah di mobile), konsisten dengan pola footer yang
+  sudah ada di `index.html` (style guide KarirKit). Tahun akhir dihitung
+  otomatis lewat JS (`new Date().getFullYear()`) saat halaman dimuat,
+  bukan ditulis statis - situs ini murni HTML statis tanpa backend, jadi
+  templating server-side seperti Blade (`{{ now()->year }}`) tidak akan
+  ter-render dan malah tampil sebagai teks literal di browser. Padding
+  dipangkas (`py-6` → `py-4`) dan diberi latar putih (beda dari
+  `bg-shell` di belakangnya) supaya terlihat sebagai footer, bukan
+  sekadar baris teks yang menyatu dengan konten di atasnya. Border &
+  latar putihnya dipindah ke elemen dalam yang dibatasi `max-w-[1600px]`
+  (bukan di elemen `<footer>` terluar yang selebar kolom konten) supaya
+  lebar pita footer-nya sejajar dengan card-card di atasnya, tidak
+  full-bleed lebih lebar dari konten. `#mainColumn` dijadikan
+  `flex flex-col min-h-screen` dan `<main>` diberi `flex-1` supaya
+  footer selalu menempel di dasar layar pada halaman berkonten pendek
+  (bukan mengambang tepat di bawah konten dengan celah kosong di
+  bawahnya), sambil tetap mengikuti alur dokumen seperti biasa pada
+  halaman berkonten panjang.
 - Modul Kuesioner Tracer Study di platform admin KarirLink, 4 halaman baru
   di `templates/karirlink/`:
   - `kuesioner.html` — daftar tiga jenis template kuesioner (Lulusan,
-    Pengguna Lulusan, Kosong; hanya dua yang terakhir mendukung
-    versioning), plus penjelasan tiga tingkatan pertanyaan. Kuesioner
-    hanya menyediakan template & builder — tidak ada pengaturan
-    pengiriman di sini.
+    Pengguna Lulusan, Kosong), plus penjelasan tiga tingkatan pertanyaan.
+    Hanya template Kosong yang mendukung versioning. Kuesioner hanya
+    menyediakan template & builder — tidak ada pengaturan pengiriman di
+    sini.
   - `kuesioner-builder.html` — halaman kelola pertanyaan per template,
     tiga tingkatan (Core berkode Dikti dan tidak dapat dihapus, Optional
     bisa diaktif/matikan, Custom bisa ditambah/diedit/dihapus — masing-
     masing dengan toggle wajib/opsional independen dari tingkatannya).
-    Versioning ditampilkan sebagai section tersendiri per versi (bukan
-    dropdown) — versi aktif tampil penuh dan bisa diedit, versi arsip
-    tampil ringkas dan bisa diperluas untuk pratinjau hanya-baca, dengan
-    aksi "Jadikan Aktif". Template Lulusan tidak menampilkan versioning
-    sama sekali.
+    Tiga tampilan berbeda tergantung template: Pengguna Lulusan tampil
+    flat (satu set tingkatan saja, tanpa versioning maupun gelombang);
+    Lulusan tidak memakai versioning — pertanyaannya dikelompokkan per
+    Gelombang (Pra-Lulus, Pasca-Lulus 1 Tahun, Pasca-Lulus 4 Tahun),
+    masing-masing section sendiri dengan tiga tingkatannya sendiri, section
+    pertama (Pra-Lulus) tampil terbuka dan dua lainnya dapat
+    diperluas/ditutup; Kosong satu-satunya template dengan versioning
+    (section tersendiri per versi, bukan dropdown, dengan aksi "Jadikan
+    Aktif" untuk versi arsip) — saat ini baru punya satu versi aktif dan
+    kosong (belum ada pertanyaan Core/Optional bawaan, hanya bisa diisi
+    pertanyaan Custom). Ditambahkan juga baris quick-nav "Lompat ke" di
+    atas daftar gelombang Lulusan — klik pil gelombang langsung scroll ke
+    section-nya dan otomatis membukanya kalau sedang tertutup, plus tombol
+    "Buka semua" / "Tutup semua" untuk expand-collapse sekaligus, supaya
+    admin tidak perlu scroll manual menyusuri tiap section Core/Optional/
+    Custom satu per satu. Status wajib/opsional pada pertanyaan Core kini
+    ditampilkan sebagai teks statis, bukan toggle - status ini sudah
+    ditetapkan sistem (mengikuti definisi Dikti) dan tidak bisa diubah
+    admin, beda dari Optional (boleh ubah wajib/opsional & aktif/nonaktif)
+    dan Custom (boleh diubah bebas). Ikon drag-handle di baris Core juga
+    tidak lagi menyiratkan bisa di-drag/urutkan ulang. Badge tingkatan
+    Core/Optional/Custom di setiap section kini punya tooltip saat
+    di-hover yang menjelaskan arti masing-masing tingkatan (posisi di
+    bawah badge, bukan di atas, supaya tidak terpotong oleh
+    `overflow-hidden` pada card pembungkusnya) - rata kiri ke badge, bukan
+    center, karena badge-nya dekat tepi kiri card sehingga tooltip lebar
+    yang di-center akan terpotong juga oleh tepi kiri card yang sama.
+    Grid ringkasan jumlah Core/Optional/Custom dihapus dari semua section
+    (flat Pengguna Lulusan maupun ketiga Gelombang di Lulusan) - dianggap
+    tidak penting karena jumlah pertanyaan sudah tampil di badge header
+    tiap section (mis. "16 pertanyaan").
+  - Baris pertanyaan Core/Optional/Custom dirombak untuk mobile (di bawah
+    breakpoint `sm`) karena sebelumnya sangat sesak - teks pertanyaan
+    terpotong `truncate` jadi nyaris tidak terbaca, dua toggle Optional
+    (Wajib + Aktif) dan toggle+edit+hapus Custom berhimpitan. Sekarang di
+    mobile teks pertanyaan tampil penuh (wrap, tidak terpotong) di baris
+    tersendiri, dengan kode Core/toggle/tombol aksi mengelompok di baris
+    terpisah; dari breakpoint `sm` ke atas kembali ke tata letak satu
+    baris seperti semula (teks `truncate`, semua kontrol sejajar). Ikon
+    drag-handle (dekoratif, tidak ada logika drag) disembunyikan di mobile
+    untuk menghemat ruang. Header tiap section (Core/Optional/Custom) juga
+    ditumpuk vertikal di mobile - badge+judul di atas, teks meta atau
+    tombol "Tambah Pertanyaan" di bawah (dulu berhimpitan/wrap acak).
+  - Baris quick-nav "Lompat ke" pada Gelombang Lulusan dirapikan untuk
+    mobile - sebelumnya pil gelombang dan tombol "Buka semua"/"Tutup
+    semua" berada dalam satu `flex-wrap` yang sama sehingga urutan
+    wrap-nya tidak konsisten di berbagai lebar layar (kadang menyatu di
+    baris terakhir, kadang terpisah acak). Sekarang keduanya jadi dua
+    grup yang jelas - ditumpuk vertikal (dengan garis pemisah) di mobile,
+    kembali sejajar satu baris dari breakpoint `sm` ke atas.
+  - Badge jumlah pertanyaan ("16 pertanyaan", dst.) pada header tiap
+    section Gelombang disembunyikan di mobile - info ini dianggap tidak
+    penting di layar sempit, cukup nama gelombangnya saja yang tampil;
+    badge tetap tampil dari breakpoint `sm` ke atas.
+  - Pil gelombang pada quick-nav "Lompat ke" di mobile sekarang scroll ke
+    samping (satu baris, `overflow-x-auto`) alih-alih wrap ke banyak
+    baris - label "Lompat ke" tetap diam di kiri, cuma pil-nya yang
+    scroll. Dari breakpoint `sm` ke atas kembali ke `flex-wrap` biasa
+    seperti semula karena sudah cukup lebar untuk menampung ketiganya.
   - `yudisium.html` — halaman terpisah di bawah Kuesioner untuk menetapkan
     lulusan berdasarkan Data Lulusan Yudisium: daftar Periode Yudisium
     (15 data, dengan pagination - 10 per halaman) dengan jumlah lulusan,
@@ -32,7 +109,9 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
     breakpoint `sm` dan dipindah jadi subteks di bawah nama periode, badge
     status & tombol aksi diberi lebar maksimum + wrap teks supaya tidak
     memaksa scroll ke samping - diverifikasi tidak ada horizontal overflow
-    di 320px maupun 375px.
+    di 320px maupun 375px. Tidak ada tombol "Tambah Periode Yudisium" -
+    data periode disinkronkan otomatis dari SIAKAD, jadi diganti indikator
+    ringkas "Sinkron SIAKAD · 10 menit lalu" di header.
   - `yudisium-detail.html` — detail satu Periode Yudisium: KPI partisipasi
     dan tabel mahasiswa (Nama, Prodi, Email, Status, Aksi) dengan filter
     tab status, pencarian langsung, dan pagination (10 data, 5 per
@@ -45,6 +124,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [1.1.0] - 2026-09-11
 
 ### Changed
+
 - Seluruh ikon (203 pemakaian di `index.html`, `templates/dashboard.html`,
   dan `templates/karirlink/index.html`) diganti dari SVG outline
   hand-authored - tidak ada lagi ikon custom yang digambar sendiri.
@@ -68,6 +148,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   bukan dua warna sungguhan.
 
 ### Added
+
 - `templates/karirlink/index.html` — dashboard admin khusus untuk platform
   KarirLink (Panel Admin Karir kampus), terpisah dari dashboard pencari
   kerja di `templates/dashboard.html`. Sidebar disusun ulang sesuai
@@ -124,13 +205,14 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   Tanggal bisa diketik langsung dalam format `dd/mm/yyyy` (dengan mask "/"
   otomatis dan validasi tanggal asli, menolak input seperti `31/02/2026`),
   atau dipilih lewat kalender dengan navigasi bertingkat ala Google
-  Calendar — klik judul header untuk *drill-up* dari tampilan hari ke
+  Calendar — klik judul header untuk _drill-up_ dari tampilan hari ke
   bulan lalu ke tahun (grid 12 tahun per halaman, bukan dropdown yang bisa
-  kepanjangan), lalu pilih tahun → bulan untuk *drill-down* kembali ke
+  kepanjangan), lalu pilih tahun → bulan untuk _drill-down_ kembali ke
   tanggal. Highlight hari ini & tanggal terpilih di ketiga tampilan, plus
   pintasan "Hari ini" dan "Hapus".
 
 ### Changed
+
 - Profil admin di `templates/karirlink/index.html` dipindah dari footer
   sidebar ke topbar (avatar + nama + peran, menyatu dengan tombol), dan
   label institusi ("Universitas Nusantara Raya · Panel Admin Karir") yang
@@ -165,6 +247,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   tinggi tetap `h-10` yang memotong tag ke-3 dan seterusnya.
 
 ### Fixed
+
 - Checkbox pada combobox multi-pilih dobel-toggle saat item berupa `<label>`
   yang membungkus `<input type="checkbox">` - klik label memicu toggle
   native dari browser sekaligus toggle manual di JS, saling membatalkan.
@@ -189,6 +272,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [1.0.0] - 2026-09-10
 
 ### Added
+
 - Design tokens (`src/input.css`): palet warna primary & secondary (diambil
   dari logo resmi KarirLink) & semantik (success/warning/danger/info),
   shadow, dan gradasi brand, dibangun dengan Tailwind CSS v4 (`@theme` +
@@ -209,6 +293,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Dokumen proyek: README, LICENSE, THIRD-PARTY-LICENSES, CHANGELOG.
 
 ### Changed
+
 - Palet warna **primary** (biru `#22489e`) dan **secondary** (oranye
   `#f05925`) diambil langsung dari logo resmi KarirLink, menggantikan
   placeholder violet; `bg-brand-gradient`, `bg-brand-gradient-soft`,
@@ -233,6 +318,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `index.html` diperbarui ke `templates/dashboard.html`.
 
 ### Fixed
+
 - Tombol aksi di header dashboard ("30 Hari" / "Cari Lowongan Baru") dan di
   kartu AI Career Coach ("Atur Preferensi" / "Lihat Rekomendasi") overflow/
   terpotong di lebar 320-375px karena baris flex-nya tidak bisa wrap, dan
