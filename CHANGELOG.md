@@ -4,6 +4,44 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+- Modul Kuesioner Tracer Study di platform admin KarirLink, 4 halaman baru
+  di `templates/karirlink/`:
+  - `kuesioner.html` — daftar tiga jenis template kuesioner (Lulusan,
+    Pengguna Lulusan, Kosong; hanya dua yang terakhir mendukung
+    versioning), plus penjelasan tiga tingkatan pertanyaan. Kuesioner
+    hanya menyediakan template & builder — tidak ada pengaturan
+    pengiriman di sini.
+  - `kuesioner-builder.html` — halaman kelola pertanyaan per template,
+    tiga tingkatan (Core berkode Dikti dan tidak dapat dihapus, Optional
+    bisa diaktif/matikan, Custom bisa ditambah/diedit/dihapus — masing-
+    masing dengan toggle wajib/opsional independen dari tingkatannya).
+    Versioning ditampilkan sebagai section tersendiri per versi (bukan
+    dropdown) — versi aktif tampil penuh dan bisa diedit, versi arsip
+    tampil ringkas dan bisa diperluas untuk pratinjau hanya-baca, dengan
+    aksi "Jadikan Aktif". Template Lulusan tidak menampilkan versioning
+    sama sekali.
+  - `yudisium.html` — halaman terpisah di bawah Kuesioner untuk menetapkan
+    lulusan berdasarkan Data Lulusan Yudisium: daftar Periode Yudisium
+    (15 data, dengan pagination - 10 per halaman) dengan jumlah lulusan,
+    status kuesioner, dan aksi Finalisasi & Kirim per periode, plus
+    pengaturan Gelombang Pengiriman (Pra-Lulus dan Pasca-Lulus 1 Tahun —
+    toggle aktif, template kuesioner yang dipakai, dan jangka waktu
+    pengiriman per gelombang). Tabel Periode Yudisium disesuaikan untuk
+    mobile: kolom Tanggal Yudisium & Jumlah Lulusan disembunyikan di bawah
+    breakpoint `sm` dan dipindah jadi subteks di bawah nama periode, badge
+    status & tombol aksi diberi lebar maksimum + wrap teks supaya tidak
+    memaksa scroll ke samping - diverifikasi tidak ada horizontal overflow
+    di 320px maupun 375px.
+  - `yudisium-detail.html` — detail satu Periode Yudisium: KPI partisipasi
+    dan tabel mahasiswa (Nama, Prodi, Email, Status, Aksi) dengan filter
+    tab status, pencarian langsung, dan pagination (10 data, 5 per
+    halaman) — semuanya benar-benar berfungsi dan saling terhubung
+    (mengganti filter mengembalikan ke halaman 1).
+  - Sidebar admin KarirLink diperbarui: "Kuesioner" sekarang tautan aktif,
+    dan item baru "Data Lulusan Yudisium" ditambahkan tepat di bawahnya
+    dalam grup "Tracer".
+
 ## [1.1.0] - 2026-09-11
 
 ### Changed
