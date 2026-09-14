@@ -124,10 +124,10 @@
         <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Data Lulusan Yudisium</h2>
         <p class="mt-1 text-sm text-slate-500">Tetapkan lulusan berdasarkan periode yudisium, lalu kirim/finalisasi kuesioner Tracer Study per periode.</p>
       </div>
-      <button class="btn-primary btn-md w-full sm:w-auto">
-        <i class="kk kk-plus h-4 w-4 shrink-0"></i>
-        Tambah Periode Yudisium
-      </button>
+      <div class="flex items-center gap-2 text-sm text-slate-500">
+        <i class="kk kk-clock h-4 w-4 shrink-0 text-slate-400"></i>
+        <span>Synce <span class="font-medium text-slate-700">10 menit</span></span>
+      </div>
     </div>
 
     <!-- KPI row -->
@@ -435,6 +435,13 @@
       <button class="btn-primary btn-md mt-5">Simpan Pengaturan Gelombang</button>
     </div>
   </main>
+
+  <footer>
+    <div class="mx-auto flex max-w-[1600px] flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
+  </footer>
 </div>
 
 <script>
@@ -536,6 +543,11 @@
 
     render();
   })();
+
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
 </script>
 </body>
 </html>

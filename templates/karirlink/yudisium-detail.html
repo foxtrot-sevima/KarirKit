@@ -382,6 +382,13 @@
       </div>
     </div>
   </main>
+
+  <footer>
+    <div class="mx-auto flex max-w-[1600px] flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
+  </footer>
 </div>
 
 <script>
@@ -536,6 +543,11 @@
 
     render();
   })();
+
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
 </script>
 </body>
 </html>

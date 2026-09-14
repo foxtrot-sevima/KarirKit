@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Simulasi Pengisian Alumni | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIMULATION TOPBAR ============================= -->
+<header class="sticky top-0 z-30 border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
+  <div class="mx-auto flex h-16 max-w-3xl items-center justify-between px-4 sm:px-6">
+    <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-7 w-auto" />
+    <div class="flex items-center gap-2 sm:gap-3">
+      <span class="badge-secondary hidden sm:inline-flex">
+        <i class="kk kk-eye h-3.5 w-3.5"></i>
+        Mode Simulasi
+      </span>
+      <a href="kuesioner.html" class="btn-outline btn-sm">
+        <i class="kk kk-x h-3.5 w-3.5 shrink-0"></i>
+        Keluar
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================= CONTENT ============================= -->
+<main class="mx-auto max-w-3xl space-y-5 px-4 py-6 sm:px-6 sm:py-10">
+
+  <!-- Wave switcher: admin picks which gelombang to preview -->
+  <div class="card p-2">
+    <div class="grid grid-cols-1 gap-1.5 sm:grid-cols-3" id="waveTabs">
+      <button type="button" class="wave-tab" data-wave="pra-lulus">Pra-Lulus</button>
+      <button type="button" class="wave-tab" data-wave="pasca-1th">Pasca-Lulus 1 Tahun</button>
+      <button type="button" class="wave-tab" data-wave="pasca-4th">Pasca-Lulus 4 Tahun</button>
+    </div>
+  </div>
+
+  <!-- Notice: this is a preview, not a real submission -->
+  <div class="callout-info flex items-start gap-3">
+    <i class="kk kk-question h-4 w-4 shrink-0 text-info-600"></i>
+    <p class="text-sm text-slate-600">Ini adalah simulasi tampilan yang dilihat alumni saat mengisi <span class="font-medium text-slate-800">Kuesioner Lulusan</span> (gelombang <span data-w="label">Pra-Lulus</span>). Jawaban di halaman ini tidak tersimpan ke data sesungguhnya.</p>
+  </div>
+
+  <!-- ============ FORM WRAP (steps) ============ -->
+  <div id="formWrap">
+
+    <!-- Letterhead -->
+    <div class="card p-6 sm:p-8">
+      <div class="flex items-start gap-3">
+        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600">
+          <i class="kk kk-graduation-cap h-5 w-5"></i>
+        </span>
+        <div>
+          <h1 class="font-display text-xl font-bold text-slate-900 sm:text-2xl">Kuesioner Tracer Study — Lulusan</h1>
+          <p class="mt-1 text-sm text-slate-500">Universitas Meruya Raya · Wave <span data-w="label">Pra-Lulus</span></p>
+        </div>
+      </div>
+      <p class="mt-4 text-sm text-slate-600">Yth. <span class="font-medium text-slate-800">Bagas Setiawan</span>, terima kasih telah bersedia meluangkan waktu mengisi kuesioner ini <span data-w="greetingClause">menjelang kelulusan Anda</span>. Jawaban Anda sangat berarti untuk evaluasi dan pengembangan kualitas pendidikan di kampus.</p>
+    </div>
+
+    <!-- Stepper -->
+    <div class="card mt-5 p-5 sm:p-6">
+      <div class="flex items-center justify-between">
+        <p class="text-sm font-semibold text-slate-800">Langkah <span id="stepNow">1</span> dari 4</p>
+        <p id="stepLabel" class="text-sm text-slate-500">Konfirmasi Data Diri</p>
+      </div>
+      <div class="progress-track mt-3">
+        <div id="progressBar" class="progress-bar transition-all duration-300" style="width: 25%"></div>
+      </div>
+      <div class="mt-4 grid grid-cols-4 gap-2 text-center">
+        <div class="step-dot" data-step-dot="1">
+          <span class="step-dot-circle"><i class="kk kk-check-circle h-4 w-4 hidden" data-step-check></i><span data-step-num>1</span></span>
+          <p class="mt-1.5 hidden text-[11px] font-medium text-slate-500 sm:block">Data Diri</p>
+        </div>
+        <div class="step-dot" data-step-dot="2">
+          <span class="step-dot-circle"><i class="kk kk-check-circle h-4 w-4 hidden" data-step-check></i><span data-step-num>2</span></span>
+          <p class="mt-1.5 hidden text-[11px] font-medium text-slate-500 sm:block">Status</p>
+        </div>
+        <div class="step-dot" data-step-dot="3">
+          <span class="step-dot-circle"><i class="kk kk-check-circle h-4 w-4 hidden" data-step-check></i><span data-step-num>3</span></span>
+          <p class="mt-1.5 hidden text-[11px] font-medium text-slate-500 sm:block">Detail</p>
+        </div>
+        <div class="step-dot" data-step-dot="4">
+          <span class="step-dot-circle"><i class="kk kk-check-circle h-4 w-4 hidden" data-step-check></i><span data-step-num>4</span></span>
+          <p class="mt-1.5 hidden text-[11px] font-medium text-slate-500 sm:block">Masukan</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STEP 1: Konfirmasi Data Diri ===== -->
+    <div data-step-panel="1" class="card mt-5 p-6 sm:p-8">
+      <div class="flex flex-wrap items-center gap-2.5">
+        <h2 class="text-base font-semibold text-slate-800">Konfirmasi Data Diri</h2>
+        <span class="badge-info">Gelombang <span data-w="label">Pra-Lulus</span></span>
+      </div>
+      <p class="mt-1 text-sm text-slate-500">Data berikut diambil otomatis dari data yudisium Anda dan tidak dapat diubah.</p>
+      <div class="mt-5 grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="form-label">Nama Lengkap</label>
+          <input class="input bg-slate-50 text-slate-500" value="Bagas Setiawan" disabled />
+        </div>
+        <div>
+          <label class="form-label">NIM</label>
+          <input class="input bg-slate-50 text-slate-500" value="2019310045" disabled />
+        </div>
+        <div>
+          <label class="form-label">Program Studi</label>
+          <input class="input bg-slate-50 text-slate-500" value="S1 Teknik Informatika" disabled />
+        </div>
+        <div>
+          <label class="form-label">Tanggal Yudisium</label>
+          <input class="input bg-slate-50 text-slate-500" value="12 Agustus 2026" disabled />
+        </div>
+      </div>
+      <div class="mt-5 flex justify-end">
+        <button type="button" class="btn-primary btn-md" data-next>
+          Lanjut
+          <i class="kk kk-caret-right h-4 w-4 shrink-0"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== STEP 2: Status & Rencana ===== -->
+    <div data-step-panel="2" class="card mt-5 hidden p-6 sm:p-8">
+      <h2 class="text-base font-semibold text-slate-800" data-w="step2Title">Status &amp; Rencana Setelah Lulus</h2>
+      <p class="mt-1 text-sm text-slate-500">Pertanyaan Inti — wajib diisi.</p>
+
+      <div class="mt-5 space-y-6">
+        <div>
+          <p class="flex items-center gap-2 text-sm font-medium text-slate-700">
+            <span class="kbd" data-w="q1.code">P01</span>
+            <span data-w="q1.text">Apakah Anda sudah memiliki pekerjaan atau tawaran kerja sebelum dinyatakan lulus?</span>
+          </p>
+          <div class="mt-3 flex flex-wrap gap-4">
+            <label class="flex cursor-pointer items-center gap-2 text-sm text-slate-600">
+              <input type="radio" name="q1" class="form-radio" checked />
+              <span data-w="q1.opt1">Sudah</span>
+            </label>
+            <label class="flex cursor-pointer items-center gap-2 text-sm text-slate-600">
+              <input type="radio" name="q1" class="form-radio" />
+              <span data-w="q1.opt2">Belum</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <p class="flex items-center gap-2 text-sm font-medium text-slate-700">
+            <span class="kbd" data-w="q2.code">P02</span>
+            <span data-w="q2.text">Apa rencana utama Anda setelah dinyatakan lulus?</span>
+          </p>
+          <div class="mt-3 grid gap-2.5 sm:grid-cols-2">
+            <label class="radio-card">
+              <input type="radio" name="rencana" class="form-radio" value="kerja" checked data-rencana />
+              <span data-w="q2.options.kerja">Bekerja sebagai karyawan/pegawai</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="rencana" class="form-radio" value="studi" data-rencana />
+              <span data-w="q2.options.studi">Melanjutkan studi (S2/S3)</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="rencana" class="form-radio" value="usaha" data-rencana />
+              <span data-w="q2.options.usaha">Berwirausaha / merintis usaha sendiri</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="rencana" class="form-radio" value="belum" data-rencana />
+              <span data-w="q2.options.belum">Belum punya rencana pasti</span>
+            </label>
+          </div>
+          <p id="rencanaError" class="mt-2 hidden text-xs font-medium text-danger-600">Pilih salah satu untuk melanjutkan.</p>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between">
+        <button type="button" class="btn-outline btn-md" data-back>
+          <i class="kk kk-caret-left h-4 w-4 shrink-0"></i>
+          Kembali
+        </button>
+        <button type="button" class="btn-primary btn-md" data-next>
+          Lanjut
+          <i class="kk kk-caret-right h-4 w-4 shrink-0"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== STEP 3: Detail (bercabang sesuai jawaban step 2) ===== -->
+    <div data-step-panel="3" class="card mt-5 hidden p-6 sm:p-8">
+      <h2 class="text-base font-semibold text-slate-800" data-w="step3Title">Detail Rencana Anda</h2>
+      <p class="mt-1 text-sm text-slate-500">Pertanyaan menyesuaikan jawaban Anda sebelumnya.</p>
+
+      <!-- Cabang: Bekerja -->
+      <div data-branch="kerja" class="mt-5 grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="form-label" data-w="fields.kerja.company">Nama perusahaan/instansi</label>
+          <input class="input" placeholder="mis. PT Sinergi Digital Nusantara" />
+        </div>
+        <div>
+          <label class="form-label" data-w="fields.kerja.position">Posisi/jabatan</label>
+          <input class="input" placeholder="mis. Software Engineer" />
+        </div>
+        <div>
+          <label class="form-label" data-w="fields.kerja.field">Bidang usaha perusahaan</label>
+          <select class="input appearance-none">
+            <option>Teknologi Informasi</option>
+            <option>Keuangan/Perbankan</option>
+            <option>Manufaktur</option>
+            <option>Pendidikan</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label" data-w="fields.kerja.salary">Kisaran gaji pertama per bulan</label>
+          <select class="input appearance-none">
+            <option>&lt; Rp 3.000.000</option>
+            <option>Rp 3.000.000 – Rp 5.000.000</option>
+            <option>Rp 5.000.000 – Rp 8.000.000</option>
+            <option>&gt; Rp 8.000.000</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Cabang: Studi -->
+      <div data-branch="studi" class="mt-5 hidden grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="form-label" data-w="fields.studi.school">Perguruan tinggi tujuan</label>
+          <input class="input" placeholder="mis. Institut Teknologi Bandung" />
+        </div>
+        <div>
+          <label class="form-label">Jenjang</label>
+          <select class="input appearance-none">
+            <option>S2 (Magister)</option>
+            <option>S3 (Doktor)</option>
+          </select>
+        </div>
+        <div class="sm:col-span-2">
+          <label class="form-label" data-w="fields.studi.major">Bidang studi yang dituju</label>
+          <input class="input" placeholder="mis. Ilmu Komputer" />
+        </div>
+      </div>
+
+      <!-- Cabang: Usaha -->
+      <div data-branch="usaha" class="mt-5 hidden grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="form-label" data-w="fields.usaha.name">Nama usaha</label>
+          <input class="input" placeholder="mis. Kopi Setapak" />
+        </div>
+        <div>
+          <label class="form-label" data-w="fields.usaha.field">Bidang usaha</label>
+          <input class="input" placeholder="mis. Kuliner" />
+        </div>
+        <div class="sm:col-span-2">
+          <label class="form-label">Jumlah karyawan saat ini</label>
+          <select class="input appearance-none">
+            <option>Belum ada karyawan (perorangan)</option>
+            <option>1–4 orang</option>
+            <option>5–19 orang</option>
+            <option>20 orang atau lebih</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Cabang: Belum -->
+      <div data-branch="belum" class="mt-5 hidden space-y-4">
+        <div>
+          <p class="text-sm font-medium text-slate-700" data-w="fields.belum.constraintsLabel">Apa kendala utama Anda dalam mencari pekerjaan? <span class="font-normal text-slate-400">(boleh pilih lebih dari satu)</span></p>
+          <div class="mt-2.5 space-y-2">
+            <label class="flex cursor-pointer items-center gap-2.5 text-sm text-slate-600">
+              <input type="checkbox" class="form-check" />
+              Kurang pengalaman kerja
+            </label>
+            <label class="flex cursor-pointer items-center gap-2.5 text-sm text-slate-600">
+              <input type="checkbox" class="form-check" />
+              Persaingan yang ketat
+            </label>
+            <label class="flex cursor-pointer items-center gap-2.5 text-sm text-slate-600">
+              <input type="checkbox" class="form-check" />
+              Belum ada lowongan yang sesuai bidang
+            </label>
+            <label class="flex cursor-pointer items-center gap-2.5 text-sm text-slate-600">
+              <input type="checkbox" class="form-check" />
+              Kendala lokasi/domisili
+            </label>
+          </div>
+        </div>
+        <div>
+          <label class="form-label" data-w="fields.belum.planLabel">Rencana Anda dalam 3 bulan ke depan</label>
+          <textarea class="input textarea-autogrow" rows="2" placeholder="Ceritakan singkat rencana Anda..."></textarea>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between">
+        <button type="button" class="btn-outline btn-md" data-back>
+          <i class="kk kk-caret-left h-4 w-4 shrink-0"></i>
+          Kembali
+        </button>
+        <button type="button" class="btn-primary btn-md" data-next>
+          Lanjut
+          <i class="kk kk-caret-right h-4 w-4 shrink-0"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== STEP 4: Kepuasan & Masukan ===== -->
+    <div data-step-panel="4" class="card mt-5 hidden p-6 sm:p-8">
+      <h2 class="text-base font-semibold text-slate-800">Kepuasan &amp; Masukan</h2>
+      <p class="mt-1 text-sm text-slate-500">Pertanyaan tambahan buatan admin kampus.</p>
+
+      <div class="mt-5 space-y-6">
+        <div>
+          <p class="text-sm font-medium text-slate-700" data-w="satisfactionQuestion">Seberapa puas Anda dengan kualitas pendidikan di kampus?</p>
+          <div class="mt-3 grid grid-cols-5 gap-1.5 sm:gap-2">
+            <button type="button" class="scale-pill" data-scale="1">1</button>
+            <button type="button" class="scale-pill" data-scale="2">2</button>
+            <button type="button" class="scale-pill" data-scale="3">3</button>
+            <button type="button" class="scale-pill scale-pill-active" data-scale="4">4</button>
+            <button type="button" class="scale-pill" data-scale="5">5</button>
+          </div>
+          <div class="mt-1.5 flex justify-between text-[11px] text-slate-400">
+            <span>Sangat Tidak Puas</span>
+            <span>Sangat Puas</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-sm font-medium text-slate-700">Aspek apa yang paling bermanfaat selama kuliah? <span class="font-normal text-slate-400">(boleh pilih lebih dari satu)</span></p>
+          <div class="mt-2.5 grid gap-2 sm:grid-cols-2">
+            <label class="flex cursor-pointer items-center gap-2.5 text-sm text-slate-600">
+              <input type="checkbox" class="form-check" checked />
+              Kurikulum &amp; mata kuliah
+            </label>
+            <label class="flex cursor-pointer items-center gap-2.5 text-sm text-slate-600">
+              <input type="checkbox" class="form-check" checked />
+              Praktik kerja/magang
+            </label>
+            <label class="flex cursor-pointer items-center gap-2.5 text-sm text-slate-600">
+              <input type="checkbox" class="form-check" />
+              Bimbingan dosen
+            </label>
+            <label class="flex cursor-pointer items-center gap-2.5 text-sm text-slate-600">
+              <input type="checkbox" class="form-check" />
+              Fasilitas kampus
+            </label>
+            <label class="flex cursor-pointer items-center gap-2.5 text-sm text-slate-600">
+              <input type="checkbox" class="form-check" />
+              Jejaring alumni
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label" data-w="customQuestion">Saran/masukan untuk pengembangan kampus</label>
+          <textarea class="input textarea-autogrow" rows="2" placeholder="Tulis saran Anda di sini..."></textarea>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between">
+        <button type="button" class="btn-outline btn-md" data-back>
+          <i class="kk kk-caret-left h-4 w-4 shrink-0"></i>
+          Kembali
+        </button>
+        <button type="button" class="btn-primary btn-md" data-submit>
+          Kirim Kuesioner
+          <i class="kk kk-check-circle h-4 w-4 shrink-0"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SUCCESS STATE ============ -->
+  <div id="successWrap" class="card hidden p-8 text-center sm:p-10">
+    <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-success-50 text-success-600">
+      <i class="kk kk-check-circle h-7 w-7"></i>
+    </span>
+    <h2 class="mt-4 text-lg font-bold text-slate-900">Kuesioner Berhasil Dikirim!</h2>
+    <p class="mx-auto mt-1.5 max-w-sm text-sm text-slate-500">Terima kasih, Bagas — jawaban kuesioner gelombang <span data-w="label">Pra-Lulus</span> Anda telah tercatat dan akan membantu kampus meningkatkan kualitas pendidikan serta layanan karir bagi alumni.</p>
+    <div class="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row">
+      <button type="button" id="restartBtn" class="btn-outline btn-md">
+        <i class="kk kk-x h-4 w-4 shrink-0"></i>
+        Isi Ulang Simulasi
+      </button>
+      <a href="kuesioner.html" class="btn-primary btn-md">Kembali ke Kuesioner</a>
+    </div>
+  </div>
+</main>
+
+<style>
+  /* Plain CSS (this inline block isn't run through the Tailwind build, so no @apply here) */
+  .step-dot-circle {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    height: 1.75rem;
+    width: 1.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: var(--color-slate-100);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-slate-400);
+    transition: background-color 150ms, color 150ms;
+  }
+  [data-step-dot].is-active .step-dot-circle { background-color: var(--color-primary-600); color: #fff; }
+  [data-step-dot].is-active p { color: var(--color-slate-800); }
+  [data-step-dot].is-done .step-dot-circle { background-color: var(--color-success-50); color: var(--color-success-600); }
+  [data-step-dot].is-done [data-step-num] { display: none; }
+  [data-step-dot].is-done [data-step-check] { display: block; }
+
+  .radio-card {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.625rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-slate-200);
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-slate-600);
+    background-color: #fff;
+    transition: background-color 150ms, border-color 150ms, color 150ms;
+  }
+  .radio-card:hover { background-color: var(--color-slate-50); }
+  .radio-card:has(input:checked) {
+    border-color: var(--color-primary-400);
+    background-color: color-mix(in srgb, var(--color-primary-50) 60%, transparent);
+    color: var(--color-slate-800);
+  }
+
+  .scale-pill {
+    display: flex;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-slate-200);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-slate-500);
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 150ms, border-color 150ms, color 150ms;
+  }
+  .scale-pill:hover { background-color: var(--color-slate-50); }
+  .scale-pill-active, .scale-pill-active:hover {
+    border-color: var(--color-primary-500);
+    background-color: var(--color-primary-600);
+    color: #fff;
+  }
+
+  .wave-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.625rem;
+    padding: 0.5rem 0.625rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-slate-500);
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 150ms, color 150ms;
+  }
+  .wave-tab:hover { background-color: var(--color-slate-50); }
+  .wave-tab.is-active, .wave-tab.is-active:hover {
+    background-color: var(--color-primary-600);
+    color: #fff;
+  }
+</style>
+
+<script>
+  // ---- Konten per gelombang (Kuesioner Lulusan punya 3 gelombang pengiriman) ----
+  const WAVES = {
+    'pra-lulus': {
+      label: 'Pra-Lulus',
+      greetingClause: 'menjelang kelulusan Anda',
+      step2Title: 'Status & Rencana Setelah Lulus',
+      step3Title: 'Detail Rencana Anda',
+      q1: { code: 'P01', text: 'Apakah Anda sudah memiliki pekerjaan atau tawaran kerja sebelum dinyatakan lulus?', opt1: 'Sudah', opt2: 'Belum' },
+      q2: {
+        code: 'P02',
+        text: 'Apa rencana utama Anda setelah dinyatakan lulus?',
+        options: {
+          kerja: 'Bekerja sebagai karyawan/pegawai',
+          studi: 'Melanjutkan studi (S2/S3)',
+          usaha: 'Berwirausaha / merintis usaha sendiri',
+          belum: 'Belum punya rencana pasti',
+        },
+      },
+      fields: {
+        kerja: { company: 'Nama perusahaan/instansi', position: 'Posisi/jabatan', field: 'Bidang usaha perusahaan', salary: 'Kisaran gaji pertama per bulan' },
+        studi: { school: 'Perguruan tinggi tujuan', major: 'Bidang studi yang dituju' },
+        usaha: { name: 'Nama usaha', field: 'Bidang usaha' },
+        belum: { constraintsLabel: 'Apa kendala utama Anda dalam mencari pekerjaan?', planLabel: 'Rencana Anda dalam 3 bulan ke depan' },
+      },
+      customQuestion: 'Apa harapan Anda terhadap layanan bimbingan karir kampus sebelum lulus?',
+      satisfactionQuestion: 'Seberapa puas Anda dengan kualitas pendidikan di kampus selama ini?',
+    },
+    'pasca-1th': {
+      label: 'Pasca-Lulus 1 Tahun',
+      greetingClause: 'satu tahun setelah Anda dinyatakan lulus',
+      step2Title: 'Status Satu Tahun Setelah Lulus',
+      step3Title: 'Detail Pekerjaan/Status Anda Saat Ini',
+      q1: { code: 'A01', text: 'Apakah Anda mendapatkan pekerjaan pertama dalam waktu kurang dari 6 bulan setelah lulus?', opt1: 'Ya', opt2: 'Tidak' },
+      q2: {
+        code: 'A02',
+        text: 'Apa status Anda saat ini, satu tahun setelah dinyatakan lulus?',
+        options: {
+          kerja: 'Bekerja sebagai karyawan/pegawai',
+          studi: 'Sedang melanjutkan studi (S2/S3)',
+          usaha: 'Menjalankan usaha sendiri',
+          belum: 'Belum bekerja saat ini',
+        },
+      },
+      fields: {
+        kerja: { company: 'Nama perusahaan saat ini', position: 'Posisi/jabatan saat ini', field: 'Bidang usaha perusahaan', salary: 'Pendapatan saat ini per bulan' },
+        studi: { school: 'Perguruan tinggi saat ini', major: 'Bidang studi' },
+        usaha: { name: 'Nama usaha', field: 'Bidang usaha' },
+        belum: { constraintsLabel: 'Setelah satu tahun, apa kendala utama Anda dalam mencari pekerjaan?', planLabel: 'Rencana Anda dalam 3 bulan ke depan' },
+      },
+      customQuestion: 'Apa masukan Anda untuk layanan karir kampus?',
+      satisfactionQuestion: 'Seberapa puas Anda dengan kesiapan kerja yang dibekali kampus?',
+    },
+    'pasca-4th': {
+      label: 'Pasca-Lulus 4 Tahun',
+      greetingClause: 'empat tahun setelah Anda dinyatakan lulus',
+      step2Title: 'Status Empat Tahun Setelah Lulus',
+      step3Title: 'Detail Karier Anda Saat Ini',
+      q1: { code: 'D01', text: 'Apakah posisi/jabatan Anda saat ini merupakan hasil promosi dari posisi pertama Anda?', opt1: 'Ya', opt2: 'Tidak' },
+      q2: {
+        code: 'D02',
+        text: 'Bagaimana status karier Anda saat ini, empat tahun setelah dinyatakan lulus?',
+        options: {
+          kerja: 'Bekerja sebagai karyawan/pegawai',
+          studi: 'Sedang menempuh studi lanjut (S2/S3)',
+          usaha: 'Menjalankan usaha sendiri',
+          belum: 'Belum bekerja saat ini',
+        },
+      },
+      fields: {
+        kerja: { company: 'Nama perusahaan saat ini', position: 'Posisi/jabatan saat ini', field: 'Bidang usaha perusahaan', salary: 'Pendapatan saat ini per bulan' },
+        studi: { school: 'Perguruan tinggi', major: 'Bidang studi' },
+        usaha: { name: 'Nama usaha', field: 'Bidang usaha' },
+        belum: { constraintsLabel: 'Setelah empat tahun, apa kendala utama Anda dalam berkarier?', planLabel: 'Rencana Anda dalam 3 bulan ke depan' },
+      },
+      customQuestion: 'Apa masukan Anda untuk pengembangan jejaring alumni jangka panjang?',
+      satisfactionQuestion: 'Seberapa puas Anda dengan manfaat jejaring alumni kampus selama ini?',
+    },
+  };
+
+  // ---- Wave switcher: admin picks Pra-Lulus / Pasca-Lulus 1 Tahun / Pasca-Lulus 4 Tahun ----
+  let currentWave = 'pra-lulus';
+
+  function get(obj, path) {
+    return path.split('.').reduce((acc, key) => (acc == null ? acc : acc[key]), obj);
+  }
+
+  function applyWave(waveId) {
+    currentWave = WAVES[waveId] ? waveId : 'pra-lulus';
+    const wave = WAVES[currentWave];
+
+    document.querySelectorAll('[data-w]').forEach((el) => {
+      const val = get(wave, el.dataset.w);
+      if (val != null) el.textContent = val;
+    });
+
+    document.querySelectorAll('.wave-tab').forEach((tab) => {
+      tab.classList.toggle('is-active', tab.dataset.wave === currentWave);
+    });
+
+    document.title = `Simulasi Pengisian Alumni — ${wave.label} | KarirLink`;
+
+    const url = new URL(location.href);
+    url.searchParams.set('gelombang', currentWave);
+    history.replaceState(null, '', url);
+  }
+
+  document.querySelectorAll('[data-wave]').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      if (tab.dataset.wave === currentWave) return;
+      applyWave(tab.dataset.wave);
+      resetSimulation();
+    });
+  });
+
+  const params = new URLSearchParams(location.search);
+  applyWave(params.get('gelombang'));
+</script>
+
+<script>
+  // ---- Step navigation ----
+  const TOTAL_STEPS = 4;
+  const STEP_LABELS = {
+    1: 'Konfirmasi Data Diri',
+    2: 'Status & Rencana',
+    3: 'Detail',
+    4: 'Kepuasan & Masukan',
+  };
+  let currentStep = 1;
+
+  const panels = document.querySelectorAll('[data-step-panel]');
+  const dots = document.querySelectorAll('[data-step-dot]');
+  const stepNow = document.getElementById('stepNow');
+  const stepLabel = document.getElementById('stepLabel');
+  const progressBar = document.getElementById('progressBar');
+
+  function renderStep() {
+    panels.forEach((p) => p.classList.toggle('hidden', Number(p.dataset.stepPanel) !== currentStep));
+    dots.forEach((d) => {
+      const n = Number(d.dataset.stepDot);
+      d.classList.toggle('is-active', n === currentStep);
+      d.classList.toggle('is-done', n < currentStep);
+    });
+    stepNow.textContent = currentStep;
+    stepLabel.textContent = STEP_LABELS[currentStep];
+    progressBar.style.width = (currentStep / TOTAL_STEPS) * 100 + '%';
+  }
+
+  // Resets the wizard back to step 1 with default answers — used both by
+  // "Isi Ulang Simulasi" and whenever the admin switches gelombang.
+  function resetSimulation() {
+    currentStep = 1;
+    document.getElementById('successWrap').classList.add('hidden');
+    document.getElementById('formWrap').classList.remove('hidden');
+    document.getElementById('rencanaError').classList.add('hidden');
+    document.querySelectorAll('input[name="q1"]').forEach((r, i) => (r.checked = i === 0));
+    document.querySelectorAll('input[name="rencana"]').forEach((r) => (r.checked = r.value === 'kerja'));
+    document.querySelectorAll('[data-branch]').forEach((b) => b.classList.toggle('hidden', b.dataset.branch !== 'kerja'));
+    document.querySelectorAll('.scale-pill').forEach((p) => p.classList.remove('scale-pill-active'));
+    document.querySelector('.scale-pill[data-scale="4"]').classList.add('scale-pill-active');
+    renderStep();
+  }
+
+  document.querySelectorAll('[data-next]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (currentStep === 2) {
+        const picked = document.querySelector('input[name="rencana"]:checked');
+        document.getElementById('rencanaError').classList.toggle('hidden', !!picked);
+        if (!picked) return;
+      }
+      if (currentStep < TOTAL_STEPS) {
+        currentStep += 1;
+        renderStep();
+        document.getElementById('formWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-back]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep -= 1;
+        renderStep();
+        document.getElementById('formWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  document.querySelector('[data-submit]').addEventListener('click', () => {
+    document.getElementById('formWrap').classList.add('hidden');
+    const success = document.getElementById('successWrap');
+    success.classList.remove('hidden');
+    success.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('restartBtn').addEventListener('click', resetSimulation);
+
+  renderStep();
+
+  // ---- Branching: jawaban status/rencana (step 2) menentukan field step 3 ----
+  (function () {
+    const branches = document.querySelectorAll('[data-branch]');
+    document.querySelectorAll('[data-rencana]').forEach((radio) => {
+      radio.addEventListener('change', () => {
+        branches.forEach((b) => b.classList.toggle('hidden', b.dataset.branch !== radio.value));
+      });
+    });
+  })();
+
+  // ---- Satisfaction scale pills (step 4) ----
+  (function () {
+    const pills = document.querySelectorAll('[data-scale]');
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        pills.forEach((p) => p.classList.remove('scale-pill-active'));
+        pill.classList.add('scale-pill-active');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
