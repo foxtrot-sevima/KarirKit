@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard | KarirLink Admin</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- Mobile overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-transform duration-200 lg:translate-x-0">
+  <div class="flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
+      <i class="kk kk-x h-5 w-5"></i>
+    </button>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item nav-item-active">
+          <i class="kk kk-house h-5 w-5 shrink-0"></i>
+          Dashboard
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item">
+          <i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i>
+          Kuesioner
+        </a>
+        <a href="yudisium.html" class="nav-item">
+          <i class="kk kk-check-circle h-5 w-5 shrink-0"></i>
+          Data Lulusan Yudisium
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a class="nav-item">
+          <i class="kk kk-handshake h-5 w-5 shrink-0"></i>
+          Kerjasama
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-briefcase h-5 w-5 shrink-0"></i>
+          Lowongan
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i>
+          Event
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a class="nav-item">
+          <i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i>
+          Mahasiswa/Alumni
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-file-text h-5 w-5 shrink-0"></i>
+          Aktivitas Lamaran
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-chart-bar h-5 w-5 shrink-0"></i>
+          Report
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-monitor h-5 w-5 shrink-0"></i>
+          Pengaturan Landing Page
+        </a>
+      </div>
+    </div>
+  </nav>
+</aside>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="transition-[padding] duration-200 lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+    <div class="flex items-center gap-3">
+      <button id="openSidebarBtn" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <button id="toggleSidebarDesktopBtn" class="hidden h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:flex" aria-label="Tampilkan/sembunyikan sidebar">
+        <i class="kk kk-sidebar-simple h-5 w-5"></i>
+      </button>
+      <h1 class="text-base font-semibold text-slate-800">Dashboard</h1>
+    </div>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <button class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+        <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+        <span class="hidden min-w-0 sm:block">
+          <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+          <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+        </span>
+        <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 sm:block"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto max-w-[1600px] space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Greeting -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Selamat pagi, Rina 👋</h2>
+        <p class="mt-1 text-sm text-slate-500"><span class="font-medium text-slate-700">5 lowongan mitra</span> menunggu persetujuan dan <span class="font-medium text-slate-700">3 event</span> berlangsung minggu ini.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <button class="btn-outline btn-md w-full sm:w-auto">
+          <i class="kk kk-clipboard-text h-4 w-4 shrink-0"></i>
+          Kirim Reminder Tracer
+        </button>
+        <button class="btn-primary btn-md w-full sm:w-auto">
+          <i class="kk kk-plus h-4 w-4 shrink-0"></i>
+          Tambah Lowongan
+        </button>
+      </div>
+    </div>
+
+    <!-- KPI row -->
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4 animate-fade-in">
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-600">
+            <i class="kk kk-graduation-cap h-5 w-5"></i>
+          </span>
+          <span class="badge-success">
+            <i class="kk kk-trend-up h-3 w-3"></i>
+            +186
+          </span>
+        </div>
+        <p class="mt-4 font-display text-2xl font-bold text-slate-900">12.480</p>
+        <p class="text-sm text-slate-500">Mahasiswa/Alumni Terdata</p>
+        <p class="mt-2 text-xs text-slate-400">Bulan ini</p>
+      </div>
+
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-info-50 text-info-600">
+            <i class="kk kk-briefcase h-5 w-5"></i>
+          </span>
+          <span class="badge-success">
+            <i class="kk kk-trend-up h-3 w-3"></i>
+            +9
+          </span>
+        </div>
+        <p class="mt-4 font-display text-2xl font-bold text-slate-900">86</p>
+        <p class="text-sm text-slate-500">Lowongan Aktif</p>
+        <p class="mt-2 text-xs text-slate-400">5 menunggu persetujuan</p>
+      </div>
+
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600">
+            <i class="kk kk-handshake h-5 w-5"></i>
+          </span>
+          <span class="badge-success">
+            <i class="kk kk-trend-up h-3 w-3"></i>
+            +12
+          </span>
+        </div>
+        <p class="mt-4 font-display text-2xl font-bold text-slate-900">214</p>
+        <p class="text-sm text-slate-500">Mitra Kerjasama</p>
+        <p class="mt-2 text-xs text-slate-400">Bulan ini</p>
+      </div>
+
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-warning-50 text-warning-600">
+            <i class="kk kk-clipboard-text h-5 w-5"></i>
+          </span>
+          <span class="badge-warning">
+            <i class="kk kk-trend-down h-3 w-3"></i>
+            Target 75%
+          </span>
+        </div>
+        <p class="mt-4 font-display text-2xl font-bold text-slate-900">68%</p>
+        <p class="text-sm text-slate-500">Partisipasi Tracer Study</p>
+        <p class="mt-2 text-xs text-slate-400">Angkatan 2021-2024</p>
+      </div>
+    </div>
+
+    <!-- Tracer Study spotlight -->
+    <div class="grid gap-6 lg:grid-cols-3">
+      <div class="card min-w-0 p-5 sm:p-6 lg:col-span-2">
+        <div class="mb-5 flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-semibold text-slate-800">Tracer Study — Tren Partisipasi</h3>
+            <p class="text-xs text-slate-400">Kuesioner tahun akademik 2025/2026</p>
+          </div>
+          <button class="btn-ghost btn-sm">
+            6 Bulan
+            <i class="kk kk-caret-down h-3.5 w-3.5"></i>
+          </button>
+        </div>
+        <svg viewBox="0 0 560 200" class="h-52 w-full" preserveAspectRatio="none">
+          <line x1="20" y1="40" x2="540" y2="40" stroke="#f1f5f9" stroke-width="1" />
+          <line x1="20" y1="80" x2="540" y2="80" stroke="#f1f5f9" stroke-width="1" />
+          <line x1="20" y1="120" x2="540" y2="120" stroke="#f1f5f9" stroke-width="1" />
+          <line x1="20" y1="160" x2="540" y2="160" stroke="#f1f5f9" stroke-width="1" />
+          <polygon points="20,175 95,168 170,150 245,140 320,120 395,105 470,85 540,70 540,190 20,190" fill="#2361e7" opacity="0.08" />
+          <polyline points="20,175 95,168 170,150 245,140 320,120 395,105 470,85 540,70" fill="none" stroke="#2361e7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="540" cy="70" r="8" fill="#2361e7" opacity="0.2" />
+          <circle cx="540" cy="70" r="4" fill="#2361e7" />
+        </svg>
+        <div class="mt-2 flex justify-between text-[11px] text-slate-400">
+          <span>Apr</span><span>Mei</span><span>Jun</span><span>Jul</span><span>Agu</span><span>Sep</span>
+        </div>
+        <div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div class="rounded-xl border border-slate-100 p-3">
+            <p class="text-xs text-slate-400">Angkatan 2021</p>
+            <div class="mt-1.5 flex items-center gap-2"><div class="progress-track w-full"><div class="progress-bar w-[82%]"></div></div><span class="text-xs font-medium text-slate-600">82%</span></div>
+          </div>
+          <div class="rounded-xl border border-slate-100 p-3">
+            <p class="text-xs text-slate-400">Angkatan 2022</p>
+            <div class="mt-1.5 flex items-center gap-2"><div class="progress-track w-full"><div class="progress-bar w-[74%]"></div></div><span class="text-xs font-medium text-slate-600">74%</span></div>
+          </div>
+          <div class="rounded-xl border border-slate-100 p-3">
+            <p class="text-xs text-slate-400">Angkatan 2023</p>
+            <div class="mt-1.5 flex items-center gap-2"><div class="progress-track w-full"><div class="progress-bar bg-warning-500 w-[58%]"></div></div><span class="text-xs font-medium text-slate-600">58%</span></div>
+          </div>
+          <div class="rounded-xl border border-slate-100 p-3">
+            <p class="text-xs text-slate-400">Angkatan 2024</p>
+            <div class="mt-1.5 flex items-center gap-2"><div class="progress-track w-full"><div class="progress-bar bg-danger-500 w-[41%]"></div></div><span class="text-xs font-medium text-slate-600">41%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card min-w-0 p-5 sm:p-6">
+        <div class="mb-1 flex items-center gap-2">
+          <span class="text-warning-500">
+            <i class="kk kk-warning-circle h-5 w-5"></i>
+          </span>
+          <h3 class="text-base font-semibold text-slate-800">Perlu Perhatian</h3>
+        </div>
+        <p class="mb-4 text-xs text-slate-400">Angkatan dengan partisipasi di bawah target</p>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-sm">
+            <div class="flex items-center gap-2.5">
+              <span class="avatar h-7 w-7 bg-danger-100 text-[11px] text-danger-700">24</span>
+              <span class="text-slate-700">Angkatan 2024</span>
+            </div>
+            <span class="badge-danger">41%</span>
+          </div>
+          <div class="flex items-center justify-between text-sm">
+            <div class="flex items-center gap-2.5">
+              <span class="avatar h-7 w-7 bg-warning-100 text-[11px] text-warning-700">23</span>
+              <span class="text-slate-700">Angkatan 2023</span>
+            </div>
+            <span class="badge-warning">58%</span>
+          </div>
+        </div>
+        <button class="btn-primary btn-md mt-5 w-full">Kirim Reminder Sekarang</button>
+      </div>
+    </div>
+
+    <!-- Portal Karir row -->
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="card overflow-hidden">
+        <div class="flex items-center justify-between border-b border-slate-100 p-5">
+          <h3 class="text-base font-semibold text-slate-800">Lowongan Menunggu Persetujuan</h3>
+          <span class="badge-warning">5</span>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex items-center gap-3 p-4">
+            <span class="avatar h-9 w-9 bg-info-100 text-info-700">GJ</span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Gojek</p>
+              <p class="truncate text-xs text-slate-400">Product Designer · diajukan 2 jam lalu</p>
+            </div>
+            <div class="flex shrink-0 items-center gap-1.5">
+              <button class="btn-outline btn-sm">Tolak</button>
+              <button class="btn-primary btn-sm">Setujui</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-4">
+            <span class="avatar h-9 w-9 bg-warning-100 text-warning-700">TP</span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Tokopedia</p>
+              <p class="truncate text-xs text-slate-400">UI/UX Researcher · diajukan kemarin</p>
+            </div>
+            <div class="flex shrink-0 items-center gap-1.5">
+              <button class="btn-outline btn-sm">Tolak</button>
+              <button class="btn-primary btn-sm">Setujui</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-4">
+            <span class="avatar h-9 w-9 bg-primary-100 text-primary-700">BJ</span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Bank Jago</p>
+              <p class="truncate text-xs text-slate-400">Business Analyst · diajukan 2 hari lalu</p>
+            </div>
+            <div class="flex shrink-0 items-center gap-1.5">
+              <button class="btn-outline btn-sm">Tolak</button>
+              <button class="btn-primary btn-sm">Setujui</button>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-slate-100 p-4 text-center">
+          <a href="#" class="text-sm font-medium text-primary-600 hover:underline">Lihat semua lowongan menunggu →</a>
+        </div>
+      </div>
+
+      <div class="card overflow-hidden">
+        <div class="flex items-center justify-between border-b border-slate-100 p-5">
+          <h3 class="text-base font-semibold text-slate-800">Event Mendatang</h3>
+          <a href="#" class="text-xs font-medium text-primary-600 hover:underline">Lihat Semua</a>
+        </div>
+        <div class="space-y-4 p-5">
+          <div class="flex items-center gap-3">
+            <div class="flex w-11 shrink-0 flex-col items-center rounded-lg bg-primary-50 py-1.5">
+              <span class="text-[10px] font-semibold uppercase text-primary-500">Sep</span>
+              <span class="text-sm font-bold text-primary-700">15</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Career Fair Nusantara 2026</p>
+              <p class="text-xs text-slate-400">Aula Kampus · 32 mitra terdaftar</p>
+            </div>
+            <i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-300"></i>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="flex w-11 shrink-0 flex-col items-center rounded-lg bg-slate-50 py-1.5">
+              <span class="text-[10px] font-semibold uppercase text-slate-400">Sep</span>
+              <span class="text-sm font-bold text-slate-600">18</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Webinar Persiapan Karir bersama Gojek</p>
+              <p class="text-xs text-slate-400">Daring (Zoom) · 214 pendaftar</p>
+            </div>
+            <i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-300"></i>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="flex w-11 shrink-0 flex-col items-center rounded-lg bg-slate-50 py-1.5">
+              <span class="text-[10px] font-semibold uppercase text-slate-400">Sep</span>
+              <span class="text-sm font-bold text-slate-600">22</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Recruitment Day - Bank Jago</p>
+              <p class="text-xs text-slate-400">Gedung Rektorat · 12 slot interview</p>
+            </div>
+            <i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aktivitas Lamaran (General) -->
+    <div class="card overflow-hidden">
+      <div class="flex flex-col gap-3 border-b border-slate-100 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <h3 class="text-base font-semibold text-slate-800">Aktivitas Lamaran Terbaru</h3>
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+              <i class="kk kk-magnifying-glass h-3.5 w-3.5"></i>
+            </span>
+            <input class="input h-9 w-full pl-8 sm:w-56" placeholder="Cari mahasiswa / posisi" />
+          </div>
+          <a href="#" class="whitespace-nowrap text-sm font-medium text-primary-600 hover:underline">Lihat Semua</a>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Mahasiswa/Alumni</th>
+              <th>Posisi</th>
+              <th>Perusahaan</th>
+              <th>Tanggal</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">AN</span><span class="font-medium text-slate-800">Andi Nugroho</span></div></td>
+              <td>Product Designer</td>
+              <td>Gojek</td>
+              <td>3 Sep 2026</td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Interview</span></td>
+              <td class="text-right text-slate-300">
+                <i class="kk kk-caret-right ml-auto h-4 w-4"></i>
+              </td>
+            </tr>
+            <tr>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">SP</span><span class="font-medium text-slate-800">Sari Puspita</span></div></td>
+              <td>UI/UX Researcher</td>
+              <td>Tokopedia</td>
+              <td>1 Sep 2026</td>
+              <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
+              <td class="text-right text-slate-300">
+                <i class="kk kk-caret-right ml-auto h-4 w-4"></i>
+              </td>
+            </tr>
+            <tr>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">RD</span><span class="font-medium text-slate-800">Rudi Hartono</span></div></td>
+              <td>Business Analyst</td>
+              <td>Bank Jago</td>
+              <td>25 Agu 2026</td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Ditawari</span></td>
+              <td class="text-right text-slate-300">
+                <i class="kk kk-caret-right ml-auto h-4 w-4"></i>
+              </td>
+            </tr>
+            <tr>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-danger-100 text-danger-700">DP</span><span class="font-medium text-slate-800">Dewi Pratiwi</span></div></td>
+              <td>Frontend Engineer</td>
+              <td>Traveloka</td>
+              <td>18 Agu 2026</td>
+              <td><span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
+              <td class="text-right text-slate-300">
+                <i class="kk kk-caret-right ml-auto h-4 w-4"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Kerjasama + Laporan -->
+    <div class="grid gap-6 lg:grid-cols-3">
+      <div class="card overflow-hidden lg:col-span-2">
+        <div class="flex items-center justify-between border-b border-slate-100 p-5">
+          <h3 class="text-base font-semibold text-slate-800">Kerjasama Terbaru</h3>
+          <a href="#" class="text-xs font-medium text-primary-600 hover:underline">Lihat Semua</a>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex items-center gap-3 p-4">
+            <span class="avatar h-9 w-9 bg-slate-100 text-slate-600">OV</span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">OVO</p>
+              <p class="text-xs text-slate-400">MoU rekrutmen &amp; magang · disetujui 2 hari lalu</p>
+            </div>
+            <span class="badge-success">Aktif</span>
+          </div>
+          <div class="flex items-center gap-3 p-4">
+            <span class="avatar h-9 w-9 bg-info-100 text-info-700">DN</span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">DANA</p>
+              <p class="text-xs text-slate-400">MoU penempatan kerja · disetujui 5 hari lalu</p>
+            </div>
+            <span class="badge-success">Aktif</span>
+          </div>
+          <div class="flex items-center gap-3 p-4">
+            <span class="avatar h-9 w-9 bg-success-100 text-success-700">RG</span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Ruangguru</p>
+              <p class="text-xs text-slate-400">Perpanjangan MoU · menunggu tanda tangan</p>
+            </div>
+            <span class="badge-neutral">Proses</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-5">
+        <h3 class="mb-1 text-base font-semibold text-slate-800">Laporan &amp; Publikasi</h3>
+        <p class="mb-4 text-xs text-slate-400">Ekspor data untuk akreditasi &amp; publikasi</p>
+        <div class="space-y-2.5">
+          <a href="#" class="flex items-center justify-between rounded-xl border border-slate-100 p-3 text-sm transition-colors hover:bg-slate-50">
+            <span class="text-slate-700">Laporan Tracer Study</span>
+            <i class="kk kk-caret-right h-4 w-4 text-slate-300"></i>
+          </a>
+          <a href="#" class="flex items-center justify-between rounded-xl border border-slate-100 p-3 text-sm transition-colors hover:bg-slate-50">
+            <span class="text-slate-700">Laporan Penempatan Kerja</span>
+            <i class="kk kk-caret-right h-4 w-4 text-slate-300"></i>
+          </a>
+          <a href="#" class="flex items-center justify-between rounded-xl border border-slate-100 p-3 text-sm transition-colors hover:bg-slate-50">
+            <span class="text-slate-700">Statistik Publikasi Landing Page</span>
+            <i class="kk kk-caret-right h-4 w-4 text-slate-300"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const openBtn = document.getElementById('openSidebarBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  openBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+
+  // Desktop sidebar on/off — fully hides the sidebar (not a mini/collapsed
+  // version) and lets the content take the full width. Separate from the
+  // mobile overlay above, and persisted so the choice survives reloads.
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const toggleBtn = document.getElementById('toggleSidebarDesktopBtn');
+    if (!sidebar || !mainColumn || !toggleBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-hidden';
+    // "!"-suffixed so it overrides the base lg:translate-x-0 rather than
+    // losing to it on class order/specificity ties.
+    const HIDE_CLASS = 'lg:-translate-x-full!';
+
+    function applyHidden(hidden) {
+      sidebar.classList.toggle(HIDE_CLASS, hidden);
+      mainColumn.classList.toggle('lg:pl-[264px]', !hidden);
+    }
+
+    let hidden = false;
+    try {
+      hidden = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyHidden(hidden);
+
+    toggleBtn.addEventListener('click', () => {
+      hidden = !hidden;
+      applyHidden(hidden);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(hidden));
+      } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
