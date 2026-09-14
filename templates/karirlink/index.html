@@ -91,7 +91,7 @@
 </aside>
 
 <!-- ============================= MAIN COLUMN ============================= -->
-<div id="mainColumn" class="transition-[padding] duration-200 lg:pl-[264px]">
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-200 lg:pl-[264px]">
   <!-- Topbar -->
   <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
     <div class="flex items-center gap-3">
@@ -116,7 +116,7 @@
   </header>
 
   <!-- ============================= CONTENT ============================= -->
-  <main class="mx-auto max-w-[1600px] space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+  <main class="mx-auto w-full max-w-[1600px] flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
 
     <!-- Greeting -->
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -490,6 +490,13 @@
       </div>
     </div>
   </main>
+
+  <footer>
+    <div class="mx-auto flex max-w-[1600px] flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
+  </footer>
 </div>
 
 <script>
@@ -542,6 +549,11 @@
       } catch (e) {}
     });
   })();
+
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
 </script>
 </body>
 </html>
