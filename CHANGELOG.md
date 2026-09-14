@@ -9,16 +9,25 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Footer di kelima halaman `templates/karirlink/` (`index.html`,
   `kuesioner.html`, `kuesioner-builder.html`, `yudisium.html`,
   `yudisium-detail.html`) yang sebelumnya belum punya footer sama sekali:
-  "© 2005-{{ now()->year }} SEVIMA. All Rights Reserved." rata kiri dan "KarirLink" rata
+  "© 2005-2026 SEVIMA. All Rights Reserved." rata kiri dan "KarirLink" rata
   kanan (bertumpuk-tengah di mobile), konsisten dengan pola footer yang
-  sudah ada di `index.html` (style guide KarirKit). Padding dipangkas
-  (`py-6` → `py-4`) dan diberi latar putih (beda dari `bg-shell` di
-  belakangnya) supaya terlihat sebagai footer, bukan sekadar baris teks
-  yang menyatu dengan konten di atasnya. Border & latar putihnya dipindah
-  ke elemen dalam yang dibatasi `max-w-[1600px]` (bukan di elemen
-  `<footer>` terluar yang selebar kolom konten) supaya lebar pita
-  footer-nya sejajar dengan card-card di atasnya, tidak full-bleed lebih
-  lebar dari konten.
+  sudah ada di `index.html` (style guide KarirKit). Tahun akhir dihitung
+  otomatis lewat JS (`new Date().getFullYear()`) saat halaman dimuat,
+  bukan ditulis statis - situs ini murni HTML statis tanpa backend, jadi
+  templating server-side seperti Blade (`{{ now()->year }}`) tidak akan
+  ter-render dan malah tampil sebagai teks literal di browser. Padding
+  dipangkas (`py-6` → `py-4`) dan diberi latar putih (beda dari
+  `bg-shell` di belakangnya) supaya terlihat sebagai footer, bukan
+  sekadar baris teks yang menyatu dengan konten di atasnya. Border &
+  latar putihnya dipindah ke elemen dalam yang dibatasi `max-w-[1600px]`
+  (bukan di elemen `<footer>` terluar yang selebar kolom konten) supaya
+  lebar pita footer-nya sejajar dengan card-card di atasnya, tidak
+  full-bleed lebih lebar dari konten. `#mainColumn` dijadikan
+  `flex flex-col min-h-screen` dan `<main>` diberi `flex-1` supaya
+  footer selalu menempel di dasar layar pada halaman berkonten pendek
+  (bukan mengambang tepat di bawah konten dengan celah kosong di
+  bawahnya), sambil tetap mengikuti alur dokumen seperti biasa pada
+  halaman berkonten panjang.
 - Modul Kuesioner Tracer Study di platform admin KarirLink, 4 halaman baru
   di `templates/karirlink/`:
   - `kuesioner.html` — daftar tiga jenis template kuesioner (Lulusan,
