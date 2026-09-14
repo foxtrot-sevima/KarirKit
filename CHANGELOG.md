@@ -5,6 +5,85 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Modul Kuesioner Tracer Study di platform admin KarirLink, 4 halaman baru
+  di `templates/karirlink/`:
+  - `kuesioner.html` — daftar tiga jenis template kuesioner (Lulusan,
+    Pengguna Lulusan, Kosong; hanya dua yang terakhir mendukung
+    versioning), plus penjelasan tiga tingkatan pertanyaan. Kuesioner
+    hanya menyediakan template & builder — tidak ada pengaturan
+    pengiriman di sini.
+  - `kuesioner-builder.html` — halaman kelola pertanyaan per template,
+    tiga tingkatan (Core berkode Dikti dan tidak dapat dihapus, Optional
+    bisa diaktif/matikan, Custom bisa ditambah/diedit/dihapus — masing-
+    masing dengan toggle wajib/opsional independen dari tingkatannya).
+    Versioning ditampilkan sebagai section tersendiri per versi (bukan
+    dropdown) — versi aktif tampil penuh dan bisa diedit, versi arsip
+    tampil ringkas dan bisa diperluas untuk pratinjau hanya-baca, dengan
+    aksi "Jadikan Aktif". Template Lulusan tidak menampilkan versioning
+    sama sekali.
+  - `yudisium.html` — halaman terpisah di bawah Kuesioner untuk menetapkan
+    lulusan berdasarkan Data Lulusan Yudisium: daftar Periode Yudisium
+    (15 data, dengan pagination - 10 per halaman) dengan jumlah lulusan,
+    status kuesioner, dan aksi Finalisasi & Kirim per periode, plus
+    pengaturan Gelombang Pengiriman (Pra-Lulus dan Pasca-Lulus 1 Tahun —
+    toggle aktif, template kuesioner yang dipakai, dan jangka waktu
+    pengiriman per gelombang). Tabel Periode Yudisium disesuaikan untuk
+    mobile: kolom Tanggal Yudisium & Jumlah Lulusan disembunyikan di bawah
+    breakpoint `sm` dan dipindah jadi subteks di bawah nama periode, badge
+    status & tombol aksi diberi lebar maksimum + wrap teks supaya tidak
+    memaksa scroll ke samping - diverifikasi tidak ada horizontal overflow
+    di 320px maupun 375px.
+  - `yudisium-detail.html` — detail satu Periode Yudisium: KPI partisipasi
+    dan tabel mahasiswa (Nama, Prodi, Email, Status, Aksi) dengan filter
+    tab status, pencarian langsung, dan pagination (10 data, 5 per
+    halaman) — semuanya benar-benar berfungsi dan saling terhubung
+    (mengganti filter mengembalikan ke halaman 1).
+  - Sidebar admin KarirLink diperbarui: "Kuesioner" sekarang tautan aktif,
+    dan item baru "Data Lulusan Yudisium" ditambahkan tepat di bawahnya
+    dalam grup "Tracer".
+
+## [1.1.0] - 2026-09-11
+
+### Changed
+- Seluruh ikon (203 pemakaian di `index.html`, `templates/dashboard.html`,
+  dan `templates/karirlink/index.html`) diganti dari SVG outline
+  hand-authored - tidak ada lagi ikon custom yang digambar sendiri.
+- Ikon dijadikan token gaya icon font: tidak ada lagi markup SVG di HTML
+  sama sekali. Tiap ikon kini dipakai sebagai `<i class="kk kk-nama"></i>`
+  (mis. `<i class="kk kk-home"></i>`), didefinisikan sekali per ikon di
+  `src/input.css` (`.kk` + 38 kelas `.kk-*`) lewat CSS `mask-image` yang
+  meng-encode SVG dari `assets/icons/` sebagai data URI ber-base64 -
+  mewarisi `currentColor` dan diberi ukuran lewat utility `h-*`/`w-*`
+  seperti biasa. Data URI dipakai (bukan file sprite eksternal atau SVG
+  `<use>` lintas-dokumen) karena keduanya diblokir kebijakan CORS Chrome
+  saat halaman dibuka langsung lewat `file://` alih-alih lewat server -
+  begitu cara situs offline-first ini dipakai.
+- Ikon KarirKit kini mendukung 6 ketebalan sekaligus - Thin,
+  Light, Regular, Bold, Fill, dan Duotone - bukan cuma Regular. Ketebalan
+  dipilih lewat class modifier tambahan di samping `kk-nama` (mis.
+  `<i class="kk kk-home kk-bold"></i>`); tanpa modifier tetap Regular
+  seperti semula, jadi 203 pemakaian yang sudah ada tidak berubah. Duotone
+  didekati dengan satu warna (bagian sekunder pada SVG asli sudah
+  memakai opacity lebih rendah, yang otomatis terbawa oleh alpha mask),
+  bukan dua warna sungguhan.
+
+### Added
+- `templates/karirlink/index.html` — dashboard admin khusus untuk platform
+  KarirLink (Panel Admin Karir kampus), terpisah dari dashboard pencari
+  kerja di `templates/dashboard.html`. Sidebar disusun ulang sesuai
+  struktur produk: Dashboard, grup "Tracer" (Kuesioner), grup "Portal
+  Karir" (Kerjasama, Lowongan, Event), dan grup "General"
+  (Mahasiswa/Alumni, Aktivitas Lamaran, Report, Pengaturan Landing Page).
+  Konten dashboard disesuaikan untuk kebutuhan admin: KPI (mahasiswa/alumni
+  terdata, lowongan aktif, mitra kerjasama, partisipasi tracer study), tren
+  partisipasi tracer study per angkatan, lowongan mitra yang menunggu
+  persetujuan (Setujui/Tolak), event mendatang, aktivitas lamaran terbaru,
+  kerjasama terbaru, dan pintasan laporan & publikasi.
+- Tombol on/off sidebar di topbar `templates/karirlink/index.html` (khusus
+  desktop, terpisah dari toggle overlay mobile) yang menyembunyikan
+  sidebar sepenuhnya dan melebarkan konten ke penuh saat dimatikan -
+  bukan versi mini/ciutkan, jadi ukuran logo tidak berubah. Preferensi
+  disimpan di `localStorage` agar bertahan setelah reload.
 - Section "DataTable" baru di `index.html`: pola tabel lengkap dan benar-benar
   berfungsi (vanilla JS, tanpa dependency) dengan pencarian live, filter
   status via tab bersegmen, kolom yang bisa diurutkan (klik header atau
@@ -36,8 +115,26 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Swatch warna "Neutral - Slate" (skala 50-950) dan "Base - Light & Dark"
   (putih & hitam) di section Colors, yang sebelumnya belum ada preview-nya
   sama sekali.
+- Field "Ekspektasi Gaji" (`[data-currency-input]`) di Forms: input angka
+  berprefiks "Rp." yang otomatis menambahkan titik pemisah ribuan saat
+  mengetik (mis. `1000000000` → `1.000.000.000`), membuang karakter
+  non-digit, dan mempertahankan posisi kursor saat memformat ulang.
+- Field "Tanggal Mulai Kerja" di Forms: date picker kalender custom
+  (`[data-date-picker]`) dibangun di atas komponen combobox yang sama.
+  Tanggal bisa diketik langsung dalam format `dd/mm/yyyy` (dengan mask "/"
+  otomatis dan validasi tanggal asli, menolak input seperti `31/02/2026`),
+  atau dipilih lewat kalender dengan navigasi bertingkat ala Google
+  Calendar — klik judul header untuk *drill-up* dari tampilan hari ke
+  bulan lalu ke tahun (grid 12 tahun per halaman, bukan dropdown yang bisa
+  kepanjangan), lalu pilih tahun → bulan untuk *drill-down* kembali ke
+  tanggal. Highlight hari ini & tanggal terpilih di ketiga tampilan, plus
+  pintasan "Hari ini" dan "Hapus".
 
 ### Changed
+- Profil admin di `templates/karirlink/index.html` dipindah dari footer
+  sidebar ke topbar (avatar + nama + peran, menyatu dengan tombol), dan
+  label institusi ("Universitas Nusantara Raya · Panel Admin Karir") yang
+  sebelumnya nempel di bawah logo sidebar dihapus.
 - Warna **primary** (`#22489e` → `#2361e7`) dan **secondary** (`#f05925` →
   `#f67e28`) disesuaikan ke versi yang lebih vivid/hidup, tetap satu
   keluarga hue biru & oranye dengan logo tapi tidak lagi hex logo persis.
@@ -77,6 +174,17 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   (viewport atau kontainer pembatas sempit) selalu jatuh ke perataan
   "start" meski itu yang paling terpotong; sekarang otomatis memilih sisi
   dengan ruang paling lega.
+- Menu combobox yang lebih lebar dari ruang di kedua sisi trigger sekaligus
+  (mis. kalender date picker di layar 320px) masih bisa terpotong walau
+  perataan "start"/"end" sudah dipilih sebaik mungkin, karena keduanya
+  tetap dihitung relatif ke trigger, bukan ke batas layar. Sekarang posisi
+  akhir menu di-clamp lewat offset inline supaya selalu penuh berada di
+  dalam boundary.
+- Kalender date picker sama sekali tidak terbuka saat input teks di dalam
+  trigger-nya ditambahkan - `stopPropagation()` pada klik input mencegah
+  event mencapai listener buka/tutup milik trigger. Dihapus; listener pada
+  trigger sendiri sudah cukup untuk membuka saat tertutup dan membiarkan
+  tetap terbuka saat pengguna mengetik.
 
 ## [1.0.0] - 2026-09-10
 
