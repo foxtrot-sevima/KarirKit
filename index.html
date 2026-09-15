@@ -174,73 +174,94 @@
         <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-secondary-950"></div><p class="text-xs font-medium text-slate-600">950</p></div>
       </div>
 
-      <p class="nav-eyebrow mb-3 px-0">Neutral - Slate</p>
+      <p class="nav-eyebrow mb-3 px-0">Neutral (owned primitive)</p>
       <div class="grid grid-cols-3 gap-3 sm:grid-cols-6 lg:grid-cols-11 mb-8">
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl border border-slate-200/70 bg-slate-50"></div><p class="text-xs font-medium text-slate-600">50</p></div>
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-slate-100"></div><p class="text-xs font-medium text-slate-600">100</p></div>
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-slate-200"></div><p class="text-xs font-medium text-slate-600">200</p></div>
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-slate-300"></div><p class="text-xs font-medium text-slate-600">300</p></div>
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-slate-400"></div><p class="text-xs font-medium text-slate-600">400</p></div>
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-slate-500"></div><p class="text-xs font-medium text-white">500</p></div>
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-slate-600"></div><p class="text-xs font-medium text-slate-600">600</p></div>
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-slate-700"></div><p class="text-xs font-medium text-slate-600">700</p></div>
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-slate-800"></div><p class="text-xs font-medium text-slate-600">800</p></div>
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-slate-900"></div><p class="text-xs font-medium text-slate-600">900 <span class="text-slate-400">teks utama</span></p></div>
-        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-slate-950"></div><p class="text-xs font-medium text-slate-600">950</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl border border-border/70 bg-neutral-50"></div><p class="text-xs font-medium text-neutral-600">50</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-neutral-100"></div><p class="text-xs font-medium text-neutral-600">100</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-neutral-200"></div><p class="text-xs font-medium text-neutral-600">200</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-neutral-300"></div><p class="text-xs font-medium text-neutral-600">300</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-neutral-400"></div><p class="text-xs font-medium text-neutral-600">400</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-neutral-500"></div><p class="text-xs font-medium text-white">500</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-neutral-600"></div><p class="text-xs font-medium text-neutral-600">600</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-neutral-700"></div><p class="text-xs font-medium text-neutral-600">700</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-neutral-800"></div><p class="text-xs font-medium text-neutral-600">800</p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-neutral-900"></div><p class="text-xs font-medium text-neutral-600">900 <span class="text-fg-subtle">teks utama</span></p></div>
+        <div class="flex flex-col gap-2"><div class="h-14 rounded-xl bg-neutral-950"></div><p class="text-xs font-medium text-neutral-600">950</p></div>
       </div>
 
-      <p class="nav-eyebrow mb-3 px-0">Base - Light &amp; Dark</p>
-      <div class="mb-8 grid grid-cols-2 gap-3 sm:w-64">
+      <p class="nav-eyebrow mb-3 px-0">Semantic surfaces (light-only)</p>
+      <p class="mb-3 text-xs text-fg-muted">Dark mode deferred — pakai alias ini, jangan hardcode white/slate di komponen baru.</p>
+      <div class="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
         <div class="flex flex-col gap-2">
-          <div class="h-14 rounded-xl border border-slate-200/70 bg-white"></div>
-          <p class="text-xs font-medium text-slate-600">White <span class="font-mono text-slate-400">#FFFFFF</span></p>
+          <div class="h-14 rounded-xl border border-border/70 bg-background"></div>
+          <p class="text-xs font-medium text-neutral-600">background</p>
         </div>
         <div class="flex flex-col gap-2">
-          <div class="h-14 rounded-xl bg-black"></div>
-          <p class="text-xs font-medium text-slate-600">Black <span class="font-mono text-slate-400">#000000</span></p>
+          <div class="h-14 rounded-xl border border-border/70 bg-surface"></div>
+          <p class="text-xs font-medium text-neutral-600">surface</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="h-14 rounded-xl border border-border/70 bg-border"></div>
+          <p class="text-xs font-medium text-neutral-600">border</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="flex h-14 items-center justify-center rounded-xl border border-border/70 bg-surface"><span class="text-sm font-semibold text-fg">Aa</span></div>
+          <p class="text-xs font-medium text-neutral-600">fg</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="flex h-14 items-center justify-center rounded-xl border border-border/70 bg-surface"><span class="text-sm font-semibold text-fg-muted">Aa</span></div>
+          <p class="text-xs font-medium text-neutral-600">fg-muted</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="flex h-14 items-center justify-center rounded-xl border border-border/70 bg-surface"><span class="text-sm font-semibold text-fg-subtle">Aa</span></div>
+          <p class="text-xs font-medium text-neutral-600">fg-subtle</p>
         </div>
       </div>
 
-      <p class="nav-eyebrow mb-3 px-0">Semantic</p>
+      <p class="nav-eyebrow mb-3 px-0">Status (full scale)</p>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p class="mb-2 text-sm font-semibold text-slate-700">Success</p>
-          <div class="grid grid-cols-5 gap-2">
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg border border-slate-200/70 bg-success-50"></div><p class="text-[11px] font-mono text-slate-400">success-50</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-success-100"></div><p class="text-[11px] font-mono text-slate-400">success-100</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-success-500"></div><p class="text-[11px] font-mono text-slate-400">success-500</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-success-600"></div><p class="text-[11px] font-mono text-slate-400">success-600</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-success-700"></div><p class="text-[11px] font-mono text-slate-400">success-700</p></div>
+          <p class="mb-2 text-sm font-semibold text-neutral-700">Success</p>
+          <div class="grid grid-cols-6 gap-1.5">
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md border border-border/70 bg-success-50"></div><p class="text-micro font-mono text-fg-subtle">50</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-success-100"></div><p class="text-micro font-mono text-fg-subtle">100</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-success-200"></div><p class="text-micro font-mono text-fg-subtle">200</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-success-500"></div><p class="text-micro font-mono text-fg-subtle">500</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-success-700"></div><p class="text-micro font-mono text-fg-subtle">700</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-success-900"></div><p class="text-micro font-mono text-fg-subtle">900</p></div>
           </div>
         </div>
         <div>
-          <p class="mb-2 text-sm font-semibold text-slate-700">Warning</p>
-          <div class="grid grid-cols-5 gap-2">
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg border border-slate-200/70 bg-warning-50"></div><p class="text-[11px] font-mono text-slate-400">warning-50</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-warning-100"></div><p class="text-[11px] font-mono text-slate-400">warning-100</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-warning-500"></div><p class="text-[11px] font-mono text-slate-400">warning-500</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-warning-600"></div><p class="text-[11px] font-mono text-slate-400">warning-600</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-warning-700"></div><p class="text-[11px] font-mono text-slate-400">warning-700</p></div>
+          <p class="mb-2 text-sm font-semibold text-neutral-700">Warning</p>
+          <div class="grid grid-cols-6 gap-1.5">
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md border border-border/70 bg-warning-50"></div><p class="text-micro font-mono text-fg-subtle">50</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-warning-100"></div><p class="text-micro font-mono text-fg-subtle">100</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-warning-200"></div><p class="text-micro font-mono text-fg-subtle">200</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-warning-500"></div><p class="text-micro font-mono text-fg-subtle">500</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-warning-700"></div><p class="text-micro font-mono text-fg-subtle">700</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-warning-900"></div><p class="text-micro font-mono text-fg-subtle">900</p></div>
           </div>
         </div>
         <div>
-          <p class="mb-2 text-sm font-semibold text-slate-700">Danger</p>
-          <div class="grid grid-cols-5 gap-2">
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg border border-slate-200/70 bg-danger-50"></div><p class="text-[11px] font-mono text-slate-400">danger-50</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-danger-100"></div><p class="text-[11px] font-mono text-slate-400">danger-100</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-danger-500"></div><p class="text-[11px] font-mono text-slate-400">danger-500</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-danger-600"></div><p class="text-[11px] font-mono text-slate-400">danger-600</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-danger-700"></div><p class="text-[11px] font-mono text-slate-400">danger-700</p></div>
+          <p class="mb-2 text-sm font-semibold text-neutral-700">Danger</p>
+          <div class="grid grid-cols-6 gap-1.5">
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md border border-border/70 bg-danger-50"></div><p class="text-micro font-mono text-fg-subtle">50</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-danger-100"></div><p class="text-micro font-mono text-fg-subtle">100</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-danger-200"></div><p class="text-micro font-mono text-fg-subtle">200</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-danger-500"></div><p class="text-micro font-mono text-fg-subtle">500</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-danger-700"></div><p class="text-micro font-mono text-fg-subtle">700</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-danger-900"></div><p class="text-micro font-mono text-fg-subtle">900</p></div>
           </div>
         </div>
         <div>
-          <p class="mb-2 text-sm font-semibold text-slate-700">Info</p>
-          <div class="grid grid-cols-5 gap-2">
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg border border-slate-200/70 bg-info-50"></div><p class="text-[11px] font-mono text-slate-400">info-50</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-info-100"></div><p class="text-[11px] font-mono text-slate-400">info-100</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-info-500"></div><p class="text-[11px] font-mono text-slate-400">info-500</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-info-600"></div><p class="text-[11px] font-mono text-slate-400">info-600</p></div>
-            <div class="flex flex-col gap-1.5"><div class="h-10 rounded-lg bg-info-700"></div><p class="text-[11px] font-mono text-slate-400">info-700</p></div>
+          <p class="mb-2 text-sm font-semibold text-neutral-700">Info</p>
+          <div class="grid grid-cols-6 gap-1.5">
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md border border-border/70 bg-info-50"></div><p class="text-micro font-mono text-fg-subtle">50</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-info-100"></div><p class="text-micro font-mono text-fg-subtle">100</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-info-200"></div><p class="text-micro font-mono text-fg-subtle">200</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-info-500"></div><p class="text-micro font-mono text-fg-subtle">500</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-info-700"></div><p class="text-micro font-mono text-fg-subtle">700</p></div>
+            <div class="flex flex-col gap-1"><div class="h-8 rounded-md bg-info-900"></div><p class="text-micro font-mono text-fg-subtle">900</p></div>
           </div>
         </div>
       </div>
@@ -361,7 +382,7 @@
   <section id="buttons" class="scroll-mt-32 py-12">
     <div class="mb-6">
       <h2 class="font-display text-2xl font-bold text-slate-900">Buttons</h2>
-      <p class="mt-1 text-sm text-slate-500">Enam varian, tiga ukuran, mendukung ikon &amp; state disabled.</p>
+      <p class="mt-1 text-sm text-slate-500">Tujuh varian (+ ghost-inverse), tiga ukuran, ikon, disabled, dan loading.</p>
     </div>
     <div class="card space-y-8 p-6 sm:p-8">
       <div>
@@ -395,13 +416,15 @@
             <i class="kk kk-caret-right h-4 w-4"></i>
           </button>
           <button class="btn-primary btn-md" disabled>Disabled</button>
+          <button type="button" class="btn-primary btn-md btn-loading" aria-busy="true" aria-label="Menyimpan">Menyimpan</button>
+          <button type="button" class="btn-outline btn-md btn-loading" aria-busy="true" aria-label="Memuat">Memuat</button>
         </div>
       </div>
       <div>
         <p class="nav-eyebrow mb-3 px-0">Di atas gradient</p>
         <div class="flex flex-wrap items-center gap-3 rounded-xl bg-brand-gradient p-5">
           <button class="btn-white btn-md">Lihat Rekomendasi</button>
-          <button class="btn btn-md border border-white/30 text-white hover:bg-white/10 focus-visible:ring-white">Atur Preferensi</button>
+          <button class="btn-ghost-inverse btn-md">Atur Preferensi</button>
         </div>
       </div>
     </div>
@@ -525,13 +548,22 @@
   <section id="forms" class="scroll-mt-32 py-12">
     <div class="mb-6">
       <h2 class="font-display text-2xl font-bold text-slate-900">Forms</h2>
-      <p class="mt-1 text-sm text-slate-500">Input, select, textarea, checkbox, radio, toggle, dan search.</p>
+      <p class="mt-1 text-sm text-slate-500">Input (error/disabled), select, textarea, checkbox, radio, toggle, dan search.</p>
     </div>
     <div class="card grid gap-8 p-6 sm:p-8 md:grid-cols-2">
       <div class="space-y-5">
         <div>
           <label class="form-label">Nama Lengkap</label>
           <input class="input" placeholder="Ahmad Dimas" />
+        </div>
+        <div>
+          <label class="form-label">Email (error)</label>
+          <input class="input input-error" aria-invalid="true" placeholder="nama@email.com" value="bukan-email" />
+          <p class="form-error">Format email tidak valid.</p>
+        </div>
+        <div>
+          <label class="form-label">Disabled</label>
+          <input class="input" disabled placeholder="Tidak bisa diedit" value="Nilai terkunci" />
         </div>
         <div>
           <label class="form-label">Posisi yang dicari</label>
@@ -663,10 +695,9 @@
         <div>
           <p class="form-label mb-2.5">Toggle</p>
           <label class="inline-flex cursor-pointer items-center gap-3">
-            <span class="relative">
-              <input type="checkbox" checked class="peer sr-only" />
-              <span class="block h-6 w-11 rounded-full bg-slate-200 transition-colors peer-checked:bg-primary-600"></span>
-              <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform peer-checked:translate-x-5"></span>
+            <span class="toggle">
+              <input type="checkbox" checked class="toggle-input" />
+              <span class="toggle-track" aria-hidden="true"></span>
             </span>
             <span class="text-sm text-slate-600">Mode pencarian aktif</span>
           </label>
@@ -1541,9 +1572,10 @@
       </div>
       <div>
         <p class="nav-eyebrow mb-3 px-0">Tooltip</p>
+        <p class="mb-3 text-xs text-fg-muted">Hover atau fokus keyboard (Tab) — pakai <code class="kbd">.tooltip-content</code> di dalam <code class="kbd">.group</code>.</p>
         <span class="group relative inline-flex">
-          <button class="btn-outline btn-sm">Hover aku</button>
-          <span class="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">Ini contoh tooltip</span>
+          <button type="button" class="btn-outline btn-sm">Hover / Tab aku</button>
+          <span class="tooltip-content">Ini contoh tooltip</span>
         </span>
       </div>
       <div>
