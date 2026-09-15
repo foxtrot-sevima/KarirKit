@@ -39,60 +39,11 @@
     </div>
   </div>
 
-  <!-- Notice: this is a preview, not a real submission -->
-  <div class="callout-info flex items-start gap-3">
-    <i class="kk kk-question h-4 w-4 shrink-0 text-info-600"></i>
-    <p class="text-sm text-slate-600">Ini adalah simulasi tampilan yang dilihat alumni saat mengisi <span class="font-medium text-slate-800">Kuesioner Lulusan</span> (gelombang <span data-w="label">Pra-Lulus</span>). Jawaban di halaman ini tidak tersimpan ke data sesungguhnya.</p>
-  </div>
-
   <!-- ============ FORM WRAP (steps) ============ -->
   <div id="formWrap">
 
-    <!-- Letterhead -->
-    <div class="card p-6 sm:p-8">
-      <div class="flex items-start gap-3">
-        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600">
-          <i class="kk kk-graduation-cap h-5 w-5"></i>
-        </span>
-        <div>
-          <h1 class="font-display text-xl font-bold text-slate-900 sm:text-2xl">Kuesioner Tracer Study — Lulusan</h1>
-          <p class="mt-1 text-sm text-slate-500">Universitas Meruya Raya · Wave <span data-w="label">Pra-Lulus</span></p>
-        </div>
-      </div>
-      <p class="mt-4 text-sm text-slate-600">Yth. <span class="font-medium text-slate-800">Bagas Setiawan</span>, terima kasih telah bersedia meluangkan waktu mengisi kuesioner ini <span data-w="greetingClause">menjelang kelulusan Anda</span>. Jawaban Anda sangat berarti untuk evaluasi dan pengembangan kualitas pendidikan di kampus.</p>
-    </div>
-
-    <!-- Stepper -->
-    <div class="card mt-5 p-5 sm:p-6">
-      <div class="flex items-center justify-between">
-        <p class="text-sm font-semibold text-slate-800">Langkah <span id="stepNow">1</span> dari 4</p>
-        <p id="stepLabel" class="text-sm text-slate-500">Konfirmasi Data Diri</p>
-      </div>
-      <div class="progress-track mt-3">
-        <div id="progressBar" class="progress-bar transition-all duration-300" style="width: 25%"></div>
-      </div>
-      <div class="mt-4 grid grid-cols-4 gap-2 text-center">
-        <div class="step-dot" data-step-dot="1">
-          <span class="step-dot-circle"><i class="kk kk-check-circle h-4 w-4 hidden" data-step-check></i><span data-step-num>1</span></span>
-          <p class="mt-1.5 hidden text-[11px] font-medium text-slate-500 sm:block">Data Diri</p>
-        </div>
-        <div class="step-dot" data-step-dot="2">
-          <span class="step-dot-circle"><i class="kk kk-check-circle h-4 w-4 hidden" data-step-check></i><span data-step-num>2</span></span>
-          <p class="mt-1.5 hidden text-[11px] font-medium text-slate-500 sm:block">Status</p>
-        </div>
-        <div class="step-dot" data-step-dot="3">
-          <span class="step-dot-circle"><i class="kk kk-check-circle h-4 w-4 hidden" data-step-check></i><span data-step-num>3</span></span>
-          <p class="mt-1.5 hidden text-[11px] font-medium text-slate-500 sm:block">Detail</p>
-        </div>
-        <div class="step-dot" data-step-dot="4">
-          <span class="step-dot-circle"><i class="kk kk-check-circle h-4 w-4 hidden" data-step-check></i><span data-step-num>4</span></span>
-          <p class="mt-1.5 hidden text-[11px] font-medium text-slate-500 sm:block">Masukan</p>
-        </div>
-      </div>
-    </div>
-
     <!-- ===== STEP 1: Konfirmasi Data Diri ===== -->
-    <div data-step-panel="1" class="card mt-5 p-6 sm:p-8">
+    <div data-step-panel="1" class="card p-6 sm:p-8">
       <div class="flex flex-wrap items-center gap-2.5">
         <h2 class="text-base font-semibold text-slate-800">Konfirmasi Data Diri</h2>
         <span class="badge-info">Gelombang <span data-w="label">Pra-Lulus</span></span>
@@ -384,31 +335,16 @@
       <a href="kuesioner.html" class="btn-primary btn-md">Kembali ke Kuesioner</a>
     </div>
   </div>
+
+  <!-- Notice: this is a preview, not a real submission -->
+  <div class="callout-info flex items-start gap-3">
+    <i class="kk kk-question h-4 w-4 shrink-0 text-info-600"></i>
+    <p class="text-sm text-slate-600">Ini adalah simulasi tampilan yang dilihat alumni saat mengisi <span class="font-medium text-slate-800">Kuesioner Lulusan</span> (gelombang <span data-w="label">Pra-Lulus</span>). Jawaban di halaman ini tidak tersimpan ke data sesungguhnya.</p>
+  </div>
 </main>
 
 <style>
   /* Plain CSS (this inline block isn't run through the Tailwind build, so no @apply here) */
-  .step-dot-circle {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    height: 1.75rem;
-    width: 1.75rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    background-color: var(--color-slate-100);
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--color-slate-400);
-    transition: background-color 150ms, color 150ms;
-  }
-  [data-step-dot].is-active .step-dot-circle { background-color: var(--color-primary-600); color: #fff; }
-  [data-step-dot].is-active p { color: var(--color-slate-800); }
-  [data-step-dot].is-done .step-dot-circle { background-color: var(--color-success-50); color: var(--color-success-600); }
-  [data-step-dot].is-done [data-step-num] { display: none; }
-  [data-step-dot].is-done [data-step-check] { display: block; }
-
   .radio-card {
     display: flex;
     cursor: pointer;
@@ -476,7 +412,6 @@
   const WAVES = {
     'pra-lulus': {
       label: 'Pra-Lulus',
-      greetingClause: 'menjelang kelulusan Anda',
       step2Title: 'Status & Rencana Setelah Lulus',
       step3Title: 'Detail Rencana Anda',
       q1: { code: 'P01', text: 'Apakah Anda sudah memiliki pekerjaan atau tawaran kerja sebelum dinyatakan lulus?', opt1: 'Sudah', opt2: 'Belum' },
@@ -501,7 +436,6 @@
     },
     'pasca-1th': {
       label: 'Pasca-Lulus 1 Tahun',
-      greetingClause: 'satu tahun setelah Anda dinyatakan lulus',
       step2Title: 'Status Satu Tahun Setelah Lulus',
       step3Title: 'Detail Pekerjaan/Status Anda Saat Ini',
       q1: { code: 'A01', text: 'Apakah Anda mendapatkan pekerjaan pertama dalam waktu kurang dari 6 bulan setelah lulus?', opt1: 'Ya', opt2: 'Tidak' },
@@ -526,7 +460,6 @@
     },
     'pasca-4th': {
       label: 'Pasca-Lulus 4 Tahun',
-      greetingClause: 'empat tahun setelah Anda dinyatakan lulus',
       step2Title: 'Status Empat Tahun Setelah Lulus',
       step3Title: 'Detail Karier Anda Saat Ini',
       q1: { code: 'D01', text: 'Apakah posisi/jabatan Anda saat ini merupakan hasil promosi dari posisi pertama Anda?', opt1: 'Ya', opt2: 'Tidak' },
@@ -593,30 +526,12 @@
 <script>
   // ---- Step navigation ----
   const TOTAL_STEPS = 4;
-  const STEP_LABELS = {
-    1: 'Konfirmasi Data Diri',
-    2: 'Status & Rencana',
-    3: 'Detail',
-    4: 'Kepuasan & Masukan',
-  };
   let currentStep = 1;
 
   const panels = document.querySelectorAll('[data-step-panel]');
-  const dots = document.querySelectorAll('[data-step-dot]');
-  const stepNow = document.getElementById('stepNow');
-  const stepLabel = document.getElementById('stepLabel');
-  const progressBar = document.getElementById('progressBar');
 
   function renderStep() {
     panels.forEach((p) => p.classList.toggle('hidden', Number(p.dataset.stepPanel) !== currentStep));
-    dots.forEach((d) => {
-      const n = Number(d.dataset.stepDot);
-      d.classList.toggle('is-active', n === currentStep);
-      d.classList.toggle('is-done', n < currentStep);
-    });
-    stepNow.textContent = currentStep;
-    stepLabel.textContent = STEP_LABELS[currentStep];
-    progressBar.style.width = (currentStep / TOTAL_STEPS) * 100 + '%';
   }
 
   // Resets the wizard back to step 1 with default answers — used both by

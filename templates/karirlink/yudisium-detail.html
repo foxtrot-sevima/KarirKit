@@ -43,7 +43,7 @@
         </a>
         <a href="yudisium.html" class="nav-item nav-item-active">
           <i class="kk kk-check-circle h-5 w-5 shrink-0"></i>
-          Data Lulusan Yudisium
+          Daftar Yudisium
         </a>
       </div>
     </div>
@@ -107,19 +107,36 @@
       <h1 class="text-base font-semibold text-slate-800">Yudisium Genap 2025/2026</h1>
     </div>
     <div class="flex items-center gap-2 sm:gap-3">
-      <button class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
-        <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
-        <span class="hidden min-w-0 sm:block">
-          <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
-          <span class="block truncate text-xs text-slate-400">Admin Karir</span>
-        </span>
-        <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 sm:block"></i>
-      </button>
+      <div class="relative">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-52">
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <div class="my-1 border-t border-slate-100"></div>
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
   <!-- ============================= CONTENT ============================= -->
-  <main class="mx-auto w-full max-w-[1600px] flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
 
     <!-- Greeting -->
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -128,10 +145,6 @@
         <p class="mt-1 text-sm text-slate-500">Tanggal yudisium 28 Agu 2026 · <span class="font-medium text-slate-700">10 lulusan</span> tercatat pada periode ini.</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
-        <button class="btn-outline btn-md w-full sm:w-auto">
-          <i class="kk kk-clipboard-text h-4 w-4 shrink-0"></i>
-          Kirim Reminder Massal
-        </button>
         <button class="btn-primary btn-md w-full sm:w-auto">
           <i class="kk kk-check-circle h-4 w-4 shrink-0"></i>
           Finalisasi &amp; Kirim Kuesioner
@@ -178,24 +191,32 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Nama</th>
-              <th>Prodi</th>
-              <th>Email</th>
-              <th>Status</th>
-              <th></th>
+              <th class="px-2 sm:px-4">Nama</th>
+              <th class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">Prodi</th>
+              <th class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">Email</th>
+              <th class="px-2 sm:px-4">Status</th>
+              <th class="px-2 sm:px-4"></th>
             </tr>
           </thead>
           <tbody id="yudBody">
             <tr data-status="belum">
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">AN</span><span class="font-medium text-slate-800">Andi Nugroho</span></div></td>
-              <td>S1 - Teknik Informatika</td>
-              <td>andi.nugroho@mail.ac.id</td>
-              <td><span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
-              <td class="text-right">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-primary-100 text-primary-700">AN</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Andi Nugroho</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; andi.nugroho@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">andi.nugroho@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
@@ -205,15 +226,23 @@
               </td>
             </tr>
             <tr data-status="sudah">
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">SP</span><span class="font-medium text-slate-800">Sari Puspita</span></div></td>
-              <td>S1 - Sistem Informasi</td>
-              <td>sari.puspita@mail.ac.id</td>
-              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
-              <td class="text-right">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-warning-100 text-warning-700">SP</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Sari Puspita</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Sistem Informasi &middot; sari.puspita@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Sistem Informasi</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">sari.puspita@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
@@ -222,15 +251,23 @@
               </td>
             </tr>
             <tr data-status="belum">
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">RD</span><span class="font-medium text-slate-800">Rudi Hartono</span></div></td>
-              <td>S1 - Teknik Informatika</td>
-              <td>rudi.hartono@mail.ac.id</td>
-              <td><span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
-              <td class="text-right">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-info-100 text-info-700">RD</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Rudi Hartono</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; rudi.hartono@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">rudi.hartono@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
@@ -240,15 +277,23 @@
               </td>
             </tr>
             <tr data-status="belum">
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-danger-100 text-danger-700">DP</span><span class="font-medium text-slate-800">Dewi Pratiwi</span></div></td>
-              <td>D3 - Manajemen Informatika</td>
-              <td>dewi.pratiwi@mail.ac.id</td>
-              <td><span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
-              <td class="text-right">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-danger-100 text-danger-700">DP</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Dewi Pratiwi</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">D3 - Manajemen Informatika &middot; dewi.pratiwi@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">D3 - Manajemen Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">dewi.pratiwi@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
@@ -258,15 +303,23 @@
               </td>
             </tr>
             <tr data-status="sudah">
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">BL</span><span class="font-medium text-slate-800">Bella Lestari</span></div></td>
-              <td>S1 - Teknik Elektro</td>
-              <td>bella.lestari@mail.ac.id</td>
-              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
-              <td class="text-right">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-slate-100 text-slate-600">BL</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Bella Lestari</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Elektro &middot; bella.lestari@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Elektro</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">bella.lestari@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
@@ -275,15 +328,23 @@
               </td>
             </tr>
             <tr data-status="belum">
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">FA</span><span class="font-medium text-slate-800">Fajar Ardiansyah</span></div></td>
-              <td>S1 - Teknik Informatika</td>
-              <td>fajar.ardiansyah@mail.ac.id</td>
-              <td><span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
-              <td class="text-right">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-primary-100 text-primary-700">FA</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Fajar Ardiansyah</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; fajar.ardiansyah@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">fajar.ardiansyah@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
@@ -293,15 +354,23 @@
               </td>
             </tr>
             <tr data-status="sudah">
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">IN</span><span class="font-medium text-slate-800">Indah Nuraini</span></div></td>
-              <td>S1 - Sistem Informasi</td>
-              <td>indah.nuraini@mail.ac.id</td>
-              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
-              <td class="text-right">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-warning-100 text-warning-700">IN</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Indah Nuraini</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Sistem Informasi &middot; indah.nuraini@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Sistem Informasi</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">indah.nuraini@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
@@ -310,15 +379,23 @@
               </td>
             </tr>
             <tr data-status="belum">
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">YP</span><span class="font-medium text-slate-800">Yoga Pratama</span></div></td>
-              <td>D3 - Manajemen Informatika</td>
-              <td>yoga.pratama@mail.ac.id</td>
-              <td><span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
-              <td class="text-right">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-info-100 text-info-700">YP</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Yoga Pratama</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">D3 - Manajemen Informatika &middot; yoga.pratama@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">D3 - Manajemen Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">yoga.pratama@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
@@ -328,15 +405,23 @@
               </td>
             </tr>
             <tr data-status="belum">
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-danger-100 text-danger-700">MR</span><span class="font-medium text-slate-800">Maya Ramadhani</span></div></td>
-              <td>S1 - Teknik Elektro</td>
-              <td>maya.ramadhani@mail.ac.id</td>
-              <td><span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
-              <td class="text-right">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-danger-100 text-danger-700">MR</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Maya Ramadhani</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Elektro &middot; maya.ramadhani@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Elektro</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">maya.ramadhani@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
@@ -346,15 +431,23 @@
               </td>
             </tr>
             <tr data-status="sudah">
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">HW</span><span class="font-medium text-slate-800">Hendra Wijaya</span></div></td>
-              <td>S1 - Teknik Informatika</td>
-              <td>hendra.wijaya@mail.ac.id</td>
-              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
-              <td class="text-right">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-slate-100 text-slate-600">HW</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Hendra Wijaya</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; hendra.wijaya@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">hendra.wijaya@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
@@ -384,7 +477,7 @@
   </main>
 
   <footer>
-    <div class="mx-auto flex max-w-[1600px] flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
       <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
       <p>KarirLink</p>
     </div>
@@ -544,6 +637,25 @@
     render();
   })();
 
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
   // Footer copyright year - kept current automatically (no backend templating here).
   document.querySelectorAll(".js-current-year").forEach((el) => {
     el.textContent = new Date().getFullYear();
