@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yudisium Genap 2025/2026 | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- Mobile overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-transform duration-200 lg:translate-x-0">
+  <div class="flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
+      <i class="kk kk-x h-5 w-5"></i>
+    </button>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item">
+          <i class="kk kk-house h-5 w-5 shrink-0"></i>
+          Dashboard
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item">
+          <i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i>
+          Kuesioner
+        </a>
+        <a href="yudisium.html" class="nav-item nav-item-active">
+          <i class="kk kk-check-circle h-5 w-5 shrink-0"></i>
+          Daftar Yudisium
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a class="nav-item">
+          <i class="kk kk-handshake h-5 w-5 shrink-0"></i>
+          Kerjasama
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-briefcase h-5 w-5 shrink-0"></i>
+          Lowongan
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i>
+          Event
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a class="nav-item">
+          <i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i>
+          Mahasiswa/Alumni
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-file-text h-5 w-5 shrink-0"></i>
+          Aktivitas Lamaran
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-chart-bar h-5 w-5 shrink-0"></i>
+          Report
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-monitor h-5 w-5 shrink-0"></i>
+          Pengaturan Landing Page
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item">
+      <i class="kk kk-question h-5 w-5 shrink-0"></i>
+      Panduan Pengguna
+    </a>
+  </div>
+</aside>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-200 lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+    <div class="flex items-center gap-3">
+      <button id="openSidebarBtn" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <button id="toggleSidebarDesktopBtn" class="hidden h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:flex" aria-label="Tampilkan/sembunyikan sidebar">
+        <i class="kk kk-sidebar-simple h-5 w-5"></i>
+      </button>
+      <a href="yudisium.html" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100">
+        <i class="kk kk-caret-left h-5 w-5"></i>
+      </a>
+      <h1 class="text-base font-semibold text-slate-800">Yudisium Genap 2025/2026</h1>
+    </div>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <div class="relative">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-52">
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <div class="my-1 border-t border-slate-100"></div>
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Greeting -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Yudisium Genap 2025/2026</h2>
+        <p class="mt-1 text-sm text-slate-500">Tanggal yudisium 28 Agu 2026 · <span class="font-medium text-slate-700">10 lulusan</span> tercatat pada periode ini.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <button class="btn-primary btn-md w-full sm:w-auto">
+          <i class="kk kk-check-circle h-4 w-4 shrink-0"></i>
+          Finalisasi &amp; Kirim Kuesioner
+        </button>
+      </div>
+    </div>
+
+    <!-- KPI row -->
+    <div class="grid grid-cols-2 gap-5 sm:grid-cols-4">
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-slate-900">10</p>
+        <p class="text-sm text-slate-500">Total Lulusan</p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-success-600">4</p>
+        <p class="text-sm text-slate-500">Sudah Mengisi</p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-warning-600">6</p>
+        <p class="text-sm text-slate-500">Belum Mengisi</p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-slate-900">40%</p>
+        <p class="text-sm text-slate-500">Tingkat Partisipasi</p>
+      </div>
+    </div>
+
+    <!-- Students table -->
+    <div class="card overflow-hidden">
+      <div class="flex flex-col gap-3 border-b border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex gap-1 overflow-x-auto scrollbar-none rounded-xl bg-slate-100 p-1" id="yudStatusTabs">
+          <button type="button" data-status="all" class="tab tab-active">Semua</button>
+          <button type="button" data-status="belum" class="tab">Belum Mengisi</button>
+          <button type="button" data-status="sudah" class="tab">Sudah Mengisi</button>
+        </div>
+        <div class="relative">
+          <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+            <i class="kk kk-magnifying-glass h-3.5 w-3.5"></i>
+          </span>
+          <input id="yudSearch" class="input h-9 w-full pl-8 sm:w-64" placeholder="Cari nama atau email..." />
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="px-2 sm:px-4">Nama</th>
+              <th class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">Prodi</th>
+              <th class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">Email</th>
+              <th class="px-2 sm:px-4">Status</th>
+              <th class="px-2 sm:px-4"></th>
+            </tr>
+          </thead>
+          <tbody id="yudBody">
+            <tr data-status="belum">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-primary-100 text-primary-700">AN</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Andi Nugroho</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; andi.nugroho@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">andi.nugroho@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-status="sudah">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-warning-100 text-warning-700">SP</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Sari Puspita</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Sistem Informasi &middot; sari.puspita@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Sistem Informasi</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">sari.puspita@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-status="belum">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-info-100 text-info-700">RD</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Rudi Hartono</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; rudi.hartono@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">rudi.hartono@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-status="belum">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-danger-100 text-danger-700">DP</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Dewi Pratiwi</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">D3 - Manajemen Informatika &middot; dewi.pratiwi@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">D3 - Manajemen Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">dewi.pratiwi@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-status="sudah">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-slate-100 text-slate-600">BL</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Bella Lestari</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Elektro &middot; bella.lestari@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Elektro</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">bella.lestari@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-status="belum">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-primary-100 text-primary-700">FA</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Fajar Ardiansyah</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; fajar.ardiansyah@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">fajar.ardiansyah@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-status="sudah">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-warning-100 text-warning-700">IN</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Indah Nuraini</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Sistem Informasi &middot; indah.nuraini@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Sistem Informasi</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">indah.nuraini@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-status="belum">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-info-100 text-info-700">YP</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Yoga Pratama</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">D3 - Manajemen Informatika &middot; yoga.pratama@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">D3 - Manajemen Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">yoga.pratama@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-status="belum">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-danger-100 text-danger-700">MR</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Maya Ramadhani</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Elektro &middot; maya.ramadhani@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Elektro</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">maya.ramadhani@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-status="sudah">
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-slate-100 text-slate-600">HW</span>
+                  <div class="min-w-0 max-w-[90px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Hendra Wijaya</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; hendra.wijaya@mail.ac.id</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
+              <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">hendra.wijaya@mail.ac.id</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="px-2 text-right sm:px-4">
+                <div class="relative inline-block">
+                  <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                    <span class="pointer-events-none absolute bottom-full right-0 z-30 mb-2 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Aksi lainnya</span>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p id="yudEmpty" class="hidden p-8 text-center text-sm text-slate-400">Tidak ada mahasiswa yang cocok.</p>
+      </div>
+
+      <!-- Pagination footer -->
+      <div class="flex flex-col gap-3 border-t border-slate-100 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span>Baris per halaman</span>
+          <select id="yudPageSize" class="input h-8 w-auto py-0 text-xs">
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+          </select>
+        </div>
+        <p class="text-xs text-slate-500" id="yudRangeText">Menampilkan 1-5 dari 10 mahasiswa</p>
+        <div class="flex items-center gap-1" id="yudPagination"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const openBtn = document.getElementById('openSidebarBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  openBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const toggleBtn = document.getElementById('toggleSidebarDesktopBtn');
+    if (!sidebar || !mainColumn || !toggleBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-hidden';
+    const HIDE_CLASS = 'lg:-translate-x-full!';
+
+    function applyHidden(hidden) {
+      sidebar.classList.toggle(HIDE_CLASS, hidden);
+      mainColumn.classList.toggle('lg:pl-[264px]', !hidden);
+    }
+
+    let hidden = false;
+    try {
+      hidden = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyHidden(hidden);
+
+    toggleBtn.addEventListener('click', () => {
+      hidden = !hidden;
+      applyHidden(hidden);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(hidden));
+      } catch (e) {}
+    });
+  })();
+
+  // Row action kebab menus (open/close + outside click)
+  (function () {
+    document.querySelectorAll('.dt-menu-btn').forEach((btn) => {
+      const menu = btn.nextElementSibling;
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const willOpen = menu.classList.contains('hidden');
+        document.querySelectorAll('.dropdown-menu').forEach((m) => m.classList.add('hidden'));
+        if (willOpen) menu.classList.remove('hidden');
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.dropdown-menu').forEach((m) => m.classList.add('hidden'));
+    });
+  })();
+
+  // Status tabs + live search filter + pagination, combined: pagination
+  // always operates on the currently filtered set, and resets to page 1
+  // whenever the filter (tab or search) changes.
+  (function () {
+    const tabs = document.querySelectorAll('#yudStatusTabs .tab');
+    const search = document.getElementById('yudSearch');
+    const pageSizeSelect = document.getElementById('yudPageSize');
+    const rows = Array.from(document.querySelectorAll('#yudBody tr'));
+    const empty = document.getElementById('yudEmpty');
+    const rangeText = document.getElementById('yudRangeText');
+    const paginationEl = document.getElementById('yudPagination');
+
+    let activeStatus = 'all';
+    let pageSize = Number(pageSizeSelect.value);
+    let currentPage = 1;
+
+    function getFilteredRows() {
+      const query = search.value.trim().toLowerCase();
+      return rows.filter((row) => {
+        const matchesStatus = activeStatus === 'all' || row.getAttribute('data-status') === activeStatus;
+        const matchesSearch = !query || row.textContent.toLowerCase().includes(query);
+        return matchesStatus && matchesSearch;
+      });
+    }
+
+    function renderPaginationButtons(totalPages) {
+      paginationEl.innerHTML = '';
+
+      function makeButton(label, page, opts = {}) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = label;
+        b.disabled = !!opts.disabled;
+        b.className = 'pagination-btn' + (opts.active ? ' pagination-btn-active' : '');
+        b.addEventListener('click', () => {
+          currentPage = page;
+          render();
+        });
+        return b;
+      }
+
+      paginationEl.appendChild(makeButton('‹', currentPage - 1, { disabled: currentPage <= 1 }));
+      for (let i = 1; i <= totalPages; i++) {
+        paginationEl.appendChild(makeButton(String(i), i, { active: i === currentPage }));
+      }
+      paginationEl.appendChild(makeButton('›', currentPage + 1, { disabled: currentPage >= totalPages }));
+    }
+
+    function render() {
+      const filtered = getFilteredRows();
+      const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+      currentPage = Math.min(currentPage, totalPages);
+
+      rows.forEach((row) => row.classList.add('hidden'));
+
+      const start = (currentPage - 1) * pageSize;
+      const pageRows = filtered.slice(start, start + pageSize);
+      pageRows.forEach((row) => row.classList.remove('hidden'));
+
+      empty.classList.toggle('hidden', filtered.length > 0);
+      renderPaginationButtons(totalPages);
+
+      if (filtered.length === 0) {
+        rangeText.textContent = 'Menampilkan 0 dari 0 mahasiswa';
+      } else {
+        rangeText.textContent = `Menampilkan ${start + 1}-${Math.min(start + pageRows.length, filtered.length)} dari ${filtered.length} mahasiswa`;
+      }
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => t.classList.remove('tab-active'));
+        tab.classList.add('tab-active');
+        activeStatus = tab.getAttribute('data-status');
+        currentPage = 1;
+        render();
+      });
+    });
+    search.addEventListener('input', () => {
+      currentPage = 1;
+      render();
+    });
+    pageSizeSelect.addEventListener('change', () => {
+      pageSize = Number(pageSizeSelect.value);
+      currentPage = 1;
+      render();
+    });
+
+    render();
+  })();
+
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+</script>
+</body>
+</html>

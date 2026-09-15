@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Daftar Yudisium | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- Mobile overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-transform duration-200 lg:translate-x-0">
+  <div class="flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
+      <i class="kk kk-x h-5 w-5"></i>
+    </button>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item">
+          <i class="kk kk-house h-5 w-5 shrink-0"></i>
+          Dashboard
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item">
+          <i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i>
+          Kuesioner
+        </a>
+        <a href="yudisium.html" class="nav-item nav-item-active">
+          <i class="kk kk-check-circle h-5 w-5 shrink-0"></i>
+          Daftar Yudisium
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a class="nav-item">
+          <i class="kk kk-handshake h-5 w-5 shrink-0"></i>
+          Kerjasama
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-briefcase h-5 w-5 shrink-0"></i>
+          Lowongan
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i>
+          Event
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a class="nav-item">
+          <i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i>
+          Mahasiswa/Alumni
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-file-text h-5 w-5 shrink-0"></i>
+          Aktivitas Lamaran
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-chart-bar h-5 w-5 shrink-0"></i>
+          Report
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-monitor h-5 w-5 shrink-0"></i>
+          Pengaturan Landing Page
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item">
+      <i class="kk kk-question h-5 w-5 shrink-0"></i>
+      Panduan Pengguna
+    </a>
+  </div>
+</aside>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-200 lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+    <div class="flex items-center gap-3">
+      <button id="openSidebarBtn" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <button id="toggleSidebarDesktopBtn" class="hidden h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:flex" aria-label="Tampilkan/sembunyikan sidebar">
+        <i class="kk kk-sidebar-simple h-5 w-5"></i>
+      </button>
+      <h1 class="text-base font-semibold text-slate-800">Daftar Yudisium</h1>
+    </div>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <div class="relative">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-52">
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <div class="my-1 border-t border-slate-100"></div>
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Greeting -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Daftar Yudisium</h2>
+        <p class="mt-1 text-sm text-slate-500">Tetapkan lulusan berdasarkan periode yudisium, lalu kirim/finalisasi kuesioner Tracer Study per periode.</p>
+      </div>
+      <div class="flex items-center gap-2 text-sm text-slate-500">
+        <i class="kk kk-clock h-4 w-4 shrink-0 text-slate-400"></i>
+        <span>Sinkron · <span class="font-medium text-slate-700">14 Sep 2026, 09:45</span></span>
+      </div>
+    </div>
+
+    <!-- KPI row -->
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-slate-900">15</p>
+        <p class="text-sm text-slate-500">Periode Yudisium</p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-slate-900">4.219</p>
+        <p class="text-sm text-slate-500">Total Lulusan Tercatat</p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-warning-600">1</p>
+        <p class="text-sm text-slate-500">Menunggu Finalisasi</p>
+      </div>
+    </div>
+
+    <!-- Periode list -->
+    <div class="card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="px-2 sm:px-4">Periode Yudisium</th>
+              <th class="hidden sm:table-cell">Tanggal Yudisium</th>
+              <th class="hidden sm:table-cell">Jumlah Lulusan</th>
+              <th class="px-2 sm:px-4"><span class="sm:hidden">Status</span><span class="hidden sm:inline">Status Kuesioner</span></th>
+              <th class="px-2 sm:px-4"></th>
+            </tr>
+          </thead>
+          <tbody id="periodeBody">
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Genap 2025/2026</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">28 Agu 2026 &middot; 342 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">28 Agu 2026</td>
+              <td class="hidden sm:table-cell">342 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[68px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot shrink-0 bg-warning-600"></span>Belum Difinalisasi</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2025/2026</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">20 Feb 2026 &middot; 298 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">20 Feb 2026</td>
+              <td class="hidden sm:table-cell">298 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Terkirim</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Genap 2024/2025</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">29 Agu 2025 &middot; 356 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">29 Agu 2025</td>
+              <td class="hidden sm:table-cell">356 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2024/2025</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">21 Feb 2025 &middot; 288 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">21 Feb 2025</td>
+              <td class="hidden sm:table-cell">288 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Genap 2023/2024</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">30 Agu 2024 &middot; 340 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">30 Agu 2024</td>
+              <td class="hidden sm:table-cell">340 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2023/2024</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">22 Feb 2024 &middot; 275 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">22 Feb 2024</td>
+              <td class="hidden sm:table-cell">275 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Genap 2022/2023</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">31 Agu 2023 &middot; 312 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">31 Agu 2023</td>
+              <td class="hidden sm:table-cell">312 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2022/2023</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">23 Feb 2023 &middot; 260 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">23 Feb 2023</td>
+              <td class="hidden sm:table-cell">260 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Genap 2021/2022</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">25 Agu 2022 &middot; 298 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">25 Agu 2022</td>
+              <td class="hidden sm:table-cell">298 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2021/2022</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">18 Feb 2022 &middot; 245 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">18 Feb 2022</td>
+              <td class="hidden sm:table-cell">245 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Genap 2020/2021</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">26 Agu 2021 &middot; 270 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">26 Agu 2021</td>
+              <td class="hidden sm:table-cell">270 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2020/2021</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">19 Feb 2021 &middot; 230 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">19 Feb 2021</td>
+              <td class="hidden sm:table-cell">230 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Genap 2019/2020</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">27 Agu 2020 &middot; 255 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">27 Agu 2020</td>
+              <td class="hidden sm:table-cell">255 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2019/2020</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">21 Feb 2020 &middot; 210 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">21 Feb 2020</td>
+              <td class="hidden sm:table-cell">210 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <span class="font-medium text-slate-800">Yudisium Genap 2018/2019</span>
+                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">29 Agu 2019 &middot; 240 lulusan</p>
+              </td>
+              <td class="hidden sm:table-cell">29 Agu 2019</td>
+              <td class="hidden sm:table-cell">240 lulusan</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
+                <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination footer -->
+      <div class="flex flex-col gap-3 border-t border-slate-100 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span>Baris per halaman</span>
+          <select id="periodePageSize" class="input h-8 w-auto py-0 text-xs">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+          </select>
+        </div>
+        <p class="text-xs text-slate-500" id="periodeRangeText">Menampilkan 1-10 dari 15 periode</p>
+        <div class="flex items-center gap-1" id="periodePagination"></div>
+      </div>
+    </div>
+
+    <!-- Pengaturan gelombang pengiriman -->
+    <div class="card p-5 sm:p-6">
+      <h3 class="text-base font-semibold text-slate-800">Pengaturan Gelombang Pengiriman</h3>
+      <p class="mt-1 text-sm text-slate-500">Berlaku untuk setiap periode yudisium yang difinalisasi — menentukan kapan Kuesioner Lulusan dikirim di tiap gelombang.</p>
+      <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-xl border border-slate-100 p-4">
+          <div class="flex items-start gap-3">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
+              <i class="kk kk-clock h-4 w-4"></i>
+            </span>
+            <div>
+              <p class="text-sm font-semibold text-slate-800">Gelombang Pra-Lulus</p>
+              <p class="mt-1 text-sm text-slate-500">Dikirim menjelang tanggal yudisium, sebelum mahasiswa resmi dinyatakan lulus.</p>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div>
+              <label class="form-label">Tanggal Mulai</label>
+              <input class="input" type="date" value="2026-08-14" />
+            </div>
+            <div>
+              <label class="form-label">Tanggal Akhir</label>
+              <input class="input" type="date" value="2026-08-27" />
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-slate-100 p-4">
+          <div class="flex items-start gap-3">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600">
+              <i class="kk kk-clock h-4 w-4"></i>
+            </span>
+            <div>
+              <p class="text-sm font-semibold text-slate-800">Gelombang Pasca-Lulus 1 Tahun</p>
+              <p class="mt-1 text-sm text-slate-500">Dikirim 1 tahun setelah tanggal yudisium untuk memantau status karier lulusan.</p>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div>
+              <label class="form-label">Tanggal Mulai</label>
+              <input class="input" type="date" value="2027-08-28" />
+            </div>
+            <div>
+              <label class="form-label">Tanggal Akhir</label>
+              <input class="input" type="date" value="2027-09-11" />
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-slate-100 p-4">
+          <div class="flex items-start gap-3">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600">
+              <i class="kk kk-clock h-4 w-4"></i>
+            </span>
+            <div>
+              <p class="text-sm font-semibold text-slate-800">Gelombang Pasca-Lulus 4 Tahun</p>
+              <p class="mt-1 text-sm text-slate-500">Dikirim 4 tahun setelah tanggal yudisium untuk memantau perkembangan karier jangka panjang.</p>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div>
+              <label class="form-label">Tanggal Mulai</label>
+              <input class="input" type="date" value="2030-08-28" />
+            </div>
+            <div>
+              <label class="form-label">Tanggal Akhir</label>
+              <input class="input" type="date" value="2030-09-11" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-primary btn-md mt-5">Simpan Pengaturan Gelombang</button>
+    </div>
+  </main>
+
+  <footer>
+    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const openBtn = document.getElementById('openSidebarBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  openBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const toggleBtn = document.getElementById('toggleSidebarDesktopBtn');
+    if (!sidebar || !mainColumn || !toggleBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-hidden';
+    const HIDE_CLASS = 'lg:-translate-x-full!';
+
+    function applyHidden(hidden) {
+      sidebar.classList.toggle(HIDE_CLASS, hidden);
+      mainColumn.classList.toggle('lg:pl-[264px]', !hidden);
+    }
+
+    let hidden = false;
+    try {
+      hidden = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyHidden(hidden);
+
+    toggleBtn.addEventListener('click', () => {
+      hidden = !hidden;
+      applyHidden(hidden);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(hidden));
+      } catch (e) {}
+    });
+  })();
+
+  // Periode Yudisium table pagination
+  (function () {
+    const rows = Array.from(document.querySelectorAll('#periodeBody tr'));
+    const pageSizeSelect = document.getElementById('periodePageSize');
+    const rangeText = document.getElementById('periodeRangeText');
+    const paginationEl = document.getElementById('periodePagination');
+
+    let pageSize = Number(pageSizeSelect.value);
+    let currentPage = 1;
+
+    function renderPaginationButtons(totalPages) {
+      paginationEl.innerHTML = '';
+
+      function makeButton(label, page, opts = {}) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = label;
+        b.disabled = !!opts.disabled;
+        b.className = 'pagination-btn' + (opts.active ? ' pagination-btn-active' : '');
+        b.addEventListener('click', () => {
+          currentPage = page;
+          render();
+        });
+        return b;
+      }
+
+      paginationEl.appendChild(makeButton('‹', currentPage - 1, { disabled: currentPage <= 1 }));
+      for (let i = 1; i <= totalPages; i++) {
+        paginationEl.appendChild(makeButton(String(i), i, { active: i === currentPage }));
+      }
+      paginationEl.appendChild(makeButton('›', currentPage + 1, { disabled: currentPage >= totalPages }));
+    }
+
+    function render() {
+      const totalPages = Math.max(1, Math.ceil(rows.length / pageSize));
+      currentPage = Math.min(currentPage, totalPages);
+
+      const start = (currentPage - 1) * pageSize;
+      const end = start + pageSize;
+      rows.forEach((row, i) => row.classList.toggle('hidden', i < start || i >= end));
+
+      renderPaginationButtons(totalPages);
+      rangeText.textContent = `Menampilkan ${start + 1}-${Math.min(end, rows.length)} dari ${rows.length} periode`;
+    }
+
+    pageSizeSelect.addEventListener('change', () => {
+      pageSize = Number(pageSizeSelect.value);
+      currentPage = 1;
+      render();
+    });
+
+    render();
+  })();
+
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+</script>
+</body>
+</html>

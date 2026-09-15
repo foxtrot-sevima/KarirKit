@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- Mobile overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-transform duration-200 lg:translate-x-0">
+  <div class="flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
+      <i class="kk kk-x h-5 w-5"></i>
+    </button>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item nav-item-active">
+          <i class="kk kk-house h-5 w-5 shrink-0"></i>
+          Dashboard
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item">
+          <i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i>
+          Kuesioner
+        </a>
+        <a href="yudisium.html" class="nav-item">
+          <i class="kk kk-check-circle h-5 w-5 shrink-0"></i>
+          Daftar Yudisium
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a class="nav-item">
+          <i class="kk kk-handshake h-5 w-5 shrink-0"></i>
+          Kerjasama
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-briefcase h-5 w-5 shrink-0"></i>
+          Lowongan
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i>
+          Event
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a class="nav-item">
+          <i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i>
+          Mahasiswa/Alumni
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-file-text h-5 w-5 shrink-0"></i>
+          Aktivitas Lamaran
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-chart-bar h-5 w-5 shrink-0"></i>
+          Report
+        </a>
+        <a class="nav-item">
+          <i class="kk kk-monitor h-5 w-5 shrink-0"></i>
+          Pengaturan Landing Page
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item">
+      <i class="kk kk-question h-5 w-5 shrink-0"></i>
+      Panduan Pengguna
+    </a>
+  </div>
+</aside>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-200 lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+    <div class="flex items-center gap-3">
+      <button id="openSidebarBtn" class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <button id="toggleSidebarDesktopBtn" class="hidden h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:flex" aria-label="Tampilkan/sembunyikan sidebar">
+        <i class="kk kk-sidebar-simple h-5 w-5"></i>
+      </button>
+      <h1 class="text-base font-semibold text-slate-800">Dashboard</h1>
+    </div>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <div class="relative">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-52">
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <div class="my-1 border-t border-slate-100"></div>
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Greeting -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="min-w-0">
+        <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Selamat pagi, Rina 👋</h2>
+        <p class="mt-1 text-sm text-slate-500"><span class="font-medium text-slate-700">5 lowongan mitra</span> menunggu persetujuan dan <span class="font-medium text-slate-700">3 event</span> berlangsung minggu ini.</p>
+      </div>
+      <div class="flex shrink-0 gap-1 rounded-xl bg-slate-100 p-1 sm:w-fit" id="dashboardTabs">
+        <button type="button" data-tab="portal-karir" class="tab tab-active flex-1 text-center sm:flex-none">Portal Karir</button>
+        <button type="button" data-tab="tracer-study" class="tab flex-1 text-center sm:flex-none">Tracer Study</button>
+      </div>
+    </div>
+
+    <!-- KPI row -->
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4 animate-fade-in">
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-600">
+            <i class="kk kk-graduation-cap h-5 w-5"></i>
+          </span>
+          <span class="badge-success">
+            <i class="kk kk-trend-up h-3 w-3"></i>
+            +186
+          </span>
+        </div>
+        <p class="mt-4 font-display text-2xl font-bold text-slate-900">12.480</p>
+        <p class="text-sm text-slate-500">Mahasiswa/Alumni Terdata</p>
+        <p class="mt-2 text-xs text-slate-400">Bulan ini</p>
+      </div>
+
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-info-50 text-info-600">
+            <i class="kk kk-briefcase h-5 w-5"></i>
+          </span>
+          <span class="badge-success">
+            <i class="kk kk-trend-up h-3 w-3"></i>
+            +9
+          </span>
+        </div>
+        <p class="mt-4 font-display text-2xl font-bold text-slate-900">86</p>
+        <p class="text-sm text-slate-500">Lowongan Aktif</p>
+        <p class="mt-2 text-xs text-slate-400">5 menunggu persetujuan</p>
+      </div>
+
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600">
+            <i class="kk kk-handshake h-5 w-5"></i>
+          </span>
+          <span class="badge-success">
+            <i class="kk kk-trend-up h-3 w-3"></i>
+            +12
+          </span>
+        </div>
+        <p class="mt-4 font-display text-2xl font-bold text-slate-900">214</p>
+        <p class="text-sm text-slate-500">Mitra Kerjasama</p>
+        <p class="mt-2 text-xs text-slate-400">Bulan ini</p>
+      </div>
+
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-warning-50 text-warning-600">
+            <i class="kk kk-clipboard-text h-5 w-5"></i>
+          </span>
+          <span class="badge-warning">
+            <i class="kk kk-trend-down h-3 w-3"></i>
+            Target 75%
+          </span>
+        </div>
+        <p class="mt-4 font-display text-2xl font-bold text-slate-900">68%</p>
+        <p class="text-sm text-slate-500">Partisipasi Tracer Study</p>
+        <p class="mt-2 text-xs text-slate-400">Angkatan 2021-2024</p>
+      </div>
+    </div>
+
+    <!-- Tracer Study spotlight -->
+    <div data-tab-panel="tracer-study" class="hidden space-y-6">
+
+    <!-- Filter -->
+    <div class="card p-4 sm:p-5" data-combo-boundary>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <label class="form-label">Angkatan</label>
+          <div class="combo combo-full" data-combo>
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Angkatan</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-label="Semua Angkatan">Semua Angkatan</button>
+                <button type="button" class="combo-item" data-combo-item data-label="2024">2024</button>
+                <button type="button" class="combo-item" data-combo-item data-label="2023">2023</button>
+                <button type="button" class="combo-item" data-combo-item data-label="2022">2022</button>
+                <button type="button" class="combo-item" data-combo-item data-label="2021">2021</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Tahun Lulus</label>
+          <div class="combo combo-full" data-combo>
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Tahun</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-label="Semua Tahun">Semua Tahun</button>
+                <button type="button" class="combo-item" data-combo-item data-label="2026">2026</button>
+                <button type="button" class="combo-item" data-combo-item data-label="2025">2025</button>
+                <button type="button" class="combo-item" data-combo-item data-label="2024">2024</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Program Studi</label>
+          <div class="combo combo-full" data-combo>
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Program Studi</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-search-wrap">
+                <div class="combo-search-field">
+                  <span class="combo-search-icon">
+                    <i class="kk kk-magnifying-glass h-4 w-4"></i>
+                  </span>
+                  <input type="text" class="combo-search" placeholder="Cari program studi..." data-combo-search />
+                </div>
+              </div>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-label="Semua Program Studi">Semua Program Studi</button>
+                <button type="button" class="combo-item" data-combo-item data-label="S1 - Teknik Informatika">S1 - Teknik Informatika</button>
+                <button type="button" class="combo-item" data-combo-item data-label="S1 - Sistem Informasi">S1 - Sistem Informasi</button>
+                <button type="button" class="combo-item" data-combo-item data-label="S1 - Teknik Elektro">S1 - Teknik Elektro</button>
+                <button type="button" class="combo-item" data-combo-item data-label="D3 - Manajemen Informatika">D3 - Manajemen Informatika</button>
+              </div>
+              <p class="combo-empty hidden" data-combo-empty>Tidak ada program studi yang cocok.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-end">
+          <button class="btn-primary btn-md w-full">
+            <i class="kk kk-magnifying-glass h-4 w-4 shrink-0"></i>
+            Terapkan Filter
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Riwayat Pengisian + Perlu Perhatian -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div class="card min-w-0 p-5 sm:p-6 lg:col-span-2">
+        <div class="mb-5 flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-semibold text-slate-800">Riwayat Pengisian Tracer Study</h3>
+            <p class="text-xs text-slate-400">Tahap penyelesaian pengisian kuesioner</p>
+          </div>
+          <span class="badge-neutral shrink-0">Gelombang Pra-Lulus</span>
+        </div>
+        <div class="h-52 w-full">
+          <canvas id="chartRiwayatPengisian"></canvas>
+        </div>
+      </div>
+
+      <div class="card min-w-0 p-5 sm:p-6">
+        <div class="mb-1 flex items-center gap-2">
+          <span class="text-warning-500">
+            <i class="kk kk-warning-circle h-5 w-5"></i>
+          </span>
+          <h3 class="text-base font-semibold text-slate-800">Perlu Perhatian</h3>
+        </div>
+        <p class="mb-4 text-xs text-slate-400">Angkatan dengan partisipasi di bawah target</p>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-sm">
+            <div class="flex items-center gap-2.5">
+              <span class="avatar h-7 w-7 bg-danger-100 text-[11px] text-danger-700">24</span>
+              <span class="text-slate-700">Angkatan 2024</span>
+            </div>
+            <span class="badge-danger">41%</span>
+          </div>
+          <div class="flex items-center justify-between text-sm">
+            <div class="flex items-center gap-2.5">
+              <span class="avatar h-7 w-7 bg-warning-100 text-[11px] text-warning-700">23</span>
+              <span class="text-slate-700">Angkatan 2023</span>
+            </div>
+            <span class="badge-warning">58%</span>
+          </div>
+        </div>
+        <button class="btn-primary btn-md mt-5 w-full">Kirim Reminder Sekarang</button>
+      </div>
+    </div>
+
+    <!-- Status Karier + Waktu Tunggu -->
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="card min-w-0 p-5 sm:p-6">
+        <div class="mb-5">
+          <h3 class="text-base font-semibold text-slate-800">Distribusi Status Karier Alumni</h3>
+          <p class="text-xs text-slate-400">Berdasarkan isian Kuesioner Lulusan</p>
+        </div>
+        <div class="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
+          <div class="relative h-40 w-40 shrink-0">
+            <canvas id="chartStatusKarier"></canvas>
+            <div class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+              <p class="font-display text-2xl font-bold text-slate-900">52%</p>
+              <p class="text-xs text-slate-400">Bekerja</p>
+            </div>
+          </div>
+          <div class="w-full space-y-2.5 sm:max-w-[220px]">
+            <div class="flex items-center justify-between text-sm">
+              <span class="flex items-center gap-2 text-slate-600"><span class="h-2.5 w-2.5 shrink-0 rounded-full bg-success-600"></span>Bekerja</span>
+              <span class="font-medium text-slate-800">52%</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="flex items-center gap-2 text-slate-600"><span class="h-2.5 w-2.5 shrink-0 rounded-full" style="background:#7c3aed"></span>Wiraswasta</span>
+              <span class="font-medium text-slate-800">11%</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="flex items-center gap-2 text-slate-600"><span class="h-2.5 w-2.5 shrink-0 rounded-full bg-info-600"></span>Melanjutkan Studi</span>
+              <span class="font-medium text-slate-800">7%</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="flex items-center gap-2 text-slate-600"><span class="h-2.5 w-2.5 shrink-0 rounded-full bg-warning-600"></span>Mencari Kerja</span>
+              <span class="font-medium text-slate-800">30%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card min-w-0 p-5 sm:p-6">
+        <div class="mb-5">
+          <h3 class="text-base font-semibold text-slate-800">Distribusi Waktu Tunggu Pekerjaan Pertama</h3>
+          <p class="text-xs text-slate-400">Alumni yang sudah bekerja</p>
+        </div>
+        <div class="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
+          <div class="relative h-40 w-40 shrink-0">
+            <canvas id="chartWaktuTunggu"></canvas>
+            <div class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+              <p class="font-display text-2xl font-bold text-slate-900">47%</p>
+              <p class="text-xs text-slate-400">&lt; 3 Bulan</p>
+            </div>
+          </div>
+          <div class="w-full space-y-2.5 sm:max-w-[220px]">
+            <div class="flex items-center justify-between text-sm">
+              <span class="flex items-center gap-2 text-slate-600"><span class="h-2.5 w-2.5 shrink-0 rounded-full" style="background:#1e3a8a"></span>0-3 Bulan</span>
+              <span class="font-medium text-slate-800">47%</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="flex items-center gap-2 text-slate-600"><span class="h-2.5 w-2.5 shrink-0 rounded-full bg-primary-600"></span>3-6 Bulan</span>
+              <span class="font-medium text-slate-800">12%</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="flex items-center gap-2 text-slate-600"><span class="h-2.5 w-2.5 shrink-0 rounded-full" style="background:#93c5fd"></span>6-12 Bulan</span>
+              <span class="font-medium text-slate-800">24%</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="flex items-center gap-2 text-slate-600"><span class="h-2.5 w-2.5 shrink-0 rounded-full" style="background:#dbeafe"></span>&gt; 12 Bulan</span>
+              <span class="font-medium text-slate-800">16%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lokasi Kerja + Demografi -->
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="card min-w-0 p-5 sm:p-6">
+        <div class="mb-5 flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-semibold text-slate-800">Persebaran Alumni per Lokasi Kerja</h3>
+            <p class="text-xs text-slate-400">Alumni yang sudah bekerja</p>
+          </div>
+          <span class="badge-neutral shrink-0">Provinsi</span>
+        </div>
+        <div class="h-64 w-full">
+          <canvas id="chartLokasiKerja"></canvas>
+        </div>
+      </div>
+
+      <div class="card min-w-0 p-5 sm:p-6">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h3 class="text-base font-semibold text-slate-800">Demografi Alumni Bekerja per Daerah</h3>
+            <p class="text-xs text-slate-400">Gender dari data SIAKAD, tidak ditanya ulang</p>
+          </div>
+          <div class="flex shrink-0 items-center gap-3 text-xs">
+            <span class="flex items-center gap-1.5 text-slate-600"><span class="h-2.5 w-2.5 rounded-full bg-primary-600"></span>Laki-laki</span>
+            <span class="flex items-center gap-1.5 text-slate-600"><span class="h-2.5 w-2.5 rounded-full" style="background:#ec4899"></span>Perempuan</span>
+          </div>
+        </div>
+        <div class="h-56 w-full">
+          <canvas id="chartDemografi"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kuesioner Pengguna Lulusan -->
+    <div class="card min-w-0 p-5 sm:p-6">
+      <div class="mb-1 flex items-center justify-between">
+        <h3 class="text-base font-semibold text-slate-800">Kuesioner Pengguna Lulusan</h3>
+        <a href="kuesioner-builder.html?tpl=pengguna-lulusan" class="text-xs font-medium text-primary-600 hover:underline">Lihat Detail</a>
+      </div>
+      <p class="mb-5 text-xs text-slate-400">Penilaian kompetensi lulusan oleh atasan/pemberi kerja, per aspek kompetensi</p>
+      <div class="mb-4 flex flex-wrap items-center gap-3 text-xs">
+        <span class="flex items-center gap-1.5 text-slate-600"><span class="h-2.5 w-2.5 rounded-full" style="background:#dbeafe"></span>Kurang</span>
+        <span class="flex items-center gap-1.5 text-slate-600"><span class="h-2.5 w-2.5 rounded-full" style="background:#93c5fd"></span>Cukup</span>
+        <span class="flex items-center gap-1.5 text-slate-600"><span class="h-2.5 w-2.5 rounded-full bg-primary-600"></span>Baik</span>
+        <span class="flex items-center gap-1.5 text-slate-600"><span class="h-2.5 w-2.5 rounded-full" style="background:#1e3a8a"></span>Sangat Baik</span>
+      </div>
+      <div class="h-80 w-full">
+        <canvas id="chartKompetensi"></canvas>
+      </div>
+      <div class="callout-warning mt-5 flex items-start gap-3">
+        <i class="kk kk-warning-circle h-4 w-4 shrink-0 text-warning-600"></i>
+        <p class="text-sm text-slate-600">Aspek kompetensi terlemah: <span class="font-medium text-slate-800">Kemampuan Berbahasa Asing</span> — hanya 18% dinilai "Sangat Baik" oleh pemberi kerja, dan 12% dinilai "Kurang", tertinggi di antara semua aspek.</p>
+      </div>
+    </div>
+    </div>
+
+    <!-- Portal Karir tab -->
+    <div data-tab-panel="portal-karir" class="space-y-6">
+
+    <!-- Filter -->
+    <div class="card p-4 sm:p-5" data-combo-boundary>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <label class="form-label">Periode</label>
+          <div class="combo combo-full" data-combo>
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>30 Hari Terakhir</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item" data-combo-item data-label="7 Hari Terakhir">7 Hari Terakhir</button>
+                <button type="button" class="combo-item is-selected" data-combo-item data-label="30 Hari Terakhir">30 Hari Terakhir</button>
+                <button type="button" class="combo-item" data-combo-item data-label="3 Bulan Terakhir">3 Bulan Terakhir</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Tahun Ini">Tahun Ini</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Semua Waktu">Semua Waktu</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Kategori</label>
+          <div class="combo combo-full" data-combo>
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Kategori</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-label="Semua Kategori">Semua Kategori</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Lowongan">Lowongan</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Event">Event</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Kerjasama">Kerjasama</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Status</label>
+          <div class="combo combo-full" data-combo>
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Status</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-label="Semua Status">Semua Status</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Menunggu Persetujuan">Menunggu Persetujuan</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Disetujui / Aktif">Disetujui / Aktif</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Ditolak">Ditolak</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-end">
+          <button class="btn-primary btn-md w-full">
+            <i class="kk kk-magnifying-glass h-4 w-4 shrink-0"></i>
+            Terapkan Filter
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portal Karir row -->
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="card overflow-hidden">
+        <div class="flex items-center justify-between border-b border-slate-100 p-5">
+          <h3 class="text-base font-semibold text-slate-800">Lowongan Menunggu Persetujuan</h3>
+          <span class="badge-warning">5</span>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex items-center gap-3 p-4">
+            <span class="avatar h-9 w-9 bg-info-100 text-info-700">GJ</span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Gojek</p>
+              <p class="truncate text-xs text-slate-400">Product Designer · diajukan 2 jam lalu</p>
+            </div>
+            <div class="flex shrink-0 items-center gap-1.5">
+              <button class="btn-outline btn-sm">Tolak</button>
+              <button class="btn-primary btn-sm">Setujui</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-4">
+            <span class="avatar h-9 w-9 bg-warning-100 text-warning-700">TP</span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Tokopedia</p>
+              <p class="truncate text-xs text-slate-400">UI/UX Researcher · diajukan kemarin</p>
+            </div>
+            <div class="flex shrink-0 items-center gap-1.5">
+              <button class="btn-outline btn-sm">Tolak</button>
+              <button class="btn-primary btn-sm">Setujui</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-4">
+            <span class="avatar h-9 w-9 bg-primary-100 text-primary-700">BJ</span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Bank Jago</p>
+              <p class="truncate text-xs text-slate-400">Business Analyst · diajukan 2 hari lalu</p>
+            </div>
+            <div class="flex shrink-0 items-center gap-1.5">
+              <button class="btn-outline btn-sm">Tolak</button>
+              <button class="btn-primary btn-sm">Setujui</button>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-slate-100 p-4 text-center">
+          <a href="#" class="text-sm font-medium text-primary-600 hover:underline">Lihat semua lowongan menunggu →</a>
+        </div>
+      </div>
+
+      <div class="card overflow-hidden">
+        <div class="flex items-center justify-between border-b border-slate-100 p-5">
+          <h3 class="text-base font-semibold text-slate-800">Event Mendatang</h3>
+          <a href="#" class="text-xs font-medium text-primary-600 hover:underline">Lihat Semua</a>
+        </div>
+        <div class="space-y-4 p-5">
+          <div class="flex items-center gap-3">
+            <div class="flex w-11 shrink-0 flex-col items-center rounded-lg bg-primary-50 py-1.5">
+              <span class="text-[10px] font-semibold uppercase text-primary-500">Sep</span>
+              <span class="text-sm font-bold text-primary-700">15</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Career Fair Nusantara 2026</p>
+              <p class="text-xs text-slate-400">Aula Kampus · 32 mitra terdaftar</p>
+            </div>
+            <i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-300"></i>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="flex w-11 shrink-0 flex-col items-center rounded-lg bg-slate-50 py-1.5">
+              <span class="text-[10px] font-semibold uppercase text-slate-400">Sep</span>
+              <span class="text-sm font-bold text-slate-600">18</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Webinar Persiapan Karir bersama Gojek</p>
+              <p class="text-xs text-slate-400">Daring (Zoom) · 214 pendaftar</p>
+            </div>
+            <i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-300"></i>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="flex w-11 shrink-0 flex-col items-center rounded-lg bg-slate-50 py-1.5">
+              <span class="text-[10px] font-semibold uppercase text-slate-400">Sep</span>
+              <span class="text-sm font-bold text-slate-600">22</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Recruitment Day - Bank Jago</p>
+              <p class="text-xs text-slate-400">Gedung Rektorat · 12 slot interview</p>
+            </div>
+            <i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kerjasama Terbaru -->
+    <div class="card overflow-hidden">
+      <div class="flex items-center justify-between border-b border-slate-100 p-5">
+        <h3 class="text-base font-semibold text-slate-800">Kerjasama Terbaru</h3>
+        <a href="#" class="text-xs font-medium text-primary-600 hover:underline">Lihat Semua</a>
+      </div>
+      <div class="divide-y divide-slate-100">
+        <div class="flex items-center gap-3 p-4">
+          <span class="avatar h-9 w-9 bg-slate-100 text-slate-600">OV</span>
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-medium text-slate-800">OVO</p>
+            <p class="text-xs text-slate-400">MoU rekrutmen &amp; magang · disetujui 2 hari lalu</p>
+          </div>
+          <span class="badge-success">Aktif</span>
+        </div>
+        <div class="flex items-center gap-3 p-4">
+          <span class="avatar h-9 w-9 bg-info-100 text-info-700">DN</span>
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-medium text-slate-800">DANA</p>
+            <p class="text-xs text-slate-400">MoU penempatan kerja · disetujui 5 hari lalu</p>
+          </div>
+          <span class="badge-success">Aktif</span>
+        </div>
+        <div class="flex items-center gap-3 p-4">
+          <span class="avatar h-9 w-9 bg-success-100 text-success-700">RG</span>
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-medium text-slate-800">Ruangguru</p>
+            <p class="text-xs text-slate-400">Perpanjangan MoU · menunggu tanda tangan</p>
+          </div>
+          <span class="badge-neutral">Proses</span>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Aktivitas Lamaran + Laporan (General) -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+    <div class="card overflow-hidden lg:col-span-2">
+      <div class="flex flex-col gap-3 border-b border-slate-100 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <h3 class="text-base font-semibold text-slate-800">Aktivitas Lamaran Terbaru</h3>
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+              <i class="kk kk-magnifying-glass h-3.5 w-3.5"></i>
+            </span>
+            <input class="input h-9 w-full pl-8 sm:w-56" placeholder="Cari mahasiswa / posisi" />
+          </div>
+          <a href="#" class="whitespace-nowrap text-sm font-medium text-primary-600 hover:underline">Lihat Semua</a>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="px-2 sm:px-4">Mahasiswa/Alumni</th>
+              <th class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">Posisi</th>
+              <th class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">Perusahaan</th>
+              <th class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">Tanggal</th>
+              <th class="px-2 sm:px-4">Status</th>
+              <th class="px-2 sm:px-4"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-primary-100 text-primary-700">AN</span>
+                  <div class="min-w-0 max-w-[100px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Andi Nugroho</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">Product Designer &middot; Gojek</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">Product Designer</td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">Gojek</td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">3 Sep 2026</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[70px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Interview</span></td>
+              <td class="px-2 text-right text-slate-300 sm:px-4">
+                <i class="kk kk-caret-right ml-auto h-4 w-4"></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-warning-100 text-warning-700">SP</span>
+                  <div class="min-w-0 max-w-[100px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Sari Puspita</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">UI/UX Researcher &middot; Tokopedia</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">UI/UX Researcher</td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">Tokopedia</td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">1 Sep 2026</td>
+              <td class="px-2 sm:px-4"><span class="badge-info max-w-[70px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
+              <td class="px-2 text-right text-slate-300 sm:px-4">
+                <i class="kk kk-caret-right ml-auto h-4 w-4"></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-info-100 text-info-700">RD</span>
+                  <div class="min-w-0 max-w-[100px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Rudi Hartono</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">Business Analyst &middot; Bank Jago</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">Business Analyst</td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">Bank Jago</td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">25 Agu 2026</td>
+              <td class="px-2 sm:px-4"><span class="badge-success max-w-[70px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Ditawari</span></td>
+              <td class="px-2 text-right text-slate-300 sm:px-4">
+                <i class="kk kk-caret-right ml-auto h-4 w-4"></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-2 sm:px-4">
+                <div class="flex items-center gap-3">
+                  <span class="avatar h-9 w-9 bg-danger-100 text-danger-700">DP</span>
+                  <div class="min-w-0 max-w-[100px] sm:max-w-none">
+                    <span class="block font-medium text-slate-800">Dewi Pratiwi</span>
+                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">Frontend Engineer &middot; Traveloka</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">Frontend Engineer</td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">Traveloka</td>
+              <td class="hidden sm:table-cell sm:max-w-[85px] sm:truncate">18 Agu 2026</td>
+              <td class="px-2 sm:px-4"><span class="badge-danger max-w-[70px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
+              <td class="px-2 text-right text-slate-300 sm:px-4">
+                <i class="kk kk-caret-right ml-auto h-4 w-4"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+      <div class="card min-w-0 self-start p-5">
+        <h3 class="mb-1 text-base font-semibold text-slate-800">Laporan &amp; Publikasi</h3>
+        <p class="mb-4 text-xs text-slate-400">Ekspor data untuk akreditasi &amp; publikasi</p>
+        <div class="space-y-2.5">
+          <a href="#" class="flex items-center gap-3 rounded-xl border border-slate-100 p-3 text-sm transition-colors hover:bg-slate-50">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
+              <i class="kk kk-chart-bar h-4 w-4"></i>
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-slate-700">Laporan Tracer Study</span>
+              <span class="block truncate text-xs text-slate-400">Partisipasi &amp; status karier alumni</span>
+            </span>
+            <i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-300"></i>
+          </a>
+          <a href="#" class="flex items-center gap-3 rounded-xl border border-slate-100 p-3 text-sm transition-colors hover:bg-slate-50">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600">
+              <i class="kk kk-briefcase h-4 w-4"></i>
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-slate-700">Laporan Penempatan Kerja</span>
+              <span class="block truncate text-xs text-slate-400">Lowongan, event &amp; kerja sama mitra</span>
+            </span>
+            <i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-300"></i>
+          </a>
+          <a href="#" class="flex items-center gap-3 rounded-xl border border-slate-100 p-3 text-sm transition-colors hover:bg-slate-50">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600">
+              <i class="kk kk-monitor h-4 w-4"></i>
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-slate-700">Statistik Publikasi Landing Page</span>
+              <span class="block truncate text-xs text-slate-400">Kunjungan &amp; interaksi halaman publik</span>
+            </span>
+            <i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-300"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const openBtn = document.getElementById('openSidebarBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  openBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+
+  // Desktop sidebar on/off — fully hides the sidebar (not a mini/collapsed
+  // version) and lets the content take the full width. Separate from the
+  // mobile overlay above, and persisted so the choice survives reloads.
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const toggleBtn = document.getElementById('toggleSidebarDesktopBtn');
+    if (!sidebar || !mainColumn || !toggleBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-hidden';
+    // "!"-suffixed so it overrides the base lg:translate-x-0 rather than
+    // losing to it on class order/specificity ties.
+    const HIDE_CLASS = 'lg:-translate-x-full!';
+
+    function applyHidden(hidden) {
+      sidebar.classList.toggle(HIDE_CLASS, hidden);
+      mainColumn.classList.toggle('lg:pl-[264px]', !hidden);
+    }
+
+    let hidden = false;
+    try {
+      hidden = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyHidden(hidden);
+
+    toggleBtn.addEventListener('click', () => {
+      hidden = !hidden;
+      applyHidden(hidden);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(hidden));
+      } catch (e) {}
+    });
+  })();
+
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+
+  // Tracer Study charts (Chart.js). All of them live inside the (initially
+  // hidden) Tracer Study tab panel, so each instance is kept here and
+  // resized once that panel is shown - Chart.js measures canvas size at
+  // construction time, and a `display: none` ancestor reports zero size
+  // at that point.
+  const tracerCharts = [];
+  (function () {
+    if (typeof Chart === 'undefined') return;
+
+    const tooltipBase = {
+      backgroundColor: '#0f172a',
+      padding: 10,
+      cornerRadius: 8,
+      displayColors: false,
+    };
+
+    function makeChart(canvasId, config) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+      const chart = new Chart(canvas.getContext('2d'), config);
+      tracerCharts.push(chart);
+    }
+
+    // Riwayat Pengisian Tracer Study - corong tahap penyelesaian pengisian
+    // kuesioner untuk gelombang yang sedang berjalan (bukan lagi total per
+    // gelombang), supaya kelihatan di tahap mana alumni paling banyak
+    // berhenti mengisi.
+    (function () {
+      const funnelStages = [
+        { label: 'Terkirim', value: 450, color: '#94a3b8' },
+        { label: 'Dibuka', value: 338, color: '#0284c7' },
+        { label: 'Mulai Diisi', value: 210, color: '#f67e28' },
+        { label: 'Selesai', value: 156, color: '#059669' },
+      ];
+      const total = funnelStages[0].value;
+      makeChart('chartRiwayatPengisian', {
+        type: 'bar',
+        data: {
+          labels: funnelStages.map((s) => s.label),
+          datasets: [{
+            data: funnelStages.map((s) => s.value),
+            backgroundColor: funnelStages.map((s) => s.color),
+            borderRadius: 6,
+            maxBarThickness: 32,
+          }],
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              ...tooltipBase,
+              callbacks: {
+                label: (item) => `${item.formattedValue} · ${Math.round((item.raw / total) * 100)}% dari terkirim`,
+              },
+            },
+          },
+          scales: {
+            x: { beginAtZero: true, grid: { color: '#f1f5f9' }, border: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 } } },
+            y: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 12 } } },
+          },
+        },
+      });
+    })();
+
+    // Distribusi Status Karier Alumni.
+    makeChart('chartStatusKarier', {
+      type: 'doughnut',
+      data: {
+        labels: ['Bekerja', 'Wiraswasta', 'Melanjutkan Studi', 'Mencari Kerja'],
+        datasets: [{
+          data: [52, 11, 7, 30],
+          backgroundColor: ['#059669', '#7c3aed', '#0284c7', '#d97706'],
+          borderWidth: 2,
+          borderColor: '#ffffff',
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '72%',
+        plugins: {
+          legend: { display: false },
+          tooltip: { ...tooltipBase, callbacks: { label: (item) => `${item.label}: ${item.formattedValue}%` } },
+        },
+      },
+    });
+
+    // Distribusi Waktu Tunggu Mendapatkan Pekerjaan Pertama.
+    makeChart('chartWaktuTunggu', {
+      type: 'doughnut',
+      data: {
+        labels: ['0-3 Bulan', '3-6 Bulan', '6-12 Bulan', '> 12 Bulan'],
+        datasets: [{
+          data: [47, 12, 24, 16],
+          backgroundColor: ['#1e3a8a', '#2361e7', '#93c5fd', '#dbeafe'],
+          borderWidth: 2,
+          borderColor: '#ffffff',
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '72%',
+        plugins: {
+          legend: { display: false },
+          tooltip: { ...tooltipBase, callbacks: { label: (item) => `${item.label}: ${item.formattedValue}%` } },
+        },
+      },
+    });
+
+    // Persebaran Alumni per Lokasi Kerja - ranked horizontal bar per provinsi.
+    makeChart('chartLokasiKerja', {
+      type: 'bar',
+      data: {
+        labels: ['Jawa Timur', 'DKI Jakarta', 'Jawa Barat', 'Jawa Tengah', 'Bali', 'Lainnya'],
+        datasets: [{
+          data: [412, 287, 176, 134, 58, 96],
+          backgroundColor: '#2361e7',
+          borderRadius: 4,
+          maxBarThickness: 22,
+        }],
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { ...tooltipBase, callbacks: { label: (item) => `${item.formattedValue} alumni` } },
+        },
+        scales: {
+          x: { beginAtZero: true, grid: { color: '#f1f5f9' }, border: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 } } },
+          y: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 11 } } },
+        },
+      },
+    });
+
+    // Demografi Alumni Bekerja per Daerah - stacked gender per provinsi.
+    makeChart('chartDemografi', {
+      type: 'bar',
+      data: {
+        labels: ['Jatim', 'Jakarta', 'Jabar', 'Jateng', 'Bali'],
+        datasets: [
+          { label: 'Laki-laki', data: [228, 152, 96, 74, 31], backgroundColor: '#2361e7', borderRadius: 4, maxBarThickness: 40 },
+          { label: 'Perempuan', data: [184, 135, 80, 60, 27], backgroundColor: '#ec4899', borderRadius: 4, maxBarThickness: 40 },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { ...tooltipBase, displayColors: true, callbacks: { label: (item) => `${item.dataset.label}: ${item.formattedValue}` } },
+        },
+        scales: {
+          x: { stacked: true, grid: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 } } },
+          y: { stacked: true, beginAtZero: true, grid: { color: '#f1f5f9' }, border: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 } } },
+        },
+      },
+    });
+
+    // Kuesioner Pengguna Lulusan - penilaian kompetensi per aspek (stacked).
+    makeChart('chartKompetensi', {
+      type: 'bar',
+      data: {
+        labels: [
+          'Integritas/Etika', 'Profesionalisme', 'Bahasa Asing', 'Penggunaan TI',
+          'Komunikasi', 'Kerjasama Tim', 'Kepemimpinan', 'Pengembangan Diri',
+        ],
+        datasets: [
+          { label: 'Kurang', data: [3, 5, 12, 4, 6, 3, 8, 5], backgroundColor: '#dbeafe' },
+          { label: 'Cukup', data: [12, 18, 35, 16, 20, 14, 24, 19], backgroundColor: '#93c5fd' },
+          { label: 'Baik', data: [38, 42, 35, 40, 40, 39, 38, 41], backgroundColor: '#2361e7' },
+          { label: 'Sangat Baik', data: [47, 35, 18, 40, 34, 44, 30, 35], backgroundColor: '#1e3a8a' },
+        ],
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { ...tooltipBase, displayColors: true, callbacks: { label: (item) => `${item.dataset.label}: ${item.formattedValue}%` } },
+        },
+        scales: {
+          x: { stacked: true, max: 100, grid: { color: '#f1f5f9' }, border: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 }, callback: (value) => value + '%' } },
+          y: { stacked: true, grid: { display: false }, ticks: { color: '#64748b', font: { size: 11 } } },
+        },
+      },
+    });
+  })();
+
+  // Generic self-positioning dropdown/combobox (same component as the one
+  // documented in the main index.html style guide) - flips down/up and
+  // start/end alignment to whichever side has room, with optional in-menu
+  // search. Used here for the Tracer Study filter bar's Angkatan/Tahun
+  // Lulus/Program Studi fields.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const search = menu.querySelector('[data-combo-search]');
+      const emptyEl = menu.querySelector('[data-combo-empty]');
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        if (search) {
+          search.value = '';
+          filterItems('');
+          requestAnimationFrame(() => search.focus());
+        }
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      if (search) {
+        search.addEventListener('click', (e) => e.stopPropagation());
+        search.addEventListener('input', () => filterItems(search.value.trim().toLowerCase()));
+      }
+
+      function filterItems(query) {
+        let visibleCount = 0;
+        getItems().forEach((item) => {
+          const text = (item.getAttribute('data-label') || item.textContent).trim().toLowerCase();
+          const match = text.includes(query);
+          item.classList.toggle('hidden', !match);
+          if (match) visibleCount += 1;
+        });
+        if (emptyEl) emptyEl.classList.toggle('hidden', visibleCount > 0);
+      }
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Dashboard segmented tabs: Portal Karir / Tracer Study.
+  (function () {
+    const tabs = document.querySelectorAll('#dashboardTabs [data-tab]');
+    const panels = document.querySelectorAll('[data-tab-panel]');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => t.classList.toggle('tab-active', t === tab));
+        panels.forEach((panel) => {
+          panel.classList.toggle('hidden', panel.dataset.tabPanel !== tab.dataset.tab);
+        });
+        if (tab.dataset.tab === 'tracer-study') {
+          tracerCharts.forEach((chart) => chart.resize());
+        }
+      });
+    });
+  })();
+
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+</script>
+</body>
+</html>
