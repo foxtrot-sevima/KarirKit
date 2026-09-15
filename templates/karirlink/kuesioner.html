@@ -88,6 +88,13 @@
       </div>
     </div>
   </nav>
+
+  <div class="border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item">
+      <i class="kk kk-question h-5 w-5 shrink-0"></i>
+      Panduan Pengguna
+    </a>
+  </div>
 </aside>
 
 <!-- ============================= MAIN COLUMN ============================= -->
@@ -141,10 +148,16 @@
         <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Kuesioner Tracer Study</h2>
         <p class="mt-1 text-sm text-slate-500">Kelola template pertanyaan untuk tiga sasaran responden. Hanya template <span class="font-medium text-slate-700">Kosong</span> yang mendukung banyak versi.</p>
       </div>
-      <a href="kuesioner-simulasi.html" class="btn-primary btn-md w-full sm:w-auto">
-        <i class="kk kk-eye h-4 w-4 shrink-0"></i>
-        Simulasi Tracer
-      </a>
+      <div class="flex flex-col gap-2.5 sm:flex-row">
+        <button type="button" id="openPanduanBtn" class="btn-outline btn-md w-full sm:w-auto">
+          <i class="kk kk-question h-4 w-4 shrink-0"></i>
+          Lihat Panduan
+        </button>
+        <a href="kuesioner-simulasi.html" class="btn-primary btn-md w-full sm:w-auto">
+          <i class="kk kk-eye h-4 w-4 shrink-0"></i>
+          Simulasi Tracer
+        </a>
+      </div>
     </div>
 
     <!-- Template cards -->
@@ -230,6 +243,38 @@
   </footer>
 </div>
 
+<!-- ============================= PANDUAN MODAL ============================= -->
+<div id="panduanOverlay" class="fixed inset-0 z-50 hidden bg-slate-900/30 p-4">
+  <div class="flex h-full items-center justify-center">
+    <div id="panduanPanel" class="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-card-lg">
+      <div class="flex items-center justify-between border-b border-slate-100 p-5">
+        <h3 class="text-base font-semibold text-slate-800">Panduan Kuesioner Tracer Study</h3>
+        <button type="button" id="closePanduanBtn" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+          <i class="kk kk-x h-4 w-4"></i>
+        </button>
+      </div>
+      <div class="space-y-5 p-5">
+        <div>
+          <h4 class="text-sm font-semibold text-slate-800">1. Tiga Template Kuesioner</h4>
+          <p class="mt-1 text-sm text-slate-500"><span class="font-medium text-slate-700">Lulusan</span> ditujukan ke mahasiswa yang baru diyudisium, <span class="font-medium text-slate-700">Pengguna Lulusan</span> diisi oleh atasan/perusahaan tempat lulusan bekerja, dan <span class="font-medium text-slate-700">Kosong</span> adalah template kustom untuk kebutuhan survei di luar dua jenis tersebut.</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-slate-800">2. Tingkatan Pertanyaan</h4>
+          <p class="mt-1 text-sm text-slate-500">Setiap pertanyaan termasuk salah satu dari tiga tingkatan: <span class="badge-primary">Core</span> punya kode Dikti resmi dan tidak dapat dihapus, <span class="badge-info">Optional</span> disediakan sistem dan tinggal diaktifkan, atau <span class="badge-secondary">Custom</span> dibuat bebas oleh admin kampus.</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-slate-800">3. Gelombang Pengiriman</h4>
+          <p class="mt-1 text-sm text-slate-500">Khusus template Lulusan, pertanyaan dikelompokkan menjadi tiga gelombang sesuai waktu pengiriman ke alumni: <span class="font-medium text-slate-700">Pra-Lulus</span>, <span class="font-medium text-slate-700">Pasca-Lulus 1 Tahun</span>, dan <span class="font-medium text-slate-700">Pasca-Lulus 4 Tahun</span>.</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-slate-800">4. Simulasi Pengisian Alumni</h4>
+          <p class="mt-1 text-sm text-slate-500">Gunakan tombol <span class="font-medium text-slate-700">Simulasi Tracer</span> untuk melihat tampilan pengisian kuesioner dari sudut pandang alumni, untuk ketiga gelombang di atas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sidebarOverlay');
@@ -295,6 +340,27 @@
       chevron?.classList.remove("rotate-180");
     });
   })();
+  // Panduan modal.
+  (function () {
+    const overlay = document.getElementById("panduanOverlay");
+    const openBtn = document.getElementById("openPanduanBtn");
+    const closeBtn = document.getElementById("closePanduanBtn");
+    if (!overlay || !openBtn) return;
+
+    function closePanduan() {
+      overlay.classList.add("hidden");
+    }
+
+    openBtn.addEventListener("click", () => overlay.classList.remove("hidden"));
+    closeBtn?.addEventListener("click", closePanduan);
+    overlay.addEventListener("click", (e) => {
+      if (!e.target.closest("#panduanPanel")) closePanduan();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closePanduan();
+    });
+  })();
+
   // Footer copyright year - kept current automatically (no backend templating here).
   document.querySelectorAll(".js-current-year").forEach((el) => {
     el.textContent = new Date().getFullYear();
