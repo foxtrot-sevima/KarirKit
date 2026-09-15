@@ -6,6 +6,132 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- `templates/karirlink/kuesioner-simulasi.html` dirombak total supaya benar-benar
+  mengikuti `templates/karirlink/docs/about-tracer/arsitektur-pertanyaan.md`
+  apa adanya (tidak lagi mockup generik) - dipicu laporan bahwa pertanyaan
+  Email aktif & No HP/WhatsApp (dok Wave Exit #1-#2) tidak ada sama sekali
+  di simulasi sebelumnya:
+  - Dipecah jadi dua flow terpisah (`data-flow="exit"` vs `data-flow="g1"`)
+    karena strukturnya memang beda di dokumen, bukan cuma teks yang beda
+    seperti sebelumnya. Gelombang Pasca-Lulus 1 Tahun & 4 Tahun sama-sama
+    memakai flow G1 karena dokumen tidak mendefinisikan skema G2 terpisah -
+    reuse ini disengaja, bukan disamaratakan sembarangan.
+  - **Wave Exit** (Pra-Lulus): 8 pertanyaan sesuai dok bagian 1 - termasuk
+    Email & No HP aktif (editable, pre-fill - sebelumnya hilang), status
+    pralulus 3 opsi (Ya sudah bekerja/Ya sudah berwirausaha/Belum, bukan
+    cuma Sudah/Belum seperti sebelumnya), nama tempat kerja/usaha
+    kondisional, rencana, dukungan kampus, LinkedIn, testimoni.
+  - **Wave G1**: verifikasi pra-lulus (kondisional), status `f8` kini 5
+    cabang sesuai dok (Bekerja/Wiraswasta/Melanjutkan Pendidikan/Tidak
+    kerja tapi mencari/Belum memungkinkan bekerja - sebelumnya cuma 4
+    opsi, "Belum memungkinkan" tidak ada sama sekali), `f1001` (aktif
+    mencari kerja) & `f1201` (sumber dana kuliah) yang sebelumnya tidak
+    ada, serta Masa Tunggu yang diperbaiki dari dropdown rentang bulan
+    (buatan) jadi input angka bulan polos sesuai dok.
+  - **Cabang Bekerja**: field yang sebelumnya salah/mengarang diperbaiki -
+    "Bidang usaha perusahaan" (daftar sektor industri buatan) diganti
+    "Jenis perusahaan/instansi" dengan 7 opsi persis dari dok; "Kisaran
+    gaji" (dropdown rentang buatan) diganti input angka rupiah polos;
+    field "Posisi/jabatan" bebas ketik yang tidak ada di dok dihapus
+    (sudah terwakili "Kedudukan di tempat kerja"). Ditambahkan field yang
+    sebelumnya hilang total: Tingkat tempat kerja, Keeratan bidang studi,
+    Jenjang pendidikan sesuai, dan Cara mencari pekerjaan (14 checkbox +
+    Lainnya, teksnya diambil dari
+    `Tabel-Master-Pertanyaan-Tracer-Study.md` di folder docs yang sama -
+    dok arsitektur cuma bilang "15 kolom biner" tanpa isi teksnya).
+  - **Cabang Wiraswasta, Melanjutkan Pendidikan, Tidak Kerja Tapi
+    Mencari, Belum Memungkinkan Bekerja**: sebelumnya tidak ada sama
+    sekali (mockup lama cuma py "usaha"/"studi"/"belum" generik yang
+    tidak cocok field-nya) - sekarang masing-masing punya pertanyaan
+    persis sesuai dok bagian 4-7, termasuk cabang "Belum Memungkinkan"
+    yang memang tidak ada pertanyaan tambahan (langsung ke Kompetensi).
+  - **Tingkat Kompetensi** (dok bagian 8, wajib semua status): matriks
+    `f17` (7 aspek × 2 penilaian - saat lulus & saat ini, skala 1-5) dan
+    `f2` (7 aspek metode pembelajaran, skala 1-5) - sebelumnya tidak ada
+    sama sekali. Nama 7 aspek `f2` (Perkuliahan, Demonstrasi, dst) juga
+    diambil dari `Tabel-Master-Pertanyaan-Tracer-Study.md` karena dok
+    arsitektur tidak mencantumkannya.
+  - Sengaja **tidak** diimplementasikan: dok bagian 9 (Optional - Proses
+    Pencarian Kerja) & bagian 10 (Optional Bundle Kemenkes) - keduanya
+    togglable oleh Admin CDC dan default nonaktif, jadi bukan bagian alur
+    baku, bukan terlewat.
+  - Semua radio/checkbox baru pakai `.radio-card`, semua dropdown baru
+    pakai `.combo` KarirKit (konsisten dengan pekerjaan sebelumnya),
+    tidak ada kode Dikti/internal yang tampil ke user.
+  - Diverifikasi lewat Playwright: seluruh 5 cabang G1, auto-fill
+    verifikasi pra-lulus, reveal "Lainnya" (termasuk perbaikan bug reveal
+    pada grup radio - sibling yang unchecked tidak ikut ter-update tanpa
+    ini), toggle Negara/Provinsi/Kabupaten, dan gating Data Atasan
+    (Bekerja saja) semuanya berjalan benar tanpa error konsol, serta
+    tidak ada horizontal overflow dari 320px sampai 1024px di kedua flow.
+  - Susulan setelah rombakan di atas: tanda bintang merah ditambahkan ke
+    setiap pertanyaan/field yang benar-benar "Wajib" per dok (Email, No
+    HP, status pralulus, `f8`, `f1001`, `f1201`, Masa Tunggu, serta semua
+    field wajib di cabang Bekerja/Wiraswasta/Melanjutkan Pendidikan) -
+    field yang "Tidak Wajib" (rencana, dukungan, LinkedIn, testimoni,
+    seluruh cabang Tidak Kerja Tapi Mencari) sengaja tidak diberi
+    bintang. Ditambahkan juga validasi sungguhan: tombol "Lanjut" kini
+    memblokir perpindahan step selama field wajib yang benar-benar bisa
+    dikosongkan (bukan yang sudah punya default terpilih) belum diisi -
+    email/no HP/nama tempat kerja/nama usaha/PT tujuan/dll akan
+    menampilkan pesan "Wajib diisi." dan border merah sampai diisi.
+    Field dengan default (radio yang sudah `checked`, kompetensi yang
+    sudah default skala 3) tidak perlu validasi tambahan karena memang
+    tidak pernah bisa kosong lewat UI. Section "Pertanyaan tambahan dari
+    admin kampus" (satisfaction scale + saran bebas, bukan bagian skema
+    Dikti) dihapus dari kedua flow sesuai permintaan, dan textarea
+    Testimoni diperbesar (2 → 4 baris) dengan placeholder lebih membantu,
+    helper text "Opsional - bisa dipakai untuk materi promosi" juga
+    dihapus. Diverifikasi lewat Playwright: validasi memblokir/meloloskan
+    step dengan benar di semua kasus (termasuk field kondisional seperti
+    nama tempat kerja yang cuma wajib saat statusnya bukan "Belum"), dan
+    tidak ada error konsol atau horizontal overflow baru.
+  - Komponen input disamakan dengan pola asli KarirKit di `index.html`
+    (bukan versi improvisasi sendiri): kedua field Pendapatan per bulan
+    (cabang Bekerja & Wiraswasta) diganti dari `<input type="number">`
+    polos jadi komponen currency input asli - prefix "Rp." + `data-
+    currency-input` yang otomatis menambah titik pemisah ribuan sambil
+    mengetik (JS `formatThousands` di-port verbatim dari `index.html`,
+    field "Ekspektasi Gaji") plus `form-hint` di bawahnya. Kedua textarea
+    (Dukungan kampus & Testimoni) juga diberi class `h-auto py-2.5` yang
+    sebelumnya hilang, sesuai pola textarea asli KarirKit ("Ringkasan
+    Profil" di `index.html`) - tanpa ini `.input`-nya ikut memaksakan
+    tinggi baris tunggal (`h-10`) yang bentrok dengan `rows` multi-baris.
+    Diverifikasi format ribuan berjalan benar sambil mengetik dan validasi
+    wajib-diisi tetap mengenali nilai currency yang sudah diformat, tanpa
+    error konsol atau horizontal overflow baru.
+  - Validasi wajib-diisi sekarang otomatis scroll + fokus ke pertanyaan
+    pertama yang belum terisi (urut dari atas ke bawah) begitu tombol
+    "Lanjut" diklik dan gagal - sebelumnya cuma menampilkan pesan error di
+    tempat tanpa memindahkan posisi, jadi kalau field yang kosong ada di
+    bagian bawah step (di luar layar), pengguna harus scroll sendiri
+    mencarinya. Berlaku untuk field teks (email, no HP, nama tempat
+    kerja/usaha, dll) maupun grup radio (status pralulus, verifikasi,
+    status `f8`) - untuk radio, fokus diarahkan ke pilihan pertama dalam
+    grup itu supaya seluruh pertanyaan & pesan error-nya ikut masuk ke
+    tengah layar. Diverifikasi lewat Playwright untuk 3 skenario: field
+    tunggal kosong di bagian bawah step, beberapa field kosong sekaligus
+    (harus lompat ke yang PERTAMA, bukan asal satu), dan grup radio kosong
+    - ketiganya scroll & fokus ke elemen yang benar tanpa error konsol.
+  - Bug reveal "Lainnya" belum tuntas dari perbaikan sebelumnya: untuk grup
+    radio di mana cuma opsi "Lainnya" yang punya `data-reveals` (f1001,
+    f1201, Jenis Instansi di cabang Bekerja & Wiraswasta), memilih "Lainnya"
+    lalu berpindah ke opsi LAIN (bukan "Lainnya" lagi) tidak menyembunyikan
+    kembali kolom teks bebasnya - karena listener `change` cuma dipasang di
+    radio yang punya `data-reveals` sendiri, sedangkan opsi lain di grup
+    yang sama (mis. "Perusahaan swasta") tidak punya atribut itu sama
+    sekali sehingga tidak pernah memicu pengecekan ulang. Diperbaiki
+    dengan memasang listener ke SELURUH radio dalam grup manapun yang
+    memiliki anggota "Lainnya" (bukan cuma anggota yang punya
+    `data-reveals`), sehingga pindah ke opsi apa pun tetap mengevaluasi
+    ulang dan menyembunyikan reveal yang sudah kadung terbuka. Checkbox
+    (`f4`, boleh pilih lebih dari satu) tidak terdampak bug ini - statusnya
+    independen per checkbox sehingga sudah benar sejak awal. Diverifikasi
+    lewat Playwright di keempat grup radio yang kena bug (f1001, f1201,
+    Jenis Instansi Bekerja & Wiraswasta) plus regresi pada f4 checkbox dan
+    f301 (grup radio yang sebelumnya sudah benar) - semuanya tetap benar
+    tanpa error konsol.
+
 - Tab "Tracer Study" di dashboard KarirLink dirombak total dari satu
   grafik tren + kartu Perlu Perhatian menjadi enam widget analitik nyata,
   meniru pola dari prototipe produk Tracer Study SEVIMA yang sudah ada
@@ -240,6 +366,25 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - Sidebar admin KarirLink diperbarui: "Kuesioner" sekarang tautan aktif,
     dan item baru "Daftar Yudisium" ditambahkan tepat di bawahnya dalam
     grup "Tracer".
+
+### Changed
+- `templates/karirlink/kuesioner-simulasi.html`: seluruh 11 dropdown native
+  `<select>` (Bidang usaha, Kisaran gaji, Kedudukan, Negara, Provinsi,
+  Kabupaten/Kota, Jenjang, Jumlah karyawan, Masa Tunggu, plus dropdown
+  admin "Simulasikan jawaban Wave Exit") diganti komponen `.combo` KarirKit
+  yang sama seperti dipakai di filter dashboard `index.html` - trigger +
+  menu self-positioning (flip atas/bawah, start/end) dengan JS
+  `setupCombo`/`getBoundary` di-port ke halaman ini. Komponen di-perluas
+  dengan dukungan `data-value` (bukan cuma `data-label` untuk teks
+  tampilan) plus helper `getComboValue`/`setComboValue`/`setComboLocked`,
+  supaya combo yang perlu dibaca/di-set dari JS (simulator Wave Exit,
+  toggle Negara, auto-fill Masa Tunggu) tetap berfungsi sama seperti
+  sebelumnya sebagai `<select>` — termasuk state "terkunci" (trigernya
+  jadi `<button disabled>` sungguhan, bukan cuma visual) saat Masa Tunggu
+  di-auto-fill oleh jawaban verifikasi pra-lulus. Diverifikasi semua
+  logika (auto-fill, sembunyikan Provinsi/Kabupaten saat pilih luar
+  negeri, kunci/buka kunci Masa Tunggu) tetap jalan lewat combo dan tidak
+  ada horizontal overflow dari 320px sampai 1440px.
 
 ### Fixed
 - Tabel "Aktivitas Lamaran Terbaru" di `templates/karirlink/index.html`
