@@ -6,6 +6,105 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Tab "Tracer Study" di dashboard KarirLink dirombak total dari satu
+  grafik tren + kartu Perlu Perhatian menjadi enam widget analitik nyata,
+  meniru pola dari prototipe produk Tracer Study SEVIMA yang sudah ada
+  (`Tracer Study/tracer-study/v2.1` & `v3`) - semuanya pakai
+  [Chart.js](https://www.chartjs.org/) (v4.5.1, dimuat dari cdnjs), satu
+  library yang sama dipakai konsisten di kedua prototipe referensi:
+  - **Filter** - card berisi tiga dropdown (Angkatan, Tahun Lulus, Program
+    Studi) + tombol "Terapkan Filter", ditaruh di atas semua widget tab
+    ini - pola filter berbasis dropdown angkatan/tahun-lulus ini yang
+    dipakai di kedua prototipe referensi untuk "filter berdasarkan waktu"
+    (bukan date-range picker - tidak ada satu pun di seluruh referensi).
+    Ketiga dropdown-nya pakai komponen `.combo` dari UI kit (bukan
+    `<select>` bawaan browser) - trigger + menu self-positioning dengan
+    pencarian di dalam menu untuk Program Studi, persis komponen yang
+    sama seperti field "Level Pengalaman" di `index.html`. JS-nya
+    (`setupCombo`/`getBoundary`) di-port verbatim ke halaman ini karena
+    sebelumnya belum ada combo apa pun terpakai di
+    `templates/karirlink/index.html`.
+  - **Riwayat Pengisian Tracer Study** - awalnya bar chart total responden
+    per gelombang (menggantikan grafik "Tren Partisipasi" SVG lama yang
+    memakai `preserveAspectRatio="none"`, meregangkan viewBox tetap
+    secara tidak proporsional dan membuat garisnya terlihat panjang/
+    melebar tidak jelas di layar lebar - keluhan yang memicu perombakan
+    ini). Diganti lagi jadi bentuk corong (funnel) horizontal-bar 4 tahap
+    - Terkirim → Dibuka → Mulai Diisi → Selesai, untuk satu gelombang
+    yang sedang berjalan (badge "Gelombang Pra-Lulus") - dipilih dari 3
+    opsi bentuk diagram yang ditawarkan (line/area tren waktu, funnel,
+    bar bertumpuk sudah/belum) karena lebih menunjukkan di tahap mana
+    alumni paling banyak berhenti mengisi, bukan sekadar total akhir.
+    Warna tiap tahap juga progresif (abu netral → biru → oranye → hijau
+    sukses) dan tooltip-nya menampilkan persentase terhadap jumlah
+    terkirim.
+  - **Distribusi Status Karier Alumni** - donut (Bekerja/Wiraswasta/
+    Melanjutkan Studi/Mencari Kerja) dengan label besar di tengah donut
+    dan legenda HTML di sampingnya (bukan legenda bawaan Chart.js).
+  - **Distribusi Waktu Tunggu Pekerjaan Pertama** - donut serupa, 4 rentang
+    waktu (0-3/3-6/6-12/>12 bulan), gradasi biru gelap→terang mewakili
+    cepat→lambat.
+  - **Persebaran Alumni per Lokasi Kerja** - bar horizontal per provinsi,
+    diurutkan dari yang terbanyak.
+  - **Demografi Alumni Bekerja per Daerah** - stacked bar (Laki-laki/
+    Perempuan) per provinsi, dengan catatan bahwa data gender diambil dari
+    SIAKAD, bukan ditanya ulang di kuesioner.
+  - **Kuesioner Pengguna Lulusan** - stacked horizontal bar, 8 aspek
+    kompetensi (Integritas/Etika, Profesionalisme, Bahasa Asing,
+    Penggunaan TI, Komunikasi, Kerjasama Tim, Kepemimpinan, Pengembangan
+    Diri) × 4 tingkat penilaian (Kurang/Cukup/Baik/Sangat Baik), plus
+    callout otomatis menyoroti aspek kompetensi terlemah.
+  Semua kanvas berada di dalam tab "Tracer Study" yang defaultnya
+  tersembunyi (lihat segmented tab di bawah) - Chart.js mengukur ukuran
+  kanvas saat dibuat, jadi seluruh chart di-`resize()` ulang begitu tab
+  itu pertama kali dibuka supaya tidak salah ukur akibat container
+  `display: none`. Dua penyesuaian warna: "Demografi Alumni Bekerja per
+  Daerah" dipertegas jadi biru (Laki-laki) & pink `#ec4899` (Perempuan) -
+  sebelumnya oranye brand (secondary) yang kurang lazim untuk konteks
+  gender; "Distribusi Status Karier Alumni" diberi warna yang lebih
+  sesuai konteks psikologisnya per kategori - Bekerja tetap hijau
+  (positif), Mencari Kerja tetap amber (perlu perhatian), tapi
+  Melanjutkan Studi dipindah dari oranye (bentrok makna dengan Mencari
+  Kerja yang sama-sama warna hangat, padahal satu netral/positif dan
+  satu perlu perhatian) ke biru (asosiasi akademik), dan Wiraswasta
+  diberi ungu `#7c3aed` tersendiri (mandiri/wirausaha, berbeda dari
+  Bekerja yang notabene bekerja untuk orang lain) alih-alih berbagi
+  warna info dengan kategori lain.
+- Dashboard `templates/karirlink/index.html` dipisah jadi dua segmented
+  tab, "Portal Karir" dan "Tracer Study", menggantikan tombol "Kirim
+  Reminder Tracer" dan "Tambah Lowongan" yang sebelumnya ada di baris
+  sapaan (kedua aksi itu sudah tersedia kontekstual di dalam konten
+  masing-masing tab - "Kirim Reminder Sekarang" di kartu Perlu Perhatian,
+  "Setujui/Tolak" di kartu Lowongan Menunggu Persetujuan). Tab "Portal
+  Karir" (aktif secara default) berisi Lowongan Menunggu Persetujuan,
+  Event Mendatang, dan Kerjasama Terbaru; tab "Tracer Study" berisi
+  keenam widget analitik Tracer Study (lihat poin di atas) plus kartu
+  Perlu Perhatian. KPI row, Aktivitas
+  Lamaran Terbaru, dan Laporan & Publikasi (General, lintas keduanya)
+  tetap tampil di luar tab, tidak ikut terpisah. Kartu Aktivitas Lamaran
+  Terbaru sekarang berdampingan dengan Laporan & Publikasi (menggantikan
+  posisi Kerjasama Terbaru yang sudah pindah ke tab Portal Karir). Kedua
+  tombol tab-nya diberi `flex-1` di mobile (`sm:flex-none` supaya balik
+  ke lebar seukuran konten di layar yang lebih lebar) - sebelumnya
+  container pil abu-abunya melebar penuh di mobile tapi kedua tombolnya
+  tetap seukuran konten, jadi nempel di kiri dengan banyak ruang kosong
+  di kanan; sekarang keduanya berbagi rata lebar container.
+- Filter di tab "Portal Karir" dashboard KarirLink (sebelumnya cuma tab
+  "Tracer Study" yang punya) - card dengan tiga dropdown `.combo` (pakai
+  komponen UI kit yang sama seperti filter Tracer Study): **Periode**
+  (7 Hari Terakhir/30 Hari Terakhir/3 Bulan Terakhir/Tahun Ini/Semua
+  Waktu - waktu umum, bukan angkatan/tahun-lulus akademik seperti di tab
+  Tracer Study, karena konten tab ini - lowongan, event, kerjasama -
+  bukan data akademik), **Kategori** (Lowongan/Event/Kerjasama), dan
+  **Status** (Menunggu Persetujuan/Disetujui-Aktif/Ditolak), plus tombol
+  "Terapkan Filter".
+- Dropdown pada tombol profil di topbar kelima halaman
+  `templates/karirlink/` - sebelumnya tombolnya (avatar + nama + ikon
+  caret-down) tidak menampilkan menu apa pun saat diklik. Sekarang klik
+  membuka menu "Pengaturan Akun", "Bantuan", dan "Keluar" (merah, terpisah
+  dengan garis pembatas), pakai komponen `.dropdown-menu`/`.dropdown-item`
+  yang sudah ada; ikon caret berputar 180° saat terbuka, menu tertutup
+  otomatis saat klik di luar area menu.
 - Footer di kelima halaman `templates/karirlink/` (`index.html`,
   `kuesioner.html`, `kuesioner-builder.html`, `yudisium.html`,
   `yudisium-detail.html`) yang sebelumnya belum punya footer sama sekali:
@@ -34,7 +133,9 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
     Pengguna Lulusan, Kosong), plus penjelasan tiga tingkatan pertanyaan.
     Hanya template Kosong yang mendukung versioning. Kuesioner hanya
     menyediakan template & builder — tidak ada pengaturan pengiriman di
-    sini.
+    sini. Meta-teks "Diperbarui X hari lalu" (Lulusan, Pengguna Lulusan)
+    dan "v1.0 · 1 versi" (Kosong) di tiap card dihapus - dianggap tidak
+    perlu, cukup jumlah pertanyaan saja yang tampil.
   - `kuesioner-builder.html` — halaman kelola pertanyaan per template,
     tiga tingkatan (Core berkode Dikti dan tidak dapat dihapus, Optional
     bisa diaktif/matikan, Custom bisa ditambah/diedit/dihapus — masing-
@@ -102,24 +203,140 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
     lulusan berdasarkan Data Lulusan Yudisium: daftar Periode Yudisium
     (15 data, dengan pagination - 10 per halaman) dengan jumlah lulusan,
     status kuesioner, dan aksi Finalisasi & Kirim per periode, plus
-    pengaturan Gelombang Pengiriman (Pra-Lulus dan Pasca-Lulus 1 Tahun —
-    toggle aktif, template kuesioner yang dipakai, dan jangka waktu
-    pengiriman per gelombang). Tabel Periode Yudisium disesuaikan untuk
+    pengaturan Gelombang Pengiriman - kini 3 gelombang lengkap (Pra-Lulus,
+    Pasca-Lulus 1 Tahun, Pasca-Lulus 4 Tahun yang sebelumnya belum ada),
+    masing-masing berisi rentang tanggal pengiriman (Tanggal Mulai &
+    Tanggal Akhir, dua `input type="date"` berdampingan) - lebih
+    dibutuhkan admin daripada angka relatif "berapa hari/bulan
+    sebelum/setelah yudisium" yang dipakai sebelumnya. Field "Template
+    kuesioner" dihapus dari ketiga kartu karena nilainya sudah pasti
+    (selalu Kuesioner Lulusan, bukan pilihan), begitu juga toggle
+    aktif/nonaktif per gelombang. Tabel Periode Yudisium disesuaikan untuk
     mobile: kolom Tanggal Yudisium & Jumlah Lulusan disembunyikan di bawah
     breakpoint `sm` dan dipindah jadi subteks di bawah nama periode, badge
     status & tombol aksi diberi lebar maksimum + wrap teks supaya tidak
     memaksa scroll ke samping - diverifikasi tidak ada horizontal overflow
     di 320px maupun 375px. Tidak ada tombol "Tambah Periode Yudisium" -
-    data periode disinkronkan otomatis dari SIAKAD, jadi diganti indikator
-    ringkas "Sinkron SIAKAD · 10 menit lalu" di header.
+    data periode disinkronkan otomatis, jadi diganti indikator di header
+    yang menampilkan tanggal & jam sinkronisasi terakhir plus selisih
+    waktu relatifnya, mis. "Sinkron · 14 Sep 2026, 09:45 (10 menit lalu)".
+    Tombol aksi per baris "Finalisasi & Kirim" (periode Belum
+    Difinalisasi) dan "Kirim Ulang" (periode Terkirim) dihapus - kini
+    semua baris cukup satu tombol "Lihat Detail" saja, konsisten dengan
+    periode Selesai; aksi kirim/finalisasi cukup dilakukan dari halaman
+    detail periode.
   - `yudisium-detail.html` — detail satu Periode Yudisium: KPI partisipasi
     dan tabel mahasiswa (Nama, Prodi, Email, Status, Aksi) dengan filter
     tab status, pencarian langsung, dan pagination (10 data, 5 per
     halaman) — semuanya benar-benar berfungsi dan saling terhubung
-    (mengganti filter mengembalikan ke halaman 1).
+    (mengganti filter mengembalikan ke halaman 1). Tombol "Kirim Reminder
+    Massal" dihapus dari header - hanya "Finalisasi & Kirim Kuesioner"
+    yang tersisa. Tabelnya dirapikan untuk mobile mengikuti pola yang
+    sama seperti `yudisium.html` (kolom Prodi & Email disembunyikan di
+    bawah `sm`, dipindah jadi subteks di bawah nama; nama & badge status
+    diberi lebar maksimum supaya kolomnya benar-benar menyempit, bukan
+    cuma `whitespace-normal` tanpa batas lebar yang tidak berefek pada
+    algoritma auto-layout tabel).
   - Sidebar admin KarirLink diperbarui: "Kuesioner" sekarang tautan aktif,
-    dan item baru "Data Lulusan Yudisium" ditambahkan tepat di bawahnya
-    dalam grup "Tracer".
+    dan item baru "Daftar Yudisium" ditambahkan tepat di bawahnya dalam
+    grup "Tracer".
+
+### Fixed
+- Tabel "Aktivitas Lamaran Terbaru" di `templates/karirlink/index.html`
+  butuh scroll horizontal di layar sempit - dirapikan dengan pola yang
+  sama seperti tabel Yudisium (kolom Posisi/Perusahaan/Tanggal
+  disembunyikan di bawah `sm`, dipindah jadi subteks di bawah nama; badge
+  status diberi lebar maksimum).
+- Tabel di `yudisium-detail.html` masih bisa di-scroll horizontal sedikit
+  di mobile walau semua kolom yang terlihat sudah pas - penyebabnya
+  tooltip "Aksi lainnya" pada tombol menu titik-tiga: elemen tooltip-nya
+  `opacity-0` (tak terlihat) tapi tetap `position:absolute` dan ikut
+  dihitung dalam `scrollWidth`, jadi walau tak kelihatan, container-nya
+  tetap bisa digeser. Perbaikan pertama (`hidden` di bawah `sm`) ternyata
+  cuma memindah masalahnya - tooltip itu balik muncul di breakpoint `sm`
+  ke atas dan overflow lagi di sana karena posisinya `left-1/2
+  -translate-x-1/2` (center) sementara tombolnya ada persis di tepi kanan
+  tabel. Diganti total: tooltip sekarang jadi elemen mandiri (tidak pakai
+  komponen `.tooltip-content` bersama) dengan `right-0` (rata kanan ke
+  tombol) alih-alih center, jadi tidak akan pernah menjorok keluar tepi
+  tabel di lebar berapa pun. Kolom Prodi & Email juga diberi lebar
+  maksimum + `truncate` mulai dari breakpoint `sm` (bukan cuma
+  disembunyikan di bawahnya) - tanpa ini keduanya melebar mengikuti
+  konten terpanjang dan overflow lagi tepat di titik breakpoint `sm`
+  (640px) begitu kembali terlihat. Diverifikasi tidak ada horizontal
+  overflow dari 320px sampai 1920px, termasuk di halaman ke-2 pagination.
+- Dashboard `templates/karirlink/index.html` overflow horizontal persis
+  di breakpoint `sm` (640px), sehingga footer terlihat "kepotong"/tidak
+  selebar konten - dua penyebab terpisah: (1) div judul "Selamat pagi,
+  Rina" belum punya `min-w-0`, jadi tidak bisa menyempit dan mendorong
+  segmented tab Portal Karir/Tracer Study keluar baris; (2) container
+  tab-nya sendiri (`#dashboardTabs`, `sm:w-fit`) ikut diperkecil oleh
+  parent flex row-nya (default `flex-shrink` menang atas `w-fit`) padahal
+  tombol di dalamnya `flex-none` (ukuran tetap, tidak ikut menyempit) -
+  jadi kontainernya lebih sempit dari total lebar kedua tombolnya
+  sendiri. Diperbaiki dengan `min-w-0` di div judul dan `shrink-0` di
+  `#dashboardTabs`. Tabel "Aktivitas Lamaran Terbaru" juga masih overflow
+  tipis persis di 640px meski sudah dirapikan sebelumnya (lihat poin di
+  atas) - kolom Posisi/Perusahaan/Tanggal belum punya batas lebar saat
+  muncul kembali di breakpoint `sm`, jadi diberi `sm:max-w-[85px]
+  sm:truncate`. Diverifikasi tidak ada horizontal overflow dari 320px
+  sampai 1920px di kelima halaman `templates/karirlink/`.
+- Footer & konten dashboard terlihat tidak rata kanan-kiri di layar lebar
+  (di atas ~1600px) - `<main>` dan `<footer>` sebenarnya sudah konsisten
+  sama-sama dibatasi `max-w-[1600px]`, jadi lebarnya identik satu sama
+  lain, tapi keduanya berhenti melebar jauh sebelum tepi layar sehingga
+  ada ruang kosong besar di kanan yang membuat konten terlihat
+  "mengambang"/tidak pas dengan lebar jendela penuh. `max-w-[1600px]`
+  dihapus dari `<main>` dan `<footer>` di kelima halaman
+  `templates/karirlink/` (`index.html`, `yudisium.html`,
+  `yudisium-detail.html`, `kuesioner.html`, `kuesioner-builder.html`) dan
+  dari `<main>` di `kuesioner-builder-2.html` (tidak punya `<footer>`),
+  sehingga dashboard mengisi penuh lebar layar di atas breakpoint
+  manapun. Diverifikasi lebar `<footer>` dan `<main>` tetap identik
+  piksel-demi-piksel di semua breakpoint (320-1920px) dan tidak ada
+  horizontal overflow yang muncul di seluruh halaman.
+- Card "Laporan & Publikasi" di `templates/karirlink/index.html` terlihat
+  jomplang terhadap card "Aktivitas Lamaran Terbaru" di sebelah kirinya -
+  keduanya satu baris grid (`lg:grid-cols-3`, kiri `lg:col-span-2`)
+  sehingga tinggi card kanan otomatis diregangkan grid mengikuti tinggi
+  card kiri yang lebih tinggi (403px), tapi isinya (3 link laporan) cuma
+  butuh ~239px, sisa ~164px jadi ruang kosong nganggur di bagian bawah
+  card. Percobaan pertama (`flex-1 justify-between` supaya 3 link ikut
+  meregang mengisi tinggi card) malah membuat jarak antar-link jadi
+  sangat lebar dan tidak wajar di layar lebar - dibatalkan. Diganti jadi
+  pendekatan lain: card tidak lagi dipaksa meregang penuh (`self-start`,
+  jadi tingginya ikut isinya sendiri) dan tiap link diberi ikon warna +
+  subteks singkat (mis. "Partisipasi & status karier alumni"), menambah
+  tinggi konten secara wajar (308px, dari sebelumnya 239px) tanpa
+  gap kosong yang janggal - sisa selisih tinggi ke card kiri kini cuma
+  tampak sebagai ruang latar biasa, bukan kotak kosong bertepi.
+  Ditemukan efek samping saat perbaikan: grid `.grid.gap-6.lg:grid-cols-3`
+  ini (dan satu grid lain dengan class sama di atasnya, untuk "Riwayat
+  Pengisian + Perlu Perhatian") tidak punya `grid-cols-1` eksplisit di
+  mobile, jadi lebar kolom implisitnya dihitung dari max-content item
+  terlebar di antara SEMUA baris pada grid itu (bukan mengikuti lebar
+  container) - begitu isi card kanan bertambah (ikon+subteks), max-
+  content-nya naik jadi ~351px dan mendorong kedua card overflow
+  horizontal tepat di 320px meski masing-masing kontennya sendiri
+  muat. Diperbaiki dengan menambah `grid-cols-1` eksplisit (dan
+  `min-w-0` di card kanan) pada kedua grid tersebut, memaksa track
+  kolom mengikuti lebar container (`minmax(0,1fr)`) alih-alih auto
+  mengikuti konten terlebar. Diverifikasi tidak ada horizontal overflow
+  dari 320px sampai 1920px di kelima halaman `templates/karirlink/`.
+- Legend "Distribusi Status Karier Alumni" & "Distribusi Waktu Tunggu
+  Pekerjaan Pertama" di tab Tracer Study terlihat terlalu renggang di
+  layar lebar - efek samping dari penghapusan `max-w-[1600px]` di atas:
+  wrapper legend-nya `w-full` di dalam card yang sekarang ikut melebar
+  penuh, jadi tiap baris `justify-between` (label kiri, persentase kanan)
+  mendorong angkanya jauh ke ujung kanan card. Dibatasi dengan
+  `sm:max-w-[220px]` pada wrapper legend supaya label dan angka tetap
+  berdekatan seperti donut+legend pada umumnya, di breakpoint manapun -
+  tetap `w-full` di bawah `sm` (mobile, chart & legend ditumpuk vertikal)
+  supaya tidak terlalu sempit di sana. Efek lanjutan setelah legend
+  dibatasi lebarnya: grup donut+legend jadi nempel rata kiri dengan
+  ruang kosong lebar di kanan card. Ditambahkan `sm:justify-center` pada
+  wrapper flex-row-nya supaya grup donut+legend selalu di tengah card,
+  di lebar berapa pun.
 
 ## [1.1.0] - 2026-09-11
 
