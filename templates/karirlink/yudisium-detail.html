@@ -154,7 +154,7 @@
       <div class="flex flex-wrap items-center gap-3">
         <button class="btn-primary btn-md w-full sm:w-auto">
           <i class="kk kk-check-circle h-4 w-4 shrink-0"></i>
-          Finalisasi &amp; Kirim Kuesioner
+          Kirim Kuesioner
         </button>
       </div>
     </div>
@@ -184,7 +184,9 @@
       <div class="flex flex-col gap-3 border-b border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between">
         <div class="flex gap-1 overflow-x-auto scrollbar-none rounded-xl bg-slate-100 p-1" id="yudStatusTabs">
           <button type="button" data-status="all" class="tab tab-active">Semua</button>
-          <button type="button" data-status="belum" class="tab">Belum Mengisi</button>
+          <button type="button" data-status="belum-dikirim" class="tab">Belum Dikirim</button>
+          <button type="button" data-status="terkirim" class="tab">Terkirim</button>
+          <button type="button" data-status="menunggu" class="tab">Menunggu Mengisi</button>
           <button type="button" data-status="sudah" class="tab">Sudah Mengisi</button>
         </div>
         <div class="relative">
@@ -206,7 +208,7 @@
             </tr>
           </thead>
           <tbody id="yudBody">
-            <tr data-status="belum">
+            <tr data-status="menunggu">
               <td class="px-2 sm:px-4">
                 <div class="flex items-center gap-3">
                   <span class="avatar h-9 w-9 bg-primary-100 text-primary-700">AN</span>
@@ -218,7 +220,7 @@
               </td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">andi.nugroho@mail.ac.id</td>
-              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
@@ -257,7 +259,7 @@
                 </div>
               </td>
             </tr>
-            <tr data-status="belum">
+            <tr data-status="menunggu">
               <td class="px-2 sm:px-4">
                 <div class="flex items-center gap-3">
                   <span class="avatar h-9 w-9 bg-info-100 text-info-700">RD</span>
@@ -269,7 +271,7 @@
               </td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">rudi.hartono@mail.ac.id</td>
-              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
@@ -283,7 +285,7 @@
                 </div>
               </td>
             </tr>
-            <tr data-status="belum">
+            <tr data-status="belum-dikirim">
               <td class="px-2 sm:px-4">
                 <div class="flex items-center gap-3">
                   <span class="avatar h-9 w-9 bg-danger-100 text-danger-700">DP</span>
@@ -295,7 +297,7 @@
               </td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">D3 - Manajemen Informatika</td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">dewi.pratiwi@mail.ac.id</td>
-              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 sm:px-4"><span class="badge-neutral max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-slate-400"></span>Belum Dikirim</span></td>
               <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
@@ -304,7 +306,7 @@
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
-                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Kuesioner</button>
                   </div>
                 </div>
               </td>
@@ -334,7 +336,7 @@
                 </div>
               </td>
             </tr>
-            <tr data-status="belum">
+            <tr data-status="menunggu">
               <td class="px-2 sm:px-4">
                 <div class="flex items-center gap-3">
                   <span class="avatar h-9 w-9 bg-primary-100 text-primary-700">FA</span>
@@ -346,7 +348,7 @@
               </td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Informatika</td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">fajar.ardiansyah@mail.ac.id</td>
-              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
@@ -385,7 +387,7 @@
                 </div>
               </td>
             </tr>
-            <tr data-status="belum">
+            <tr data-status="menunggu">
               <td class="px-2 sm:px-4">
                 <div class="flex items-center gap-3">
                   <span class="avatar h-9 w-9 bg-info-100 text-info-700">YP</span>
@@ -397,7 +399,7 @@
               </td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">D3 - Manajemen Informatika</td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">yoga.pratama@mail.ac.id</td>
-              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
@@ -411,7 +413,7 @@
                 </div>
               </td>
             </tr>
-            <tr data-status="belum">
+            <tr data-status="belum-dikirim">
               <td class="px-2 sm:px-4">
                 <div class="flex items-center gap-3">
                   <span class="avatar h-9 w-9 bg-danger-100 text-danger-700">MR</span>
@@ -423,7 +425,7 @@
               </td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">S1 - Teknik Elektro</td>
               <td class="hidden sm:table-cell sm:max-w-[105px] sm:truncate">maya.ramadhani@mail.ac.id</td>
-              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span></td>
+              <td class="px-2 sm:px-4"><span class="badge-neutral max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-slate-400"></span>Belum Dikirim</span></td>
               <td class="px-2 text-right sm:px-4">
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
@@ -432,7 +434,7 @@
                   </button>
                   <div class="dropdown-menu hidden">
                     <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
-                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Kuesioner</button>
                   </div>
                 </div>
               </td>
@@ -480,6 +482,80 @@
         <p class="text-xs text-slate-500" id="yudRangeText">Menampilkan 1-5 dari 10 mahasiswa</p>
         <div class="flex items-center gap-1" id="yudPagination"></div>
       </div>
+    </div>
+
+    <!-- Pengaturan gelombang pengiriman — khusus periode ini, agar tiap periode yudisium bisa punya jadwal sendiri -->
+    <div class="card p-5 sm:p-6">
+      <h3 class="text-base font-semibold text-slate-800">Pengaturan Gelombang Pengiriman</h3>
+      <p class="mt-1 text-sm text-slate-500">Menentukan kapan Kuesioner Lulusan dikirim ke lulusan periode <span class="font-medium text-slate-700">Yudisium Genap 2025/2026</span> ini, per gelombang.</p>
+      <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-xl border border-slate-100 p-4">
+          <div class="flex items-start gap-3">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
+              <i class="kk kk-clock h-4 w-4"></i>
+            </span>
+            <div>
+              <p class="text-sm font-semibold text-slate-800">Gelombang Pra-Lulus</p>
+              <p class="mt-1 text-sm text-slate-500">Dikirim menjelang tanggal yudisium, sebelum mahasiswa resmi dinyatakan lulus.</p>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div>
+              <label class="form-label">Tanggal Mulai</label>
+              <input class="input" type="date" value="2026-08-14" />
+            </div>
+            <div>
+              <label class="form-label">Tanggal Akhir</label>
+              <input class="input" type="date" value="2026-08-27" />
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-slate-100 p-4">
+          <div class="flex items-start gap-3">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600">
+              <i class="kk kk-clock h-4 w-4"></i>
+            </span>
+            <div>
+              <p class="text-sm font-semibold text-slate-800">Gelombang Pasca-Lulus 1 Tahun</p>
+              <p class="mt-1 text-sm text-slate-500">Dikirim 1 tahun setelah tanggal yudisium untuk memantau status karier lulusan.</p>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div>
+              <label class="form-label">Tanggal Mulai</label>
+              <input class="input" type="date" value="2027-08-28" />
+            </div>
+            <div>
+              <label class="form-label">Tanggal Akhir</label>
+              <input class="input" type="date" value="2027-09-11" />
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-slate-100 p-4">
+          <div class="flex items-start gap-3">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600">
+              <i class="kk kk-clock h-4 w-4"></i>
+            </span>
+            <div>
+              <p class="text-sm font-semibold text-slate-800">Gelombang Pasca-Lulus 4 Tahun</p>
+              <p class="mt-1 text-sm text-slate-500">Dikirim 4 tahun setelah tanggal yudisium untuk memantau perkembangan karier jangka panjang.</p>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div>
+              <label class="form-label">Tanggal Mulai</label>
+              <input class="input" type="date" value="2030-08-28" />
+            </div>
+            <div>
+              <label class="form-label">Tanggal Akhir</label>
+              <input class="input" type="date" value="2030-09-11" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-primary btn-md mt-5">Simpan Pengaturan Gelombang</button>
     </div>
   </main>
 
@@ -569,12 +645,25 @@
     let pageSize = Number(pageSizeSelect.value);
     let currentPage = 1;
 
+    // "Terkirim" isn't its own row status — every row is either belum-dikirim,
+    // menunggu, or sudah. A row can only be "menunggu"/"sudah" once it has
+    // actually been sent, so "Terkirim" is the parent of both: filtering by
+    // it should show everyone who's been sent the questionnaire, regardless
+    // of whether they've filled it in yet.
+    const STATUS_GROUPS = { terkirim: ['menunggu', 'sudah'] };
+
+    function rowMatchesStatus(row) {
+      if (activeStatus === 'all') return true;
+      const rowStatus = row.getAttribute('data-status');
+      const group = STATUS_GROUPS[activeStatus];
+      return group ? group.includes(rowStatus) : rowStatus === activeStatus;
+    }
+
     function getFilteredRows() {
       const query = search.value.trim().toLowerCase();
       return rows.filter((row) => {
-        const matchesStatus = activeStatus === 'all' || row.getAttribute('data-status') === activeStatus;
         const matchesSearch = !query || row.textContent.toLowerCase().includes(query);
-        return matchesStatus && matchesSearch;
+        return rowMatchesStatus(row) && matchesSearch;
       });
     }
 
