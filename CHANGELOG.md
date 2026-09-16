@@ -2,6 +2,101 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.2.0] - 2026-09-16
+
+### Added
+
+- Section "Modal" baru di `index.html` beserta komponen `.modal-backdrop`/
+  `.modal-panel`/`.modal-header`/`.modal-title`/`.modal-description`/
+  `.modal-body`/`.modal-footer`/`.modal-close` (ukuran `.modal-sm/md/lg/xl`) -
+  dialog di atas backdrop gelap, dibuka lewat tombol trigger
+  (`data-modal-trigger`) dan ditutup lewat tombol X, klik area backdrop, atau
+  tombol Escape (`data-modal-close`, delegasi event generik lewat atribut
+  `data-modal`). Backdrop fade + panel scale in/out dianimasikan lewat class
+  `.is-open` (pola sama seperti `.combo-menu`) alih-alih toggle
+  `hidden`/`display:none`, supaya transisinya jalan di kedua arah buka maupun
+  tutup, bukan cuma muncul/hilang instan.
+- Section "Breadcrumb" baru (di dalam section Navigation) beserta komponen
+  `.breadcrumb`/`.breadcrumb-link`/`.breadcrumb-current`/
+  `.breadcrumb-separator` (ikon `kk-caret-right` sebagai pemisah, opsional
+  ikon `kk-house` di halaman pertama).
+- Storybook: `Components/Modal` dan `Components/Breadcrumb`, masing-masing
+  dengan story "Playground" interaktif (`argTypes`/Controls) mengikuti pola
+  yang sama seperti komponen lain.
+
+### Changed
+
+- **Table/DataTable dirombak total** mengikuti referensi moodboard
+  (`moodboard/tabel/`): `table-fixed` dengan lebar kolom tetap tapi tetap
+  responsif (`w-auto` di mobile, `sm:w-full` mulai breakpoint `sm`), kolom
+  nomor urut baru (`table-col-num`, disembunyikan di bawah `xl`), kolom
+  checkbox bulk-select (`table-col-check`), dan kolom Aksi
+  (`table-col-actions`, `min-w-14`) yang selalu menempel di sisi kanan
+  tabel/card karena dijadikan satu-satunya kolom yang menyerap sisa lebar
+  (bukan kolom "Perusahaan" seperti percobaan awal - kontennya rata-kanan/
+  ikon jadi tidak terlihat "renggang" saat diberi ruang ekstra). Padding sel
+  dipadatkan (`th`/`td` jadi `py-3`, dari `py-3.5`/`py-4`) supaya tabel
+  terasa lebih rapat, tidak longgar.
+  - Kolom "Posisi" dilepas dari lebar tetap dan diberi `whitespace-nowrap`
+    supaya isinya mengikuti lebar konten dan tidak pernah pindah baris.
+  - Aksi utama per baris (sebelumnya tombol teks terpisah
+    `.dt-primary-action`) sekarang jadi item pertama di dalam menu dropdown
+    "Aksi lainnya" (`dropdown-item dt-primary-item`), supaya kolom Aksi
+    konsisten hanya berisi satu ikon menu per baris.
+  - Padding luar (`<main>`, hero, sticky anchor-nav, header) diubah dari
+    `px-6` flat jadi bertingkat `px-4 sm:px-6 lg:px-10`, supaya konten
+    (termasuk tabel) tidak terasa mepet ke tepi layar.
+- Storybook dirombak total mengikuti struktur `D:\laragon\QUANTUM\quantum`
+  (satu file per komponen, `components/<nama>/<Nama>.stories.js`) - 10 file
+  kategori lama (`Buttons.stories.js`, `Badges.stories.js`, dst.) dipecah
+  jadi file per-komponen: Button, Badge, Avatar, Card, Input, Search, Select,
+  Date Picker, Textarea, Checkbox, Radio, Toggle, Dropdown, Sidebar, Tabs,
+  Table, DataTable, Alert, Progress, Tooltip, Divider - lalu bertambah Modal
+  & Breadcrumb (lihat Added). Urutan sidebar (`storySort`) dan daftar
+  komponen di `Guides/Introduction` disesuaikan mengikuti struktur baru.
+- Storybook kini interaktif ala Quantum: 10 komponen atomik (Button, Badge,
+  Avatar, Card, Alert, Toggle, Checkbox, Radio, Input, Textarea) mendapat
+  story "Playground" dengan `argTypes`/`args` yang terhubung ke Controls
+  panel - ganti varian warna, ukuran, label, dsb. langsung dari panel, dengan
+  blok "Show code" di halaman Docs yang otomatis mengikuti kombinasi args
+  yang sedang dipilih (siap disalin). Wrapper `card p-6 sm:p-8` yang
+  sebelumnya membungkus semua story Components dihapus karena dianggap
+  mengganggu tampilan komponen yang sudah rapi - tetap dipertahankan hanya di
+  tempat yang secara struktural memang butuh konteks kontainer (Sidebar,
+  Tabs, Table, DataTable).
+- `Foundations/Icons` dirombak: daftar ikon di story "Library" diperluas dari
+  20 kurasi manual menjadi seluruh **38** ikon yang benar-benar ada di
+  `src/input.css`. Story "Weights" yang sebelumnya hardcode satu ikon
+  (`house`) kini interaktif (`argTypes.icon`) sehingga ketebalan (Thin/
+  Light/Regular/Bold/Fill/Duotone) bisa dicek untuk ikon apa pun. Ditambahkan
+  story baru "Icon Explorer (interactive)" - pilih ikon + ketebalan + ukuran
+  lewat Controls, hasilnya langsung tampil beserta markup `<i class="...">`
+  yang siap disalin.
+- Branding "KarirKit Design System" (teks) diganti logo KarirKit asli:
+  header `index.html` kini memakai `assets/logo/karirkit-logo.svg` (badge
+  teks "KarirKit UI Kit" di sebelahnya dihapus), heading di
+  `Guides/Introduction` diganti gambar logo, dan sidebar Storybook memakai
+  tema custom baru (`.storybook/manager.js`, `base: "light"`, `brandImage`
+  ke logo yang sama) menggantikan logo/tema default Storybook.
+
+### Fixed
+
+- Tabel DataTable masih bisa di-scroll horizontal sedikit walau kolom yang
+  terlihat sudah pas - penyebabnya tooltip "Aksi lainnya" (`.tooltip-content`,
+  `opacity-0` tapi tetap `position:absolute`) ikut dihitung dalam
+  `scrollWidth` tabel karena posisinya `left-1/2 -translate-x-1/2` (center)
+  menjorok keluar tepi kanan tabel padahal tombolnya ada di kolom paling
+  kanan. Diperbaiki dengan `right-0 left-auto translate-x-0` khusus pada 15
+  tooltip tersebut sehingga tidak pernah menjorok keluar di lebar berapa pun.
+- Jarak antar kolom Perusahaan/Posisi/Tanggal/Skor terlihat "renggang" tidak
+  wajar setelah tabel dibuat `table-fixed` + lebar penuh (`w-full`) - root
+  cause: `table-layout: fixed` menyebarkan sisa lebar secara proporsional ke
+  SEMUA kolom yang punya lebar eksplisit, dan kolom "Perusahaan" (lebar dasar
+  terbesar) menyerap hampir semua slack tadi. Diperbaiki dengan menjadikan
+  kolom Aksi (bukan Perusahaan) sebagai satu-satunya kolom fleksibel, dan
+  tabel hanya melebar penuh mulai `sm:` ke atas (`w-auto sm:w-full`) supaya
+  tidak memaksa kolom Perusahaan menyempit berlebihan di layar sempit.
+
 ## [1.1.0] - 2026-09-11
 
 ### Added

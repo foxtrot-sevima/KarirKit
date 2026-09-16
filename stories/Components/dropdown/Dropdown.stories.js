@@ -1,5 +1,5 @@
 export default {
-  title: "Components/Dropdowns",
+  title: "Components/Dropdown",
   tags: ["autodocs"],
   parameters: {
     docs: {
@@ -24,7 +24,7 @@ function corner(label) {
 export const AutoPlacement = {
   name: "Auto-placement (down / up / left / right)",
   render: () => `
-    <div class="card p-6 sm:p-8">
+    <div class="p-6">
       <div class="relative h-64 rounded-xl border border-dashed border-slate-200 bg-slate-50/60">
         <div class="absolute left-3 top-3">${corner("Kiri Atas")}</div>
         <div class="absolute right-3 top-3">${corner("Kanan Atas")}</div>
@@ -37,7 +37,7 @@ export const AutoPlacement = {
 export const MenuContent = {
   name: "Menu Content",
   render: () => `
-    <div class="card p-6 sm:p-8">
+    <div class="p-6">
       <div class="dropdown-menu static inline-block w-56">
         <button type="button" class="dropdown-item">Lihat Detail</button>
         <button type="button" class="dropdown-item">Edit</button>
