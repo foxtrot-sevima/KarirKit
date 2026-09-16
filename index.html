@@ -605,10 +605,18 @@
         <div>
           <label class="form-label">Ekspektasi Gaji</label>
           <div class="relative">
-            <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">Rp.</span>
+            <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">Rp</span>
             <input type="text" inputmode="numeric" class="input pl-11" placeholder="0" data-currency-input />
           </div>
           <p class="form-hint">Titik pemisah ribuan ditambahkan otomatis saat mengetik.</p>
+        </div>
+        <div>
+          <label class="form-label">Masa Tunggu Kerja</label>
+          <div class="relative">
+            <input type="number" min="0" class="input pr-14" placeholder="mis. 3" />
+            <span class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">bulan</span>
+          </div>
+          <p class="form-hint">Satuan ditampilkan sebagai akhiran (suffix) di dalam input.</p>
         </div>
         <div>
           <label class="form-label">Tanggal Mulai Kerja</label>
