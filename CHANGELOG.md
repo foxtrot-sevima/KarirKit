@@ -2,7 +2,7 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.1.0] - 2026-09-11
 
 ### Added
 
@@ -496,8 +496,6 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   cabang Bekerja & Wiraswasta (`kuesioner-simulasi.html`) - diganti "Rp"
   polos tanpa titik, mengikuti gaya penulisan mata uang yang lazim di
   Indonesia.
-
-## [1.1.0] - 2026-09-11
 
 ### Changed
 
