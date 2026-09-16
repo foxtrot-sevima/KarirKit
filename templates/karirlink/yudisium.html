@@ -154,18 +154,68 @@
       </div>
     </div>
 
+    <!-- Filter — mempengaruhi KPI di bawah dan tabel Periode Yudisium -->
+    <div class="card flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between" data-combo-boundary>
+      <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
+        <i class="kk kk-sort-ascending h-4 w-4 shrink-0"></i>
+        Filter
+      </div>
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div id="filterTahun" class="combo w-full sm:w-48" data-combo data-value="all">
+          <button type="button" class="combo-trigger" data-combo-trigger>
+            <span data-combo-label>Semua Tahun Lulus</span>
+            <i class="kk kk-caret-down combo-chevron"></i>
+          </button>
+          <div class="combo-menu" data-combo-menu>
+            <div class="combo-list" data-combo-list>
+              <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Tahun Lulus">Semua Tahun Lulus</button>
+              <button type="button" class="combo-item" data-combo-item data-value="2025/2026" data-label="2025/2026">2025/2026</button>
+              <button type="button" class="combo-item" data-combo-item data-value="2024/2025" data-label="2024/2025">2024/2025</button>
+              <button type="button" class="combo-item" data-combo-item data-value="2023/2024" data-label="2023/2024">2023/2024</button>
+              <button type="button" class="combo-item" data-combo-item data-value="2022/2023" data-label="2022/2023">2022/2023</button>
+              <button type="button" class="combo-item" data-combo-item data-value="2021/2022" data-label="2021/2022">2021/2022</button>
+              <button type="button" class="combo-item" data-combo-item data-value="2020/2021" data-label="2020/2021">2020/2021</button>
+              <button type="button" class="combo-item" data-combo-item data-value="2019/2020" data-label="2019/2020">2019/2020</button>
+              <button type="button" class="combo-item" data-combo-item data-value="2018/2019" data-label="2018/2019">2018/2019</button>
+            </div>
+          </div>
+        </div>
+        <div id="filterJenis" class="combo w-full sm:w-40" data-combo data-value="all">
+          <button type="button" class="combo-trigger" data-combo-trigger>
+            <span data-combo-label>Semua Periode</span>
+            <i class="kk kk-caret-down combo-chevron"></i>
+          </button>
+          <div class="combo-menu" data-combo-menu>
+            <div class="combo-list" data-combo-list>
+              <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Periode">Semua Periode</button>
+              <button type="button" class="combo-item" data-combo-item data-value="genap" data-label="Genap">Genap</button>
+              <button type="button" class="combo-item" data-combo-item data-value="ganjil" data-label="Ganjil">Ganjil</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- KPI row -->
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
       <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-slate-900">15</p>
+        <p class="font-display text-2xl font-bold text-slate-900" id="kpiPeriode">15</p>
         <p class="text-sm text-slate-500">Periode Yudisium</p>
       </div>
       <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-slate-900">4.219</p>
+        <p class="font-display text-2xl font-bold text-slate-900" id="kpiTotalLulusan">4.219</p>
         <p class="text-sm text-slate-500">Total Lulusan Tercatat</p>
       </div>
       <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-warning-600">1</p>
+        <p class="font-display text-2xl font-bold text-success-600" id="kpiSudahMengisi">2.092</p>
+        <p class="text-sm text-slate-500">Alumni Sudah Mengisi <span class="text-slate-400" id="kpiSudahMengisiPct">(50%)</span></p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-slate-900" id="kpiTarget">7 dari 15</p>
+        <p class="text-sm text-slate-500">Periode Capai Target <span class="text-slate-400">(&ge;50%)</span></p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-warning-600" id="kpiMenungguFinalisasi">1</p>
         <p class="text-sm text-slate-500">Menunggu Finalisasi</p>
       </div>
     </div>
@@ -179,187 +229,242 @@
               <th class="px-2 sm:px-4">Periode Yudisium</th>
               <th class="hidden sm:table-cell">Tanggal Yudisium</th>
               <th class="hidden sm:table-cell">Jumlah Lulusan</th>
-              <th class="px-2 sm:px-4"><span class="sm:hidden">Status</span><span class="hidden sm:inline">Status Kuesioner</span></th>
+              <th class="px-2 sm:px-4"><span class="sm:hidden">Isi</span><span class="hidden sm:inline">Partisipasi Mengisi</span></th>
               <th class="px-2 sm:px-4"></th>
             </tr>
           </thead>
-          <tbody id="periodeBody">
-            <tr>
+          <tbody id="periodeBody"><tr data-tahun="2025/2026" data-jenis="genap" data-total="342" data-filled="0" data-status="belum-dikirim">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Genap 2025/2026</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">28 Agu 2026 &middot; 342 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">28 Agu 2026</td>
               <td class="hidden sm:table-cell">342 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-warning max-w-[68px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot shrink-0 bg-warning-600"></span>Belum Difinalisasi</span></td>
+              <td class="px-2 sm:px-4"><span class="text-xs font-medium text-slate-400">Belum dikirim</span></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2025/2026" data-jenis="ganjil" data-total="298" data-filled="122" data-status="terkirim">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2025/2026</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">20 Feb 2026 &middot; 298 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">20 Feb 2026</td>
               <td class="hidden sm:table-cell">298 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Terkirim</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 41%"></div></div>
+                  <span class="text-sm font-semibold text-warning-700">41%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(122/298)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2024/2025" data-jenis="genap" data-total="356" data-filled="278" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Genap 2024/2025</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">29 Agu 2025 &middot; 356 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">29 Agu 2025</td>
               <td class="hidden sm:table-cell">356 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 78%"></div></div>
+                  <span class="text-sm font-semibold text-success-700">78%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(278/356)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2024/2025" data-jenis="ganjil" data-total="288" data-filled="207" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2024/2025</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">21 Feb 2025 &middot; 288 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">21 Feb 2025</td>
               <td class="hidden sm:table-cell">288 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 72%"></div></div>
+                  <span class="text-sm font-semibold text-success-700">72%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(207/288)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2023/2024" data-jenis="genap" data-total="340" data-filled="221" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Genap 2023/2024</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">30 Agu 2024 &middot; 340 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">30 Agu 2024</td>
               <td class="hidden sm:table-cell">340 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 65%"></div></div>
+                  <span class="text-sm font-semibold text-success-700">65%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(221/340)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2023/2024" data-jenis="ganjil" data-total="275" data-filled="168" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2023/2024</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">22 Feb 2024 &middot; 275 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">22 Feb 2024</td>
               <td class="hidden sm:table-cell">275 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 61%"></div></div>
+                  <span class="text-sm font-semibold text-success-700">61%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(168/275)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2022/2023" data-jenis="genap" data-total="312" data-filled="181" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Genap 2022/2023</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">31 Agu 2023 &middot; 312 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">31 Agu 2023</td>
               <td class="hidden sm:table-cell">312 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 58%"></div></div>
+                  <span class="text-sm font-semibold text-success-700">58%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(181/312)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2022/2023" data-jenis="ganjil" data-total="260" data-filled="143" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2022/2023</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">23 Feb 2023 &middot; 260 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">23 Feb 2023</td>
               <td class="hidden sm:table-cell">260 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 55%"></div></div>
+                  <span class="text-sm font-semibold text-success-700">55%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(143/260)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2021/2022" data-jenis="genap" data-total="298" data-filled="155" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Genap 2021/2022</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">25 Agu 2022 &middot; 298 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">25 Agu 2022</td>
               <td class="hidden sm:table-cell">298 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 52%"></div></div>
+                  <span class="text-sm font-semibold text-success-700">52%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(155/298)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2021/2022" data-jenis="ganjil" data-total="245" data-filled="120" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2021/2022</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">18 Feb 2022 &middot; 245 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">18 Feb 2022</td>
               <td class="hidden sm:table-cell">245 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 49%"></div></div>
+                  <span class="text-sm font-semibold text-warning-700">49%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(120/245)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2020/2021" data-jenis="genap" data-total="270" data-filled="127" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Genap 2020/2021</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">26 Agu 2021 &middot; 270 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">26 Agu 2021</td>
               <td class="hidden sm:table-cell">270 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 47%"></div></div>
+                  <span class="text-sm font-semibold text-warning-700">47%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(127/270)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2020/2021" data-jenis="ganjil" data-total="230" data-filled="101" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2020/2021</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">19 Feb 2021 &middot; 230 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">19 Feb 2021</td>
               <td class="hidden sm:table-cell">230 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 44%"></div></div>
+                  <span class="text-sm font-semibold text-warning-700">44%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(101/230)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2019/2020" data-jenis="genap" data-total="255" data-filled="105" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Genap 2019/2020</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">27 Agu 2020 &middot; 255 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">27 Agu 2020</td>
               <td class="hidden sm:table-cell">255 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 41%"></div></div>
+                  <span class="text-sm font-semibold text-warning-700">41%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(105/255)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2019/2020" data-jenis="ganjil" data-total="210" data-filled="80" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2019/2020</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">21 Feb 2020 &middot; 210 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">21 Feb 2020</td>
               <td class="hidden sm:table-cell">210 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 38%"></div></div>
+                  <span class="text-sm font-semibold text-warning-700">38%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(80/210)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
             </tr>
-            <tr>
+            <tr data-tahun="2018/2019" data-jenis="genap" data-total="240" data-filled="84" data-status="selesai">
               <td class="px-2 sm:px-4">
                 <span class="font-medium text-slate-800">Yudisium Genap 2018/2019</span>
                 <p class="mt-0.5 text-xs text-slate-400 sm:hidden">29 Agu 2019 &middot; 240 lulusan</p>
               </td>
               <td class="hidden sm:table-cell">29 Agu 2019</td>
               <td class="hidden sm:table-cell">240 lulusan</td>
-              <td class="px-2 sm:px-4"><span class="badge-info max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-info-600"></span>Selesai</span></td>
+              <td class="px-2 sm:px-4"><div class="flex items-center gap-2">
+                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 35%"></div></div>
+                  <span class="text-sm font-semibold text-warning-700">35%</span>
+                  <span class="hidden text-xs text-slate-400 sm:inline">(84/240)</span>
+                </div></td>
               <td class="max-w-[104px] px-2 text-right sm:max-w-none sm:px-4">
                 <a href="yudisium-detail.html" class="btn-outline btn-sm">Lihat Detail</a>
               </td>
@@ -438,15 +543,59 @@
     });
   })();
 
-  // Periode Yudisium table pagination
+  // Filter (Tahun Ajaran + Jenis Periode) + Periode Yudisium table pagination.
+  // Filtering recomputes both the KPI cards above and which rows the table
+  // paginates over, so "Filter" affects the cards and the periode list together.
   (function () {
-    const rows = Array.from(document.querySelectorAll('#periodeBody tr'));
+    const allRows = Array.from(document.querySelectorAll('#periodeBody tr'));
+    const filterTahun = document.getElementById('filterTahun');
+    const filterJenis = document.getElementById('filterJenis');
     const pageSizeSelect = document.getElementById('periodePageSize');
     const rangeText = document.getElementById('periodeRangeText');
     const paginationEl = document.getElementById('periodePagination');
 
+    const kpiPeriode = document.getElementById('kpiPeriode');
+    const kpiTotalLulusan = document.getElementById('kpiTotalLulusan');
+    const kpiSudahMengisi = document.getElementById('kpiSudahMengisi');
+    const kpiSudahMengisiPct = document.getElementById('kpiSudahMengisiPct');
+    const kpiTarget = document.getElementById('kpiTarget');
+    const kpiMenungguFinalisasi = document.getElementById('kpiMenungguFinalisasi');
+
+    const TARGET_RATE = 0.5; // contoh target minimum 50% partisipasi per periode
+
     let pageSize = Number(pageSizeSelect.value);
     let currentPage = 1;
+    let visibleRows = allRows;
+
+    function fmt(n) {
+      return n.toLocaleString('id-ID');
+    }
+
+    function applyFilter() {
+      const tahun = filterTahun.dataset.value;
+      const jenis = filterJenis.dataset.value;
+      visibleRows = allRows.filter((row) => {
+        const matchTahun = tahun === 'all' || row.dataset.tahun === tahun;
+        const matchJenis = jenis === 'all' || row.dataset.jenis === jenis;
+        return matchTahun && matchJenis;
+      });
+      currentPage = 1;
+    }
+
+    function updateKpis() {
+      const totalLulusan = visibleRows.reduce((sum, r) => sum + Number(r.dataset.total), 0);
+      const totalFilled = visibleRows.reduce((sum, r) => sum + Number(r.dataset.filled), 0);
+      const targetMet = visibleRows.filter((r) => Number(r.dataset.filled) / Number(r.dataset.total) >= TARGET_RATE).length;
+      const menungguFinalisasi = visibleRows.filter((r) => r.dataset.status === 'belum-dikirim').length;
+      const overallPct = totalLulusan > 0 ? Math.round((totalFilled / totalLulusan) * 100) : 0;
+
+      kpiPeriode.textContent = fmt(visibleRows.length);
+      kpiTotalLulusan.textContent = fmt(totalLulusan);
+      kpiSudahMengisi.textContent = fmt(totalFilled);
+      kpiSudahMengisiPct.textContent = `(${overallPct}%)`;
+      kpiTarget.textContent = `${fmt(targetMet)} dari ${fmt(visibleRows.length)}`;
+      kpiMenungguFinalisasi.textContent = fmt(menungguFinalisasi);
+    }
 
     function renderPaginationButtons(totalPages) {
       paginationEl.innerHTML = '';
@@ -459,7 +608,7 @@
         b.className = 'pagination-btn' + (opts.active ? ' pagination-btn-active' : '');
         b.addEventListener('click', () => {
           currentPage = page;
-          render();
+          renderTable();
         });
         return b;
       }
@@ -471,27 +620,163 @@
       paginationEl.appendChild(makeButton('›', currentPage + 1, { disabled: currentPage >= totalPages }));
     }
 
-    function render() {
-      const totalPages = Math.max(1, Math.ceil(rows.length / pageSize));
+    function renderTable() {
+      const totalPages = Math.max(1, Math.ceil(visibleRows.length / pageSize));
       currentPage = Math.min(currentPage, totalPages);
 
       const start = (currentPage - 1) * pageSize;
       const end = start + pageSize;
-      rows.forEach((row, i) => row.classList.toggle('hidden', i < start || i >= end));
+
+      allRows.forEach((row) => row.classList.add('hidden'));
+      visibleRows.forEach((row, i) => row.classList.toggle('hidden', i < start || i >= end));
 
       renderPaginationButtons(totalPages);
-      rangeText.textContent = `Menampilkan ${start + 1}-${Math.min(end, rows.length)} dari ${rows.length} periode`;
+      rangeText.textContent = visibleRows.length
+        ? `Menampilkan ${start + 1}-${Math.min(end, visibleRows.length)} dari ${visibleRows.length} periode`
+        : 'Tidak ada periode yang cocok dengan filter';
+    }
+
+    function render() {
+      applyFilter();
+      updateKpis();
+      renderTable();
     }
 
     pageSizeSelect.addEventListener('change', () => {
       pageSize = Number(pageSizeSelect.value);
       currentPage = 1;
-      render();
+      renderTable();
+    });
+
+    [filterTahun, filterJenis].forEach((combo) => {
+      combo.querySelectorAll('[data-combo-item]').forEach((item) => {
+        item.addEventListener('click', () => {
+          combo.dataset.value = item.dataset.value;
+          render();
+        });
+      });
     });
 
     render();
   })();
 
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
 
   // Topbar profile dropdown menu.
   (function () {

@@ -152,10 +152,13 @@
         <p class="mt-1 text-sm text-slate-500">Tanggal yudisium 28 Agu 2026 · <span class="font-medium text-slate-700">10 lulusan</span> tercatat pada periode ini.</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
-        <button class="btn-primary btn-md w-full sm:w-auto">
-          <i class="kk kk-check-circle h-4 w-4 shrink-0"></i>
-          Kirim Kuesioner
-        </button>
+        <span class="group relative w-full sm:w-auto">
+          <button class="btn-outline btn-md w-full sm:w-auto">
+            <i class="kk kk-check-circle h-4 w-4 shrink-0"></i>
+            Kirim Kuesioner
+          </button>
+          <span class="pointer-events-none absolute right-0 top-full z-30 mt-2 w-64 whitespace-normal rounded-lg bg-slate-900 px-3 py-2 text-left text-xs font-normal leading-relaxed text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Ini kirim manual untuk lulusan yang belum mengisi kuesioner.</span>
+        </span>
       </div>
     </div>
 
@@ -488,6 +491,10 @@
     <div class="card p-5 sm:p-6">
       <h3 class="text-base font-semibold text-slate-800">Pengaturan Gelombang Pengiriman</h3>
       <p class="mt-1 text-sm text-slate-500">Menentukan kapan Kuesioner Lulusan dikirim ke lulusan periode <span class="font-medium text-slate-700">Yudisium Genap 2025/2026</span> ini, per gelombang.</p>
+      <div class="callout-info mt-4 flex items-start gap-3">
+        <i class="kk kk-clock h-4 w-4 shrink-0 text-info-600"></i>
+        <p class="text-sm text-slate-600">Pengiriman otomatis dijalankan setiap pukul <span class="font-medium text-slate-800">09.00 WIB</span> selama rentang tanggal tiap gelombang di bawah ini.</p>
+      </div>
       <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <div class="rounded-xl border border-slate-100 p-4">
           <div class="flex items-start gap-3">
