@@ -1,0 +1,63 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Guides/Table of Version" />
+
+# Table of Version
+
+Riwayat rilis KarirKit. Kolom **Docs** mengarah ke halaman [Changelog](?path=/docs/guides-changelog--docs)
+di Storybook ini, kolom **GitHub** mengarah ke bagian yang sama persis di
+`CHANGELOG.md` pada repo.
+
+export const REPO = "https://github.com/foxtrot-sevima/KarirKit";
+
+export const rows = [
+  {
+    version: "Unreleased",
+    date: "—",
+    note: "Sedang dikerjakan di branch aktif, belum dirilis",
+    githubAnchor: "unreleased",
+  },
+  {
+    version: "1.1.0",
+    date: "2026-09-11",
+    note: "Ikon jadi icon-font (.kk-*, 6 ketebalan), komponen combobox/date-picker/DataTable, dashboard admin KarirLink",
+    githubAnchor: "110---2026-09-11",
+  },
+  {
+    version: "1.0.0",
+    date: "2026-09-10",
+    note: "Rilis internal pertama — token, pustaka komponen dasar, index.html, templates/dashboard.html",
+    githubAnchor: "100---2026-09-10",
+  },
+];
+
+<table>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Tanggal</th>
+      <th>Catatan Ringkas</th>
+      <th>Docs</th>
+      <th>GitHub</th>
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((r) => (
+      <tr key={r.version}>
+        <td><strong>{r.version}</strong></td>
+        <td>{r.date}</td>
+        <td>{r.note}</td>
+        <td><a href="?path=/docs/guides-changelog--docs">link</a></td>
+        <td><a href={`${REPO}/blob/master/CHANGELOG.md#${r.githubAnchor}`} target="_blank" rel="noreferrer">link</a></td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+Detail lengkap tiap versi (Added/Changed/Fixed) ada di halaman
+[Changelog](?path=/docs/guides-changelog--docs) atau langsung di
+[`CHANGELOG.md`]({REPO}/blob/master/CHANGELOG.md).
+
+Rilis KarirKit belum memakai tag Git per versi secara konsisten — baru
+[`v1.0.0`]({REPO}/releases/tag/v1.0.0) yang bertag. Sebelum menambah versi
+baru ke tabel ini, pastikan juga menambah entri barunya di `CHANGELOG.md`.
