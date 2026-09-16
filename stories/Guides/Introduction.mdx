@@ -1,0 +1,28 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Guides/Introduction" />
+
+# KarirKit Design System
+
+Bahasa desain untuk platform KarirLink — token warna, tipografi, ikon, dan pustaka
+komponen yang konsisten, dibangun 100% dengan utility Tailwind CSS v4 (tanpa framework JS).
+
+Gunakan sidebar di sebelah kiri untuk menjelajah:
+
+- **Foundations** — Colors, Typography, Icons: token dasar yang menurunkan semua komponen.
+- **Components** — Buttons, Badges, Avatars, Cards, Forms, Dropdowns, Navigation, Tables, Alerts, Progress & Misc.
+
+Setiap story menampilkan markup HTML + class Tailwind apa adanya, siap disalin ke halaman baru.
+
+## Sumber
+
+- Token & component classes: [src/input.css](../src/input.css)
+- Galeri komponen versi HTML statis (masih dipertahankan sebagai referensi cepat, tanpa tooling): [index.html](../index.html)
+- Contoh implementasi nyata: folder [templates/](../templates/)
+
+## Widget interaktif (combo, date picker, DataTable)
+
+Story untuk combobox, date picker, dan DataTable di sini menampilkan **state tertutup/statis** saja,
+karena logika interaksinya ditulis sebagai vanilla JS inline di dalam `index.html`, bukan sebagai
+modul yang bisa diimpor. Untuk mencoba versi yang sepenuhnya interaktif, buka `index.html` langsung
+di browser.

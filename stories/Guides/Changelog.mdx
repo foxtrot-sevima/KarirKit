@@ -1,0 +1,16 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+import pkg from "../../package.json";
+import changelog from "../../CHANGELOG.md?raw";
+
+<Meta title="Guides/Changelog" />
+
+# KarirKit <span style={{ color: "var(--sb-primary, #2361e7)" }}>v{pkg.version}</span>
+
+Versi ini dibaca langsung dari `package.json`, dan isi di bawah ini adalah
+konten `CHANGELOG.md` apa adanya (format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/))
+— tidak disalin ulang, jadi halaman ini otomatis ikut ter-update begitu
+`CHANGELOG.md` bertambah.
+
+---
+
+<Markdown>{changelog}</Markdown>
