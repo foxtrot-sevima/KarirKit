@@ -1,0 +1,76 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import pkg from "../../package.json";
+
+<Meta title="Guides/Table of Dependency" />
+
+# Table of Dependency
+
+Dependency yang dipakai untuk membangun & menjalankan KarirKit, dibaca
+langsung dari `package.json` — kalau versinya berubah di sana, tabel ini
+otomatis ikut berubah.
+
+export const rows = [
+  {
+    name: "tailwindcss",
+    role: "Engine utama design token (@theme) & komponen (@layer components)",
+    docs: "https://tailwindcss.com/docs",
+  },
+  {
+    name: "@tailwindcss/cli",
+    role: "Build src/input.css → dist/output.css (dipakai index.html & templates/)",
+    docs: "https://tailwindcss.com/docs/installation/tailwind-cli",
+  },
+  {
+    name: "@tailwindcss/vite",
+    role: "Proses src/input.css secara live di dalam Storybook (dev & build)",
+    docs: "https://tailwindcss.com/docs/installation/using-vite",
+  },
+  {
+    name: "storybook",
+    role: "Core CLI — storybook dev / storybook build",
+    docs: "https://storybook.js.org/docs",
+  },
+  {
+    name: "@storybook/html-vite",
+    role: "Framework Storybook untuk HTML statis + Tailwind (tanpa React/Vue)",
+    docs: "https://storybook.js.org/docs/get-started/frameworks/html-vite",
+  },
+  {
+    name: "@storybook/addon-docs",
+    role: "Halaman .mdx (Introduction, Changelog, Table of Version, dst.)",
+    docs: "https://storybook.js.org/docs/writing-docs",
+  },
+  {
+    name: "vite",
+    role: "Bundler dev-server di balik @storybook/html-vite",
+    docs: "https://vite.dev",
+  },
+];
+
+<table>
+  <thead>
+    <tr>
+      <th>Package</th>
+      <th>Versi terpasang</th>
+      <th>Kegunaan di KarirKit</th>
+      <th>Docs</th>
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((r) => (
+      <tr key={r.name}>
+        <td><code>{r.name}</code></td>
+        <td><code>{pkg.devDependencies[r.name]}</code></td>
+        <td>{r.role}</td>
+        <td><a href={r.docs} target="_blank" rel="noreferrer">link</a></td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+Font **Instrument Sans** (self-hosted di `assets/fonts/InstrumentSans/`,
+bukan dependency npm) mengikuti lisensi OFL-nya sendiri — lihat
+[`THIRD-PARTY-LICENSES.md`](../../THIRD-PARTY-LICENSES.md).
+
+List lengkap `dependencies` & `devDependencies` apa adanya ada di
+[`package.json`](../../package.json).

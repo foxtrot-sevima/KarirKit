@@ -7,10 +7,17 @@
   "description": "KarirKit design system - tokens and components built with Tailwind CSS.",
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
-    "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/html-vite": "^10.6.0",
     "@tailwindcss/cli": "^4.1.0",
-    "tailwindcss": "^4.1.0"
+    "@tailwindcss/vite": "^4.3.3",
+    "storybook": "^10.6.0",
+    "tailwindcss": "^4.1.0",
+    "vite": "^8.3.0"
   }
 }
