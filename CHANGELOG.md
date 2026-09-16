@@ -366,6 +366,15 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - Sidebar admin KarirLink diperbarui: "Kuesioner" sekarang tautan aktif,
     dan item baru "Daftar Yudisium" ditambahkan tepat di bawahnya dalam
     grup "Tracer".
+- Pola input berakhiran satuan (mis. "bulan") di Forms `index.html` -
+  field baru "Masa Tunggu Kerja", versi cermin dari pola prefiks currency
+  "Ekspektasi Gaji" yang sudah ada (`.relative` + `span` `pointer-events-
+  none` diposisikan absolut, cuma dipindah ke `right-3.5` dan input diberi
+  `pr-14` alih-alih `pl-11`) - supaya jadi komponen UI kit yang bisa dipakai
+  ulang, bukan cuma solusi sekali pakai. Diterapkan pada field "Masa tunggu
+  mendapatkan pekerjaan/usaha" di `kuesioner-simulasi.html` (sebelumnya
+  cuma teks polos "(dalam bulan)" di label, satuannya tidak muncul di
+  dalam input itu sendiri).
 
 ### Changed
 - `templates/karirlink/kuesioner-simulasi.html`: seluruh 11 dropdown native
@@ -482,6 +491,11 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   ruang kosong lebar di kanan card. Ditambahkan `sm:justify-center` pada
   wrapper flex-row-nya supaya grup donut+legend selalu di tengah card,
   di lebar berapa pun.
+- Prefiks mata uang tertulis "Rp." (pakai titik) di tiga tempat -
+  field "Ekspektasi Gaji" (`index.html`) serta "Pendapatan per bulan" di
+  cabang Bekerja & Wiraswasta (`kuesioner-simulasi.html`) - diganti "Rp"
+  polos tanpa titik, mengikuti gaya penulisan mata uang yang lazim di
+  Indonesia.
 
 ## [1.1.0] - 2026-09-11
 
