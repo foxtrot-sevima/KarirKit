@@ -11,10 +11,9 @@
 
 <!-- ============================= HEADER ============================= -->
 <header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
-  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
     <a href="index.html" class="flex items-center gap-3">
-      <img src="assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-6 w-auto sm:h-7" />
-      <span class="badge-neutral hidden sm:inline-flex">KarirKit UI Kit</span>
+      <img src="assets/logo/karirkit-logo.svg" alt="KarirKit" class="h-6 w-auto sm:h-7" />
     </a>
     <nav class="flex items-center gap-1 rounded-xl bg-slate-100/80 p-1">
       <a href="index.html" class="tab tab-active">Kit</a>
@@ -24,7 +23,7 @@
 </header>
 
 <!-- ============================= HERO ============================= -->
-<section class="mx-auto max-w-7xl px-6 pt-14 pb-8">
+<section class="mx-auto max-w-7xl px-4 pt-14 pb-8 sm:px-6 lg:px-10">
   <div class="flex max-w-3xl flex-col gap-4">
     <span class="badge-primary w-fit"><span class="badge-dot bg-primary-600"></span>v1.1 - dibangun dengan Tailwind CSS v4</span>
     <h1 class="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
@@ -66,7 +65,7 @@
 
 <!-- ======================= SECTION ANCHOR NAV ======================= -->
 <div class="sticky top-16 z-30 border-b border-slate-200/70 bg-shell/90 backdrop-blur-md">
-  <div class="mx-auto max-w-7xl px-6">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
     <div class="flex gap-1 overflow-x-auto scrollbar-none py-2.5">
       <a href="#logo" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Logo</a>
       <a href="#colors" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Warna</a>
@@ -78,6 +77,7 @@
       <a href="#cards" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Kartu</a>
       <a href="#forms" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Formulir</a>
       <a href="#dropdowns" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Dropdown</a>
+      <a href="#modals" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Modal</a>
       <a href="#navigation" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Navigasi</a>
       <a href="#tables" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tabel</a>
       <a href="#datatable" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">DataTable</a>
@@ -87,7 +87,7 @@
   </div>
 </div>
 
-<main class="mx-auto max-w-7xl px-6">
+<main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
 
   <!-- ============================= LOGO ============================= -->
   <section id="logo" class="scroll-mt-32 py-12">
@@ -826,11 +826,83 @@
     </div>
   </section>
 
+  <!-- ============================= MODAL ============================= -->
+  <section id="modals" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Modal</h2>
+      <p class="mt-1 text-sm text-slate-500">Dialog di atas backdrop gelap untuk konfirmasi atau form singkat. Tutup lewat tombol X, klik area gelap, atau tombol Escape.</p>
+    </div>
+
+    <div class="card flex flex-wrap items-center gap-3 p-6 sm:p-8">
+      <button type="button" class="btn-danger btn-md" data-modal-trigger="modal-demo-confirm">
+        <i class="kk kk-trash h-4 w-4"></i>
+        Buka Modal Konfirmasi
+      </button>
+      <button type="button" class="btn-outline btn-md" data-modal-trigger="modal-demo-form">
+        <i class="kk kk-pencil-simple h-4 w-4"></i>
+        Buka Modal Form
+      </button>
+    </div>
+
+    <div class="modal-backdrop" id="modal-demo-confirm" data-modal>
+      <div class="modal-panel modal-sm">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">Hapus Lowongan?</h3>
+            <p class="modal-description">Tindakan ini tidak bisa dibatalkan.</p>
+          </div>
+          <button type="button" class="modal-close" data-modal-close aria-label="Tutup">
+            <i class="kk kk-x h-4 w-4"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          Lowongan "Backend Engineer Intern" beserta seluruh data pelamarnya akan dihapus secara permanen.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-outline btn-md" data-modal-close>Batal</button>
+          <button type="button" class="btn-danger btn-md" data-modal-close>Hapus</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="modal-demo-form" data-modal>
+      <div class="modal-panel modal-md">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">Undang Anggota Tim</h3>
+            <p class="modal-description">Kirim undangan lewat email kampus.</p>
+          </div>
+          <button type="button" class="modal-close" data-modal-close aria-label="Tutup">
+            <i class="kk kk-x h-4 w-4"></i>
+          </button>
+        </div>
+        <div class="modal-body space-y-4">
+          <div>
+            <label class="form-label">Email</label>
+            <input type="email" class="input" placeholder="nama@kampus.ac.id" />
+          </div>
+          <div>
+            <label class="form-label">Peran</label>
+            <select class="input">
+              <option>Admin</option>
+              <option>Editor</option>
+              <option>Peninjau</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-outline btn-md" data-modal-close>Batal</button>
+          <button type="button" class="btn-primary btn-md" data-modal-close>Kirim Undangan</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================= NAVIGATION ============================= -->
   <section id="navigation" class="scroll-mt-32 py-12">
     <div class="mb-6">
       <h2 class="font-display text-2xl font-bold text-slate-900">Navigation</h2>
-      <p class="mt-1 text-sm text-slate-500">Item sidebar, label grup, dan tab bersegmen.</p>
+      <p class="mt-1 text-sm text-slate-500">Item sidebar, label grup, tab bersegmen, dan breadcrumb.</p>
     </div>
     <div class="grid gap-6 md:grid-cols-2">
       <div class="card p-4">
@@ -864,6 +936,19 @@
           <p class="nav-eyebrow mb-2">Eyebrow label</p>
           <p class="nav-eyebrow px-0">Alat Karier</p>
         </div>
+      </div>
+      <div class="card p-4 md:col-span-2">
+        <p class="nav-eyebrow mb-2">Breadcrumb</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="#" class="breadcrumb-link">
+            <i class="kk kk-house h-4 w-4"></i>
+            Beranda
+          </a>
+          <span class="breadcrumb-separator"><i class="kk kk-caret-right h-3 w-3"></i></span>
+          <a href="#" class="breadcrumb-link">Lowongan</a>
+          <span class="breadcrumb-separator"><i class="kk kk-caret-right h-3 w-3"></i></span>
+          <span class="breadcrumb-current" aria-current="page">Backend Engineer Intern</span>
+        </nav>
       </div>
     </div>
   </section>
@@ -984,54 +1069,54 @@
       </div>
 
       <div class="overflow-x-auto">
-        <table class="table" id="dtTable">
+        <table class="table table-fixed w-auto sm:w-full" id="dtTable">
           <thead>
             <tr>
-              <th class="w-10"><input type="checkbox" id="dtSelectAll" class="form-check" /></th>
-              <th class="th-sortable" data-sort="name" role="button" tabindex="0">
+              <th class="table-col-check"><input type="checkbox" id="dtSelectAll" class="form-check" /></th>
+              <th class="table-col-num hidden xl:table-cell">No</th>
+              <th class="th-sortable w-28 sm:w-44 lg:w-64" data-sort="name" role="button" tabindex="0">
                 <span class="inline-flex items-center gap-1">Perusahaan
                   <i class="kk kk-caret-down sort-icon h-3 w-3"></i>
                 </span>
               </th>
-              <th class="th-sortable" data-sort="position" role="button" tabindex="0">
+              <th class="th-sortable hidden whitespace-nowrap xl:table-cell" data-sort="position" role="button" tabindex="0">
                 <span class="inline-flex items-center gap-1">Posisi
                   <i class="kk kk-caret-down sort-icon h-3 w-3"></i>
                 </span>
               </th>
-              <th class="th-sortable" data-sort="date" role="button" tabindex="0">
+              <th class="th-sortable hidden w-28 xl:table-cell" data-sort="date" role="button" tabindex="0">
                 <span class="inline-flex items-center gap-1">Tanggal Lamar
                   <i class="kk kk-caret-down sort-icon h-3 w-3"></i>
                 </span>
               </th>
-              <th class="th-sortable" data-sort="score" role="button" tabindex="0">
+              <th class="th-sortable hidden w-32 xl:table-cell" data-sort="score" role="button" tabindex="0">
                 <span class="inline-flex items-center gap-1">Skor
                   <i class="kk kk-caret-down sort-icon h-3 w-3"></i>
                 </span>
               </th>
-              <th>Status</th>
-              <th class="text-right">Aksi</th>
+              <th class="w-28">Status</th>
+              <th class="table-col-actions">Aksi</th>
             </tr>
           </thead>
-          <tbody id="dtBody">
-            <tr data-name="Gojek" data-position="Product Designer" data-date="2026-09-03" data-score="92" data-status="interview">
+          <tbody id="dtBody"><tr data-name="Gojek" data-position="Product Designer" data-date="2026-09-03" data-score="92" data-status="interview">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">GJ</span><span class="font-medium text-slate-800">Gojek</span></div></td>
-              <td>Product Designer</td>
-              <td>3 Sep 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[92%]"></div></div><span class="text-xs text-slate-500">92%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">GJ</span><span class="font-medium text-slate-800">Gojek</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Product Designer &middot; 3 Sep 2026 &middot; Skor 92%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Product Designer</td>
+              <td class="hidden xl:table-cell">3 Sep 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[92%]"></div></div><span class="text-xs text-slate-500">92%</span></div></td>
               <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Interview</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1048,23 +1133,23 @@
             </tr>
             <tr data-name="Tokopedia" data-position="UI/UX Researcher" data-date="2026-09-01" data-score="78" data-status="ditinjau">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">TP</span><span class="font-medium text-slate-800">Tokopedia</span></div></td>
-              <td>UI/UX Researcher</td>
-              <td>1 Sep 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[78%]"></div></div><span class="text-xs text-slate-500">78%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">TP</span><span class="font-medium text-slate-800">Tokopedia</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">UI/UX Researcher &middot; 1 Sep 2026 &middot; Skor 78%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">UI/UX Researcher</td>
+              <td class="hidden xl:table-cell">1 Sep 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[78%]"></div></div><span class="text-xs text-slate-500">78%</span></div></td>
               <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1081,23 +1166,23 @@
             </tr>
             <tr data-name="Bank Jago" data-position="Business Analyst" data-date="2026-08-25" data-score="81" data-status="ditawari">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">BJ</span><span class="font-medium text-slate-800">Bank Jago</span></div></td>
-              <td>Business Analyst</td>
-              <td>25 Agu 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[81%]"></div></div><span class="text-xs text-slate-500">81%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">BJ</span><span class="font-medium text-slate-800">Bank Jago</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Business Analyst &middot; 25 Agu 2026 &middot; Skor 81%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Business Analyst</td>
+              <td class="hidden xl:table-cell">25 Agu 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[81%]"></div></div><span class="text-xs text-slate-500">81%</span></div></td>
               <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Ditawari</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1114,23 +1199,23 @@
             </tr>
             <tr data-name="Traveloka" data-position="Frontend Engineer" data-date="2026-08-18" data-score="54" data-status="ditolak">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-danger-100 text-danger-700">TV</span><span class="font-medium text-slate-800">Traveloka</span></div></td>
-              <td>Frontend Engineer</td>
-              <td>18 Agu 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-danger-500 w-[54%]"></div></div><span class="text-xs text-slate-500">54%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-danger-100 text-danger-700">TV</span><span class="font-medium text-slate-800">Traveloka</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Frontend Engineer &middot; 18 Agu 2026 &middot; Skor 54%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Frontend Engineer</td>
+              <td class="hidden xl:table-cell">18 Agu 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-danger-500 w-[54%]"></div></div><span class="text-xs text-slate-500">54%</span></div></td>
               <td><span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1147,23 +1232,23 @@
             </tr>
             <tr data-name="Bukalapak" data-position="Data Analyst" data-date="2026-08-12" data-score="88" data-status="interview">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">BL</span><span class="font-medium text-slate-800">Bukalapak</span></div></td>
-              <td>Data Analyst</td>
-              <td>12 Agu 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[88%]"></div></div><span class="text-xs text-slate-500">88%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">BL</span><span class="font-medium text-slate-800">Bukalapak</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Data Analyst &middot; 12 Agu 2026 &middot; Skor 88%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Data Analyst</td>
+              <td class="hidden xl:table-cell">12 Agu 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[88%]"></div></div><span class="text-xs text-slate-500">88%</span></div></td>
               <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Interview</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1180,23 +1265,23 @@
             </tr>
             <tr data-name="Shopee" data-position="Marketing Associate" data-date="2026-08-10" data-score="65" data-status="ditinjau">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">SP</span><span class="font-medium text-slate-800">Shopee</span></div></td>
-              <td>Marketing Associate</td>
-              <td>10 Agu 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[65%]"></div></div><span class="text-xs text-slate-500">65%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">SP</span><span class="font-medium text-slate-800">Shopee</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Marketing Associate &middot; 10 Agu 2026 &middot; Skor 65%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Marketing Associate</td>
+              <td class="hidden xl:table-cell">10 Agu 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[65%]"></div></div><span class="text-xs text-slate-500">65%</span></div></td>
               <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1213,23 +1298,23 @@
             </tr>
             <tr data-name="Blibli" data-position="Product Manager" data-date="2026-08-05" data-score="73" data-status="ditinjau">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">BB</span><span class="font-medium text-slate-800">Blibli</span></div></td>
-              <td>Product Manager</td>
-              <td>5 Agu 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[73%]"></div></div><span class="text-xs text-slate-500">73%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">BB</span><span class="font-medium text-slate-800">Blibli</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Product Manager &middot; 5 Agu 2026 &middot; Skor 73%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Product Manager</td>
+              <td class="hidden xl:table-cell">5 Agu 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[73%]"></div></div><span class="text-xs text-slate-500">73%</span></div></td>
               <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1246,23 +1331,23 @@
             </tr>
             <tr data-name="OVO" data-position="Backend Engineer" data-date="2026-07-30" data-score="90" data-status="interview">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">OV</span><span class="font-medium text-slate-800">OVO</span></div></td>
-              <td>Backend Engineer</td>
-              <td>30 Jul 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[90%]"></div></div><span class="text-xs text-slate-500">90%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">OV</span><span class="font-medium text-slate-800">OVO</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Backend Engineer &middot; 30 Jul 2026 &middot; Skor 90%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Backend Engineer</td>
+              <td class="hidden xl:table-cell">30 Jul 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[90%]"></div></div><span class="text-xs text-slate-500">90%</span></div></td>
               <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Interview</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1279,23 +1364,23 @@
             </tr>
             <tr data-name="DANA" data-position="QA Engineer" data-date="2026-07-28" data-score="60" data-status="ditolak">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">DN</span><span class="font-medium text-slate-800">DANA</span></div></td>
-              <td>QA Engineer</td>
-              <td>28 Jul 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-danger-500 w-[60%]"></div></div><span class="text-xs text-slate-500">60%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">DN</span><span class="font-medium text-slate-800">DANA</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">QA Engineer &middot; 28 Jul 2026 &middot; Skor 60%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">QA Engineer</td>
+              <td class="hidden xl:table-cell">28 Jul 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-danger-500 w-[60%]"></div></div><span class="text-xs text-slate-500">60%</span></div></td>
               <td><span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1312,23 +1397,23 @@
             </tr>
             <tr data-name="Ruangguru" data-position="UX Writer" data-date="2026-07-22" data-score="84" data-status="ditawari">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-success-100 text-success-700">RG</span><span class="font-medium text-slate-800">Ruangguru</span></div></td>
-              <td>UX Writer</td>
-              <td>22 Jul 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[84%]"></div></div><span class="text-xs text-slate-500">84%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-success-100 text-success-700">RG</span><span class="font-medium text-slate-800">Ruangguru</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">UX Writer &middot; 22 Jul 2026 &middot; Skor 84%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">UX Writer</td>
+              <td class="hidden xl:table-cell">22 Jul 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[84%]"></div></div><span class="text-xs text-slate-500">84%</span></div></td>
               <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Ditawari</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1345,23 +1430,23 @@
             </tr>
             <tr data-name="Kredivo" data-position="Data Scientist" data-date="2026-07-15" data-score="77" data-status="ditinjau">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">KV</span><span class="font-medium text-slate-800">Kredivo</span></div></td>
-              <td>Data Scientist</td>
-              <td>15 Jul 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[77%]"></div></div><span class="text-xs text-slate-500">77%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-info-100 text-info-700">KV</span><span class="font-medium text-slate-800">Kredivo</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Data Scientist &middot; 15 Jul 2026 &middot; Skor 77%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Data Scientist</td>
+              <td class="hidden xl:table-cell">15 Jul 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[77%]"></div></div><span class="text-xs text-slate-500">77%</span></div></td>
               <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1378,23 +1463,23 @@
             </tr>
             <tr data-name="Halodoc" data-position="Mobile Developer" data-date="2026-07-10" data-score="82" data-status="interview">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">HD</span><span class="font-medium text-slate-800">Halodoc</span></div></td>
-              <td>Mobile Developer</td>
-              <td>10 Jul 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[82%]"></div></div><span class="text-xs text-slate-500">82%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-primary-100 text-primary-700">HD</span><span class="font-medium text-slate-800">Halodoc</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Mobile Developer &middot; 10 Jul 2026 &middot; Skor 82%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Mobile Developer</td>
+              <td class="hidden xl:table-cell">10 Jul 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[82%]"></div></div><span class="text-xs text-slate-500">82%</span></div></td>
               <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Interview</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1411,23 +1496,23 @@
             </tr>
             <tr data-name="Xendit" data-position="DevOps Engineer" data-date="2026-07-05" data-score="68" data-status="ditolak">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">XD</span><span class="font-medium text-slate-800">Xendit</span></div></td>
-              <td>DevOps Engineer</td>
-              <td>5 Jul 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-danger-500 w-[68%]"></div></div><span class="text-xs text-slate-500">68%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-warning-100 text-warning-700">XD</span><span class="font-medium text-slate-800">Xendit</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">DevOps Engineer &middot; 5 Jul 2026 &middot; Skor 68%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">DevOps Engineer</td>
+              <td class="hidden xl:table-cell">5 Jul 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-danger-500 w-[68%]"></div></div><span class="text-xs text-slate-500">68%</span></div></td>
               <td><span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1444,23 +1529,23 @@
             </tr>
             <tr data-name="SiCepat" data-position="Operations Analyst" data-date="2026-06-28" data-score="71" data-status="ditinjau">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">SC</span><span class="font-medium text-slate-800">SiCepat</span></div></td>
-              <td>Operations Analyst</td>
-              <td>28 Jun 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[71%]"></div></div><span class="text-xs text-slate-500">71%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-slate-100 text-slate-600">SC</span><span class="font-medium text-slate-800">SiCepat</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Operations Analyst &middot; 28 Jun 2026 &middot; Skor 71%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Operations Analyst</td>
+              <td class="hidden xl:table-cell">28 Jun 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar bg-info-500 w-[71%]"></div></div><span class="text-xs text-slate-500">71%</span></div></td>
               <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Ditinjau</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -1477,23 +1562,23 @@
             </tr>
             <tr data-name="Kitabisa" data-position="Growth Marketer" data-date="2026-06-20" data-score="86" data-status="ditawari">
               <td><input type="checkbox" class="dt-row-checkbox form-check" /></td>
-              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-success-100 text-success-700">KB</span><span class="font-medium text-slate-800">Kitabisa</span></div></td>
-              <td>Growth Marketer</td>
-              <td>20 Jun 2026</td>
-              <td><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[86%]"></div></div><span class="text-xs text-slate-500">86%</span></div></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td><div class="flex items-center gap-3"><span class="avatar h-9 w-9 bg-success-100 text-success-700">KB</span><span class="font-medium text-slate-800">Kitabisa</span></div><p class="mt-0.5 text-xs text-slate-400 xl:hidden">Growth Marketer &middot; 20 Jun 2026 &middot; Skor 86%</p></td>
+              <td class="hidden whitespace-nowrap xl:table-cell">Growth Marketer</td>
+              <td class="hidden xl:table-cell">20 Jun 2026</td>
+              <td class="hidden xl:table-cell"><div class="flex items-center gap-2"><div class="progress-track w-16"><div class="progress-bar w-[86%]"></div></div><span class="text-xs text-slate-500">86%</span></div></td>
               <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Ditawari</span></td>
-              <td class="text-right">
+              <td class="table-col-actions">
                 <div class="flex items-center justify-end gap-2">
-                <button type="button" class="dt-primary-action btn-outline btn-sm"></button>
                 <div class="relative inline-block">
                   <button type="button" class="dt-menu-btn group relative flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
                     <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                    <span class="tooltip-content">Aksi lainnya</span>
+                    <span class="tooltip-content right-0 left-auto translate-x-0">Aksi lainnya</span>
                   </button>
                   <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item">
+                    <button type="button" class="dropdown-item dt-primary-item">
                       <i class="kk kk-eye h-4 w-4"></i>
-                      Lihat Detail
+                      <span data-primary-label>Lihat Detail</span>
                     </button>
                     <button type="button" class="dropdown-item">
                       <i class="kk kk-pencil-simple h-4 w-4"></i>
@@ -2241,12 +2326,14 @@
       if (pageRows.length === 0) {
         const tr = document.createElement('tr');
         tr.className = 'dt-empty-row';
-        tr.innerHTML = '<td colspan="7" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada lamaran yang cocok.</td>';
+        tr.innerHTML = '<td colspan="8" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada lamaran yang cocok.</td>';
         tbody.appendChild(tr);
       } else {
-        pageRows.forEach((r) => {
+        pageRows.forEach((r, i) => {
           r.style.display = '';
           tbody.appendChild(r);
+          const numEl = r.querySelector('[data-num]');
+          if (numEl) numEl.textContent = String(start + i + 1);
         });
       }
 
@@ -2289,6 +2376,8 @@
     }
 
     // status label -> a short, contextual primary action per row (set once; status never changes at runtime here)
+    // Shown as the first item in the row's "..." menu, not a separate button,
+    // so the Aksi column stays a single fixed-width icon regardless of label length.
     const PRIMARY_ACTION_LABEL = {
       interview: 'Detail Interview',
       ditinjau: 'Lihat Progres',
@@ -2296,8 +2385,8 @@
       ditolak: 'Lihat Feedback',
     };
     allRows.forEach((r) => {
-      const btn = r.querySelector('.dt-primary-action');
-      if (btn) btn.textContent = PRIMARY_ACTION_LABEL[r.dataset.status] || 'Lihat Detail';
+      const label = r.querySelector('.dt-primary-item [data-primary-label]');
+      if (label) label.textContent = PRIMARY_ACTION_LABEL[r.dataset.status] || 'Lihat Detail';
     });
 
     searchInput?.addEventListener('input', () => { state.search = searchInput.value; state.page = 1; render(); });
@@ -2404,6 +2493,45 @@
     });
 
     render();
+  })();
+
+  (function () {
+    // Generic modal: [data-modal-trigger="id"] opens #id, [data-modal-close]
+    // or a backdrop click closes the nearest [data-modal], Escape closes
+    // whichever modal is currently open.
+    function openModal(modal) {
+      modal.classList.add('is-open');
+      document.body.classList.add('overflow-hidden');
+    }
+    function closeModal(modal) {
+      modal.classList.remove('is-open');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    document.querySelectorAll('[data-modal-trigger]').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const modal = document.getElementById(trigger.dataset.modalTrigger);
+        if (modal) openModal(modal);
+      });
+    });
+
+    document.querySelectorAll('[data-modal]').forEach((modal) => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal(modal);
+      });
+    });
+
+    document.querySelectorAll('[data-modal-close]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const modal = btn.closest('[data-modal]');
+        if (modal) closeModal(modal);
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      document.querySelectorAll('[data-modal].is-open').forEach(closeModal);
+    });
   })();
 </script>
 </body>

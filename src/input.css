@@ -848,10 +848,16 @@
 
   /* Tables */
   .table { @apply w-full text-left text-sm border-collapse; }
-  .table th { @apply px-4 py-3.5 text-sm font-semibold text-fg-muted border-b border-border-subtle; }
-  .table td { @apply px-4 py-4 border-b border-border-subtle text-neutral-700 align-middle; }
+  .table th { @apply whitespace-nowrap px-4 py-3 text-sm font-semibold text-fg-muted border-b border-border-subtle; }
+  .table td { @apply px-4 py-3 border-b border-border-subtle text-neutral-700 align-middle; }
   .table tbody tr:last-child td { @apply border-b-0; }
   .table tbody tr { @apply hover:bg-neutral-50/70 transition-colors; }
+
+  /* Fixed-width utility columns — keep numbering/checkbox/action columns from
+     shifting as surrounding text content grows or shrinks. */
+  .table-col-check { @apply w-10; }
+  .table-col-num { @apply w-12 text-center text-xs font-medium text-fg-subtle; }
+  .table-col-actions { @apply min-w-14 text-right; }
 
   .th-sortable { @apply cursor-pointer select-none hover:text-neutral-600; }
   .th-sortable .sort-icon { @apply inline-flex opacity-40 transition-opacity; }
@@ -892,6 +898,48 @@
   .callout-warning { @apply border-l-warning-500; }
   .callout-info { @apply border-l-info-500; }
   .callout-success { @apply border-l-success-500; }
+
+  /* Modal — resting state lives on .modal-backdrop/.modal-panel themselves
+     (mirrors the .combo-menu invisible/is-open pattern), so toggling
+     .is-open animates both the open AND close direction. */
+  .modal-backdrop {
+    @apply invisible fixed inset-0 flex items-center justify-center bg-neutral-900/50 p-4
+           opacity-0 transition-opacity ease-out;
+    z-index: var(--z-overlay);
+    transition-duration: var(--duration-normal);
+  }
+  .modal-backdrop.is-open { @apply visible opacity-100; }
+  .modal-panel {
+    @apply w-full max-w-md rounded-card border border-border/70 bg-surface shadow-card-lg transition ease-out;
+    transition-duration: var(--duration-normal);
+  }
+  .modal-backdrop:not(.is-open) .modal-panel { @apply scale-95 opacity-0; }
+  .modal-sm { @apply max-w-sm; }
+  .modal-md { @apply max-w-md; }
+  .modal-lg { @apply max-w-lg; }
+  .modal-xl { @apply max-w-2xl; }
+  .modal-header { @apply flex items-start justify-between gap-4 border-b border-border-subtle px-6 py-4; }
+  .modal-title { @apply text-base font-semibold text-fg; }
+  .modal-description { @apply mt-1 text-sm text-fg-muted; }
+  .modal-close {
+    @apply flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-fg-subtle
+           transition-colors hover:bg-neutral-100 hover:text-fg;
+  }
+  .modal-body { @apply px-6 py-5 text-sm text-neutral-600; }
+  .modal-footer { @apply flex flex-col-reverse items-center gap-2.5 border-t border-border-subtle px-6 py-4 sm:flex-row sm:justify-end; }
+  .modal-footer .btn-primary,
+  .modal-footer .btn-secondary,
+  .modal-footer .btn-outline,
+  .modal-footer .btn-danger { @apply w-full sm:w-auto; }
+
+  /* Breadcrumb */
+  .breadcrumb { @apply flex flex-wrap items-center gap-1.5 text-sm; }
+  .breadcrumb-item { @apply flex items-center gap-1.5; }
+  .breadcrumb-link {
+    @apply flex cursor-pointer items-center gap-1.5 text-fg-muted transition-colors hover:text-primary-600;
+  }
+  .breadcrumb-current { @apply flex items-center gap-1.5 font-medium text-fg; }
+  .breadcrumb-separator { @apply text-fg-subtle/80; }
 
   /* Misc */
   .kbd { @apply inline-flex items-center justify-center rounded-md border border-border bg-neutral-50 px-1.5 py-0.5 text-micro font-medium text-fg-muted; }
