@@ -2,3 +2,5 @@ node_modules/
 moodboard/
 storybook-static/
 *storybook.log
+.vercel
+.env*
