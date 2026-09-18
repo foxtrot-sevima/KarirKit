@@ -28,6 +28,52 @@ bagian [Brand & Logo](#brand--logo).
 - **Light-only** — dark mode sengaja ditunda. Pakai semantic tokens supaya
   nanti cukup override map di `.dark`, bukan rewrite komponen.
 
+## Instalasi (npm package)
+
+KarirKit di-publish sebagai package private `@foxtrot-sevima/karirkit` ke
+GitHub Packages. Sekali di package.json project consumer, tambahkan mapping
+registry untuk scope `@foxtrot-sevima` di `.npmrc` project tersebut:
+
+```
+@foxtrot-sevima:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+`GITHUB_TOKEN` adalah Personal Access Token dengan scope `read:packages`,
+milik akun yang punya akses ke org `foxtrot-sevima`. Lalu install seperti
+biasa:
+
+```
+npm install @foxtrot-sevima/karirkit
+```
+
+Pemakaian di project consumer:
+
+```css
+/* import CSS hasil build (siap pakai) */
+@import "@foxtrot-sevima/karirkit";
+
+/* atau import source token/komponen kalau mau digabung ke @theme sendiri
+   lewat Tailwind CSS v4 milik project consumer */
+@import "@foxtrot-sevima/karirkit/theme";
+```
+
+Font dan icon ikut ter-package di `assets/fonts` dan `assets/icons` (bisa
+diakses lewat `@foxtrot-sevima/karirkit/assets/...`).
+
+### Publish rilis baru
+
+Publish otomatis lewat GitHub Actions (`.github/workflows/publish.yml`)
+setiap kali ada GitHub Release baru. Untuk publish manual dari mesin lokal:
+
+```
+npm version <patch|minor|major>
+npm publish
+```
+
+`prepublishOnly` akan menjalankan `npm run build` otomatis sebelum publish,
+jadi `dist/output.css` selalu ikut versi terbaru.
+
 ## Struktur
 
 ```
