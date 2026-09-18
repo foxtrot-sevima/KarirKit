@@ -6,6 +6,29 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **SEO terstruktur di 18 halaman** (`index.html`, seluruh `templates/*.html`,
+  dan seluruh `templates/karirlink/*.html`) - meta description unik per
+  halaman (bukan generik copy-paste), `<link rel="canonical">` ke URL absolut
+  `karirkit.vercel.app`, Open Graph lengkap (og:title/description/image/type/
+  locale/site_name), dan Twitter Card `summary_large_image` - semuanya
+  memakai satu gambar OG bermerek baru (`assets/social/og-image.png`,
+  1200×630, dibuat dari template HTML + screenshot Playwright, bukan aset
+  desain manual).
+  - **Keputusan index vs noindex, bukan asal index semua**: `index.html`
+    (style guide publik) diberi `robots: index, follow` plus structured data
+    JSON-LD (`schema.org` `Organization` + `WebSite` + `SoftwareSourceCode`,
+    tertaut ke repo GitHub asli) - satu-satunya halaman yang wajar diranking
+    Google. 17 halaman lain (login, register, dashboard, dan semua halaman
+    admin `templates/karirlink/`) diberi `robots: noindex, nofollow` dengan
+    sengaja - halaman login/dashboard/admin memang tidak boleh muncul di
+    hasil pencarian (praktik keamanan & UX standar), jadi SEO yang benar
+    untuk halaman-halaman ini justru mencegah Google meng-index-nya, bukan
+    memaksimalkan indexability di semua tempat tanpa pandang konteks.
+  - `robots.txt` baru (izinkan crawl `index.html`, blokir `/templates/`,
+    `/dist/`, `/stories/`, `/storybook-static/`, `/src/`) dan `sitemap.xml`
+    baru (cuma 1 URL - homepage - sesuai yang memang indexable; tidak
+    mencantumkan halaman noindex, menghindari pemborosan crawl budget).
+
 - Katalog ikon diperluas total dari 38 kurasi manual menjadi **seluruh 1.512
   ikon Phosphor Icons** (`@phosphor-icons/core`), masing-masing dalam 6
   ketebalan (Thin/Light/Regular/Bold/Fill/Duotone) - 9.072 kombinasi
