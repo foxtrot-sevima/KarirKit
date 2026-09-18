@@ -31,21 +31,70 @@ bagian [Brand & Logo](#brand--logo).
 ## Instalasi (npm package)
 
 KarirKit di-publish sebagai package private `@foxtrot-sevima/karirkit` ke
-GitHub Packages. Sekali di package.json project consumer, tambahkan mapping
-registry untuk scope `@foxtrot-sevima` di `.npmrc` project tersebut:
+[GitHub Packages](https://github.com/orgs/foxtrot-sevima/packages) — **bukan**
+npm registry publik, jadi `npm install @foxtrot-sevima/karirkit` polos tanpa
+setup di bawah akan gagal dengan `404 Not Found` (npm defaultnya mencari ke
+`registry.npmjs.org`, yang memang tidak punya package ini). GitHub Packages
+juga selalu butuh autentikasi untuk install, walau packagenya sendiri public.
+
+### 1. Buat Personal Access Token (PAT)
+
+1. Buka [github.com/settings/tokens](https://github.com/settings/tokens) →
+   **Generate new token** → **Generate new token (classic)**.
+2. Beri nama bebas (mis. "read npm packages"), centang scope **`read:packages`**
+   saja (tambah `repo` juga kalau repo `KarirKit`-nya private dan Anda belum
+   pernah clone/akses lewat token lain).
+3. Generate, lalu **salin tokennya sekarang** (`ghp_...`) — GitHub cuma
+   menampilkannya sekali.
+
+### 2. Setup `.npmrc`
+
+Di root project consumer (folder tempat `package.json` Anda berada), buat
+file `.npmrc` berisi:
 
 ```
 @foxtrot-sevima:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
-`GITHUB_TOKEN` adalah Personal Access Token dengan scope `read:packages`,
-milik akun yang punya akses ke org `foxtrot-sevima`. Lalu install seperti
-biasa:
+Baris pertama mengarahkan scope `@foxtrot-sevima` ke GitHub Packages (bukan
+npm publik), baris kedua yang mengautentikasi instalasinya.
+
+Lalu set environment variable `GITHUB_TOKEN` ke token dari langkah 1 — atau,
+kalau tidak mau repot dengan env var, tempel tokennya langsung menggantikan
+`${GITHUB_TOKEN}` di `.npmrc` (tapi jangan sampai `.npmrc` ini ikut ter-commit
+ke repo publik kalau isinya token asli).
+
+<details>
+<summary>Set <code>GITHUB_TOKEN</code> per OS/shell</summary>
+
+```powershell
+# PowerShell (sesi saat ini saja)
+$env:GITHUB_TOKEN = "ghp_xxxxxxxxxxxxxxxxxxxx"
+
+# PowerShell (permanen, akun user)
+setx GITHUB_TOKEN "ghp_xxxxxxxxxxxxxxxxxxxx"
+```
+
+```bash
+# bash/zsh (sesi saat ini saja)
+export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"
+
+# bash/zsh (permanen — tambahkan ke ~/.bashrc atau ~/.zshrc)
+echo 'export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"' >> ~/.bashrc
+```
+
+</details>
+
+### 3. Install
 
 ```
-npm install @foxtrot-sevima/karirkit
+npm install @foxtrot-sevima/karirkit@1.2.0
 ```
+
+Tanpa versi (`npm install @foxtrot-sevima/karirkit`) akan mengambil versi
+`latest` yang sedang aktif — cek versi yang tersedia di
+[github.com/orgs/foxtrot-sevima/packages/npm/package/karirkit](https://github.com/orgs/foxtrot-sevima/packages/npm/package/karirkit).
 
 Pemakaian di project consumer:
 
@@ -64,7 +113,14 @@ diakses lewat `@foxtrot-sevima/karirkit/assets/...`).
 ### Publish rilis baru
 
 Publish otomatis lewat GitHub Actions (`.github/workflows/publish.yml`)
-setiap kali ada GitHub Release baru. Untuk publish manual dari mesin lokal:
+setiap kali branch `release` di-push/di-merge — alurnya: bump versi di branch
+kerja → merge ke `master` → merge/push `master` ke `release` → workflow
+otomatis build & `npm publish`. Workflow ini juga bisa dipicu manual lewat
+tab **Actions → Publish package → Run workflow** (`workflow_dispatch`),
+termasuk untuk ref selain `release` kalau perlu.
+
+Untuk publish manual dari mesin lokal (butuh token dengan scope
+`write:packages`, bukan `read:packages`):
 
 ```
 npm version <patch|minor|major>
