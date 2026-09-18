@@ -28,9 +28,11 @@ and the license text travels with it — both conditions are met here.
 ## Icons (Phosphor Icons)
 
 - **Location:** `assets/icons/{regular,thin,light,bold,fill,duotone}/`
-  (self-hosted SVG source files — the canonical copy of each icon token,
-  one per Phosphor weight; base64-encoded into the `.kk-*` CSS mask-image
-  rules in `src/input.css`, used as `<i class="kk kk-name">` — add a
+  (self-hosted SVG source files — the full 1,512-icon Phosphor catalog,
+  one file per icon per weight; base64-encoded into `--icon-{name}[-{weight}]`
+  design tokens in the `@theme` block of `src/input.css`, consumed by the
+  `.kk-*` CSS mask-image rules right below it, used as
+  `<i class="kk kk-name">` — add a
   `kk-thin`/`kk-light`/`kk-bold`/`kk-fill`/`kk-duotone` modifier class for
   a weight other than Regular — in `index.html`,
   `templates/dashboard.html`, and `templates/karirlink/index.html`)
