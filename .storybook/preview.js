@@ -39,6 +39,8 @@ const preview = {
             "Tooltip",
             "Divider",
           ],
+          "Templates",
+          ["Dashboard", "Auth"],
         ],
       },
     },
