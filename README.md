@@ -1,13 +1,9 @@
 # KarirKit Design System
 
-**KarirKit** adalah UI kit/design system internal SEVIMA untuk **KarirLink**
-— platform karier berbasis AI. Dibangun dengan Tailwind CSS v4. Proyek
-internal SEVIMA (Foxtrot).
-
-Referensi visual ada di `moodboard/`: SaaS dashboard bertema AI dengan
-sidebar tergrup, kartu statistik bertren, badge status, dan panel
-rekomendasi AI. Warna dan logo mengikuti identitas resmi KarirLink — lihat
-bagian [Brand & Logo](#brand--logo).
+**KarirKit** adalah design system resmi untuk **KarirLink** — platform karier
+berbasis AI milik SEVIMA. Dibangun dengan Tailwind CSS v4, dipakai di semua
+produk/halaman KarirLink supaya token warna, tipografi, dan komponen UI
+tetap konsisten. Proyek internal SEVIMA (Foxtrot).
 
 ## Fitur
 
@@ -78,18 +74,16 @@ jadi `dist/output.css` selalu ikut versi terbaru.
 
 ```
 src/input.css              Design tokens (@theme) + komponen (@layer components)
-dist/output.css            CSS hasil build — dimuat oleh index.html & templates/dashboard.html
+dist/output.css            CSS hasil build — inilah yang dipakai lewat npm package
 assets/fonts/InstrumentSans/  Font self-hosted (lihat bagian Font di bawah)
 assets/logo/                  Logo KarirLink dipakai di kedua halaman (lihat Brand & Logo)
-index.html                 Style guide: warna, tipografi, ikon, dan semua komponen
-templates/dashboard.html   Dashboard KarirKit yang memakai design system tersebut
-moodboard/                 Referensi visual (tidak dipakai runtime)
-logo/                      Aset logo asli dari tim brand (sumber, tidak dipakai runtime)
+index.html                 Style guide lokal: warna, tipografi, ikon, dan semua komponen
+templates/dashboard.html   Contoh dashboard KarirKit
 ```
 
-Kedua file HTML adalah statis (tanpa build tool saat dibuka) dan bisa
-langsung dibuka di browser — cukup double-click `index.html` atau
-`templates/dashboard.html`.
+`index.html` dan `templates/dashboard.html` adalah demo/style guide untuk
+pengembangan di repo ini saja — statis, bisa dibuka langsung di browser
+tanpa server, dan **tidak** ikut ter-publish di npm package.
 
 ## Tech stack
 
@@ -103,9 +97,9 @@ langsung dibuka di browser — cukup double-click `index.html` atau
 
 ## Brand & Logo
 
-Logo resmi **KarirLink** (`logo/new/`, dari tim brand SEVIMA) adalah aset
-visual utama proyek ini, tersedia dalam 4 varian di `assets/logo/` — lihat
-bagian Logo di `index.html` untuk contoh visual & kapan memakai masing-masing:
+Logo resmi **KarirLink** dari tim brand SEVIMA, tersedia dalam 4 varian di
+`assets/logo/` — lihat bagian Logo di `index.html` untuk contoh visual &
+kapan memakai masing-masing:
 
 | File | Varian | Fungsi |
 | --- | --- | --- |
