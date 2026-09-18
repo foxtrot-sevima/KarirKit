@@ -10,7 +10,7 @@ const preview = {
       storySort: {
         order: [
           "Guides",
-          ["Introduction", "Table of Dependency", "Table of Version", "Changelog"],
+          ["Introduction", "Installation", "Table of Dependency", "Table of Version", "Changelog"],
           "Foundations",
           ["Colors", "Typography", "Icons"],
           "Components",
