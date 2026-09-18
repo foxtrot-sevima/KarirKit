@@ -16,7 +16,11 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   Phosphor, bukan digambar ulang manual), dipakai sama seperti sebelumnya -
   `<i class="kk kk-nama">`, tambah `kk-thin`/`kk-light`/`kk-bold`/`kk-fill`/
   `kk-duotone` untuk ketebalan selain Regular - jadi 203 pemakaian ikon yang
-  sudah ada tidak berubah/butuh migrasi.
+  sudah ada tidak berubah/butuh migrasi. `Foundations/Icons` di Storybook ikut
+  diperbarui mengikuti katalog baru: array `ICONS` di-generate ulang dari
+  `assets/icons/regular/*.svg` (bukan lagi 38 baris kurasi manual), story
+  "Library" menampilkan seluruh 1.512 ikon, dan dropdown ikon pada "Icon
+  Explorer" & "Weights" ikut mencakup semuanya.
 
 - Section "Modal" baru di `index.html` beserta komponen `.modal-backdrop`/
   `.modal-panel`/`.modal-header`/`.modal-title`/`.modal-description`/
