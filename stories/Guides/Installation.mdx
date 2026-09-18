@@ -1,0 +1,132 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Guides/Installation" />
+
+# How to Install KarirKit with NPM
+
+KarirKit di-publish sebagai package **private** `@foxtrot-sevima/karirkit` ke
+[GitHub Packages](https://github.com/orgs/foxtrot-sevima/packages) —
+**bukan** npm registry publik. `npm install @foxtrot-sevima/karirkit` polos
+tanpa setup di bawah akan gagal dengan `404 Not Found` (npm defaultnya
+mencari ke `registry.npmjs.org`, yang memang tidak punya package ini).
+GitHub Packages juga selalu butuh autentikasi untuk install, walau
+package-nya sendiri tidak untuk publik.
+
+## Access Token
+
+Sebelum mulai menggunakan KarirKit ada step yang harus diperhatikan, yaitu
+memiliki access token yang valid dan melakukan konfigurasi access token di
+dalam repository-mu. Ikuti langkah-langkah berikut:
+
+### 1. Buat Personal Access Token (PAT)
+
+1. Buka [github.com/settings/tokens](https://github.com/settings/tokens) →
+   **Generate new token** → **Generate new token (classic)**.
+2. Beri nama bebas (mis. "read npm packages"), centang scope
+   **`read:packages`** saja (tambah `repo` juga kalau repo `KarirKit`-nya
+   private dan kamu belum pernah clone/akses lewat token lain).
+3. Generate, lalu **salin tokennya sekarang** (`ghp_...`) — GitHub cuma
+   menampilkannya sekali.
+
+### 2. Setup `.npmrc`
+
+Di root project-mu (folder tempat `package.json` berada), buat file
+`.npmrc` berisi:
+
+```
+@foxtrot-sevima:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Baris pertama mengarahkan scope `@foxtrot-sevima` ke GitHub Packages (bukan
+npm publik), baris kedua yang mengautentikasi instalasinya. Lalu set
+environment variable `GITHUB_TOKEN` ke token dari langkah 1 — atau, kalau
+tidak mau repot dengan env var, tempel tokennya langsung menggantikan
+`${GITHUB_TOKEN}` di `.npmrc`.
+
+Terakhir, pastikan kamu sudah meng-**ignore** `.npmrc` di dalam `.gitignore`.
+
+💡 `.npmrc` adalah file konfigurasi untuk npm yang menyimpan pengaturan
+khusus untuk proyek atau pengguna tertentu — registry, autentikasi, dan
+konfigurasi lainnya. Di atas dipakai untuk mengatur scope `@foxtrot-sevima`,
+dan diperlukan token yang valid supaya npm bisa mengakses package privat
+di GitHub Packages.
+
+**Penting! Perlakukan `.npmrc` selayaknya `.env` — jangan pernah di-commit
+dengan token asli di dalamnya.**
+
+## Installation
+
+Langkah-langkah instalasi KarirKit:
+
+```bash
+npm install @foxtrot-sevima/karirkit@1.2.0
+```
+
+Tanpa versi (`npm install @foxtrot-sevima/karirkit`) akan mengambil versi
+`latest` yang sedang aktif — cek versi yang tersedia di
+[github.com/orgs/foxtrot-sevima/packages/npm/package/karirkit](https://github.com/orgs/foxtrot-sevima/packages/npm/package/karirkit).
+
+*note: `dist/output.css` (CSS jadi), `assets/fonts/`, dan `assets/icons/`
+ikut ter-install otomatis begitu package ini terpasang — tidak ada package
+tambahan yang perlu diinstall terpisah.
+
+## Pemakaian
+
+Ada dua cara pakai, tergantung setup Tailwind di project-mu:
+
+**1. Pakai CSS jadi (paling simpel, tanpa Tailwind di project-mu):**
+
+```css
+@import "@foxtrot-sevima/karirkit";
+```
+
+**2. Gabung ke `@theme` Tailwind v4 milik project-mu sendiri** (kalau
+project-mu juga build lewat Tailwind CLI/Vite dan mau bisa extend/override
+token):
+
+```css
+@import "tailwindcss";
+@import "@foxtrot-sevima/karirkit/theme";
+```
+
+Font & icon bisa diakses lewat `@foxtrot-sevima/karirkit/assets/...`
+(misalnya `@foxtrot-sevima/karirkit/assets/fonts/InstrumentSans/...`).
+
+### HTML5 doctype
+
+Minimal markup halaman yang memuat KarirKit:
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{ Judul Halaman } | { Nama Produk/Modul }</title>
+
+    <!-- [START] Stylesheet -->
+    <link rel="stylesheet" href="node_modules/@foxtrot-sevima/karirkit/dist/output.css">
+    <!-- ======= { Custom style project-mu di sini } ======= -->
+    <!-- [END] Stylesheet -->
+</head>
+
+<body class="bg-shell font-sans text-fg antialiased">
+    <!-- Body Content -->
+</body>
+</html>
+```
+
+Kalau project-mu pakai bundler (Vite/Webpack/dsb.), `@import` lewat CSS
+entry file lebih disarankan daripada `<link>` langsung ke `node_modules`.
+
+## Next Steps
+
+Setelah CSS ter-load, tinggal pakai class komponen (`.btn-primary`, `.card`,
+dst.) dan token utility (`bg-surface`, `text-fg`, `border-border`, dst.) —
+lihat contoh markup lengkap tiap komponen di sidebar **Components** dan
+**Foundations** Storybook ini.
+
+- Sidebar **Components** — markup HTML + class Tailwind siap-copy per komponen.
+- [`index.html`](../index.html) — galeri statis semua token & komponen (referensi cepat, bukan bagian package).
+- [Table of Dependency](?path=/docs/guides-table-of-dependency--docs) & [Table of Version](?path=/docs/guides-table-of-version--docs) untuk lihat versi terpasang & riwayat rilis.
