@@ -6,6 +6,18 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Katalog ikon diperluas total dari 38 kurasi manual menjadi **seluruh 1.512
+  ikon Phosphor Icons** (`@phosphor-icons/core`), masing-masing dalam 6
+  ketebalan (Thin/Light/Regular/Bold/Fill/Duotone) - 9.072 kombinasi
+  ikon×ketebalan, dipicu kebutuhan nyata: beberapa halaman auth yang sedang
+  dikerjakan butuh ikon (`envelope`, `lock-simple`, `google-logo`, dst.) yang
+  tidak ada di 38 ikon lama. SVG sumber di-vendor ke
+  `assets/icons/{regular,thin,light,bold,fill,duotone}/` (dari paket resmi
+  Phosphor, bukan digambar ulang manual), dipakai sama seperti sebelumnya -
+  `<i class="kk kk-nama">`, tambah `kk-thin`/`kk-light`/`kk-bold`/`kk-fill`/
+  `kk-duotone` untuk ketebalan selain Regular - jadi 203 pemakaian ikon yang
+  sudah ada tidak berubah/butuh migrasi.
+
 - Section "Modal" baru di `index.html` beserta komponen `.modal-backdrop`/
   `.modal-panel`/`.modal-header`/`.modal-title`/`.modal-description`/
   `.modal-body`/`.modal-footer`/`.modal-close` (ukuran `.modal-sm/md/lg/xl`) -
@@ -26,6 +38,21 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- **Ikon dijadikan token sungguhan** - base64 tiap ikon (semua 9.072
+  kombinasi ikon×ketebalan, termasuk 38 ikon lama) dipindah dari nempel
+  langsung di tiap rule `.kk-*` menjadi custom property
+  `--icon-{nama}[-{ketebalan}]` di blok `@theme` baru; rule `.kk-*` di
+  `@layer components` sekarang cuma konsumsi lewat
+  `mask-image: var(--icon-nama)`, bukan menyimpan base64-nya sendiri -
+  konsisten dengan arsitektur token 3-lapis (primitive/semantic/component)
+  yang sudah dipakai warna & spacing. Sempat ketahuan saat verifikasi:
+  menulis `mask-image` + `-webkit-mask-image` manual sekaligus (pola lama)
+  membuat compiler Tailwind v4 (Lightning CSS) menghasilkan 4 declaration
+  terduplikasi per rule begitu nilainya lewat `var()` (beda dari nilai
+  `url()` literal yang bisa di-dedupe otomatis) - diperbaiki dengan cuma
+  menulis `mask-image` saja dan membiarkan prefix `-webkit-` di-generate
+  otomatis oleh compiler.
+  `THIRD-PARTY-LICENSES.md` diperbarui mengikuti struktur baru ini.
 - **Table/DataTable dirombak total** mengikuti referensi moodboard
   (`moodboard/tabel/`): `table-fixed` dengan lebar kolom tetap tapi tetap
   responsif (`w-auto` di mobile, `sm:w-full` mulai breakpoint `sm`), kolom
