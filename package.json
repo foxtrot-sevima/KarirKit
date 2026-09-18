@@ -1,13 +1,52 @@
 {
-  "name": "karirkit",
+  "name": "@foxtrot-sevima/karirkit",
   "version": "1.2.0",
-  "private": true,
   "license": "UNLICENSED",
   "author": "Ahmad Dimas <ahmad.dimas@sevima.id>",
   "description": "KarirKit design system - tokens and components built with Tailwind CSS.",
+  "keywords": [
+    "design-system",
+    "tailwindcss",
+    "karirkit",
+    "sevima"
+  ],
+  "homepage": "https://github.com/foxtrot-sevima/KarirKit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foxtrot-sevima/KarirKit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/foxtrot-sevima/KarirKit/issues"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "dist",
+    "assets/fonts",
+    "assets/icons",
+    "assets/logo",
+    "src/input.css",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "THIRD-PARTY-LICENSES.md"
+  ],
+  "main": "dist/output.css",
+  "style": "dist/output.css",
+  "sideEffects": true,
+  "exports": {
+    ".": "./dist/output.css",
+    "./css": "./dist/output.css",
+    "./theme": "./src/input.css",
+    "./assets/*": "./assets/*",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
     "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

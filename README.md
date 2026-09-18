@@ -1,13 +1,9 @@
 # KarirKit Design System
 
-**KarirKit** adalah UI kit/design system internal SEVIMA untuk **KarirLink**
-— platform karier berbasis AI. Dibangun dengan Tailwind CSS v4. Proyek
-internal SEVIMA (Foxtrot).
-
-Referensi visual ada di `moodboard/`: SaaS dashboard bertema AI dengan
-sidebar tergrup, kartu statistik bertren, badge status, dan panel
-rekomendasi AI. Warna dan logo mengikuti identitas resmi KarirLink — lihat
-bagian [Brand & Logo](#brand--logo).
+**KarirKit** adalah design system resmi untuk **KarirLink** — platform karier
+berbasis AI milik SEVIMA. Dibangun dengan Tailwind CSS v4, dipakai di semua
+produk/halaman KarirLink supaya token warna, tipografi, dan komponen UI
+tetap konsisten. Proyek internal SEVIMA (Foxtrot).
 
 ## Fitur
 
@@ -28,22 +24,122 @@ bagian [Brand & Logo](#brand--logo).
 - **Light-only** — dark mode sengaja ditunda. Pakai semantic tokens supaya
   nanti cukup override map di `.dark`, bukan rewrite komponen.
 
+## Instalasi (npm package)
+
+KarirKit di-publish sebagai package private `@foxtrot-sevima/karirkit` ke
+[GitHub Packages](https://github.com/orgs/foxtrot-sevima/packages) — **bukan**
+npm registry publik, jadi `npm install @foxtrot-sevima/karirkit` polos tanpa
+setup di bawah akan gagal dengan `404 Not Found` (npm defaultnya mencari ke
+`registry.npmjs.org`, yang memang tidak punya package ini). GitHub Packages
+juga selalu butuh autentikasi untuk install, walau packagenya sendiri public.
+
+### 1. Buat Personal Access Token (PAT)
+
+1. Buka [github.com/settings/tokens](https://github.com/settings/tokens) →
+   **Generate new token** → **Generate new token (classic)**.
+2. Beri nama bebas (mis. "read npm packages"), centang scope **`read:packages`**
+   saja (tambah `repo` juga kalau repo `KarirKit`-nya private dan Anda belum
+   pernah clone/akses lewat token lain).
+3. Generate, lalu **salin tokennya sekarang** (`ghp_...`) — GitHub cuma
+   menampilkannya sekali.
+
+### 2. Setup `.npmrc`
+
+Di root project consumer (folder tempat `package.json` Anda berada), buat
+file `.npmrc` berisi:
+
+```
+@foxtrot-sevima:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Baris pertama mengarahkan scope `@foxtrot-sevima` ke GitHub Packages (bukan
+npm publik), baris kedua yang mengautentikasi instalasinya.
+
+Lalu set environment variable `GITHUB_TOKEN` ke token dari langkah 1 — atau,
+kalau tidak mau repot dengan env var, tempel tokennya langsung menggantikan
+`${GITHUB_TOKEN}` di `.npmrc` (tapi jangan sampai `.npmrc` ini ikut ter-commit
+ke repo publik kalau isinya token asli).
+
+<details>
+<summary>Set <code>GITHUB_TOKEN</code> per OS/shell</summary>
+
+```powershell
+# PowerShell (sesi saat ini saja)
+$env:GITHUB_TOKEN = "ghp_xxxxxxxxxxxxxxxxxxxx"
+
+# PowerShell (permanen, akun user)
+setx GITHUB_TOKEN "ghp_xxxxxxxxxxxxxxxxxxxx"
+```
+
+```bash
+# bash/zsh (sesi saat ini saja)
+export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"
+
+# bash/zsh (permanen — tambahkan ke ~/.bashrc atau ~/.zshrc)
+echo 'export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"' >> ~/.bashrc
+```
+
+</details>
+
+### 3. Install
+
+```
+npm install @foxtrot-sevima/karirkit@1.2.0
+```
+
+Tanpa versi (`npm install @foxtrot-sevima/karirkit`) akan mengambil versi
+`latest` yang sedang aktif — cek versi yang tersedia di
+[github.com/orgs/foxtrot-sevima/packages/npm/package/karirkit](https://github.com/orgs/foxtrot-sevima/packages/npm/package/karirkit).
+
+Pemakaian di project consumer:
+
+```css
+/* import CSS hasil build (siap pakai) */
+@import "@foxtrot-sevima/karirkit";
+
+/* atau import source token/komponen kalau mau digabung ke @theme sendiri
+   lewat Tailwind CSS v4 milik project consumer */
+@import "@foxtrot-sevima/karirkit/theme";
+```
+
+Font dan icon ikut ter-package di `assets/fonts` dan `assets/icons` (bisa
+diakses lewat `@foxtrot-sevima/karirkit/assets/...`).
+
+### Publish rilis baru
+
+Publish otomatis lewat GitHub Actions (`.github/workflows/publish.yml`)
+setiap kali branch `release` di-push/di-merge — alurnya: bump versi di branch
+kerja → merge ke `master` → merge/push `master` ke `release` → workflow
+otomatis build & `npm publish`. Workflow ini juga bisa dipicu manual lewat
+tab **Actions → Publish package → Run workflow** (`workflow_dispatch`),
+termasuk untuk ref selain `release` kalau perlu.
+
+Untuk publish manual dari mesin lokal (butuh token dengan scope
+`write:packages`, bukan `read:packages`):
+
+```
+npm version <patch|minor|major>
+npm publish
+```
+
+`prepublishOnly` akan menjalankan `npm run build` otomatis sebelum publish,
+jadi `dist/output.css` selalu ikut versi terbaru.
+
 ## Struktur
 
 ```
 src/input.css              Design tokens (@theme) + komponen (@layer components)
-dist/output.css            CSS hasil build — dimuat oleh index.html & templates/dashboard.html
+dist/output.css            CSS hasil build — inilah yang dipakai lewat npm package
 assets/fonts/InstrumentSans/  Font self-hosted (lihat bagian Font di bawah)
 assets/logo/                  Logo KarirLink dipakai di kedua halaman (lihat Brand & Logo)
-index.html                 Style guide: warna, tipografi, ikon, dan semua komponen
-templates/dashboard.html   Dashboard KarirKit yang memakai design system tersebut
-moodboard/                 Referensi visual (tidak dipakai runtime)
-logo/                      Aset logo asli dari tim brand (sumber, tidak dipakai runtime)
+index.html                 Style guide lokal: warna, tipografi, ikon, dan semua komponen
+templates/dashboard.html   Contoh dashboard KarirKit
 ```
 
-Kedua file HTML adalah statis (tanpa build tool saat dibuka) dan bisa
-langsung dibuka di browser — cukup double-click `index.html` atau
-`templates/dashboard.html`.
+`index.html` dan `templates/dashboard.html` adalah demo/style guide untuk
+pengembangan di repo ini saja — statis, bisa dibuka langsung di browser
+tanpa server, dan **tidak** ikut ter-publish di npm package.
 
 ## Tech stack
 
@@ -57,9 +153,9 @@ langsung dibuka di browser — cukup double-click `index.html` atau
 
 ## Brand & Logo
 
-Logo resmi **KarirLink** (`logo/new/`, dari tim brand SEVIMA) adalah aset
-visual utama proyek ini, tersedia dalam 4 varian di `assets/logo/` — lihat
-bagian Logo di `index.html` untuk contoh visual & kapan memakai masing-masing:
+Logo resmi **KarirLink** dari tim brand SEVIMA, tersedia dalam 4 varian di
+`assets/logo/` — lihat bagian Logo di `index.html` untuk contoh visual &
+kapan memakai masing-masing:
 
 | File | Varian | Fungsi |
 | --- | --- | --- |
