@@ -246,36 +246,20 @@
     <div class="card p-4 sm:p-5" data-combo-boundary>
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <label class="form-label">Angkatan</label>
+          <label class="form-label">Jenjang</label>
           <div class="combo combo-full" data-combo>
             <button type="button" class="combo-trigger" data-combo-trigger>
-              <span data-combo-label>Semua Angkatan</span>
+              <span data-combo-label>Semua Jenjang</span>
               <i class="kk kk-caret-down combo-chevron"></i>
             </button>
             <div class="combo-menu" data-combo-menu>
               <div class="combo-list" data-combo-list>
-                <button type="button" class="combo-item is-selected" data-combo-item data-label="Semua Angkatan">Semua Angkatan</button>
-                <button type="button" class="combo-item" data-combo-item data-label="2024">2024</button>
-                <button type="button" class="combo-item" data-combo-item data-label="2023">2023</button>
-                <button type="button" class="combo-item" data-combo-item data-label="2022">2022</button>
-                <button type="button" class="combo-item" data-combo-item data-label="2021">2021</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <label class="form-label">Tahun Lulus</label>
-          <div class="combo combo-full" data-combo>
-            <button type="button" class="combo-trigger" data-combo-trigger>
-              <span data-combo-label>Semua Tahun</span>
-              <i class="kk kk-caret-down combo-chevron"></i>
-            </button>
-            <div class="combo-menu" data-combo-menu>
-              <div class="combo-list" data-combo-list>
-                <button type="button" class="combo-item is-selected" data-combo-item data-label="Semua Tahun">Semua Tahun</button>
-                <button type="button" class="combo-item" data-combo-item data-label="2026">2026</button>
-                <button type="button" class="combo-item" data-combo-item data-label="2025">2025</button>
-                <button type="button" class="combo-item" data-combo-item data-label="2024">2024</button>
+                <button type="button" class="combo-item is-selected" data-combo-item data-label="Semua Jenjang">Semua Jenjang</button>
+                <button type="button" class="combo-item" data-combo-item data-label="D3">D3</button>
+                <button type="button" class="combo-item" data-combo-item data-label="D4">D4</button>
+                <button type="button" class="combo-item" data-combo-item data-label="S1">S1</button>
+                <button type="button" class="combo-item" data-combo-item data-label="S2">S2</button>
+                <button type="button" class="combo-item" data-combo-item data-label="S3">S3</button>
               </div>
             </div>
           </div>
@@ -298,12 +282,29 @@
               </div>
               <div class="combo-list" data-combo-list>
                 <button type="button" class="combo-item is-selected" data-combo-item data-label="Semua Program Studi">Semua Program Studi</button>
-                <button type="button" class="combo-item" data-combo-item data-label="S1 - Teknik Informatika">S1 - Teknik Informatika</button>
-                <button type="button" class="combo-item" data-combo-item data-label="S1 - Sistem Informasi">S1 - Sistem Informasi</button>
-                <button type="button" class="combo-item" data-combo-item data-label="S1 - Teknik Elektro">S1 - Teknik Elektro</button>
-                <button type="button" class="combo-item" data-combo-item data-label="D3 - Manajemen Informatika">D3 - Manajemen Informatika</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Teknik Informatika">Teknik Informatika</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Sistem Informasi">Sistem Informasi</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Teknik Elektro">Teknik Elektro</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Manajemen Informatika">Manajemen Informatika</button>
               </div>
               <p class="combo-empty hidden" data-combo-empty>Tidak ada program studi yang cocok.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Tahun Lulus</label>
+          <div class="combo combo-full" data-combo>
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Tahun</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-label="Semua Tahun">Semua Tahun</button>
+                <button type="button" class="combo-item" data-combo-item data-label="2026">2026</button>
+                <button type="button" class="combo-item" data-combo-item data-label="2025">2025</button>
+                <button type="button" class="combo-item" data-combo-item data-label="2024">2024</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1095,8 +1096,8 @@
   // Generic self-positioning dropdown/combobox (same component as the one
   // documented in the main index.html style guide) - flips down/up and
   // start/end alignment to whichever side has room, with optional in-menu
-  // search. Used here for the Tracer Study filter bar's Angkatan/Tahun
-  // Lulus/Program Studi fields.
+  // search. Used here for the Tracer Study filter bar's Jenjang/Program
+  // Studi/Tahun Lulus fields.
   (function () {
     function getBoundary(root) {
       const vw = document.documentElement.clientWidth;

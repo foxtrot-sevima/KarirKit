@@ -6,6 +6,12 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Badge estimasi waktu pengisian (ikon jam) di tiap header gelombang
+  `kuesioner-builder.html`/`kuesioner-builder-6.html` (Pra-Lulus, Pasca-Lulus
+  1 & 4 Tahun), sejajar dengan badge jumlah pertanyaan yang sudah ada.
+  Angkanya dihitung dari jumlah pertanyaan yang benar-benar dijawab satu
+  alumni (satu cabang status), bukan dari total gabungan semua cabang -
+  konsisten dengan tooltip "44 pertanyaan" (lihat Fixed).
 - **SEO terstruktur di 18 halaman** (`index.html`, seluruh `templates/*.html`,
   dan seluruh `templates/karirlink/*.html`) - meta description unik per
   halaman (bukan generik copy-paste), `<link rel="canonical">` ke URL absolut
@@ -65,6 +71,12 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Filter tab "Tracer Study" di `templates/karirlink/index.html`: **Jenjang**
+  jadi dropdown tersendiri (D3/D4/S1/S2/S3), dipisah dari **Program Studi**
+  (sebelumnya digabung dalam satu label, mis. "S1 - Teknik Informatika") -
+  opsi Program Studi disederhanakan jadi nama program studi polos. Filter
+  **Angkatan** dihapus dari bar ini (Jenjang, Program Studi, Tahun Lulus
+  saja yang tersisa).
 - **Ikon dijadikan token sungguhan** - base64 tiap ikon (semua 9.072
   kombinasi ikon×ketebalan, termasuk 38 ikon lama) dipindah dari nempel
   langsung di tiap rule `.kk-*` menjadi custom property
@@ -135,6 +147,29 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
+- **Tooltip badge "44 pertanyaan" di `kuesioner-builder.html` tertutup/
+  terpotong** oleh card gelombang berikutnya - root cause-nya bukan z-index
+  (sudah `z-30`), tapi `overflow-hidden` pada card accordion pembungkusnya:
+  begitu section-nya collapsed (tinggi card cuma setinggi header), tooltip
+  yang jatuh ke bawah badge (`position: absolute; top-full`) ikut ke-clip
+  oleh batas bawah card itu sendiri - kasus yang sama seperti tooltip
+  "Aksi lainnya" DataTable di atas, cuma versi vertikal. Karena directional
+  flip saja (atas vs bawah) terbukti tidak pernah benar-benar aman - versi
+  lama tooltip Core/Optional/Custom pernah kena masalah serupa dari arah
+  sebaliknya - diperbaiki dengan komponen baru di design system,
+  `.tooltip-fixed` (`src/input.css`): satu elemen tooltip mengambang per
+  halaman (`position: fixed`, dihitung dari `getBoundingClientRect()` lewat
+  JS, bukan CSS `group-hover`) yang sepenuhnya lepas dari overflow/stacking
+  context induk manapun, dengan `z-[100]` - sengaja di atas token z-index
+  tertinggi yang ada (`--z-toast: 50`) - supaya tooltip yang sedang di-hover
+  tidak pernah kalah lawan elemen lain. Dipakai untuk kedua badge "44
+  pertanyaan" di `kuesioner-builder.html` (Pasca-Lulus 1 & 4 Tahun) dan versi
+  gabungannya di draft `kuesioner-builder-6.html`. Sempat ketemu bug kedua
+  saat verifikasi: elemen `<div id="tooltipFixed">`-nya awalnya ditaruh
+  setelah tag `<script>`, padahal script jalan sinkron duluan saat parsing -
+  `getElementById` jadi selalu `null` dan listener batal terpasang tanpa
+  ada error apa pun di console. Diperbaiki dengan memindah div itu ke
+  sebelum `<script>`.
 - Tabel DataTable masih bisa di-scroll horizontal sedikit walau kolom yang
   terlihat sudah pas - penyebabnya tooltip "Aksi lainnya" (`.tooltip-content`,
   `opacity-0` tapi tetap `position:absolute`) ikut dihitung dalam
