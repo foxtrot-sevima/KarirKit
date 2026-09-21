@@ -68,6 +68,24 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Storybook: `Components/Modal` dan `Components/Breadcrumb`, masing-masing
   dengan story "Playground" interaktif (`argTypes`/Controls) mengikuti pola
   yang sama seperti komponen lain.
+- Section **"Table — Katalog Produk"** baru di `index.html` (setelah
+  DataTable) - tabel konten "kaya" (thumbnail ikon, rating bintang, harga,
+  badge status) yang mengikuti fitur tabel produk Metronic
+  (`ecommerce/catalog/products.html`) sebagai referensi struktur/fitur saja -
+  dibangun 100% dari komponen & token KarirKit sendiri (`.table`, `.combo`,
+  `.badge-*`, `.dropdown-menu`), bukan markup/kelas Bootstrap-nya. Termasuk
+  toolbar pencarian + filter status (`.combo`) + tombol "Tambah Produk" yang
+  live-filtered lewat JS (nama produk + status, dengan pesan kosong "Tidak
+  ada produk yang cocok." mengikuti pola DataTable), checkbox pilih-baris +
+  bulk action bar (Hapus/Batal), dan menu "..." per baris untuk Lihat
+  Detail/Edit/Hapus.
+- Modifier tabel baru `.table-lg` (`src/input.css`) - padding sel lebih lega
+  (`th` jadi `py-3.5`, `td` jadi `py-4`) daripada `.table` polos (`py-3`),
+  ditambahkan sebagai class tambahan yang di-stack di atas `.table`
+  (`class="table table-lg ..."`) supaya tabel padat yang sudah ada
+  (Table/DataTable) tidak ikut berubah - dipakai khusus di Katalog Produk,
+  yang barisnya berisi thumbnail 56px + rating dan terasa sempit di padding
+  standar.
 
 ### Changed
 
@@ -144,6 +162,26 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `Guides/Introduction` diganti gambar logo, dan sidebar Storybook memakai
   tema custom baru (`.storybook/manager.js`, `base: "light"`, `brandImage`
   ke logo yang sama) menggantikan logo/tema default Storybook.
+- **Bulk action bar** (DataTable & Katalog Produk) dirombak visualnya:
+  indikator jumlah dipilih sekarang badge bulat berisi angka (bukan teks
+  polos "N dipilih"), tombol Hapus/Batal dapat ikon (`kk-trash`/`kk-x`) dan
+  jadi `.btn-outline` (Hapus dengan tint danger - border/hover danger-50,
+  bukan solid merah) menggantikan `.btn-ghost` teks-saja.
+- Label item pada bulk bar, pesan kosong pencarian ("Tidak ada ... yang
+  cocok."), dan teks "Menampilkan ... dari ..." di kedua tabel sekarang
+  dibaca dari satu atribut `data-item-label` di elemen `<table>`
+  (`"lamaran"` untuk DataTable, `"produk"` untuk Katalog Produk), bukan
+  string "produk"/"lamaran" hardcode terpisah di tiga tempat JS berbeda -
+  menambah tabel baru cukup mengatur satu atribut, tidak perlu mengubah JS.
+- Tombol "Tambah Produk" di toolbar Katalog Produk dinaikkan dari `btn-sm`
+  ke `btn-md` supaya tingginya pas sama tinggi dropdown filter status
+  (`.combo-trigger`, `min-h-10`) di sebelahnya - sebelumnya beda 8px
+  (`btn-sm` = `h-8`) dan terlihat tidak sejajar.
+- Tombol aksi "..." (kebab) di kolom Aksi Katalog Produk disederhanakan jadi
+  border + hover abu-abu netral saja (`border-border`, `hover:bg-neutral-50`
+  /`hover:text-slate-700`), tanpa `shadow-sm` dan tanpa hover bertema primary
+  yang sempat dicoba - dianggap kelewat "ramai" untuk ikon sekunder yang
+  berulang di setiap baris.
 
 ### Fixed
 
@@ -185,6 +223,31 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   kolom Aksi (bukan Perusahaan) sebagai satu-satunya kolom fleksibel, dan
   tabel hanya melebar penuh mulai `sm:` ke atas (`w-auto sm:w-full`) supaya
   tidak memaksa kolom Perusahaan menyempit berlebihan di layar sempit.
+- **Menu "..." (Aksi) di baris dekat bawah tabel (DataTable & Katalog
+  Produk) tertutup/terpotong**, sama seperti kasus tooltip di atas tapi versi
+  dropdown - percobaan pertama cuma membandingkan tinggi menu ke sisa ruang
+  **viewport**, jadi kasus "muat di viewport tapi kepotong wrapper tabelnya
+  sendiri" masih lolos: `<div class="overflow-x-auto">` pembungkus tabel
+  (dipakai supaya tabel lebar bisa di-scroll horizontal) ikut men-clip
+  vertikal juga begitu terbuka ke bawah - sesuai spek CSS, `overflow-x`
+  selain `visible` memaksa `overflow-y` computed jadi `auto`, bukan
+  `visible`, walau yang dimaksud cuma sumbu X. Diperbaiki dengan helper baru
+  `findClipAncestor()` (`index.html`) yang jalan ke atas dari tombol pemicu
+  dan mencari ancestor pertama yang computed overflow-nya bukan `visible`
+  (bukan menebak nama class tertentu seperti `.card` atau `.overflow-x-auto`
+  - biar tetap benar kalau strukturnya berubah nanti), dipasangkan dengan
+  modifier CSS baru `.dropdown-menu-up` (`src/input.css`) yang membalik menu
+  ke atas tombol kalau ruang di bawah *dalam boundary itu* tidak cukup.
+  Dipakai lewat satu helper `openDropdownMenu()` yang sama untuk kedua tabel.
+- **Bulk action bar (DataTable & Katalog Produk) jatuh ke block layout,
+  bukan flex row**, begitu ditampilkan - class `items-center`/
+  `justify-between` sudah ada di elemen bar-nya, tapi class `flex` itu
+  sendiri tidak pernah ditulis (cuma `hidden` yang di-toggle JS), jadi begitu
+  `hidden` dilepas, `<div>`-nya jatuh ke `display: block` bawaan browser dan
+  isinya numpuk ke bawah (badge jumlah + label di baris pertama, tombol
+  Hapus/Batal pindah ke baris kedua, rata kiri) alih-alih sejajar dalam satu
+  baris dengan tombol rata kanan. Diperbaiki dengan toggle `hidden`/`flex`
+  sekaligus di `updateBulkBar()`, bukan cuma `hidden` sendirian.
 
 ## [1.1.0] - 2026-09-11
 
