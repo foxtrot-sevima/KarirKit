@@ -18799,6 +18799,30 @@
     transition-duration: var(--duration-fast);
   }
 
+  /* Tooltip (fixed/escaping) — for a trigger that can end up inside a short
+     or overflow-hidden container (e.g. a collapsed accordion `.card`),
+     where .tooltip-content above gets clipped no matter which direction it
+     opens, because it's still a descendant of that container. This variant
+     is ONE shared element per page (id="tooltipFixed", not one per
+     trigger), positioned with `position: fixed` from
+     getBoundingClientRect() in JS instead of CSS group-hover — that fully
+     escapes any ancestor's overflow/stacking context, so it can never be
+     covered or cut off. Usage: an empty `<div id="tooltipFixed"
+     class="tooltip-fixed" role="tooltip"></div>` once near the end of
+     <body>, then any trigger gets `data-tooltip-trigger
+     data-tooltip-text="..."` (no `group`/`relative` needed - JS reads
+     data-tooltip-text and shows/hides/positions the shared element on
+     hover/focus). See index.html "Tooltip" section for the trigger script
+     to copy, and templates/karirlink/kuesioner-builder.html for a real
+     usage. z-[100] is deliberately above --z-toast (the highest token) -
+     an actively-hovered tooltip should never lose to anything else. */
+  .tooltip-fixed {
+    @apply pointer-events-none fixed z-[100] max-w-xs whitespace-normal rounded-lg bg-neutral-900 px-3 py-2
+           text-left text-xs font-normal leading-relaxed text-white opacity-0 shadow-lg
+           transition-opacity;
+    transition-duration: var(--duration-fast);
+  }
+
   /* Avatars */
   .avatar { @apply inline-flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-semibold shrink-0; }
 
