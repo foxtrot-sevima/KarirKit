@@ -121,7 +121,29 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   503 - coba lagi saja, ditambah estimasi waktu selesai pemeliharaan.
 - Storybook `Templates/Errors` - 4 story (404/500/403/503), masing-masing
   me-render halaman sesungguhnya lewat `<iframe>` (bukan markup duplikat),
-  mengikuti pola multi-story-per-file yang sama seperti `Templates/Auth`.
+- Navigasi **breadcrumb** (Dashboard / halaman induk / halaman saat ini)
+  menggantikan pola tombol panah-kembali + judul polos di topbar seluruh
+  halaman admin `templates/karirlink/` (`index.html`, `kuesioner.html`,
+  `yudisium.html`, `mahasiswa-alumni.html`, dan versi detail/sub-halamannya)
+  - memakai komponen Breadcrumb yang sudah ada (lihat Added versi
+  sebelumnya), bukan komponen baru. Klik breadcrumb induk sudah cukup untuk
+  kembali, jadi tombol panah terpisah jadi mubazir. Trail 3 level tidak muat
+  berdampingan dengan tombol sidebar & menu profil di topbar sempit, jadi
+  didegradasi responsif: mobile cuma menampilkan ikon rumah + halaman saat
+  ini (dipotong kalau kepanjangan), `sm:` ke atas menampilkan trail lengkap.
+- **Sidebar collapse** (tombol "Lipat Menu", gaya GitLab) di seluruh
+  halaman admin `templates/karirlink/` - tombol di bagian bawah sidebar
+  menciutkan sidebar dari 264px jadi rel ikon 72px (logo berganti ke mark
+  persegi, label teks & label grup navigasi disembunyikan, ikon tetap
+  tampil), state-nya disimpan di `localStorage` supaya bertahan setelah
+  reload. Tombol lama di topbar (`toggleSidebarDesktopBtn`, yang
+  sebelumnya MENYEMBUNYIKAN sidebar sepenuhnya, bukan menciutkan) dihapus,
+  digantikan tombol baru ini.
+- Tooltip (`.tooltip-fixed`, komponen yang sama seperti tooltip "Aksi
+  lainnya"/"44 pertanyaan") muncul di sebelah kanan tiap ikon saat sidebar
+  dalam mode lipat - hanya tampil saat lipat (saat sidebar penuh, label
+  teksnya sendiri sudah cukup, jadi tooltip jadi redundan kalau tetap
+  dipaksa muncul).
 
 ### Changed
 
@@ -312,7 +334,34 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   lebar yang tidak terpakai kolom lain. Diperbaiki dengan `width` eksplisit
   (`w-16`) di samping `text-left` (`.table-col-actions` mewarisi
   `text-right` yang tidak berefek ke posisi anak `flex`, tapi tetap
-  memengaruhi rata teks header) pada `<th>` dan tiap `<td>` Aksi.
+- **Lebar sidebar mode lipat sempat tidak berubah sama sekali** - root
+  cause: override `.sidebar-collapsed { width: 72px }` ditulis di layer
+  `components` (lewat `@apply` pada custom class), sedangkan lebar
+  dasarnya (`w-[264px]`) adalah utility Tailwind biasa di layer
+  `utilities` - utilities SELALU menang dari components di Tailwind v4 apa
+  pun urutan/spesifisitasnya. Diperbaiki dengan modifier `!` (important)
+  pada override-nya, pola yang sama seperti `.nav-item-active` di file yang
+  sama.
+- **Ikon nav "meluncur" secara nyata melintasi baris saat sidebar
+  diciutkan**, bukan diam di tempat - root cause: `justify-content`
+  (dipakai untuk menengahkan ikon saat sudah ciut) berubah dari `normal`
+  ke `center` SEKETIKA saat class di-toggle (properti ini tidak bisa
+  di-transition CSS), padahal lebar sidebar-nya sendiri baru mulai
+  menyusut dari 264px menuju 72px selama 300ms berikutnya - akibatnya ikon
+  langsung "menengah" dari baris yang MASIH lebar, lalu ikut meluncur ke
+  kiri seiring baris menyempit. Diperbaiki dengan menghapus toggle
+  `justify-content` sama sekali dan memberi tiap ikon "slot" lebar tetap
+  (`.nav-item-icon`, 24px, tidak pernah berubah antara kedua state) -
+  karena ukuran slot-nya konstan, penengahan di dalamnya tidak pernah butuh
+  transisi dan tidak pernah melompat.
+- **Ikon masih terlihat sedikit tidak center di dalam kotak highlight**
+  setelah perbaikan di atas - root cause kedua: `gap-3` pada `.nav-item`
+  tetap mereservasi 12px ruang kosong SETELAH ikon meski label di
+  sebelahnya sudah menyusut ke lebar 0 (`gap` flexbox tidak otomatis
+  hilang hanya karena salah satu sibling-nya kosong) - ketahuan lewat
+  inspeksi DevTools yang menunjukkan garis ungu (indikator gap) persis di
+  sebelah kanan ikon. Diperbaiki dengan ikut meng-transition `gap` ke `0`
+  saat lipat, sama seperti `max-width`/`opacity` label.
 
 ## [1.1.0] - 2026-09-11
 

@@ -36,10 +36,13 @@
 <div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
 
 <!-- ============================= SIDEBAR ============================= -->
-<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-transform duration-200 lg:translate-x-0">
-  <div class="flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
-    <a href="../../index.html" class="flex items-center">
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out lg:translate-x-0">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
       <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
     </a>
     <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
       <i class="kk kk-x h-5 w-5"></i>
@@ -49,9 +52,9 @@
   <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
     <div>
       <div class="space-y-1">
-        <a href="index.html" class="nav-item">
-          <i class="kk kk-house h-5 w-5 shrink-0"></i>
-          Dashboard
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Dashboard" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Dashboard</span>
         </a>
       </div>
     </div>
@@ -59,13 +62,13 @@
     <div>
       <p class="nav-eyebrow mb-2">Tracer</p>
       <div class="space-y-1">
-        <a href="kuesioner.html" class="nav-item">
-          <i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i>
-          Kuesioner
+        <a href="kuesioner.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
         </a>
-        <a href="yudisium.html" class="nav-item nav-item-active">
-          <i class="kk kk-check-circle h-5 w-5 shrink-0"></i>
-          Daftar Yudisium
+        <a href="yudisium.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
         </a>
       </div>
     </div>
@@ -73,17 +76,17 @@
     <div>
       <p class="nav-eyebrow mb-2">Portal Karir</p>
       <div class="space-y-1">
-        <a class="nav-item">
-          <i class="kk kk-handshake h-5 w-5 shrink-0"></i>
-          Kerjasama
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
         </a>
-        <a class="nav-item">
-          <i class="kk kk-briefcase h-5 w-5 shrink-0"></i>
-          Lowongan
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
         </a>
-        <a class="nav-item">
-          <i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i>
-          Event
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
         </a>
       </div>
     </div>
@@ -91,44 +94,45 @@
     <div>
       <p class="nav-eyebrow mb-2">General</p>
       <div class="space-y-1">
-        <a href="mahasiswa-alumni.html" class="nav-item">
-          <i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i>
-          Mahasiswa/Alumni
+        <a href="mahasiswa-alumni.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
         </a>
-        <a class="nav-item">
-          <i class="kk kk-file-text h-5 w-5 shrink-0"></i>
-          Aktivitas Lamaran
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
         </a>
-        <a class="nav-item">
-          <i class="kk kk-chart-bar h-5 w-5 shrink-0"></i>
-          Report
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
         </a>
-        <a class="nav-item">
-          <i class="kk kk-monitor h-5 w-5 shrink-0"></i>
-          Pengaturan Landing Page
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pengaturan Landing Page</span>
         </a>
       </div>
     </div>
   </nav>
 
-  <div class="border-t border-slate-200/70 px-3 py-3">
-    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item">
-      <i class="kk kk-question h-5 w-5 shrink-0"></i>
-      Panduan Pengguna
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
     </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
   </div>
 </aside>
 
 <!-- ============================= MAIN COLUMN ============================= -->
-<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-200 lg:pl-[264px]">
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
   <!-- Topbar -->
   <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
     <div class="flex min-w-0 flex-1 items-center gap-3">
       <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
         <i class="kk kk-list h-5 w-5"></i>
-      </button>
-      <button id="toggleSidebarDesktopBtn" class="hidden h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:flex" aria-label="Tampilkan/sembunyikan sidebar">
-        <i class="kk kk-sidebar-simple h-5 w-5"></i>
       </button>
       <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
         <a href="index.html" class="breadcrumb-link shrink-0">
@@ -605,6 +609,8 @@
   </footer>
 </div>
 
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
 <script>
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sidebarOverlay');
@@ -625,28 +631,28 @@
 
   (function () {
     const mainColumn = document.getElementById('mainColumn');
-    const toggleBtn = document.getElementById('toggleSidebarDesktopBtn');
-    if (!sidebar || !mainColumn || !toggleBtn) return;
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
 
-    const STORAGE_KEY = 'karirlink-sidebar-hidden';
-    const HIDE_CLASS = 'lg:-translate-x-full!';
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
 
-    function applyHidden(hidden) {
-      sidebar.classList.toggle(HIDE_CLASS, hidden);
-      mainColumn.classList.toggle('lg:pl-[264px]', !hidden);
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
     }
 
-    let hidden = false;
+    let collapsed = false;
     try {
-      hidden = localStorage.getItem(STORAGE_KEY) === 'true';
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
     } catch (e) {}
-    applyHidden(hidden);
+    applyCollapsed(collapsed);
 
-    toggleBtn.addEventListener('click', () => {
-      hidden = !hidden;
-      applyHidden(hidden);
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
       try {
-        localStorage.setItem(STORAGE_KEY, String(hidden));
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
       } catch (e) {}
     });
   })();
@@ -835,6 +841,57 @@
   document.querySelectorAll(".js-current-year").forEach((el) => {
     el.textContent = new Date().getFullYear();
   });
-</script>
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();</script>
 </body>
 </html>
