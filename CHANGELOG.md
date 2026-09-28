@@ -85,7 +85,43 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   (`class="table table-lg ..."`) supaya tabel padat yang sudah ada
   (Table/DataTable) tidak ikut berubah - dipakai khusus di Katalog Produk,
   yang barisnya berisi thumbnail 56px + rating dan terasa sempit di padding
-  standar.
+- Halaman baru **Mahasiswa/Alumni** (`templates/karirlink/mahasiswa-alumni.html`)
+  - list-view mengikuti pola Table — Katalog Produk (toolbar pencarian +
+  filter, KPI card, tabel paginated) dengan filter **Jenjang**, **Program
+  Studi**, **Angkatan**, **Tipe** (Alumni/Mahasiswa), dan **Status Karier**.
+  Kolom Aksi sengaja disederhanakan jadi satu tombol "Lihat Profil" (ikon
+  mata) menuju halaman detail baru - rencana awal kolom "Progres Tracer"
+  tidak jadi dipakai atas permintaan langsung.
+- Halaman baru **detail Mahasiswa/Alumni** (`mahasiswa-alumni-detail.html`)
+  - profil lengkap: Data Pribadi & Akademik, Kontak & Akun, Bio & Media
+  Sosial, Preferensi Karier, Riwayat Karier, dan Aktivitas Lamaran. Tiap
+  field dicocokkan manual ke skema database asli
+  (`templates/karirlink/docs/about-tracer/karirlink-schema.sql` &
+  `tracer-schema.sql`) sebelum ditambahkan, bukan field karangan - **NIK/No.
+  KTP dan NPWP sengaja tidak ditampilkan** karena cuma ada di tabel snapshot
+  tracer study (`graduates`/`participants`), bukan di akun karirlink
+  (`users`) yang sebenarnya sedang dilihat, dan **field "Gelar" juga tidak
+  ditampilkan** karena tidak ada foreign key yang mengonfirmasi relasinya ke
+  tabel lookup `gelar_akademiks`.
+- Kolom **"No"** (nomor urut baris, `table-col-num`, `hidden xl:table-cell`)
+  ditambahkan ke seluruh tabel yang sudah ada supaya konsisten dengan pola
+  yang sudah dipakai DataTable: Table — Katalog Produk (`index.html`), kedua
+  tabel Yudisium (`yudisium.html`, `yudisium-detail.html`), dan Mahasiswa/
+  Alumni - nomornya dihitung ulang tiap kali tabel di-render/pagination
+  lewat `data-num`, bukan angka statis, supaya tetap benar setelah
+  filter/pencarian mengubah urutan baris.
+- Template halaman error baru - `templates/404.html`, `500.html`,
+  `403.html`, `503.html` - masing-masing standalone (tanpa sidebar admin,
+  mengikuti pola `login.html`), memakai treatment nomor error raksasa
+  bertinta pucat sebagai latar (`text-{warna}-100`, "ghost number") di
+  belakang badge ikon terangkat (`kk-compass`/`kk-warning-octagon`/
+  `kk-lock-key`/`kk-wrench`) dan badge kecil "Kode Error NNN", dengan tombol
+  aksi kontekstual per kode: 404/403 - kembali ke beranda + halaman
+  sebelumnya; 500 - coba lagi + kembali ke beranda + tautan email support;
+  503 - coba lagi saja, ditambah estimasi waktu selesai pemeliharaan.
+- Storybook `Templates/Errors` - 4 story (404/500/403/503), masing-masing
+  me-render halaman sesungguhnya lewat `<iframe>` (bukan markup duplikat),
+  mengikuti pola multi-story-per-file yang sama seperti `Templates/Auth`.
 
 ### Changed
 
@@ -183,6 +219,20 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   yang sempat dicoba - dianggap kelewat "ramai" untuk ikon sekunder yang
   berulang di setiap baris.
 
+- Seluruh tabel di `yudisium.html` & `yudisium-detail.html` disamakan
+  penuh ke gaya **Table — Katalog Produk**: tombol aksi per baris jadi kotak
+  bordered netral (`h-9 w-9 rounded-control border border-border`, tanpa
+  tooltip) menggantikan versi borderless + tooltip-on-hover sebelumnya, dan
+  label header kolom aksi disamakan jadi "Aksi". Avatar/thumbnail ikon di
+  baris Periode Yudisium dihapus (data periode bukan entitas bergambar,
+  beda dari produk). Bulk-select + checkbox baris **sengaja tidak
+  ditambahkan** ke tabel Yudisium walau ada di Katalog Produk - permintaan
+  eksplisit, bukan kelalaian mengikuti pola sumbernya.
+- Item navigasi sidebar **"Mahasiswa/Alumni"** (`index.html`,
+  `kuesioner-builder.html`, `kuesioner-builder-2.html`, `kuesioner.html` di
+  `templates/karirlink/`) sebelumnya cuma `<a class="nav-item">` tanpa
+  `href` - sekarang tertaut ke halaman Mahasiswa/Alumni yang baru dibuat.
+
 ### Fixed
 
 - **Tooltip badge "44 pertanyaan" di `kuesioner-builder.html` tertutup/
@@ -247,7 +297,22 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   isinya numpuk ke bawah (badge jumlah + label di baris pertama, tombol
   Hapus/Batal pindah ke baris kedua, rata kiri) alih-alih sejajar dalam satu
   baris dengan tombol rata kanan. Diperbaiki dengan toggle `hidden`/`flex`
-  sekaligus di `updateBulkBar()`, bukan cuma `hidden` sendirian.
+- Kolom **"No"** di Table — Katalog Produk sempat tetap kosong saat
+  halaman pertama kali dibuka (baru terisi setelah user mengetik di kotak
+  pencarian atau mengubah filter) - root cause: nomornya diisi di dalam
+  `applyFilter()`, tapi fungsi itu sebelumnya cuma dipanggil dari event
+  handler pencarian/filter, tidak pernah dipanggil sekali di akhir setup
+  IIFE saat halaman dimuat. Diperbaiki dengan menambah satu pemanggilan
+  `applyFilter()` di akhir setup, sama seperti pola inisialisasi tabel lain.
+- Kolom Aksi Mahasiswa/Alumni **melebar berlebihan dengan tombol "Lihat
+  Profil" mengambang di tengah**, bukan rata kiri menempel header "Aksi" -
+  root cause sama seperti kasus Katalog Produk sebelumnya:
+  `.table-col-actions` cuma mengatur `min-width` (`min-w-14`), bukan
+  `width` sungguhan, jadi di bawah `table-fixed` kolom ini menyerap sisa
+  lebar yang tidak terpakai kolom lain. Diperbaiki dengan `width` eksplisit
+  (`w-16`) di samping `text-left` (`.table-col-actions` mewarisi
+  `text-right` yang tidak berefek ke posisi anak `flex`, tapi tetap
+  memengaruhi rata teks header) pada `<th>` dan tiap `<td>` Aksi.
 
 ## [1.1.0] - 2026-09-11
 

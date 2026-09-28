@@ -91,7 +91,7 @@
     <div>
       <p class="nav-eyebrow mb-2">General</p>
       <div class="space-y-1">
-        <a class="nav-item">
+        <a href="mahasiswa-alumni.html" class="nav-item">
           <i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i>
           Mahasiswa/Alumni
         </a>
@@ -226,6 +226,7 @@
         <table class="table table-lg table-fixed w-auto sm:w-full" id="yudTable" data-item-label="mahasiswa">
           <thead>
             <tr>
+              <th class="table-col-num hidden xl:table-cell">No</th>
               <th class="w-52 sm:w-64 lg:w-80">Nama</th>
               <th class="hidden sm:table-cell">Prodi</th>
               <th class="hidden sm:table-cell">Email</th>
@@ -235,6 +236,7 @@
           </thead>
           <tbody id="yudBody">
             <tr data-status="menunggu">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="avatar h-11 w-11 bg-primary-50 text-primary-600">AN</span>
@@ -260,6 +262,7 @@
               </td>
             </tr>
             <tr data-status="sudah">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="avatar h-11 w-11 bg-warning-50 text-warning-600">SP</span>
@@ -284,6 +287,7 @@
               </td>
             </tr>
             <tr data-status="menunggu">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="avatar h-11 w-11 bg-info-50 text-info-600">RD</span>
@@ -309,6 +313,7 @@
               </td>
             </tr>
             <tr data-status="belum-dikirim">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="avatar h-11 w-11 bg-danger-50 text-danger-600">DP</span>
@@ -334,6 +339,7 @@
               </td>
             </tr>
             <tr data-status="sudah">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="avatar h-11 w-11 bg-slate-100 text-slate-600">BL</span>
@@ -358,6 +364,7 @@
               </td>
             </tr>
             <tr data-status="menunggu">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="avatar h-11 w-11 bg-primary-50 text-primary-600">FA</span>
@@ -383,6 +390,7 @@
               </td>
             </tr>
             <tr data-status="sudah">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="avatar h-11 w-11 bg-warning-50 text-warning-600">IN</span>
@@ -407,6 +415,7 @@
               </td>
             </tr>
             <tr data-status="menunggu">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="avatar h-11 w-11 bg-info-50 text-info-600">YP</span>
@@ -432,6 +441,7 @@
               </td>
             </tr>
             <tr data-status="belum-dikirim">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="avatar h-11 w-11 bg-danger-50 text-danger-600">MR</span>
@@ -457,6 +467,7 @@
               </td>
             </tr>
             <tr data-status="sudah">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="avatar h-11 w-11 bg-slate-100 text-slate-600">HW</span>
@@ -749,13 +760,17 @@
 
       const start = (currentPage - 1) * pageSize;
       const pageRows = filtered.slice(start, start + pageSize);
-      pageRows.forEach((row) => row.classList.remove('hidden'));
+      pageRows.forEach((row, i) => {
+        row.classList.remove('hidden');
+        const numEl = row.querySelector('[data-num]');
+        if (numEl) numEl.textContent = String(start + i + 1);
+      });
 
       tbody.querySelectorAll('.yud-empty-row').forEach((r) => r.remove());
       if (filtered.length === 0) {
         const tr = document.createElement('tr');
         tr.className = 'yud-empty-row';
-        tr.innerHTML = `<td colspan="5" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada ${itemLabel} yang cocok.</td>`;
+        tr.innerHTML = `<td colspan="6" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada ${itemLabel} yang cocok.</td>`;
         tbody.appendChild(tr);
       }
       renderPaginationButtons(totalPages);

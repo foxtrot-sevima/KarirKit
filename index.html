@@ -1748,6 +1748,7 @@
           <thead>
             <tr>
               <th class="table-col-check"><input type="checkbox" id="catalogSelectAll" class="form-check" /></th>
+              <th class="table-col-num hidden xl:table-cell">No</th>
               <th class="w-52 sm:w-64 lg:w-80">Produk</th>
               <th class="hidden lg:table-cell">Kode</th>
               <th class="hidden text-right sm:table-cell">Stok</th>
@@ -1760,6 +1761,7 @@
           <tbody id="catalogBody">
             <tr data-name="E-Book Panduan Interview Kerja" data-status="aktif">
               <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-file-text h-5 w-5"></i></span>
@@ -1797,6 +1799,7 @@
             </tr>
             <tr data-name="Kelas Persiapan Tes TOEFL" data-status="aktif">
               <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-graduation-cap h-5 w-5"></i></span>
@@ -1834,6 +1837,7 @@
             </tr>
             <tr data-name="Template CV ATS-Friendly" data-status="aktif">
               <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-clipboard-text h-5 w-5"></i></span>
@@ -1871,6 +1875,7 @@
             </tr>
             <tr data-name="Sertifikasi Digital Marketing" data-status="aktif">
               <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-medal h-5 w-5"></i></span>
@@ -1908,6 +1913,7 @@
             </tr>
             <tr data-name="Sesi Konsultasi CV 1-on-1" data-status="habis">
               <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-chat-circle h-5 w-5"></i></span>
@@ -1945,6 +1951,7 @@
             </tr>
             <tr data-name="Kelas Public Speaking" data-status="aktif">
               <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-microphone h-5 w-5"></i></span>
@@ -1982,6 +1989,7 @@
             </tr>
             <tr data-name="E-Book Negosiasi Gaji" data-status="draf">
               <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-handshake h-5 w-5"></i></span>
@@ -2019,6 +2027,7 @@
             </tr>
             <tr data-name="Workshop LinkedIn Optimization" data-status="aktif">
               <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
                 <div class="flex items-center gap-3">
                   <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-linkedin-logo h-5 w-5"></i></span>
@@ -3084,7 +3093,11 @@
       rows.forEach((row) => {
         const show = row.dataset.name.toLowerCase().includes(term) && (status === 'all' || row.dataset.status === status);
         row.classList.toggle('hidden', !show);
-        if (show) visible++;
+        if (show) {
+          visible++;
+          const numEl = row.querySelector('[data-num]');
+          if (numEl) numEl.textContent = String(visible);
+        }
       });
       rangeText.textContent = `Menampilkan ${visible} dari ${rows.length} ${itemLabel}`;
 
@@ -3092,7 +3105,7 @@
       if (visible === 0) {
         const tr = document.createElement('tr');
         tr.className = 'catalog-empty-row';
-        tr.innerHTML = `<td colspan="8" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada ${itemLabel} yang cocok.</td>`;
+        tr.innerHTML = `<td colspan="9" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada ${itemLabel} yang cocok.</td>`;
         tbody.appendChild(tr);
       }
       updateSelectAllState();
@@ -3148,6 +3161,8 @@
     document.addEventListener('click', () => {
       document.querySelectorAll('.catalog-menu-btn + .dropdown-menu').forEach((m) => { m.classList.add('hidden'); m.classList.remove('dropdown-menu-up'); });
     });
+
+    applyFilter();
   })();
 </script>
 </body>
