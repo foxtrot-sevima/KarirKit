@@ -40,7 +40,7 @@ const preview = {
             "Divider",
           ],
           "Templates",
-          ["Dashboard", "Auth"],
+          ["Dashboard", "Auth", "Errors"],
         ],
       },
     },

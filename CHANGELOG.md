@@ -68,6 +68,60 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Storybook: `Components/Modal` dan `Components/Breadcrumb`, masing-masing
   dengan story "Playground" interaktif (`argTypes`/Controls) mengikuti pola
   yang sama seperti komponen lain.
+- Section **"Table — Katalog Produk"** baru di `index.html` (setelah
+  DataTable) - tabel konten "kaya" (thumbnail ikon, rating bintang, harga,
+  badge status) yang mengikuti fitur tabel produk Metronic
+  (`ecommerce/catalog/products.html`) sebagai referensi struktur/fitur saja -
+  dibangun 100% dari komponen & token KarirKit sendiri (`.table`, `.combo`,
+  `.badge-*`, `.dropdown-menu`), bukan markup/kelas Bootstrap-nya. Termasuk
+  toolbar pencarian + filter status (`.combo`) + tombol "Tambah Produk" yang
+  live-filtered lewat JS (nama produk + status, dengan pesan kosong "Tidak
+  ada produk yang cocok." mengikuti pola DataTable), checkbox pilih-baris +
+  bulk action bar (Hapus/Batal), dan menu "..." per baris untuk Lihat
+  Detail/Edit/Hapus.
+- Modifier tabel baru `.table-lg` (`src/input.css`) - padding sel lebih lega
+  (`th` jadi `py-3.5`, `td` jadi `py-4`) daripada `.table` polos (`py-3`),
+  ditambahkan sebagai class tambahan yang di-stack di atas `.table`
+  (`class="table table-lg ..."`) supaya tabel padat yang sudah ada
+  (Table/DataTable) tidak ikut berubah - dipakai khusus di Katalog Produk,
+  yang barisnya berisi thumbnail 56px + rating dan terasa sempit di padding
+- Halaman baru **Mahasiswa/Alumni** (`templates/karirlink/mahasiswa-alumni.html`)
+  - list-view mengikuti pola Table — Katalog Produk (toolbar pencarian +
+  filter, KPI card, tabel paginated) dengan filter **Jenjang**, **Program
+  Studi**, **Angkatan**, **Tipe** (Alumni/Mahasiswa), dan **Status Karier**.
+  Kolom Aksi sengaja disederhanakan jadi satu tombol "Lihat Profil" (ikon
+  mata) menuju halaman detail baru - rencana awal kolom "Progres Tracer"
+  tidak jadi dipakai atas permintaan langsung.
+- Halaman baru **detail Mahasiswa/Alumni** (`mahasiswa-alumni-detail.html`)
+  - profil lengkap: Data Pribadi & Akademik, Kontak & Akun, Bio & Media
+  Sosial, Preferensi Karier, Riwayat Karier, dan Aktivitas Lamaran. Tiap
+  field dicocokkan manual ke skema database asli
+  (`templates/karirlink/docs/about-tracer/karirlink-schema.sql` &
+  `tracer-schema.sql`) sebelum ditambahkan, bukan field karangan - **NIK/No.
+  KTP dan NPWP sengaja tidak ditampilkan** karena cuma ada di tabel snapshot
+  tracer study (`graduates`/`participants`), bukan di akun karirlink
+  (`users`) yang sebenarnya sedang dilihat, dan **field "Gelar" juga tidak
+  ditampilkan** karena tidak ada foreign key yang mengonfirmasi relasinya ke
+  tabel lookup `gelar_akademiks`.
+- Kolom **"No"** (nomor urut baris, `table-col-num`, `hidden xl:table-cell`)
+  ditambahkan ke seluruh tabel yang sudah ada supaya konsisten dengan pola
+  yang sudah dipakai DataTable: Table — Katalog Produk (`index.html`), kedua
+  tabel Yudisium (`yudisium.html`, `yudisium-detail.html`), dan Mahasiswa/
+  Alumni - nomornya dihitung ulang tiap kali tabel di-render/pagination
+  lewat `data-num`, bukan angka statis, supaya tetap benar setelah
+  filter/pencarian mengubah urutan baris.
+- Template halaman error baru - `templates/404.html`, `500.html`,
+  `403.html`, `503.html` - masing-masing standalone (tanpa sidebar admin,
+  mengikuti pola `login.html`), memakai treatment nomor error raksasa
+  bertinta pucat sebagai latar (`text-{warna}-100`, "ghost number") di
+  belakang badge ikon terangkat (`kk-compass`/`kk-warning-octagon`/
+  `kk-lock-key`/`kk-wrench`) dan badge kecil "Kode Error NNN", dengan tombol
+  aksi kontekstual per kode: 404/403 - kembali ke beranda + halaman
+  sebelumnya; 500 - coba lagi + kembali ke beranda + tautan email support;
+  503 - coba lagi saja, ditambah estimasi waktu selesai pemeliharaan.
+- Storybook `Templates/Errors` - 4 story (404/500/403/503), masing-masing
+  me-render halaman sesungguhnya lewat `<iframe>` (bukan markup duplikat),
+  mengikuti pola multi-story-per-file yang sama seperti `Templates/Auth`.
 
 ### Changed
 
@@ -144,6 +198,40 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `Guides/Introduction` diganti gambar logo, dan sidebar Storybook memakai
   tema custom baru (`.storybook/manager.js`, `base: "light"`, `brandImage`
   ke logo yang sama) menggantikan logo/tema default Storybook.
+- **Bulk action bar** (DataTable & Katalog Produk) dirombak visualnya:
+  indikator jumlah dipilih sekarang badge bulat berisi angka (bukan teks
+  polos "N dipilih"), tombol Hapus/Batal dapat ikon (`kk-trash`/`kk-x`) dan
+  jadi `.btn-outline` (Hapus dengan tint danger - border/hover danger-50,
+  bukan solid merah) menggantikan `.btn-ghost` teks-saja.
+- Label item pada bulk bar, pesan kosong pencarian ("Tidak ada ... yang
+  cocok."), dan teks "Menampilkan ... dari ..." di kedua tabel sekarang
+  dibaca dari satu atribut `data-item-label` di elemen `<table>`
+  (`"lamaran"` untuk DataTable, `"produk"` untuk Katalog Produk), bukan
+  string "produk"/"lamaran" hardcode terpisah di tiga tempat JS berbeda -
+  menambah tabel baru cukup mengatur satu atribut, tidak perlu mengubah JS.
+- Tombol "Tambah Produk" di toolbar Katalog Produk dinaikkan dari `btn-sm`
+  ke `btn-md` supaya tingginya pas sama tinggi dropdown filter status
+  (`.combo-trigger`, `min-h-10`) di sebelahnya - sebelumnya beda 8px
+  (`btn-sm` = `h-8`) dan terlihat tidak sejajar.
+- Tombol aksi "..." (kebab) di kolom Aksi Katalog Produk disederhanakan jadi
+  border + hover abu-abu netral saja (`border-border`, `hover:bg-neutral-50`
+  /`hover:text-slate-700`), tanpa `shadow-sm` dan tanpa hover bertema primary
+  yang sempat dicoba - dianggap kelewat "ramai" untuk ikon sekunder yang
+  berulang di setiap baris.
+
+- Seluruh tabel di `yudisium.html` & `yudisium-detail.html` disamakan
+  penuh ke gaya **Table — Katalog Produk**: tombol aksi per baris jadi kotak
+  bordered netral (`h-9 w-9 rounded-control border border-border`, tanpa
+  tooltip) menggantikan versi borderless + tooltip-on-hover sebelumnya, dan
+  label header kolom aksi disamakan jadi "Aksi". Avatar/thumbnail ikon di
+  baris Periode Yudisium dihapus (data periode bukan entitas bergambar,
+  beda dari produk). Bulk-select + checkbox baris **sengaja tidak
+  ditambahkan** ke tabel Yudisium walau ada di Katalog Produk - permintaan
+  eksplisit, bukan kelalaian mengikuti pola sumbernya.
+- Item navigasi sidebar **"Mahasiswa/Alumni"** (`index.html`,
+  `kuesioner-builder.html`, `kuesioner-builder-2.html`, `kuesioner.html` di
+  `templates/karirlink/`) sebelumnya cuma `<a class="nav-item">` tanpa
+  `href` - sekarang tertaut ke halaman Mahasiswa/Alumni yang baru dibuat.
 
 ### Fixed
 
@@ -185,6 +273,46 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   kolom Aksi (bukan Perusahaan) sebagai satu-satunya kolom fleksibel, dan
   tabel hanya melebar penuh mulai `sm:` ke atas (`w-auto sm:w-full`) supaya
   tidak memaksa kolom Perusahaan menyempit berlebihan di layar sempit.
+- **Menu "..." (Aksi) di baris dekat bawah tabel (DataTable & Katalog
+  Produk) tertutup/terpotong**, sama seperti kasus tooltip di atas tapi versi
+  dropdown - percobaan pertama cuma membandingkan tinggi menu ke sisa ruang
+  **viewport**, jadi kasus "muat di viewport tapi kepotong wrapper tabelnya
+  sendiri" masih lolos: `<div class="overflow-x-auto">` pembungkus tabel
+  (dipakai supaya tabel lebar bisa di-scroll horizontal) ikut men-clip
+  vertikal juga begitu terbuka ke bawah - sesuai spek CSS, `overflow-x`
+  selain `visible` memaksa `overflow-y` computed jadi `auto`, bukan
+  `visible`, walau yang dimaksud cuma sumbu X. Diperbaiki dengan helper baru
+  `findClipAncestor()` (`index.html`) yang jalan ke atas dari tombol pemicu
+  dan mencari ancestor pertama yang computed overflow-nya bukan `visible`
+  (bukan menebak nama class tertentu seperti `.card` atau `.overflow-x-auto`
+  - biar tetap benar kalau strukturnya berubah nanti), dipasangkan dengan
+  modifier CSS baru `.dropdown-menu-up` (`src/input.css`) yang membalik menu
+  ke atas tombol kalau ruang di bawah *dalam boundary itu* tidak cukup.
+  Dipakai lewat satu helper `openDropdownMenu()` yang sama untuk kedua tabel.
+- **Bulk action bar (DataTable & Katalog Produk) jatuh ke block layout,
+  bukan flex row**, begitu ditampilkan - class `items-center`/
+  `justify-between` sudah ada di elemen bar-nya, tapi class `flex` itu
+  sendiri tidak pernah ditulis (cuma `hidden` yang di-toggle JS), jadi begitu
+  `hidden` dilepas, `<div>`-nya jatuh ke `display: block` bawaan browser dan
+  isinya numpuk ke bawah (badge jumlah + label di baris pertama, tombol
+  Hapus/Batal pindah ke baris kedua, rata kiri) alih-alih sejajar dalam satu
+  baris dengan tombol rata kanan. Diperbaiki dengan toggle `hidden`/`flex`
+- Kolom **"No"** di Table — Katalog Produk sempat tetap kosong saat
+  halaman pertama kali dibuka (baru terisi setelah user mengetik di kotak
+  pencarian atau mengubah filter) - root cause: nomornya diisi di dalam
+  `applyFilter()`, tapi fungsi itu sebelumnya cuma dipanggil dari event
+  handler pencarian/filter, tidak pernah dipanggil sekali di akhir setup
+  IIFE saat halaman dimuat. Diperbaiki dengan menambah satu pemanggilan
+  `applyFilter()` di akhir setup, sama seperti pola inisialisasi tabel lain.
+- Kolom Aksi Mahasiswa/Alumni **melebar berlebihan dengan tombol "Lihat
+  Profil" mengambang di tengah**, bukan rata kiri menempel header "Aksi" -
+  root cause sama seperti kasus Katalog Produk sebelumnya:
+  `.table-col-actions` cuma mengatur `min-width` (`min-w-14`), bukan
+  `width` sungguhan, jadi di bawah `table-fixed` kolom ini menyerap sisa
+  lebar yang tidak terpakai kolom lain. Diperbaiki dengan `width` eksplisit
+  (`w-16`) di samping `text-left` (`.table-col-actions` mewarisi
+  `text-right` yang tidak berefek ke posisi anak `flex`, tapi tetap
+  memengaruhi rata teks header) pada `<th>` dan tiap `<td>` Aksi.
 
 ## [1.1.0] - 2026-09-11
 
