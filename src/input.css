@@ -18757,10 +18757,30 @@
   /* Navigation */
   .nav-item {
     @apply flex cursor-pointer items-center gap-3 rounded-control px-3 py-2.5 text-sm font-medium text-fg-muted
-           hover:bg-neutral-100/80 hover:text-fg transition-colors;
+           hover:bg-neutral-100/80 hover:text-fg transition-[color,background-color,gap] duration-300 ease-in-out
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-300;
   }
   .nav-item-active { @apply bg-primary-50! text-primary-700! hover:bg-primary-50!; }
   .nav-eyebrow { @apply px-3 text-micro font-semibold uppercase tracking-wider text-fg-subtle; }
+
+  /* Fixed-width icon gutter so an icon centers within its own slot instead of
+     within the whole nav-item - the slot's size never changes between the
+     expanded/collapsed sidebar states, so there is nothing to animate and
+     therefore nothing that can visibly jump mid-transition. */
+  .nav-item-icon { @apply flex w-6 shrink-0 items-center justify-center; }
+
+  /* Sidebar collapse (desktop icon rail, GitLab-style) */
+  .sidebar-collapsed { @apply lg:w-[72px]!; }
+  .sidebar-collapsed .sidebar-logo-full { @apply lg:hidden!; }
+  .sidebar-collapsed .sidebar-logo-mark { @apply lg:flex!; }
+  .sidebar-collapsed .nav-eyebrow { @apply lg:hidden; }
+  .sidebar-collapsed .nav-item { @apply lg:gap-0; }
+  .sidebar-label {
+    @apply max-w-[220px] overflow-hidden whitespace-nowrap opacity-100 transition-[max-width,opacity] duration-300 ease-in-out;
+  }
+  .sidebar-collapsed .sidebar-label { @apply lg:max-w-0! lg:opacity-0!; }
+  .sidebar-collapse-icon { @apply transition-transform duration-300 ease-in-out; }
+  .sidebar-collapsed .sidebar-collapse-icon { @apply lg:rotate-180; }
 
   /* Tables */
   .table { @apply w-full text-left text-sm border-collapse; }
