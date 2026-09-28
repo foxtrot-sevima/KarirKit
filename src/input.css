@@ -18769,6 +18769,15 @@
   .table tbody tr:last-child td { @apply border-b-0; }
   .table tbody tr { @apply hover:bg-neutral-50/70 transition-colors; }
 
+  /* Spacious variant — for image/rating-rich rows (catalog, media library,
+     anything led by a thumbnail) where the default py-3 row reads as
+     cramped next to a 44px+ image. Stack alongside .table: class="table
+     table-lg ...". Left as an addable modifier rather than changed on
+     .table itself so dense data-grids (the existing Table/DataTable
+     examples) keep their tighter default row height. */
+  .table-lg th { @apply py-3.5; }
+  .table-lg td { @apply py-4; }
+
   /* Fixed-width utility columns — keep numbering/checkbox/action columns from
      shifting as surrounding text content grows or shrinks. */
   .table-col-check { @apply w-10; }
@@ -18783,6 +18792,11 @@
     @apply absolute right-0 mt-1 w-44 rounded-control border border-border/70 bg-surface p-1 shadow-card-lg;
     z-index: var(--z-dropdown);
   }
+  /* Flip-up variant — set by the shared openDropdownMenu() helper when the
+     viewport doesn't have room below the trigger (e.g. a last-row action
+     menu near the bottom of a table card), so it opens above the trigger
+     instead of spilling past the card into whatever sits below it. */
+  .dropdown-menu.dropdown-menu-up { @apply top-auto bottom-full mt-0 mb-1; }
   .dropdown-item { @apply flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-neutral-600 hover:bg-neutral-50 hover:text-fg; }
   .dropdown-item-danger { @apply text-danger-600 hover:bg-danger-50 hover:text-danger-700; }
 
