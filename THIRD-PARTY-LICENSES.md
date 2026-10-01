@@ -45,3 +45,12 @@ The MIT license permits bundling, embedding, and redistributing the icons
 itself, as long as the copyright/license notice is retained somewhere in the
 project — this file is that notice. The icons are presented to end users as
 part of KarirKit's own icon set, not branded as Phosphor Icons.
+
+## qrcode-generator (QR Code Generator for JavaScript)
+
+- **Location:** `assets/js/vendor/qrcode.js`
+- **Copyright:** 2009 Kazuhiko Arase (https://github.com/kazuhikoarase/qrcode-generator)
+- **License:** MIT
+- Di-vendor apa adanya (tanpa modifikasi) supaya komponen QR Code
+  (`assets/js/qr-code.js`) berjalan sepenuhnya offline, tanpa CDN. Teks lisensi
+  MIT tercantum di header file tersebut.

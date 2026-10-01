@@ -1,4 +1,5 @@
 import "../src/input.css";
+import "../assets/js/toast.js";
 
 document.body.classList.add("bg-shell", "font-sans", "text-slate-800", "antialiased");
 
@@ -35,6 +36,8 @@ const preview = {
             "Table",
             "DataTable",
             "Alert",
+            "Toast",
+            "QR Code",
             "Progress",
             "Tooltip",
             "Divider",

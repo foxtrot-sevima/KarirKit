@@ -254,6 +254,7 @@ html[data-theme="dark"] .bg-brand-gradient {
   background-image: linear-gradient(135deg, #1950c8 0%, #2361e7 55%, #3d74eb 100%);
 }
 html[data-theme="dark"] .btn-primary:hover:not(:disabled) { background-color: #1950c8; }
+html[data-theme="dark"] .btn-danger:hover:not(:disabled) { background-color: #b91c1c; }
 
 /* Logo pair: <img class="logo-on-light"> + <img class="logo-on-dark"> */
 .logo-on-dark { display: none; }
@@ -18982,6 +18983,59 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .modal-footer .btn-secondary,
   .modal-footer .btn-outline,
   .modal-footer .btn-danger { @apply w-full sm:w-auto; }
+
+  /* Toast — transient notification. Anatomy: .toast > .toast-icon + body + .toast-close.
+     Place in a .toast-region (fixed to the viewport; add .toast-region-contained
+     inside a `relative` parent for docs/demos) with a position modifier. */
+  .toast {
+    @apply flex w-full max-w-xs gap-3 rounded-card border border-border/70 bg-surface p-4 text-sm text-fg-muted shadow-card-lg;
+  }
+  .toast-wide { @apply max-w-sm; }
+  .toast-center { @apply items-center; }
+  .toast-icon {
+    @apply inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600;
+  }
+  .toast-icon-success { @apply bg-success-50 text-success-600; }
+  .toast-icon-danger { @apply bg-danger-50 text-danger-600; }
+  .toast-icon-warning { @apply bg-warning-50 text-warning-600; }
+  .toast-icon-info { @apply bg-info-50 text-info-600; }
+  .toast-icon-lg { @apply h-12 w-12 rounded-full; }
+  /* Alert-style toast: tinted background (Flowbite "danger/warning alert") */
+  .toast-danger { @apply border-danger-100 bg-danger-50 text-danger-700; }
+  .toast-danger .toast-title { @apply text-danger-700; }
+  .toast-warning { @apply border-warning-100 bg-warning-50 text-warning-700; }
+  .toast-warning .toast-title { @apply text-warning-700; }
+  .toast-danger .toast-close:hover { @apply bg-danger-100; }
+  .toast-warning .toast-close:hover { @apply bg-warning-100; }
+  .toast-title { @apply text-sm font-semibold text-fg; }
+  .toast-close {
+    @apply -m-1.5 ml-auto inline-flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center self-start rounded-lg text-fg-subtle
+           transition-colors hover:bg-neutral-100 hover:text-fg
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300;
+  }
+  .toast-center > .toast-close { @apply self-center; }
+  .toast-action { @apply cursor-pointer text-sm font-semibold text-primary-600 hover:text-primary-700 hover:underline; }
+  .toast-leaving { @apply opacity-0 transition-opacity duration-200; }
+  .toast-region { @apply fixed z-[var(--z-toast)] flex flex-col gap-3 p-4; }
+  .toast-region-contained { @apply absolute; }
+  .toast-top-left { @apply top-0 left-0; }
+  .toast-top-right { @apply top-0 right-0; }
+  .toast-bottom-left { @apply bottom-0 left-0; }
+  .toast-bottom-right { @apply right-0 bottom-0; }
+
+  /* QR Code — SVG rendered by assets/js/qr-code.js. The code itself is always
+     dark-on-white (scanners need it), so .qr-code never follows the dark theme. */
+  .qr-code {
+    @apply relative inline-block overflow-hidden rounded-card border border-border/70 bg-white p-2 leading-none shadow-card;
+  }
+  .qr-code svg { @apply block h-full w-full; }
+  .qr-overlay {
+    @apply absolute inset-0 flex flex-col items-center justify-center gap-2 bg-white/90 p-3 text-center text-sm font-medium text-[#334155] backdrop-blur-[2px];
+  }
+  .qr-spinner {
+    @apply h-8 w-8 rounded-full border-4 border-[#e2ebfd] border-t-primary-600;
+    animation: var(--animate-spin-slow);
+  }
 
   /* Breadcrumb */
   .breadcrumb { @apply flex flex-wrap items-center gap-1.5 text-sm; }
