@@ -187,11 +187,11 @@
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <span class="group relative w-full sm:w-auto">
-          <button class="btn-outline btn-md w-full sm:w-auto">
+          <button type="button" id="yudSendAll" class="btn-outline btn-md w-full sm:w-auto">
             <i class="kk kk-check-circle h-4 w-4 shrink-0"></i>
             Kirim Kuesioner
           </button>
-          <span class="pointer-events-none absolute right-0 top-full z-30 mt-2 w-64 whitespace-normal rounded-lg bg-slate-900 px-3 py-2 text-left text-xs font-normal leading-relaxed text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Ini kirim manual untuk lulusan yang belum mengisi kuesioner.</span>
+          <span class="pointer-events-none absolute right-0 top-full z-30 mt-2 w-64 whitespace-normal rounded-lg bg-slate-900 px-3 py-2 text-left text-xs font-normal leading-relaxed text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Kirim manual ke semua lulusan yang belum mengisi: kuesioner untuk yang belum dikirim, reminder untuk yang menunggu mengisi.</span>
         </span>
       </div>
     </div>
@@ -330,7 +330,7 @@
               <td><span class="badge-neutral max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-slate-400"></span>Belum Dikirim</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <span title="Kuesioner belum dikirim - kirim kuesioner terlebih dahulu"><button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" disabled aria-label="Kirim reminder ke Dewi Pratiwi (belum bisa: kuesioner belum dikirim)"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button></span>
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-send-row title="Kirim Kuesioner" aria-label="Kirim kuesioner ke Dewi Pratiwi"><i class="kk kk-envelope-simple h-4 w-4"></i><span class="hidden xl:inline">Kirim Kuesioner</span></button>
                 </div>
               </td>
             </tr>
@@ -415,7 +415,7 @@
               <td><span class="badge-neutral max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-slate-400"></span>Belum Dikirim</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <span title="Kuesioner belum dikirim - kirim kuesioner terlebih dahulu"><button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" disabled aria-label="Kirim reminder ke Maya Ramadhani (belum bisa: kuesioner belum dikirim)"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button></span>
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-send-row title="Kirim Kuesioner" aria-label="Kirim kuesioner ke Maya Ramadhani"><i class="kk kk-envelope-simple h-4 w-4"></i><span class="hidden xl:inline">Kirim Kuesioner</span></button>
                 </div>
               </td>
             </tr>
@@ -453,17 +453,17 @@
           <div class="modal-header">
             <div>
               <h3 class="modal-title" id="yudReminderTitle">Kirim Reminder</h3>
-              <p class="modal-description">Pengingat pengisian Kuesioner Lulusan dikirim sekaligus ke semua yang dipilih.</p>
+              <p class="modal-description" id="yudReminderDesc">Pengingat pengisian Kuesioner Lulusan dikirim sekaligus ke semua yang dipilih.</p>
             </div>
             <button type="button" class="modal-close" data-reminder-close aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
           </div>
           <div class="modal-body">
-            <p>Kirim reminder ke <b id="yudReminderCount" class="text-slate-900">0</b> mahasiswa berstatus <span class="font-medium text-slate-800">Menunggu Mengisi</span>?</p>
+            <p id="yudReminderText">Kirim reminder ke <b id="yudReminderCount" class="text-slate-900">0</b> mahasiswa berstatus <span class="font-medium text-slate-800">Menunggu Mengisi</span>?</p>
             <ul id="yudReminderList" class="mt-3 max-h-40 list-disc space-y-1 overflow-y-auto pl-5 text-sm text-slate-600"></ul>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn-outline btn-md" data-reminder-close>Batal</button>
-            <button type="button" class="btn-primary btn-md" id="yudReminderConfirm"><i class="kk kk-paper-plane-tilt h-4 w-4"></i>Kirim Reminder</button>
+            <button type="button" class="btn-primary btn-md" id="yudReminderConfirm"><i class="kk kk-paper-plane-tilt h-4 w-4" id="yudReminderConfirmIcon"></i><span id="yudReminderConfirmLabel">Kirim Reminder</span></button>
           </div>
         </div>
       </div>
@@ -639,47 +639,94 @@
     });
   })();
 
-  // Reminder (bulk + per row): the "Menunggu Mengisi" rows can be selected (other
-  // statuses have a disabled checkbox, table.js select-all skips them) or reminded
-  // one by one with the row button. Both go through the same confirm modal, then a toast.
+  // Send / remind: the header button, the bulk bar and the per-row buttons share one
+  // confirm modal. "Belum Dikirim" -> the questionnaire is sent (the row becomes
+  // "Menunggu Mengisi"); "Menunggu Mengisi" -> a reminder is sent; "Sudah Mengisi" is never a target.
   (function () {
     const root = document.getElementById('yudTableRoot');
     const bulkBtn = document.getElementById('yudBulkReminder');
+    const sendAllBtn = document.getElementById('yudSendAll');
     const modal = document.getElementById('yudReminderModal');
-    const countEl = document.getElementById('yudReminderCount');
+    const titleEl = document.getElementById('yudReminderTitle');
+    const descEl = document.getElementById('yudReminderDesc');
+    const textEl = document.getElementById('yudReminderText');
     const listEl = document.getElementById('yudReminderList');
     const confirmBtn = document.getElementById('yudReminderConfirm');
-    if (!root || !bulkBtn || !modal) return;
+    const confirmLabel = document.getElementById('yudReminderConfirmLabel');
+    const confirmIcon = document.getElementById('yudReminderConfirmIcon');
+    if (!root || !modal) return;
+
+    const WAITING_BADGE = '<span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span>';
+    const REMIND_BTN = '<button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>';
 
     let pending = []; // rows the open confirm modal will send to
-    let fromBulk = false;
 
-    const selectedRows = () => Array.from(root.querySelectorAll('tbody tr')).filter((r) => r.querySelector('[data-table-select]:checked'));
+    const rows = () => Array.from(root.querySelectorAll('tbody tr'));
+    const selectedRows = () => rows().filter((r) => r.querySelector('[data-table-select]:checked'));
+    const outstandingRows = () => rows().filter((r) => r.dataset.status !== 'sudah');
     const nameOf = (r) => r.querySelector('td .font-medium').textContent.trim();
+    const isNew = (r) => r.dataset.status === 'belum-dikirim'; // not sent yet -> questionnaire, otherwise reminder
     const closeModal = () => modal.classList.remove('is-open');
 
-    function openConfirm(rows, bulk) {
-      if (!rows.length) return;
-      pending = rows;
-      fromBulk = bulk;
-      countEl.textContent = rows.length;
-      listEl.replaceChildren(...rows.map((r) => {
+    function openConfirm(list) {
+      if (!list.length) return;
+      pending = list;
+      const q = list.filter(isNew).length, r = list.length - q;
+      const bold = (n) => '<b class="text-slate-900">' + n + '</b>';
+      if (!q) {
+        titleEl.textContent = 'Kirim Reminder';
+        descEl.textContent = 'Pengingat pengisian Kuesioner Lulusan dikirim ke semua yang dipilih.';
+        textEl.innerHTML = 'Kirim reminder ke <b id="yudReminderCount" class="text-slate-900">' + r + '</b> mahasiswa berstatus <span class="font-medium text-slate-800">Menunggu Mengisi</span>?';
+        confirmLabel.textContent = 'Kirim Reminder';
+        confirmIcon.className = 'kk kk-paper-plane-tilt h-4 w-4';
+      } else if (!r) {
+        titleEl.textContent = 'Kirim Kuesioner';
+        descEl.textContent = 'Kuesioner Lulusan dikirim ke lulusan yang belum pernah dikirimi.';
+        textEl.innerHTML = 'Kirim kuesioner ke <b id="yudReminderCount" class="text-slate-900">' + q + '</b> mahasiswa berstatus <span class="font-medium text-slate-800">Belum Dikirim</span>?';
+        confirmLabel.textContent = 'Kirim Kuesioner';
+        confirmIcon.className = 'kk kk-envelope-simple h-4 w-4';
+      } else {
+        titleEl.textContent = 'Kirim Kuesioner';
+        descEl.textContent = 'Kirim manual ke semua lulusan yang belum mengisi kuesioner.';
+        textEl.innerHTML = 'Kirim ke <b id="yudReminderCount" class="text-slate-900">' + list.length + '</b> mahasiswa yang belum mengisi? ' + bold(q) + ' yang belum dikirim menerima kuesioner, ' + bold(r) + ' yang menunggu mengisi menerima reminder.';
+        confirmLabel.textContent = 'Kirim Kuesioner';
+        confirmIcon.className = 'kk kk-envelope-simple h-4 w-4';
+      }
+      listEl.replaceChildren(...list.map((row) => {
         const li = document.createElement('li');
-        li.textContent = nameOf(r);
+        li.textContent = nameOf(row);
         const sub = document.createElement('span');
         sub.className = 'ml-1 text-slate-400';
-        sub.textContent = r.querySelector('td p')?.textContent.trim() || '';
+        sub.textContent = row.querySelector('td p')?.textContent.trim() || '';
         li.appendChild(sub);
+        if (q && r) {
+          const tag = document.createElement('span');
+          tag.className = (isNew(row) ? 'badge-info' : 'badge-warning') + ' ml-2';
+          tag.textContent = isNew(row) ? 'Kuesioner' : 'Reminder';
+          li.appendChild(tag);
+        }
         return li;
       }));
       modal.classList.add('is-open');
       confirmBtn.focus();
     }
 
-    bulkBtn.addEventListener('click', () => openConfirm(selectedRows(), true));
+    // The questionnaire went out: the row is now waiting for an answer (can be reminded / selected).
+    function markSent(row) {
+      row.dataset.status = 'menunggu';
+      row.querySelector('td:nth-child(6)').innerHTML = WAITING_BADGE;
+      const cell = row.querySelector('td:last-child > div');
+      cell.innerHTML = REMIND_BTN;
+      cell.firstElementChild.setAttribute('aria-label', 'Kirim reminder ke ' + nameOf(row));
+      const box = row.querySelector('[data-table-select]');
+      if (box) { box.disabled = false; box.removeAttribute('title'); }
+    }
+
+    bulkBtn?.addEventListener('click', () => openConfirm(selectedRows()));
+    sendAllBtn?.addEventListener('click', () => openConfirm(outstandingRows()));
     root.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-reminder-row]');
-      if (btn) openConfirm([btn.closest('tr')], false);
+      const btn = e.target.closest('[data-reminder-row],[data-send-row]');
+      if (btn) openConfirm([btn.closest('tr')]);
     });
 
     modal.addEventListener('click', (e) => {
@@ -688,18 +735,23 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
     confirmBtn.addEventListener('click', () => {
-      const rows = pending;
-      closeModal();
-      if (fromBulk) {
-        // Clear the selection (also on other pages) and let table.js refresh the bulk bar.
-        root.querySelectorAll('[data-table-select]:checked').forEach((b) => { b.checked = false; });
-      } else {
-        rows.forEach((r) => { const b = r.querySelector('[data-table-select]'); if (b) b.checked = false; });
-      }
-      root.querySelector('[data-table-select]')?.dispatchEvent(new Event('change', { bubbles: true }));
-      const message = rows.length === 1 ? 'Reminder terkirim ke ' + nameOf(rows[0]) + '.' : 'Reminder terkirim ke ' + rows.length + ' mahasiswa.';
-      if (window.KKToast) window.KKToast.show({ type: 'success', message, duration: 4500 });
+      const list = pending;
       pending = [];
+      closeModal();
+      const q = list.filter(isNew).length, r = list.length - q;
+      const one = list.length === 1 ? nameOf(list[0]) : null;
+      list.forEach((row) => {
+        const box = row.querySelector('[data-table-select]'); if (box) box.checked = false;
+        if (isNew(row)) markSent(row);
+      });
+      // Re-run filters (a status filter may now hide/show rows) and refresh the bulk bar.
+      const table = window.KKTable && window.KKTable.get(root);
+      if (table) table.render();
+      let message;
+      if (q && r) message = 'Kuesioner terkirim ke ' + q + ' mahasiswa dan reminder ke ' + r + ' mahasiswa.';
+      else if (q) message = 'Kuesioner terkirim ke ' + (one || q + ' mahasiswa') + '.';
+      else message = 'Reminder terkirim ke ' + (one || r + ' mahasiswa') + '.';
+      if (window.KKToast) window.KKToast.show({ type: 'success', message, duration: 4500 });
     });
   })();
 

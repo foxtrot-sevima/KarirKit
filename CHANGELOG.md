@@ -22,10 +22,11 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **`templates/karirlink/yudisium-detail.html` dimigrasikan ke komponen Table baru** (langkah kedua merombak tabel karirlink), mengikuti pola
   yudisium.html: `.table-wrap` + `.table-head-soft`, header sortir Title Case ("Nama", "Prodi", "Email", "Status", "Aksi"), kolom **No** selalu
   tampil dan diberi nomor ulang, footer info "Menampilkan a-b dari n mahasiswa" + pagination, dan aksi baris berupa satu tombol `btn-outline btn-sm`
-  berikon (ikon + label di `xl` ke atas, ikon saja di bawahnya): **"Kirim Reminder"** (ikon pesawat kertas) untuk yang menunggu mengisi, tombol yang sama
-  disabled dengan tooltip untuk yang belum dikirimi kuesioner, dan "Lihat Jawaban" untuk yang sudah mengisi. Menu titik tiga dan aksi "Kirim Kuesioner" per baris
-  dihapus (tombol "Kirim Kuesioner" tingkat periode di header halaman tetap ada). Tombol "Kirim Reminder" per baris memakai modal konfirmasi dan toast yang sama
-  dengan bulk reminder (hasilnya "Reminder terkirim ke <nama>."). Tab status (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) berjalan sebagai filter kustom lewat `table.js`
+  berikon (ikon + label di `xl` ke atas, ikon saja di bawahnya): **"Kirim Reminder"** (ikon pesawat kertas) untuk yang menunggu mengisi, **"Kirim Kuesioner"** (ikon amplop)
+  untuk yang belum dikirimi, dan "Lihat Jawaban" untuk yang sudah mengisi. Menu titik tiga dihapus. Kedua tombol per baris, bulk reminder, dan tombol "Kirim Kuesioner"
+  di header halaman memakai satu modal konfirmasi + toast yang sama: header mengirim ke semua lulusan yang belum mengisi (yang belum dikirim menerima kuesioner,
+  yang menunggu menerima reminder, tiap nama diberi penanda), sedangkan setelah kuesioner terkirim baris berpindah ke "Menunggu Mengisi" dan bisa diingatkan/dipilih.
+  Tooltip tombol header menjelaskan fungsinya. Tab status (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) berjalan sebagai filter kustom lewat `table.js`
   dan digabung dengan pencarian; pilihan baris per halaman dihapus. Di ponsel kolom Nama hanya menampilkan nama dan NIM (prodi dan email disembunyikan), kolom
   Prodi muncul dari `lg` dan Email dari `xl`, dan teks badge status tidak lagi keluar dari pilnya. Tabel muat tanpa scroll horizontal di 360 sampai 1440px.
 - **Bulk "Kirim Reminder" di `yudisium-detail.html`** untuk mengirim pengingat ke banyak lulusan sekaligus. Kolom checkbox hanya aktif untuk status
