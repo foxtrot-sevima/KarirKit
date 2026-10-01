@@ -12,9 +12,17 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   Table caption, Without border, Table with shadow, Overflow scrolling, Table
   search, Table filter, Table pagination, Checkbox selection, Table with users,
   Table with products, dan Table with modal.
+- **Template admin `templates/karirlink/yudisium.html` dimigrasikan ke komponen Table baru** (langkah pertama merombak seluruh tabel
+  di karirlink): `.table-wrap` + `.table-head-soft`, kepala kolom yang bisa diurutkan (`.th-sort`, `aria-sort`),
+  kolom **No** selalu tampil (sebelumnya tersembunyi di bawah `xl`) dan ikut diurutkan ulang, toolbar `.table-toolbar`, footer `.table-footer`
+  dengan info "Menampilkan a-b dari n periode", pagination ber-ellipsis, pilihan baris per halaman, dan menu aksi baris yang tidak
+  terpotong. Filter combo Tahun/Jenis dan kartu KPI tetap berjalan lewat hook baru `table.js`; skrip kebab-menu, filter, dan
+  pagination inline dihapus. Tabel muat tanpa scroll horizontal di 390, 768, 1024, dan layar lebih lebar. Template karirlink
+  lainnya belum diubah.
 - **Setiap tabel punya kolom No** (`.table-col-num` + `data-num`). `table.js` menomori
   ulang sesuai urutan tampilan: tetap berurutan setelah sortir, filter, pagination
   (halaman 2 lanjut dari 6), dan hapus baris.
+- Modifier `.table-fit`: padding sel horizontal lebih rapat di bawah `xl`, supaya tabel 5-6 kolom muat di ponsel, tablet, dan laptop kecil tanpa scroll.
 - Gaya baru di `src/input.css`: container `.table-wrap` (+ `-shadow`,
   `-borderless`), `.table-striped`, `.table-striped-cols`, `.table-hover`,
   `.table-static`, `.table-borderless`, `.table-bordered`, `.table-sm`,
@@ -26,6 +34,9 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- `table.js` untuk integrasi halaman: `KKTable.get(root)` dengan `addFilter(fn)` (predikat baris kustom, mis. filter dropdown) dan
+  `refresh()`, event `table:render` (`detail.visible` = semua baris yang lolos filter, untuk KPI/ringkasan), `<select data-table-page-size>`
+  untuk baris per halaman, dan `data-item-label` untuk teks "dari 15 periode".
 - `assets/js/table.js` (opsional, tanpa dependensi) memberi fungsi pada tabel
   lewat atribut: urutkan kolom teks/angka/tanggal (`data-sort`, dengan
   `aria-sort`), cari (`data-table-search`), filter dropdown

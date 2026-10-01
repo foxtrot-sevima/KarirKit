@@ -17,7 +17,13 @@
                row: data-price="N" + [data-line-total]; footer: [data-cart-total]; remove: [data-row-remove]
    Modal:      <button data-table-modal-open="#id"> inside a <tr data-user-name ...>;
                <div class="modal-backdrop" id="id" data-table-modal> with [data-field="name|position|bio"], [name=status], [data-table-modal-save], [data-table-modal-close]
-   API:        KKTable.init(rootEl) */
+   Page size:  <select data-table-page-size> (options = rows per page)
+   Item label: data-item-label="periode" on the root -> "Menampilkan 1–10 dari 15 periode"
+   Hooks:      var t = KKTable.get(rootEl);
+                 t.addFilter(function (row) { return true; })  // extra predicate (e.g. custom dropdown filters)
+                 t.refresh()                                      // re-run filters, back to page 1
+               rootEl.addEventListener('table:render', function (e) { e.detail.visible = all rows passing the filters })
+   API:        KKTable.init(rootEl), KKTable.get(rootEl) */
 (function () {
   'use strict';
 
@@ -32,7 +38,10 @@
     root._kkTable = true;
     var tbody = table.tBodies[0];
     var size = parseInt(root.getAttribute('data-page-size') || '0', 10);
-    var state = { q: '', filters: {}, col: -1, dir: 1, page: 1 };
+    var state = { q: '', filters: {}, col: -1, dir: 1, page: 1, custom: [] };
+    var label = root.getAttribute('data-item-label') || '';
+    var sizeSelect = root.querySelector('[data-table-page-size]');
+    if (sizeSelect) size = parseInt(sizeSelect.value, 10) || size;
 
     var dataRows = function () { return $$(tbody, 'tr').filter(function (r) { return !r.hasAttribute('data-empty-row'); }); };
     dataRows().forEach(function (r, i) { r._order = i; });
@@ -47,6 +56,7 @@
 
     function matches(row) {
       if (state.q && row.textContent.toLowerCase().indexOf(state.q) === -1) return false;
+      for (var k = 0; k < state.custom.length; k++) if (!state.custom[k](row)) return false;
       for (var col in state.filters) {
         var want = state.filters[col]; if (!want) continue;
         var c = row.cells[+col]; if (!c) return false;
@@ -106,10 +116,11 @@
       var empty = root.querySelector('[data-table-empty]'); if (empty) empty.hidden = visible.length > 0;
       var info = root.querySelector('[data-table-info]');
       if (info) info.innerHTML = visible.length
-        ? 'Menampilkan <b>' + (start + 1) + '–' + Math.min(end, visible.length) + '</b> dari <b>' + visible.length + '</b>'
+        ? 'Menampilkan <b>' + (start + 1) + '–' + Math.min(end, visible.length) + '</b> dari <b>' + visible.length + '</b>' + (label ? ' ' + label : '')
         : 'Tidak ada data';
       var pg = root.querySelector('[data-table-pages]'); if (pg) pg.innerHTML = size && pages > 1 ? pageButtons(pages) : '';
       updateSelection();
+      root.dispatchEvent(new CustomEvent('table:render', { detail: { visible: visible, page: state.page, size: size } }));
     }
 
     function sortBy(th) {
@@ -153,13 +164,19 @@
     });
 
     root.addEventListener('change', function (e) {
+      if (e.target.matches('[data-table-page-size]')) { size = parseInt(e.target.value, 10) || 0; state.page = 1; render(); return; }
       if (e.target.matches('[data-table-select-all]')) {
         dataRows().filter(function (r) { return !r.hidden; }).forEach(function (r) { var b = r.querySelector('[data-table-select]'); if (b) b.checked = e.target.checked; });
         updateSelection();
       } else if (e.target.matches('[data-table-select]')) updateSelection();
     });
 
-    root._kkRender = render; render();
+    root._kkTable = {
+      refresh: function () { state.page = 1; render(); },
+      addFilter: function (fn) { state.custom.push(fn); },
+      render: render
+    };
+    render();
   }
 
   /* ------------------------------------------------- row menu (fixed) */
@@ -263,5 +280,5 @@
   document.addEventListener('DOMContentLoaded', initAll);
   new MutationObserver(function () { initAll(); }).observe(document.documentElement, { childList: true, subtree: true });
 
-  window.KKTable = { init: init };
+  window.KKTable = { init: init, get: function (root) { return root && root._kkTable && root._kkTable.render ? root._kkTable : null; } };
 })();

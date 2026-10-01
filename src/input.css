@@ -19399,6 +19399,9 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .table-static tbody tr:hover { @apply bg-transparent; }
   .table-sm th,
   .table-sm td { @apply px-3 py-2; }
+  /* Tighter horizontal cell padding below xl, so a 5-6 column table fits phones, tablets and small laptops without scrolling. */
+  .table-fit th,
+  .table-fit td { @apply max-xl:px-3; }
   .table-borderless th,
   .table-borderless td { @apply border-b-0; }
   .table-bordered th,
