@@ -38,6 +38,7 @@ const preview = {
             "Alert",
             "Toast",
             "QR Code",
+            "WYSIWYG",
             "Progress",
             "Tooltip",
             "Divider",

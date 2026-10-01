@@ -19037,6 +19037,57 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
     animation: var(--animate-spin-slow);
   }
 
+  /* WYSIWYG editor — contenteditable, behaviour in assets/js/wysiwyg.js.
+     Anatomy: .wysiwyg > .wysiwyg-toolbar (> .wysiwyg-group > .wysiwyg-btn | .wysiwyg-dd > .wysiwyg-menu)
+     + .wysiwyg-content [+ .wysiwyg-footer]. The menus use the native `hidden` class to toggle. */
+  .wysiwyg { @apply w-full rounded-card border border-border bg-surface shadow-card; }
+  .wysiwyg:focus-within { @apply border-primary-500 ring-2 ring-primary-500/20; }
+  .wysiwyg-toolbar { @apply flex flex-wrap items-center gap-x-1 gap-y-1 rounded-t-card border-b border-border bg-neutral-50 p-2; }
+  .wysiwyg-group { @apply flex items-center gap-0.5; }
+  .wysiwyg-group + .wysiwyg-group { @apply ml-1 border-l border-border pl-2; }
+  .wysiwyg-btn {
+    @apply inline-flex h-8 min-w-8 cursor-pointer items-center justify-center gap-1 rounded-lg px-1.5 text-xs font-medium text-fg-muted
+           transition-colors hover:bg-neutral-100 hover:text-fg
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500;
+  }
+  .wysiwyg-btn[aria-pressed="true"],
+  .wysiwyg-btn[aria-expanded="true"] { @apply bg-primary-50 text-primary-700; }
+  .wysiwyg-dd { @apply relative; }
+  .wysiwyg-menu {
+    @apply absolute top-full left-0 z-[var(--z-dropdown)] mt-1 max-h-72 min-w-44 overflow-y-auto rounded-control border border-border bg-surface p-1 shadow-card-lg;
+  }
+  .wysiwyg-menu-item {
+    @apply flex w-full cursor-pointer items-center justify-between gap-6 rounded-lg px-3 py-1.5 text-left text-sm text-fg-muted hover:bg-neutral-100 hover:text-fg;
+  }
+  .wysiwyg-menu-item kbd { @apply text-micro text-fg-subtle; }
+  .wysiwyg-swatches { @apply grid grid-cols-6 gap-1 p-2; }
+  .wysiwyg-swatch { @apply h-6 w-6 cursor-pointer rounded-md border border-black/10 transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500; }
+  .wysiwyg-content {
+    @apply min-h-48 px-4 py-3 text-sm leading-relaxed text-fg focus:outline-none;
+    overflow-wrap: anywhere;
+  }
+  .wysiwyg-footer { @apply flex items-center justify-between gap-3 rounded-b-card border-t border-border px-3 py-2; }
+  .wysiwyg-content > * + * { @apply mt-3; }
+  .wysiwyg-content h1 { @apply font-display text-3xl font-bold text-fg; }
+  .wysiwyg-content h2 { @apply font-display text-2xl font-bold text-fg; }
+  .wysiwyg-content h3 { @apply font-display text-xl font-semibold text-fg; }
+  .wysiwyg-content h4 { @apply text-lg font-semibold text-fg; }
+  .wysiwyg-content h5 { @apply text-base font-semibold text-fg; }
+  .wysiwyg-content h6 { @apply text-sm font-semibold uppercase tracking-wide text-fg; }
+  .wysiwyg-content ul { @apply list-disc pl-6; }
+  .wysiwyg-content ol { @apply list-decimal pl-6; }
+  .wysiwyg-content blockquote { @apply border-l-4 border-primary-300 pl-4 italic text-fg-muted; }
+  .wysiwyg-content pre { @apply overflow-x-auto rounded-control bg-neutral-100 p-3 font-mono text-xs text-fg; }
+  .wysiwyg-content code { @apply rounded bg-neutral-100 px-1 py-0.5 font-mono text-[0.85em]; }
+  .wysiwyg-content pre code { @apply bg-transparent p-0; }
+  .wysiwyg-content a { @apply text-primary-600 underline hover:text-primary-700; }
+  .wysiwyg-content hr { @apply border-border; }
+  .wysiwyg-content img { @apply h-auto max-w-full rounded-control; }
+  .wysiwyg-content mark { @apply rounded bg-warning-200 px-0.5 text-inherit; }
+  .wysiwyg-content .wysiwyg-video { @apply aspect-video w-full overflow-hidden rounded-control bg-neutral-100; }
+  .wysiwyg-content .wysiwyg-video iframe { @apply h-full w-full border-0; }
+  .wysiwyg-content:empty::before { content: attr(data-placeholder); @apply pointer-events-none text-fg-subtle; }
+
   /* Breadcrumb */
   .breadcrumb { @apply flex flex-wrap items-center gap-1.5 text-sm; }
   .breadcrumb-item { @apply flex items-center gap-1.5; }

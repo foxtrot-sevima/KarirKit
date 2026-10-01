@@ -225,14 +225,31 @@ const posToast = (label) => `
     ${closeBtn}
   </div>`;
 
+// Mini "screen" mock so each corner is easy to read at any width
+const frame = (label, pos) => `
+  <figure class="m-0">
+    <div class="relative h-48 overflow-hidden rounded-xl border border-border bg-surface">
+      <div class="flex items-center gap-1.5 border-b border-border bg-neutral-50 px-3 py-2">
+        <span class="h-2 w-2 rounded-full bg-danger-400"></span><span class="h-2 w-2 rounded-full bg-warning-400"></span><span class="h-2 w-2 rounded-full bg-success-400"></span>
+      </div>
+      <div class="space-y-2 p-4">
+        <div class="h-2.5 w-2/5 rounded bg-neutral-100"></div>
+        <div class="h-2 w-4/5 rounded bg-neutral-100"></div>
+        <div class="h-2 w-3/5 rounded bg-neutral-100"></div>
+      </div>
+      <div class="toast-region toast-region-contained ${pos} w-max max-w-full p-2 ${pos.includes("top") ? "mt-8" : ""}">${posToast(label)}</div>
+    </div>
+    <figcaption class="mt-2 text-center text-xs text-fg-muted"><code class="kbd">${pos}</code></figcaption>
+  </figure>`;
+
 export const Positioning = {
-  render: () => `
-    <div class="relative m-6 h-[28rem] overflow-hidden rounded-card border border-dashed border-border bg-neutral-50">
-      <div class="toast-region toast-region-contained toast-top-left">${posToast("Top left positioning.")}</div>
-      <div class="toast-region toast-region-contained toast-top-right">${posToast("Top right positioning.")}</div>
-      <div class="toast-region toast-region-contained toast-bottom-right">${posToast("Bottom right positioning.")}</div>
-      <div class="toast-region toast-region-contained toast-bottom-left">${posToast("Bottom left positioning.")}</div>
-    </div>`,
+  render: () =>
+    wrap(`<div class="grid gap-4 sm:grid-cols-2">
+      ${frame("Top left positioning.", "toast-top-left")}
+      ${frame("Top right positioning.", "toast-top-right")}
+      ${frame("Bottom right positioning.", "toast-bottom-right")}
+      ${frame("Bottom left positioning.", "toast-bottom-left")}
+    </div>`),
 };
 
 export const JavaScriptBehaviour = {

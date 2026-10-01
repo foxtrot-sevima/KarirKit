@@ -2,6 +2,41 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.3.1] - 2026-10-01
+
+### Added
+
+- **Komponen WYSIWYG** - rich text editor tanpa dependensi (contenteditable)
+  yang jalan offline, tanpa TipTap/CDN seperti di Flowbite. `assets/js/wysiwyg.js`
+  meng-init setiap `[data-wysiwyg]`; class `.wysiwyg`, `.wysiwyg-toolbar`,
+  `.wysiwyg-btn`, `.wysiwyg-menu`, `.wysiwyg-content`, `.wysiwyg-footer` di
+  `src/input.css`. Empat layout mengikuti Flowbite: Default text editor,
+  Text formatting (subscript/superscript, kotak komentar), Text alignment
+  (kiri/tengah/kanan/justify), Typography elements (Paragraph & Heading 1-6,
+  code block, list, blockquote, horizontal rule). Fitur: ukuran teks, warna
+  (hex + 36 preset + reset), 9 font, highlight, kode inline, tautan, gambar,
+  video YouTube, pintasan `Ctrl/Cmd+Alt+0..6`, paste sebagai plain text,
+  `KKWysiwyg.get(root).getHTML()` dan event `wysiwyg:change`. Ada di Storybook
+  **Components -> WYSIWYG** dan section "WYSIWYG" di `index.html`.
+
+### Changed
+
+- Section Toast, QR Code, dan WYSIWYG di `index.html` memakai layout ala
+  Flowbite: tiap contoh punya judul H3 + panel bergaris, dua kolom di desktop
+  dan satu kolom di ponsel, contoh lebar (generator QR, Positioning, editor)
+  memakai lebar penuh.
+- Toast **Positioning** dirombak: grid 2x2 "layar" mini (header jendela +
+  garis konten palsu), satu toast per sudut dengan label kelas
+  (`toast-top-left`, dst) - menggantikan satu kotak besar yang kosong dan
+  saling menimpa di layar kecil.
+
+### Fixed
+
+- Section **QR Code di `index.html` hilang** pada rilis 1.3.0 (tertimpa saat
+  section Toast dibuat ulang), padahal tautan nav-nya masih ada. Section
+  dikembalikan lengkap dengan 8 contoh.
+- `.btn-danger` saat hover di dark mode tidak lagi terlalu terang.
+
 ## [1.3.0] - 2026-10-01
 
 ### Added
