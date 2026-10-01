@@ -61,6 +61,21 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **Komponen Modal dilengkapi.** Bagian Modal di `index.html` dan story **Components -> Modal** ditulis ulang dengan 10 contoh interaktif: Default modal,
+  Pop-up modal, Form element, Modal sizes (sm sampai 2xl), Modal placement (9 posisi), Static modal, Scrolling modal, Timeline modal, Choice list modal, dan
+  Create modal. Contohnya berasal dari satu sumber (`stories/Components/modal/examples.js`) sehingga Storybook dan `index.html` selalu sama; story di docs
+  tampil dalam iframe sendiri agar modal bisa dicoba langsung.
+- `assets/js/modal.js` (opsional, tanpa dependensi): pemicu `data-modal-toggle` / `data-modal-show` / `data-modal-hide` (alias `data-modal-target`,
+  `data-modal-trigger`, `data-modal-close`), `data-modal-placement` per pemicu, `data-modal-backdrop="static"`, `data-modal-keyboard="false"`,
+  `KKModal.open/close/toggle/closeAll/isOpen`, serta event `modal:show` dan `modal:hide`. Otomatis mengatur `role="dialog"`, `aria-modal`,
+  `aria-labelledby`, kunci scroll halaman, Escape yang hanya menutup modal paling atas, klik backdrop (tekan dan lepas harus di backdrop, jadi menyeleksi
+  teks lalu melepas di luar tidak menutup modal), fokus pindah ke dalam modal dan tertahan saat Tab, lalu kembali ke pemicu saat ditutup. Pengatur lama di
+  `index.html` diganti file ini.
+- Gaya modal baru di `src/input.css`: posisi `.modal-top-left` sampai `.modal-bottom-right` (+ `.modal-center`), ukuran `.modal-2xl`, footer
+  `.modal-footer-start|center|between`, pop-up konfirmasi `.modal-popup` + `.modal-icon` (`-primary|success|danger|warning|info`), dan
+  `.modal-contained` untuk pratinjau statis. Panel kini kolom flex dengan `max-h-full`: isi panjang menggulir di `.modal-body` sementara header dan
+  footer tetap terlihat (sebelumnya panel yang lebih tinggi dari layar terpotong). Kelas lama (`.modal-backdrop`, `.modal-panel`, `.modal-sm|md|lg|xl`,
+  `.is-open`) tidak berubah. Tata letak dengan lapisan sendiri di atas `--z-overlay` (mis. sidebar `z-50`) perlu menaikkan backdrop, contoh `z-[60]`.
 - `table.js` untuk integrasi halaman: `KKTable.get(root)` dengan `addFilter(fn)` (predikat baris kustom, mis. filter dropdown) dan
   `refresh()`, event `table:render` (`detail.visible` = semua baris yang lolos filter, untuk KPI/ringkasan), `<select data-table-page-size>`
   untuk baris per halaman, dan `data-item-label` untuk teks "dari 15 periode".

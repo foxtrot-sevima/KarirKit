@@ -18958,7 +18958,15 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
 
   /* Modal — resting state lives on .modal-backdrop/.modal-panel themselves
      (mirrors the .combo-menu invisible/is-open pattern), so toggling
-     .is-open animates both the open AND close direction. */
+     .is-open animates both the open AND close direction.
+     Anatomy: .modal-backdrop > .modal-panel > .modal-header + .modal-body + .modal-footer.
+     Size on the panel (.modal-sm|md|lg|xl), placement on the backdrop
+     (.modal-top-left … .modal-bottom-right, default centered), and the panel
+     never outgrows the viewport: a long .modal-body scrolls while the header
+     and footer stay put. Behaviour (open/close/Escape/focus) lives in
+     assets/js/modal.js. Add .modal-contained inside a `relative` parent for
+     docs/demos. z-index is --z-overlay; a layout with its own higher layer
+     (e.g. a z-50 sidebar) must lift the backdrop above it (z-[60]). */
   .modal-backdrop {
     @apply invisible fixed inset-0 flex items-center justify-center bg-neutral-900/50 p-4
            opacity-0 transition-opacity ease-out;
@@ -18966,8 +18974,9 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
     transition-duration: var(--duration-normal);
   }
   .modal-backdrop.is-open { @apply visible opacity-100; }
+  .modal-contained { @apply absolute; }
   .modal-panel {
-    @apply w-full max-w-md rounded-card border border-border/70 bg-surface shadow-card-lg transition ease-out;
+    @apply flex max-h-full w-full max-w-md flex-col rounded-card border border-border/70 bg-surface shadow-card-lg outline-none transition ease-out;
     transition-duration: var(--duration-normal);
   }
   .modal-backdrop:not(.is-open) .modal-panel { @apply scale-95 opacity-0; }
@@ -18975,19 +18984,49 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .modal-md { @apply max-w-md; }
   .modal-lg { @apply max-w-lg; }
   .modal-xl { @apply max-w-2xl; }
-  .modal-header { @apply flex items-start justify-between gap-4 border-b border-border-subtle px-6 py-4; }
+  .modal-2xl { @apply max-w-4xl; }
+  /* Placement (on .modal-backdrop) */
+  .modal-center { @apply items-center justify-center; }
+  .modal-top-left { @apply items-start justify-start; }
+  .modal-top-center { @apply items-start justify-center; }
+  .modal-top-right { @apply items-start justify-end; }
+  .modal-center-left { @apply items-center justify-start; }
+  .modal-center-right { @apply items-center justify-end; }
+  .modal-bottom-left { @apply items-end justify-start; }
+  .modal-bottom-center { @apply items-end justify-center; }
+  .modal-bottom-right { @apply items-end justify-end; }
+  .modal-header { @apply flex shrink-0 items-start justify-between gap-4 border-b border-border-subtle px-6 py-4; }
   .modal-title { @apply text-base font-semibold text-fg; }
   .modal-description { @apply mt-1 text-sm text-fg-muted; }
   .modal-close {
     @apply flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-fg-subtle
            transition-colors hover:bg-neutral-100 hover:text-fg;
   }
-  .modal-body { @apply px-6 py-5 text-sm text-neutral-600; }
-  .modal-footer { @apply flex flex-col-reverse items-center gap-2.5 border-t border-border-subtle px-6 py-4 sm:flex-row sm:justify-end; }
+  .modal-body { @apply min-h-0 flex-1 overflow-y-auto px-6 py-5 text-sm text-neutral-600; }
+  .modal-footer { @apply flex shrink-0 flex-col-reverse items-center gap-2.5 border-t border-border-subtle px-6 py-4 sm:flex-row sm:justify-end; }
+  .modal-footer-start { @apply sm:justify-start; }
+  .modal-footer-center { @apply sm:justify-center; }
+  .modal-footer-between { @apply sm:justify-between; }
   .modal-footer .btn-primary,
   .modal-footer .btn-secondary,
   .modal-footer .btn-outline,
   .modal-footer .btn-danger { @apply w-full sm:w-auto; }
+  /* Pop-up (confirmation): centered icon + message, close button floats top-right, no header/footer rules */
+  .modal-popup { @apply relative text-center; }
+  .modal-popup .modal-close { @apply absolute right-3 top-3; }
+  .modal-popup .modal-body { @apply flex flex-col items-center px-6 pb-6 pt-10; }
+  .modal-popup .modal-footer-body { @apply mt-6 flex w-full flex-col-reverse items-center justify-center gap-2.5 sm:flex-row; }
+  .modal-popup .modal-footer-body .btn-primary,
+  .modal-popup .modal-footer-body .btn-outline,
+  .modal-popup .modal-footer-body .btn-danger { @apply w-full sm:w-auto; }
+  .modal-icon {
+    @apply mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-neutral-100 text-neutral-500;
+  }
+  .modal-icon-primary { @apply bg-primary-50 text-primary-600; }
+  .modal-icon-success { @apply bg-success-50 text-success-600; }
+  .modal-icon-danger { @apply bg-danger-50 text-danger-600; }
+  .modal-icon-warning { @apply bg-warning-50 text-warning-600; }
+  .modal-icon-info { @apply bg-info-50 text-info-600; }
 
   /* Toast — transient notification. Anatomy: .toast > .toast-icon + body + .toast-close.
      Place in a .toast-region (fixed to the viewport; add .toast-region-contained
