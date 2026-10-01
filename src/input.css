@@ -19000,7 +19000,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .toast-icon-warning { @apply bg-warning-50 text-warning-600; }
   .toast-icon-info { @apply bg-info-50 text-info-600; }
   .toast-icon-lg { @apply h-12 w-12 rounded-full; }
-  /* Alert-style toast: tinted background (Flowbite "danger/warning alert") */
+  /* Alert-style toast: tinted background ("danger/warning alert") */
   .toast-danger { @apply border-danger-100 bg-danger-50 text-danger-700; }
   .toast-danger .toast-title { @apply text-danger-700; }
   .toast-warning { @apply border-warning-100 bg-warning-50 text-warning-700; }
