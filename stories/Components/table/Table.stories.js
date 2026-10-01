@@ -30,6 +30,7 @@ const USERS = [
 const exBlock = (inner) => `<div class="p-6">${inner}</div>`;
 const ic = (n, cls = "h-4 w-4") => `<i class="kk kk-${n} ${cls}"></i>`;
 const editLink = `<a href="#" class="card-link">Edit</a>`;
+const deleteLink = `<a href="#" class="inline-flex items-center text-sm font-semibold text-danger-600 hover:text-danger-700 hover:underline">Hapus</a>`;
 const search = (id = "ts") => `
   <div class="relative">
     <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-fg-subtle">${ic("magnifying-glass")}</span>
@@ -51,12 +52,6 @@ const simpleTable = (cls, { rows = 5, wrap = "table-wrap", extraHead = "", extra
     <tbody>${jobRows(rows, extra)}</tbody>
   </table></div>`);
 const sortHead = (label, type) => `<th scope="col" data-sort="${type}"><button type="button" class="th-sort">${label}${ic("caret-up-down", "sort-icon")}</button></th>`;
-const menu = (items) => `
-  <div class="relative inline-block">
-    <button type="button" class="btn-ghost btn-icon-sm" data-table-menu aria-expanded="false" aria-haspopup="true" aria-label="Aksi baris">${ic("dots-three-vertical", "h-5 w-5")}</button>
-    <div class="dropdown-menu hidden w-52">${items.map(([t, danger]) => `<a href="#" class="dropdown-item${danger ? " dropdown-item-danger" : ""}">${t}</a>`).join("")}</div>
-  </div>`;
-const MENU = [["Rekomendasikan"], ["Naikkan ke Interview"], ["Arsipkan"], ["Hapus", true]];
 const statusCell = (s) => `<div class="flex items-center gap-2"><span class="badge-dot ${s === "Online" ? "bg-success-500" : "bg-danger-500"}"></span><span data-cell="status">${s}</span></div>`;
 const userCell = (u, i) => `<div class="flex items-center gap-3">${avatarImg(i, "avatar avatar-lg", u[0])}<div class="min-w-0"><div class="font-medium text-fg" data-cell="name">${u[0]}</div><div class="text-xs text-fg-muted">${u[1]}</div></div></div>`;
 
@@ -67,7 +62,7 @@ export default {
     docs: {
       description: {
         component:
-          "Tabel data. Gaya: `.table` di dalam `.table-wrap` (scroll horizontal + border + radius). Varian: `.table-striped`, `.table-striped-cols`, `.table-hover`, `.table-borderless`, `.table-bordered`, `.table-sm`/`.table-lg`, `.table-sticky` (dengan `.table-scroll`), `.table-head-soft`, `.table-wrap-shadow`, plus `<caption class=\"table-caption\">` dan `<tfoot>`. Fungsi (sortir, cari, filter, pagination, pilih baris, menu aksi, counter, modal edit) disediakan `assets/js/table.js` lewat atribut `data-table`, `data-sort`, `data-table-search`, `data-page-size`, `data-table-select*`, dst. Teks header kolom memakai **Title Case** (Capital Each Word, mis. Periode Yudisium, Status Karier) - bukan huruf kapital semua. Footer + aksi baris mengikuti pola **Table with users**: info Menampilkan a-b dari n di kiri, pagination di kanan; aksi baris = tautan teks + menu titik tiga (`btn-ghost btn-icon-sm`), header kolom aksi `sr-only`. Setiap tabel punya kolom **No** (`.table-col-num` + `data-num`) yang diberi nomor ulang mengikuti urutan tampilan - setelah sortir, filter, pagination (lanjut 6, 7, …), dan hapus baris. Untuk integrasi halaman: `KKTable.get(root).addFilter(fn)`/`refresh()`, event `table:render` (`detail.visible`), `<select data-table-page-size>`, dan `data-item-label`. Tanpa JS tabel tetap tampil benar; template lama (`.table`, `.th-sortable`, `.table-col-*`) tidak berubah.",
+          "Tabel data. Gaya: `.table` di dalam `.table-wrap` (scroll horizontal + border + radius). Varian: `.table-striped`, `.table-striped-cols`, `.table-hover`, `.table-borderless`, `.table-bordered`, `.table-sm`/`.table-lg`, `.table-sticky` (dengan `.table-scroll`), `.table-head-soft`, `.table-wrap-shadow`, plus `<caption class=\"table-caption\">` dan `<tfoot>`. Fungsi (sortir, cari, filter, pagination, pilih baris, counter, modal edit) disediakan `assets/js/table.js` lewat atribut `data-table`, `data-sort`, `data-table-search`, `data-page-size`, `data-table-select*`, dst. Teks header kolom memakai **Title Case** (Capital Each Word, mis. Periode Yudisium, Status Karier) - bukan huruf kapital semua. Footer + aksi baris mengikuti pola **Table with users**: info Menampilkan a-b dari n di kiri, pagination di kanan; aksi baris = tautan teks (mis. Edit, Hapus) tanpa menu titik tiga, header kolom aksi `sr-only`. Setiap tabel punya kolom **No** (`.table-col-num` + `data-num`) yang diberi nomor ulang mengikuti urutan tampilan - setelah sortir, filter, pagination (lanjut 6, 7, …), dan hapus baris. Untuk integrasi halaman: `KKTable.get(root).addFilter(fn)`/`refresh()`, event `table:render` (`detail.visible`), `<select data-table-page-size>`, dan `data-item-label`. Tanpa JS tabel tetap tampil benar; template lama (`.table`, `.th-sortable`, `.table-col-*`) tidak berubah.",
       },
     },
   },
@@ -202,7 +197,7 @@ export const TableWithUsers = {
         <tbody>${USERS.map((u, i) => `<tr>
           <td><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih ${u[0]}" /></td>
           ${noTd(i)}<td>${userCell(u, i)}</td><td>${u[2]}</td><td>${statusCell(u[3])}</td>
-          <td><div class="flex items-center justify-end gap-1">${editLink}${menu(MENU)}</div></td></tr>`).join("")}</tbody>
+          <td><div class="flex items-center justify-end gap-4">${editLink}${deleteLink}</div></td></tr>`).join("")}</tbody>
       </table>
       <div data-table-empty hidden class="table-empty">Pelamar tidak ditemukan.</div>
       ${pagination}

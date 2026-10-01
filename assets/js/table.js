@@ -12,7 +12,6 @@
    Number:     <th class="table-col-num">No</th> / <td class="table-col-num" data-num>1</td> - renumbered in display order
                (after sort, filter, paging and row removal); every table keeps a "No" column
    Empty:      <div data-table-empty hidden>...</div>
-   Row menu:   <button data-table-menu aria-expanded="false"> + next sibling .dropdown-menu.hidden  (fixed-positioned: not clipped)
    Counter:    <div class="counter" data-counter data-min="1" data-max="9"> [data-counter-dec] <input class="counter-input"> [data-counter-inc]
                row: data-price="N" + [data-line-total]; footer: [data-cart-total]; remove: [data-row-remove]
    Modal:      <button data-table-modal-open="#id"> inside a <tr data-user-name ...>;
@@ -179,24 +178,6 @@
     render();
   }
 
-  /* ------------------------------------------------- row menu (fixed) */
-  var openMenu = null;
-  function closeMenu() {
-    if (!openMenu) return;
-    openMenu.menu.classList.add('hidden'); openMenu.menu.classList.remove('dropdown-menu-fixed');
-    openMenu.btn.setAttribute('aria-expanded', 'false'); openMenu = null;
-  }
-  function toggleMenu(btn) {
-    var menu = btn.nextElementSibling; if (!menu) return;
-    var wasOpen = openMenu && openMenu.btn === btn; closeMenu(); if (wasOpen) return;
-    menu.classList.remove('hidden'); menu.classList.add('dropdown-menu-fixed');
-    var r = btn.getBoundingClientRect(), w = menu.offsetWidth, h = menu.offsetHeight;
-    var left = Math.min(Math.max(8, r.right - w), document.documentElement.clientWidth - w - 8);
-    var top = r.bottom + 4; if (top + h > window.innerHeight - 8) top = Math.max(8, r.top - h - 4);
-    menu.style.left = left + 'px'; menu.style.top = top + 'px'; menu.style.right = 'auto';
-    btn.setAttribute('aria-expanded', 'true'); openMenu = { btn: btn, menu: menu };
-  }
-
   /* ------------------------------------------------------------ counter */
   function recalcTotals(scope) {
     var total = 0;
@@ -245,10 +226,6 @@
 
   /* -------------------------------------------------- global delegation */
   document.addEventListener('click', function (e) {
-    var mb = e.target.closest('[data-table-menu]');
-    if (mb) { e.preventDefault(); return toggleMenu(mb); }
-    if (openMenu && !e.target.closest('.dropdown-menu')) closeMenu();
-
     var dec = e.target.closest('[data-counter-dec]'); if (dec) return step(dec.closest('[data-counter]'), -1);
     var inc = e.target.closest('[data-counter-inc]'); if (inc) return step(inc.closest('[data-counter]'), 1);
     var rm = e.target.closest('[data-row-remove]');
@@ -268,9 +245,7 @@
   document.addEventListener('input', function (e) {
     if (e.target.matches('.counter-input')) { var c = e.target.closest('[data-counter]'); if (c) step(c, 0); }
   });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); closeModal(); } });
-  window.addEventListener('scroll', closeMenu, true);
-  window.addEventListener('resize', closeMenu);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
   function initAll() {
     $$(document, '[data-table]').forEach(init);
