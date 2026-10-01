@@ -27,6 +27,8 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   tetap ada). Tab status (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) berjalan sebagai filter kustom lewat `table.js`
   dan digabung dengan pencarian; pilihan baris per halaman dihapus. Di ponsel info prodi dan email tampil di bawah nama (membungkus baris), kolom
   Prodi muncul dari `lg` dan Email dari `xl`, dan teks badge status tidak lagi keluar dari pilnya. Tabel muat tanpa scroll horizontal di 360 sampai 1440px.
+- **Kolom Nama `yudisium-detail.html`: avatar dihapus, NIM ditambahkan di bawah nama** ("NIM 2111500101"). Pencarian kini juga mencocokkan NIM
+  ("Cari nama, NIM, atau email..."). Di ponsel prodi dan email tetap tampil di bawah NIM.
 - **Toolbar tabel konsisten: pencarian di kiri, filter/aksi sebagai dropdown di kanan.** Diterapkan ke contoh Table filter dan Table with modal di
   Design System (urutan sebelumnya terbalik; menu dropdown kini rata kanan agar tidak keluar layar) dan ke `yudisium-detail.html`, di mana tab status
   (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) diganti dropdown "Semua Status" di kanan pencarian, memakai komponen combo yang sama
