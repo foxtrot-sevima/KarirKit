@@ -17,13 +17,13 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   kolom **No** selalu tampil (sebelumnya tersembunyi di bawah `xl`) dan ikut diurutkan ulang, toolbar `.table-toolbar`, footer `.table-footer`
   dengan info "Menampilkan a-b dari n periode", pagination ber-ellipsis, pilihan baris per halaman, dan aksi baris berupa tautan teks.
   Filter combo Tahun/Jenis dan kartu KPI tetap berjalan lewat hook baru `table.js`; skrip kebab-menu, filter, dan
-  pagination inline dihapus. Aksi baris tidak lagi memakai menu titik tiga: hanya tombol `btn-secondary` "Lihat Detail" dengan ikon: ikon + label di `xl` ke atas, hanya ikon (dengan tooltip dan aria-label) di bawah `xl`; aksi "Kirim Kuesioner" dihapus. Tabel muat tanpa scroll horizontal di 390, 768, 1024, dan layar lebih lebar. Template karirlink
+  pagination inline dihapus. Aksi baris tidak lagi memakai menu titik tiga: hanya tombol `btn-outline btn-md` "Lihat Detail" dengan ikon: ikon + label di `xl` ke atas, hanya ikon 40x40 (dengan tooltip dan aria-label) di bawah `xl`, dan header kolom "Aksi" tampil; aksi "Kirim Kuesioner" dihapus. Tabel muat tanpa scroll horizontal di 390, 768, 1024, dan layar lebih lebar. Template karirlink
   lainnya belum diubah.
 - **Header tabel memakai Title Case** ("Periode Yudisium", "Status Karier") secara konsisten. `.table-head-soft` tidak lagi memaksa
   huruf kapital semua + ukuran kecil, yang sebelumnya hanya mengenai header biasa dan tidak mengenai header sortir (`.th-sort`), sehingga
   dalam satu tabel ada "NO" dan "Periode Yudisium" yang berbeda gaya. Ukuran dan bobot kini sama untuk semua header.
 - **Footer dan aksi baris mengikuti pola Table with users**: footer = info "Menampilkan a-b dari n <label>" di kiri + pagination di kanan; aksi baris =
-  tautan teks tanpa menu titik tiga; header kolom aksi `sr-only`. Diterapkan ke `yudisium.html` (pilihan baris per halaman
+  tanpa menu titik tiga (contoh Design System: tautan teks Edit/Hapus dengan header aksi `sr-only`; `yudisium.html`: tombol outline berikon dengan header "Aksi"). Footer diterapkan ke `yudisium.html` (pilihan baris per halaman
   dihapus dari footer; fitur `data-table-page-size` tetap tersedia di `table.js`).
 - **Setiap tabel punya kolom No** (`.table-col-num` + `data-num`). `table.js` menomori
   ulang sesuai urutan tampilan: tetap berurutan setelah sortir, filter, pagination
