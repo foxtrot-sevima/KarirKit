@@ -19,6 +19,14 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   Filter combo Tahun/Jenis dan kartu KPI tetap berjalan lewat hook baru `table.js`; skrip kebab-menu, filter, dan
   pagination inline dihapus. Aksi baris tidak lagi memakai menu titik tiga: hanya tombol `btn-outline btn-sm` "Lihat Detail" dengan ikon: ikon + label di `xl` ke atas, hanya ikon 32x32 (dengan tooltip dan aria-label) di bawah `xl`, dan header kolom "Aksi" tampil; aksi "Kirim Kuesioner" dihapus. Tabel muat tanpa scroll horizontal di 390, 768, 1024, dan layar lebih lebar. Template karirlink
   lainnya belum diubah.
+- **`templates/karirlink/yudisium-detail.html` dimigrasikan ke komponen Table baru** (langkah kedua merombak tabel karirlink), mengikuti pola
+  yudisium.html: `.table-wrap` + `.table-head-soft`, header sortir Title Case ("Nama", "Prodi", "Email", "Status", "Aksi"), kolom **No** selalu
+  tampil dan diberi nomor ulang, footer info "Menampilkan a-b dari n mahasiswa" + pagination, dan aksi baris berupa satu tombol `btn-outline btn-sm`
+  berikon (ikon + label di `xl` ke atas, ikon saja di bawahnya): "Lihat Jawaban" untuk yang sudah mengisi dan "Lihat Detail" untuk lainnya.
+  Menu titik tiga beserta aksi "Kirim Reminder" dan "Kirim Kuesioner" per baris dihapus (tombol "Kirim Kuesioner" tingkat periode di header halaman
+  tetap ada). Tab status (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) berjalan sebagai filter kustom lewat `table.js`
+  dan digabung dengan pencarian; pilihan baris per halaman dihapus. Di ponsel info prodi dan email tampil di bawah nama (membungkus baris), kolom
+  Prodi muncul dari `lg` dan Email dari `xl`, dan teks badge status tidak lagi keluar dari pilnya. Tabel muat tanpa scroll horizontal di 360 sampai 1440px.
 - **Header tabel memakai Title Case** ("Periode Yudisium", "Status Karier") secara konsisten. `.table-head-soft` tidak lagi memaksa
   huruf kapital semua + ukuran kecil, yang sebelumnya hanya mengenai header biasa dan tidak mengenai header sortir (`.th-sort`), sehingga
   dalam satu tabel ada "NO" dan "Periode Yudisium" yang berbeda gaya. Ukuran dan bobot kini sama untuk semua header.
