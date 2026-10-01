@@ -9,6 +9,7 @@
    Pagination: <div data-table-pagination><span data-table-info></span><nav data-table-pages></nav></div>
    Select:     <input type="checkbox" data-table-select-all> / <input type="checkbox" data-table-select>
                <div data-table-bulk hidden> ... <span data-table-selected-count></span></div>
+               A disabled row checkbox = row not eligible: select-all skips it and the header box disables itself when no eligible row is visible.
    Number:     <th class="table-col-num">No</th> / <td class="table-col-num" data-num>1</td> - renumbered in display order
                (after sort, filter, paging and row removal); every table keeps a "No" column
    Empty:      <div data-table-empty hidden>...</div>
@@ -73,10 +74,12 @@
       rows.forEach(function (r) { var b = r.querySelector('[data-table-select]'); r.classList.toggle('is-selected', !!(b && b.checked)); });
       var all = selectAll();
       if (all) {
-        var vis = boxes.filter(function (b) { return !b.closest('tr').hidden; });
+        // disabled boxes (rows that are not eligible for the bulk action) are ignored by select-all
+        var vis = boxes.filter(function (b) { return !b.disabled && !b.closest('tr').hidden; });
         var visPicked = vis.filter(function (b) { return b.checked; }).length;
         all.checked = vis.length > 0 && visPicked === vis.length;
         all.indeterminate = visPicked > 0 && visPicked < vis.length;
+        all.disabled = vis.length === 0;
       }
       var cnt = root.querySelector('[data-table-selected-count]'); if (cnt) cnt.textContent = picked.length;
       var bulk = root.querySelector('[data-table-bulk]'); if (bulk) bulk.hidden = picked.length === 0;
@@ -165,7 +168,7 @@
     root.addEventListener('change', function (e) {
       if (e.target.matches('[data-table-page-size]')) { size = parseInt(e.target.value, 10) || 0; state.page = 1; render(); return; }
       if (e.target.matches('[data-table-select-all]')) {
-        dataRows().filter(function (r) { return !r.hidden; }).forEach(function (r) { var b = r.querySelector('[data-table-select]'); if (b) b.checked = e.target.checked; });
+        dataRows().filter(function (r) { return !r.hidden; }).forEach(function (r) { var b = r.querySelector('[data-table-select]'); if (b && !b.disabled) b.checked = e.target.checked; });
         updateSelection();
       } else if (e.target.matches('[data-table-select]')) updateSelection();
     });

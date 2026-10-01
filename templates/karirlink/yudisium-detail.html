@@ -246,10 +246,17 @@
         </div>
       </div>
 
+      <!-- Bulk action bar: shown while rows are selected -->
+      <div class="table-bulk" data-table-bulk hidden>
+        <span><b data-table-selected-count>0</b> mahasiswa dipilih</span>
+        <button type="button" id="yudBulkReminder" class="btn-primary btn-sm ml-auto"><i class="kk kk-paper-plane-tilt h-3.5 w-3.5"></i>Kirim Reminder</button>
+      </div>
+
       <div class="overflow-x-auto">
         <table class="table table-lg table-fit table-head-soft" id="yudTable">
           <thead>
             <tr>
+              <th scope="col" class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select-all aria-label="Pilih semua yang menunggu mengisi" title="Pilih semua yang menunggu mengisi" /></th>
               <th scope="col" class="table-col-num">No</th>
               <th scope="col" data-sort="text"><button type="button" class="th-sort">Nama<i class="kk kk-caret-up-down sort-icon"></i></button></th>
               <th scope="col" class="hidden lg:table-cell" data-sort="text"><button type="button" class="th-sort">Prodi<i class="kk kk-caret-up-down sort-icon"></i></button></th>
@@ -260,6 +267,7 @@
           </thead>
           <tbody id="yudBody">
             <tr data-status="menunggu">
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Andi Nugroho" /></td>
               <td class="table-col-num" data-num>1</td>
               <td>
                 <span class="block font-medium text-slate-800">Andi Nugroho</span>
@@ -277,6 +285,7 @@
               </td>
             </tr>
             <tr data-status="sudah">
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Sari Puspita" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
               <td class="table-col-num" data-num>2</td>
               <td>
                 <span class="block font-medium text-slate-800">Sari Puspita</span>
@@ -294,6 +303,7 @@
               </td>
             </tr>
             <tr data-status="menunggu">
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Rudi Hartono" /></td>
               <td class="table-col-num" data-num>3</td>
               <td>
                 <span class="block font-medium text-slate-800">Rudi Hartono</span>
@@ -311,6 +321,7 @@
               </td>
             </tr>
             <tr data-status="belum-dikirim">
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Dewi Pratiwi" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
               <td class="table-col-num" data-num>4</td>
               <td>
                 <span class="block font-medium text-slate-800">Dewi Pratiwi</span>
@@ -328,6 +339,7 @@
               </td>
             </tr>
             <tr data-status="sudah">
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Bella Lestari" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
               <td class="table-col-num" data-num>5</td>
               <td>
                 <span class="block font-medium text-slate-800">Bella Lestari</span>
@@ -345,6 +357,7 @@
               </td>
             </tr>
             <tr data-status="menunggu">
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Fajar Ardiansyah" /></td>
               <td class="table-col-num" data-num>6</td>
               <td>
                 <span class="block font-medium text-slate-800">Fajar Ardiansyah</span>
@@ -362,6 +375,7 @@
               </td>
             </tr>
             <tr data-status="sudah">
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Indah Nuraini" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
               <td class="table-col-num" data-num>7</td>
               <td>
                 <span class="block font-medium text-slate-800">Indah Nuraini</span>
@@ -379,6 +393,7 @@
               </td>
             </tr>
             <tr data-status="menunggu">
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Yoga Pratama" /></td>
               <td class="table-col-num" data-num>8</td>
               <td>
                 <span class="block font-medium text-slate-800">Yoga Pratama</span>
@@ -396,6 +411,7 @@
               </td>
             </tr>
             <tr data-status="belum-dikirim">
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Maya Ramadhani" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
               <td class="table-col-num" data-num>9</td>
               <td>
                 <span class="block font-medium text-slate-800">Maya Ramadhani</span>
@@ -413,6 +429,7 @@
               </td>
             </tr>
             <tr data-status="sudah">
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Hendra Wijaya" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
               <td class="table-col-num" data-num>10</td>
               <td>
                 <span class="block font-medium text-slate-800">Hendra Wijaya</span>
@@ -438,6 +455,27 @@
       <div class="table-footer" data-table-pagination>
         <span data-table-info></span>
         <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+      </div>
+
+      <!-- Confirm: bulk reminder -->
+      <div class="modal-backdrop" id="yudReminderModal" role="dialog" aria-modal="true" aria-labelledby="yudReminderTitle">
+        <div class="modal-panel modal-md">
+          <div class="modal-header">
+            <div>
+              <h3 class="modal-title" id="yudReminderTitle">Kirim Reminder</h3>
+              <p class="modal-description">Pengingat pengisian Kuesioner Lulusan dikirim sekaligus ke semua yang dipilih.</p>
+            </div>
+            <button type="button" class="modal-close" data-reminder-close aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+          </div>
+          <div class="modal-body">
+            <p>Kirim reminder ke <b id="yudReminderCount" class="text-slate-900">0</b> mahasiswa berstatus <span class="font-medium text-slate-800">Menunggu Mengisi</span>?</p>
+            <ul id="yudReminderList" class="mt-3 max-h-40 list-disc space-y-1 overflow-y-auto pl-5 text-sm text-slate-600"></ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-outline btn-md" data-reminder-close>Batal</button>
+            <button type="button" class="btn-primary btn-md" id="yudReminderConfirm"><i class="kk kk-paper-plane-tilt h-4 w-4"></i>Kirim Reminder</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -530,6 +568,7 @@
 
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
+<script src="../../assets/js/toast.js"></script>
 <script src="../../assets/js/table.js"></script>
 <script>
   const sidebar = document.getElementById('sidebar');
@@ -607,6 +646,53 @@
         filterStatus.dataset.value = item.dataset.value;
         table.refresh();
       });
+    });
+  })();
+
+  // Bulk reminder: select the "Menunggu Mengisi" rows (other statuses have a disabled
+  // checkbox, table.js select-all skips them), confirm in a modal, send, toast.
+  (function () {
+    const root = document.getElementById('yudTableRoot');
+    const bulkBtn = document.getElementById('yudBulkReminder');
+    const modal = document.getElementById('yudReminderModal');
+    const countEl = document.getElementById('yudReminderCount');
+    const listEl = document.getElementById('yudReminderList');
+    const confirmBtn = document.getElementById('yudReminderConfirm');
+    if (!root || !bulkBtn || !modal) return;
+
+    const selectedRows = () => Array.from(root.querySelectorAll('tbody tr')).filter((r) => r.querySelector('[data-table-select]:checked'));
+    const openModal = () => { modal.classList.add('is-open'); confirmBtn.focus(); };
+    const closeModal = () => modal.classList.remove('is-open');
+
+    bulkBtn.addEventListener('click', () => {
+      const rows = selectedRows();
+      if (!rows.length) return;
+      countEl.textContent = rows.length;
+      listEl.replaceChildren(...rows.map((r) => {
+        const li = document.createElement('li');
+        const nim = r.querySelector('td p')?.textContent.trim() || '';
+        li.textContent = r.querySelector('td .font-medium').textContent.trim();
+        const sub = document.createElement('span');
+        sub.className = 'ml-1 text-slate-400';
+        sub.textContent = nim;
+        li.appendChild(sub);
+        return li;
+      }));
+      openModal();
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target.closest('[data-reminder-close]')) closeModal();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    confirmBtn.addEventListener('click', () => {
+      const rows = selectedRows();
+      closeModal();
+      // Clear the selection (also on other pages) and let table.js refresh the bulk bar.
+      root.querySelectorAll('[data-table-select]:checked').forEach((b) => { b.checked = false; });
+      root.querySelector('[data-table-select]')?.dispatchEvent(new Event('change', { bubbles: true }));
+      if (window.KKToast) window.KKToast.show({ type: 'success', message: 'Reminder terkirim ke ' + rows.length + ' mahasiswa.', duration: 4500 });
     });
   })();
 
