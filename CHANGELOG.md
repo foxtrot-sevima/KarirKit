@@ -2,6 +2,38 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.3.3] - 2026-10-01
+
+### Changed
+
+- **Komponen Tabel dirombak total.** Bagian Tables di `index.html` dan story
+  **Components -> Table** ditulis ulang dengan 17 tipe: Default table, Striped
+  rows, Striped columns, Hover state, Table head (bisa diurutkan), Table foot,
+  Table caption, Without border, Table with shadow, Overflow scrolling, Table
+  search, Table filter, Table pagination, Checkbox selection, Table with users,
+  Table with products, dan Table with modal.
+- Gaya baru di `src/input.css`: container `.table-wrap` (+ `-shadow`,
+  `-borderless`), `.table-striped`, `.table-striped-cols`, `.table-hover`,
+  `.table-static`, `.table-borderless`, `.table-bordered`, `.table-sm`,
+  `.table-sticky` + `.table-scroll`, `.table-head-soft`, `.table-caption`,
+  `tfoot`, `.th-sort` (ikon sortir mengikuti `aria-sort`), `.table-toolbar`,
+  `.table-footer`, `.table-bulk`, `.table-empty`, serta `.counter` (input
+  jumlah). Kelas lama (`.table`, `.th-sortable`, `.table-lg`, `.table-col-*`)
+  tidak berubah, jadi template yang sudah ada tetap sama.
+
+### Added
+
+- `assets/js/table.js` (opsional, tanpa dependensi) memberi fungsi pada tabel
+  lewat atribut: urutkan kolom teks/angka/tanggal (`data-sort`, dengan
+  `aria-sort`), cari (`data-table-search`), filter dropdown
+  (`data-filter-col`), pagination dengan info "Menampilkan a-b dari n"
+  (`data-page-size`), pilih semua/baris + bar aksi massal
+  (`data-table-select*`, `data-table-bulk`), status kosong
+  (`data-table-empty`), menu aksi baris yang tidak terpotong container
+  (`data-table-menu`), counter jumlah dengan total otomatis dan hapus baris
+  (`data-counter`, `data-row-remove`), dan modal edit yang mengisi form dari
+  baris lalu memperbarui baris (`data-table-modal-*`).
+
 ## [1.3.2] - 2026-10-01
 
 ### Added

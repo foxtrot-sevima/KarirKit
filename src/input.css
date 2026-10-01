@@ -19381,6 +19381,55 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .timepicker .input::-webkit-calendar-picker-indicator { position: absolute; top: 0; right: 0; width: 2.75rem; height: 100%; opacity: 0; cursor: pointer; }
   .timepicker-icon { @apply pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-fg-subtle; }
 
+  /* ==== Tables v2 - containers, highlight, layout, toolbar, footer, counter ====
+     Everything below extends .table; the original .table/.th-sortable/.table-lg/
+     .table-col-* rules stay untouched so existing templates keep working. */
+  .table-wrap { @apply relative w-full overflow-x-auto rounded-card border border-border/70 bg-surface; }
+  .table-wrap-shadow { @apply shadow-card; }
+  .table-wrap-borderless { @apply border-transparent; }
+  .table-scroll { @apply max-h-80 overflow-y-auto; }
+  .table-sticky thead th { @apply sticky top-0 z-10 bg-neutral-50; }
+  .table-head-soft thead th { @apply bg-neutral-50 text-xs font-semibold uppercase tracking-wide; }
+  .table-striped tbody tr:nth-child(odd) { @apply bg-surface; }
+  .table-striped tbody tr:nth-child(even) { @apply bg-neutral-50; }
+  .table-striped-cols th:nth-child(odd),
+  .table-striped-cols td:nth-child(odd) { @apply bg-neutral-50; }
+  .table-hover tbody tr:hover,
+  .table-striped tbody tr:hover { @apply bg-primary-50/50; }
+  .table-static tbody tr:hover { @apply bg-transparent; }
+  .table-sm th,
+  .table-sm td { @apply px-3 py-2; }
+  .table-borderless th,
+  .table-borderless td { @apply border-b-0; }
+  .table-bordered th,
+  .table-bordered td { @apply border border-border-subtle; }
+  .table tbody tr.is-selected { @apply bg-primary-50/60; }
+  .table tfoot th,
+  .table tfoot td { @apply border-t border-border bg-neutral-50 font-semibold text-fg; }
+  .table-caption { @apply p-5 text-left text-base font-semibold text-fg; caption-side: top; }
+  .table-caption p { @apply mt-1 text-sm font-normal text-fg-muted; }
+  .th-sort {
+    @apply inline-flex cursor-pointer items-center gap-1.5 font-semibold text-inherit transition-colors hover:text-fg
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:rounded;
+  }
+  .th-sort .sort-icon { @apply h-3.5 w-3.5 opacity-40 transition-opacity; }
+  th[aria-sort="ascending"] .sort-icon,
+  th[aria-sort="descending"] .sort-icon { @apply text-primary-600 opacity-100; }
+  .table-toolbar { @apply flex flex-wrap items-center justify-between gap-3 border-b border-border-subtle p-4; }
+  .table-footer { @apply flex flex-wrap items-center justify-between gap-3 border-t border-border-subtle px-4 py-3 text-sm text-fg-muted; }
+  .table-footer b { @apply font-semibold text-fg; }
+  .table-bulk { @apply flex items-center gap-3 border-b border-primary-100 bg-primary-50 px-4 py-2.5 text-sm text-primary-700; }
+  .table-empty { @apply px-4 py-12 text-center text-sm text-fg-muted; }
+  .dropdown-menu-fixed { @apply fixed m-0; }
+  .counter { @apply inline-flex items-center rounded-lg border border-border bg-surface; }
+  .counter-btn {
+    @apply inline-flex h-8 w-8 cursor-pointer items-center justify-center text-fg-muted transition-colors first:rounded-l-lg last:rounded-r-lg hover:bg-neutral-100
+           focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 disabled:pointer-events-none disabled:opacity-40;
+  }
+  .counter-input { @apply h-8 w-11 border-x border-border bg-transparent text-center text-sm font-medium text-fg outline-none; -moz-appearance: textfield; }
+  .counter-input::-webkit-outer-spin-button,
+  .counter-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
   /* Breadcrumb */
   .breadcrumb { @apply flex flex-wrap items-center gap-1.5 text-sm; }
   .breadcrumb-item { @apply flex items-center gap-1.5; }
