@@ -4,6 +4,50 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Komponen Button Group** (baru) - `.btn-group` / `.btn-group-vertical` berisi
+  `.btn-group-item`, dengan item aktif (`aria-current="true"`), warna
+  (`.btn-group-item-primary|success|danger|dark`), dan slot untuk dropdown/tooltip
+  (`.btn-group-slot`). Contoh: default, info, icon action, ikon + tooltip,
+  dropdown, badge, QR code, pagination, vertikal, warna, sebagai link, dengan
+  ikon, dan outline. Story **Components -> Button Group** + section di `index.html`.
+- **Alert** (`.alert`) - varian info/danger/success/warning/dark dengan ikon,
+  bordered (`.alert-bordered`), daftar (`.alert-list`), dismissible
+  (`.alert-close`), border accent (`.alert-accent`), konten tambahan
+  (`.alert-title`, `.alert-actions`), dan announcement (`.alert-announcement`).
+  Callout lama tidak berubah.
+- **Avatar** - ukuran `.avatar-xs|sm|md|lg|xl|2xl`, `.avatar-square`,
+  `.avatar-bordered`, `.avatar-placeholder` (ikon/inisial), indikator titik
+  (`.avatar-wrap` + `.avatar-dot-*`), tumpukan (`.avatar-stack`, `.avatar-count`),
+  avatar + teks, dan dropdown pengguna.
+- **Badge** - `.badge-rounded`, `.badge-bordered`, `.badge-lg`, `.badge-link`,
+  `.badge-icon`, titik, `.badge-spinner`, chip dismissible (`.badge-chip`,
+  `.badge-close`, dengan avatar), dan penghitung notifikasi (`.badge-counter`).
+- **Breadcrumb** - `.breadcrumb-solid`, pemisah slash, trigger dropdown
+  (`.breadcrumb-trigger`), header/path dengan badge, tombol, dan navigasi
+  sebelumnya/berikutnya.
+- **Button** - warna `.btn-success|warning|dark|tertiary`, `.btn-pill`,
+  `.btn-outline-primary|neutral|success|danger|warning`, ukuran `.btn-xs` dan
+  `.btn-xl`, tombol ikon (`.btn-icon-sm|md|lg`), gradient monokrom
+  (`.btn-gradient-*`), duotone (`.btn-duo-*`), gradient outline
+  (`.btn-gradient-outline`), bayangan berwarna (`.btn-glow-*`), dan tombol
+  sosial (`.btn-social-*`).
+- **Card** - `.card-body`, `.card-title`, `.card-text`, `.card-link`,
+  `.card-img`, `.card-horizontal`. Layout contoh: gambar, deskripsi,
+  horizontal, profil pengguna, form login, produk + rating, call to action,
+  tab, tab lebar penuh + FAQ, daftar, harga, dan testimoni.
+- `assets/js/ui.js` (opsional): `data-ui-dismiss`, `data-ui-dropdown`, dan
+  `data-ui-tabs` untuk interaksi contoh. Placeholder gambar avatar/cover dibuat
+  inline (SVG) di `stories/_helpers/placeholders.js`, tanpa aset gambar.
+- Di dark mode, hover `.btn-success` dan `.btn-warning` tetap kontras.
+
+### Changed
+
+- Section Tombol, Badge, Avatar, Kartu, Alert, dan Navigasi di `index.html`
+  mendapat blok contoh tambahan (judul + panel bergaris, dua kolom), dan ada
+  section baru Button Group serta tautan navnya.
+
 ### Fixed
 
 - Halaman Storybook **Table of Version** belum memuat baris v1.3.0 dan v1.3.1
