@@ -17,6 +17,7 @@ const preview = {
           "Components",
           [
             "Button",
+            "Button Group",
             "Badge",
             "Avatar",
             "Card",
