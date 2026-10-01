@@ -2,15 +2,105 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.3.2] - 2026-10-01
+
+### Added
+
+- **Mode Terang/Gelap/Sistem di `index.html` dan `icons.html`** - kontrol tiga
+  pilihan di header (ikon matahari/bulan/monitor; satu tombol berputar di
+  ponsel) memakai skrip bersama `assets/js/theme.js` dan preferensi
+  `kk-theme` yang sama dengan dashboard, sehingga pilihan ikut saat pindah
+  halaman dan mode "sistem" mengikuti tema OS secara langsung. Tema dipasang
+  sebelum halaman tampil (tanpa kedip putih).
+- **Halaman KarirIcon** (`icons.html`) - katalog seluruh 1.512 ikon KarirKit untuk
+  dilihat dan dicari. Filter nama (mendukung beberapa kata), pilih ketebalan
+  (Thin/Light/Regular/Bold/Fill/Duotone), ukuran 16-64px, dan warna; klik ikon
+  untuk panel detail (preview, semua ketebalan, ukuran 16-48) dengan tombol
+  salin class, HTML, dan SVG serta unduh SVG. Berjalan offline (SVG diambil dari
+  token CSS), mengikuti tema terang/gelap, state pencarian dan ketebalan ikut
+  di URL (`#q=user&w=bold`), dan daftar ikon dimuat bertahap. Daftar nama dibuat
+  oleh `npm run icons:names` (`scripts/gen-icon-names.mjs` ->
+  `assets/js/icon-names.js`). Ditautkan dari section Icons di `index.html` dan
+  halaman Storybook Foundations -> Icons.
+- **Komponen Timepicker** (baru) - `.timepicker` membungkus `<input type="time">`
+  bawaan browser dengan ikon jam (`.timepicker-icon`), jam dibatasi lewat
+  `min`/`max`. Contoh: default, dengan ikon, dropdown durasi, select zona
+  waktu, rentang mulai-selesai, rentang di dropdown / toggle, tombol slot waktu
+  (`.choice-slot`), modal, dan drawer jam kerja. Story **Components -> Timepicker**
+  + section di `index.html`.
+- **Radio** - helper text (`.check-help`), bordered (`.check-bordered`), list
+  group vertikal/horizontal (`.check-list`, `.check-list-horizontal`), radio di
+  dropdown, inline, dan kartu pilihan (`.choice`, `.choice-body`) dengan/tanpa ikon.
+- **Checkbox** - semua layout Radio di atas ditambah bordered dengan deskripsi
+  dan ikon, checkbox di dropdown (cari + hapus terpilih), dan warna
+  (`.form-check-red|green|purple|teal|yellow|orange`; radio: `.form-radio-*`).
+- **Toggle** - label ganda, ikon di kedua sisi, kartu (dengan ikon), warna
+  (`.toggle-red|green|purple|yellow|teal|orange`), dan ukuran `.toggle-lg`.
+- **Search input** - `.input-group` (+ `.input-wrap`, `.input-group-btn`,
+  `.input-icon-btn`) untuk pencarian dengan dropdown kategori, lokasi, suara,
+  dan filter lanjutan.
+- `assets/js/ui.js`: `data-ui-collapse` (toggle panel) dan `data-ui-dropdown-close`.
+- **Komponen Button Group** (baru) - `.btn-group` / `.btn-group-vertical` berisi
+  `.btn-group-item`, dengan item aktif (`aria-current="true"`), warna
+  (`.btn-group-item-primary|success|danger|dark`), dan slot untuk dropdown/tooltip
+  (`.btn-group-slot`). Contoh: default, info, icon action, ikon + tooltip,
+  dropdown, badge, QR code, pagination, vertikal, warna, sebagai link, dengan
+  ikon, dan outline. Story **Components -> Button Group** + section di `index.html`.
+- **Alert** (`.alert`) - varian info/danger/success/warning/dark dengan ikon,
+  bordered (`.alert-bordered`), daftar (`.alert-list`), dismissible
+  (`.alert-close`), border accent (`.alert-accent`), konten tambahan
+  (`.alert-title`, `.alert-actions`), dan announcement (`.alert-announcement`).
+  Callout lama tidak berubah.
+- **Avatar** - ukuran `.avatar-xs|sm|md|lg|xl|2xl`, `.avatar-square`,
+  `.avatar-bordered`, `.avatar-placeholder` (ikon/inisial), indikator titik
+  (`.avatar-wrap` + `.avatar-dot-*`), tumpukan (`.avatar-stack`, `.avatar-count`),
+  avatar + teks, dan dropdown pengguna.
+- **Badge** - `.badge-rounded`, `.badge-bordered`, `.badge-lg`, `.badge-link`,
+  `.badge-icon`, titik, `.badge-spinner`, chip dismissible (`.badge-chip`,
+  `.badge-close`, dengan avatar), dan penghitung notifikasi (`.badge-counter`).
+- **Breadcrumb** - `.breadcrumb-solid`, pemisah slash, trigger dropdown
+  (`.breadcrumb-trigger`), header/path dengan badge, tombol, dan navigasi
+  sebelumnya/berikutnya.
+- **Button** - warna `.btn-success|warning|dark|tertiary`, `.btn-pill`,
+  `.btn-outline-primary|neutral|success|danger|warning`, ukuran `.btn-xs` dan
+  `.btn-xl`, tombol ikon (`.btn-icon-sm|md|lg`), gradient monokrom
+  (`.btn-gradient-*`), duotone (`.btn-duo-*`), gradient outline
+  (`.btn-gradient-outline`), bayangan berwarna (`.btn-glow-*`), dan tombol
+  sosial (`.btn-social-*`).
+- **Card** - `.card-body`, `.card-title`, `.card-text`, `.card-link`,
+  `.card-img`, `.card-horizontal`. Layout contoh: gambar, deskripsi,
+  horizontal, profil pengguna, form login, produk + rating, call to action,
+  tab, tab lebar penuh + FAQ, daftar, harga, dan testimoni.
+- `assets/js/ui.js` (opsional): `data-ui-dismiss`, `data-ui-dropdown`, dan
+  `data-ui-tabs` untuk interaksi contoh. Placeholder gambar avatar/cover dibuat
+  inline (SVG) di `stories/_helpers/placeholders.js`, tanpa aset gambar.
+- Di dark mode, hover `.btn-success` dan `.btn-warning` tetap kontras.
+
+### Changed
+
+- Section Tombol, Badge, Avatar, Kartu, Alert, dan Navigasi di `index.html`
+  mendapat blok contoh tambahan (judul + panel bergaris, dua kolom), dan ada
+  section baru Button Group serta tautan navnya.
+
+### Fixed
+
+- Perbaikan dark mode untuk halaman style guide: tooltip (`.tooltip-content`,
+  `.tooltip-fixed`) tidak lagi putih-di-atas-terang, scrim modal tetap gelap,
+  chip `.avatar-count` dan badge `bg-slate-800` tetap kontras, dan kotak
+  contoh logo tetap terang/gelap sesuai versi logonya.
+- Halaman Storybook **Table of Version** belum memuat baris v1.3.0 dan v1.3.1
+  (hanya sampai v1.2.0). Ditambahkan; hanya dokumentasi, tidak ada perubahan
+  package.
+
 ## [1.3.1] - 2026-10-01
 
 ### Added
 
 - **Komponen WYSIWYG** - rich text editor tanpa dependensi (contenteditable)
-  yang jalan offline, tanpa TipTap/CDN seperti di Flowbite. `assets/js/wysiwyg.js`
+  yang jalan offline, tanpa dependensi eksternal atau CDN. `assets/js/wysiwyg.js`
   meng-init setiap `[data-wysiwyg]`; class `.wysiwyg`, `.wysiwyg-toolbar`,
   `.wysiwyg-btn`, `.wysiwyg-menu`, `.wysiwyg-content`, `.wysiwyg-footer` di
-  `src/input.css`. Empat layout mengikuti Flowbite: Default text editor,
+  `src/input.css`. Empat layout: Default text editor,
   Text formatting (subscript/superscript, kotak komentar), Text alignment
   (kiri/tengah/kanan/justify), Typography elements (Paragraph & Heading 1-6,
   code block, list, blockquote, horizontal rule). Fitur: ukuran teks, warna
@@ -21,8 +111,8 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
-- Section Toast, QR Code, dan WYSIWYG di `index.html` memakai layout ala
-  Flowbite: tiap contoh punya judul H3 + panel bergaris, dua kolom di desktop
+- Section Toast, QR Code, dan WYSIWYG di `index.html` memakai layout contoh yang konsisten:
+  tiap contoh punya judul H3 + panel bergaris, dua kolom di desktop
   dan satu kolom di ponsel, contoh lebar (generator QR, Positioning, editor)
   memakai lebar penuh.
 - Toast **Positioning** dirombak: grid 2x2 "layar" mini (header jendela +
@@ -45,7 +135,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `assets/js/qr-code.js` memakai library `qrcode-generator` (MIT, di-vendor
   apa adanya di `assets/js/vendor/qrcode.js`, tanpa CDN; dicatat di
   `THIRD-PARTY-LICENSES.md`). Class `.qr-code`, `.qr-overlay`, `.qr-spinner`
-  di `src/input.css`. Section dan story memakai penamaan Flowbite: QR code
+  di `src/input.css`. Section dan story memakai penamaan baku: QR code
   generator (input live, pilihan error correction L/M/Q/H, Copy as SVG,
   Save as file), Default QR code, QR code with input, QR code with card,
   Share profile with QR, Loading state, Success state, Expired state. Kode
@@ -55,7 +145,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Komponen Toast** (`.toast`, `.toast-icon[-success|-danger|-warning|-info|-lg]`,
   `.toast-title`, `.toast-close`, `.toast-action`, `.toast-region` + posisi
   `.toast-top-left|top-right|bottom-left|bottom-right`) di `src/input.css`.
-  Memuat layout acuan Flowbite dengan penamaan section yang sama persis:
+  Memuat seluruh layout contoh dengan penamaan section baku:
   Default toast, Colors (success/danger/warning), Simple toast, Undo button,
   Toast message, Push notification, Interactive toast, Toast illustration,
   Toast progress bar, Toast danger alert, Toast warning alert, Positioning,

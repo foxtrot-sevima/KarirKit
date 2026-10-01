@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KarirIcon | KarirKit</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="dist/output.css" />
+<meta name="description" content="KarirIcon - jelajahi seluruh ikon KarirKit: cari, pilih ketebalan, ukuran, dan warna, lalu salin class, HTML, atau SVG-nya." />
+<meta name="author" content="SEVIMA" />
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#2361e7" />
+
+<style>
+  /* The detail drawer sits on the right, so keep toasts out of its way */
+  #kkToastRegion { right: auto; left: 0; }
+</style>
+
+<!-- Theme: apply before first paint to avoid a light flash -->
+<script>
+  (function () {
+    var pref = 'system';
+    try { pref = localStorage.getItem('kk-theme') || 'system'; } catch (e) {}
+    var dark = pref === 'dark' || (pref === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= HEADER ============================= -->
+<header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
+    <a href="index.html" class="flex shrink-0 items-center gap-3">
+      <img src="assets/logo/karirkit-logo.svg" alt="KarirKit" class="logo-on-light h-6 w-auto sm:h-7" />
+      <img src="assets/logo/karirkit-logo-white.svg" alt="KarirKit" class="logo-on-dark h-6 w-auto sm:h-7" />
+    </a>
+    <div class="flex items-center gap-2">
+      <div role="radiogroup" aria-label="Tema tampilan" class="hidden items-center gap-0.5 rounded-xl bg-slate-100/80 p-1 sm:flex">
+        <button type="button" role="radio" aria-checked="false" data-theme-option="light" title="Terang" aria-label="Terang" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-sun h-4 w-4"></i></button>
+        <button type="button" role="radio" aria-checked="false" data-theme-option="dark" title="Gelap" aria-label="Gelap" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-moon h-4 w-4"></i></button>
+        <button type="button" role="radio" aria-checked="false" data-theme-option="system" title="Ikuti sistem" aria-label="Ikuti sistem" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-desktop h-4 w-4"></i></button>
+      </div>
+      <button type="button" data-theme-cycle class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100/80 text-slate-600 transition-colors hover:text-slate-900 sm:hidden" aria-label="Ganti tema"><i data-theme-icon class="kk kk-desktop h-5 w-5"></i></button>
+      <nav class="flex items-center gap-1 rounded-xl bg-slate-100/80 p-1" aria-label="Navigasi utama">
+        <a href="index.html" class="tab px-2.5 sm:px-3.5">Kit</a>
+        <a href="icons.html" class="tab tab-active px-2.5 sm:px-3.5" aria-current="page" aria-label="KarirIcon"><span class="sm:hidden">Icon</span><span class="hidden sm:inline">KarirIcon</span></a>
+        <a href="templates/dashboard.html" class="tab px-2.5 sm:px-3.5">Template</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-10">
+
+  <!-- ============================= HERO ============================= -->
+  <section class="py-10 sm:py-14">
+    <p class="nav-eyebrow mb-2 px-0">Foundations</p>
+    <h1 class="font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"><span class="text-primary-600">Karir</span><span class="text-secondary-600">Icon</span></h1>
+    <p class="mt-3 max-w-2xl text-base text-slate-500">
+      <span id="statCount" class="font-semibold text-slate-700">1.512</span> ikon dalam 6 ketebalan.
+      Pakai seperti icon font - warnanya mengikuti teks dan ukurannya mengikuti <code class="kbd">font-size</code>.
+    </p>
+    <div class="mt-5 inline-flex max-w-full items-center gap-3 overflow-x-auto rounded-xl border border-slate-200/70 bg-surface px-4 py-2.5 text-sm shadow-sm">
+      <code class="whitespace-nowrap font-mono text-[13px] text-slate-700">&lt;i class="kk kk-house kk-bold"&gt;&lt;/i&gt;</code>
+      <i class="kk kk-house kk-bold h-5 w-5 shrink-0 text-primary-600" aria-hidden="true"></i>
+    </div>
+  </section>
+
+  <!-- ============================= TOOLBAR ============================= -->
+  <div class="sticky top-16 z-30 -mx-4 border-b border-slate-200/70 bg-shell/90 px-4 py-3 backdrop-blur-md sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10">
+    <div class="flex flex-col gap-3 lg:flex-row lg:items-center">
+      <div class="relative flex-1">
+        <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>
+        <input id="q" type="search" class="input h-11 pl-10 pr-12" placeholder="Cari ikon, mis. house, arrow, user…" aria-label="Cari ikon" autocomplete="off" spellcheck="false" />
+        <span id="slashHint" class="kbd absolute right-3 top-1/2 -translate-y-1/2" aria-hidden="true">/</span>
+      </div>
+
+      <div id="weights" role="radiogroup" aria-label="Ketebalan ikon" class="flex flex-wrap gap-1 rounded-xl border border-slate-200/70 bg-surface p-1"></div>
+
+      <div class="flex items-center gap-3 rounded-xl border border-slate-200/70 bg-surface px-3 py-2">
+        <label for="size" class="text-xs font-medium text-slate-500">Ukuran</label>
+        <input id="size" type="range" min="16" max="64" step="2" value="32" class="h-1.5 w-28 cursor-pointer accent-primary-600" />
+        <output id="sizeOut" for="size" class="w-9 text-right text-xs font-semibold tabular-nums text-slate-700">32</output>
+      </div>
+
+      <div class="flex items-center gap-2 rounded-xl border border-slate-200/70 bg-surface px-3 py-2" role="group" aria-label="Warna ikon">
+        <span id="swatches" class="flex items-center gap-1.5"></span>
+        <label class="relative inline-flex h-6 w-6 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-slate-200 bg-[conic-gradient(red,yellow,lime,aqua,blue,magenta,red)]" title="Warna kustom">
+          <input id="colorCustom" type="color" value="#2361e7" class="absolute inset-0 h-full w-full cursor-pointer opacity-0" aria-label="Warna kustom" />
+        </label>
+      </div>
+    </div>
+    <p id="resultInfo" class="mt-2 text-xs text-slate-500" role="status" aria-live="polite"></p>
+  </div>
+
+  <!-- ============================= GRID ============================= -->
+  <div id="grid" class="mt-6 grid gap-1" style="grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); --s: 32px; --c: var(--color-fg)"></div>
+
+  <div id="empty" class="hidden py-24 text-center">
+    <span class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-400"><i class="kk kk-magnifying-glass h-7 w-7"></i></span>
+    <p class="text-base font-semibold text-slate-800">Ikon tidak ditemukan</p>
+    <p class="mt-1 text-sm text-slate-500">Coba kata kunci lain, misalnya "user", "arrow", atau "file".</p>
+    <button id="clearSearch" type="button" class="btn-outline btn-md mt-5">Hapus pencarian</button>
+  </div>
+
+  <div id="sentinel" class="h-10" aria-hidden="true"></div>
+  <div class="mt-2 text-center"><button id="more" type="button" class="btn-outline btn-md hidden">Tampilkan lebih banyak</button></div>
+</main>
+
+<!-- ============================= DETAIL DRAWER ============================= -->
+<div id="overlay" class="invisible fixed inset-0 z-40 bg-slate-900/30 opacity-0 transition-opacity duration-200"></div>
+<aside id="detail" class="invisible fixed inset-y-0 right-0 z-50 flex w-full max-w-md translate-x-full flex-col border-l border-slate-200/70 bg-surface shadow-card-lg transition-transform duration-200" aria-labelledby="dName" aria-hidden="true">
+  <div class="flex items-center justify-between border-b border-slate-200/70 px-5 py-4">
+    <h2 id="dName" class="truncate font-display text-lg font-bold text-slate-900"></h2>
+    <button id="dClose" type="button" class="btn-ghost btn-icon-md" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+  </div>
+  <div class="flex-1 space-y-6 overflow-y-auto px-5 py-5">
+    <div id="dPreview" class="flex h-44 items-center justify-center rounded-xl border border-slate-200/70 bg-slate-50 text-slate-900"></div>
+
+    <div>
+      <p class="nav-eyebrow mb-2 px-0">Ketebalan</p>
+      <div id="dWeights" class="grid grid-cols-6 gap-1.5"></div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2 px-0">Ukuran</p>
+      <div id="dSizes" class="flex items-end gap-5 text-slate-700"></div>
+    </div>
+
+    <div class="space-y-3">
+      <p class="nav-eyebrow mb-0 px-0">Salin</p>
+      <div>
+        <p class="form-label">Class</p>
+        <div class="flex gap-2"><code id="dClass" class="flex-1 overflow-x-auto whitespace-nowrap rounded-lg bg-slate-100 px-3 py-2 font-mono text-xs text-slate-700"></code><button type="button" class="btn-outline btn-sm" data-copy="class">Salin</button></div>
+      </div>
+      <div>
+        <p class="form-label">HTML</p>
+        <div class="flex gap-2"><code id="dHtml" class="flex-1 overflow-x-auto whitespace-nowrap rounded-lg bg-slate-100 px-3 py-2 font-mono text-xs text-slate-700"></code><button type="button" class="btn-outline btn-sm" data-copy="html">Salin</button></div>
+      </div>
+      <div class="grid grid-cols-2 gap-2 pt-1">
+        <button type="button" class="btn-outline btn-md" data-copy="svg"><i class="kk kk-copy h-4 w-4"></i>Salin SVG</button>
+        <button type="button" class="btn-primary btn-md" data-copy="download"><i class="kk kk-download-simple h-4 w-4"></i>Unduh SVG</button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/toast.js"></script>
+<script src="assets/js/icon-names.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var NAMES = window.KK_ICON_NAMES || [];
+  var WEIGHTS = [
+    ['thin', 'Thin'], ['light', 'Light'], ['regular', 'Regular'],
+    ['bold', 'Bold'], ['fill', 'Fill'], ['duotone', 'Duotone']
+  ];
+  var SWATCHES = [
+    ['var(--color-fg)', 'Default'],
+    ['var(--color-primary-600)', 'Primary'],
+    ['var(--color-secondary-600)', 'Secondary'],
+    ['var(--color-success-600)', 'Success'],
+    ['var(--color-danger-600)', 'Danger']
+  ];
+  var BATCH = 240;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var grid = $('grid'), q = $('q'), sizeEl = $('size');
+  var state = { q: '', w: 'regular', s: 32, c: SWATCHES[0][0] };
+  var results = NAMES.slice(), shown = 0, current = null, lastFocus = null;
+
+  // ---------- helpers ----------
+  function cls(name, w) { return 'kk kk-' + name + (w === 'regular' ? '' : ' kk-' + w); }
+  function token(name, w) { return '--icon-' + name + (w === 'regular' ? '' : '-' + w); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function title(name) { return name.replace(/-/g, ' '); }
+
+  function save() {
+    try { localStorage.setItem('kk-icons', JSON.stringify({ w: state.w, s: state.s, c: state.c })); } catch (e) {}
+    var h = [];
+    if (state.q) h.push('q=' + encodeURIComponent(state.q));
+    if (state.w !== 'regular') h.push('w=' + state.w);
+    try { history.replaceState(null, '', h.length ? '#' + h.join('&') : location.pathname + location.search); } catch (e) {}
+  }
+  function load() {
+    try {
+      var s = JSON.parse(localStorage.getItem('kk-icons') || '{}');
+      if (s.w && WEIGHTS.some(function (x) { return x[0] === s.w; })) state.w = s.w;
+      if (s.s >= 16 && s.s <= 64) state.s = +s.s;
+      if (typeof s.c === 'string' && /^(var\(--[\w-]+\)|#[0-9a-f]{6})$/i.test(s.c)) state.c = s.c;
+    } catch (e) {}
+    var params = new URLSearchParams(location.hash.slice(1));
+    if (params.get('q')) state.q = params.get('q').slice(0, 60);
+    var w = params.get('w');
+    if (w && WEIGHTS.some(function (x) { return x[0] === w; })) state.w = w;
+  }
+
+  // ---------- svg source (decoded from the CSS token, works offline) ----------
+  function svgSource(name, w) {
+    var v = getComputedStyle(document.documentElement).getPropertyValue(token(name, w)) || '';
+    var m = v.match(/base64,([A-Za-z0-9+/=]+)/);
+    if (m) { try { return Promise.resolve(atob(m[1])); } catch (e) {} }
+    return fetch('assets/icons/' + w + '/' + name + '.svg').then(function (r) { if (!r.ok) throw new Error('svg'); return r.text(); });
+  }
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext !== false) {
+      return navigator.clipboard.writeText(text).catch(function () { return legacyCopy(text); });
+    }
+    return legacyCopy(text);
+  }
+  function legacyCopy(text) {
+    return new Promise(function (resolve, reject) {
+      var t = document.createElement('textarea');
+      t.value = text; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(t); t.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      t.remove(); ok ? resolve() : reject(new Error('copy'));
+    });
+  }
+  function toast(msg, type) { if (window.KKToast) KKToast.show({ type: type || 'success', message: msg, duration: 2200 }); }
+
+  // ---------- grid ----------
+  function tile(name) {
+    return '<button type="button" data-name="' + name + '" aria-label="' + esc(title(name)) + '" ' +
+      'class="group flex flex-col items-center gap-2 rounded-xl border border-transparent p-3 text-fg transition-colors [contain-intrinsic-size:auto_104px] [content-visibility:auto] hover:border-slate-200 hover:bg-surface hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">' +
+      '<span class="flex h-16 w-full items-center justify-center"><i class="' + cls(name, state.w) + '" style="font-size:var(--s);color:var(--c)"></i></span>' +
+      '<span class="w-full truncate text-center text-[11px] text-slate-500 group-hover:text-slate-800">' + esc(name) + '</span></button>';
+  }
+  function append(n) {
+    var end = Math.min(shown + n, results.length), html = '';
+    for (var i = shown; i < end; i++) html += tile(results[i]);
+    grid.insertAdjacentHTML('beforeend', html);
+    shown = end;
+    $('more').classList.toggle('hidden', shown >= results.length);
+  }
+  function render() {
+    grid.innerHTML = ''; shown = 0;
+    var terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+    results = terms.length
+      ? NAMES.filter(function (n) { var t = n.replace(/-/g, ' '); return terms.every(function (x) { return t.indexOf(x) !== -1; }); })
+      : NAMES.slice();
+    if (terms.length) {
+      var first = terms[0];
+      results.sort(function (a, b) { return (a.indexOf(first) === 0 ? 0 : 1) - (b.indexOf(first) === 0 ? 0 : 1) || (a.length - b.length); });
+    }
+    $('empty').classList.toggle('hidden', results.length > 0);
+    $('sentinel').classList.toggle('hidden', results.length === 0);
+    $('resultInfo').textContent = results.length
+      ? (terms.length ? results.length.toLocaleString('id-ID') + ' dari ' + NAMES.length.toLocaleString('id-ID') + ' ikon' : NAMES.length.toLocaleString('id-ID') + ' ikon')
+        + ' - ketebalan ' + state.w
+      : 'Tidak ada hasil';
+    append(BATCH);
+  }
+  function applyVars() {
+    grid.style.setProperty('--s', state.s + 'px');
+    grid.style.setProperty('--c', state.c);
+    $('sizeOut').textContent = state.s;
+  }
+
+  // ---------- toolbar ----------
+  function paintWeights() {
+    $('weights').innerHTML = WEIGHTS.map(function (x) {
+      var on = x[0] === state.w;
+      return '<button type="button" role="radio" aria-checked="' + on + '" data-weight="' + x[0] + '" class="rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ' +
+        (on ? 'bg-primary-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100') + '">' + x[1] + '</button>';
+    }).join('');
+  }
+  function paintSwatches() {
+    $('swatches').innerHTML = SWATCHES.map(function (x) {
+      var on = x[0] === state.c;
+      return '<button type="button" data-color="' + x[0] + '" aria-label="Warna ' + x[1] + '" aria-pressed="' + on + '" title="' + x[1] + '" class="h-6 w-6 rounded-full border border-black/10 ring-offset-2 ring-offset-surface transition-shadow ' +
+        (on ? 'ring-2 ring-primary-500' : 'hover:ring-2 hover:ring-slate-300') + '" style="background:' + x[0] + '"></button>';
+    }).join('');
+  }
+
+  // ---------- detail drawer ----------
+  function openDetail(name) {
+    current = name; lastFocus = document.activeElement;
+    $('dName').textContent = title(name);
+    $('overlay').classList.remove('invisible', 'opacity-0');
+    var d = $('detail'); d.classList.remove('invisible', 'translate-x-full'); d.setAttribute('aria-hidden', 'false');
+    paintDetail();
+    $('dClose').focus();
+  }
+  function closeDetail() {
+    $('overlay').classList.add('invisible', 'opacity-0');
+    var d = $('detail'); d.classList.add('invisible', 'translate-x-full'); d.setAttribute('aria-hidden', 'true');
+    current = null;
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function paintDetail() {
+    if (!current) return;
+    $('dPreview').innerHTML = '<i class="' + cls(current, state.w) + '" style="font-size:96px;color:' + state.c + '"></i>';
+    $('dWeights').innerHTML = WEIGHTS.map(function (x) {
+      var on = x[0] === state.w;
+      return '<button type="button" data-dweight="' + x[0] + '" title="' + x[1] + '" aria-label="' + x[1] + '" aria-pressed="' + on + '" class="flex h-11 items-center justify-center rounded-lg border text-slate-700 transition-colors ' +
+        (on ? 'border-primary-500 bg-primary-50 text-primary-700' : 'border-slate-200 hover:bg-slate-50') + '"><i class="' + cls(current, x[0]) + ' h-5 w-5"></i></button>';
+    }).join('');
+    $('dSizes').innerHTML = [16, 24, 32, 48].map(function (px) {
+      return '<span class="flex flex-col items-center gap-1.5"><i class="' + cls(current, state.w) + '" style="font-size:' + px + 'px"></i><span class="text-[10px] text-slate-500">' + px + '</span></span>';
+    }).join('');
+    $('dClass').textContent = cls(current, state.w);
+    $('dHtml').textContent = '<i class="' + cls(current, state.w) + '"></i>';
+  }
+
+  // ---------- events ----------
+  var timer;
+  q.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () { state.q = q.value.trim(); render(); save(); }, 90);
+  });
+  $('clearSearch').addEventListener('click', function () { q.value = ''; state.q = ''; render(); save(); q.focus(); });
+  sizeEl.addEventListener('input', function () { state.s = +sizeEl.value; applyVars(); save(); });
+  $('colorCustom').addEventListener('input', function (e) { state.c = e.target.value; applyVars(); paintSwatches(); paintDetail(); save(); });
+  $('weights').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-weight]'); if (!b) return;
+    state.w = b.dataset.weight; paintWeights(); render(); paintDetail(); save();
+  });
+  $('swatches').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-color]'); if (!b) return;
+    state.c = b.dataset.color; applyVars(); paintSwatches(); paintDetail(); save();
+  });
+  grid.addEventListener('click', function (e) { var b = e.target.closest('[data-name]'); if (b) openDetail(b.dataset.name); });
+  $('dWeights').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-dweight]'); if (!b) return;
+    state.w = b.dataset.dweight; paintWeights(); render(); paintDetail(); save();
+  });
+  $('dClose').addEventListener('click', closeDetail);
+  $('overlay').addEventListener('click', closeDetail);
+  $('detail').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-copy]'); if (!b || !current) return;
+    var what = b.dataset.copy, name = current, w = state.w;
+    if (what === 'class') return copyText(cls(name, w)).then(function () { toast('Class disalin'); }, function () { toast('Gagal menyalin', 'danger'); });
+    if (what === 'html') return copyText('<i class="' + cls(name, w) + '"></i>').then(function () { toast('HTML disalin'); }, function () { toast('Gagal menyalin', 'danger'); });
+    svgSource(name, w).then(function (svg) {
+      if (what === 'svg') return copyText(svg).then(function () { toast('SVG disalin'); });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+      a.download = name + (w === 'regular' ? '' : '-' + w) + '.svg';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      toast('SVG diunduh');
+    }).catch(function () { toast('SVG tidak tersedia', 'danger'); });
+  });
+  $('more').addEventListener('click', function () { append(BATCH); });
+  document.addEventListener('keydown', function (e) {
+    var typing = /^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || '')) || e.target.isContentEditable;
+    if (e.key === '/' && !typing && !e.metaKey && !e.ctrlKey) { e.preventDefault(); q.focus(); q.select(); }
+    else if (e.key === 'Escape') {
+      if (current) closeDetail();
+      else if (document.activeElement === q && q.value) { q.value = ''; state.q = ''; render(); save(); }
+    }
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { if (en[0].isIntersecting && shown < results.length) append(BATCH); }, { rootMargin: '600px' }).observe($('sentinel'));
+  }
+
+  // ---------- init ----------
+  load();
+  q.value = state.q; sizeEl.value = state.s;
+  $('statCount').textContent = NAMES.length.toLocaleString('id-ID');
+  applyVars(); paintWeights(); paintSwatches(); render();
+})();
+</script>
+</body>
+</html>

@@ -63,7 +63,7 @@ export default {
     docs: {
       description: {
         component:
-          "Rich text editor tanpa dependensi (contenteditable), jalan offline - **tidak memakai TipTap/CDN** seperti Flowbite, jadi tidak perlu `npm install` tambahan. **Getting started:** muat `assets/js/wysiwyg.js`, lalu beri atribut `data-wysiwyg` pada root `.wysiwyg` yang berisi `.wysiwyg-toolbar` dan `.wysiwyg-content`. Tombol toolbar memakai `data-cmd` (`bold`, `italic`, `format` + `data-value=\"h1\"`, `size`, `color`, `font`, `link`, `image`, `video`, dst); dropdown memakai `data-dd` + `data-dd-menu`. Ambil isi lewat `KKWysiwyg.get(root).getHTML()` atau dengarkan event `wysiwyg:change`. Teks yang di-paste dijadikan plain text. Pintasan: `Ctrl/Cmd+Alt+0..6` untuk Paragraph/Heading 1-6.",
+          "Rich text editor tanpa dependensi (contenteditable), jalan offline - **tanpa dependensi eksternal/CDN**, jadi tidak perlu `npm install` tambahan. **Getting started:** muat `assets/js/wysiwyg.js`, lalu beri atribut `data-wysiwyg` pada root `.wysiwyg` yang berisi `.wysiwyg-toolbar` dan `.wysiwyg-content`. Tombol toolbar memakai `data-cmd` (`bold`, `italic`, `format` + `data-value=\"h1\"`, `size`, `color`, `font`, `link`, `image`, `video`, dst); dropdown memakai `data-dd` + `data-dd-menu`. Ambil isi lewat `KKWysiwyg.get(root).getHTML()` atau dengarkan event `wysiwyg:change`. Teks yang di-paste dijadikan plain text. Pintasan: `Ctrl/Cmd+Alt+0..6` untuk Paragraph/Heading 1-6.",
       },
     },
   },
