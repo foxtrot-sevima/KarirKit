@@ -245,9 +245,9 @@ export const CardFullWidthTabs = {
   name: "Card full width tabs",
   render: () =>
     exBlock(`<div class="card max-w-2xl overflow-hidden" data-ui-tabs>
-      <div class="grid grid-cols-2 border-b border-border-subtle text-sm font-medium" role="tablist">
-        <button type="button" role="tab" data-ui-tab="cfw-0" aria-selected="true" class="tab-active border-b-2 border-primary-600 px-4 py-3 text-primary-700">Statistik</button>
-        <button type="button" role="tab" data-ui-tab="cfw-1" aria-selected="false" class="px-4 py-3 text-fg-muted hover:text-fg">FAQ</button>
+      <div class="grid grid-cols-2 border-b border-border" role="tablist">
+        <button type="button" role="tab" data-ui-tab="cfw-0" aria-selected="true" class="tab-underline">Statistik</button>
+        <button type="button" role="tab" data-ui-tab="cfw-1" aria-selected="false" class="tab-underline">FAQ</button>
       </div>
       <div id="cfw-0" role="tabpanel" class="grid grid-cols-3 gap-4 p-6 text-center">
         <div><div class="font-display text-2xl font-bold text-fg">12,4rb</div><div class="text-sm text-fg-muted">Lulusan</div></div>

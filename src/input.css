@@ -19286,6 +19286,11 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .card-link { @apply inline-flex cursor-pointer items-center gap-1 text-sm font-semibold text-primary-600 hover:text-primary-700 hover:underline; }
   .card-img { @apply block aspect-video w-full object-cover; }
   .card > .card-img:first-child { @apply rounded-t-card; }
+  .tab-underline {
+    @apply -mb-px cursor-pointer border-b-2 border-transparent px-4 py-3 text-center text-sm font-medium text-fg-muted transition-colors hover:border-border hover:text-fg
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500;
+  }
+  .tab-underline[aria-selected="true"] { @apply border-primary-600 text-primary-700 hover:border-primary-600; }
   .card-horizontal { @apply flex flex-col md:flex-row; }
   .card-horizontal > .card-img { @apply aspect-video md:aspect-auto md:w-52 md:rounded-l-card md:rounded-tr-none; }
 

@@ -29,7 +29,7 @@
     root.querySelectorAll('[data-ui-tab]').forEach(function (t) {
       var on = t === tab;
       t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.classList.toggle('tab-active', on);
+      if (t.classList.contains('tab')) t.classList.toggle('tab-active', on);
       var panel = document.getElementById(t.getAttribute('data-ui-tab'));
       if (panel) panel.classList.toggle('hidden', !on);
     });
