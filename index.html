@@ -141,6 +141,7 @@
       <a href="#avatars" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Avatar</a>
       <a href="#cards" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Kartu</a>
       <a href="#forms" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Formulir</a>
+      <a href="#timepicker" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Timepicker</a>
       <a href="#dropdowns" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Dropdown</a>
       <a href="#modals" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Modal</a>
       <a href="#navigation" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Navigasi</a>
@@ -1561,6 +1562,876 @@
               </div>
               <p class="combo-empty hidden" data-combo-empty>Tidak ada skill yang cocok.</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- gen:forms-radio -->
+    <div class="mt-12 border-t border-slate-200/70 pt-10">
+      <h3 class="mb-6 font-display text-xl font-bold text-slate-900">Radio</h3>
+      <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Radio example</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="space-y-3">
+  
+            <div class="check-row ">
+          <input id="rx-1" type="radio" name="rx" class="form-radio mt-0.5"   />
+          <div><label for="rx-1" class="check-label">Default radio</label></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="rx-2" type="radio" name="rx" class="form-radio mt-0.5" checked  />
+          <div><label for="rx-2" class="check-label">Checked state</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Disabled state</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="space-y-3">
+  
+            <div class="check-row ">
+          <input id="rd-1" type="radio" name="rd" class="form-radio mt-0.5"  disabled />
+          <div><label for="rd-1" class="check-label">Disabled radio</label></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="rd-2" type="radio" name="rd" class="form-radio mt-0.5" checked disabled />
+          <div><label for="rd-2" class="check-label">Disabled checked</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Radio link</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="check-row">
+            <input id="rl-1" type="radio" class="form-radio mt-0.5" />
+            <label for="rl-1" class="check-label font-normal text-fg-muted">Saya menyetujui <a href="#" class="card-link">syarat dan ketentuan</a>.</label>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Helper text</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="space-y-4">
+  
+            <div class="check-row ">
+          <input id="rh-1" type="radio" name="rh" class="form-radio mt-0.5" checked  />
+          <div><label for="rh-1" class="check-label">Notifikasi email</label><p class="check-help">Terima ringkasan lowongan yang cocok setiap minggu.</p></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="rh-2" type="radio" name="rh" class="form-radio mt-0.5"   />
+          <div><label for="rh-2" class="check-label">Tanpa notifikasi</label><p class="check-help">Kamu tetap bisa melihat rekomendasi di dashboard.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Bordered</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="grid max-w-xl gap-3 sm:grid-cols-2">
+            <label class="check-bordered"><input type="radio" name="rb" class="form-radio" />Default radio</label>
+            <label class="check-bordered"><input type="radio" name="rb" class="form-radio" checked />Checked state</label>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Radio list group</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <ul class="check-list max-w-sm">
+            <li><label class="check-list-item cursor-pointer"><input type="radio" name="rlg" class="form-radio" checked />Kartu Tanda Penduduk</label></li><li><label class="check-list-item cursor-pointer"><input type="radio" name="rlg" class="form-radio"  />Kartu Pelajar</label></li><li><label class="check-list-item cursor-pointer"><input type="radio" name="rlg" class="form-radio"  />Surat Izin Mengemudi</label></li><li><label class="check-list-item cursor-pointer"><input type="radio" name="rlg" class="form-radio"  />Paspor</label></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Horizontal list group</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <ul class="check-list check-list-horizontal max-w-3xl">
+            <li><label class="check-list-item cursor-pointer"><input type="radio" name="rhl" class="form-radio" checked />Kartu Tanda Penduduk</label></li><li><label class="check-list-item cursor-pointer"><input type="radio" name="rhl" class="form-radio"  />Kartu Pelajar</label></li><li><label class="check-list-item cursor-pointer"><input type="radio" name="rhl" class="form-radio"  />Surat Izin Mengemudi</label></li><li><label class="check-list-item cursor-pointer"><input type="radio" name="rhl" class="form-radio"  />Paspor</label></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Radio in dropdown</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="relative inline-block min-h-16">
+            <button type="button" class="btn-outline btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true">Tipe akun<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+            <div class="dropdown-menu hidden left-0 right-auto w-72 p-2">
+              <label class="flex cursor-pointer gap-3 rounded-lg p-2.5 hover:bg-neutral-50">
+                <input type="radio" name="rdd" class="form-radio mt-0.5" checked />
+                <span><span class="block text-sm font-medium text-fg">Individu</span><span class="check-help block">Untuk pencari kerja perorangan.</span></span>
+              </label><label class="flex cursor-pointer gap-3 rounded-lg p-2.5 hover:bg-neutral-50">
+                <input type="radio" name="rdd" class="form-radio mt-0.5"  />
+                <span><span class="block text-sm font-medium text-fg">Perusahaan</span><span class="check-help block">Untuk tim rekrutmen dan HR.</span></span>
+              </label><label class="flex cursor-pointer gap-3 rounded-lg p-2.5 hover:bg-neutral-50">
+                <input type="radio" name="rdd" class="form-radio mt-0.5"  />
+                <span><span class="block text-sm font-medium text-fg">Institusi</span><span class="check-help block">Untuk kampus dan lembaga pelatihan.</span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Inline layout</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+  
+            <div class="check-row ">
+          <input id="ri-1" type="radio" name="ri" class="form-radio mt-0.5"   />
+          <div><label for="ri-1" class="check-label">Inline 1</label></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="ri-2" type="radio" name="ri" class="form-radio mt-0.5"   />
+          <div><label for="ri-2" class="check-label">Inline 2</label></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="ri-3" type="radio" name="ri" class="form-radio mt-0.5" checked  />
+          <div><label for="ri-3" class="check-label">Inline checked</label></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="ri-4" type="radio" name="ri" class="form-radio mt-0.5"  disabled />
+          <div><label for="ri-4" class="check-label">Inline disabled</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Advanced layout</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <ul class="grid max-w-xl gap-3 sm:grid-cols-2">
+            <li><label class="choice"><input type="radio" name="ra" checked />
+              <span class="choice-body"><span class="choice-title">0-50 MB</span><span>Cocok untuk CV dan portofolio ringan.</span></span></label></li><li><label class="choice"><input type="radio" name="ra"  />
+              <span class="choice-body"><span class="choice-title">500-1000 MB</span><span>Untuk portofolio video dan karya besar.</span></span></label></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Advanced layout with icons</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <ul class="grid max-w-3xl gap-3 sm:grid-cols-3">
+            <li><label class="choice"><input type="radio" name="rai"  />
+              <span class="choice-body items-center text-center"><i class="kk kk-house h-7 w-7"></i><span class="choice-title">Remote</span><span>Kerja dari mana saja.</span></span></label></li><li><label class="choice"><input type="radio" name="rai" checked />
+              <span class="choice-body items-center text-center"><i class="kk kk-buildings h-7 w-7"></i><span class="choice-title">On-site</span><span>Bekerja di kantor.</span></span></label></li><li><label class="choice"><input type="radio" name="rai"  />
+              <span class="choice-body items-center text-center"><i class="kk kk-globe h-7 w-7"></i><span class="choice-title">Hybrid</span><span>Gabungan keduanya.</span></span></label></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- /gen:forms-radio -->
+    <!-- gen:forms-checkbox -->
+    <div class="mt-12 border-t border-slate-200/70 pt-10">
+      <h3 class="mb-6 font-display text-xl font-bold text-slate-900">Checkbox</h3>
+      <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Checkbox example</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="space-y-3">
+  
+            <div class="check-row ">
+          <input id="cx-1" type="checkbox" class="form-check mt-0.5"   />
+          <div><label for="cx-1" class="check-label">Default checkbox</label></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="cx-2" type="checkbox" class="form-check mt-0.5" checked  />
+          <div><label for="cx-2" class="check-label">Checked state</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Disabled state</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="space-y-3">
+  
+            <div class="check-row ">
+          <input id="cd-1" type="checkbox" class="form-check mt-0.5"  disabled />
+          <div><label for="cd-1" class="check-label">Disabled checkbox</label></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="cd-2" type="checkbox" class="form-check mt-0.5" checked disabled />
+          <div><label for="cd-2" class="check-label">Disabled checked</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Checkbox link</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="check-row">
+            <input id="cl-1" type="checkbox" class="form-check mt-0.5" />
+            <label for="cl-1" class="check-label font-normal text-fg-muted">Saya setuju dengan <a href="#" class="card-link">syarat dan ketentuan</a>.</label>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Helper text</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="space-y-4">
+  
+            <div class="check-row ">
+          <input id="ch-1" type="checkbox" class="form-check mt-0.5" checked  />
+          <div><label for="ch-1" class="check-label">Email lowongan mingguan</label><p class="check-help">Ringkasan lowongan yang cocok dengan profilmu.</p></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="ch-2" type="checkbox" class="form-check mt-0.5"   />
+          <div><label for="ch-2" class="check-label">Info promo dan event</label><p class="check-help">Webinar, kelas, dan kegiatan karier terbaru.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Bordered</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="grid max-w-xl gap-3 sm:grid-cols-2">
+            <label class="check-bordered"><input type="checkbox" class="form-check" />Default checkbox</label>
+            <label class="check-bordered"><input type="checkbox" class="form-check" checked />Checked state</label>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Bordered with description</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="grid max-w-2xl gap-3 sm:grid-cols-2">
+            <label class="check-bordered items-start">
+              <input type="checkbox" class="form-check mt-0.5" checked />
+              <span><span class="block text-sm font-semibold text-fg">Paket Dasar</span><span class="check-help block font-normal">Lamar hingga 20 lowongan per bulan.</span></span>
+            </label><label class="check-bordered items-start">
+              <input type="checkbox" class="form-check mt-0.5"  />
+              <span><span class="block text-sm font-semibold text-fg">Paket Premium</span><span class="check-help block font-normal">Lamar tanpa batas dan analisis CV.</span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Bordered with icon</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="grid max-w-2xl gap-3 sm:grid-cols-2">
+            <label class="check-bordered items-start">
+              <input type="checkbox" class="form-check mt-0.5" checked />
+              <i class="kk kk-file-text mt-0.5 h-5 w-5 shrink-0"></i>
+              <span><span class="block text-sm font-semibold text-fg">Unggah CV</span><span class="check-help block font-normal">Format PDF atau DOCX, maks 5 MB.</span></span>
+            </label><label class="check-bordered items-start">
+              <input type="checkbox" class="form-check mt-0.5"  />
+              <i class="kk kk-graduation-cap mt-0.5 h-5 w-5 shrink-0"></i>
+              <span><span class="block text-sm font-semibold text-fg">Tambah sertifikat</span><span class="check-help block font-normal">Sertifikat pelatihan atau kursus.</span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Checkbox list group</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <ul class="check-list max-w-sm">
+            <li><label class="check-list-item cursor-pointer"><input type="checkbox" class="form-check"  />Vue JS</label></li><li><label class="check-list-item cursor-pointer"><input type="checkbox" class="form-check" checked />React</label></li><li><label class="check-list-item cursor-pointer"><input type="checkbox" class="form-check"  />Angular</label></li><li><label class="check-list-item cursor-pointer"><input type="checkbox" class="form-check"  />Laravel</label></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Horizontal list group</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <ul class="check-list check-list-horizontal max-w-3xl">
+            <li><label class="check-list-item cursor-pointer"><input type="checkbox" class="form-check"  />Vue JS</label></li><li><label class="check-list-item cursor-pointer"><input type="checkbox" class="form-check" checked />React</label></li><li><label class="check-list-item cursor-pointer"><input type="checkbox" class="form-check"  />Angular</label></li><li><label class="check-list-item cursor-pointer"><input type="checkbox" class="form-check"  />Laravel</label></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Checkbox dropdown</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="relative inline-block min-h-16">
+            <button type="button" class="btn-outline btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true">Pilih keahlian<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+            <div class="dropdown-menu hidden left-0 right-auto w-64 p-2">
+              <div class="relative mb-2">
+                <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>
+                <input class="input h-9 pl-9 text-xs" placeholder="Cari keahlian" aria-label="Cari keahlian" />
+              </div>
+              <ul class="max-h-44 overflow-y-auto">
+                <li><label class="flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-2 text-sm text-fg-muted hover:bg-neutral-50"><input type="checkbox" class="form-check form-check-sm" checked />Desain UI</label></li><li><label class="flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-2 text-sm text-fg-muted hover:bg-neutral-50"><input type="checkbox" class="form-check form-check-sm" checked />Analisis data</label></li><li><label class="flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-2 text-sm text-fg-muted hover:bg-neutral-50"><input type="checkbox" class="form-check form-check-sm"  />Manajemen proyek</label></li><li><label class="flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-2 text-sm text-fg-muted hover:bg-neutral-50"><input type="checkbox" class="form-check form-check-sm"  />Penulisan konten</label></li><li><label class="flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-2 text-sm text-fg-muted hover:bg-neutral-50"><input type="checkbox" class="form-check form-check-sm"  />Pemasaran digital</label></li>
+              </ul>
+              <button type="button" class="dropdown-item dropdown-item-danger mt-1 border-t border-border-subtle pt-2"><i class="kk kk-trash h-4 w-4"></i>Hapus terpilih</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Inline layout</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+  
+            <div class="check-row ">
+          <input id="cin-1" type="checkbox" class="form-check mt-0.5"   />
+          <div><label for="cin-1" class="check-label">Inline 1</label></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="cin-2" type="checkbox" class="form-check mt-0.5"   />
+          <div><label for="cin-2" class="check-label">Inline 2</label></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="cin-3" type="checkbox" class="form-check mt-0.5" checked  />
+          <div><label for="cin-3" class="check-label">Inline checked</label></div>
+            </div>
+  
+            <div class="check-row ">
+          <input id="cin-4" type="checkbox" class="form-check mt-0.5"  disabled />
+          <div><label for="cin-4" class="check-label">Inline disabled</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Colors</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+  
+            <div class="check-row ">
+          <input id="cc-red" type="checkbox" class="form-check form-check-red mt-0.5" checked  />
+          <div><label for="cc-red" class="check-label">Red</label></div>
+            </div>
+            <div class="check-row ">
+          <input id="cc-green" type="checkbox" class="form-check form-check-green mt-0.5" checked  />
+          <div><label for="cc-green" class="check-label">Green</label></div>
+            </div>
+            <div class="check-row ">
+          <input id="cc-purple" type="checkbox" class="form-check form-check-purple mt-0.5" checked  />
+          <div><label for="cc-purple" class="check-label">Purple</label></div>
+            </div>
+            <div class="check-row ">
+          <input id="cc-teal" type="checkbox" class="form-check form-check-teal mt-0.5" checked  />
+          <div><label for="cc-teal" class="check-label">Teal</label></div>
+            </div>
+            <div class="check-row ">
+          <input id="cc-yellow" type="checkbox" class="form-check form-check-yellow mt-0.5" checked  />
+          <div><label for="cc-yellow" class="check-label">Yellow</label></div>
+            </div>
+            <div class="check-row ">
+          <input id="cc-orange" type="checkbox" class="form-check form-check-orange mt-0.5" checked  />
+          <div><label for="cc-orange" class="check-label">Orange</label></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Advanced layout</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <ul class="grid max-w-3xl gap-3 sm:grid-cols-3">
+            <li><label class="choice"><input type="checkbox" checked />
+              <span class="choice-body items-center text-center"><i class="kk kk-briefcase h-7 w-7"></i><span class="choice-title">Full-time</span><span>Kerja penuh waktu.</span></span></label></li><li><label class="choice"><input type="checkbox"  />
+              <span class="choice-body items-center text-center"><i class="kk kk-clock h-7 w-7"></i><span class="choice-title">Part-time</span><span>Paruh waktu fleksibel.</span></span></label></li><li><label class="choice"><input type="checkbox"  />
+              <span class="choice-body items-center text-center"><i class="kk kk-graduation-cap h-7 w-7"></i><span class="choice-title">Magang</span><span>Program magang kampus.</span></span></label></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- /gen:forms-checkbox -->
+    <!-- gen:forms-toggle -->
+    <div class="mt-12 border-t border-slate-200/70 pt-10">
+      <h3 class="mb-6 font-display text-xl font-bold text-slate-900">Toggle</h3>
+      <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Toggle example</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <label class="inline-flex cursor-pointer items-center gap-3 ">
+          <span class="toggle "><input id="tg-1" type="checkbox" class="toggle-input"   /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg">Notifikasi lowongan</span>
+            </label>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Checked state</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <label class="inline-flex cursor-pointer items-center gap-3 ">
+          <span class="toggle "><input id="tg-2" type="checkbox" class="toggle-input" checked  /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg">Notifikasi lowongan</span>
+            </label>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Disabled state</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-8">
+  
+            <label class="inline-flex cursor-pointer items-center gap-3 cursor-not-allowed">
+          <span class="toggle "><input id="tg-3" type="checkbox" class="toggle-input"  disabled /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg-subtle">Nonaktif</span>
+            </label>
+  
+            <label class="inline-flex cursor-pointer items-center gap-3 cursor-not-allowed">
+          <span class="toggle "><input id="tg-4" type="checkbox" class="toggle-input" checked disabled /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg-subtle">Nonaktif (aktif)</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Double labels</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <label class="inline-flex cursor-pointer items-center gap-3 text-sm font-medium text-fg">
+            Bulanan
+            <span class="toggle"><input type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></span>
+            Tahunan
+          </label>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Toggle with icons</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <label class="inline-flex cursor-pointer items-center gap-3 text-fg-muted">
+            <i class="kk kk-sun h-5 w-5"></i>
+            <span class="toggle"><input type="checkbox" class="toggle-input" aria-label="Mode tampilan" /><span class="toggle-track"></span></span>
+            <i class="kk kk-moon h-5 w-5"></i>
+          </label>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Toggle card</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <label class="card flex max-w-sm cursor-pointer items-start justify-between gap-4 p-4">
+            <span>
+              <span class="block text-sm font-semibold text-fg">Notifikasi email</span>
+              <span class="check-help block">Terima ringkasan lowongan dan status lamaran.</span>
+            </span>
+            <span class="toggle mt-0.5"><input type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></span>
+          </label>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Toggle card with icon</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <label class="card flex max-w-sm cursor-pointer items-center gap-4 p-4">
+            <span class="toast-icon toast-icon-lg"><i class="kk kk-bell h-6 w-6"></i></span>
+            <span class="flex-1">
+              <span class="block text-sm font-semibold text-fg">Pengingat wawancara</span>
+              <span class="check-help block">Ingatkan 1 jam sebelum jadwal dimulai.</span>
+            </span>
+            <span class="toggle"><input type="checkbox" class="toggle-input" /><span class="toggle-track"></span></span>
+          </label>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Colors</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
+  
+            <label class="inline-flex cursor-pointer items-center gap-3 ">
+          <span class="toggle toggle-red"><input id="tc-red" type="checkbox" class="toggle-input" checked  /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg">Red</span>
+            </label>
+            <label class="inline-flex cursor-pointer items-center gap-3 ">
+          <span class="toggle toggle-green"><input id="tc-green" type="checkbox" class="toggle-input" checked  /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg">Green</span>
+            </label>
+            <label class="inline-flex cursor-pointer items-center gap-3 ">
+          <span class="toggle toggle-purple"><input id="tc-purple" type="checkbox" class="toggle-input" checked  /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg">Purple</span>
+            </label>
+            <label class="inline-flex cursor-pointer items-center gap-3 ">
+          <span class="toggle toggle-yellow"><input id="tc-yellow" type="checkbox" class="toggle-input" checked  /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg">Yellow</span>
+            </label>
+            <label class="inline-flex cursor-pointer items-center gap-3 ">
+          <span class="toggle toggle-teal"><input id="tc-teal" type="checkbox" class="toggle-input" checked  /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg">Teal</span>
+            </label>
+            <label class="inline-flex cursor-pointer items-center gap-3 ">
+          <span class="toggle toggle-orange"><input id="tc-orange" type="checkbox" class="toggle-input" checked  /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg">Orange</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Sizes</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-8">
+  
+            <label class="inline-flex cursor-pointer items-center gap-3 ">
+          <span class="toggle "><input id="ts-1" type="checkbox" class="toggle-input" checked  /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg">Base</span>
+            </label>
+  
+            <label class="inline-flex cursor-pointer items-center gap-3 ">
+          <span class="toggle toggle-lg"><input id="ts-2" type="checkbox" class="toggle-input" checked  /><span class="toggle-track"></span></span>
+          <span class="text-sm font-medium text-fg">Large</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- /gen:forms-toggle -->
+    <!-- gen:forms-search -->
+    <div class="mt-12 border-t border-slate-200/70 pt-10">
+      <h3 class="mb-6 font-display text-xl font-bold text-slate-900">Search input</h3>
+      <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Search bar example</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <form class="max-w-lg" onsubmit="return false" role="search">
+            <label for="sb-1" class="sr-only">Cari lowongan</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>
+              <input id="sb-1" type="search" class="input h-12 pl-10 pr-28" placeholder="Cari lowongan, perusahaan…" />
+              <button type="submit" class="btn-primary btn-sm absolute right-1.5 top-1/2 -translate-y-1/2">Cari</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Search with dropdown</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <form class="min-h-16 max-w-xl" onsubmit="return false" role="search">
+            <div class="input-group">
+    
+            <div class="relative">
+          <button type="button" class="btn-group-item h-10 whitespace-nowrap bg-neutral-50" data-ui-dropdown aria-expanded="false" aria-haspopup="true">Semua kategori<i class="kk kk-caret-down h-3 w-3"></i></button>
+          <div class="dropdown-menu hidden left-0 right-auto w-44"><a href="#" class="dropdown-item">Semua kategori</a><a href="#" class="dropdown-item">Lowongan</a><a href="#" class="dropdown-item">Perusahaan</a><a href="#" class="dropdown-item">Artikel</a><a href="#" class="dropdown-item">Kelas</a></div>
+            </div>
+              <div class="input-wrap"><input type="search" class="input" placeholder="Cari…" aria-label="Kata kunci" /></div>
+              <button type="submit" class="input-group-btn"><i class="kk kk-magnifying-glass h-4 w-4"></i><span class="sr-only sm:not-sr-only">Cari</span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Simple search input</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <form class="max-w-lg" onsubmit="return false" role="search">
+            <div class="input-group">
+              <div class="input-wrap">
+                <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>
+                <input type="search" class="input pl-10" placeholder="Cari posisi…" aria-label="Cari posisi" />
+              </div>
+              <button type="submit" class="input-group-btn"><i class="kk kk-magnifying-glass h-4 w-4"></i><span class="sr-only sm:not-sr-only">Cari</span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Location search</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <form class="min-h-16 max-w-xl" onsubmit="return false" role="search">
+            <div class="input-group">
+    
+            <div class="relative">
+          <button type="button" class="btn-group-item h-10 whitespace-nowrap bg-neutral-50" data-ui-dropdown aria-expanded="false" aria-haspopup="true"><i class="kk kk-map-pin h-4 w-4"></i>Indonesia<i class="kk kk-caret-down h-3 w-3"></i></button>
+          <div class="dropdown-menu hidden left-0 right-auto w-44"><a href="#" class="dropdown-item">Indonesia</a><a href="#" class="dropdown-item">Malaysia</a><a href="#" class="dropdown-item">Singapura</a><a href="#" class="dropdown-item">Remote global</a></div>
+            </div>
+              <div class="input-wrap"><input type="search" class="input" placeholder="Kota atau alamat…" aria-label="Lokasi" /></div>
+              <button type="submit" class="input-group-btn"><i class="kk kk-magnifying-glass h-4 w-4"></i><span class="sr-only sm:not-sr-only">Cari lokasi</span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Voice search</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <form class="max-w-lg" onsubmit="return false" role="search">
+            <div class="input-group">
+              <div class="input-wrap">
+                <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>
+                <input type="search" class="input pl-10 pr-10" placeholder="Cari dengan suara atau teks…" aria-label="Pencarian" />
+                <button type="button" class="input-icon-btn" aria-label="Cari dengan suara"><i class="kk kk-microphone h-4 w-4"></i></button>
+              </div>
+              <button type="submit" class="input-group-btn"><i class="kk kk-magnifying-glass h-4 w-4"></i><span class="sr-only sm:not-sr-only">Cari</span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Advanced search input</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <form class="min-h-16 max-w-3xl" onsubmit="return false" role="search">
+            <div class="input-group">
+    
+            <div class="relative">
+          <button type="button" class="btn-group-item h-10 whitespace-nowrap bg-neutral-50" data-ui-dropdown aria-expanded="false" aria-haspopup="true">Tipe pekerjaan<i class="kk kk-caret-down h-3 w-3"></i></button>
+          <div class="dropdown-menu hidden left-0 right-auto w-44"><a href="#" class="dropdown-item">Full-time</a><a href="#" class="dropdown-item">Part-time</a><a href="#" class="dropdown-item">Magang</a><a href="#" class="dropdown-item">Kontrak</a></div>
+            </div>
+    
+            <div class="relative">
+          <button type="button" class="btn-group-item h-10 whitespace-nowrap bg-neutral-50" data-ui-dropdown aria-expanded="false" aria-haspopup="true">Level<i class="kk kk-caret-down h-3 w-3"></i></button>
+          <div class="dropdown-menu hidden left-0 right-auto w-44"><a href="#" class="dropdown-item">Fresh graduate</a><a href="#" class="dropdown-item">Junior</a><a href="#" class="dropdown-item">Senior</a><a href="#" class="dropdown-item">Manajer</a></div>
+            </div>
+              <div class="input-wrap">
+                <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>
+                <input type="search" class="input pl-10" placeholder="Cari posisi, perusahaan, atau keahlian…" aria-label="Pencarian lanjutan" />
+              </div>
+              <button type="submit" class="input-group-btn"><i class="kk kk-magnifying-glass h-4 w-4"></i><span class="sr-only sm:not-sr-only">Cari</span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- /gen:forms-search -->
+  </section>
+
+  <!-- ============================= TIMEPICKER ============================= -->
+  <section id="timepicker" class="scroll-mt-32 py-12">
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Timepicker</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Pemilih waktu berbasis <code class="kbd">&lt;input type="time"&gt;</code> bawaan browser dengan ikon jam (<code class="kbd">.timepicker</code>), plus slot waktu (<code class="kbd">.choice-slot</code>), rentang jam, dropdown durasi/zona, modal, dan drawer.</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Default timepicker</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="max-w-[10rem]">
+            <div>
+          <label for="tp-1" class="form-label">Pilih waktu:</label>
+          <div class="timepicker">
+            <input type="time" id="tp-1" class="input" min="09:00" max="18:00" value="00:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div></div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Timepicker with icon</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="max-w-xs">
+            <label for="tp-2" class="form-label">Waktu wawancara:</label>
+            <div class="input-group">
+              <span class="inline-flex h-10 items-center rounded-l-control border border-border bg-neutral-50 px-3 text-fg-subtle"><i class="kk kk-clock h-4 w-4"></i></span>
+              <input type="time" id="tp-2" class="input !rounded-l-none [&::-webkit-calendar-picker-indicator]:hidden" min="09:00" max="18:00" value="09:00" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Timepicker with dropdown</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="min-h-16 max-w-sm">
+            <label for="tp-3" class="form-label">Mulai &amp; durasi:</label>
+            <div class="input-group">
+              <div class="input-wrap timepicker"><input type="time" id="tp-3" class="input" min="09:00" max="18:00" value="09:00" /><span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span></div>
+    
+            <div class="relative">
+          <button type="button" class="btn-group-item h-10 whitespace-nowrap bg-neutral-50" data-ui-dropdown aria-expanded="false" aria-haspopup="true">Durasi<i class="kk kk-caret-down h-3 w-3"></i></button>
+          <div class="dropdown-menu hidden left-0 right-auto w-48"><a href="#" class="dropdown-item">30 menit</a><a href="#" class="dropdown-item">1 jam</a><a href="#" class="dropdown-item">2 jam</a></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Timepicker with select</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="min-h-16 max-w-sm">
+            <label for="tp-4" class="form-label">Waktu &amp; zona:</label>
+            <div class="input-group">
+              <div class="input-wrap timepicker"><input type="time" id="tp-4" class="input" value="09:00" /><span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span></div>
+    
+            <div class="relative">
+          <button type="button" class="btn-group-item h-10 whitespace-nowrap bg-neutral-50" data-ui-dropdown aria-expanded="false" aria-haspopup="true">WIB<i class="kk kk-caret-down h-3 w-3"></i></button>
+          <div class="dropdown-menu hidden left-0 right-auto w-48"><a href="#" class="dropdown-item">WIB (Jakarta)</a><a href="#" class="dropdown-item">WITA (Makassar)</a><a href="#" class="dropdown-item">WIT (Jayapura)</a><a href="#" class="dropdown-item">SGT (Singapura)</a><a href="#" class="dropdown-item">GMT (London)</a></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Timepicker range selector</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="grid max-w-md grid-cols-2 gap-3">
+  
+            <div>
+          <label for="tp-5a" class="form-label">Mulai:</label>
+          <div class="timepicker">
+            <input type="time" id="tp-5a" class="input" min="09:00" max="18:00" value="09:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div>
+  
+            <div>
+          <label for="tp-5b" class="form-label">Selesai:</label>
+          <div class="timepicker">
+            <input type="time" id="tp-5b" class="input" min="09:00" max="18:00" value="17:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Timerange with dropdown</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="relative inline-block min-h-16">
+            <button type="button" class="btn-outline btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true"><i class="kk kk-clock h-4 w-4"></i>Pilih jam<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+            <div class="dropdown-menu hidden left-0 right-auto w-72 p-3">
+              <div class="grid grid-cols-2 gap-3">
+      
+            <div>
+          <label for="tp-6a" class="form-label">Mulai:</label>
+          <div class="timepicker">
+            <input type="time" id="tp-6a" class="input" min="09:00" max="18:00" value="09:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div>
+      
+            <div>
+          <label for="tp-6b" class="form-label">Selesai:</label>
+          <div class="timepicker">
+            <input type="time" id="tp-6b" class="input" min="09:00" max="18:00" value="17:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div>
+              </div>
+              <button type="button" class="card-link mt-3" data-ui-dropdown-close>Simpan jam</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Timerange picker with toggle</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="max-w-md" data-ui-collapse-root>
+            <button type="button" class="card-link" data-ui-collapse aria-expanded="false" aria-controls="tp-7-panel">Pilih jam<i class="kk kk-caret-down h-3.5 w-3.5 transition-transform"></i></button>
+            <div id="tp-7-panel" class="mt-3 hidden rounded-control border border-border bg-surface p-4">
+              <div class="grid grid-cols-2 gap-3">
+      
+            <div>
+          <label for="tp-7a" class="form-label">Mulai:</label>
+          <div class="timepicker">
+            <input type="time" id="tp-7a" class="input" min="09:00" max="18:00" value="09:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div>
+      
+            <div>
+          <label for="tp-7b" class="form-label">Selesai:</label>
+          <div class="timepicker">
+            <input type="time" id="tp-7b" class="input" min="09:00" max="18:00" value="17:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Inline timepicker buttons</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="grid gap-6 md:grid-cols-[1fr_1.2fr]">
+            <div class="card card-body">
+              <h3 class="card-title">Sesi konsultasi karier</h3>
+              <p class="card-text mt-1">Pilih tanggal dan jam yang kamu inginkan.</p>
+              <ul class="mt-4 space-y-2 text-sm text-fg-muted">
+                <li class="flex items-center gap-2"><i class="kk kk-map-pin h-4 w-4"></i>Online (Google Meet)</li>
+                <li class="flex items-center gap-2"><i class="kk kk-users h-4 w-4"></i>Mentor + 1 peserta</li>
+                <li class="flex items-center gap-2"><i class="kk kk-clock h-4 w-4"></i>Durasi 30 menit</li>
+              </ul>
+            </div>
+            <div class="card card-body">
+              <p class="mb-3 text-sm font-semibold text-fg">Pilih hari</p>
+              <ul class="mb-5 grid grid-cols-5 gap-2"><li><label class="choice choice-slot"><input type="radio" name="tp-8d"  /><span class="choice-body">Sen 6</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8d"  /><span class="choice-body">Sel 7</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8d" checked /><span class="choice-body">Rab 8</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8d"  /><span class="choice-body">Kam 9</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8d"  /><span class="choice-body">Jum 10</span></label></li></ul>
+              <p class="mb-3 text-sm font-semibold text-fg">Pilih jam</p>
+              <ul class="grid grid-cols-3 gap-2"><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">10:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">10:30</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t" checked /><span class="choice-body">11:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">11:30</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">12:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">12:30</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">13:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">13:30</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">14:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">14:30</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">15:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-8t"  /><span class="choice-body">15:30</span></label></li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Modal with timepicker</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="rounded-xl bg-neutral-100 p-4 sm:p-8">
+            <div class="card mx-auto max-w-lg">
+              <div class="modal-header"><h3 class="modal-title">Jadwalkan wawancara</h3></div>
+              <div class="modal-body space-y-5">
+                <div>
+                  <label for="tp-9d" class="form-label">Tanggal</label>
+                  <input id="tp-9d" type="date" class="input" value="2026-10-08" />
+                </div>
+                <div>
+                  <p class="form-label">Jam tersedia</p>
+                  <ul class="grid grid-cols-3 gap-2"><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">10:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t" checked /><span class="choice-body">10:30</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">11:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">11:30</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">12:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">12:30</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">13:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">13:30</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">14:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">14:30</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">15:00</span></label></li><li><label class="choice choice-slot"><input type="radio" name="tp-9t"  /><span class="choice-body">15:30</span></label></li></ul>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn-primary btn-md">Simpan</button>
+                <button type="button" class="btn-outline btn-md">Batal</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Drawer with timepicker</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="relative h-[34rem] overflow-hidden rounded-xl border border-border bg-neutral-100">
+            <aside class="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col border-l border-border bg-surface shadow-card-lg" aria-label="Jadwal jam kerja">
+              <div class="flex items-center justify-between border-b border-border-subtle px-5 py-4">
+                <h3 class="card-title">Jadwal jam kerja</h3>
+                <button type="button" class="btn-ghost btn-icon-sm" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+              </div>
+              <div class="flex-1 space-y-5 overflow-y-auto px-5 py-4">
+                <label class="flex items-center justify-between text-sm font-medium text-fg">Aktifkan jam kerja
+                  <span class="toggle"><input type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></span>
+                </label>
+                <div>
+                  <label class="check-row mb-2 items-center"><input type="checkbox" class="form-check" checked /><span class="check-label">Senin</span></label>
+                  <div class="grid grid-cols-[1fr_1fr_auto] items-end gap-2">
+          
+            <div>
+          <label for="tp-10a0" class="form-label">Mulai</label>
+          <div class="timepicker">
+            <input type="time" id="tp-10a0" class="input" min="09:00" max="18:00" value="09:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div>
+          
+            <div>
+          <label for="tp-10b0" class="form-label">Selesai</label>
+          <div class="timepicker">
+            <input type="time" id="tp-10b0" class="input" min="09:00" max="18:00" value="17:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div>
+                    <button type="button" class="btn-ghost btn-icon-lg" aria-label="Hapus interval"><i class="kk kk-trash h-4 w-4"></i></button>
+                  </div>
+                </div><div>
+                  <label class="check-row mb-2 items-center"><input type="checkbox" class="form-check" checked /><span class="check-label">Selasa</span></label>
+                  <div class="grid grid-cols-[1fr_1fr_auto] items-end gap-2">
+          
+            <div>
+          <label for="tp-10a1" class="form-label">Mulai</label>
+          <div class="timepicker">
+            <input type="time" id="tp-10a1" class="input" min="09:00" max="18:00" value="09:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div>
+          
+            <div>
+          <label for="tp-10b1" class="form-label">Selesai</label>
+          <div class="timepicker">
+            <input type="time" id="tp-10b1" class="input" min="09:00" max="18:00" value="17:00"  />
+            <span class="timepicker-icon"><i class="kk kk-clock h-4 w-4"></i></span>
+          </div>
+            </div>
+                    <button type="button" class="btn-ghost btn-icon-lg" aria-label="Hapus interval"><i class="kk kk-trash h-4 w-4"></i></button>
+                  </div>
+                </div>
+                <button type="button" class="btn-outline btn-sm"><i class="kk kk-plus h-3.5 w-3.5"></i>Tambah interval</button>
+              </div>
+              <div class="grid grid-cols-2 gap-2 border-t border-border-subtle px-5 py-4">
+                <button type="button" class="btn-outline btn-md">Tutup</button>
+                <button type="button" class="btn-primary btn-md">Simpan semua</button>
+              </div>
+            </aside>
           </div>
         </div>
       </div>

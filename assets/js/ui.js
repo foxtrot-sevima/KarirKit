@@ -3,6 +3,8 @@
 
    Dismiss:   <button data-ui-dismiss=".alert">          removes the closest matching ancestor
    Dropdown:  <button data-ui-dropdown> + next sibling .dropdown-menu (toggled via `hidden`)
+   Collapse:  <button data-ui-collapse aria-controls="id" aria-expanded="false"> toggles #id via `hidden`
+   Close:     <button data-ui-dropdown-close>            closes every open dropdown
    Tabs:      <div data-ui-tabs>
                 <button role="tab" data-ui-tab="id" aria-selected="true|false">
                 <div role="tabpanel" id="id" class="hidden?">  */
@@ -38,6 +40,19 @@
   document.addEventListener('click', function (e) {
     var d = e.target.closest('[data-ui-dismiss]');
     if (d) return dismiss(d);
+
+    if (e.target.closest('[data-ui-dropdown-close]')) return closeDropdowns(null);
+
+    var col = e.target.closest('[data-ui-collapse]');
+    if (col) {
+      var panel = document.getElementById(col.getAttribute('aria-controls'));
+      var show = col.getAttribute('aria-expanded') !== 'true';
+      col.setAttribute('aria-expanded', show ? 'true' : 'false');
+      if (panel) panel.classList.toggle('hidden', !show);
+      var chev = col.querySelector('i:last-child');
+      if (chev) chev.classList.toggle('rotate-180', show);
+      return;
+    }
 
     var dd = e.target.closest('[data-ui-dropdown]');
     if (dd) {

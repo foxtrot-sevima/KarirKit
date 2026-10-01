@@ -257,6 +257,7 @@ html[data-theme="dark"] .btn-primary:hover:not(:disabled) { background-color: #1
 html[data-theme="dark"] .btn-danger:hover:not(:disabled) { background-color: #b91c1c; }
 html[data-theme="dark"] .btn-success:hover:not(:disabled) { background-color: #047857; }
 html[data-theme="dark"] .btn-warning:hover:not(:disabled) { background-color: #d97706; }
+html[data-theme="dark"] .input-group-btn:hover { background-color: #1950c8; }
 
 /* Logo pair: <img class="logo-on-light"> + <img class="logo-on-dark"> */
 .logo-on-dark { display: none; }
@@ -19293,6 +19294,90 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .tab-underline[aria-selected="true"] { @apply border-primary-600 text-primary-700 hover:border-primary-600; }
   .card-horizontal { @apply flex flex-col md:flex-row; }
   .card-horizontal > .card-img { @apply aspect-video md:aspect-auto md:w-52 md:rounded-l-card md:rounded-tr-none; }
+
+  /* ==== Form choice controls (radio / checkbox / toggle extras) ==== */
+  .check-row { @apply flex items-start gap-3; }
+  .check-label { @apply cursor-pointer text-sm font-medium text-fg; }
+  .check-help { @apply mt-0.5 text-xs text-fg-subtle; }
+  .check-bordered {
+    @apply flex cursor-pointer items-center gap-3 rounded-control border border-border bg-surface px-4 py-3 text-sm font-medium text-fg-muted transition-colors hover:bg-neutral-50;
+  }
+  .check-bordered:has(:checked) { @apply border-primary-600 bg-primary-50 text-primary-700; }
+  .check-bordered:has(:disabled) { @apply cursor-not-allowed opacity-60 hover:bg-surface; }
+  .check-bordered:has(:focus-visible) { @apply ring-2 ring-primary-500/30; }
+  .check-list { @apply divide-y divide-border-subtle overflow-hidden rounded-control border border-border bg-surface; }
+  .check-list-horizontal { @apply sm:flex sm:divide-x sm:divide-y-0; }
+  .check-list-horizontal > * { @apply sm:flex-1; }
+  .check-list-item { @apply flex items-center gap-3 px-4 py-3 text-sm font-medium text-fg-muted; }
+  .choice { @apply relative block; }
+  .choice > input { @apply sr-only; }
+  .choice-body {
+    @apply flex h-full cursor-pointer flex-col gap-1 rounded-control border border-border bg-surface p-4 text-sm text-fg-muted transition-colors hover:bg-neutral-50;
+  }
+  .choice-title { @apply text-sm font-semibold text-fg; }
+  .choice > input:checked + .choice-body { @apply border-primary-600 bg-primary-50 text-primary-700 ring-1 ring-primary-600; }
+  .choice > input:checked + .choice-body .choice-title { @apply text-primary-700; }
+  .choice > input:focus-visible + .choice-body { @apply ring-2 ring-primary-500/40; }
+  .choice > input:disabled + .choice-body { @apply cursor-not-allowed opacity-50 hover:bg-surface; }
+  .choice-slot .choice-body { @apply items-center justify-center px-3 py-2 text-center font-medium; }
+  .form-check-red:checked, .form-radio-red:checked { @apply border-red-600 bg-red-600 hover:border-red-700 hover:bg-red-700; }
+  .form-check-red:focus-visible, .form-radio-red:focus-visible { @apply ring-red-500/20; }
+  .form-check-green:checked, .form-radio-green:checked { @apply border-green-600 bg-green-600 hover:border-green-700 hover:bg-green-700; }
+  .form-check-green:focus-visible, .form-radio-green:focus-visible { @apply ring-green-500/20; }
+  .form-check-purple:checked, .form-radio-purple:checked { @apply border-purple-600 bg-purple-600 hover:border-purple-700 hover:bg-purple-700; }
+  .form-check-purple:focus-visible, .form-radio-purple:focus-visible { @apply ring-purple-500/20; }
+  .form-check-teal:checked, .form-radio-teal:checked { @apply border-teal-600 bg-teal-600 hover:border-teal-700 hover:bg-teal-700; }
+  .form-check-teal:focus-visible, .form-radio-teal:focus-visible { @apply ring-teal-500/20; }
+  .form-check-yellow:checked, .form-radio-yellow:checked { @apply border-yellow-600 bg-yellow-600 hover:border-yellow-700 hover:bg-yellow-700; }
+  .form-check-yellow:focus-visible, .form-radio-yellow:focus-visible { @apply ring-yellow-500/20; }
+  .form-check-orange:checked, .form-radio-orange:checked { @apply border-orange-600 bg-orange-600 hover:border-orange-700 hover:bg-orange-700; }
+  .form-check-orange:focus-visible, .form-radio-orange:focus-visible { @apply ring-orange-500/20; }
+  .toggle-red .toggle-input:checked + .toggle-track { @apply bg-red-600; }
+  .toggle-red .toggle-input:focus-visible + .toggle-track { @apply ring-red-500/20; }
+  .toggle-green .toggle-input:checked + .toggle-track { @apply bg-green-600; }
+  .toggle-green .toggle-input:focus-visible + .toggle-track { @apply ring-green-500/20; }
+  .toggle-purple .toggle-input:checked + .toggle-track { @apply bg-purple-600; }
+  .toggle-purple .toggle-input:focus-visible + .toggle-track { @apply ring-purple-500/20; }
+  .toggle-teal .toggle-input:checked + .toggle-track { @apply bg-teal-600; }
+  .toggle-teal .toggle-input:focus-visible + .toggle-track { @apply ring-teal-500/20; }
+  .toggle-yellow .toggle-input:checked + .toggle-track { @apply bg-yellow-600; }
+  .toggle-yellow .toggle-input:focus-visible + .toggle-track { @apply ring-yellow-500/20; }
+  .toggle-orange .toggle-input:checked + .toggle-track { @apply bg-orange-600; }
+  .toggle-orange .toggle-input:focus-visible + .toggle-track { @apply ring-orange-500/20; }
+  .toggle-lg { @apply h-7 w-14; }
+  .toggle-lg .toggle-track { @apply h-7 w-14; }
+  .toggle-lg .toggle-track::after { @apply h-5 w-5; }
+  .toggle-lg .toggle-input:checked + .toggle-track::after { transform: translateX(1.75rem); }
+
+  /* ==== Input group + search ==== */
+  .input-group { @apply flex w-full items-stretch; }
+  .input-group > .input { @apply min-w-0 flex-1 rounded-none; }
+  .input-group > .input-wrap { @apply relative min-w-0 flex-1; }
+  .input-group > .input-wrap > .input { @apply rounded-none; }
+  .input-group > :not(:first-child) { @apply -ml-px; }
+  .input-group > .btn-group-item,
+  .input-group > .input-group-btn,
+  .input-group > .relative > .btn-group-item { @apply rounded-none; }
+  .input-group > :first-child,
+  .input-group > :first-child > .input,
+  .input-group > :first-child > .btn-group-item { @apply rounded-l-control; }
+  .input-group > :last-child,
+  .input-group > :last-child > .input,
+  .input-group > :last-child > .btn-group-item { @apply rounded-r-control; }
+  .input-group .input:focus { @apply relative z-10; }
+  .input-group-btn {
+    @apply inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 border border-primary-600 bg-primary-600 px-4 text-sm font-semibold text-white
+           transition-colors hover:bg-primary-700 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/40;
+  }
+  .input-icon-btn {
+    @apply absolute top-1/2 right-1.5 inline-flex h-7 w-7 -translate-y-1/2 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg;
+  }
+
+  /* ==== Timepicker (native time input + clock icon) ==== */
+  .timepicker { @apply relative; }
+  .timepicker .input { @apply pr-10; }
+  .timepicker .input::-webkit-calendar-picker-indicator { position: absolute; top: 0; right: 0; width: 2.75rem; height: 100%; opacity: 0; cursor: pointer; }
+  .timepicker-icon { @apply pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-fg-subtle; }
 
   /* Breadcrumb */
   .breadcrumb { @apply flex flex-wrap items-center gap-1.5 text-sm; }

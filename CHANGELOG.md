@@ -6,6 +6,24 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **Komponen Timepicker** (baru) - `.timepicker` membungkus `<input type="time">`
+  bawaan browser dengan ikon jam (`.timepicker-icon`), jam dibatasi lewat
+  `min`/`max`. Contoh: default, dengan ikon, dropdown durasi, select zona
+  waktu, rentang mulai-selesai, rentang di dropdown / toggle, tombol slot waktu
+  (`.choice-slot`), modal, dan drawer jam kerja. Story **Components -> Timepicker**
+  + section di `index.html`.
+- **Radio** - helper text (`.check-help`), bordered (`.check-bordered`), list
+  group vertikal/horizontal (`.check-list`, `.check-list-horizontal`), radio di
+  dropdown, inline, dan kartu pilihan (`.choice`, `.choice-body`) dengan/tanpa ikon.
+- **Checkbox** - semua layout Radio di atas ditambah bordered dengan deskripsi
+  dan ikon, checkbox di dropdown (cari + hapus terpilih), dan warna
+  (`.form-check-red|green|purple|teal|yellow|orange`; radio: `.form-radio-*`).
+- **Toggle** - label ganda, ikon di kedua sisi, kartu (dengan ikon), warna
+  (`.toggle-red|green|purple|yellow|teal|orange`), dan ukuran `.toggle-lg`.
+- **Search input** - `.input-group` (+ `.input-wrap`, `.input-group-btn`,
+  `.input-icon-btn`) untuk pencarian dengan dropdown kategori, lokasi, suara,
+  dan filter lanjutan.
+- `assets/js/ui.js`: `data-ui-collapse` (toggle panel) dan `data-ui-dropdown-close`.
 - **Komponen Button Group** (baru) - `.btn-group` / `.btn-group-vertical` berisi
   `.btn-group-item`, dengan item aktif (`aria-current="true"`), warna
   (`.btn-group-item-primary|success|danger|dark`), dan slot untuk dropdown/tooltip

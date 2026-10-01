@@ -25,6 +25,7 @@ const preview = {
             "Search",
             "Select",
             "Date Picker",
+            "Timepicker",
             "Textarea",
             "Checkbox",
             "Radio",
