@@ -36,10 +36,13 @@ const search = (id = "ts") => `
     <label for="${id}" class="sr-only">Cari</label>
     <input id="${id}" type="search" class="input h-10 w-64 pl-10" placeholder="Cari" data-table-search />
   </div>`;
-const headCells = (cols) => cols.map((c) => `<th scope="col">${c}</th>`).join("");
+// Every table carries a "No" column; table.js renumbers it after sort/filter/paging.
+const noTh = `<th scope="col" class="table-col-num">No</th>`;
+const noTd = (i) => `<td class="table-col-num" data-num>${i + 1}</td>`;
+const headCells = (cols) => noTh + cols.map((c) => `<th scope="col">${c}</th>`).join("");
 const jobRows = (n = 5, extra = () => "") =>
-  JOBS.slice(0, n).map((j) => `<tr>
-        <td class="font-medium text-fg">${j[0]}</td><td>${j[1]}</td><td>${j[2]}</td><td data-value="${j[3]}">${rp(j[3])}</td><td data-value="${j[4]}">${j[4]}</td>${extra(j)}
+  JOBS.slice(0, n).map((j, i) => `<tr>
+        ${noTd(i)}<td class="font-medium text-fg">${j[0]}</td><td>${j[1]}</td><td>${j[2]}</td><td data-value="${j[3]}">${rp(j[3])}</td><td data-value="${j[4]}">${j[4]}</td>${extra(j)}
       </tr>`).join("");
 const JOB_COLS = ["Posisi", "Perusahaan", "Kategori", "Gaji", "Kuota"];
 const simpleTable = (cls, { rows = 5, wrap = "table-wrap", extraHead = "", extra } = {}) => exBlock(`
@@ -64,7 +67,7 @@ export default {
     docs: {
       description: {
         component:
-          "Tabel data. Gaya: `.table` di dalam `.table-wrap` (scroll horizontal + border + radius). Varian: `.table-striped`, `.table-striped-cols`, `.table-hover`, `.table-borderless`, `.table-bordered`, `.table-sm`/`.table-lg`, `.table-sticky` (dengan `.table-scroll`), `.table-head-soft`, `.table-wrap-shadow`, plus `<caption class=\"table-caption\">` dan `<tfoot>`. Fungsi (sortir, cari, filter, pagination, pilih baris, menu aksi, counter, modal edit) disediakan `assets/js/table.js` lewat atribut `data-table`, `data-sort`, `data-table-search`, `data-page-size`, `data-table-select*`, dst. Tanpa JS tabel tetap tampil benar; template lama (`.table`, `.th-sortable`, `.table-col-*`) tidak berubah.",
+          "Tabel data. Gaya: `.table` di dalam `.table-wrap` (scroll horizontal + border + radius). Varian: `.table-striped`, `.table-striped-cols`, `.table-hover`, `.table-borderless`, `.table-bordered`, `.table-sm`/`.table-lg`, `.table-sticky` (dengan `.table-scroll`), `.table-head-soft`, `.table-wrap-shadow`, plus `<caption class=\"table-caption\">` dan `<tfoot>`. Fungsi (sortir, cari, filter, pagination, pilih baris, menu aksi, counter, modal edit) disediakan `assets/js/table.js` lewat atribut `data-table`, `data-sort`, `data-table-search`, `data-page-size`, `data-table-select*`, dst. Setiap tabel punya kolom **No** (`.table-col-num` + `data-num`) yang diberi nomor ulang mengikuti urutan tampilan - setelah sortir, filter, pagination (lanjut 6, 7, …), dan hapus baris. Tanpa JS tabel tetap tampil benar; template lama (`.table`, `.th-sortable`, `.table-col-*`) tidak berubah.",
       },
     },
   },
@@ -83,7 +86,7 @@ export const TableHead = {
   render: () =>
     exBlock(`<div class="table-wrap" data-table>
       <table class="table table-head-soft">
-        <thead><tr>${sortHead("Posisi", "text")}${sortHead("Perusahaan", "text")}${sortHead("Kategori", "text")}${sortHead("Gaji", "number")}${sortHead("Kuota", "number")}<th scope="col"><span class="sr-only">Aksi</span></th></tr></thead>
+        <thead><tr>${noTh}${sortHead("Posisi", "text")}${sortHead("Perusahaan", "text")}${sortHead("Kategori", "text")}${sortHead("Gaji", "number")}${sortHead("Kuota", "number")}<th scope="col"><span class="sr-only">Aksi</span></th></tr></thead>
         <tbody>${jobRows(5, () => `<td class="text-right">${editLink}</td>`)}</tbody>
       </table>
     </div>`),
@@ -95,7 +98,7 @@ export const TableFoot = {
     exBlock(`<div class="table-wrap"><table class="table table-head-soft table-static">
       <thead><tr>${headCells(JOB_COLS)}</tr></thead>
       <tbody>${jobRows(4)}</tbody>
-      <tfoot><tr><th scope="row" colspan="3">Total</th><td>${rp(JOBS.slice(0, 4).reduce((a, j) => a + j[3], 0))}</td><td>${JOBS.slice(0, 4).reduce((a, j) => a + j[4], 0)}</td></tr></tfoot>
+      <tfoot><tr><th scope="row" colspan="4">Total</th><td>${rp(JOBS.slice(0, 4).reduce((a, j) => a + j[3], 0))}</td><td>${JOBS.slice(0, 4).reduce((a, j) => a + j[4], 0)}</td></tr></tfoot>
     </table></div>`),
 };
 
@@ -119,7 +122,7 @@ export const OverflowScrolling = {
     const cols = ["Posisi", "Perusahaan", "Kategori", "Lokasi", "Tipe", "Level", "Gaji", "Kuota", "Pelamar", "Tenggat", "Status"];
     const rows = JOBS.slice(0, 5).map((j, i) => `<tr>
       <td class="w-10"><input type="checkbox" class="form-check form-check-sm" aria-label="Pilih ${j[0]}" /></td>
-      <td class="font-medium text-fg whitespace-nowrap">${j[0]}</td><td class="whitespace-nowrap">${j[1]}</td><td>${j[2]}</td><td>Jakarta</td><td>Full-time</td><td>Junior</td>
+      ${noTd(i)}<td class="font-medium text-fg whitespace-nowrap">${j[0]}</td><td class="whitespace-nowrap">${j[1]}</td><td>${j[2]}</td><td>Jakarta</td><td>Full-time</td><td>Junior</td>
       <td class="whitespace-nowrap">${rp(j[3])}</td><td>${j[4]}</td><td>${120 + i * 17}</td><td class="whitespace-nowrap">3${i} Okt 2026</td><td><span class="badge badge-success badge-rounded">Dibuka</span></td>
     </tr>`).join("");
     return exBlock(`<div class="table-wrap max-w-3xl"><table class="table table-head-soft table-static">
@@ -148,8 +151,8 @@ export const TableFilter = {
         <div class="relative">
           <button type="button" class="btn-outline btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true">${ic("funnel")}<span data-table-filter-label data-default="Filter">Filter</span>${ic("caret-down", "h-3 w-3")}</button>
           <div class="dropdown-menu hidden left-0 right-auto w-48">
-            <button type="button" class="dropdown-item" data-filter-col="2" data-filter-value="">Semua kategori</button>
-            ${cats.map((c) => `<button type="button" class="dropdown-item" data-filter-col="2" data-filter-value="${c}">${c}</button>`).join("")}
+            <button type="button" class="dropdown-item" data-filter-col="3" data-filter-value="">Semua kategori</button>
+            ${cats.map((c) => `<button type="button" class="dropdown-item" data-filter-col="3" data-filter-value="${c}">${c}</button>`).join("")}
           </div>
         </div>
         ${search("ts-2")}
@@ -181,9 +184,9 @@ export const CheckboxSelection = {
       </div>
       <table class="table table-head-soft">
         <thead><tr><th class="w-10"><input type="checkbox" class="form-check form-check-sm" data-table-select-all aria-label="Pilih semua" /></th>${headCells(JOB_COLS)}</tr></thead>
-        <tbody>${JOBS.slice(0, 6).map((j) => `<tr>
+        <tbody>${JOBS.slice(0, 6).map((j, i) => `<tr>
           <td><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih ${j[0]}" /></td>
-          <td class="font-medium text-fg">${j[0]}</td><td>${j[1]}</td><td>${j[2]}</td><td>${rp(j[3])}</td><td>${j[4]}</td></tr>`).join("")}</tbody>
+          ${noTd(i)}<td class="font-medium text-fg">${j[0]}</td><td>${j[1]}</td><td>${j[2]}</td><td>${rp(j[3])}</td><td>${j[4]}</td></tr>`).join("")}</tbody>
       </table>
     </div>`),
 };
@@ -194,11 +197,11 @@ export const TableWithUsers = {
     exBlock(`<div class="table-wrap" data-table data-page-size="5">
       <div class="table-toolbar">${search("ts-u")}<span class="text-sm text-fg-muted">${USERS.length} pelamar</span></div>
       <table class="table table-head-soft table-hover">
-        <thead><tr><th class="w-10"><input type="checkbox" class="form-check form-check-sm" data-table-select-all aria-label="Pilih semua" /></th>
+        <thead><tr><th class="w-10"><input type="checkbox" class="form-check form-check-sm" data-table-select-all aria-label="Pilih semua" /></th>${noTh}
           ${sortHead("Nama", "text")}${sortHead("Posisi", "text")}${sortHead("Status", "text")}<th scope="col"><span class="sr-only">Aksi</span></th></tr></thead>
         <tbody>${USERS.map((u, i) => `<tr>
           <td><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih ${u[0]}" /></td>
-          <td>${userCell(u, i)}</td><td>${u[2]}</td><td>${statusCell(u[3])}</td>
+          ${noTd(i)}<td>${userCell(u, i)}</td><td>${u[2]}</td><td>${statusCell(u[3])}</td>
           <td><div class="flex items-center justify-end gap-1">${editLink}${menu(MENU)}</div></td></tr>`).join("")}</tbody>
       </table>
       <div data-table-empty hidden class="table-empty">Pelamar tidak ditemukan.</div>
@@ -217,9 +220,9 @@ export const TableWithProducts = {
   render: () =>
     exBlock(`<div class="table-wrap" data-table>
       <table class="table table-head-soft table-static">
-        <thead><tr><th class="w-24"><span class="sr-only">Gambar</span></th><th scope="col">Kelas</th><th scope="col">Jumlah</th><th scope="col">Harga</th><th scope="col"><span class="sr-only">Hapus</span></th></tr></thead>
-        <tbody>${CART.map(([n, p, q, i]) => `<tr data-price="${p}">
-          <td><img src="${coverSrc(i)}" alt="${n}" class="h-14 w-20 rounded-lg object-cover" /></td>
+        <thead><tr>${noTh}<th class="w-24"><span class="sr-only">Gambar</span></th><th scope="col">Kelas</th><th scope="col">Jumlah</th><th scope="col">Harga</th><th scope="col"><span class="sr-only">Hapus</span></th></tr></thead>
+        <tbody>${CART.map(([n, p, q, i], idx) => `<tr data-price="${p}">
+          ${noTd(idx)}<td><img src="${coverSrc(i)}" alt="${n}" class="h-14 w-20 rounded-lg object-cover" /></td>
           <td class="font-medium text-fg">${n}</td>
           <td><div class="counter" data-counter data-min="1" data-max="9">
             <button type="button" class="counter-btn" data-counter-dec aria-label="Kurangi">${ic("minus", "h-3.5 w-3.5")}</button>
@@ -228,7 +231,7 @@ export const TableWithProducts = {
           </div></td>
           <td class="font-semibold text-fg" data-line-total>${rp(p * q)}</td>
           <td class="text-right"><a href="#" class="text-sm font-medium text-danger-600 hover:underline" data-row-remove>Hapus</a></td></tr>`).join("")}</tbody>
-        <tfoot><tr><th scope="row" colspan="3" class="text-right">Total</th><td colspan="2" data-cart-total>${rp(CART.reduce((a, c) => a + c[1] * c[2], 0))}</td></tr></tfoot>
+        <tfoot><tr><th scope="row" colspan="4" class="text-right">Total</th><td colspan="2" data-cart-total>${rp(CART.reduce((a, c) => a + c[1] * c[2], 0))}</td></tr></tfoot>
       </table>
       <div data-table-empty hidden class="table-empty">Keranjang kosong.</div>
     </div>`),
@@ -248,9 +251,9 @@ export const TableWithModal = {
         ${search("ts-m")}
       </div>
       <table class="table table-head-soft table-hover">
-        <thead><tr><th scope="col">Nama</th><th scope="col">Posisi</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Aksi</span></th></tr></thead>
+        <thead><tr>${noTh}<th scope="col">Nama</th><th scope="col">Posisi</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Aksi</span></th></tr></thead>
         <tbody>${USERS.slice(0, 4).map((u, i) => `<tr data-user-name="${u[0]}" data-user-position="${u[2]}" data-user-status="${u[3]}" data-user-bio="${u[4]}">
-          <td>${userCell(u, i)}</td><td data-cell="position">${u[2]}</td><td>${statusCell(u[3])}</td>
+          ${noTd(i)}<td>${userCell(u, i)}</td><td data-cell="position">${u[2]}</td><td>${statusCell(u[3])}</td>
           <td class="text-right"><a href="#" class="card-link" data-table-modal-open="#tbl-modal-user">Edit pelamar</a></td></tr>`).join("")}</tbody>
       </table>
       <div class="modal-backdrop" id="tbl-modal-user" data-table-modal role="dialog" aria-modal="true" aria-labelledby="tbl-modal-title">

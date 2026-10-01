@@ -9,6 +9,8 @@
    Pagination: <div data-table-pagination><span data-table-info></span><nav data-table-pages></nav></div>
    Select:     <input type="checkbox" data-table-select-all> / <input type="checkbox" data-table-select>
                <div data-table-bulk hidden> ... <span data-table-selected-count></span></div>
+   Number:     <th class="table-col-num">No</th> / <td class="table-col-num" data-num>1</td> - renumbered in display order
+               (after sort, filter, paging and row removal); every table keeps a "No" column
    Empty:      <div data-table-empty hidden>...</div>
    Row menu:   <button data-table-menu aria-expanded="false"> + next sibling .dropdown-menu.hidden  (fixed-positioned: not clipped)
    Counter:    <div class="counter" data-counter data-min="1" data-max="9"> [data-counter-dec] <input class="counter-input"> [data-counter-inc]
@@ -96,7 +98,10 @@
       if (state.page > pages) state.page = pages;
       var start = size ? (state.page - 1) * size : 0, end = size ? start + size : visible.length;
       rows.forEach(function (r) { r.hidden = true; });
-      visible.slice(start, end).forEach(function (r) { r.hidden = false; });
+      visible.slice(start, end).forEach(function (r, i) {
+        r.hidden = false;
+        var n = r.querySelector('[data-num]'); if (n) n.textContent = start + i + 1; // "No" follows display order
+      });
 
       var empty = root.querySelector('[data-table-empty]'); if (empty) empty.hidden = visible.length > 0;
       var info = root.querySelector('[data-table-info]');
@@ -234,6 +239,7 @@
       e.preventDefault();
       var row = rm.closest('tr'), scope = row.closest('[data-table]') || document;
       row.remove(); recalcTotals(scope);
+      $$(scope, 'tr[data-price]').forEach(function (r, i) { var n = r.querySelector('[data-num]'); if (n) n.textContent = i + 1; });
       var empty = scope.querySelector('[data-table-empty]'); if (empty) empty.hidden = scope.querySelectorAll('tr[data-price]').length > 0;
       return;
     }

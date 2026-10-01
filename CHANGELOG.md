@@ -12,6 +12,9 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   Table caption, Without border, Table with shadow, Overflow scrolling, Table
   search, Table filter, Table pagination, Checkbox selection, Table with users,
   Table with products, dan Table with modal.
+- **Setiap tabel punya kolom No** (`.table-col-num` + `data-num`). `table.js` menomori
+  ulang sesuai urutan tampilan: tetap berurutan setelah sortir, filter, pagination
+  (halaman 2 lanjut dari 6), dan hapus baris.
 - Gaya baru di `src/input.css`: container `.table-wrap` (+ `-shadow`,
   `-borderless`), `.table-striped`, `.table-striped-cols`, `.table-hover`,
   `.table-static`, `.table-borderless`, `.table-bordered`, `.table-sm`,
