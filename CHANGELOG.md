@@ -17,7 +17,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   kolom **No** selalu tampil (sebelumnya tersembunyi di bawah `xl`) dan ikut diurutkan ulang, toolbar `.table-toolbar`, footer `.table-footer`
   dengan info "Menampilkan a-b dari n periode", pagination ber-ellipsis, pilihan baris per halaman, dan aksi baris berupa tautan teks.
   Filter combo Tahun/Jenis dan kartu KPI tetap berjalan lewat hook baru `table.js`; skrip kebab-menu, filter, dan
-  pagination inline dihapus. Aksi baris tidak lagi memakai menu titik tiga: tautan "Lihat Detail" dan "Kirim Kuesioner" (ikon saja di bawah `xl`). Tabel muat tanpa scroll horizontal di 390, 768, 1024, dan layar lebih lebar. Template karirlink
+  pagination inline dihapus. Aksi baris tidak lagi memakai menu titik tiga: hanya "Lihat Detail" (tombol `btn-secondary` berlabel di bawah `xl`, tautan teks di `xl` ke atas); aksi "Kirim Kuesioner" dihapus. Tabel muat tanpa scroll horizontal di 390, 768, 1024, dan layar lebih lebar. Template karirlink
   lainnya belum diubah.
 - **Header tabel memakai Title Case** ("Periode Yudisium", "Status Karier") secara konsisten. `.table-head-soft` tidak lagi memaksa
   huruf kapital semua + ukuran kecil, yang sebelumnya hanya mengenai header biasa dan tidak mengenai header sortir (`.th-sort`), sehingga
