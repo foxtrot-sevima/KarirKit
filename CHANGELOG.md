@@ -2,6 +2,51 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.3.0] - 2026-10-01
+
+### Added
+
+- **Komponen QR Code** - SVG inline yang dirender offline oleh
+  `assets/js/qr-code.js` memakai library `qrcode-generator` (MIT, di-vendor
+  apa adanya di `assets/js/vendor/qrcode.js`, tanpa CDN; dicatat di
+  `THIRD-PARTY-LICENSES.md`). Class `.qr-code`, `.qr-overlay`, `.qr-spinner`
+  di `src/input.css`. Section dan story memakai penamaan Flowbite: QR code
+  generator (input live, pilihan error correction L/M/Q/H, Copy as SVG,
+  Save as file), Default QR code, QR code with input, QR code with card,
+  Share profile with QR, Loading state, Success state, Expired state. Kode
+  selalu hitam-di-atas-putih, juga di dark mode, supaya terbaca scanner.
+  Storybook memuat script lewat `.storybook/preview-head.html`; folder
+  `assets/js` ditambahkan ke `files` package.json.
+- **Komponen Toast** (`.toast`, `.toast-icon[-success|-danger|-warning|-info|-lg]`,
+  `.toast-title`, `.toast-close`, `.toast-action`, `.toast-region` + posisi
+  `.toast-top-left|top-right|bottom-left|bottom-right`) di `src/input.css`.
+  Memuat layout acuan Flowbite dengan penamaan section yang sama persis:
+  Default toast, Colors (success/danger/warning), Simple toast, Undo button,
+  Toast message, Push notification, Interactive toast, Toast illustration,
+  Toast progress bar, Toast danger alert, Toast warning alert, Positioning,
+  dan JavaScript behaviour. Helper opsional
+  `assets/js/toast.js` (`[data-toast-dismiss]`, `KKToast.show()`). Ada di
+  Storybook **Components → Toast** dan section "Toast" di `index.html`.
+- **Mode Terang / Gelap / Ikuti sistem** di `templates/dashboard.html`
+  (opt-in per halaman, halaman lain tidak berubah).
+  - Switcher tiga tombol (matahari/bulan/monitor) di topbar menggantikan
+    tombol bulan statis. Preferensi disimpan di `localStorage` key
+    `kk-theme`; mode "system" mengikuti `prefers-color-scheme` dan berubah
+    live saat tema OS berganti. Skrip di `<head>` memasang tema sebelum
+    render, jadi tidak ada kedip putih saat refresh.
+  - `src/input.css`: override map `html[data-theme="dark"]` yang membalik
+    skala `neutral`/`slate` dan menimpa token `surface` serta tint status &
+    brand (50/100/700). Warna solid 500/600 sengaja tidak diubah supaya
+    tombol berteks putih tetap kontras. Komentar "light-only" di header token
+    diperbarui.
+  - Logo ikut tema: pasangan `.logo-on-light` / `.logo-on-dark` (CSS-only,
+    tanpa kedip) memakai varian `karirlink-logo-white.svg` di mode gelap.
+  - Dokumentasi: halaman Storybook baru **Foundations → Theming**
+    (cara kerja, tabel yang di-override, snippet pasang di halaman baru,
+    batasan), plus pembaruan `README.md`.
+  - Batasan: baru dashboard yang memasang tema; palet dark belum divalidasi
+    tim desain; favicon tidak ikut tema halaman.
+
 ## [1.2.0] - 2026-09-16
 
 ### Added

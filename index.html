@@ -147,6 +147,8 @@
       <a href="#datatable" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">DataTable</a>
       <a href="#catalog-table" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Katalog</a>
       <a href="#alerts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Alert</a>
+      <a href="#toasts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Toast</a>
+      <a href="#qr-code" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">QR Code</a>
       <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Lainnya</a>
     </div>
   </div>
@@ -2108,6 +2110,232 @@
     </div>
   </section>
 
+  <!-- ============================= TOASTS ============================= -->
+  <section id="toasts" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Toast</h2>
+      <p class="mt-1 text-sm text-slate-500">Notifikasi sementara - varian ikon, aksi, avatar, progress, dan posisi. Tutup lewat <code class="kbd">[data-toast-dismiss]</code>; <code class="kbd">assets/js/toast.js</code> opsional untuk dismiss &amp; <code class="kbd">KKToast.show()</code>.</p>
+    </div>
+    <div class="card space-y-8 p-6 sm:p-8">
+      <div class="grid items-start gap-8 md:grid-cols-2 xl:grid-cols-3">
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Default toast</p>
+        <div class="toast toast-center" role="status">
+          <span class="toast-icon"><i class="kk kk-fire h-5 w-5"></i></span>
+          <div>Set yourself free.</div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Colors</p>
+        <div class="flex flex-col gap-4">
+        <div class="toast toast-center" role="status">
+          <span class="toast-icon toast-icon-success"><i class="kk kk-check h-5 w-5"></i></span>
+          <div>Item moved successfully.</div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+        <div class="toast toast-center" role="alert">
+          <span class="toast-icon toast-icon-danger"><i class="kk kk-x h-5 w-5"></i></span>
+          <div>Item has been deleted.</div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+        <div class="toast toast-center" role="alert">
+          <span class="toast-icon toast-icon-warning"><i class="kk kk-warning h-5 w-5"></i></span>
+          <div>Improve password difficulty.</div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Simple toast</p>
+        <div class="toast toast-center" role="status">
+          <i class="kk kk-paper-plane-tilt h-5 w-5 shrink-0 text-primary-600"></i>
+          <div>Message sent successfully.</div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Undo button</p>
+        <div class="toast toast-center" role="status">
+          <div>Conversation archived.</div>
+          <div class="ml-auto flex items-center gap-2">
+            <button type="button" class="toast-action">Undo</button>
+            <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Toast message</p>
+        <div class="toast toast-wide" role="status">
+          <span class="avatar h-10 w-10 text-sm">JL</span>
+          <div class="min-w-0">
+            <p class="toast-title">Jese Leos</p>
+            <p class="mt-0.5">Hi Neil, thanks for sharing your thoughts regarding Flowbite.</p>
+            <button type="button" class="btn-primary btn-sm mt-3"><i class="kk kk-arrow-bend-up-left h-3.5 w-3.5"></i>Reply</button>
+          </div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Push notification</p>
+        <div class="toast toast-wide" role="status">
+          <div class="min-w-0 flex-1">
+            <div class="mb-3 flex items-center justify-between gap-3">
+              <span class="badge-primary">New notification</span>
+              <span class="text-xs font-medium text-primary-600">a few seconds ago</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="avatar h-10 w-10 text-sm">BG</span>
+              <div class="min-w-0">
+                <p class="text-sm font-semibold text-fg">Bonnie Green</p>
+                <p class="text-sm">commented on your photo</p>
+              </div>
+            </div>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <button type="button" class="btn-secondary btn-sm" data-toast-dismiss>Close</button>
+              <button type="button" class="btn-primary btn-sm"><i class="kk kk-arrow-bend-up-left h-3.5 w-3.5"></i>Reply</button>
+            </div>
+          </div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Interactive toast</p>
+        <div class="toast toast-wide" role="status">
+          <span class="toast-icon"><i class="kk kk-arrow-clockwise h-5 w-5"></i></span>
+          <div class="min-w-0 flex-1">
+            <p class="toast-title">Update available</p>
+            <p class="mt-0.5">A new software version is available for download.</p>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <button type="button" class="btn-secondary btn-sm" data-toast-dismiss>Not now</button>
+              <button type="button" class="btn-primary btn-sm"><i class="kk kk-download-simple h-3.5 w-3.5"></i>Update</button>
+            </div>
+          </div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Toast illustration</p>
+        <div class="toast toast-wide flex-col" role="status">
+          <div class="flex items-start gap-3">
+            <div class="min-w-0 flex-1">
+              <svg viewBox="0 0 240 120" class="mb-3 w-full rounded-control bg-primary-50" role="img" aria-label="Ilustrasi ponsel dengan dompet digital">
+                <rect x="82" y="12" width="76" height="132" rx="14" class="fill-surface stroke-primary-600" stroke-width="3" />
+                <rect x="92" y="28" width="56" height="30" rx="6" class="fill-primary-100" />
+                <rect x="92" y="66" width="38" height="5" rx="2.5" class="fill-primary-200" />
+                <rect x="92" y="78" width="26" height="5" rx="2.5" class="fill-primary-200" />
+                <circle cx="140" cy="100" r="9" class="fill-primary-600" />
+                <path d="M136 100h8M140 96v8" class="stroke-white" stroke-width="2" stroke-linecap="round" />
+                <circle cx="40" cy="30" r="6" class="fill-secondary-200" />
+                <circle cx="200" cy="82" r="9" class="fill-secondary-100" />
+              </svg>
+              <p class="toast-title">Connect your wallet</p>
+              <p class="mt-0.5">Connect your wallet by clicking the bottom-right blue button.</p>
+            </div>
+            <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" class="btn-secondary btn-sm" data-toast-dismiss>Not now</button>
+            <button type="button" class="btn-primary btn-sm"><i class="kk kk-wallet h-3.5 w-3.5"></i>Connect</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Toast progress bar</p>
+        <div class="toast toast-wide" role="status">
+          <span class="toast-icon"><i class="kk kk-arrow-clockwise h-5 w-5"></i></span>
+          <div class="min-w-0 flex-1">
+            <p class="toast-title">Uploading in progress</p>
+            <p class="mt-0.5">Please wait while your file is being uploaded. This may take a moment.</p>
+            <div class="mt-3 flex items-center gap-3">
+              <div class="progress-track flex-1"><div class="progress-bar w-3/4"></div></div>
+              <span class="text-xs font-semibold text-fg">75%</span>
+            </div>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <button type="button" class="btn-secondary btn-sm" data-toast-dismiss>Cancel upload</button>
+              <button type="button" class="btn-primary btn-sm">Go to uploads</button>
+            </div>
+          </div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Toast danger alert</p>
+        <div class="toast toast-wide toast-danger" role="alert">
+          <span class="toast-icon toast-icon-danger"><i class="kk kk-warning-circle h-5 w-5"></i></span>
+          <div class="min-w-0 flex-1">
+            <p class="toast-title">Whoops! Something went wrong</p>
+            <p class="mt-0.5">The file format is not supported. Please upload a valid file type (PDF, JPG, PNG).</p>
+            <div class="mt-3 flex gap-2">
+              <button type="button" class="btn-danger btn-sm"><i class="kk kk-upload-simple h-3.5 w-3.5"></i>Try again</button>
+              <button type="button" class="btn-outline btn-sm" data-toast-dismiss>Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Toast warning alert</p>
+        <div class="toast toast-wide toast-warning" role="alert">
+          <div class="min-w-0 flex-1">
+            <div class="mb-2 flex items-center gap-2">
+              <i class="kk kk-info h-5 w-5 shrink-0"></i>
+              <span class="text-sm font-semibold">Info</span>
+            </div>
+            <p class="toast-title">Upload your invoice</p>
+            <p class="mt-0.5">Upload your invoice in one of the supported formats (PDF, JPG, PNG) with a maximum file size of 5MB. Ensure that all relevant details are visible for verification.</p>
+            <div class="mt-3 flex gap-2">
+              <button type="button" class="btn-primary btn-sm"><i class="kk kk-eye h-3.5 w-3.5"></i>Upload invoice</button>
+              <button type="button" class="btn-outline btn-sm" data-toast-dismiss>Remind me later</button>
+            </div>
+          </div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Positioning</p>
+        <div class="relative h-[28rem] overflow-hidden rounded-card border border-dashed border-border bg-neutral-50">
+          <div class="toast-region toast-region-contained toast-top-left">
+            <div class="toast toast-center" role="status">
+              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+              <div>Top left positioning.</div>
+              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+            </div>
+          </div>
+          <div class="toast-region toast-region-contained toast-top-right">
+            <div class="toast toast-center" role="status">
+              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+              <div>Top right positioning.</div>
+              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+            </div>
+          </div>
+          <div class="toast-region toast-region-contained toast-bottom-right">
+            <div class="toast toast-center" role="status">
+              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+              <div>Bottom right positioning.</div>
+              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+            </div>
+          </div>
+          <div class="toast-region toast-region-contained toast-bottom-left">
+            <div class="toast toast-center" role="status">
+              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+              <div>Bottom left positioning.</div>
+              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">JavaScript behaviour</p>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="btn-primary btn-sm" data-toast-show="success">Tampilkan toast sukses</button>
+          <button type="button" class="btn-outline btn-sm" data-toast-show="danger">Tampilkan toast error</button>
+          <button type="button" class="btn-outline btn-sm" data-toast-show="warning">Tampilkan toast peringatan</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================= PROGRESS / MISC ============================= -->
   <section id="progress" class="scroll-mt-32 py-12">
     <div class="mb-6">
@@ -3165,5 +3393,8 @@
     applyFilter();
   })();
 </script>
+<script src="assets/js/toast.js"></script>
+<script src="assets/js/vendor/qrcode.js"></script>
+<script src="assets/js/qr-code.js"></script>
 </body>
 </html>
