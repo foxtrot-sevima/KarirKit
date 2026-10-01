@@ -12,7 +12,7 @@ const preview = {
           "Guides",
           ["Introduction", "Installation", "Table of Dependency", "Table of Version", "Changelog"],
           "Foundations",
-          ["Colors", "Typography", "Icons"],
+          ["Colors", "Typography", "Icons", "Theming"],
           "Components",
           [
             "Button",

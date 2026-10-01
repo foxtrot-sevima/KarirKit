@@ -39,8 +39,9 @@
    2. Semantic   — purpose aliases (background, fg, border, …)
    3. Component  — control sizing / radius used by @layer components
 
-   Dark mode: light-only for now. Theme switching is deferred; do not add
-   ad-hoc dark: utilities until semantic tokens get a .dark override map.
+   Dark mode: opt-in via <html data-theme="dark"> (see the override map after
+   @theme). Pages without the attribute stay light. Do not add ad-hoc dark:
+   utilities; extend the override map instead.
    ========================================================================== */
 @theme {
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -182,6 +183,82 @@
     to { opacity: 1; transform: translateY(0); }
   }
 }
+
+/* ==========================================================================
+   Dark theme — override map, active under <html data-theme="dark">
+
+   Remaps the neutral/slate scales (inverted), semantic surface tokens and the
+   tinted status/brand shades. Solid 500/600 status + brand colors stay as-is so
+   white-on-color controls keep their contrast.
+   ========================================================================== */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-neutral-50: #0b1120;
+  --color-neutral-100: #1e293b;
+  --color-neutral-200: #263449;
+  --color-neutral-300: #3b4a61;
+  --color-neutral-400: #7c8ba1;
+  --color-neutral-500: #94a3b8;
+  --color-neutral-600: #a9b6c8;
+  --color-neutral-700: #cbd5e1;
+  --color-neutral-800: #e2e8f0;
+  --color-neutral-900: #f1f5f9;
+  --color-neutral-950: #f8fafc;
+
+  --color-slate-50: var(--color-neutral-50);
+  --color-slate-100: var(--color-neutral-100);
+  --color-slate-200: var(--color-neutral-200);
+  --color-slate-300: var(--color-neutral-300);
+  --color-slate-400: var(--color-neutral-400);
+  --color-slate-500: var(--color-neutral-500);
+  --color-slate-600: var(--color-neutral-600);
+  --color-slate-700: var(--color-neutral-700);
+  --color-slate-800: var(--color-neutral-800);
+  --color-slate-900: var(--color-neutral-900);
+  --color-slate-950: var(--color-neutral-950);
+
+  --color-surface: #0f172a;
+  --color-brand-soft-mid: #0f1b36;
+
+  --color-primary-50: #14213d;
+  --color-primary-100: #1a2f5a;
+  --color-primary-200: #1e3a7a;
+  --color-primary-700: #98b6f6;
+  --color-primary-800: #c6d7fb;
+  --color-primary-900: #e2ebfd;
+  --color-secondary-50: #2a1a10;
+  --color-secondary-100: #3b2415;
+  --color-secondary-200: #502b11;
+
+  --color-success-50: #06281f;
+  --color-success-100: #0a3a2c;
+  --color-success-700: #6ee7b7;
+  --color-warning-50: #2a1f06;
+  --color-warning-100: #3d2d08;
+  --color-warning-700: #fcd34d;
+  --color-danger-50: #2d1010;
+  --color-danger-100: #451a1a;
+  --color-danger-700: #fca5a5;
+  --color-info-50: #08263a;
+  --color-info-100: #0c3652;
+  --color-info-700: #7dd3fc;
+}
+
+html[data-theme="dark"] .bg-white\/80,
+html[data-theme="dark"] .bg-white\/90 { background-color: color-mix(in srgb, var(--color-surface) 88%, transparent); }
+html[data-theme="dark"] .border-slate-200\/70 { border-color: color-mix(in srgb, var(--color-neutral-200) 70%, transparent); }
+html[data-theme="dark"] .ring-white { --tw-ring-color: var(--color-surface); }
+html[data-theme="dark"] .bg-slate-900\/30 { background-color: rgb(0 0 0 / 0.55); }
+html[data-theme="dark"] .bg-brand-gradient {
+  background-image: linear-gradient(135deg, #1950c8 0%, #2361e7 55%, #3d74eb 100%);
+}
+html[data-theme="dark"] .btn-primary:hover:not(:disabled) { background-color: #1950c8; }
+
+/* Logo pair: <img class="logo-on-light"> + <img class="logo-on-dark"> */
+.logo-on-dark { display: none; }
+html[data-theme="dark"] .logo-on-light { display: none; }
+html[data-theme="dark"] .logo-on-dark { display: block; }
 
 /* ==========================================================================
    Base — interactive cursor

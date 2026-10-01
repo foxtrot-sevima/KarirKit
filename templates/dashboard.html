@@ -28,6 +28,16 @@
 <meta name="twitter:title" content="Contoh Dashboard Pencari Kerja | KarirKit" />
 <meta name="twitter:description" content="Contoh halaman dashboard pencari kerja KarirLink - ringkasan lamaran, AI Career Coach, dan rekomendasi lowongan - dibangun dengan komponen KarirKit." />
 <meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+
+<!-- Theme: apply before first paint to avoid a light flash -->
+<script>
+  (function () {
+    var pref = 'system';
+    try { pref = localStorage.getItem('kk-theme') || 'system'; } catch (e) {}
+    var dark = pref === 'dark' || (pref === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
@@ -38,7 +48,8 @@
 <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-transform duration-200 lg:translate-x-0">
   <div class="flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
     <a href="../index.html" class="flex items-center">
-      <img src="../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+      <img src="../assets/logo/karirlink-logo.svg" alt="KarirLink" class="logo-on-light h-8 w-auto" />
+      <img src="../assets/logo/karirlink-logo-white.svg" alt="KarirLink" class="logo-on-dark h-8 w-auto" />
     </a>
     <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
       <i class="kk kk-x h-5 w-5"></i>
@@ -151,9 +162,17 @@
         <i class="kk kk-bell h-5 w-5"></i>
         <span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-danger-500 ring-2 ring-white"></span>
       </button>
-      <button class="hidden h-10 w-10 items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 sm:flex">
-        <i class="kk kk-moon h-5 w-5"></i>
-      </button>
+      <div id="themeSwitch" role="radiogroup" aria-label="Tema tampilan" class="hidden items-center gap-0.5 rounded-xl border border-slate-200/70 bg-slate-50 p-0.5 sm:flex">
+        <button type="button" role="radio" data-theme-option="light" title="Terang" aria-label="Terang" class="theme-opt flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:text-slate-800">
+          <i class="kk kk-sun h-4 w-4"></i>
+        </button>
+        <button type="button" role="radio" data-theme-option="dark" title="Gelap" aria-label="Gelap" class="theme-opt flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:text-slate-800">
+          <i class="kk kk-moon h-4 w-4"></i>
+        </button>
+        <button type="button" role="radio" data-theme-option="system" title="Ikuti sistem" aria-label="Ikuti sistem" class="theme-opt flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:text-slate-800">
+          <i class="kk kk-desktop h-4 w-4"></i>
+        </button>
+      </div>
       <span class="avatar h-10 w-10 text-sm">AD</span>
     </div>
   </header>
@@ -668,6 +687,33 @@
   openBtn?.addEventListener('click', openSidebar);
   closeBtn?.addEventListener('click', closeSidebar);
   overlay?.addEventListener('click', closeSidebar);
+
+  // ---- Theme: light / dark / system ----
+  const themeMQ = matchMedia('(prefers-color-scheme: dark)');
+  const themeBtns = document.querySelectorAll('[data-theme-option]');
+
+  function getThemePref() {
+    try { return localStorage.getItem('kk-theme') || 'system'; } catch (e) { return 'system'; }
+  }
+  function applyTheme(pref) {
+    const dark = pref === 'dark' || (pref === 'system' && themeMQ.matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    themeBtns.forEach((b) => {
+      const on = b.dataset.themeOption === pref;
+      b.setAttribute('aria-checked', on);
+      b.classList.toggle('bg-surface', on);
+      b.classList.toggle('text-primary-600', on);
+      b.classList.toggle('shadow-sm', on);
+      b.classList.toggle('text-slate-500', !on);
+    });
+  }
+  themeBtns.forEach((b) => b.addEventListener('click', () => {
+    try { localStorage.setItem('kk-theme', b.dataset.themeOption); } catch (e) {}
+    applyTheme(b.dataset.themeOption);
+  }));
+  // Follow OS changes live while in "system" mode
+  themeMQ.addEventListener('change', () => { if (getThemePref() === 'system') applyTheme('system'); });
+  applyTheme(getThemePref());
 </script>
 </body>
 </html>

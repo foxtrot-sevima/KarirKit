@@ -6,6 +6,26 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **Mode Terang / Gelap / Ikuti sistem** di `templates/dashboard.html`
+  (opt-in per halaman, halaman lain tidak berubah).
+  - Switcher tiga tombol (matahari/bulan/monitor) di topbar menggantikan
+    tombol bulan statis. Preferensi disimpan di `localStorage` key
+    `kk-theme`; mode "system" mengikuti `prefers-color-scheme` dan berubah
+    live saat tema OS berganti. Skrip di `<head>` memasang tema sebelum
+    render, jadi tidak ada kedip putih saat refresh.
+  - `src/input.css`: override map `html[data-theme="dark"]` yang membalik
+    skala `neutral`/`slate` dan menimpa token `surface` serta tint status &
+    brand (50/100/700). Warna solid 500/600 sengaja tidak diubah supaya
+    tombol berteks putih tetap kontras. Komentar "light-only" di header token
+    diperbarui.
+  - Logo ikut tema: pasangan `.logo-on-light` / `.logo-on-dark` (CSS-only,
+    tanpa kedip) memakai varian `karirlink-logo-white.svg` di mode gelap.
+  - Dokumentasi: halaman Storybook baru **Foundations → Theming**
+    (cara kerja, tabel yang di-override, snippet pasang di halaman baru,
+    batasan), plus pembaruan `README.md`.
+  - Batasan: baru dashboard yang memasang tema; palet dark belum divalidasi
+    tim desain; favicon tidak ikut tema halaman.
+
 - Badge estimasi waktu pengisian (ikon jam) di tiap header gelombang
   `kuesioner-builder.html`/`kuesioner-builder-6.html` (Pra-Lulus, Pasca-Lulus
   1 & 4 Tahun), sejajar dengan badge jumlah pertanyaan yang sudah ada.
