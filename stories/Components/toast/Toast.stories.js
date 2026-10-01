@@ -8,7 +8,7 @@ export default {
     docs: {
       description: {
         component:
-          "Notifikasi sementara, mengikuti seluruh layout Flowbite. Anatomi: `.toast` > `.toast-icon` + isi + `.toast-close`. Varian ikon: `.toast-icon-success|danger|warning|info`; varian latar penuh: `.toast-danger` / `.toast-warning`. Letakkan di `.toast-region` + modifier posisi (`.toast-top-left|top-right|bottom-left|bottom-right`). Tombol `[data-toast-dismiss]` menutup toast terdekat (handler di `assets/js/toast.js`); `[data-toast-show]` menampilkan toast contoh.",
+          "Notifikasi sementara, mencakup seluruh layout contoh. Anatomi: `.toast` > `.toast-icon` + isi + `.toast-close`. Varian ikon: `.toast-icon-success|danger|warning|info`; varian latar penuh: `.toast-danger` / `.toast-warning`. Letakkan di `.toast-region` + modifier posisi (`.toast-top-left|top-right|bottom-left|bottom-right`). Tombol `[data-toast-dismiss]` menutup toast terdekat (handler di `assets/js/toast.js`); `[data-toast-show]` menampilkan toast contoh.",
       },
     },
   },
@@ -78,7 +78,7 @@ export const ToastMessage = {
       <span class="avatar h-10 w-10 text-sm">JL</span>
       <div class="min-w-0">
         <p class="toast-title">Jese Leos</p>
-        <p class="mt-0.5">Hi Neil, thanks for sharing your thoughts regarding Flowbite.</p>
+        <p class="mt-0.5">Hi Neil, thanks for sharing your thoughts regarding KarirKit.</p>
         <button type="button" class="btn-primary btn-sm mt-3"><i class="kk kk-arrow-bend-up-left h-3.5 w-3.5"></i>Reply</button>
       </div>
       ${closeBtn}

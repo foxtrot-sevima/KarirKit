@@ -15,10 +15,10 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - **Komponen WYSIWYG** - rich text editor tanpa dependensi (contenteditable)
-  yang jalan offline, tanpa TipTap/CDN seperti di Flowbite. `assets/js/wysiwyg.js`
+  yang jalan offline, tanpa dependensi eksternal atau CDN. `assets/js/wysiwyg.js`
   meng-init setiap `[data-wysiwyg]`; class `.wysiwyg`, `.wysiwyg-toolbar`,
   `.wysiwyg-btn`, `.wysiwyg-menu`, `.wysiwyg-content`, `.wysiwyg-footer` di
-  `src/input.css`. Empat layout mengikuti Flowbite: Default text editor,
+  `src/input.css`. Empat layout: Default text editor,
   Text formatting (subscript/superscript, kotak komentar), Text alignment
   (kiri/tengah/kanan/justify), Typography elements (Paragraph & Heading 1-6,
   code block, list, blockquote, horizontal rule). Fitur: ukuran teks, warna
@@ -29,8 +29,8 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
-- Section Toast, QR Code, dan WYSIWYG di `index.html` memakai layout ala
-  Flowbite: tiap contoh punya judul H3 + panel bergaris, dua kolom di desktop
+- Section Toast, QR Code, dan WYSIWYG di `index.html` memakai layout contoh yang konsisten:
+  tiap contoh punya judul H3 + panel bergaris, dua kolom di desktop
   dan satu kolom di ponsel, contoh lebar (generator QR, Positioning, editor)
   memakai lebar penuh.
 - Toast **Positioning** dirombak: grid 2x2 "layar" mini (header jendela +
@@ -53,7 +53,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `assets/js/qr-code.js` memakai library `qrcode-generator` (MIT, di-vendor
   apa adanya di `assets/js/vendor/qrcode.js`, tanpa CDN; dicatat di
   `THIRD-PARTY-LICENSES.md`). Class `.qr-code`, `.qr-overlay`, `.qr-spinner`
-  di `src/input.css`. Section dan story memakai penamaan Flowbite: QR code
+  di `src/input.css`. Section dan story memakai penamaan baku: QR code
   generator (input live, pilihan error correction L/M/Q/H, Copy as SVG,
   Save as file), Default QR code, QR code with input, QR code with card,
   Share profile with QR, Loading state, Success state, Expired state. Kode
@@ -63,7 +63,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Komponen Toast** (`.toast`, `.toast-icon[-success|-danger|-warning|-info|-lg]`,
   `.toast-title`, `.toast-close`, `.toast-action`, `.toast-region` + posisi
   `.toast-top-left|top-right|bottom-left|bottom-right`) di `src/input.css`.
-  Memuat layout acuan Flowbite dengan penamaan section yang sama persis:
+  Memuat seluruh layout contoh dengan penamaan section baku:
   Default toast, Colors (success/danger/warning), Simple toast, Undo button,
   Toast message, Push notification, Interactive toast, Toast illustration,
   Toast progress bar, Toast danger alert, Toast warning alert, Positioning,

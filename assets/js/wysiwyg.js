@@ -1,5 +1,5 @@
 /* KarirKit WYSIWYG — dependency-free rich text editor on contenteditable.
-   Works offline (no TipTap / CDN). Auto-inits every [data-wysiwyg].
+   Works offline (no external deps / CDN). Auto-inits every [data-wysiwyg].
 
    Toolbar buttons (inside the [data-wysiwyg] root):
      <button data-cmd="bold|italic|underline|strike|subscript|superscript|highlight|code|link|unlink
