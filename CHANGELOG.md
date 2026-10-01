@@ -6,6 +6,16 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **Halaman Icons** (`icons.html`) - katalog seluruh 1.512 ikon KarirKit untuk
+  dilihat dan dicari. Filter nama (mendukung beberapa kata), pilih ketebalan
+  (Thin/Light/Regular/Bold/Fill/Duotone), ukuran 16-64px, dan warna; klik ikon
+  untuk panel detail (preview, semua ketebalan, ukuran 16-48) dengan tombol
+  salin class, HTML, dan SVG serta unduh SVG. Berjalan offline (SVG diambil dari
+  token CSS), mengikuti tema terang/gelap, state pencarian dan ketebalan ikut
+  di URL (`#q=user&w=bold`), dan daftar ikon dimuat bertahap. Daftar nama dibuat
+  oleh `npm run icons:names` (`scripts/gen-icon-names.mjs` ->
+  `assets/js/icon-names.js`). Ditautkan dari section Icons di `index.html` dan
+  halaman Storybook Foundations -> Icons.
 - **Komponen Timepicker** (baru) - `.timepicker` membungkus `<input type="time">`
   bawaan browser dengan ikon jam (`.timepicker-icon`), jam dibatasi lewat
   `min`/`max`. Contoh: default, dengan ikon, dropdown durasi, select zona

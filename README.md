@@ -134,6 +134,7 @@ dist/output.css            CSS hasil build — inilah yang dipakai lewat npm pac
 assets/fonts/InstrumentSans/  Font self-hosted (lihat bagian Font di bawah)
 assets/logo/                  Logo KarirLink dipakai di kedua halaman (lihat Brand & Logo)
 index.html                 Style guide lokal: warna, tipografi, ikon, dan semua komponen
+icons.html                 Katalog ikon: cari, pilih ketebalan/ukuran/warna, salin class/HTML/SVG
 templates/dashboard.html   Contoh dashboard KarirKit
 ```
 
