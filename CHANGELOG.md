@@ -12,7 +12,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `kk-theme` yang sama dengan dashboard, sehingga pilihan ikut saat pindah
   halaman dan mode "sistem" mengikuti tema OS secara langsung. Tema dipasang
   sebelum halaman tampil (tanpa kedip putih).
-- **Halaman Icons** (`icons.html`) - katalog seluruh 1.512 ikon KarirKit untuk
+- **Halaman KarirIcon** (`icons.html`) - katalog seluruh 1.512 ikon KarirKit untuk
   dilihat dan dicari. Filter nama (mendukung beberapa kata), pilih ketebalan
   (Thin/Light/Regular/Bold/Fill/Duotone), ukuran 16-64px, dan warna; klik ikon
   untuk panel detail (preview, semua ketebalan, ukuran 16-48) dengan tombol
