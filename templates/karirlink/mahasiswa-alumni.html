@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mahasiswa/Alumni | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Data induk mahasiswa dan alumni lintas periode yudisium - status karier, program studi, dan progres pengisian Tracer Study - di panel admin KarirLink." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/mahasiswa-alumni.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Mahasiswa/Alumni | KarirLink" />
+<meta property="og:description" content="Data induk mahasiswa dan alumni lintas periode yudisium - status karier, program studi, dan progres pengisian Tracer Study - di panel admin KarirLink." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/mahasiswa-alumni.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Mahasiswa/Alumni | KarirLink" />
+<meta name="twitter:description" content="Data induk mahasiswa dan alumni lintas periode yudisium - status karier, program studi, dan progres pengisian Tracer Study - di panel admin KarirLink." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- Mobile overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out lg:translate-x-0">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
+      <i class="kk kk-x h-5 w-5"></i>
+    </button>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Dashboard" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Dashboard</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
+        </a>
+        <a href="yudisium.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a href="mahasiswa-alumni.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pengaturan Landing Page</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+        <a href="index.html" class="breadcrumb-link shrink-0">
+          <i class="kk kk-house h-4 w-4"></i>
+          <span class="hidden sm:inline">Dashboard</span>
+        </a>
+        <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
+        <span class="breadcrumb-current min-w-0" aria-current="page">
+          <span class="min-w-0 truncate">Mahasiswa/Alumni</span>
+        </span>
+      </nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <div class="relative">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-52">
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <div class="my-1 border-t border-slate-100"></div>
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Greeting -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Mahasiswa/Alumni</h2>
+        <p class="mt-1 text-sm text-slate-500">Data induk mahasiswa dan alumni lintas periode - status karier, program studi, dan progres pengisian Tracer Study.</p>
+      </div>
+      <div class="flex items-center gap-2 text-sm text-slate-500">
+        <i class="kk kk-clock h-4 w-4 shrink-0 text-slate-400"></i>
+        <span>Sinkron SIAKAD · <span class="font-medium text-slate-700">22 Sep 2026, 06:00</span></span>
+      </div>
+    </div>
+
+    <!-- KPI row -->
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-slate-900" id="kpiTotal">1.248</p>
+        <p class="text-sm text-slate-500">Total Terdata</p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-success-600" id="kpiBekerja">612</p>
+        <p class="text-sm text-slate-500">Bekerja <span class="text-slate-400" id="kpiBekerjaPct">(49%)</span></p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-secondary-600" id="kpiWiraswasta">134</p>
+        <p class="text-sm text-slate-500">Wiraswasta</p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-info-600" id="kpiStudi">98</p>
+        <p class="text-sm text-slate-500">Melanjutkan Studi</p>
+      </div>
+      <div class="card p-5">
+        <p class="font-display text-2xl font-bold text-warning-600" id="kpiMencari">227</p>
+        <p class="text-sm text-slate-500">Mencari Kerja</p>
+      </div>
+    </div>
+
+    <!-- Mahasiswa/Alumni list -->
+    <div class="card overflow-hidden">
+      <!-- Toolbar -->
+      <div class="flex flex-col gap-3 border-b border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between" data-combo-boundary>
+        <div class="relative w-full sm:w-64">
+          <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+            <i class="kk kk-magnifying-glass h-4 w-4"></i>
+          </span>
+          <input id="mhsSearch" class="input h-9 pl-9" placeholder="Cari nama, NIM, atau email..." />
+        </div>
+        <div class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+          <div id="filterJenjang" class="combo w-full sm:w-36" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Jenjang</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Jenjang">Semua Jenjang</button>
+                <button type="button" class="combo-item" data-combo-item data-value="d3" data-label="D3">D3</button>
+                <button type="button" class="combo-item" data-combo-item data-value="s1" data-label="S1">S1</button>
+                <button type="button" class="combo-item" data-combo-item data-value="s2" data-label="S2">S2</button>
+              </div>
+            </div>
+          </div>
+          <div id="filterProdi" class="combo w-full sm:w-52" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Program Studi</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Program Studi">Semua Program Studi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="ti" data-label="S1 Teknik Informatika">S1 Teknik Informatika</button>
+                <button type="button" class="combo-item" data-combo-item data-value="si" data-label="S1 Sistem Informasi">S1 Sistem Informasi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="manajemen" data-label="S1 Manajemen">S1 Manajemen</button>
+                <button type="button" class="combo-item" data-combo-item data-value="akuntansi" data-label="S1 Akuntansi">S1 Akuntansi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="elektro" data-label="S1 Teknik Elektro">S1 Teknik Elektro</button>
+                <button type="button" class="combo-item" data-combo-item data-value="mi" data-label="D3 Manajemen Informatika">D3 Manajemen Informatika</button>
+              </div>
+            </div>
+          </div>
+          <div id="filterAngkatan" class="combo w-full sm:w-44" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Angkatan</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Angkatan">Semua Angkatan</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2022" data-label="2022">2022</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2021" data-label="2021">2021</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2020" data-label="2020">2020</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2019" data-label="2019">2019</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2018" data-label="2018">2018</button>
+              </div>
+            </div>
+          </div>
+          <div id="filterTipe" class="combo w-full sm:w-36" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Tipe</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Tipe">Semua Tipe</button>
+                <button type="button" class="combo-item" data-combo-item data-value="alumni" data-label="Alumni">Alumni</button>
+                <button type="button" class="combo-item" data-combo-item data-value="mahasiswa" data-label="Mahasiswa">Mahasiswa</button>
+              </div>
+            </div>
+          </div>
+          <div id="filterStatus" class="combo w-full sm:w-52" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Status Karier</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Status Karier">Semua Status Karier</button>
+                <button type="button" class="combo-item" data-combo-item data-value="bekerja" data-label="Bekerja">Bekerja</button>
+                <button type="button" class="combo-item" data-combo-item data-value="wiraswasta" data-label="Wiraswasta">Wiraswasta</button>
+                <button type="button" class="combo-item" data-combo-item data-value="studi" data-label="Melanjutkan Studi">Melanjutkan Studi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="mencari" data-label="Mencari Kerja">Mencari Kerja</button>
+                <button type="button" class="combo-item" data-combo-item data-value="belum" data-label="Belum Memungkinkan Bekerja">Belum Memungkinkan Bekerja</button>
+                <button type="button" class="combo-item" data-combo-item data-value="aktif-kuliah" data-label="Sedang Kuliah">Sedang Kuliah</button>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn-outline btn-md shrink-0">
+            <i class="kk kk-download-simple h-4 w-4"></i>
+            Ekspor Data
+          </button>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="table table-lg table-fixed w-auto sm:w-full" id="mhsTable" data-item-label="mahasiswa/alumni">
+          <thead>
+            <tr>
+              <th class="table-col-num hidden xl:table-cell">No</th>
+              <th class="w-52 sm:w-64 lg:w-72">Alumni/Mahasiswa</th>
+              <th class="hidden sm:w-80 sm:table-cell">Kontak</th>
+              <th class="hidden lg:table-cell">Program Studi</th>
+              <th class="w-56">Status Karier</th>
+              <th class="table-col-actions w-16 text-left">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="mhsBody"><tr data-name="Sarah Amelia Putri" data-prodi="ti" data-jenjang="s1" data-angkatan="2019" data-status="bekerja" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                    <p class="truncate font-medium text-slate-800">Sarah Amelia Putri</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 1934210045</p>
+                    <span class="badge-neutral">Alumni</span>
+              </td>
+              <td class="hidden sm:table-cell">
+                <p class="truncate text-slate-600">sarah.amelia@alumni.univ.ac.id</p>
+                <p class="mt-0.5 text-xs text-slate-400">0812-3456-7890</p>
+              </td>
+              <td class="hidden lg:table-cell">
+                <p class="font-medium text-slate-700">S1 - Teknik Informatika</p>
+                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2023</p>
+              </td>
+              <td><span class="badge-success">Bekerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
+              </td>
+            </tr>
+            <tr data-name="Bagus Nugroho Wibowo" data-prodi="manajemen" data-jenjang="s1" data-angkatan="2020" data-status="wiraswasta" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                    <p class="truncate font-medium text-slate-800">Bagus Nugroho Wibowo</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2034310112</p>
+                    <span class="badge-neutral">Alumni</span>
+              </td>
+              <td class="hidden sm:table-cell">
+                <p class="truncate text-slate-600">bagus.nugroho@alumni.univ.ac.id</p>
+                <p class="mt-0.5 text-xs text-slate-400">0813-2345-6789</p>
+              </td>
+              <td class="hidden lg:table-cell">
+                <p class="font-medium text-slate-700">S1 - Manajemen</p>
+                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2024</p>
+              </td>
+              <td><span class="badge-secondary">Wiraswasta</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
+              </td>
+            </tr>
+            <tr data-name="Citra Dewanti Lestari" data-prodi="akuntansi" data-jenjang="s1" data-angkatan="2018" data-status="bekerja" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                    <p class="truncate font-medium text-slate-800">Citra Dewanti Lestari</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 1834410078</p>
+                    <span class="badge-neutral">Alumni</span>
+              </td>
+              <td class="hidden sm:table-cell">
+                <p class="truncate text-slate-600">citra.dewanti@alumni.univ.ac.id</p>
+                <p class="mt-0.5 text-xs text-slate-400">0814-5678-1234</p>
+              </td>
+              <td class="hidden lg:table-cell">
+                <p class="font-medium text-slate-700">S1 - Akuntansi</p>
+                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2022</p>
+              </td>
+              <td><span class="badge-success">Bekerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
+              </td>
+            </tr>
+            <tr data-name="Dimas Prasetyo Anggara" data-prodi="si" data-jenjang="s1" data-angkatan="2021" data-status="studi" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                    <p class="truncate font-medium text-slate-800">Dimas Prasetyo Anggara</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2134210033</p>
+                    <span class="badge-neutral">Alumni</span>
+              </td>
+              <td class="hidden sm:table-cell">
+                <p class="truncate text-slate-600">dimas.prasetyo@alumni.univ.ac.id</p>
+                <p class="mt-0.5 text-xs text-slate-400">0815-6789-2345</p>
+              </td>
+              <td class="hidden lg:table-cell">
+                <p class="font-medium text-slate-700">S1 - Sistem Informasi</p>
+                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2025</p>
+              </td>
+              <td><span class="badge-info">Melanjutkan Studi</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
+              </td>
+            </tr>
+            <tr data-name="Erika Wulandari" data-prodi="mi" data-jenjang="d3" data-angkatan="2019" data-status="mencari" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <p class="truncate font-medium text-slate-800">Erika Wulandari</p>
+                <p class="mt-0.5 truncate text-xs text-slate-400">NIM 1934510091</p>
+                <span class="badge-neutral">Alumni</span>
+              </td>
+              <td class="hidden sm:table-cell">
+                <p class="truncate text-slate-600">erika.wulandari@alumni.univ.ac.id</p>
+                <p class="mt-0.5 text-xs text-slate-400">0816-7890-3456</p>
+              </td>
+              <td class="hidden lg:table-cell">
+                <p class="font-medium text-slate-700">D3 - Manajemen Informatika</p>
+                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2023</p>
+              </td>
+              <td><span class="badge-warning">Mencari Kerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
+              </td>
+            </tr>
+            <tr data-name="Farhan Ramadhan" data-prodi="elektro" data-jenjang="s1" data-angkatan="2020" data-status="bekerja" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                    <p class="truncate font-medium text-slate-800">Farhan Ramadhan</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2034610057</p>
+                    <span class="badge-neutral">Alumni</span>
+              </td>
+              <td class="hidden sm:table-cell">
+                <p class="truncate text-slate-600">farhan.ramadhan@alumni.univ.ac.id</p>
+                <p class="mt-0.5 text-xs text-slate-400">0817-8901-4567</p>
+              </td>
+              <td class="hidden lg:table-cell">
+                <p class="font-medium text-slate-700">S1 - Teknik Elektro</p>
+                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2024</p>
+              </td>
+              <td><span class="badge-success">Bekerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
+              </td>
+            </tr>
+            <tr data-name="Gita Puspitasari" data-prodi="si" data-jenjang="s1" data-angkatan="2018" data-status="belum" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                    <p class="truncate font-medium text-slate-800">Gita Puspitasari</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 1834210064</p>
+                    <span class="badge-neutral">Alumni</span>
+              </td>
+              <td class="hidden sm:table-cell">
+                <p class="truncate text-slate-600">gita.puspitasari@alumni.univ.ac.id</p>
+                <p class="mt-0.5 text-xs text-slate-400">0818-9012-5678</p>
+              </td>
+              <td class="hidden lg:table-cell">
+                <p class="font-medium text-slate-700">S1 - Sistem Informasi</p>
+                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2022</p>
+              </td>
+              <td><span class="badge-neutral whitespace-nowrap">Belum Memungkinkan Bekerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
+              </td>
+            </tr>
+            <tr data-name="Hendra Saputra" data-prodi="ti" data-jenjang="s1" data-angkatan="2022" data-status="aktif-kuliah" data-type="mahasiswa">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <p class="truncate font-medium text-slate-800">Hendra Saputra</p>
+                <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2234210019</p>
+                <span class="badge-info">Mahasiswa</span>
+              </td>
+              <td class="hidden sm:table-cell">
+                <p class="truncate text-slate-600">hendra.saputra@student.univ.ac.id</p>
+                <p class="mt-0.5 text-xs text-slate-400">0819-0123-6789</p>
+              </td>
+              <td class="hidden lg:table-cell">
+                <p class="font-medium text-slate-700">S1 - Teknik Informatika</p>
+                <p class="mt-0.5 text-xs text-slate-400">Angkatan 2022 &middot; Aktif</p>
+              </td>
+              <td><span class="badge-primary">Sedang Kuliah</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
+              </td>
+            </tr>
+            <tr data-name="Intan Maharani" data-prodi="akuntansi" data-jenjang="s1" data-angkatan="2021" data-status="bekerja" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                    <p class="truncate font-medium text-slate-800">Intan Maharani</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2134410082</p>
+                    <span class="badge-neutral">Alumni</span>
+              </td>
+              <td class="hidden sm:table-cell">
+                <p class="truncate text-slate-600">intan.maharani@alumni.univ.ac.id</p>
+                <p class="mt-0.5 text-xs text-slate-400">0820-1234-7890</p>
+              </td>
+              <td class="hidden lg:table-cell">
+                <p class="font-medium text-slate-700">S1 - Akuntansi</p>
+                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2025</p>
+              </td>
+              <td><span class="badge-success">Bekerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
+              </td>
+            </tr>
+            <tr data-name="Joko Setiawan" data-prodi="manajemen" data-jenjang="s1" data-angkatan="2023" data-status="aktif-kuliah" data-type="mahasiswa">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <p class="truncate font-medium text-slate-800">Joko Setiawan</p>
+                <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2334310027</p>
+                <span class="badge-info">Mahasiswa</span>
+              </td>
+              <td class="hidden sm:table-cell">
+                <p class="truncate text-slate-600">joko.setiawan@student.univ.ac.id</p>
+                <p class="mt-0.5 text-xs text-slate-400">0821-2345-8901</p>
+              </td>
+              <td class="hidden lg:table-cell">
+                <p class="font-medium text-slate-700">S1 - Manajemen</p>
+                <p class="mt-0.5 text-xs text-slate-400">Angkatan 2023 &middot; Aktif</p>
+              </td>
+              <td><span class="badge-primary">Sedang Kuliah</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination footer -->
+      <div class="flex flex-col gap-3 border-t border-slate-100 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span>Baris per halaman</span>
+          <select id="mhsPageSize" class="input h-8 w-auto py-0 text-xs">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+          </select>
+        </div>
+        <p class="text-xs text-slate-500" id="mhsRangeText">Menampilkan 1-10 dari 10 mahasiswa/alumni</p>
+        <div class="flex items-center gap-1" id="mhsPagination"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const openBtn = document.getElementById('openSidebarBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  openBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+
+  // Search + filter (Program Studi, Angkatan, Status Karier) + pagination.
+  // Filtering recomputes both the KPI cards above and which rows the table
+  // paginates over, so the KPI row always reflects the current filter.
+  (function () {
+    const table = document.getElementById('mhsTable');
+    const tbody = document.getElementById('mhsBody');
+    const allRows = Array.from(document.querySelectorAll('#mhsBody tr'));
+    const search = document.getElementById('mhsSearch');
+    const filterJenjang = document.getElementById('filterJenjang');
+    const filterProdi = document.getElementById('filterProdi');
+    const filterAngkatan = document.getElementById('filterAngkatan');
+    const filterTipe = document.getElementById('filterTipe');
+    const filterStatus = document.getElementById('filterStatus');
+    const pageSizeSelect = document.getElementById('mhsPageSize');
+    const rangeText = document.getElementById('mhsRangeText');
+    const paginationEl = document.getElementById('mhsPagination');
+
+    const kpiTotal = document.getElementById('kpiTotal');
+    const kpiBekerja = document.getElementById('kpiBekerja');
+    const kpiBekerjaPct = document.getElementById('kpiBekerjaPct');
+    const kpiWiraswasta = document.getElementById('kpiWiraswasta');
+    const kpiStudi = document.getElementById('kpiStudi');
+    const kpiMencari = document.getElementById('kpiMencari');
+
+    // Read once from `data-item-label` on the <table> so a new table just
+    // sets one attribute instead of hand-editing "mahasiswa/alumni" strings
+    // in JS for its range-state messages.
+    const itemLabel = table?.dataset.itemLabel || 'item';
+
+    let pageSize = Number(pageSizeSelect.value);
+    let currentPage = 1;
+    let visibleRows = allRows;
+
+    function fmt(n) {
+      return n.toLocaleString('id-ID');
+    }
+
+    function applyFilter() {
+      const term = search.value.trim().toLowerCase();
+      const jenjang = filterJenjang.dataset.value;
+      const prodi = filterProdi.dataset.value;
+      const angkatan = filterAngkatan.dataset.value;
+      const tipe = filterTipe.dataset.value;
+      const status = filterStatus.dataset.value;
+      visibleRows = allRows.filter((row) => {
+        const matchTerm = !term || (row.dataset.name || '').toLowerCase().includes(term);
+        const matchJenjang = jenjang === 'all' || row.dataset.jenjang === jenjang;
+        const matchProdi = prodi === 'all' || row.dataset.prodi === prodi;
+        const matchAngkatan = angkatan === 'all' || row.dataset.angkatan === angkatan;
+        const matchTipe = tipe === 'all' || row.dataset.type === tipe;
+        const matchStatus = status === 'all' || row.dataset.status === status;
+        return matchTerm && matchJenjang && matchProdi && matchAngkatan && matchTipe && matchStatus;
+      });
+      currentPage = 1;
+    }
+
+    function updateKpis() {
+      const total = visibleRows.length;
+      const countByStatus = (s) => visibleRows.filter((r) => r.dataset.status === s).length;
+      const bekerja = countByStatus('bekerja');
+
+      kpiTotal.textContent = fmt(total);
+      kpiBekerja.textContent = fmt(bekerja);
+      kpiBekerjaPct.textContent = `(${total > 0 ? Math.round((bekerja / total) * 100) : 0}%)`;
+      kpiWiraswasta.textContent = fmt(countByStatus('wiraswasta'));
+      kpiStudi.textContent = fmt(countByStatus('studi'));
+      kpiMencari.textContent = fmt(countByStatus('mencari'));
+    }
+
+    function renderPaginationButtons(totalPages) {
+      paginationEl.innerHTML = '';
+
+      function makeButton(label, page, opts = {}) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = label;
+        b.disabled = !!opts.disabled;
+        b.className = 'pagination-btn' + (opts.active ? ' pagination-btn-active' : '');
+        b.addEventListener('click', () => {
+          currentPage = page;
+          renderTable();
+        });
+        return b;
+      }
+
+      paginationEl.appendChild(makeButton('‹', currentPage - 1, { disabled: currentPage <= 1 }));
+      for (let i = 1; i <= totalPages; i++) {
+        paginationEl.appendChild(makeButton(String(i), i, { active: i === currentPage }));
+      }
+      paginationEl.appendChild(makeButton('›', currentPage + 1, { disabled: currentPage >= totalPages }));
+    }
+
+    function renderTable() {
+      const totalPages = Math.max(1, Math.ceil(visibleRows.length / pageSize));
+      currentPage = Math.min(currentPage, totalPages);
+
+      const start = (currentPage - 1) * pageSize;
+      const end = start + pageSize;
+
+      allRows.forEach((row) => row.classList.add('hidden'));
+      visibleRows.forEach((row, i) => {
+        const isPageRow = i >= start && i < end;
+        row.classList.toggle('hidden', !isPageRow);
+        if (isPageRow) {
+          const numEl = row.querySelector('[data-num]');
+          if (numEl) numEl.textContent = String(i + 1);
+        }
+      });
+
+      tbody.querySelectorAll('.mhs-empty-row').forEach((r) => r.remove());
+      if (visibleRows.length === 0) {
+        const tr = document.createElement('tr');
+        tr.className = 'mhs-empty-row';
+        tr.innerHTML = `<td colspan="6" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada ${itemLabel} yang cocok.</td>`;
+        tbody.appendChild(tr);
+      }
+
+      renderPaginationButtons(totalPages);
+      rangeText.textContent = `Menampilkan ${visibleRows.length ? start + 1 : 0}-${Math.min(end, visibleRows.length)} dari ${visibleRows.length} ${itemLabel}`;
+    }
+
+    function render() {
+      applyFilter();
+      updateKpis();
+      renderTable();
+    }
+
+    pageSizeSelect.addEventListener('change', () => {
+      pageSize = Number(pageSizeSelect.value);
+      currentPage = 1;
+      renderTable();
+    });
+
+    search.addEventListener('input', render);
+
+    [filterJenjang, filterProdi, filterAngkatan, filterTipe, filterStatus].forEach((combo) => {
+      combo.querySelectorAll('[data-combo-item]').forEach((item) => {
+        item.addEventListener('click', () => {
+          combo.dataset.value = item.dataset.value;
+          render();
+        });
+      });
+    });
+
+    render();
+  })();
+
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();</script>
+</body>
+</html>

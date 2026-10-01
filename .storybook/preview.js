@@ -1,4 +1,5 @@
 import "../src/input.css";
+import "../assets/js/toast.js";
 
 document.body.classList.add("bg-shell", "font-sans", "text-slate-800", "antialiased");
 
@@ -10,9 +11,9 @@ const preview = {
       storySort: {
         order: [
           "Guides",
-          ["Introduction", "Table of Dependency", "Table of Version", "Changelog"],
+          ["Introduction", "Installation", "Table of Dependency", "Table of Version", "Changelog"],
           "Foundations",
-          ["Colors", "Typography", "Icons"],
+          ["Colors", "Typography", "Icons", "Theming"],
           "Components",
           [
             "Button",
@@ -35,10 +36,14 @@ const preview = {
             "Table",
             "DataTable",
             "Alert",
+            "Toast",
+            "QR Code",
             "Progress",
             "Tooltip",
             "Divider",
           ],
+          "Templates",
+          ["Dashboard", "Auth", "Errors"],
         ],
       },
     },

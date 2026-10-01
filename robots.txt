@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /templates/
+Disallow: /dist/
+Disallow: /stories/
+Disallow: /storybook-static/
+Disallow: /src/
+
+Sitemap: https://karirkit.vercel.app/sitemap.xml

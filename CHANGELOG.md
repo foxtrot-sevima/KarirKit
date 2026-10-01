@@ -2,9 +2,99 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.3.0] - 2026-10-01
+
+### Added
+
+- **Komponen QR Code** - SVG inline yang dirender offline oleh
+  `assets/js/qr-code.js` memakai library `qrcode-generator` (MIT, di-vendor
+  apa adanya di `assets/js/vendor/qrcode.js`, tanpa CDN; dicatat di
+  `THIRD-PARTY-LICENSES.md`). Class `.qr-code`, `.qr-overlay`, `.qr-spinner`
+  di `src/input.css`. Section dan story memakai penamaan Flowbite: QR code
+  generator (input live, pilihan error correction L/M/Q/H, Copy as SVG,
+  Save as file), Default QR code, QR code with input, QR code with card,
+  Share profile with QR, Loading state, Success state, Expired state. Kode
+  selalu hitam-di-atas-putih, juga di dark mode, supaya terbaca scanner.
+  Storybook memuat script lewat `.storybook/preview-head.html`; folder
+  `assets/js` ditambahkan ke `files` package.json.
+- **Komponen Toast** (`.toast`, `.toast-icon[-success|-danger|-warning|-info|-lg]`,
+  `.toast-title`, `.toast-close`, `.toast-action`, `.toast-region` + posisi
+  `.toast-top-left|top-right|bottom-left|bottom-right`) di `src/input.css`.
+  Memuat layout acuan Flowbite dengan penamaan section yang sama persis:
+  Default toast, Colors (success/danger/warning), Simple toast, Undo button,
+  Toast message, Push notification, Interactive toast, Toast illustration,
+  Toast progress bar, Toast danger alert, Toast warning alert, Positioning,
+  dan JavaScript behaviour. Helper opsional
+  `assets/js/toast.js` (`[data-toast-dismiss]`, `KKToast.show()`). Ada di
+  Storybook **Components → Toast** dan section "Toast" di `index.html`.
+- **Mode Terang / Gelap / Ikuti sistem** di `templates/dashboard.html`
+  (opt-in per halaman, halaman lain tidak berubah).
+  - Switcher tiga tombol (matahari/bulan/monitor) di topbar menggantikan
+    tombol bulan statis. Preferensi disimpan di `localStorage` key
+    `kk-theme`; mode "system" mengikuti `prefers-color-scheme` dan berubah
+    live saat tema OS berganti. Skrip di `<head>` memasang tema sebelum
+    render, jadi tidak ada kedip putih saat refresh.
+  - `src/input.css`: override map `html[data-theme="dark"]` yang membalik
+    skala `neutral`/`slate` dan menimpa token `surface` serta tint status &
+    brand (50/100/700). Warna solid 500/600 sengaja tidak diubah supaya
+    tombol berteks putih tetap kontras. Komentar "light-only" di header token
+    diperbarui.
+  - Logo ikut tema: pasangan `.logo-on-light` / `.logo-on-dark` (CSS-only,
+    tanpa kedip) memakai varian `karirlink-logo-white.svg` di mode gelap.
+  - Dokumentasi: halaman Storybook baru **Foundations → Theming**
+    (cara kerja, tabel yang di-override, snippet pasang di halaman baru,
+    batasan), plus pembaruan `README.md`.
+  - Batasan: baru dashboard yang memasang tema; palet dark belum divalidasi
+    tim desain; favicon tidak ikut tema halaman.
+
 ## [1.2.0] - 2026-09-16
 
 ### Added
+
+- Badge estimasi waktu pengisian (ikon jam) di tiap header gelombang
+  `kuesioner-builder.html`/`kuesioner-builder-6.html` (Pra-Lulus, Pasca-Lulus
+  1 & 4 Tahun), sejajar dengan badge jumlah pertanyaan yang sudah ada.
+  Angkanya dihitung dari jumlah pertanyaan yang benar-benar dijawab satu
+  alumni (satu cabang status), bukan dari total gabungan semua cabang -
+  konsisten dengan tooltip "44 pertanyaan" (lihat Fixed).
+- **SEO terstruktur di 18 halaman** (`index.html`, seluruh `templates/*.html`,
+  dan seluruh `templates/karirlink/*.html`) - meta description unik per
+  halaman (bukan generik copy-paste), `<link rel="canonical">` ke URL absolut
+  `karirkit.vercel.app`, Open Graph lengkap (og:title/description/image/type/
+  locale/site_name), dan Twitter Card `summary_large_image` - semuanya
+  memakai satu gambar OG bermerek baru (`assets/social/og-image.png`,
+  1200×630, dibuat dari template HTML + screenshot Playwright, bukan aset
+  desain manual).
+  - **Keputusan index vs noindex, bukan asal index semua**: `index.html`
+    (style guide publik) diberi `robots: index, follow` plus structured data
+    JSON-LD (`schema.org` `Organization` + `WebSite` + `SoftwareSourceCode`,
+    tertaut ke repo GitHub asli) - satu-satunya halaman yang wajar diranking
+    Google. 17 halaman lain (login, register, dashboard, dan semua halaman
+    admin `templates/karirlink/`) diberi `robots: noindex, nofollow` dengan
+    sengaja - halaman login/dashboard/admin memang tidak boleh muncul di
+    hasil pencarian (praktik keamanan & UX standar), jadi SEO yang benar
+    untuk halaman-halaman ini justru mencegah Google meng-index-nya, bukan
+    memaksimalkan indexability di semua tempat tanpa pandang konteks.
+  - `robots.txt` baru (izinkan crawl `index.html`, blokir `/templates/`,
+    `/dist/`, `/stories/`, `/storybook-static/`, `/src/`) dan `sitemap.xml`
+    baru (cuma 1 URL - homepage - sesuai yang memang indexable; tidak
+    mencantumkan halaman noindex, menghindari pemborosan crawl budget).
+
+- Katalog ikon diperluas total dari 38 kurasi manual menjadi **seluruh 1.512
+  ikon Phosphor Icons** (`@phosphor-icons/core`), masing-masing dalam 6
+  ketebalan (Thin/Light/Regular/Bold/Fill/Duotone) - 9.072 kombinasi
+  ikon×ketebalan, dipicu kebutuhan nyata: beberapa halaman auth yang sedang
+  dikerjakan butuh ikon (`envelope`, `lock-simple`, `google-logo`, dst.) yang
+  tidak ada di 38 ikon lama. SVG sumber di-vendor ke
+  `assets/icons/{regular,thin,light,bold,fill,duotone}/` (dari paket resmi
+  Phosphor, bukan digambar ulang manual), dipakai sama seperti sebelumnya -
+  `<i class="kk kk-nama">`, tambah `kk-thin`/`kk-light`/`kk-bold`/`kk-fill`/
+  `kk-duotone` untuk ketebalan selain Regular - jadi 203 pemakaian ikon yang
+  sudah ada tidak berubah/butuh migrasi. `Foundations/Icons` di Storybook ikut
+  diperbarui mengikuti katalog baru: array `ICONS` di-generate ulang dari
+  `assets/icons/regular/*.svg` (bukan lagi 38 baris kurasi manual), story
+  "Library" menampilkan seluruh 1.512 ikon, dan dropdown ikon pada "Icon
+  Explorer" & "Weights" ikut mencakup semuanya.
 
 - Section "Modal" baru di `index.html` beserta komponen `.modal-backdrop`/
   `.modal-panel`/`.modal-header`/`.modal-title`/`.modal-description`/
@@ -23,9 +113,106 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Storybook: `Components/Modal` dan `Components/Breadcrumb`, masing-masing
   dengan story "Playground" interaktif (`argTypes`/Controls) mengikuti pola
   yang sama seperti komponen lain.
+- Section **"Table — Katalog Produk"** baru di `index.html` (setelah
+  DataTable) - tabel konten "kaya" (thumbnail ikon, rating bintang, harga,
+  badge status) yang mengikuti fitur tabel produk Metronic
+  (`ecommerce/catalog/products.html`) sebagai referensi struktur/fitur saja -
+  dibangun 100% dari komponen & token KarirKit sendiri (`.table`, `.combo`,
+  `.badge-*`, `.dropdown-menu`), bukan markup/kelas Bootstrap-nya. Termasuk
+  toolbar pencarian + filter status (`.combo`) + tombol "Tambah Produk" yang
+  live-filtered lewat JS (nama produk + status, dengan pesan kosong "Tidak
+  ada produk yang cocok." mengikuti pola DataTable), checkbox pilih-baris +
+  bulk action bar (Hapus/Batal), dan menu "..." per baris untuk Lihat
+  Detail/Edit/Hapus.
+- Modifier tabel baru `.table-lg` (`src/input.css`) - padding sel lebih lega
+  (`th` jadi `py-3.5`, `td` jadi `py-4`) daripada `.table` polos (`py-3`),
+  ditambahkan sebagai class tambahan yang di-stack di atas `.table`
+  (`class="table table-lg ..."`) supaya tabel padat yang sudah ada
+  (Table/DataTable) tidak ikut berubah - dipakai khusus di Katalog Produk,
+  yang barisnya berisi thumbnail 56px + rating dan terasa sempit di padding
+- Halaman baru **Mahasiswa/Alumni** (`templates/karirlink/mahasiswa-alumni.html`)
+  - list-view mengikuti pola Table — Katalog Produk (toolbar pencarian +
+  filter, KPI card, tabel paginated) dengan filter **Jenjang**, **Program
+  Studi**, **Angkatan**, **Tipe** (Alumni/Mahasiswa), dan **Status Karier**.
+  Kolom Aksi sengaja disederhanakan jadi satu tombol "Lihat Profil" (ikon
+  mata) menuju halaman detail baru - rencana awal kolom "Progres Tracer"
+  tidak jadi dipakai atas permintaan langsung.
+- Halaman baru **detail Mahasiswa/Alumni** (`mahasiswa-alumni-detail.html`)
+  - profil lengkap: Data Pribadi & Akademik, Kontak & Akun, Bio & Media
+  Sosial, Preferensi Karier, Riwayat Karier, dan Aktivitas Lamaran. Tiap
+  field dicocokkan manual ke skema database asli
+  (`templates/karirlink/docs/about-tracer/karirlink-schema.sql` &
+  `tracer-schema.sql`) sebelum ditambahkan, bukan field karangan - **NIK/No.
+  KTP dan NPWP sengaja tidak ditampilkan** karena cuma ada di tabel snapshot
+  tracer study (`graduates`/`participants`), bukan di akun karirlink
+  (`users`) yang sebenarnya sedang dilihat, dan **field "Gelar" juga tidak
+  ditampilkan** karena tidak ada foreign key yang mengonfirmasi relasinya ke
+  tabel lookup `gelar_akademiks`.
+- Kolom **"No"** (nomor urut baris, `table-col-num`, `hidden xl:table-cell`)
+  ditambahkan ke seluruh tabel yang sudah ada supaya konsisten dengan pola
+  yang sudah dipakai DataTable: Table — Katalog Produk (`index.html`), kedua
+  tabel Yudisium (`yudisium.html`, `yudisium-detail.html`), dan Mahasiswa/
+  Alumni - nomornya dihitung ulang tiap kali tabel di-render/pagination
+  lewat `data-num`, bukan angka statis, supaya tetap benar setelah
+  filter/pencarian mengubah urutan baris.
+- Template halaman error baru - `templates/404.html`, `500.html`,
+  `403.html`, `503.html` - masing-masing standalone (tanpa sidebar admin,
+  mengikuti pola `login.html`), memakai treatment nomor error raksasa
+  bertinta pucat sebagai latar (`text-{warna}-100`, "ghost number") di
+  belakang badge ikon terangkat (`kk-compass`/`kk-warning-octagon`/
+  `kk-lock-key`/`kk-wrench`) dan badge kecil "Kode Error NNN", dengan tombol
+  aksi kontekstual per kode: 404/403 - kembali ke beranda + halaman
+  sebelumnya; 500 - coba lagi + kembali ke beranda + tautan email support;
+  503 - coba lagi saja, ditambah estimasi waktu selesai pemeliharaan.
+- Storybook `Templates/Errors` - 4 story (404/500/403/503), masing-masing
+  me-render halaman sesungguhnya lewat `<iframe>` (bukan markup duplikat),
+- Navigasi **breadcrumb** (Dashboard / halaman induk / halaman saat ini)
+  menggantikan pola tombol panah-kembali + judul polos di topbar seluruh
+  halaman admin `templates/karirlink/` (`index.html`, `kuesioner.html`,
+  `yudisium.html`, `mahasiswa-alumni.html`, dan versi detail/sub-halamannya)
+  - memakai komponen Breadcrumb yang sudah ada (lihat Added versi
+  sebelumnya), bukan komponen baru. Klik breadcrumb induk sudah cukup untuk
+  kembali, jadi tombol panah terpisah jadi mubazir. Trail 3 level tidak muat
+  berdampingan dengan tombol sidebar & menu profil di topbar sempit, jadi
+  didegradasi responsif: mobile cuma menampilkan ikon rumah + halaman saat
+  ini (dipotong kalau kepanjangan), `sm:` ke atas menampilkan trail lengkap.
+- **Sidebar collapse** (tombol "Lipat Menu", gaya GitLab) di seluruh
+  halaman admin `templates/karirlink/` - tombol di bagian bawah sidebar
+  menciutkan sidebar dari 264px jadi rel ikon 72px (logo berganti ke mark
+  persegi, label teks & label grup navigasi disembunyikan, ikon tetap
+  tampil), state-nya disimpan di `localStorage` supaya bertahan setelah
+  reload. Tombol lama di topbar (`toggleSidebarDesktopBtn`, yang
+  sebelumnya MENYEMBUNYIKAN sidebar sepenuhnya, bukan menciutkan) dihapus,
+  digantikan tombol baru ini.
+- Tooltip (`.tooltip-fixed`, komponen yang sama seperti tooltip "Aksi
+  lainnya"/"44 pertanyaan") muncul di sebelah kanan tiap ikon saat sidebar
+  dalam mode lipat - hanya tampil saat lipat (saat sidebar penuh, label
+  teksnya sendiri sudah cukup, jadi tooltip jadi redundan kalau tetap
+  dipaksa muncul).
 
 ### Changed
 
+- Filter tab "Tracer Study" di `templates/karirlink/index.html`: **Jenjang**
+  jadi dropdown tersendiri (D3/D4/S1/S2/S3), dipisah dari **Program Studi**
+  (sebelumnya digabung dalam satu label, mis. "S1 - Teknik Informatika") -
+  opsi Program Studi disederhanakan jadi nama program studi polos. Filter
+  **Angkatan** dihapus dari bar ini (Jenjang, Program Studi, Tahun Lulus
+  saja yang tersisa).
+- **Ikon dijadikan token sungguhan** - base64 tiap ikon (semua 9.072
+  kombinasi ikon×ketebalan, termasuk 38 ikon lama) dipindah dari nempel
+  langsung di tiap rule `.kk-*` menjadi custom property
+  `--icon-{nama}[-{ketebalan}]` di blok `@theme` baru; rule `.kk-*` di
+  `@layer components` sekarang cuma konsumsi lewat
+  `mask-image: var(--icon-nama)`, bukan menyimpan base64-nya sendiri -
+  konsisten dengan arsitektur token 3-lapis (primitive/semantic/component)
+  yang sudah dipakai warna & spacing. Sempat ketahuan saat verifikasi:
+  menulis `mask-image` + `-webkit-mask-image` manual sekaligus (pola lama)
+  membuat compiler Tailwind v4 (Lightning CSS) menghasilkan 4 declaration
+  terduplikasi per rule begitu nilainya lewat `var()` (beda dari nilai
+  `url()` literal yang bisa di-dedupe otomatis) - diperbaiki dengan cuma
+  menulis `mask-image` saja dan membiarkan prefix `-webkit-` di-generate
+  otomatis oleh compiler.
+  `THIRD-PARTY-LICENSES.md` diperbarui mengikuti struktur baru ini.
 - **Table/DataTable dirombak total** mengikuti referensi moodboard
   (`moodboard/tabel/`): `table-fixed` dengan lebar kolom tetap tapi tetap
   responsif (`w-auto` di mobile, `sm:w-full` mulai breakpoint `sm`), kolom
@@ -78,9 +265,66 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `Guides/Introduction` diganti gambar logo, dan sidebar Storybook memakai
   tema custom baru (`.storybook/manager.js`, `base: "light"`, `brandImage`
   ke logo yang sama) menggantikan logo/tema default Storybook.
+- **Bulk action bar** (DataTable & Katalog Produk) dirombak visualnya:
+  indikator jumlah dipilih sekarang badge bulat berisi angka (bukan teks
+  polos "N dipilih"), tombol Hapus/Batal dapat ikon (`kk-trash`/`kk-x`) dan
+  jadi `.btn-outline` (Hapus dengan tint danger - border/hover danger-50,
+  bukan solid merah) menggantikan `.btn-ghost` teks-saja.
+- Label item pada bulk bar, pesan kosong pencarian ("Tidak ada ... yang
+  cocok."), dan teks "Menampilkan ... dari ..." di kedua tabel sekarang
+  dibaca dari satu atribut `data-item-label` di elemen `<table>`
+  (`"lamaran"` untuk DataTable, `"produk"` untuk Katalog Produk), bukan
+  string "produk"/"lamaran" hardcode terpisah di tiga tempat JS berbeda -
+  menambah tabel baru cukup mengatur satu atribut, tidak perlu mengubah JS.
+- Tombol "Tambah Produk" di toolbar Katalog Produk dinaikkan dari `btn-sm`
+  ke `btn-md` supaya tingginya pas sama tinggi dropdown filter status
+  (`.combo-trigger`, `min-h-10`) di sebelahnya - sebelumnya beda 8px
+  (`btn-sm` = `h-8`) dan terlihat tidak sejajar.
+- Tombol aksi "..." (kebab) di kolom Aksi Katalog Produk disederhanakan jadi
+  border + hover abu-abu netral saja (`border-border`, `hover:bg-neutral-50`
+  /`hover:text-slate-700`), tanpa `shadow-sm` dan tanpa hover bertema primary
+  yang sempat dicoba - dianggap kelewat "ramai" untuk ikon sekunder yang
+  berulang di setiap baris.
+
+- Seluruh tabel di `yudisium.html` & `yudisium-detail.html` disamakan
+  penuh ke gaya **Table — Katalog Produk**: tombol aksi per baris jadi kotak
+  bordered netral (`h-9 w-9 rounded-control border border-border`, tanpa
+  tooltip) menggantikan versi borderless + tooltip-on-hover sebelumnya, dan
+  label header kolom aksi disamakan jadi "Aksi". Avatar/thumbnail ikon di
+  baris Periode Yudisium dihapus (data periode bukan entitas bergambar,
+  beda dari produk). Bulk-select + checkbox baris **sengaja tidak
+  ditambahkan** ke tabel Yudisium walau ada di Katalog Produk - permintaan
+  eksplisit, bukan kelalaian mengikuti pola sumbernya.
+- Item navigasi sidebar **"Mahasiswa/Alumni"** (`index.html`,
+  `kuesioner-builder.html`, `kuesioner-builder-2.html`, `kuesioner.html` di
+  `templates/karirlink/`) sebelumnya cuma `<a class="nav-item">` tanpa
+  `href` - sekarang tertaut ke halaman Mahasiswa/Alumni yang baru dibuat.
 
 ### Fixed
 
+- **Tooltip badge "44 pertanyaan" di `kuesioner-builder.html` tertutup/
+  terpotong** oleh card gelombang berikutnya - root cause-nya bukan z-index
+  (sudah `z-30`), tapi `overflow-hidden` pada card accordion pembungkusnya:
+  begitu section-nya collapsed (tinggi card cuma setinggi header), tooltip
+  yang jatuh ke bawah badge (`position: absolute; top-full`) ikut ke-clip
+  oleh batas bawah card itu sendiri - kasus yang sama seperti tooltip
+  "Aksi lainnya" DataTable di atas, cuma versi vertikal. Karena directional
+  flip saja (atas vs bawah) terbukti tidak pernah benar-benar aman - versi
+  lama tooltip Core/Optional/Custom pernah kena masalah serupa dari arah
+  sebaliknya - diperbaiki dengan komponen baru di design system,
+  `.tooltip-fixed` (`src/input.css`): satu elemen tooltip mengambang per
+  halaman (`position: fixed`, dihitung dari `getBoundingClientRect()` lewat
+  JS, bukan CSS `group-hover`) yang sepenuhnya lepas dari overflow/stacking
+  context induk manapun, dengan `z-[100]` - sengaja di atas token z-index
+  tertinggi yang ada (`--z-toast: 50`) - supaya tooltip yang sedang di-hover
+  tidak pernah kalah lawan elemen lain. Dipakai untuk kedua badge "44
+  pertanyaan" di `kuesioner-builder.html` (Pasca-Lulus 1 & 4 Tahun) dan versi
+  gabungannya di draft `kuesioner-builder-6.html`. Sempat ketemu bug kedua
+  saat verifikasi: elemen `<div id="tooltipFixed">`-nya awalnya ditaruh
+  setelah tag `<script>`, padahal script jalan sinkron duluan saat parsing -
+  `getElementById` jadi selalu `null` dan listener batal terpasang tanpa
+  ada error apa pun di console. Diperbaiki dengan memindah div itu ke
+  sebelum `<script>`.
 - Tabel DataTable masih bisa di-scroll horizontal sedikit walau kolom yang
   terlihat sudah pas - penyebabnya tooltip "Aksi lainnya" (`.tooltip-content`,
   `opacity-0` tapi tetap `position:absolute`) ikut dihitung dalam
@@ -96,6 +340,73 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   kolom Aksi (bukan Perusahaan) sebagai satu-satunya kolom fleksibel, dan
   tabel hanya melebar penuh mulai `sm:` ke atas (`w-auto sm:w-full`) supaya
   tidak memaksa kolom Perusahaan menyempit berlebihan di layar sempit.
+- **Menu "..." (Aksi) di baris dekat bawah tabel (DataTable & Katalog
+  Produk) tertutup/terpotong**, sama seperti kasus tooltip di atas tapi versi
+  dropdown - percobaan pertama cuma membandingkan tinggi menu ke sisa ruang
+  **viewport**, jadi kasus "muat di viewport tapi kepotong wrapper tabelnya
+  sendiri" masih lolos: `<div class="overflow-x-auto">` pembungkus tabel
+  (dipakai supaya tabel lebar bisa di-scroll horizontal) ikut men-clip
+  vertikal juga begitu terbuka ke bawah - sesuai spek CSS, `overflow-x`
+  selain `visible` memaksa `overflow-y` computed jadi `auto`, bukan
+  `visible`, walau yang dimaksud cuma sumbu X. Diperbaiki dengan helper baru
+  `findClipAncestor()` (`index.html`) yang jalan ke atas dari tombol pemicu
+  dan mencari ancestor pertama yang computed overflow-nya bukan `visible`
+  (bukan menebak nama class tertentu seperti `.card` atau `.overflow-x-auto`
+  - biar tetap benar kalau strukturnya berubah nanti), dipasangkan dengan
+  modifier CSS baru `.dropdown-menu-up` (`src/input.css`) yang membalik menu
+  ke atas tombol kalau ruang di bawah *dalam boundary itu* tidak cukup.
+  Dipakai lewat satu helper `openDropdownMenu()` yang sama untuk kedua tabel.
+- **Bulk action bar (DataTable & Katalog Produk) jatuh ke block layout,
+  bukan flex row**, begitu ditampilkan - class `items-center`/
+  `justify-between` sudah ada di elemen bar-nya, tapi class `flex` itu
+  sendiri tidak pernah ditulis (cuma `hidden` yang di-toggle JS), jadi begitu
+  `hidden` dilepas, `<div>`-nya jatuh ke `display: block` bawaan browser dan
+  isinya numpuk ke bawah (badge jumlah + label di baris pertama, tombol
+  Hapus/Batal pindah ke baris kedua, rata kiri) alih-alih sejajar dalam satu
+  baris dengan tombol rata kanan. Diperbaiki dengan toggle `hidden`/`flex`
+- Kolom **"No"** di Table — Katalog Produk sempat tetap kosong saat
+  halaman pertama kali dibuka (baru terisi setelah user mengetik di kotak
+  pencarian atau mengubah filter) - root cause: nomornya diisi di dalam
+  `applyFilter()`, tapi fungsi itu sebelumnya cuma dipanggil dari event
+  handler pencarian/filter, tidak pernah dipanggil sekali di akhir setup
+  IIFE saat halaman dimuat. Diperbaiki dengan menambah satu pemanggilan
+  `applyFilter()` di akhir setup, sama seperti pola inisialisasi tabel lain.
+- Kolom Aksi Mahasiswa/Alumni **melebar berlebihan dengan tombol "Lihat
+  Profil" mengambang di tengah**, bukan rata kiri menempel header "Aksi" -
+  root cause sama seperti kasus Katalog Produk sebelumnya:
+  `.table-col-actions` cuma mengatur `min-width` (`min-w-14`), bukan
+  `width` sungguhan, jadi di bawah `table-fixed` kolom ini menyerap sisa
+  lebar yang tidak terpakai kolom lain. Diperbaiki dengan `width` eksplisit
+  (`w-16`) di samping `text-left` (`.table-col-actions` mewarisi
+  `text-right` yang tidak berefek ke posisi anak `flex`, tapi tetap
+- **Lebar sidebar mode lipat sempat tidak berubah sama sekali** - root
+  cause: override `.sidebar-collapsed { width: 72px }` ditulis di layer
+  `components` (lewat `@apply` pada custom class), sedangkan lebar
+  dasarnya (`w-[264px]`) adalah utility Tailwind biasa di layer
+  `utilities` - utilities SELALU menang dari components di Tailwind v4 apa
+  pun urutan/spesifisitasnya. Diperbaiki dengan modifier `!` (important)
+  pada override-nya, pola yang sama seperti `.nav-item-active` di file yang
+  sama.
+- **Ikon nav "meluncur" secara nyata melintasi baris saat sidebar
+  diciutkan**, bukan diam di tempat - root cause: `justify-content`
+  (dipakai untuk menengahkan ikon saat sudah ciut) berubah dari `normal`
+  ke `center` SEKETIKA saat class di-toggle (properti ini tidak bisa
+  di-transition CSS), padahal lebar sidebar-nya sendiri baru mulai
+  menyusut dari 264px menuju 72px selama 300ms berikutnya - akibatnya ikon
+  langsung "menengah" dari baris yang MASIH lebar, lalu ikut meluncur ke
+  kiri seiring baris menyempit. Diperbaiki dengan menghapus toggle
+  `justify-content` sama sekali dan memberi tiap ikon "slot" lebar tetap
+  (`.nav-item-icon`, 24px, tidak pernah berubah antara kedua state) -
+  karena ukuran slot-nya konstan, penengahan di dalamnya tidak pernah butuh
+  transisi dan tidak pernah melompat.
+- **Ikon masih terlihat sedikit tidak center di dalam kotak highlight**
+  setelah perbaikan di atas - root cause kedua: `gap-3` pada `.nav-item`
+  tetap mereservasi 12px ruang kosong SETELAH ikon meski label di
+  sebelahnya sudah menyusut ke lebar 0 (`gap` flexbox tidak otomatis
+  hilang hanya karena salah satu sibling-nya kosong) - ketahuan lewat
+  inspeksi DevTools yang menunjukkan garis ungu (indikator gap) persis di
+  sebelah kanan ikon. Diperbaiki dengan ikut meng-transition `gap` ke `0`
+  saat lipat, sama seperti `max-width`/`opacity` label.
 
 ## [1.1.0] - 2026-09-11
 

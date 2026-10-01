@@ -1,0 +1,133 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Theming" />
+
+# Theming — Light, Dark & System
+
+KarirKit mendukung tiga mode tampilan: **Terang**, **Gelap**, dan **Ikuti
+sistem** (mengikuti preferensi OS). Dark mode bersifat **opt-in per halaman**:
+hanya halaman yang memasang `data-theme` di `<html>` yang berubah, halaman
+lain tetap light. Implementasi acuan ada di `templates/dashboard.html` —
+buka story **Templates → Dashboard** lalu pakai tombol matahari / bulan /
+monitor di topbar.
+
+## Cara kerja
+
+1. **Satu atribut, satu sumber kebenaran.** Tema aktif hanya ditentukan oleh
+   `<html data-theme="light|dark">`. Nilainya selalu `light` atau `dark` —
+   "system" bukan nilai atribut, melainkan *preferensi* yang di-resolve ke
+   salah satunya lewat JS.
+2. **Override map di CSS.** `src/input.css` punya blok
+   `html[data-theme="dark"] { … }` yang menimpa CSS variable token. Karena
+   semua utility Tailwind (`bg-slate-50`, `text-neutral-800`, `bg-surface`)
+   membaca token lewat `var(--color-…)`, komponen ikut berubah **tanpa**
+   perlu `dark:` di markup.
+3. **Preferensi disimpan** di `localStorage` key `kk-theme` dengan nilai
+   `light`, `dark`, atau `system` (default bila kosong).
+
+| Preferensi | `data-theme` yang dipasang |
+| ---------- | -------------------------- |
+| `light`    | `light` |
+| `dark`     | `dark` |
+| `system`   | `dark` bila `prefers-color-scheme: dark`, selain itu `light` |
+
+## Yang di-override di mode gelap
+
+| Kelompok | Perlakuan |
+| -------- | --------- |
+| `neutral-*` & `slate-*` | Skala dibalik (50 → paling gelap, 900 → paling terang). `slate-*` alias ke `neutral-*` |
+| `surface`, `brand-soft-mid` | Diganti warna gelap |
+| `primary/secondary/success/warning/danger/info` **50 & 100** (juga 200 untuk primary/secondary) | Jadi tint gelap untuk latar badge/alert |
+| `*-700` (dan `primary-800/900`) | Jadi versi terang untuk teks di atas tint gelap |
+| `*-500` / `*-600` | **Tidak diubah** — tombol solid + teks putih tetap kontras |
+| `bg-brand-gradient`, `.btn-primary:hover`, `bg-white/80·90`, `ring-white`, overlay `bg-slate-900/30` | Override eksplisit karena memakai warna literal / token yang sudah dibalik |
+
+> Prinsip: **tambah/ubah token di override map**, jangan menambah `dark:`
+> ad-hoc di template. Kalau ada warna literal (hex, `bg-white`, `text-black`)
+> yang tampak salah di dark, ganti ke token semantic (`bg-surface`,
+> `text-fg`) atau tambahkan satu aturan di blok `data-theme="dark"`.
+
+## Memasang di halaman baru
+
+**1. Skrip anti-kedip di `<head>`** (sebelum body dirender, supaya tidak ada
+flash putih saat refresh):
+
+```html
+<script>
+  (function () {
+    var pref = 'system';
+    try { pref = localStorage.getItem('kk-theme') || 'system'; } catch (e) {}
+    var dark = pref === 'dark' || (pref === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>
+```
+
+**2. Tombol pemilih tema** — tiga tombol dengan `data-theme-option`:
+
+```html
+<div role="radiogroup" aria-label="Tema tampilan" class="flex items-center gap-0.5 rounded-xl border border-slate-200/70 bg-slate-50 p-0.5">
+  <button type="button" role="radio" data-theme-option="light"  title="Terang"       aria-label="Terang"       class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500"><i class="kk kk-sun h-4 w-4"></i></button>
+  <button type="button" role="radio" data-theme-option="dark"   title="Gelap"        aria-label="Gelap"        class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500"><i class="kk kk-moon h-4 w-4"></i></button>
+  <button type="button" role="radio" data-theme-option="system" title="Ikuti sistem" aria-label="Ikuti sistem" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500"><i class="kk kk-desktop h-4 w-4"></i></button>
+</div>
+```
+
+**3. Logika di akhir body:**
+
+```js
+const themeMQ = matchMedia('(prefers-color-scheme: dark)');
+const themeBtns = document.querySelectorAll('[data-theme-option]');
+
+function getThemePref() {
+  try { return localStorage.getItem('kk-theme') || 'system'; } catch (e) { return 'system'; }
+}
+function applyTheme(pref) {
+  const dark = pref === 'dark' || (pref === 'system' && themeMQ.matches);
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  themeBtns.forEach((b) => {
+    const on = b.dataset.themeOption === pref;
+    b.setAttribute('aria-checked', on);
+    b.classList.toggle('bg-surface', on);
+    b.classList.toggle('text-primary-600', on);
+    b.classList.toggle('shadow-sm', on);
+    b.classList.toggle('text-slate-500', !on);
+  });
+}
+themeBtns.forEach((b) => b.addEventListener('click', () => {
+  try { localStorage.setItem('kk-theme', b.dataset.themeOption); } catch (e) {}
+  applyTheme(b.dataset.themeOption);
+}));
+// Mode "system" ikut berubah live saat tema OS berganti
+themeMQ.addEventListener('change', () => { if (getThemePref() === 'system') applyTheme('system'); });
+applyTheme(getThemePref());
+```
+
+`try/catch` di sekitar `localStorage` disengaja — di private window atau saat
+site data diblokir, akses bisa melempar error; halaman tetap jalan dengan
+default `system`.
+
+## Logo
+
+Logo berwarna (`#22489E` + oranye) tidak terbaca di latar gelap. Pasang dua
+`<img>`; CSS (`.logo-on-light` / `.logo-on-dark`) menampilkan salah satunya
+sesuai tema, tanpa JS dan tanpa kedip:
+
+```html
+<img src="../assets/logo/karirlink-logo.svg"       alt="KarirLink" class="logo-on-light h-8 w-auto" />
+<img src="../assets/logo/karirlink-logo-white.svg" alt="KarirLink" class="logo-on-dark h-8 w-auto" />
+```
+
+Varian `*-white.svg` berwarna putih penuh (termasuk segitiga oranye). Pola
+yang sama berlaku untuk `karirkit-*` dan `*-mark-*`.
+
+## Batasan saat ini
+
+- **Hanya `templates/dashboard.html`** yang sudah memasang tema. Halaman
+  lain (login, register, `templates/karirlink/*`, `index.html`) masih light
+  — untuk mengaktifkan, ikuti langkah di atas.
+- Storybook sendiri (story komponen) belum punya toggle tema; story
+  **Templates → Dashboard** memakai `<iframe>`, jadi tema di dalamnya
+  memakai `localStorage` origin yang sama.
+- Favicon tidak ikut tema halaman (mengikuti tema browser).
+- Warna dark adalah proposal engineering, belum divalidasi tim desain.

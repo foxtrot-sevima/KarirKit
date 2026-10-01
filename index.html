@@ -3,9 +3,73 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KarirKit - Design System</title>
+<title>KarirKit — Design System KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="dist/output.css" />
+<meta name="description" content="KarirKit adalah design system resmi KarirLink: token warna, tipografi, 1.500+ ikon Phosphor dalam 6 ketebalan, dan pustaka komponen UI berbasis Tailwind CSS v4 untuk membangun produk karier kampus yang konsisten." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="KarirKit — Design System KarirLink" />
+<meta property="og:description" content="KarirKit adalah design system resmi KarirLink: token warna, tipografi, 1.500+ ikon Phosphor dalam 6 ketebalan, dan pustaka komponen UI berbasis Tailwind CSS v4 untuk membangun produk karier kampus yang konsisten." />
+<meta property="og:url" content="https://karirkit.vercel.app/" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="KarirKit — Design System KarirLink" />
+<meta name="twitter:description" content="KarirKit adalah design system resmi KarirLink: token warna, tipografi, 1.500+ ikon Phosphor dalam 6 ketebalan, dan pustaka komponen UI berbasis Tailwind CSS v4 untuk membangun produk karier kampus yang konsisten." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+
+<!-- Structured data (schema.org) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://karirkit.vercel.app/#organization",
+      "name": "SEVIMA",
+      "url": "https://sevima.com",
+      "logo": "https://karirkit.vercel.app/assets/logo/karirkit-logo.svg"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://karirkit.vercel.app/#website",
+      "url": "https://karirkit.vercel.app/",
+      "name": "KarirKit",
+      "description": "KarirKit adalah design system resmi KarirLink: token warna, tipografi, 1.500+ ikon Phosphor dalam 6 ketebalan, dan pustaka komponen UI berbasis Tailwind CSS v4 untuk membangun produk karier kampus yang konsisten.",
+      "inLanguage": "id",
+      "publisher": {
+        "@id": "https://karirkit.vercel.app/#organization"
+      }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "KarirKit Design System",
+      "description": "KarirKit adalah design system resmi KarirLink: token warna, tipografi, 1.500+ ikon Phosphor dalam 6 ketebalan, dan pustaka komponen UI berbasis Tailwind CSS v4 untuk membangun produk karier kampus yang konsisten.",
+      "programmingLanguage": [
+        "CSS",
+        "HTML",
+        "JavaScript"
+      ],
+      "codeRepository": "https://github.com/foxtrot-sevima/KarirKit",
+      "url": "https://karirkit.vercel.app/",
+      "author": {
+        "@id": "https://karirkit.vercel.app/#organization"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
@@ -81,7 +145,10 @@
       <a href="#navigation" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Navigasi</a>
       <a href="#tables" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tabel</a>
       <a href="#datatable" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">DataTable</a>
+      <a href="#catalog-table" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Katalog</a>
       <a href="#alerts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Alert</a>
+      <a href="#toasts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Toast</a>
+      <a href="#qr-code" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">QR Code</a>
       <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Lainnya</a>
     </div>
   </div>
@@ -1060,16 +1127,25 @@
       </div>
 
       <!-- Bulk action bar -->
-      <div id="dtBulkBar" class="hidden items-center justify-between gap-3 border-b border-primary-100 bg-primary-50 px-4 py-2.5 text-sm">
-        <span class="font-medium text-primary-700"><span id="dtSelectedCount">0</span> dipilih</span>
+      <div id="dtBulkBar" class="hidden items-center justify-between gap-3 border-b border-primary-100 bg-primary-50 px-4 py-3">
+        <div class="flex items-center gap-2.5">
+          <span id="dtSelectedCount" class="flex h-6 min-w-6 items-center justify-center rounded-full bg-primary-600 px-1.5 text-xs font-semibold text-white">0</span>
+          <span id="dtBulkLabel" class="text-sm font-medium text-primary-700">dipilih</span>
+        </div>
         <div class="flex items-center gap-2">
-          <button id="dtBulkDelete" class="btn-ghost btn-sm text-danger-600 hover:bg-danger-50 hover:text-danger-700">Hapus</button>
-          <button id="dtBulkCancel" class="btn-ghost btn-sm">Batal</button>
+          <button id="dtBulkDelete" type="button" class="btn-outline btn-sm border-danger-200 text-danger-600 hover:border-danger-300 hover:bg-danger-50 hover:text-danger-700">
+            <i class="kk kk-trash h-4 w-4"></i>
+            Hapus
+          </button>
+          <button id="dtBulkCancel" type="button" class="btn-outline btn-sm">
+            <i class="kk kk-x h-4 w-4"></i>
+            Batal
+          </button>
         </div>
       </div>
 
       <div class="overflow-x-auto">
-        <table class="table table-fixed w-auto sm:w-full" id="dtTable">
+        <table class="table table-fixed w-auto sm:w-full" id="dtTable" data-item-label="lamaran">
           <thead>
             <tr>
               <th class="table-col-check"><input type="checkbox" id="dtSelectAll" class="form-check" /></th>
@@ -1613,6 +1689,397 @@
     </div>
   </section>
 
+  <!-- ============================= CATALOG TABLE ============================= -->
+  <section id="catalog-table" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Table — Katalog Produk</h2>
+      <p class="mt-1 text-sm text-slate-500">Pola tabel untuk konten "kaya" - thumbnail, rating bintang, dan harga - dari komponen KarirKit yang sama (<code class="kbd">.table</code>, <code class="kbd">.badge-*</code>, <code class="kbd">.combo</code>, <code class="kbd">.dropdown-menu</code>), bukan komponen baru.</p>
+    </div>
+
+    <div class="card overflow-hidden">
+      <!-- Toolbar -->
+      <div class="flex flex-col gap-3 border-b border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between" data-combo-boundary>
+        <div class="relative w-full sm:w-64">
+          <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+            <i class="kk kk-magnifying-glass h-4 w-4"></i>
+          </span>
+          <input id="catalogSearch" class="input h-9 pl-9" placeholder="Cari produk..." />
+        </div>
+        <div class="flex items-center gap-2">
+          <div id="catalogStatusFilter" class="combo w-36" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Status</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Status">Semua Status</button>
+                <button type="button" class="combo-item" data-combo-item data-value="aktif" data-label="Aktif">Aktif</button>
+                <button type="button" class="combo-item" data-combo-item data-value="draf" data-label="Draf">Draf</button>
+                <button type="button" class="combo-item" data-combo-item data-value="habis" data-label="Habis Stok">Habis Stok</button>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary btn-md shrink-0">
+            <i class="kk kk-plus h-4 w-4"></i>
+            Tambah Produk
+          </button>
+        </div>
+      </div>
+
+      <!-- Bulk action bar -->
+      <div id="catalogBulkBar" class="hidden items-center justify-between gap-3 border-b border-primary-100 bg-primary-50 px-4 py-3">
+        <div class="flex items-center gap-2.5">
+          <span id="catalogSelectedCount" class="flex h-6 min-w-6 items-center justify-center rounded-full bg-primary-600 px-1.5 text-xs font-semibold text-white">0</span>
+          <span id="catalogBulkLabel" class="text-sm font-medium text-primary-700">dipilih</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="catalogBulkDelete" type="button" class="btn-outline btn-sm border-danger-200 text-danger-600 hover:border-danger-300 hover:bg-danger-50 hover:text-danger-700">
+            <i class="kk kk-trash h-4 w-4"></i>
+            Hapus
+          </button>
+          <button id="catalogBulkCancel" type="button" class="btn-outline btn-sm">
+            <i class="kk kk-x h-4 w-4"></i>
+            Batal
+          </button>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="table table-lg table-fixed w-auto sm:w-full" id="catalogTable" data-item-label="produk">
+          <thead>
+            <tr>
+              <th class="table-col-check"><input type="checkbox" id="catalogSelectAll" class="form-check" /></th>
+              <th class="table-col-num hidden xl:table-cell">No</th>
+              <th class="w-52 sm:w-64 lg:w-80">Produk</th>
+              <th class="hidden lg:table-cell">Kode</th>
+              <th class="hidden text-right sm:table-cell">Stok</th>
+              <th class="text-right">Harga</th>
+              <th class="hidden text-right md:table-cell">Rating</th>
+              <th class="text-right">Status</th>
+              <th class="table-col-actions">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="catalogBody">
+            <tr data-name="E-Book Panduan Interview Kerja" data-status="aktif">
+              <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-file-text h-5 w-5"></i></span>
+                  <div class="min-w-0">
+                    <p class="truncate font-medium text-slate-800">E-Book Panduan Interview Kerja</p>
+                    <p class="text-xs text-slate-400">E-Book &middot; Persiapan Kerja</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden text-slate-500 lg:table-cell">TRN-0142</td>
+              <td class="hidden text-right sm:table-cell">120</td>
+              <td class="text-right font-medium text-slate-700">Rp 49.000</td>
+              <td class="hidden md:table-cell">
+                <div class="flex items-center justify-end gap-0.5">
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star h-3.5 w-3.5 text-slate-300"></i>
+                </div>
+              </td>
+              <td class="text-right"><span class="badge-success">Aktif</span></td>
+              <td class="table-col-actions">
+                <div class="relative inline-block">
+                  <button type="button" class="catalog-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                  </button>
+                  <div class="dropdown-menu hidden right-0">
+                    <button type="button" class="dropdown-item"><i class="kk kk-eye h-4 w-4"></i>Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-pencil-simple h-4 w-4"></i>Edit</button>
+                    <button type="button" class="dropdown-item dropdown-item-danger"><i class="kk kk-trash h-4 w-4"></i>Hapus</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Kelas Persiapan Tes TOEFL" data-status="aktif">
+              <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-graduation-cap h-5 w-5"></i></span>
+                  <div class="min-w-0">
+                    <p class="truncate font-medium text-slate-800">Kelas Persiapan Tes TOEFL</p>
+                    <p class="text-xs text-slate-400">Kelas Online &middot; Bahasa</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden text-slate-500 lg:table-cell">TRN-0198</td>
+              <td class="hidden text-right sm:table-cell">85</td>
+              <td class="text-right font-medium text-slate-700">Rp 299.000</td>
+              <td class="hidden md:table-cell">
+                <div class="flex items-center justify-end gap-0.5">
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                </div>
+              </td>
+              <td class="text-right"><span class="badge-success">Aktif</span></td>
+              <td class="table-col-actions">
+                <div class="relative inline-block">
+                  <button type="button" class="catalog-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                  </button>
+                  <div class="dropdown-menu hidden right-0">
+                    <button type="button" class="dropdown-item"><i class="kk kk-eye h-4 w-4"></i>Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-pencil-simple h-4 w-4"></i>Edit</button>
+                    <button type="button" class="dropdown-item dropdown-item-danger"><i class="kk kk-trash h-4 w-4"></i>Hapus</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Template CV ATS-Friendly" data-status="aktif">
+              <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-clipboard-text h-5 w-5"></i></span>
+                  <div class="min-w-0">
+                    <p class="truncate font-medium text-slate-800">Template CV ATS-Friendly</p>
+                    <p class="text-xs text-slate-400">Template &middot; Dokumen</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden text-slate-500 lg:table-cell">TRN-0075</td>
+              <td class="hidden text-right sm:table-cell">999</td>
+              <td class="text-right font-medium text-slate-700">Rp 25.000</td>
+              <td class="hidden md:table-cell">
+                <div class="flex items-center justify-end gap-0.5">
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star h-3.5 w-3.5 text-slate-300"></i>
+                </div>
+              </td>
+              <td class="text-right"><span class="badge-success">Aktif</span></td>
+              <td class="table-col-actions">
+                <div class="relative inline-block">
+                  <button type="button" class="catalog-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                  </button>
+                  <div class="dropdown-menu hidden right-0">
+                    <button type="button" class="dropdown-item"><i class="kk kk-eye h-4 w-4"></i>Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-pencil-simple h-4 w-4"></i>Edit</button>
+                    <button type="button" class="dropdown-item dropdown-item-danger"><i class="kk kk-trash h-4 w-4"></i>Hapus</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Sertifikasi Digital Marketing" data-status="aktif">
+              <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-medal h-5 w-5"></i></span>
+                  <div class="min-w-0">
+                    <p class="truncate font-medium text-slate-800">Sertifikasi Digital Marketing</p>
+                    <p class="text-xs text-slate-400">Sertifikasi &middot; Pemasaran</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden text-slate-500 lg:table-cell">TRN-0231</td>
+              <td class="hidden text-right sm:table-cell">12</td>
+              <td class="text-right font-medium text-slate-700">Rp 750.000</td>
+              <td class="hidden md:table-cell">
+                <div class="flex items-center justify-end gap-0.5">
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                </div>
+              </td>
+              <td class="text-right"><span class="badge-success">Aktif</span></td>
+              <td class="table-col-actions">
+                <div class="relative inline-block">
+                  <button type="button" class="catalog-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                  </button>
+                  <div class="dropdown-menu hidden right-0">
+                    <button type="button" class="dropdown-item"><i class="kk kk-eye h-4 w-4"></i>Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-pencil-simple h-4 w-4"></i>Edit</button>
+                    <button type="button" class="dropdown-item dropdown-item-danger"><i class="kk kk-trash h-4 w-4"></i>Hapus</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Sesi Konsultasi CV 1-on-1" data-status="habis">
+              <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-chat-circle h-5 w-5"></i></span>
+                  <div class="min-w-0">
+                    <p class="truncate font-medium text-slate-800">Sesi Konsultasi CV 1-on-1</p>
+                    <p class="text-xs text-slate-400">Konsultasi &middot; Mentoring</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden text-slate-500 lg:table-cell">TRN-0310</td>
+              <td class="hidden text-right sm:table-cell">0</td>
+              <td class="text-right font-medium text-slate-700">Rp 150.000</td>
+              <td class="hidden md:table-cell">
+                <div class="flex items-center justify-end gap-0.5">
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                </div>
+              </td>
+              <td class="text-right"><span class="badge-danger">Habis Stok</span></td>
+              <td class="table-col-actions">
+                <div class="relative inline-block">
+                  <button type="button" class="catalog-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                  </button>
+                  <div class="dropdown-menu hidden right-0">
+                    <button type="button" class="dropdown-item"><i class="kk kk-eye h-4 w-4"></i>Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-pencil-simple h-4 w-4"></i>Edit</button>
+                    <button type="button" class="dropdown-item dropdown-item-danger"><i class="kk kk-trash h-4 w-4"></i>Hapus</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Kelas Public Speaking" data-status="aktif">
+              <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-microphone h-5 w-5"></i></span>
+                  <div class="min-w-0">
+                    <p class="truncate font-medium text-slate-800">Kelas Public Speaking</p>
+                    <p class="text-xs text-slate-400">Kelas Online &middot; Soft Skill</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden text-slate-500 lg:table-cell">TRN-0264</td>
+              <td class="hidden text-right sm:table-cell">40</td>
+              <td class="text-right font-medium text-slate-700">Rp 199.000</td>
+              <td class="hidden md:table-cell">
+                <div class="flex items-center justify-end gap-0.5">
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star h-3.5 w-3.5 text-slate-300"></i>
+                  <i class="kk kk-star h-3.5 w-3.5 text-slate-300"></i>
+                </div>
+              </td>
+              <td class="text-right"><span class="badge-success">Aktif</span></td>
+              <td class="table-col-actions">
+                <div class="relative inline-block">
+                  <button type="button" class="catalog-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                  </button>
+                  <div class="dropdown-menu hidden right-0">
+                    <button type="button" class="dropdown-item"><i class="kk kk-eye h-4 w-4"></i>Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-pencil-simple h-4 w-4"></i>Edit</button>
+                    <button type="button" class="dropdown-item dropdown-item-danger"><i class="kk kk-trash h-4 w-4"></i>Hapus</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="E-Book Negosiasi Gaji" data-status="draf">
+              <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-handshake h-5 w-5"></i></span>
+                  <div class="min-w-0">
+                    <p class="truncate font-medium text-slate-800">E-Book Negosiasi Gaji</p>
+                    <p class="text-xs text-slate-400">E-Book &middot; Persiapan Kerja</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden text-slate-500 lg:table-cell">TRN-0189</td>
+              <td class="hidden text-right sm:table-cell">200</td>
+              <td class="text-right font-medium text-slate-700">Rp 39.000</td>
+              <td class="hidden md:table-cell">
+                <div class="flex items-center justify-end gap-0.5">
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star h-3.5 w-3.5 text-slate-300"></i>
+                </div>
+              </td>
+              <td class="text-right"><span class="badge-neutral">Draf</span></td>
+              <td class="table-col-actions">
+                <div class="relative inline-block">
+                  <button type="button" class="catalog-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                  </button>
+                  <div class="dropdown-menu hidden right-0">
+                    <button type="button" class="dropdown-item"><i class="kk kk-eye h-4 w-4"></i>Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-pencil-simple h-4 w-4"></i>Edit</button>
+                    <button type="button" class="dropdown-item dropdown-item-danger"><i class="kk kk-trash h-4 w-4"></i>Hapus</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr data-name="Workshop LinkedIn Optimization" data-status="aktif">
+              <td><input type="checkbox" class="catalog-row-checkbox form-check" /></td>
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-linkedin-logo h-5 w-5"></i></span>
+                  <div class="min-w-0">
+                    <p class="truncate font-medium text-slate-800">Workshop LinkedIn Optimization</p>
+                    <p class="text-xs text-slate-400">Workshop &middot; Personal Branding</p>
+                  </div>
+                </div>
+              </td>
+              <td class="hidden text-slate-500 lg:table-cell">TRN-0402</td>
+              <td class="hidden text-right sm:table-cell">60</td>
+              <td class="text-right font-medium text-slate-700">Rp 175.000</td>
+              <td class="hidden md:table-cell">
+                <div class="flex items-center justify-end gap-0.5">
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star kk-fill h-3.5 w-3.5 text-warning-500"></i>
+                  <i class="kk kk-star h-3.5 w-3.5 text-slate-300"></i>
+                </div>
+              </td>
+              <td class="text-right"><span class="badge-success">Aktif</span></td>
+              <td class="table-col-actions">
+                <div class="relative inline-block">
+                  <button type="button" class="catalog-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
+                  </button>
+                  <div class="dropdown-menu hidden right-0">
+                    <button type="button" class="dropdown-item"><i class="kk kk-eye h-4 w-4"></i>Lihat Detail</button>
+                    <button type="button" class="dropdown-item"><i class="kk kk-pencil-simple h-4 w-4"></i>Edit</button>
+                    <button type="button" class="dropdown-item dropdown-item-danger"><i class="kk kk-trash h-4 w-4"></i>Hapus</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flex flex-col gap-3 border-t border-slate-100 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-xs text-slate-500" id="catalogRangeText">Menampilkan 8 dari 8 produk</p>
+        <div class="flex items-center gap-1" id="catalogPagination">
+          <button type="button" class="pagination-btn" disabled>&lsaquo;</button>
+          <button type="button" class="pagination-btn pagination-btn-active">1</button>
+          <button type="button" class="pagination-btn" disabled>&rsaquo;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================= ALERTS ============================= -->
   <section id="alerts" class="scroll-mt-32 py-12">
     <div class="mb-6">
@@ -1640,6 +2107,232 @@
     <div class="mt-4 rounded-xl border border-warning-100 bg-warning-50 p-4">
       <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-warning-600">AI Recommendation &amp; Impact</p>
       <p class="text-sm text-slate-700">Kotak rekomendasi bertingkat di dalam kartu aksi - memberi konteks kenapa AI menyarankan sesuatu dan dampaknya.</p>
+    </div>
+  </section>
+
+  <!-- ============================= TOASTS ============================= -->
+  <section id="toasts" class="scroll-mt-32 py-12">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Toast</h2>
+      <p class="mt-1 text-sm text-slate-500">Notifikasi sementara - varian ikon, aksi, avatar, progress, dan posisi. Tutup lewat <code class="kbd">[data-toast-dismiss]</code>; <code class="kbd">assets/js/toast.js</code> opsional untuk dismiss &amp; <code class="kbd">KKToast.show()</code>.</p>
+    </div>
+    <div class="card space-y-8 p-6 sm:p-8">
+      <div class="grid items-start gap-8 md:grid-cols-2 xl:grid-cols-3">
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Default toast</p>
+        <div class="toast toast-center" role="status">
+          <span class="toast-icon"><i class="kk kk-fire h-5 w-5"></i></span>
+          <div>Set yourself free.</div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Colors</p>
+        <div class="flex flex-col gap-4">
+        <div class="toast toast-center" role="status">
+          <span class="toast-icon toast-icon-success"><i class="kk kk-check h-5 w-5"></i></span>
+          <div>Item moved successfully.</div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+        <div class="toast toast-center" role="alert">
+          <span class="toast-icon toast-icon-danger"><i class="kk kk-x h-5 w-5"></i></span>
+          <div>Item has been deleted.</div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+        <div class="toast toast-center" role="alert">
+          <span class="toast-icon toast-icon-warning"><i class="kk kk-warning h-5 w-5"></i></span>
+          <div>Improve password difficulty.</div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Simple toast</p>
+        <div class="toast toast-center" role="status">
+          <i class="kk kk-paper-plane-tilt h-5 w-5 shrink-0 text-primary-600"></i>
+          <div>Message sent successfully.</div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Undo button</p>
+        <div class="toast toast-center" role="status">
+          <div>Conversation archived.</div>
+          <div class="ml-auto flex items-center gap-2">
+            <button type="button" class="toast-action">Undo</button>
+            <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Toast message</p>
+        <div class="toast toast-wide" role="status">
+          <span class="avatar h-10 w-10 text-sm">JL</span>
+          <div class="min-w-0">
+            <p class="toast-title">Jese Leos</p>
+            <p class="mt-0.5">Hi Neil, thanks for sharing your thoughts regarding Flowbite.</p>
+            <button type="button" class="btn-primary btn-sm mt-3"><i class="kk kk-arrow-bend-up-left h-3.5 w-3.5"></i>Reply</button>
+          </div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Push notification</p>
+        <div class="toast toast-wide" role="status">
+          <div class="min-w-0 flex-1">
+            <div class="mb-3 flex items-center justify-between gap-3">
+              <span class="badge-primary">New notification</span>
+              <span class="text-xs font-medium text-primary-600">a few seconds ago</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="avatar h-10 w-10 text-sm">BG</span>
+              <div class="min-w-0">
+                <p class="text-sm font-semibold text-fg">Bonnie Green</p>
+                <p class="text-sm">commented on your photo</p>
+              </div>
+            </div>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <button type="button" class="btn-secondary btn-sm" data-toast-dismiss>Close</button>
+              <button type="button" class="btn-primary btn-sm"><i class="kk kk-arrow-bend-up-left h-3.5 w-3.5"></i>Reply</button>
+            </div>
+          </div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Interactive toast</p>
+        <div class="toast toast-wide" role="status">
+          <span class="toast-icon"><i class="kk kk-arrow-clockwise h-5 w-5"></i></span>
+          <div class="min-w-0 flex-1">
+            <p class="toast-title">Update available</p>
+            <p class="mt-0.5">A new software version is available for download.</p>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <button type="button" class="btn-secondary btn-sm" data-toast-dismiss>Not now</button>
+              <button type="button" class="btn-primary btn-sm"><i class="kk kk-download-simple h-3.5 w-3.5"></i>Update</button>
+            </div>
+          </div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Toast illustration</p>
+        <div class="toast toast-wide flex-col" role="status">
+          <div class="flex items-start gap-3">
+            <div class="min-w-0 flex-1">
+              <svg viewBox="0 0 240 120" class="mb-3 w-full rounded-control bg-primary-50" role="img" aria-label="Ilustrasi ponsel dengan dompet digital">
+                <rect x="82" y="12" width="76" height="132" rx="14" class="fill-surface stroke-primary-600" stroke-width="3" />
+                <rect x="92" y="28" width="56" height="30" rx="6" class="fill-primary-100" />
+                <rect x="92" y="66" width="38" height="5" rx="2.5" class="fill-primary-200" />
+                <rect x="92" y="78" width="26" height="5" rx="2.5" class="fill-primary-200" />
+                <circle cx="140" cy="100" r="9" class="fill-primary-600" />
+                <path d="M136 100h8M140 96v8" class="stroke-white" stroke-width="2" stroke-linecap="round" />
+                <circle cx="40" cy="30" r="6" class="fill-secondary-200" />
+                <circle cx="200" cy="82" r="9" class="fill-secondary-100" />
+              </svg>
+              <p class="toast-title">Connect your wallet</p>
+              <p class="mt-0.5">Connect your wallet by clicking the bottom-right blue button.</p>
+            </div>
+            <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" class="btn-secondary btn-sm" data-toast-dismiss>Not now</button>
+            <button type="button" class="btn-primary btn-sm"><i class="kk kk-wallet h-3.5 w-3.5"></i>Connect</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Toast progress bar</p>
+        <div class="toast toast-wide" role="status">
+          <span class="toast-icon"><i class="kk kk-arrow-clockwise h-5 w-5"></i></span>
+          <div class="min-w-0 flex-1">
+            <p class="toast-title">Uploading in progress</p>
+            <p class="mt-0.5">Please wait while your file is being uploaded. This may take a moment.</p>
+            <div class="mt-3 flex items-center gap-3">
+              <div class="progress-track flex-1"><div class="progress-bar w-3/4"></div></div>
+              <span class="text-xs font-semibold text-fg">75%</span>
+            </div>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <button type="button" class="btn-secondary btn-sm" data-toast-dismiss>Cancel upload</button>
+              <button type="button" class="btn-primary btn-sm">Go to uploads</button>
+            </div>
+          </div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Toast danger alert</p>
+        <div class="toast toast-wide toast-danger" role="alert">
+          <span class="toast-icon toast-icon-danger"><i class="kk kk-warning-circle h-5 w-5"></i></span>
+          <div class="min-w-0 flex-1">
+            <p class="toast-title">Whoops! Something went wrong</p>
+            <p class="mt-0.5">The file format is not supported. Please upload a valid file type (PDF, JPG, PNG).</p>
+            <div class="mt-3 flex gap-2">
+              <button type="button" class="btn-danger btn-sm"><i class="kk kk-upload-simple h-3.5 w-3.5"></i>Try again</button>
+              <button type="button" class="btn-outline btn-sm" data-toast-dismiss>Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Toast warning alert</p>
+        <div class="toast toast-wide toast-warning" role="alert">
+          <div class="min-w-0 flex-1">
+            <div class="mb-2 flex items-center gap-2">
+              <i class="kk kk-info h-5 w-5 shrink-0"></i>
+              <span class="text-sm font-semibold">Info</span>
+            </div>
+            <p class="toast-title">Upload your invoice</p>
+            <p class="mt-0.5">Upload your invoice in one of the supported formats (PDF, JPG, PNG) with a maximum file size of 5MB. Ensure that all relevant details are visible for verification.</p>
+            <div class="mt-3 flex gap-2">
+              <button type="button" class="btn-primary btn-sm"><i class="kk kk-eye h-3.5 w-3.5"></i>Upload invoice</button>
+              <button type="button" class="btn-outline btn-sm" data-toast-dismiss>Remind me later</button>
+            </div>
+          </div>
+          <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div>
+      </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">Positioning</p>
+        <div class="relative h-[28rem] overflow-hidden rounded-card border border-dashed border-border bg-neutral-50">
+          <div class="toast-region toast-region-contained toast-top-left">
+            <div class="toast toast-center" role="status">
+              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+              <div>Top left positioning.</div>
+              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+            </div>
+          </div>
+          <div class="toast-region toast-region-contained toast-top-right">
+            <div class="toast toast-center" role="status">
+              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+              <div>Top right positioning.</div>
+              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+            </div>
+          </div>
+          <div class="toast-region toast-region-contained toast-bottom-right">
+            <div class="toast toast-center" role="status">
+              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+              <div>Bottom right positioning.</div>
+              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+            </div>
+          </div>
+          <div class="toast-region toast-region-contained toast-bottom-left">
+            <div class="toast toast-center" role="status">
+              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+              <div>Bottom left positioning.</div>
+              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="nav-eyebrow mb-3 px-0">JavaScript behaviour</p>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="btn-primary btn-sm" data-toast-show="success">Tampilkan toast sukses</button>
+          <button type="button" class="btn-outline btn-sm" data-toast-show="danger">Tampilkan toast error</button>
+          <button type="button" class="btn-outline btn-sm" data-toast-show="warning">Tampilkan toast peringatan</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2239,6 +2932,41 @@
     document.querySelectorAll('[data-date-picker]').forEach(setupDatePicker);
   })();
 
+  // The nearest ancestor that actually clips this element's paint — i.e.
+  // the real boundary a dropdown/tooltip can't visually escape while
+  // staying `position: absolute`. Walks up computed styles rather than
+  // guessing a class name, since e.g. `.overflow-x-auto` (used to let wide
+  // tables scroll horizontally) clips vertically too: per the CSS spec,
+  // setting overflow-x to anything but `visible` forces overflow-y to
+  // compute as `auto`, not `visible`, even though only X was intended.
+  function findClipAncestor(el) {
+    let node = el.parentElement;
+    while (node && node !== document.body) {
+      const cs = getComputedStyle(node);
+      if (cs.overflowY !== 'visible' || cs.overflowX !== 'visible') return node;
+      node = node.parentElement;
+    }
+    return null;
+  }
+
+  // Shared by any `.dropdown-menu` trigger (DataTable row menu, catalog
+  // action menu): opens below the trigger by default, flipping above it
+  // when there isn't room below within the nearest clipping ancestor —
+  // e.g. a last/second-to-last row inside the table's `.overflow-x-auto`
+  // scroll wrapper, where the menu would otherwise render past that
+  // wrapper's own edge and get silently clipped, same as the tooltip bug.
+  function openDropdownMenu(trigger, menu) {
+    menu.classList.remove('hidden');
+    const r = trigger.getBoundingClientRect();
+    const mRect = menu.getBoundingClientRect();
+    const clipAncestor = findClipAncestor(trigger);
+    const boundaryBottom = clipAncestor
+      ? Math.min(window.innerHeight, clipAncestor.getBoundingClientRect().bottom)
+      : window.innerHeight;
+    const fitsBelow = boundaryBottom - r.bottom >= mRect.height + 8;
+    menu.classList.toggle('dropdown-menu-up', !fitsBelow);
+  }
+
   (function () {
     const table = document.getElementById('dtTable');
     if (!table) return;
@@ -2253,11 +2981,17 @@
     const selectAll = document.getElementById('dtSelectAll');
     const bulkBar = document.getElementById('dtBulkBar');
     const bulkCount = document.getElementById('dtSelectedCount');
+    const bulkLabel = document.getElementById('dtBulkLabel');
     const bulkDelete = document.getElementById('dtBulkDelete');
     const bulkCancel = document.getElementById('dtBulkCancel');
     const rangeText = document.getElementById('dtRangeText');
     const paginationEl = document.getElementById('dtPagination');
     const headers = Array.from(table.querySelectorAll('th.th-sortable'));
+    // Read once from `data-item-label` on the <table> so a new table just
+    // sets one attribute instead of hand-editing "produk"/"lamaran" strings
+    // in JS for its empty-state message and bulk-bar label.
+    const itemLabel = table.dataset.itemLabel || 'item';
+    if (bulkLabel) bulkLabel.textContent = `${itemLabel} dipilih`;
 
     const state = {
       search: '',
@@ -2298,7 +3032,10 @@
     function updateBulkBar() {
       const checkedCount = allRows.filter((r) => r.querySelector('.dt-row-checkbox')?.checked).length;
       if (bulkCount) bulkCount.textContent = String(checkedCount);
-      if (bulkBar) bulkBar.classList.toggle('hidden', checkedCount === 0);
+      if (bulkBar) {
+        bulkBar.classList.toggle('hidden', checkedCount === 0);
+        bulkBar.classList.toggle('flex', checkedCount > 0);
+      }
     }
 
     function updateSelectAllState() {
@@ -2326,7 +3063,7 @@
       if (pageRows.length === 0) {
         const tr = document.createElement('tr');
         tr.className = 'dt-empty-row';
-        tr.innerHTML = '<td colspan="8" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada lamaran yang cocok.</td>';
+        tr.innerHTML = `<td colspan="8" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada ${itemLabel} yang cocok.</td>`;
         tbody.appendChild(tr);
       } else {
         pageRows.forEach((r, i) => {
@@ -2340,7 +3077,7 @@
       const total = sorted.length;
       const from = total === 0 ? 0 : start + 1;
       const to = Math.min(start + state.pageSize, total);
-      if (rangeText) rangeText.textContent = `Menampilkan ${from}-${to} dari ${total} lamaran`;
+      if (rangeText) rangeText.textContent = `Menampilkan ${from}-${to} dari ${total} ${itemLabel}`;
 
       if (paginationEl) {
         paginationEl.innerHTML = '';
@@ -2476,12 +3213,12 @@
         e.stopPropagation();
         const menu = btn.nextElementSibling;
         const isOpen = !menu.classList.contains('hidden');
-        tbody.querySelectorAll('.dropdown-menu').forEach((m) => m.classList.add('hidden'));
-        if (!isOpen) menu.classList.remove('hidden');
+        tbody.querySelectorAll('.dropdown-menu').forEach((m) => { m.classList.add('hidden'); m.classList.remove('dropdown-menu-up'); });
+        if (!isOpen) openDropdownMenu(btn, menu);
       });
     });
     document.addEventListener('click', () => {
-      tbody.querySelectorAll('.dropdown-menu').forEach((m) => m.classList.add('hidden'));
+      tbody.querySelectorAll('.dropdown-menu').forEach((m) => { m.classList.add('hidden'); m.classList.remove('dropdown-menu-up'); });
     });
 
     tbody.querySelectorAll('.dt-row-delete').forEach((btn) => {
@@ -2533,6 +3270,131 @@
       document.querySelectorAll('[data-modal].is-open').forEach(closeModal);
     });
   })();
+
+  // Katalog Produk — search + status filter (reusing the shared .combo
+  // component above) + select-all + per-row "Aksi" menu.
+  (function () {
+    const table = document.getElementById('catalogTable');
+    const tbody = document.getElementById('catalogBody');
+    let rows = Array.from(document.querySelectorAll('#catalogBody tr'));
+    const search = document.getElementById('catalogSearch');
+    const statusFilter = document.getElementById('catalogStatusFilter');
+    const rangeText = document.getElementById('catalogRangeText');
+    const selectAll = document.getElementById('catalogSelectAll');
+    const bulkBar = document.getElementById('catalogBulkBar');
+    const bulkCount = document.getElementById('catalogSelectedCount');
+    const bulkLabel = document.getElementById('catalogBulkLabel');
+    const bulkDelete = document.getElementById('catalogBulkDelete');
+    const bulkCancel = document.getElementById('catalogBulkCancel');
+    if (!rows.length || !search || !statusFilter) return;
+
+    // Read once from `data-item-label` on the <table> so a new table just
+    // sets one attribute instead of hand-editing "produk"/"lamaran" strings
+    // in JS for its empty-state message and bulk-bar label.
+    const itemLabel = table?.dataset.itemLabel || 'item';
+    if (bulkLabel) bulkLabel.textContent = `${itemLabel} dipilih`;
+
+    function updateBulkBar() {
+      const checkedCount = rows.filter((r) => r.querySelector('.catalog-row-checkbox')?.checked).length;
+      if (bulkCount) bulkCount.textContent = String(checkedCount);
+      if (bulkBar) {
+        bulkBar.classList.toggle('hidden', checkedCount === 0);
+        bulkBar.classList.toggle('flex', checkedCount > 0);
+      }
+    }
+
+    function updateSelectAllState() {
+      const visible = rows.filter((r) => !r.classList.contains('hidden'));
+      const boxes = visible.map((r) => r.querySelector('.catalog-row-checkbox')).filter(Boolean);
+      const checkedCount = boxes.filter((c) => c.checked).length;
+      if (selectAll) {
+        selectAll.checked = boxes.length > 0 && checkedCount === boxes.length;
+        selectAll.indeterminate = checkedCount > 0 && checkedCount < boxes.length;
+      }
+      updateBulkBar();
+    }
+
+    function applyFilter() {
+      const term = search.value.trim().toLowerCase();
+      const status = statusFilter.dataset.value;
+      let visible = 0;
+      rows.forEach((row) => {
+        const show = row.dataset.name.toLowerCase().includes(term) && (status === 'all' || row.dataset.status === status);
+        row.classList.toggle('hidden', !show);
+        if (show) {
+          visible++;
+          const numEl = row.querySelector('[data-num]');
+          if (numEl) numEl.textContent = String(visible);
+        }
+      });
+      rangeText.textContent = `Menampilkan ${visible} dari ${rows.length} ${itemLabel}`;
+
+      tbody.querySelectorAll('.catalog-empty-row').forEach((r) => r.remove());
+      if (visible === 0) {
+        const tr = document.createElement('tr');
+        tr.className = 'catalog-empty-row';
+        tr.innerHTML = `<td colspan="9" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada ${itemLabel} yang cocok.</td>`;
+        tbody.appendChild(tr);
+      }
+      updateSelectAllState();
+    }
+
+    search.addEventListener('input', applyFilter);
+    statusFilter.querySelectorAll('[data-combo-item]').forEach((item) => {
+      item.addEventListener('click', () => {
+        statusFilter.dataset.value = item.dataset.value;
+        applyFilter();
+      });
+    });
+
+    selectAll?.addEventListener('change', () => {
+      const visible = rows.filter((r) => !r.classList.contains('hidden'));
+      visible.forEach((r) => {
+        const cb = r.querySelector('.catalog-row-checkbox');
+        if (cb) cb.checked = selectAll.checked;
+      });
+      updateBulkBar();
+    });
+
+    tbody.addEventListener('change', (e) => {
+      if (e.target.classList.contains('catalog-row-checkbox')) updateSelectAllState();
+    });
+
+    bulkCancel?.addEventListener('click', () => {
+      rows.forEach((r) => {
+        const cb = r.querySelector('.catalog-row-checkbox');
+        if (cb) cb.checked = false;
+      });
+      if (selectAll) { selectAll.checked = false; selectAll.indeterminate = false; }
+      updateBulkBar();
+    });
+
+    bulkDelete?.addEventListener('click', () => {
+      const toRemove = rows.filter((r) => r.querySelector('.catalog-row-checkbox')?.checked);
+      toRemove.forEach((r) => r.remove());
+      rows = rows.filter((r) => !toRemove.includes(r));
+      if (selectAll) { selectAll.checked = false; selectAll.indeterminate = false; }
+      applyFilter();
+    });
+
+    document.querySelectorAll('.catalog-menu-btn').forEach((btn) => {
+      const menu = btn.nextElementSibling;
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = !menu.classList.contains('hidden');
+        document.querySelectorAll('.catalog-menu-btn + .dropdown-menu').forEach((m) => { m.classList.add('hidden'); m.classList.remove('dropdown-menu-up'); });
+        if (!wasOpen) openDropdownMenu(btn, menu);
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.catalog-menu-btn + .dropdown-menu').forEach((m) => { m.classList.add('hidden'); m.classList.remove('dropdown-menu-up'); });
+    });
+
+    applyFilter();
+  })();
 </script>
+<script src="assets/js/toast.js"></script>
+<script src="assets/js/vendor/qrcode.js"></script>
+<script src="assets/js/qr-code.js"></script>
 </body>
 </html>
