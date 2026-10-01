@@ -6,6 +6,12 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **Mode Terang/Gelap/Sistem di `index.html` dan `icons.html`** - kontrol tiga
+  pilihan di header (ikon matahari/bulan/monitor; satu tombol berputar di
+  ponsel) memakai skrip bersama `assets/js/theme.js` dan preferensi
+  `kk-theme` yang sama dengan dashboard, sehingga pilihan ikut saat pindah
+  halaman dan mode "sistem" mengikuti tema OS secara langsung. Tema dipasang
+  sebelum halaman tampil (tanpa kedip putih).
 - **Halaman Icons** (`icons.html`) - katalog seluruh 1.512 ikon KarirKit untuk
   dilihat dan dicari. Filter nama (mendukung beberapa kata), pilih ketebalan
   (Thin/Light/Regular/Bold/Fill/Duotone), ukuran 16-64px, dan warna; klik ikon
@@ -78,6 +84,10 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
+- Perbaikan dark mode untuk halaman style guide: tooltip (`.tooltip-content`,
+  `.tooltip-fixed`) tidak lagi putih-di-atas-terang, scrim modal tetap gelap,
+  chip `.avatar-count` dan badge `bg-slate-800` tetap kontras, dan kotak
+  contoh logo tetap terang/gelap sesuai versi logonya.
 - Halaman Storybook **Table of Version** belum memuat baris v1.3.0 dan v1.3.1
   (hanya sampai v1.2.0). Ditambahkan; hanya dokumentasi, tidak ada perubahan
   package.

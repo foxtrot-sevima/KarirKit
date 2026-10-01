@@ -35,11 +35,19 @@
       <img src="assets/logo/karirkit-logo.svg" alt="KarirKit" class="logo-on-light h-6 w-auto sm:h-7" />
       <img src="assets/logo/karirkit-logo-white.svg" alt="KarirKit" class="logo-on-dark h-6 w-auto sm:h-7" />
     </a>
-    <nav class="flex items-center gap-1 rounded-xl bg-slate-100/80 p-1" aria-label="Navigasi utama">
-      <a href="index.html" class="tab">Kit</a>
-      <a href="icons.html" class="tab tab-active" aria-current="page">Icons</a>
-      <a href="templates/dashboard.html" class="tab">Template</a>
-    </nav>
+    <div class="flex items-center gap-2">
+      <div role="radiogroup" aria-label="Tema tampilan" class="hidden items-center gap-0.5 rounded-xl bg-slate-100/80 p-1 sm:flex">
+        <button type="button" role="radio" aria-checked="false" data-theme-option="light" title="Terang" aria-label="Terang" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-sun h-4 w-4"></i></button>
+        <button type="button" role="radio" aria-checked="false" data-theme-option="dark" title="Gelap" aria-label="Gelap" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-moon h-4 w-4"></i></button>
+        <button type="button" role="radio" aria-checked="false" data-theme-option="system" title="Ikuti sistem" aria-label="Ikuti sistem" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-desktop h-4 w-4"></i></button>
+      </div>
+      <button type="button" data-theme-cycle class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100/80 text-slate-600 transition-colors hover:text-slate-900 sm:hidden" aria-label="Ganti tema"><i data-theme-icon class="kk kk-desktop h-5 w-5"></i></button>
+      <nav class="flex items-center gap-1 rounded-xl bg-slate-100/80 p-1" aria-label="Navigasi utama">
+        <a href="index.html" class="tab">Kit</a>
+        <a href="icons.html" class="tab tab-active" aria-current="page">Icons</a>
+        <a href="templates/dashboard.html" class="tab">Template</a>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -138,6 +146,7 @@
   </div>
 </aside>
 
+<script src="assets/js/theme.js"></script>
 <script src="assets/js/toast.js"></script>
 <script src="assets/js/icon-names.js"></script>
 <script>

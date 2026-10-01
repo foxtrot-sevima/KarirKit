@@ -70,6 +70,15 @@
   ]
 }
 </script>
+<!-- Theme: apply before first paint to avoid a light flash -->
+<script>
+  (function () {
+    var pref = 'system';
+    try { pref = localStorage.getItem('kk-theme') || 'system'; } catch (e) {}
+    var dark = pref === 'dark' || (pref === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
@@ -79,11 +88,19 @@
     <a href="index.html" class="flex items-center gap-3">
       <img src="assets/logo/karirkit-logo.svg" alt="KarirKit" class="h-6 w-auto sm:h-7" />
     </a>
-    <nav class="flex items-center gap-1 rounded-xl bg-slate-100/80 p-1">
-      <a href="index.html" class="tab tab-active">Kit</a>
-      <a href="icons.html" class="tab">Icons</a>
-      <a href="templates/dashboard.html" class="tab">Template</a>
-    </nav>
+    <div class="flex items-center gap-2">
+      <div role="radiogroup" aria-label="Tema tampilan" class="hidden items-center gap-0.5 rounded-xl bg-slate-100/80 p-1 sm:flex">
+        <button type="button" role="radio" aria-checked="false" data-theme-option="light" title="Terang" aria-label="Terang" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-sun h-4 w-4"></i></button>
+        <button type="button" role="radio" aria-checked="false" data-theme-option="dark" title="Gelap" aria-label="Gelap" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-moon h-4 w-4"></i></button>
+        <button type="button" role="radio" aria-checked="false" data-theme-option="system" title="Ikuti sistem" aria-label="Ikuti sistem" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-desktop h-4 w-4"></i></button>
+      </div>
+      <button type="button" data-theme-cycle class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100/80 text-slate-600 transition-colors hover:text-slate-900 sm:hidden" aria-label="Ganti tema"><i data-theme-icon class="kk kk-desktop h-5 w-5"></i></button>
+      <nav class="flex items-center gap-1 rounded-xl bg-slate-100/80 p-1">
+        <a href="index.html" class="tab tab-active">Kit</a>
+        <a href="icons.html" class="tab">Icons</a>
+        <a href="templates/dashboard.html" class="tab">Template</a>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -133,28 +150,28 @@
 <div class="sticky top-16 z-30 border-b border-slate-200/70 bg-shell/90 backdrop-blur-md">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
     <div class="flex gap-1 overflow-x-auto scrollbar-none py-2.5">
-      <a href="#logo" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Logo</a>
-      <a href="#colors" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Warna</a>
-      <a href="#typography" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tipografi</a>
-      <a href="#icons" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Ikon</a>
-      <a href="#buttons" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tombol</a>
-      <a href="#button-group" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Button Group</a>
-      <a href="#badges" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Badge</a>
-      <a href="#avatars" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Avatar</a>
-      <a href="#cards" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Kartu</a>
-      <a href="#forms" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Formulir</a>
-      <a href="#timepicker" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Timepicker</a>
-      <a href="#dropdowns" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Dropdown</a>
-      <a href="#modals" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Modal</a>
-      <a href="#navigation" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Navigasi</a>
-      <a href="#tables" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Tabel</a>
-      <a href="#datatable" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">DataTable</a>
-      <a href="#catalog-table" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Katalog</a>
-      <a href="#alerts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Alert</a>
-      <a href="#toasts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Toast</a>
-      <a href="#qr-code" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">QR Code</a>
-      <a href="#wysiwyg" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">WYSIWYG</a>
-      <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Lainnya</a>
+      <a href="#logo" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Logo</a>
+      <a href="#colors" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Warna</a>
+      <a href="#typography" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Tipografi</a>
+      <a href="#icons" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Ikon</a>
+      <a href="#buttons" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Tombol</a>
+      <a href="#button-group" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Button Group</a>
+      <a href="#badges" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Badge</a>
+      <a href="#avatars" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Avatar</a>
+      <a href="#cards" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Kartu</a>
+      <a href="#forms" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Formulir</a>
+      <a href="#timepicker" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Timepicker</a>
+      <a href="#dropdowns" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Dropdown</a>
+      <a href="#modals" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Modal</a>
+      <a href="#navigation" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Navigasi</a>
+      <a href="#tables" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Tabel</a>
+      <a href="#datatable" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">DataTable</a>
+      <a href="#catalog-table" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Katalog</a>
+      <a href="#alerts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Alert</a>
+      <a href="#toasts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Toast</a>
+      <a href="#qr-code" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">QR Code</a>
+      <a href="#wysiwyg" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">WYSIWYG</a>
+      <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Lainnya</a>
     </div>
   </div>
 </div>
@@ -170,7 +187,7 @@
     <div class="card p-6 sm:p-8">
       <div class="grid gap-4 sm:grid-cols-2">
         <div class="rounded-xl border border-slate-200/70 p-5">
-          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-50">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-[#f8fafc]">
             <img src="assets/logo/karirlink-mark.svg" alt="KarirLink mark" class="h-12 w-auto" />
           </div>
           <p class="mt-3 text-sm font-semibold text-slate-800">Mark - Color</p>
@@ -178,7 +195,7 @@
           <p class="kbd mt-2 inline-block">karirlink-mark.svg</p>
         </div>
         <div class="rounded-xl border border-slate-200/70 p-5">
-          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-800">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-[#1e293b]">
             <img src="assets/logo/karirlink-mark-white.svg" alt="KarirLink mark putih" class="h-12 w-auto" />
           </div>
           <p class="mt-3 text-sm font-semibold text-slate-800">Mark - White</p>
@@ -186,7 +203,7 @@
           <p class="kbd mt-2 inline-block">karirlink-mark-white.svg</p>
         </div>
         <div class="rounded-xl border border-slate-200/70 p-5">
-          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-50">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-[#f8fafc]">
             <img src="assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
           </div>
           <p class="mt-3 text-sm font-semibold text-slate-800">Lockup - Color</p>
@@ -194,7 +211,7 @@
           <p class="kbd mt-2 inline-block">karirlink-logo.svg</p>
         </div>
         <div class="rounded-xl border border-slate-200/70 p-5">
-          <div class="flex h-20 items-center justify-center rounded-lg bg-slate-800">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-[#1e293b]">
             <img src="assets/logo/karirlink-logo-white.svg" alt="KarirLink putih" class="h-8 w-auto" />
           </div>
           <p class="mt-3 text-sm font-semibold text-slate-800">Lockup - White</p>
@@ -5725,5 +5742,6 @@
 <script src="assets/js/qr-code.js"></script>
 <script src="assets/js/wysiwyg.js"></script>
 <script src="assets/js/ui.js"></script>
+<script src="assets/js/theme.js"></script>
 </body>
 </html>

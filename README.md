@@ -22,7 +22,7 @@ tetap konsisten. Proyek internal SEVIMA (Foxtrot).
 - **Sepenuhnya offline** — CSS sudah di-build (`dist/output.css`) dan font
   di-hosting lokal, tidak bergantung pada CDN atau koneksi internet.
 - **Light / Dark / System** — opt-in per halaman lewat `<html data-theme>`;
-  saat ini baru `templates/dashboard.html`. Lihat story **Foundations → Theming**.
+  saat ini `templates/dashboard.html`, `index.html`, dan `icons.html` (pilihan tersimpan di `localStorage` key `kk-theme`, skrip `assets/js/theme.js`). Lihat story **Foundations → Theming**.
 
 ## Instalasi (npm package)
 

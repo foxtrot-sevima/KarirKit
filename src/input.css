@@ -258,6 +258,8 @@ html[data-theme="dark"] .btn-danger:hover:not(:disabled) { background-color: #b9
 html[data-theme="dark"] .btn-success:hover:not(:disabled) { background-color: #047857; }
 html[data-theme="dark"] .btn-warning:hover:not(:disabled) { background-color: #d97706; }
 html[data-theme="dark"] .input-group-btn:hover { background-color: #1950c8; }
+html[data-theme="dark"] .modal-backdrop { background-color: rgb(0 0 0 / 0.6); }
+html[data-theme="dark"] .badge.bg-slate-800 { background-color: #334155; }
 
 /* Logo pair: <img class="logo-on-light"> + <img class="logo-on-dark"> */
 .logo-on-dark { display: none; }
@@ -18907,7 +18909,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   /* Tooltip — hover + keyboard focus (group-focus-within) */
   .tooltip-content {
     @apply pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap
-           rounded-lg bg-neutral-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-lg
+           rounded-lg bg-neutral-900 px-2.5 py-1.5 text-xs text-neutral-50 opacity-0 shadow-lg
            transition-opacity
            group-hover:opacity-100 group-focus-within:opacity-100;
     z-index: var(--z-sticky);
@@ -18933,7 +18935,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
      an actively-hovered tooltip should never lose to anything else. */
   .tooltip-fixed {
     @apply pointer-events-none fixed z-[100] max-w-xs whitespace-normal rounded-lg bg-neutral-900 px-3 py-2
-           text-left text-xs font-normal leading-relaxed text-white opacity-0 shadow-lg
+           text-left text-xs font-normal leading-relaxed text-neutral-50 opacity-0 shadow-lg
            transition-opacity;
     transition-duration: var(--duration-fast);
   }
@@ -19132,7 +19134,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .avatar-dot-danger { @apply bg-danger-500; }
   .avatar-stack { @apply flex -space-x-3; }
   .avatar-stack .avatar { @apply ring-2 ring-surface; }
-  .avatar-count { @apply bg-neutral-700 text-white; }
+  .avatar-count { @apply bg-[#334155] text-white; }
 
   /* ==== Badges ==== */
   .badge-rounded { @apply rounded-md; }
