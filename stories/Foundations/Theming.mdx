@@ -107,6 +107,24 @@ applyTheme(getThemePref());
 site data diblokir, akses bisa melempar error; halaman tetap jalan dengan
 default `system`.
 
+## Switcher bersama (`assets/js/theme.js`)
+
+`index.html` dan `icons.html` memakai skrip bersama `assets/js/theme.js`
+(opsional) sebagai ganti logika inline: cukup pasang snippet anti-kedip di
+`<head>`, muat skripnya, lalu beri tombol berikut.
+
+```html
+<!-- kontrol tiga pilihan (layar >= sm) -->
+<button data-theme-option="light|dark|system" role="radio" aria-checked="false">…</button>
+
+<!-- satu tombol yang berputar terang -> gelap -> sistem (ponsel) -->
+<button data-theme-cycle><i data-theme-icon class="kk kk-desktop"></i></button>
+```
+
+Skrip ini mengatur `aria-checked`, mengikuti perubahan tema OS secara langsung
+saat mode "sistem", dan menyinkronkan beberapa tab lewat event `storage`.
+API: `KKTheme.get()` dan `KKTheme.set('dark')`.
+
 ## Logo
 
 Logo berwarna (`#22489E` + oranye) tidak terbaca di latar gelap. Pasang dua
@@ -123,9 +141,11 @@ yang sama berlaku untuk `karirkit-*` dan `*-mark-*`.
 
 ## Batasan saat ini
 
-- **Hanya `templates/dashboard.html`** yang sudah memasang tema. Halaman
-  lain (login, register, `templates/karirlink/*`, `index.html`) masih light
-  — untuk mengaktifkan, ikuti langkah di atas.
+- **Halaman yang sudah memasang tema:** `templates/dashboard.html`,
+  `index.html`, dan `icons.html` (satu preferensi `kk-theme` dipakai
+  bersama, jadi pilihan tema ikut saat pindah halaman). Halaman lain (login,
+  register, `templates/karirlink/*`) masih light — untuk mengaktifkan, ikuti
+  langkah di atas.
 - Storybook sendiri (story komponen) belum punya toggle tema; story
   **Templates → Dashboard** memakai `<iframe>`, jadi tema di dalamnya
   memakai `localStorage` origin yang sama.

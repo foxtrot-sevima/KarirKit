@@ -17,6 +17,7 @@ const preview = {
           "Components",
           [
             "Button",
+            "Button Group",
             "Badge",
             "Avatar",
             "Card",
@@ -24,6 +25,7 @@ const preview = {
             "Search",
             "Select",
             "Date Picker",
+            "Timepicker",
             "Textarea",
             "Checkbox",
             "Radio",

@@ -22,7 +22,7 @@ tetap konsisten. Proyek internal SEVIMA (Foxtrot).
 - **Sepenuhnya offline** — CSS sudah di-build (`dist/output.css`) dan font
   di-hosting lokal, tidak bergantung pada CDN atau koneksi internet.
 - **Light / Dark / System** — opt-in per halaman lewat `<html data-theme>`;
-  saat ini baru `templates/dashboard.html`. Lihat story **Foundations → Theming**.
+  saat ini `templates/dashboard.html`, `index.html`, dan `icons.html` (pilihan tersimpan di `localStorage` key `kk-theme`, skrip `assets/js/theme.js`). Lihat story **Foundations → Theming**.
 
 ## Instalasi (npm package)
 
@@ -85,7 +85,7 @@ echo 'export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"' >> ~/.bashrc
 ### 3. Install
 
 ```
-npm install @foxtrot-sevima/karirkit@1.3.1
+npm install @foxtrot-sevima/karirkit@1.3.2
 ```
 
 Tanpa versi (`npm install @foxtrot-sevima/karirkit`) akan mengambil versi
@@ -134,6 +134,7 @@ dist/output.css            CSS hasil build — inilah yang dipakai lewat npm pac
 assets/fonts/InstrumentSans/  Font self-hosted (lihat bagian Font di bawah)
 assets/logo/                  Logo KarirLink dipakai di kedua halaman (lihat Brand & Logo)
 index.html                 Style guide lokal: warna, tipografi, ikon, dan semua komponen
+icons.html                 Katalog ikon: cari, pilih ketebalan/ukuran/warna, salin class/HTML/SVG
 templates/dashboard.html   Contoh dashboard KarirKit
 ```
 
