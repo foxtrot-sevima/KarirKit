@@ -39,8 +39,9 @@
    2. Semantic   — purpose aliases (background, fg, border, …)
    3. Component  — control sizing / radius used by @layer components
 
-   Dark mode: light-only for now. Theme switching is deferred; do not add
-   ad-hoc dark: utilities until semantic tokens get a .dark override map.
+   Dark mode: opt-in via <html data-theme="dark"> (see the override map after
+   @theme). Pages without the attribute stay light. Do not add ad-hoc dark:
+   utilities; extend the override map instead.
    ========================================================================== */
 @theme {
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -182,6 +183,83 @@
     to { opacity: 1; transform: translateY(0); }
   }
 }
+
+/* ==========================================================================
+   Dark theme — override map, active under <html data-theme="dark">
+
+   Remaps the neutral/slate scales (inverted), semantic surface tokens and the
+   tinted status/brand shades. Solid 500/600 status + brand colors stay as-is so
+   white-on-color controls keep their contrast.
+   ========================================================================== */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-neutral-50: #0b1120;
+  --color-neutral-100: #1e293b;
+  --color-neutral-200: #263449;
+  --color-neutral-300: #3b4a61;
+  --color-neutral-400: #7c8ba1;
+  --color-neutral-500: #94a3b8;
+  --color-neutral-600: #a9b6c8;
+  --color-neutral-700: #cbd5e1;
+  --color-neutral-800: #e2e8f0;
+  --color-neutral-900: #f1f5f9;
+  --color-neutral-950: #f8fafc;
+
+  --color-slate-50: var(--color-neutral-50);
+  --color-slate-100: var(--color-neutral-100);
+  --color-slate-200: var(--color-neutral-200);
+  --color-slate-300: var(--color-neutral-300);
+  --color-slate-400: var(--color-neutral-400);
+  --color-slate-500: var(--color-neutral-500);
+  --color-slate-600: var(--color-neutral-600);
+  --color-slate-700: var(--color-neutral-700);
+  --color-slate-800: var(--color-neutral-800);
+  --color-slate-900: var(--color-neutral-900);
+  --color-slate-950: var(--color-neutral-950);
+
+  --color-surface: #0f172a;
+  --color-brand-soft-mid: #0f1b36;
+
+  --color-primary-50: #14213d;
+  --color-primary-100: #1a2f5a;
+  --color-primary-200: #1e3a7a;
+  --color-primary-700: #98b6f6;
+  --color-primary-800: #c6d7fb;
+  --color-primary-900: #e2ebfd;
+  --color-secondary-50: #2a1a10;
+  --color-secondary-100: #3b2415;
+  --color-secondary-200: #502b11;
+
+  --color-success-50: #06281f;
+  --color-success-100: #0a3a2c;
+  --color-success-700: #6ee7b7;
+  --color-warning-50: #2a1f06;
+  --color-warning-100: #3d2d08;
+  --color-warning-700: #fcd34d;
+  --color-danger-50: #2d1010;
+  --color-danger-100: #451a1a;
+  --color-danger-700: #fca5a5;
+  --color-info-50: #08263a;
+  --color-info-100: #0c3652;
+  --color-info-700: #7dd3fc;
+}
+
+html[data-theme="dark"] .bg-white\/80,
+html[data-theme="dark"] .bg-white\/90 { background-color: color-mix(in srgb, var(--color-surface) 88%, transparent); }
+html[data-theme="dark"] .border-slate-200\/70 { border-color: color-mix(in srgb, var(--color-neutral-200) 70%, transparent); }
+html[data-theme="dark"] .ring-white { --tw-ring-color: var(--color-surface); }
+html[data-theme="dark"] .bg-slate-900\/30 { background-color: rgb(0 0 0 / 0.55); }
+html[data-theme="dark"] .bg-brand-gradient {
+  background-image: linear-gradient(135deg, #1950c8 0%, #2361e7 55%, #3d74eb 100%);
+}
+html[data-theme="dark"] .btn-primary:hover:not(:disabled) { background-color: #1950c8; }
+html[data-theme="dark"] .btn-danger:hover:not(:disabled) { background-color: #b91c1c; }
+
+/* Logo pair: <img class="logo-on-light"> + <img class="logo-on-dark"> */
+.logo-on-dark { display: none; }
+html[data-theme="dark"] .logo-on-light { display: none; }
+html[data-theme="dark"] .logo-on-dark { display: block; }
 
 /* ==========================================================================
    Base — interactive cursor
@@ -18905,6 +18983,110 @@
   .modal-footer .btn-secondary,
   .modal-footer .btn-outline,
   .modal-footer .btn-danger { @apply w-full sm:w-auto; }
+
+  /* Toast — transient notification. Anatomy: .toast > .toast-icon + body + .toast-close.
+     Place in a .toast-region (fixed to the viewport; add .toast-region-contained
+     inside a `relative` parent for docs/demos) with a position modifier. */
+  .toast {
+    @apply flex w-full max-w-xs gap-3 rounded-card border border-border/70 bg-surface p-4 text-sm text-fg-muted shadow-card-lg;
+  }
+  .toast-wide { @apply max-w-sm; }
+  .toast-center { @apply items-center; }
+  .toast-icon {
+    @apply inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600;
+  }
+  .toast-icon-success { @apply bg-success-50 text-success-600; }
+  .toast-icon-danger { @apply bg-danger-50 text-danger-600; }
+  .toast-icon-warning { @apply bg-warning-50 text-warning-600; }
+  .toast-icon-info { @apply bg-info-50 text-info-600; }
+  .toast-icon-lg { @apply h-12 w-12 rounded-full; }
+  /* Alert-style toast: tinted background (Flowbite "danger/warning alert") */
+  .toast-danger { @apply border-danger-100 bg-danger-50 text-danger-700; }
+  .toast-danger .toast-title { @apply text-danger-700; }
+  .toast-warning { @apply border-warning-100 bg-warning-50 text-warning-700; }
+  .toast-warning .toast-title { @apply text-warning-700; }
+  .toast-danger .toast-close:hover { @apply bg-danger-100; }
+  .toast-warning .toast-close:hover { @apply bg-warning-100; }
+  .toast-title { @apply text-sm font-semibold text-fg; }
+  .toast-close {
+    @apply -m-1.5 ml-auto inline-flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center self-start rounded-lg text-fg-subtle
+           transition-colors hover:bg-neutral-100 hover:text-fg
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300;
+  }
+  .toast-center > .toast-close { @apply self-center; }
+  .toast-action { @apply cursor-pointer text-sm font-semibold text-primary-600 hover:text-primary-700 hover:underline; }
+  .toast-leaving { @apply opacity-0 transition-opacity duration-200; }
+  .toast-region { @apply fixed z-[var(--z-toast)] flex flex-col gap-3 p-4; }
+  .toast-region-contained { @apply absolute; }
+  .toast-top-left { @apply top-0 left-0; }
+  .toast-top-right { @apply top-0 right-0; }
+  .toast-bottom-left { @apply bottom-0 left-0; }
+  .toast-bottom-right { @apply right-0 bottom-0; }
+
+  /* QR Code — SVG rendered by assets/js/qr-code.js. The code itself is always
+     dark-on-white (scanners need it), so .qr-code never follows the dark theme. */
+  .qr-code {
+    @apply relative inline-block overflow-hidden rounded-card border border-border/70 bg-white p-2 leading-none shadow-card;
+  }
+  .qr-code svg { @apply block h-full w-full; }
+  .qr-overlay {
+    @apply absolute inset-0 flex flex-col items-center justify-center gap-2 bg-white/90 p-3 text-center text-sm font-medium text-[#334155] backdrop-blur-[2px];
+  }
+  .qr-spinner {
+    @apply h-8 w-8 rounded-full border-4 border-[#e2ebfd] border-t-primary-600;
+    animation: var(--animate-spin-slow);
+  }
+
+  /* WYSIWYG editor — contenteditable, behaviour in assets/js/wysiwyg.js.
+     Anatomy: .wysiwyg > .wysiwyg-toolbar (> .wysiwyg-group > .wysiwyg-btn | .wysiwyg-dd > .wysiwyg-menu)
+     + .wysiwyg-content [+ .wysiwyg-footer]. The menus use the native `hidden` class to toggle. */
+  .wysiwyg { @apply w-full rounded-card border border-border bg-surface shadow-card; }
+  .wysiwyg:focus-within { @apply border-primary-500 ring-2 ring-primary-500/20; }
+  .wysiwyg-toolbar { @apply flex flex-wrap items-center gap-x-1 gap-y-1 rounded-t-card border-b border-border bg-neutral-50 p-2; }
+  .wysiwyg-group { @apply flex items-center gap-0.5; }
+  .wysiwyg-group + .wysiwyg-group { @apply ml-1 border-l border-border pl-2; }
+  .wysiwyg-btn {
+    @apply inline-flex h-8 min-w-8 cursor-pointer items-center justify-center gap-1 rounded-lg px-1.5 text-xs font-medium text-fg-muted
+           transition-colors hover:bg-neutral-100 hover:text-fg
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500;
+  }
+  .wysiwyg-btn[aria-pressed="true"],
+  .wysiwyg-btn[aria-expanded="true"] { @apply bg-primary-50 text-primary-700; }
+  .wysiwyg-dd { @apply relative; }
+  .wysiwyg-menu {
+    @apply absolute top-full left-0 z-[var(--z-dropdown)] mt-1 max-h-72 min-w-44 overflow-y-auto rounded-control border border-border bg-surface p-1 shadow-card-lg;
+  }
+  .wysiwyg-menu-item {
+    @apply flex w-full cursor-pointer items-center justify-between gap-6 rounded-lg px-3 py-1.5 text-left text-sm text-fg-muted hover:bg-neutral-100 hover:text-fg;
+  }
+  .wysiwyg-menu-item kbd { @apply text-micro text-fg-subtle; }
+  .wysiwyg-swatches { @apply grid grid-cols-6 gap-1 p-2; }
+  .wysiwyg-swatch { @apply h-6 w-6 cursor-pointer rounded-md border border-black/10 transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500; }
+  .wysiwyg-content {
+    @apply min-h-48 px-4 py-3 text-sm leading-relaxed text-fg focus:outline-none;
+    overflow-wrap: anywhere;
+  }
+  .wysiwyg-footer { @apply flex items-center justify-between gap-3 rounded-b-card border-t border-border px-3 py-2; }
+  .wysiwyg-content > * + * { @apply mt-3; }
+  .wysiwyg-content h1 { @apply font-display text-3xl font-bold text-fg; }
+  .wysiwyg-content h2 { @apply font-display text-2xl font-bold text-fg; }
+  .wysiwyg-content h3 { @apply font-display text-xl font-semibold text-fg; }
+  .wysiwyg-content h4 { @apply text-lg font-semibold text-fg; }
+  .wysiwyg-content h5 { @apply text-base font-semibold text-fg; }
+  .wysiwyg-content h6 { @apply text-sm font-semibold uppercase tracking-wide text-fg; }
+  .wysiwyg-content ul { @apply list-disc pl-6; }
+  .wysiwyg-content ol { @apply list-decimal pl-6; }
+  .wysiwyg-content blockquote { @apply border-l-4 border-primary-300 pl-4 italic text-fg-muted; }
+  .wysiwyg-content pre { @apply overflow-x-auto rounded-control bg-neutral-100 p-3 font-mono text-xs text-fg; }
+  .wysiwyg-content code { @apply rounded bg-neutral-100 px-1 py-0.5 font-mono text-[0.85em]; }
+  .wysiwyg-content pre code { @apply bg-transparent p-0; }
+  .wysiwyg-content a { @apply text-primary-600 underline hover:text-primary-700; }
+  .wysiwyg-content hr { @apply border-border; }
+  .wysiwyg-content img { @apply h-auto max-w-full rounded-control; }
+  .wysiwyg-content mark { @apply rounded bg-warning-200 px-0.5 text-inherit; }
+  .wysiwyg-content .wysiwyg-video { @apply aspect-video w-full overflow-hidden rounded-control bg-neutral-100; }
+  .wysiwyg-content .wysiwyg-video iframe { @apply h-full w-full border-0; }
+  .wysiwyg-content:empty::before { content: attr(data-placeholder); @apply pointer-events-none text-fg-subtle; }
 
   /* Breadcrumb */
   .breadcrumb { @apply flex flex-wrap items-center gap-1.5 text-sm; }

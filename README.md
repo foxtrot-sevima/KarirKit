@@ -21,8 +21,8 @@ tetap konsisten. Proyek internal SEVIMA (Foxtrot).
   aktivitas terbaru — semua memakai komponen dari design system yang sama.
 - **Sepenuhnya offline** — CSS sudah di-build (`dist/output.css`) dan font
   di-hosting lokal, tidak bergantung pada CDN atau koneksi internet.
-- **Light-only** — dark mode sengaja ditunda. Pakai semantic tokens supaya
-  nanti cukup override map di `.dark`, bukan rewrite komponen.
+- **Light / Dark / System** — opt-in per halaman lewat `<html data-theme>`;
+  saat ini baru `templates/dashboard.html`. Lihat story **Foundations → Theming**.
 
 ## Instalasi (npm package)
 
@@ -85,7 +85,7 @@ echo 'export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"' >> ~/.bashrc
 ### 3. Install
 
 ```
-npm install @foxtrot-sevima/karirkit@1.2.0
+npm install @foxtrot-sevima/karirkit@1.3.1
 ```
 
 Tanpa versi (`npm install @foxtrot-sevima/karirkit`) akan mengambil versi
@@ -198,9 +198,11 @@ atau class kit (`.btn-primary`, `.card`). Hindari `bg-white` / `text-slate-*`
 langsung di komponen bersama. Neutral owned (`neutral-*`) menggantikan
 pinjaman Tailwind `slate` untuk DS.
 
-**Dark mode:** belum. Keputusan eksplisit = light-only sampai semantic map
-punya pasangan `.dark { --color-background: … }`. Jangan tambah `dark:`
-ad-hoc di template sebelum itu.
+**Dark mode:** opt-in lewat `<html data-theme="dark">`. Override map ada di
+`src/input.css` (`html[data-theme="dark"] { … }`) — ubah token di sana, jangan
+tambah `dark:` ad-hoc di template. Preferensi (`light` / `dark` / `system`)
+disimpan di `localStorage` key `kk-theme`. Panduan lengkap + snippet pasang di
+halaman baru: story **Foundations → Theming** (`stories/Foundations/Theming.mdx`).
 
 ## Font
 
