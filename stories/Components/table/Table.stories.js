@@ -62,7 +62,7 @@ export default {
     docs: {
       description: {
         component:
-          "Tabel data. Gaya: `.table` di dalam `.table-wrap` (scroll horizontal + border + radius). Varian: `.table-striped`, `.table-striped-cols`, `.table-hover`, `.table-borderless`, `.table-bordered`, `.table-sm`/`.table-lg`, `.table-sticky` (dengan `.table-scroll`), `.table-head-soft`, `.table-wrap-shadow`, plus `<caption class=\"table-caption\">` dan `<tfoot>`. Fungsi (sortir, cari, filter, pagination, pilih baris, counter, modal edit) disediakan `assets/js/table.js` lewat atribut `data-table`, `data-sort`, `data-table-search`, `data-page-size`, `data-table-select*`, dst. Teks header kolom memakai **Title Case** (Capital Each Word, mis. Periode Yudisium, Status Karier) - bukan huruf kapital semua. Footer + aksi baris mengikuti pola **Table with users**: info Menampilkan a-b dari n di kiri, pagination di kanan; aksi baris = tautan teks (mis. Edit, Hapus) tanpa menu titik tiga, header kolom aksi `sr-only`. Setiap tabel punya kolom **No** (`.table-col-num` + `data-num`) yang diberi nomor ulang mengikuti urutan tampilan - setelah sortir, filter, pagination (lanjut 6, 7, …), dan hapus baris. Untuk integrasi halaman: `KKTable.get(root).addFilter(fn)`/`refresh()`, event `table:render` (`detail.visible`), `<select data-table-page-size>`, dan `data-item-label`. Tanpa JS tabel tetap tampil benar; template lama (`.table`, `.th-sortable`, `.table-col-*`) tidak berubah.",
+          "Tabel data. Gaya: `.table` di dalam `.table-wrap` (scroll horizontal + border + radius). Varian: `.table-striped`, `.table-striped-cols`, `.table-hover`, `.table-borderless`, `.table-bordered`, `.table-sm`/`.table-lg`, `.table-sticky` (dengan `.table-scroll`), `.table-head-soft`, `.table-wrap-shadow`, plus `<caption class=\"table-caption\">` dan `<tfoot>`. Fungsi (sortir, cari, filter, pagination, pilih baris, counter, modal edit) disediakan `assets/js/table.js` lewat atribut `data-table`, `data-sort`, `data-table-search`, `data-page-size`, `data-table-select*`, dst. Toolbar: **pencarian di kiri, filter/aksi sebagai dropdown di kanan** (di semua tabel). Teks header kolom memakai **Title Case** (Capital Each Word, mis. Periode Yudisium, Status Karier) - bukan huruf kapital semua. Footer + aksi baris mengikuti pola **Table with users**: info Menampilkan a-b dari n di kiri, pagination di kanan; aksi baris = tautan teks (mis. Edit, Hapus) tanpa menu titik tiga, header kolom aksi `sr-only`. Setiap tabel punya kolom **No** (`.table-col-num` + `data-num`) yang diberi nomor ulang mengikuti urutan tampilan - setelah sortir, filter, pagination (lanjut 6, 7, …), dan hapus baris. Untuk integrasi halaman: `KKTable.get(root).addFilter(fn)`/`refresh()`, event `table:render` (`detail.visible`), `<select data-table-page-size>`, dan `data-item-label`. Tanpa JS tabel tetap tampil benar; template lama (`.table`, `.th-sortable`, `.table-col-*`) tidak berubah.",
       },
     },
   },
@@ -143,14 +143,14 @@ export const TableFilter = {
     const cats = [...new Set(JOBS.map((j) => j[2]))];
     return exBlock(`<div class="table-wrap" data-table>
       <div class="table-toolbar">
+        ${search("ts-2")}
         <div class="relative">
           <button type="button" class="btn-outline btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true">${ic("funnel")}<span data-table-filter-label data-default="Filter">Filter</span>${ic("caret-down", "h-3 w-3")}</button>
-          <div class="dropdown-menu hidden left-0 right-auto w-48">
+          <div class="dropdown-menu hidden w-48">
             <button type="button" class="dropdown-item" data-filter-col="3" data-filter-value="">Semua kategori</button>
             ${cats.map((c) => `<button type="button" class="dropdown-item" data-filter-col="3" data-filter-value="${c}">${c}</button>`).join("")}
           </div>
         </div>
-        ${search("ts-2")}
       </div>
       <table class="table table-head-soft"><thead><tr>${headCells(JOB_COLS)}</tr></thead><tbody>${jobRows(12)}</tbody></table>
       <div data-table-empty hidden class="table-empty">Tidak ada lowongan yang cocok.</div>
@@ -237,13 +237,13 @@ export const TableWithModal = {
   render: () =>
     exBlock(`<div class="table-wrap" data-table>
       <div class="table-toolbar">
+        ${search("ts-m")}
         <div class="relative">
           <button type="button" class="btn-outline btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true">Aksi${ic("caret-down", "h-3 w-3")}</button>
-          <div class="dropdown-menu hidden left-0 right-auto w-48">
+          <div class="dropdown-menu hidden w-48">
             <a href="#" class="dropdown-item">Tambah pelamar</a><a href="#" class="dropdown-item">Ekspor CSV</a><a href="#" class="dropdown-item dropdown-item-danger">Hapus terpilih</a>
           </div>
         </div>
-        ${search("ts-m")}
       </div>
       <table class="table table-head-soft table-hover">
         <thead><tr>${noTh}<th scope="col">Nama</th><th scope="col">Posisi</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Aksi</span></th></tr></thead>

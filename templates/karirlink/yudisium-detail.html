@@ -217,22 +217,32 @@
     </div>
 
     <!-- Students table: Design System table (table-wrap + table.js) -->
-    <div class="table-wrap overflow-visible" id="yudTableRoot" data-table data-page-size="5" data-item-label="mahasiswa">
+    <div class="table-wrap overflow-visible" id="yudTableRoot" data-table data-page-size="5" data-item-label="mahasiswa" data-combo-boundary>
       <!-- Toolbar -->
       <div class="table-toolbar">
-        <div class="flex gap-1 overflow-x-auto scrollbar-none rounded-xl bg-slate-100 p-1" id="yudStatusTabs">
-          <button type="button" data-status="all" class="tab tab-active">Semua</button>
-          <button type="button" data-status="belum-dikirim" class="tab">Belum Dikirim</button>
-          <button type="button" data-status="terkirim" class="tab">Terkirim</button>
-          <button type="button" data-status="menunggu" class="tab">Menunggu Mengisi</button>
-          <button type="button" data-status="sudah" class="tab">Sudah Mengisi</button>
-        </div>
         <div class="relative w-full sm:w-64">
           <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
             <i class="kk kk-magnifying-glass h-4 w-4"></i>
           </span>
           <label for="yudSearch" class="sr-only">Cari nama atau email</label>
           <input id="yudSearch" type="search" class="input h-9 pl-9" placeholder="Cari nama atau email..." data-table-search />
+        </div>
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <div id="filterStatus" class="combo w-full sm:w-52" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Status</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Status">Semua Status</button>
+                <button type="button" class="combo-item" data-combo-item data-value="belum-dikirim" data-label="Belum Dikirim">Belum Dikirim</button>
+                <button type="button" class="combo-item" data-combo-item data-value="terkirim" data-label="Terkirim">Terkirim</button>
+                <button type="button" class="combo-item" data-combo-item data-value="menunggu" data-label="Menunggu Mengisi">Menunggu Mengisi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="sudah" data-label="Sudah Mengisi">Sudah Mengisi</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -608,16 +618,14 @@
   })();
 
   // Students table - Design System table.js handles search, sort, paging, numbering
-  // ("No") and the empty state. This page only adds the status tabs as a custom
+  // ("No") and the empty state. This page only adds the status dropdown as a custom
   // row predicate.
   (function () {
     const root = document.getElementById('yudTableRoot');
-    const tabs = document.querySelectorAll('#yudStatusTabs .tab');
-    if (!root || !window.KKTable) return;
+    const filterStatus = document.getElementById('filterStatus');
+    if (!root || !filterStatus || !window.KKTable) return;
     const table = window.KKTable.get(root) || (window.KKTable.init(root), window.KKTable.get(root));
     if (!table) return;
-
-    let activeStatus = 'all';
 
     // "Terkirim" isn't its own row status - every row is either belum-dikirim,
     // menunggu, or sudah. A row can only be "menunggu"/"sudah" once it has
@@ -627,20 +635,137 @@
     const STATUS_GROUPS = { terkirim: ['menunggu', 'sudah'] };
 
     table.addFilter((row) => {
-      if (activeStatus === 'all') return true;
+      const active = filterStatus.dataset.value;
+      if (active === 'all') return true;
       const rowStatus = row.getAttribute('data-status');
-      const group = STATUS_GROUPS[activeStatus];
-      return group ? group.includes(rowStatus) : rowStatus === activeStatus;
+      const group = STATUS_GROUPS[active];
+      return group ? group.includes(rowStatus) : rowStatus === active;
     });
 
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        tabs.forEach((t) => t.classList.remove('tab-active'));
-        tab.classList.add('tab-active');
-        activeStatus = tab.getAttribute('data-status');
+    filterStatus.querySelectorAll('[data-combo-item]').forEach((item) => {
+      item.addEventListener('click', () => {
+        filterStatus.dataset.value = item.dataset.value;
         table.refresh();
       });
     });
+  })();
+
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
   })();
 
   // Topbar profile dropdown menu.

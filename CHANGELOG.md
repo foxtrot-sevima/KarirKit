@@ -27,6 +27,10 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   tetap ada). Tab status (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) berjalan sebagai filter kustom lewat `table.js`
   dan digabung dengan pencarian; pilihan baris per halaman dihapus. Di ponsel info prodi dan email tampil di bawah nama (membungkus baris), kolom
   Prodi muncul dari `lg` dan Email dari `xl`, dan teks badge status tidak lagi keluar dari pilnya. Tabel muat tanpa scroll horizontal di 360 sampai 1440px.
+- **Toolbar tabel konsisten: pencarian di kiri, filter/aksi sebagai dropdown di kanan.** Diterapkan ke contoh Table filter dan Table with modal di
+  Design System (urutan sebelumnya terbalik; menu dropdown kini rata kanan agar tidak keluar layar) dan ke `yudisium-detail.html`, di mana tab status
+  (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) diganti dropdown "Semua Status" di kanan pencarian, memakai komponen combo yang sama
+  seperti filter di `yudisium.html`.
 - **Header tabel memakai Title Case** ("Periode Yudisium", "Status Karier") secara konsisten. `.table-head-soft` tidak lagi memaksa
   huruf kapital semua + ukuran kecil, yang sebelumnya hanya mengenai header biasa dan tidak mengenai header sortir (`.th-sort`), sehingga
   dalam satu tabel ada "NO" dan "Periode Yudisium" yang berbeda gaya. Ukuran dan bobot kini sama untuk semua header.
