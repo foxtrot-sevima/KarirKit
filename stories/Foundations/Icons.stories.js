@@ -5,7 +5,7 @@ export default {
     docs: {
       description: {
         component:
-          'Ikon KarirKit — token berbasis class, pakai seperti icon font: `<i class="kk kk-house"></i>`. Mewarisi `currentColor`, ukuran diatur lewat utility `h-*`/`w-*`. Setiap ikon tersedia dalam 6 ketebalan (weight): Regular (default, tanpa modifier), Thin, Light, Bold, Fill, dan Duotone — tinggal tambahkan satu class modifier (`kk-thin`, `kk-light`, `kk-bold`, `kk-fill`, `kk-duotone`) di samping `kk-{nama}`. Untuk mencari ikon, memilih ketebalan/ukuran/warna, lalu menyalin class, HTML, atau SVG-nya, buka halaman katalog [`icons.html`](/icons.html) (di repo: `icons.html`).',
+          'Ikon KarirKit — token berbasis class, pakai seperti icon font: `<i class="kk kk-house"></i>`. Mewarisi `currentColor`, ukuran diatur lewat utility `h-*`/`w-*`. Setiap ikon tersedia dalam 6 ketebalan (weight): Regular (default, tanpa modifier), Thin, Light, Bold, Fill, dan Duotone — tinggal tambahkan satu class modifier (`kk-thin`, `kk-light`, `kk-bold`, `kk-fill`, `kk-duotone`) di samping `kk-{nama}`. Untuk mencari ikon, memilih ketebalan/ukuran/warna, lalu menyalin class, HTML, atau SVG-nya, buka halaman katalog **KarirIcon** ([`icons.html`](/icons.html)).',
       },
     },
   },
