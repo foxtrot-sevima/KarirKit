@@ -26,7 +26,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   disabled dengan tooltip untuk yang belum dikirimi kuesioner, dan "Lihat Jawaban" untuk yang sudah mengisi. Menu titik tiga dan aksi "Kirim Kuesioner" per baris
   dihapus (tombol "Kirim Kuesioner" tingkat periode di header halaman tetap ada). Tombol "Kirim Reminder" per baris memakai modal konfirmasi dan toast yang sama
   dengan bulk reminder (hasilnya "Reminder terkirim ke <nama>."). Tab status (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) berjalan sebagai filter kustom lewat `table.js`
-  dan digabung dengan pencarian; pilihan baris per halaman dihapus. Di ponsel info prodi dan email tampil di bawah nama (membungkus baris), kolom
+  dan digabung dengan pencarian; pilihan baris per halaman dihapus. Di ponsel kolom Nama hanya menampilkan nama dan NIM (prodi dan email disembunyikan), kolom
   Prodi muncul dari `lg` dan Email dari `xl`, dan teks badge status tidak lagi keluar dari pilnya. Tabel muat tanpa scroll horizontal di 360 sampai 1440px.
 - **Bulk "Kirim Reminder" di `yudisium-detail.html`** untuk mengirim pengingat ke banyak lulusan sekaligus. Kolom checkbox hanya aktif untuk status
   Menunggu Mengisi (status lain disabled dengan tooltip), checkbox header memilih semua yang memenuhi syarat di halaman aktif (pilihan bertahan antar halaman
@@ -34,7 +34,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   konfirmasi pilihan dibersihkan dan muncul toast "Reminder terkirim ke n mahasiswa." (Escape/Batal menutup modal tanpa menghapus pilihan). `table.js` kini
   mengabaikan checkbox baris yang disabled pada select-all dan menonaktifkan checkbox header bila tidak ada baris yang memenuhi syarat di tampilan.
 - **Kolom Nama `yudisium-detail.html`: avatar dihapus, NIM ditambahkan di bawah nama** ("NIM 2111500101"). Pencarian kini juga mencocokkan NIM
-  ("Cari nama, NIM, atau email..."). Di ponsel prodi dan email tetap tampil di bawah NIM.
+  ("Cari nama, NIM, atau email..."). Di ponsel (di bawah `sm`) hanya nama dan NIM yang tampil, tanpa prodi dan email.
 - **Toolbar tabel konsisten: pencarian di kiri, filter/aksi sebagai dropdown di kanan.** Diterapkan ke contoh Table filter dan Table with modal di
   Design System (urutan sebelumnya terbalik; menu dropdown kini rata kanan agar tidak keluar layar) dan ke `yudisium-detail.html`, di mana tab status
   (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) diganti dropdown "Semua Status" di kanan pencarian, memakai komponen combo yang sama
