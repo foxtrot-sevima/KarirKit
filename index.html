@@ -149,6 +149,7 @@
       <a href="#alerts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Alert</a>
       <a href="#toasts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Toast</a>
       <a href="#qr-code" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">QR Code</a>
+      <a href="#wysiwyg" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">WYSIWYG</a>
       <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-white hover:text-slate-900 hover:shadow-sm">Lainnya</a>
     </div>
   </div>
@@ -2112,22 +2113,24 @@
 
   <!-- ============================= TOASTS ============================= -->
   <section id="toasts" class="scroll-mt-32 py-12">
-    <div class="mb-6">
+    <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Toast</h2>
-      <p class="mt-1 text-sm text-slate-500">Notifikasi sementara - varian ikon, aksi, avatar, progress, dan posisi. Tutup lewat <code class="kbd">[data-toast-dismiss]</code>; <code class="kbd">assets/js/toast.js</code> opsional untuk dismiss &amp; <code class="kbd">KKToast.show()</code>.</p>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Notifikasi sementara dengan seluruh layout Flowbite - ikon, warna, aksi, avatar, progress, alert, dan posisi. Tutup lewat <code class="kbd">[data-toast-dismiss]</code>; <code class="kbd">assets/js/toast.js</code> opsional untuk dismiss &amp; <code class="kbd">KKToast.show()</code>.</p>
     </div>
-    <div class="card space-y-8 p-6 sm:p-8">
-      <div class="grid items-start gap-8 md:grid-cols-2 xl:grid-cols-3">
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Default toast</p>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Default toast</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="toast toast-center" role="status">
           <span class="toast-icon"><i class="kk kk-fire h-5 w-5"></i></span>
           <div>Set yourself free.</div>
           <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
         </div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Colors</p>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Colors</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="flex flex-col gap-4">
         <div class="toast toast-center" role="status">
           <span class="toast-icon toast-icon-success"><i class="kk kk-check h-5 w-5"></i></span>
@@ -2146,16 +2149,20 @@
         </div>
         </div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Simple toast</p>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Simple toast</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="toast toast-center" role="status">
           <i class="kk kk-paper-plane-tilt h-5 w-5 shrink-0 text-primary-600"></i>
           <div>Message sent successfully.</div>
           <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
         </div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Undo button</p>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Undo button</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="toast toast-center" role="status">
           <div>Conversation archived.</div>
           <div class="ml-auto flex items-center gap-2">
@@ -2164,8 +2171,10 @@
           </div>
         </div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Toast message</p>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Toast message</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="toast toast-wide" role="status">
           <span class="avatar h-10 w-10 text-sm">JL</span>
           <div class="min-w-0">
@@ -2176,8 +2185,10 @@
           <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
         </div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Push notification</p>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Push notification</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="toast toast-wide" role="status">
           <div class="min-w-0 flex-1">
             <div class="mb-3 flex items-center justify-between gap-3">
@@ -2199,8 +2210,10 @@
           <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
         </div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Interactive toast</p>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Interactive toast</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="toast toast-wide" role="status">
           <span class="toast-icon"><i class="kk kk-arrow-clockwise h-5 w-5"></i></span>
           <div class="min-w-0 flex-1">
@@ -2214,8 +2227,10 @@
           <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
         </div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Toast illustration</p>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Toast illustration</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="toast toast-wide flex-col" role="status">
           <div class="flex items-start gap-3">
             <div class="min-w-0 flex-1">
@@ -2240,8 +2255,10 @@
           </div>
         </div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Toast progress bar</p>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Toast progress bar</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="toast toast-wide" role="status">
           <span class="toast-icon"><i class="kk kk-arrow-clockwise h-5 w-5"></i></span>
           <div class="min-w-0 flex-1">
@@ -2259,8 +2276,10 @@
           <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
         </div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Toast danger alert</p>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Toast danger alert</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="toast toast-wide toast-danger" role="alert">
           <span class="toast-icon toast-icon-danger"><i class="kk kk-warning-circle h-5 w-5"></i></span>
           <div class="min-w-0 flex-1">
@@ -2273,8 +2292,10 @@
           </div>
         </div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Toast warning alert</p>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Toast warning alert</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="toast toast-wide toast-warning" role="alert">
           <div class="min-w-0 flex-1">
             <div class="mb-2 flex items-center gap-2">
@@ -2291,48 +2312,341 @@
           <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
         </div>
       </div>
-      </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">Positioning</p>
-        <div class="relative h-[28rem] overflow-hidden rounded-card border border-dashed border-border bg-neutral-50">
-          <div class="toast-region toast-region-contained toast-top-left">
-            <div class="toast toast-center" role="status">
-              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
-              <div>Top left positioning.</div>
-              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
-            </div>
-          </div>
-          <div class="toast-region toast-region-contained toast-top-right">
-            <div class="toast toast-center" role="status">
-              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
-              <div>Top right positioning.</div>
-              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
-            </div>
-          </div>
-          <div class="toast-region toast-region-contained toast-bottom-right">
-            <div class="toast toast-center" role="status">
-              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
-              <div>Bottom right positioning.</div>
-              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
-            </div>
-          </div>
-          <div class="toast-region toast-region-contained toast-bottom-left">
-            <div class="toast toast-center" role="status">
-              <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
-              <div>Bottom left positioning.</div>
-              <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
-            </div>
-          </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Positioning</h3>
+      <div class="grid gap-4 sm:grid-cols-2">
+  
+        <figure class="m-0">
+      <div class="relative h-48 overflow-hidden rounded-xl border border-border bg-surface">
+        <div class="flex items-center gap-1.5 border-b border-border bg-neutral-50 px-3 py-2">
+          <span class="h-2 w-2 rounded-full bg-danger-400"></span><span class="h-2 w-2 rounded-full bg-warning-400"></span><span class="h-2 w-2 rounded-full bg-success-400"></span>
         </div>
+        <div class="space-y-2 p-4">
+          <div class="h-2.5 w-2/5 rounded bg-neutral-100"></div>
+          <div class="h-2 w-4/5 rounded bg-neutral-100"></div>
+          <div class="h-2 w-3/5 rounded bg-neutral-100"></div>
+        </div>
+        <div class="toast-region toast-region-contained toast-top-left w-max max-w-full p-2 mt-8">
+        <div class="toast toast-center" role="status">
+      <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+      <div>Top left positioning.</div>
+      <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div></div>
       </div>
-      <div>
-        <p class="nav-eyebrow mb-3 px-0">JavaScript behaviour</p>
+      <figcaption class="mt-2 text-center text-xs text-fg-muted"><code class="kbd">toast-top-left</code></figcaption>
+        </figure>
+  
+        <figure class="m-0">
+      <div class="relative h-48 overflow-hidden rounded-xl border border-border bg-surface">
+        <div class="flex items-center gap-1.5 border-b border-border bg-neutral-50 px-3 py-2">
+          <span class="h-2 w-2 rounded-full bg-danger-400"></span><span class="h-2 w-2 rounded-full bg-warning-400"></span><span class="h-2 w-2 rounded-full bg-success-400"></span>
+        </div>
+        <div class="space-y-2 p-4">
+          <div class="h-2.5 w-2/5 rounded bg-neutral-100"></div>
+          <div class="h-2 w-4/5 rounded bg-neutral-100"></div>
+          <div class="h-2 w-3/5 rounded bg-neutral-100"></div>
+        </div>
+        <div class="toast-region toast-region-contained toast-top-right w-max max-w-full p-2 mt-8">
+        <div class="toast toast-center" role="status">
+      <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+      <div>Top right positioning.</div>
+      <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div></div>
+      </div>
+      <figcaption class="mt-2 text-center text-xs text-fg-muted"><code class="kbd">toast-top-right</code></figcaption>
+        </figure>
+  
+        <figure class="m-0">
+      <div class="relative h-48 overflow-hidden rounded-xl border border-border bg-surface">
+        <div class="flex items-center gap-1.5 border-b border-border bg-neutral-50 px-3 py-2">
+          <span class="h-2 w-2 rounded-full bg-danger-400"></span><span class="h-2 w-2 rounded-full bg-warning-400"></span><span class="h-2 w-2 rounded-full bg-success-400"></span>
+        </div>
+        <div class="space-y-2 p-4">
+          <div class="h-2.5 w-2/5 rounded bg-neutral-100"></div>
+          <div class="h-2 w-4/5 rounded bg-neutral-100"></div>
+          <div class="h-2 w-3/5 rounded bg-neutral-100"></div>
+        </div>
+        <div class="toast-region toast-region-contained toast-bottom-right w-max max-w-full p-2 ">
+        <div class="toast toast-center" role="status">
+      <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+      <div>Bottom right positioning.</div>
+      <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div></div>
+      </div>
+      <figcaption class="mt-2 text-center text-xs text-fg-muted"><code class="kbd">toast-bottom-right</code></figcaption>
+        </figure>
+  
+        <figure class="m-0">
+      <div class="relative h-48 overflow-hidden rounded-xl border border-border bg-surface">
+        <div class="flex items-center gap-1.5 border-b border-border bg-neutral-50 px-3 py-2">
+          <span class="h-2 w-2 rounded-full bg-danger-400"></span><span class="h-2 w-2 rounded-full bg-warning-400"></span><span class="h-2 w-2 rounded-full bg-success-400"></span>
+        </div>
+        <div class="space-y-2 p-4">
+          <div class="h-2.5 w-2/5 rounded bg-neutral-100"></div>
+          <div class="h-2 w-4/5 rounded bg-neutral-100"></div>
+          <div class="h-2 w-3/5 rounded bg-neutral-100"></div>
+        </div>
+        <div class="toast-region toast-region-contained toast-bottom-left w-max max-w-full p-2 ">
+        <div class="toast toast-center" role="status">
+      <span class="toast-icon"><i class="kk kk-bell h-5 w-5"></i></span>
+      <div>Bottom left positioning.</div>
+      <button type="button" class="toast-close" data-toast-dismiss aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        </div></div>
+      </div>
+      <figcaption class="mt-2 text-center text-xs text-fg-muted"><code class="kbd">toast-bottom-left</code></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">JavaScript behaviour</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
         <div class="flex flex-wrap gap-2">
           <button type="button" class="btn-primary btn-sm" data-toast-show="success">Tampilkan toast sukses</button>
           <button type="button" class="btn-outline btn-sm" data-toast-show="danger">Tampilkan toast error</button>
           <button type="button" class="btn-outline btn-sm" data-toast-show="warning">Tampilkan toast peringatan</button>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ============================= QR-CODE ============================= -->
+  <section id="qr-code" class="scroll-mt-32 py-12">
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">QR Code</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">QR code sebagai SVG inline, dirender offline oleh <code class="kbd">assets/js/qr-code.js</code> (library <code class="kbd">qrcode-generator</code> di-vendor, tanpa CDN). Selalu hitam-di-atas-putih agar terbaca scanner, juga di dark mode.</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">QR code generator</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+        <div class="grid max-w-3xl gap-6 md:grid-cols-[auto_1fr]">
+          <div class="qr-code self-start">
+            <div id="qr-gen" data-qr data-qr-text="https://karirkit.vercel.app" data-qr-level="M" class="h-48 w-48"></div>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <label class="mb-1.5 block text-sm font-medium text-fg" for="qr-gen-input">Teks atau URL</label>
+              <input id="qr-gen-input" class="input" value="https://karirkit.vercel.app" data-qr-target="#qr-gen" />
+            </div>
+            <div>
+              <label class="mb-1.5 block text-sm font-medium text-fg" for="qr-gen-level">Error correction</label>
+              <select id="qr-gen-level" class="input" data-qr-level-select data-qr-target="#qr-gen">
+                <option value="L">L - Low (7%)</option>
+                <option value="M" selected>M - Medium (15%)</option>
+                <option value="Q">Q - Quartile (25%)</option>
+                <option value="H">H - High (30%)</option>
+              </select>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" class="btn-outline btn-sm" data-qr-action="copy-svg" data-qr-target="#qr-gen"><span data-label>Copy as SVG</span></button>
+              <button type="button" class="btn-primary btn-sm" data-qr-action="save" data-qr-target="#qr-gen">Save as file</button>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Default QR code</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+        <div class="qr-code">
+          <div data-qr data-qr-text="https://karirkit.vercel.app" class="h-48 w-48"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">QR code with input</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+        <div class="max-w-xs space-y-4">
+          <div class="qr-code">
+            <div data-qr data-qr-text="https://karirkit.vercel.app/profil/ahmad-dimas" class="h-48 w-48"></div>
+          </div>
+          <div class="relative flex items-center gap-2">
+            <input id="qr-input-url" class="input" readonly value="https://karirkit.vercel.app/profil/ahmad-dimas" aria-label="URL QR code" />
+            <span class="group relative inline-flex">
+              <button type="button" class="btn-outline h-10 w-10 shrink-0 p-0" data-copy-input="#qr-input-url" aria-label="Salin URL">
+                <i data-copy-default class="kk kk-copy h-4 w-4"></i>
+                <i data-copy-success class="kk kk-check hidden h-4 w-4 text-success-600"></i>
+              </button>
+              <span class="tooltip-content">Salin URL</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">QR code with card</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+        <div class="card max-w-sm overflow-hidden">
+          <div class="flex justify-center bg-brand-gradient p-8">
+            <div class="qr-code">
+              <div data-qr data-qr-text="https://karirkit.vercel.app/unduh" class="h-40 w-40"></div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-lg font-bold text-fg">Scan untuk mengunduh aplikasi</h3>
+            <p class="mt-1 text-sm text-fg-muted">Arahkan kamera ponsel ke kode di atas untuk membuka halaman unduhan KarirLink.</p>
+            <a href="#" class="toast-action mt-4 inline-flex items-center gap-1">Buka halaman unduhan <i class="kk kk-arrow-right h-4 w-4"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Share profile with QR</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+        <div class="card max-w-xs p-6 text-center">
+          <span class="avatar mx-auto h-16 w-16 text-xl">AD</span>
+          <h3 class="mt-3 font-display text-lg font-bold text-fg">Ahmad Dimas</h3>
+          <p class="text-sm text-fg-muted">Frontend Engineer</p>
+          <div class="qr-code mt-5">
+            <div data-qr data-qr-text="https://karirkit.vercel.app/profil/ahmad-dimas" class="h-44 w-44"></div>
+          </div>
+          <p class="mt-4 text-sm text-fg-muted">Bagikan profilmu - minta orang lain scan kode ini untuk membuka profil publikmu.</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Loading state</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+        <div class="qr-code">
+          <div data-qr data-qr-text="https://karirkit.vercel.app/login/sesi-1" class="h-48 w-48"></div>
+          <div class="qr-overlay" role="status">
+            <span class="qr-spinner" aria-hidden="true"></span>
+            <p>Membuat QR code…</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Success state</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+        <div class="qr-code">
+          <div data-qr data-qr-text="https://karirkit.vercel.app/login/sesi-2" class="h-48 w-48"></div>
+          <div class="qr-overlay" role="status">
+            <span class="toast-icon toast-icon-success toast-icon-lg"><i class="kk kk-check h-6 w-6"></i></span>
+            <p>Scanned</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Expired state</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+        <div class="qr-code">
+          <div data-qr data-qr-text="https://karirkit.vercel.app/login/sesi-3" class="h-48 w-48"></div>
+          <div class="qr-overlay" role="alert">
+            <span class="toast-icon toast-icon-danger toast-icon-lg"><i class="kk kk-x h-6 w-6"></i></span>
+            <p>QR code kedaluwarsa</p>
+            <button type="button" class="btn-primary btn-sm" data-qr-action="refresh">Muat ulang</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ============================= WYSIWYG ============================= -->
+  <section id="wysiwyg" class="scroll-mt-32 py-12">
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">WYSIWYG</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Rich text editor tanpa dependensi (contenteditable), jalan offline - tanpa TipTap/CDN. Aktifkan dengan <code class="kbd">data-wysiwyg</code> + <code class="kbd">assets/js/wysiwyg.js</code>; ambil isi lewat <code class="kbd">KKWysiwyg.get(root).getHTML()</code>. Pintasan <code class="kbd">Ctrl/Cmd+Alt+0..6</code> untuk paragraf &amp; heading.</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Default text editor</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-4 sm:p-6">
+        <div class="wysiwyg" data-wysiwyg>
+        <div class="wysiwyg-toolbar" role="toolbar" aria-label="Format teks"><div class="wysiwyg-group" role="group"><button type="button" class="wysiwyg-btn" data-cmd="bold" aria-pressed="false" title="Bold" aria-label="Bold"><i class="kk kk-text-b h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="italic" aria-pressed="false" title="Italic" aria-label="Italic"><i class="kk kk-text-italic h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="underline" aria-pressed="false" title="Underline" aria-label="Underline"><i class="kk kk-text-underline h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="strike" aria-pressed="false" title="Strike" aria-label="Strike"><i class="kk kk-text-strikethrough h-4 w-4"></i></button></div><div class="wysiwyg-group" role="group"><button type="button" class="wysiwyg-btn" data-cmd="highlight" aria-pressed="false" title="Highlight" aria-label="Highlight"><i class="kk kk-highlighter h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="code" aria-pressed="false" title="Code" aria-label="Code"><i class="kk kk-code h-4 w-4"></i></button></div><div class="wysiwyg-group" role="group"><button type="button" class="wysiwyg-btn" data-cmd="link" aria-pressed="false" title="Link" aria-label="Link"><i class="kk kk-link h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="unlink" aria-pressed="false" title="Remove link" aria-label="Remove link"><i class="kk kk-link-break h-4 w-4"></i></button></div><div class="wysiwyg-group" role="group">
+          <div class="wysiwyg-dd">
+        <button type="button" class="wysiwyg-btn" data-dd="size" aria-haspopup="true" aria-expanded="false" title="Text size" aria-label="Text size"><i class="kk kk-text-aa h-4 w-4"></i><i class="kk kk-caret-down h-3 w-3"></i></button>
+        <div class="wysiwyg-menu hidden" data-dd-menu="size"><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="12px">12px</button><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="14px">14px</button><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="16px">16px</button><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="18px">18px</button><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="20px">20px</button><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="36px">36px</button></div>
+          </div>
+          <div class="wysiwyg-dd">
+        <button type="button" class="wysiwyg-btn" data-dd="color" aria-haspopup="true" aria-expanded="false" title="Text color" aria-label="Text color"><i class="kk kk-palette h-4 w-4"></i><i class="kk kk-caret-down h-3 w-3"></i></button>
+        <div class="wysiwyg-menu hidden" data-dd-menu="color">
+          <div class="p-2 pb-0">
+        <p class="mb-1 text-xs font-medium text-fg-muted">Hex</p>
+        <input class="input h-8 text-xs" placeholder="#2361e7 lalu Enter" data-cmd="color-hex" aria-label="Warna hex" />
+          </div>
+          <div class="wysiwyg-swatches"><button type="button" class="wysiwyg-swatch" style="background:#0f172a" data-cmd="color" data-value="#0f172a" title="#0f172a" aria-label="Warna #0f172a"></button><button type="button" class="wysiwyg-swatch" style="background:#334155" data-cmd="color" data-value="#334155" title="#334155" aria-label="Warna #334155"></button><button type="button" class="wysiwyg-swatch" style="background:#64748b" data-cmd="color" data-value="#64748b" title="#64748b" aria-label="Warna #64748b"></button><button type="button" class="wysiwyg-swatch" style="background:#94a3b8" data-cmd="color" data-value="#94a3b8" title="#94a3b8" aria-label="Warna #94a3b8"></button><button type="button" class="wysiwyg-swatch" style="background:#cbd5e1" data-cmd="color" data-value="#cbd5e1" title="#cbd5e1" aria-label="Warna #cbd5e1"></button><button type="button" class="wysiwyg-swatch" style="background:#ffffff" data-cmd="color" data-value="#ffffff" title="#ffffff" aria-label="Warna #ffffff"></button><button type="button" class="wysiwyg-swatch" style="background:#7f1d1d" data-cmd="color" data-value="#7f1d1d" title="#7f1d1d" aria-label="Warna #7f1d1d"></button><button type="button" class="wysiwyg-swatch" style="background:#b91c1c" data-cmd="color" data-value="#b91c1c" title="#b91c1c" aria-label="Warna #b91c1c"></button><button type="button" class="wysiwyg-swatch" style="background:#ef4444" data-cmd="color" data-value="#ef4444" title="#ef4444" aria-label="Warna #ef4444"></button><button type="button" class="wysiwyg-swatch" style="background:#f87171" data-cmd="color" data-value="#f87171" title="#f87171" aria-label="Warna #f87171"></button><button type="button" class="wysiwyg-swatch" style="background:#fca5a5" data-cmd="color" data-value="#fca5a5" title="#fca5a5" aria-label="Warna #fca5a5"></button><button type="button" class="wysiwyg-swatch" style="background:#fee2e2" data-cmd="color" data-value="#fee2e2" title="#fee2e2" aria-label="Warna #fee2e2"></button><button type="button" class="wysiwyg-swatch" style="background:#7c2d12" data-cmd="color" data-value="#7c2d12" title="#7c2d12" aria-label="Warna #7c2d12"></button><button type="button" class="wysiwyg-swatch" style="background:#c2410c" data-cmd="color" data-value="#c2410c" title="#c2410c" aria-label="Warna #c2410c"></button><button type="button" class="wysiwyg-swatch" style="background:#f97316" data-cmd="color" data-value="#f97316" title="#f97316" aria-label="Warna #f97316"></button><button type="button" class="wysiwyg-swatch" style="background:#fb923c" data-cmd="color" data-value="#fb923c" title="#fb923c" aria-label="Warna #fb923c"></button><button type="button" class="wysiwyg-swatch" style="background:#fdba74" data-cmd="color" data-value="#fdba74" title="#fdba74" aria-label="Warna #fdba74"></button><button type="button" class="wysiwyg-swatch" style="background:#ffedd5" data-cmd="color" data-value="#ffedd5" title="#ffedd5" aria-label="Warna #ffedd5"></button><button type="button" class="wysiwyg-swatch" style="background:#064e3b" data-cmd="color" data-value="#064e3b" title="#064e3b" aria-label="Warna #064e3b"></button><button type="button" class="wysiwyg-swatch" style="background:#047857" data-cmd="color" data-value="#047857" title="#047857" aria-label="Warna #047857"></button><button type="button" class="wysiwyg-swatch" style="background:#10b981" data-cmd="color" data-value="#10b981" title="#10b981" aria-label="Warna #10b981"></button><button type="button" class="wysiwyg-swatch" style="background:#34d399" data-cmd="color" data-value="#34d399" title="#34d399" aria-label="Warna #34d399"></button><button type="button" class="wysiwyg-swatch" style="background:#a7f3d0" data-cmd="color" data-value="#a7f3d0" title="#a7f3d0" aria-label="Warna #a7f3d0"></button><button type="button" class="wysiwyg-swatch" style="background:#d1fae5" data-cmd="color" data-value="#d1fae5" title="#d1fae5" aria-label="Warna #d1fae5"></button><button type="button" class="wysiwyg-swatch" style="background:#173678" data-cmd="color" data-value="#173678" title="#173678" aria-label="Warna #173678"></button><button type="button" class="wysiwyg-swatch" style="background:#1950c8" data-cmd="color" data-value="#1950c8" title="#1950c8" aria-label="Warna #1950c8"></button><button type="button" class="wysiwyg-swatch" style="background:#2361e7" data-cmd="color" data-value="#2361e7" title="#2361e7" aria-label="Warna #2361e7"></button><button type="button" class="wysiwyg-swatch" style="background:#5d8bef" data-cmd="color" data-value="#5d8bef" title="#5d8bef" aria-label="Warna #5d8bef"></button><button type="button" class="wysiwyg-swatch" style="background:#98b6f6" data-cmd="color" data-value="#98b6f6" title="#98b6f6" aria-label="Warna #98b6f6"></button><button type="button" class="wysiwyg-swatch" style="background:#e2ebfd" data-cmd="color" data-value="#e2ebfd" title="#e2ebfd" aria-label="Warna #e2ebfd"></button><button type="button" class="wysiwyg-swatch" style="background:#4c1d95" data-cmd="color" data-value="#4c1d95" title="#4c1d95" aria-label="Warna #4c1d95"></button><button type="button" class="wysiwyg-swatch" style="background:#6d28d9" data-cmd="color" data-value="#6d28d9" title="#6d28d9" aria-label="Warna #6d28d9"></button><button type="button" class="wysiwyg-swatch" style="background:#8b5cf6" data-cmd="color" data-value="#8b5cf6" title="#8b5cf6" aria-label="Warna #8b5cf6"></button><button type="button" class="wysiwyg-swatch" style="background:#a78bfa" data-cmd="color" data-value="#a78bfa" title="#a78bfa" aria-label="Warna #a78bfa"></button><button type="button" class="wysiwyg-swatch" style="background:#c4b5fd" data-cmd="color" data-value="#c4b5fd" title="#c4b5fd" aria-label="Warna #c4b5fd"></button><button type="button" class="wysiwyg-swatch" style="background:#ede9fe" data-cmd="color" data-value="#ede9fe" title="#ede9fe" aria-label="Warna #ede9fe"></button></div>
+          <button type="button" class="wysiwyg-menu-item" data-cmd="color-reset">Reset warna</button></div>
+          </div>
+          <div class="wysiwyg-dd">
+        <button type="button" class="wysiwyg-btn" data-dd="font" aria-haspopup="true" aria-expanded="false" title="Font family" aria-label="Font family"><i class="kk kk-text-t h-4 w-4"></i><i class="kk kk-caret-down h-3 w-3"></i></button>
+        <div class="wysiwyg-menu hidden" data-dd-menu="font"><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Instrument Sans" style="font-family: 'Instrument Sans', sans-serif">Instrument Sans</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Arial" style="font-family: 'Arial', sans-serif">Arial</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Courier New" style="font-family: 'Courier New', sans-serif">Courier New</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Georgia" style="font-family: 'Georgia', sans-serif">Georgia</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Lucida Sans Unicode" style="font-family: 'Lucida Sans Unicode', sans-serif">Lucida Sans Unicode</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Tahoma" style="font-family: 'Tahoma', sans-serif">Tahoma</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Times New Roman" style="font-family: 'Times New Roman', sans-serif">Times New Roman</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Trebuchet MS" style="font-family: 'Trebuchet MS', sans-serif">Trebuchet MS</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Verdana" style="font-family: 'Verdana', sans-serif">Verdana</button></div>
+          </div></div><div class="wysiwyg-group" role="group"><button type="button" class="wysiwyg-btn" data-cmd="align-left" aria-pressed="false" title="Align left" aria-label="Align left"><i class="kk kk-text-align-left h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="align-center" aria-pressed="false" title="Align center" aria-label="Align center"><i class="kk kk-text-align-center h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="align-right" aria-pressed="false" title="Align right" aria-label="Align right"><i class="kk kk-text-align-right h-4 w-4"></i></button></div><div class="wysiwyg-group" role="group">
+          <div class="wysiwyg-dd">
+        <button type="button" class="wysiwyg-btn" data-dd="format" aria-haspopup="true" aria-expanded="false" title="Typography" aria-label="Typography"><i class="kk kk-text-h h-4 w-4"></i><i class="kk kk-caret-down h-3 w-3"></i></button>
+        <div class="wysiwyg-menu hidden" data-dd-menu="format"><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="p"><span>Paragraph</span><kbd>Ctrl+Alt+0</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h1"><span>Heading 1</span><kbd>Ctrl+Alt+1</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h2"><span>Heading 2</span><kbd>Ctrl+Alt+2</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h3"><span>Heading 3</span><kbd>Ctrl+Alt+3</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h4"><span>Heading 4</span><kbd>Ctrl+Alt+4</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h5"><span>Heading 5</span><kbd>Ctrl+Alt+5</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h6"><span>Heading 6</span><kbd>Ctrl+Alt+6</kbd></button></div>
+          </div><button type="button" class="wysiwyg-btn" data-cmd="image" aria-pressed="false" title="Add image" aria-label="Add image"><i class="kk kk-image h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="video" aria-pressed="false" title="Add video" aria-label="Add video"><i class="kk kk-youtube-logo h-4 w-4"></i></button></div><div class="wysiwyg-group" role="group"><button type="button" class="wysiwyg-btn" data-cmd="bullet-list" aria-pressed="false" title="Bullet list" aria-label="Bullet list"><i class="kk kk-list-bullets h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="ordered-list" aria-pressed="false" title="Ordered list" aria-label="Ordered list"><i class="kk kk-list-numbers h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="blockquote" aria-pressed="false" title="Blockquote" aria-label="Blockquote"><i class="kk kk-quotes h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="hr" aria-pressed="false" title="Horizontal rule" aria-label="Horizontal rule"><i class="kk kk-minus h-4 w-4"></i></button></div></div>
+        <div class="wysiwyg-content" data-placeholder="Tulis sesuatu…">
+          <h2>Selamat datang di editor KarirKit</h2>
+          <p>Tulis, <strong>format</strong>, dan atur teks langsung di sini. Pilih sebagian teks lalu pakai toolbar di atas — coba <em>miring</em>, <u>garis bawah</u>, atau <a href="https://karirkit.vercel.app">tambahkan tautan</a>.</p>
+          <p>Gunakan <code>kode inline</code> untuk potongan kode singkat.</p></div>
+
+          </div>
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Text formatting</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-4 sm:p-6">
+        <div class="wysiwyg" data-wysiwyg>
+        <div class="wysiwyg-toolbar" role="toolbar" aria-label="Format teks"><div class="wysiwyg-group" role="group"><button type="button" class="wysiwyg-btn" data-cmd="bold" aria-pressed="false" title="Bold" aria-label="Bold"><i class="kk kk-text-b h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="italic" aria-pressed="false" title="Italic" aria-label="Italic"><i class="kk kk-text-italic h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="underline" aria-pressed="false" title="Underline" aria-label="Underline"><i class="kk kk-text-underline h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="strike" aria-pressed="false" title="Strike" aria-label="Strike"><i class="kk kk-text-strikethrough h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="subscript" aria-pressed="false" title="Subscript" aria-label="Subscript"><i class="kk kk-text-subscript h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="superscript" aria-pressed="false" title="Superscript" aria-label="Superscript"><i class="kk kk-text-superscript h-4 w-4"></i></button></div><div class="wysiwyg-group" role="group"><button type="button" class="wysiwyg-btn" data-cmd="highlight" aria-pressed="false" title="Highlight" aria-label="Highlight"><i class="kk kk-highlighter h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="code" aria-pressed="false" title="Code" aria-label="Code"><i class="kk kk-code h-4 w-4"></i></button></div><div class="wysiwyg-group" role="group">
+          <div class="wysiwyg-dd">
+        <button type="button" class="wysiwyg-btn" data-dd="size" aria-haspopup="true" aria-expanded="false" title="Text size" aria-label="Text size"><i class="kk kk-text-aa h-4 w-4"></i><i class="kk kk-caret-down h-3 w-3"></i></button>
+        <div class="wysiwyg-menu hidden" data-dd-menu="size"><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="12px">12px</button><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="14px">14px</button><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="16px">16px</button><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="18px">18px</button><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="20px">20px</button><button type="button" class="wysiwyg-menu-item" data-cmd="size" data-value="36px">36px</button></div>
+          </div>
+          <div class="wysiwyg-dd">
+        <button type="button" class="wysiwyg-btn" data-dd="color" aria-haspopup="true" aria-expanded="false" title="Text color" aria-label="Text color"><i class="kk kk-palette h-4 w-4"></i><i class="kk kk-caret-down h-3 w-3"></i></button>
+        <div class="wysiwyg-menu hidden" data-dd-menu="color">
+          <div class="p-2 pb-0">
+        <p class="mb-1 text-xs font-medium text-fg-muted">Hex</p>
+        <input class="input h-8 text-xs" placeholder="#2361e7 lalu Enter" data-cmd="color-hex" aria-label="Warna hex" />
+          </div>
+          <div class="wysiwyg-swatches"><button type="button" class="wysiwyg-swatch" style="background:#0f172a" data-cmd="color" data-value="#0f172a" title="#0f172a" aria-label="Warna #0f172a"></button><button type="button" class="wysiwyg-swatch" style="background:#334155" data-cmd="color" data-value="#334155" title="#334155" aria-label="Warna #334155"></button><button type="button" class="wysiwyg-swatch" style="background:#64748b" data-cmd="color" data-value="#64748b" title="#64748b" aria-label="Warna #64748b"></button><button type="button" class="wysiwyg-swatch" style="background:#94a3b8" data-cmd="color" data-value="#94a3b8" title="#94a3b8" aria-label="Warna #94a3b8"></button><button type="button" class="wysiwyg-swatch" style="background:#cbd5e1" data-cmd="color" data-value="#cbd5e1" title="#cbd5e1" aria-label="Warna #cbd5e1"></button><button type="button" class="wysiwyg-swatch" style="background:#ffffff" data-cmd="color" data-value="#ffffff" title="#ffffff" aria-label="Warna #ffffff"></button><button type="button" class="wysiwyg-swatch" style="background:#7f1d1d" data-cmd="color" data-value="#7f1d1d" title="#7f1d1d" aria-label="Warna #7f1d1d"></button><button type="button" class="wysiwyg-swatch" style="background:#b91c1c" data-cmd="color" data-value="#b91c1c" title="#b91c1c" aria-label="Warna #b91c1c"></button><button type="button" class="wysiwyg-swatch" style="background:#ef4444" data-cmd="color" data-value="#ef4444" title="#ef4444" aria-label="Warna #ef4444"></button><button type="button" class="wysiwyg-swatch" style="background:#f87171" data-cmd="color" data-value="#f87171" title="#f87171" aria-label="Warna #f87171"></button><button type="button" class="wysiwyg-swatch" style="background:#fca5a5" data-cmd="color" data-value="#fca5a5" title="#fca5a5" aria-label="Warna #fca5a5"></button><button type="button" class="wysiwyg-swatch" style="background:#fee2e2" data-cmd="color" data-value="#fee2e2" title="#fee2e2" aria-label="Warna #fee2e2"></button><button type="button" class="wysiwyg-swatch" style="background:#7c2d12" data-cmd="color" data-value="#7c2d12" title="#7c2d12" aria-label="Warna #7c2d12"></button><button type="button" class="wysiwyg-swatch" style="background:#c2410c" data-cmd="color" data-value="#c2410c" title="#c2410c" aria-label="Warna #c2410c"></button><button type="button" class="wysiwyg-swatch" style="background:#f97316" data-cmd="color" data-value="#f97316" title="#f97316" aria-label="Warna #f97316"></button><button type="button" class="wysiwyg-swatch" style="background:#fb923c" data-cmd="color" data-value="#fb923c" title="#fb923c" aria-label="Warna #fb923c"></button><button type="button" class="wysiwyg-swatch" style="background:#fdba74" data-cmd="color" data-value="#fdba74" title="#fdba74" aria-label="Warna #fdba74"></button><button type="button" class="wysiwyg-swatch" style="background:#ffedd5" data-cmd="color" data-value="#ffedd5" title="#ffedd5" aria-label="Warna #ffedd5"></button><button type="button" class="wysiwyg-swatch" style="background:#064e3b" data-cmd="color" data-value="#064e3b" title="#064e3b" aria-label="Warna #064e3b"></button><button type="button" class="wysiwyg-swatch" style="background:#047857" data-cmd="color" data-value="#047857" title="#047857" aria-label="Warna #047857"></button><button type="button" class="wysiwyg-swatch" style="background:#10b981" data-cmd="color" data-value="#10b981" title="#10b981" aria-label="Warna #10b981"></button><button type="button" class="wysiwyg-swatch" style="background:#34d399" data-cmd="color" data-value="#34d399" title="#34d399" aria-label="Warna #34d399"></button><button type="button" class="wysiwyg-swatch" style="background:#a7f3d0" data-cmd="color" data-value="#a7f3d0" title="#a7f3d0" aria-label="Warna #a7f3d0"></button><button type="button" class="wysiwyg-swatch" style="background:#d1fae5" data-cmd="color" data-value="#d1fae5" title="#d1fae5" aria-label="Warna #d1fae5"></button><button type="button" class="wysiwyg-swatch" style="background:#173678" data-cmd="color" data-value="#173678" title="#173678" aria-label="Warna #173678"></button><button type="button" class="wysiwyg-swatch" style="background:#1950c8" data-cmd="color" data-value="#1950c8" title="#1950c8" aria-label="Warna #1950c8"></button><button type="button" class="wysiwyg-swatch" style="background:#2361e7" data-cmd="color" data-value="#2361e7" title="#2361e7" aria-label="Warna #2361e7"></button><button type="button" class="wysiwyg-swatch" style="background:#5d8bef" data-cmd="color" data-value="#5d8bef" title="#5d8bef" aria-label="Warna #5d8bef"></button><button type="button" class="wysiwyg-swatch" style="background:#98b6f6" data-cmd="color" data-value="#98b6f6" title="#98b6f6" aria-label="Warna #98b6f6"></button><button type="button" class="wysiwyg-swatch" style="background:#e2ebfd" data-cmd="color" data-value="#e2ebfd" title="#e2ebfd" aria-label="Warna #e2ebfd"></button><button type="button" class="wysiwyg-swatch" style="background:#4c1d95" data-cmd="color" data-value="#4c1d95" title="#4c1d95" aria-label="Warna #4c1d95"></button><button type="button" class="wysiwyg-swatch" style="background:#6d28d9" data-cmd="color" data-value="#6d28d9" title="#6d28d9" aria-label="Warna #6d28d9"></button><button type="button" class="wysiwyg-swatch" style="background:#8b5cf6" data-cmd="color" data-value="#8b5cf6" title="#8b5cf6" aria-label="Warna #8b5cf6"></button><button type="button" class="wysiwyg-swatch" style="background:#a78bfa" data-cmd="color" data-value="#a78bfa" title="#a78bfa" aria-label="Warna #a78bfa"></button><button type="button" class="wysiwyg-swatch" style="background:#c4b5fd" data-cmd="color" data-value="#c4b5fd" title="#c4b5fd" aria-label="Warna #c4b5fd"></button><button type="button" class="wysiwyg-swatch" style="background:#ede9fe" data-cmd="color" data-value="#ede9fe" title="#ede9fe" aria-label="Warna #ede9fe"></button></div>
+          <button type="button" class="wysiwyg-menu-item" data-cmd="color-reset">Reset warna</button></div>
+          </div>
+          <div class="wysiwyg-dd">
+        <button type="button" class="wysiwyg-btn" data-dd="font" aria-haspopup="true" aria-expanded="false" title="Font family" aria-label="Font family"><i class="kk kk-text-t h-4 w-4"></i><i class="kk kk-caret-down h-3 w-3"></i></button>
+        <div class="wysiwyg-menu hidden" data-dd-menu="font"><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Instrument Sans" style="font-family: 'Instrument Sans', sans-serif">Instrument Sans</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Arial" style="font-family: 'Arial', sans-serif">Arial</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Courier New" style="font-family: 'Courier New', sans-serif">Courier New</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Georgia" style="font-family: 'Georgia', sans-serif">Georgia</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Lucida Sans Unicode" style="font-family: 'Lucida Sans Unicode', sans-serif">Lucida Sans Unicode</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Tahoma" style="font-family: 'Tahoma', sans-serif">Tahoma</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Times New Roman" style="font-family: 'Times New Roman', sans-serif">Times New Roman</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Trebuchet MS" style="font-family: 'Trebuchet MS', sans-serif">Trebuchet MS</button><button type="button" class="wysiwyg-menu-item" data-cmd="font" data-value="Verdana" style="font-family: 'Verdana', sans-serif">Verdana</button></div>
+          </div></div></div>
+        <div class="wysiwyg-content" data-placeholder="Tulis komentar…"><p>Setiap komentar bisa diformat: <strong>tebal</strong>, <em>miring</em>, H<sub>2</sub>O, x<sup>2</sup>, dan <mark>sorotan</mark>.</p></div>
+        <div class="wysiwyg-footer"><span class="text-xs text-fg-subtle">Pilih teks lalu terapkan format</span><button type="button" class="btn-primary btn-sm">Post comment</button></div>
+          </div>
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Text alignment</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-4 sm:p-6">
+        <div class="wysiwyg" data-wysiwyg>
+        <div class="wysiwyg-toolbar" role="toolbar" aria-label="Format teks"><div class="wysiwyg-group" role="group"><button type="button" class="wysiwyg-btn" data-cmd="align-left" aria-pressed="false" title="Align left" aria-label="Align left"><i class="kk kk-text-align-left h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="align-center" aria-pressed="false" title="Align center" aria-label="Align center"><i class="kk kk-text-align-center h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="align-right" aria-pressed="false" title="Align right" aria-label="Align right"><i class="kk kk-text-align-right h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="align-justify" aria-pressed="false" title="Justify" aria-label="Justify"><i class="kk kk-text-align-justify h-4 w-4"></i></button></div></div>
+        <div class="wysiwyg-content" data-placeholder="Tulis sesuatu…"><h3>Judul paragraf</h3><p>Letakkan kursor di paragraf, lalu pilih perataan: kiri, tengah, kanan, atau rata kiri-kanan (justify). Perataan berlaku untuk blok yang sedang dipilih, termasuk judul. Teks yang cukup panjang membuat efek justify terlihat jelas pada baris-baris penuh.</p></div>
+
+          </div>
+      </div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-3 text-base font-semibold text-slate-900">Typography elements</h3>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-4 sm:p-6">
+        <div class="wysiwyg" data-wysiwyg>
+        <div class="wysiwyg-toolbar" role="toolbar" aria-label="Format teks"><div class="wysiwyg-group" role="group">
+          <div class="wysiwyg-dd">
+        <button type="button" class="wysiwyg-btn" data-dd="format" aria-haspopup="true" aria-expanded="false" title="Typography" aria-label="Typography"><i class="kk kk-text-h h-4 w-4"></i><i class="kk kk-caret-down h-3 w-3"></i></button>
+        <div class="wysiwyg-menu hidden" data-dd-menu="format"><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="p"><span>Paragraph</span><kbd>Ctrl+Alt+0</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h1"><span>Heading 1</span><kbd>Ctrl+Alt+1</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h2"><span>Heading 2</span><kbd>Ctrl+Alt+2</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h3"><span>Heading 3</span><kbd>Ctrl+Alt+3</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h4"><span>Heading 4</span><kbd>Ctrl+Alt+4</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h5"><span>Heading 5</span><kbd>Ctrl+Alt+5</kbd></button><button type="button" class="wysiwyg-menu-item" data-cmd="format" data-value="h6"><span>Heading 6</span><kbd>Ctrl+Alt+6</kbd></button></div>
+          </div></div><div class="wysiwyg-group" role="group"><button type="button" class="wysiwyg-btn" data-cmd="code-block" aria-pressed="false" title="Code block" aria-label="Code block"><i class="kk kk-code-block h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="bullet-list" aria-pressed="false" title="Bullet list" aria-label="Bullet list"><i class="kk kk-list-bullets h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="ordered-list" aria-pressed="false" title="Ordered list" aria-label="Ordered list"><i class="kk kk-list-numbers h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="blockquote" aria-pressed="false" title="Blockquote" aria-label="Blockquote"><i class="kk kk-quotes h-4 w-4"></i></button><button type="button" class="wysiwyg-btn" data-cmd="hr" aria-pressed="false" title="Horizontal rule" aria-label="Horizontal rule"><i class="kk kk-minus h-4 w-4"></i></button></div></div>
+        <div class="wysiwyg-content" data-placeholder="Tulis sesuatu…">
+              <h2>Elemen tipografi</h2>
+              <p>Paragraf biasa, diikuti daftar dan kutipan.</p>
+              <ul><li>Butir pertama</li><li>Butir kedua</li></ul>
+              <ol><li>Langkah satu</li><li>Langkah dua</li></ol>
+              <blockquote>Desain yang baik adalah sesedikit mungkin desain.</blockquote>
+              <pre><code>npm install @foxtrot-sevima/karirkit</code></pre>
+              <hr>
+              <p>Coba pintasan <code>Ctrl+Alt+1</code> untuk Heading 1.</p></div>
+
+          </div>
+      </div>
+    </div>
     </div>
   </section>
 
@@ -3396,5 +3710,6 @@
 <script src="assets/js/toast.js"></script>
 <script src="assets/js/vendor/qrcode.js"></script>
 <script src="assets/js/qr-code.js"></script>
+<script src="assets/js/wysiwyg.js"></script>
 </body>
 </html>
