@@ -2,6 +2,14 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+### Fixed
+
+- Halaman Storybook **Table of Version** belum memuat baris v1.3.0 dan v1.3.1
+  (hanya sampai v1.2.0). Ditambahkan; hanya dokumentasi, tidak ada perubahan
+  package.
+
 ## [1.3.1] - 2026-10-01
 
 ### Added
