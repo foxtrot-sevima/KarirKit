@@ -67,7 +67,7 @@ export default {
     docs: {
       description: {
         component:
-          "Tabel data. Gaya: `.table` di dalam `.table-wrap` (scroll horizontal + border + radius). Varian: `.table-striped`, `.table-striped-cols`, `.table-hover`, `.table-borderless`, `.table-bordered`, `.table-sm`/`.table-lg`, `.table-sticky` (dengan `.table-scroll`), `.table-head-soft`, `.table-wrap-shadow`, plus `<caption class=\"table-caption\">` dan `<tfoot>`. Fungsi (sortir, cari, filter, pagination, pilih baris, menu aksi, counter, modal edit) disediakan `assets/js/table.js` lewat atribut `data-table`, `data-sort`, `data-table-search`, `data-page-size`, `data-table-select*`, dst. Setiap tabel punya kolom **No** (`.table-col-num` + `data-num`) yang diberi nomor ulang mengikuti urutan tampilan - setelah sortir, filter, pagination (lanjut 6, 7, …), dan hapus baris. Untuk integrasi halaman: `KKTable.get(root).addFilter(fn)`/`refresh()`, event `table:render` (`detail.visible`), `<select data-table-page-size>`, dan `data-item-label`. Tanpa JS tabel tetap tampil benar; template lama (`.table`, `.th-sortable`, `.table-col-*`) tidak berubah.",
+          "Tabel data. Gaya: `.table` di dalam `.table-wrap` (scroll horizontal + border + radius). Varian: `.table-striped`, `.table-striped-cols`, `.table-hover`, `.table-borderless`, `.table-bordered`, `.table-sm`/`.table-lg`, `.table-sticky` (dengan `.table-scroll`), `.table-head-soft`, `.table-wrap-shadow`, plus `<caption class=\"table-caption\">` dan `<tfoot>`. Fungsi (sortir, cari, filter, pagination, pilih baris, menu aksi, counter, modal edit) disediakan `assets/js/table.js` lewat atribut `data-table`, `data-sort`, `data-table-search`, `data-page-size`, `data-table-select*`, dst. Teks header kolom memakai **Title Case** (Capital Each Word, mis. Periode Yudisium, Status Karier) - bukan huruf kapital semua. Footer + aksi baris mengikuti pola **Table with users**: info Menampilkan a-b dari n di kiri, pagination di kanan; aksi baris = tautan teks + menu titik tiga (`btn-ghost btn-icon-sm`), header kolom aksi `sr-only`. Setiap tabel punya kolom **No** (`.table-col-num` + `data-num`) yang diberi nomor ulang mengikuti urutan tampilan - setelah sortir, filter, pagination (lanjut 6, 7, …), dan hapus baris. Untuk integrasi halaman: `KKTable.get(root).addFilter(fn)`/`refresh()`, event `table:render` (`detail.visible`), `<select data-table-page-size>`, dan `data-item-label`. Tanpa JS tabel tetap tampil benar; template lama (`.table`, `.th-sortable`, `.table-col-*`) tidak berubah.",
       },
     },
   },
@@ -194,7 +194,7 @@ export const CheckboxSelection = {
 export const TableWithUsers = {
   name: "Table with users",
   render: () =>
-    exBlock(`<div class="table-wrap" data-table data-page-size="5">
+    exBlock(`<div class="table-wrap" data-table data-page-size="5" data-item-label="pelamar">
       <div class="table-toolbar">${search("ts-u")}<span class="text-sm text-fg-muted">${USERS.length} pelamar</span></div>
       <table class="table table-head-soft table-hover">
         <thead><tr><th class="w-10"><input type="checkbox" class="form-check form-check-sm" data-table-select-all aria-label="Pilih semua" /></th>${noTh}

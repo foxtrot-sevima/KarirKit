@@ -19,6 +19,12 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   terpotong. Filter combo Tahun/Jenis dan kartu KPI tetap berjalan lewat hook baru `table.js`; skrip kebab-menu, filter, dan
   pagination inline dihapus. Tabel muat tanpa scroll horizontal di 390, 768, 1024, dan layar lebih lebar. Template karirlink
   lainnya belum diubah.
+- **Header tabel memakai Title Case** ("Periode Yudisium", "Status Karier") secara konsisten. `.table-head-soft` tidak lagi memaksa
+  huruf kapital semua + ukuran kecil, yang sebelumnya hanya mengenai header biasa dan tidak mengenai header sortir (`.th-sort`), sehingga
+  dalam satu tabel ada "NO" dan "Periode Yudisium" yang berbeda gaya. Ukuran dan bobot kini sama untuk semua header.
+- **Footer dan aksi baris mengikuti pola Table with users**: footer = info "Menampilkan a-b dari n <label>" di kiri + pagination di kanan; aksi baris =
+  tautan teks + menu titik tiga `btn-ghost btn-icon-sm`; header kolom aksi `sr-only`. Diterapkan ke `yudisium.html` (pilihan baris per halaman
+  dihapus dari footer; fitur `data-table-page-size` tetap tersedia di `table.js`).
 - **Setiap tabel punya kolom No** (`.table-col-num` + `data-num`). `table.js` menomori
   ulang sesuai urutan tampilan: tetap berurutan setelah sortir, filter, pagination
   (halaman 2 lanjut dari 6), dan hapus baris.
