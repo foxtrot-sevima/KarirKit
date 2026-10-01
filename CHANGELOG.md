@@ -31,7 +31,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Bulk "Kirim Reminder" di `yudisium-detail.html`** untuk mengirim pengingat ke banyak lulusan sekaligus. Kolom checkbox hanya aktif untuk status
   Menunggu Mengisi (status lain disabled dengan tooltip), checkbox header memilih semua yang memenuhi syarat di halaman aktif (pilihan bertahan antar halaman
   dan filter), bar aksi massal menampilkan "n mahasiswa dipilih" + tombol Kirim Reminder, lalu modal konfirmasi memuat jumlah dan daftar nama + NIM; setelah
-  konfirmasi pilihan dibersihkan dan muncul toast "Reminder terkirim ke n mahasiswa." (Escape/Batal menutup modal tanpa menghapus pilihan). `table.js` kini
+  konfirmasi pilihan dibersihkan dan muncul toast "Reminder terkirim ke n mahasiswa." (Escape/Batal menutup modal tanpa menghapus pilihan). Modal diberi `z-[60]` agar scrim menutupi seluruh halaman, termasuk sidebar (z-50) dan topbar, baik di mode terang maupun gelap. `table.js` kini
   mengabaikan checkbox baris yang disabled pada select-all dan menonaktifkan checkbox header bila tidak ada baris yang memenuhi syarat di tampilan.
 - **Kolom Nama `yudisium-detail.html`: avatar dihapus, NIM ditambahkan di bawah nama** ("NIM 2111500101"). Pencarian kini juga mencocokkan NIM
   ("Cari nama, NIM, atau email..."). Di ponsel (di bawah `sm`) hanya nama dan NIM yang tampil, tanpa prodi dan email.
