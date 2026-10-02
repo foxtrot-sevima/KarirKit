@@ -67,6 +67,13 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   **Branded QR code variants**; section QR Code di `index.html` mendapat
   dua contoh baru yang sama.
 
+### Changed
+
+- **Total pertanyaan dihapus dari tampilan ringkasan kuesioner.** Tiga kartu template di `kuesioner.html` (Lulusan, Pengguna Lulusan, Kosong) tidak lagi
+  menampilkan "N pertanyaan", dan header tiap gelombang di `kuesioner-builder.html` (Pra-Lulus, Pasca-Lulus 1 Tahun, Pasca-Lulus 4 Tahun) tidak lagi
+  menampilkan badge total pertanyaan; badge "Estimasi ... menit" tetap ada. Hitungan per bagian dan per cabang status di builder (mis. "5 pertanyaan",
+  "Cabang: Bekerja") sengaja dipertahankan.
+
 ## [1.3.3] - 2026-10-02
 
 ### Changed
