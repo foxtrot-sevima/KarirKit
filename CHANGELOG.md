@@ -2,7 +2,7 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [1.3.3] - 2026-10-01
+## [1.3.3] - 2026-10-02
 
 ### Changed
 
@@ -58,6 +58,36 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `.table-footer`, `.table-bulk`, `.table-empty`, serta `.counter` (input
   jumlah). Kelas lama (`.table`, `.th-sortable`, `.table-lg`, `.table-col-*`)
   tidak berubah, jadi template yang sudah ada tetap sama.
+- **Komponen DataTable dan section "Table — Katalog Produk" dihapus.**
+  Keduanya sudah terduplikasi penuh oleh komponen Table yang baru dirombak di
+  atas (`Table with users`/`Table with products`/`Table with modal` sudah
+  mencakup pencarian, filter, sortir, pagination, dan bulk-select) — dihapus
+  dari `index.html` (section + nav pill + JS), Storybook
+  (`DataTable.stories.js`), `storySort`, `Guides/Introduction`, dan
+  `STORYBOOK.md`.
+- **Storybook kini benar-benar interaktif di semua story, bukan cuma
+  tampilan statis.** Behavior script yang sama dipakai `index.html`
+  (`assets/js/table.js`, `modal.js`, `datepicker.js`, `ui.js`, `qr-code.js`,
+  `wysiwyg.js`) sekarang dimuat secara global lewat
+  `.storybook/preview-head.html`, jadi tidak perlu lagi membuka `index.html`
+  untuk mencoba interaksi sungguhan. `Guides/Introduction` dan `STORYBOOK.md`
+  diperbarui, menghapus klaim lama bahwa combobox/date picker/DataTable
+  "statis saja di Storybook".
+- **Penamaan komponen disamakan di semua tempat** (Storybook, `index.html`,
+  docs): story `Components/Date Picker` → `Components/Datepicker` (file
+  `DatePicker.stories.js` → `Datepicker.stories.js`) supaya konsisten dengan
+  `Components/Timepicker` (satu kata, huruf besar di depan, bukan dua kata
+  berspasi). Nav pill dan heading `<h2>` di `index.html` yang sebelumnya
+  dwibahasa kini memakai kata Inggris yang sama persis dengan judul story
+  Storybook-nya: Warna → Colors, Tipografi → Typography, Ikon → Icons, Tombol
+  → Button, Kartu → Card, Formulir → Forms, Navigasi → Navigation, Tabel →
+  Table; heading yang sebelumnya jamak/tidak cocok juga diseragamkan ke
+  bentuk tunggal story-nya (Buttons/Badges/Avatars/Cards/Tables → Button/
+  Badge/Avatar/Card/Table, "Alerts & Callouts" → Alert, "Progress & Lainnya"
+  → "Progress & Misc"). Tab navbar atas untuk halaman ikon (`index.html` dan
+  `icons.html`) disederhanakan jadi **"Icon"** di semua lebar layar
+  (sebelumnya "KarirIcon" di layar `sm` ke atas) — judul halaman, heading,
+  dan teks isi `icons.html` sendiri tetap "KarirIcon".
 
 ### Added
 
@@ -88,6 +118,38 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   (`data-table-empty`), counter jumlah dengan total otomatis dan hapus baris
   (`data-counter`, `data-row-remove`), dan modal edit yang mengisi form dari
   baris lalu memperbarui baris (`data-table-modal-*`).
+- **Komponen Datepicker dirombak total jadi kalender sungguhan tanpa
+  dependensi**, menggantikan versi lama yang cuma kombinasi `.combo` +
+  input teks statis. Bagian Datepicker di `index.html` dan story
+  **Components -> Datepicker** ditulis ulang dengan contoh: Default
+  datepicker, Inline datepicker, Datepicker with title, Datepicker with
+  buttons, Autohide, Date format, Min and max dates, Disabled dates, Week
+  start and language, Orientation, Date range picker, Inline date range, dan
+  Datepicker in modal — semua interaktif, dari satu sumber
+  (`stories/Components/datepicker/examples.js`) sehingga Storybook dan
+  `index.html` selalu sama.
+- `assets/js/datepicker.js` (opsional, tanpa dependensi): popup
+  (`data-datepicker`), inline (`data-datepicker-inline`), dan rentang
+  tanggal (`data-daterangepicker`); tampilan hari/bulan/tahun dengan drill-up
+  lewat klik judul, ketik langsung dengan format custom
+  (`data-datepicker-format`), locale `id`/`en`
+  (`data-datepicker-locale`), awal pekan (`data-datepicker-week-start`),
+  batas min/max (`data-datepicker-min/-max`, mendukung `today` atau selisih
+  hari seperti `+30`), tanggal/hari yang dinonaktifkan
+  (`data-datepicker-disabled`, `data-datepicker-disabled-days`), footer
+  Hari ini/Hapus (`data-datepicker-buttons`), autohide
+  (`data-datepicker-autohide`), judul (`data-datepicker-title`), arah buka
+  (`data-datepicker-orientation`), autoselect hari ini
+  (`data-datepicker-autoselect-today`), output elemen terpisah untuk mode
+  inline (`data-datepicker-output`), navigasi keyboard penuh (panah,
+  PageUp/PageDown, Home/End, Escape), event `datepicker:change` /
+  `daterangepicker:change`, dan API `KKDatepicker.get(el)`.
+- Gaya Datepicker baru di `src/input.css`: `.datepicker`, `.datepicker-icon`,
+  `.datepicker-panel`, `.datepicker-inline`, `.datepicker-title`,
+  `.datepicker-range` (+ `-sep`, `-mode`), state hari dalam rentang
+  (`.is-in-range`, `.is-range-start`, `.is-range-end`) dan dinonaktifkan
+  (`.is-disabled`) — memakai ulang bagian `.date-cal-*` yang sudah ada
+  sebelumnya.
 
 ## [1.3.2] - 2026-10-01
 
