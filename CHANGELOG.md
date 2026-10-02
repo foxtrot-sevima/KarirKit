@@ -66,6 +66,14 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   baru **Components -> QR Code -> Branded QR code (KarirLink)** dan
   **Branded QR code variants**; section QR Code di `index.html` mendapat
   dua contoh baru yang sama.
+- **Template white-label `templates/custom/index.html`**: Dashboard Admin KarirLink dengan identitas perguruan tinggi di header sidebar, untuk kampus
+  yang meminta logo dan nama sendiri. Susunannya avatar kotak logo kampus (48 px; 40 px saat sidebar dilipat, bingkai abu-abu netral) lalu teks
+  "Karirlink" kecil (Karir biru `#22489E`, link oranye `#F05925`, sama dengan logo KarirLink) di atas nama kampus yang tebal. Nama tampil 14 px bila
+  satu baris dan mengecil ke 13 px bila membungkus jadi dua baris (panjang baris diseimbangkan, maksimal dua baris, sisanya dipotong "..."), sehingga tinggi
+  teks tetap sejajar dengan logo untuk nama pendek maupun panjang; tooltip nama kampus muncul pada rail sidebar yang terlipat. Logo diatur lewat satu atribut,
+  `data-campus-logo` pada `.sidebar-header` (path relatif terhadap halaman, URL, atau data-URL; contoh `assets/logo/ub.webp`), dan dipasang di kedua avatar;
+  kosong atau gagal dimuat = avatar menampilkan dua inisial ("US"). Logo ditampilkan utuh di atas latar putih sehingga logo persegi, lebar, maupun transparan
+  tidak terpotong. Diverifikasi di 1440 px, drawer mobile 390 dan 320 px, dan mode lipat, tanpa scroll horizontal maupun galat.
 
 ### Changed
 
