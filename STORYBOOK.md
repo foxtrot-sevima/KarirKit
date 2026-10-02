@@ -95,10 +95,10 @@ Menambah komponen baru: duplikat salah satu file di `stories/Components/`,
 ganti `title` dan markup di dalam `render()` memakai class yang sudah ada di
 `src/input.css`.
 
-## Catatan: widget interaktif (combobox, date picker, DataTable)
+## Catatan: widget interaktif
 
-Story untuk combobox, date picker, dan DataTable hanya menampilkan
-**tampilan statis/tertutup** — logika interaksinya ditulis sebagai vanilla
-JS inline di dalam `index.html`, bukan modul terpisah yang bisa diimpor ke
-Storybook. Untuk mencoba versi yang sepenuhnya interaktif, buka `index.html`
-langsung di browser (bagian `#forms`, `#dropdowns`, `#datatable`).
+Story-story di Storybook benar-benar interaktif, bukan sekadar tampilan
+statis — behavior script yang sama dipakai `index.html`
+(`assets/js/table.js`, `modal.js`, `datepicker.js`, `ui.js`, `qr-code.js`,
+`wysiwyg.js`) ikut dimuat secara global di Storybook lewat
+`.storybook/preview-head.html`.

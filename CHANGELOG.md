@@ -2,6 +2,155 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.3.3] - 2026-10-02
+
+### Changed
+
+- **Komponen Tabel dirombak total.** Bagian Tables di `index.html` dan story
+  **Components -> Table** ditulis ulang dengan 17 tipe: Default table, Striped
+  rows, Striped columns, Hover state, Table head (bisa diurutkan), Table foot,
+  Table caption, Without border, Table with shadow, Overflow scrolling, Table
+  search, Table filter, Table pagination, Checkbox selection, Table with users,
+  Table with products, dan Table with modal.
+- **Template admin `templates/karirlink/yudisium.html` dimigrasikan ke komponen Table baru** (langkah pertama merombak seluruh tabel
+  di karirlink): `.table-wrap` + `.table-head-soft`, kepala kolom yang bisa diurutkan (`.th-sort`, `aria-sort`),
+  kolom **No** selalu tampil (sebelumnya tersembunyi di bawah `xl`) dan ikut diurutkan ulang, toolbar `.table-toolbar`, footer `.table-footer`
+  dengan info "Menampilkan a-b dari n periode", pagination ber-ellipsis, pilihan baris per halaman, dan aksi baris berupa tautan teks.
+  Filter combo Tahun/Jenis dan kartu KPI tetap berjalan lewat hook baru `table.js`; skrip kebab-menu, filter, dan
+  pagination inline dihapus. Aksi baris tidak lagi memakai menu titik tiga: hanya tombol `btn-outline btn-sm` "Lihat Detail" dengan ikon: ikon + label di `xl` ke atas, hanya ikon 32x32 (dengan tooltip dan aria-label) di bawah `xl`, dan header kolom "Aksi" tampil; aksi "Kirim Kuesioner" dihapus. Tabel muat tanpa scroll horizontal di 390, 768, 1024, dan layar lebih lebar. Template karirlink
+  lainnya belum diubah.
+- **`templates/karirlink/yudisium-detail.html` dimigrasikan ke komponen Table baru** (langkah kedua merombak tabel karirlink), mengikuti pola
+  yudisium.html: `.table-wrap` + `.table-head-soft`, header sortir Title Case ("Nama", "Prodi", "Email", "Status", "Aksi"), kolom **No** selalu
+  tampil dan diberi nomor ulang, footer info "Menampilkan a-b dari n mahasiswa" + pagination, dan aksi baris berupa satu tombol `btn-outline btn-sm`
+  berikon (ikon + label di `xl` ke atas, ikon saja di bawahnya): **"Kirim Reminder"** (ikon pesawat kertas) untuk yang menunggu mengisi, **"Kirim Kuesioner"** (ikon amplop)
+  untuk yang belum dikirimi, dan "Lihat Jawaban" untuk yang sudah mengisi. Menu titik tiga dihapus. Kedua tombol per baris, bulk reminder, dan tombol "Kirim Kuesioner"
+  di header halaman memakai satu modal konfirmasi + toast yang sama: header mengirim ke semua lulusan yang belum mengisi (yang belum dikirim menerima kuesioner,
+  yang menunggu menerima reminder, tiap nama diberi penanda), sedangkan setelah kuesioner terkirim baris berpindah ke "Menunggu Mengisi" dan bisa diingatkan/dipilih.
+  Tooltip tombol header menjelaskan fungsinya. Tab status (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) berjalan sebagai filter kustom lewat `table.js`
+  dan digabung dengan pencarian; pilihan baris per halaman dihapus. Di ponsel kolom Nama hanya menampilkan nama dan NIM (prodi dan email disembunyikan), kolom
+  Prodi muncul dari `lg` dan Email dari `xl`, dan teks badge status tidak lagi keluar dari pilnya. Tabel muat tanpa scroll horizontal di 360 sampai 1440px.
+- **Bulk "Kirim Reminder" di `yudisium-detail.html`** untuk mengirim pengingat ke banyak lulusan sekaligus. Kolom checkbox hanya aktif untuk status
+  Menunggu Mengisi (status lain disabled dengan tooltip), checkbox header memilih semua yang memenuhi syarat di halaman aktif (pilihan bertahan antar halaman
+  dan filter), bar aksi massal menampilkan "n mahasiswa dipilih" + tombol Kirim Reminder, lalu modal konfirmasi memuat jumlah dan daftar nama + NIM; setelah
+  konfirmasi pilihan dibersihkan dan muncul toast "Reminder terkirim ke n mahasiswa." (Escape/Batal menutup modal tanpa menghapus pilihan). Modal diberi `z-[60]` agar scrim menutupi seluruh halaman, termasuk sidebar (z-50) dan topbar, baik di mode terang maupun gelap. `table.js` kini
+  mengabaikan checkbox baris yang disabled pada select-all dan menonaktifkan checkbox header bila tidak ada baris yang memenuhi syarat di tampilan.
+- **Kolom Nama `yudisium-detail.html`: avatar dihapus, NIM ditambahkan di bawah nama** ("NIM 2111500101"). Pencarian kini juga mencocokkan NIM
+  ("Cari nama, NIM, atau email..."). Di ponsel (di bawah `sm`) hanya nama dan NIM yang tampil, tanpa prodi dan email.
+- **Toolbar tabel konsisten: pencarian di kiri, filter/aksi sebagai dropdown di kanan.** Diterapkan ke contoh Table filter dan Table with modal di
+  Design System (urutan sebelumnya terbalik; menu dropdown kini rata kanan agar tidak keluar layar) dan ke `yudisium-detail.html`, di mana tab status
+  (Semua, Belum Dikirim, Terkirim, Menunggu Mengisi, Sudah Mengisi) diganti dropdown "Semua Status" di kanan pencarian, memakai komponen combo yang sama
+  seperti filter di `yudisium.html`.
+- **Header tabel memakai Title Case** ("Periode Yudisium", "Status Karier") secara konsisten. `.table-head-soft` tidak lagi memaksa
+  huruf kapital semua + ukuran kecil, yang sebelumnya hanya mengenai header biasa dan tidak mengenai header sortir (`.th-sort`), sehingga
+  dalam satu tabel ada "NO" dan "Periode Yudisium" yang berbeda gaya. Ukuran dan bobot kini sama untuk semua header.
+- **Footer dan aksi baris mengikuti pola Table with users**: footer = info "Menampilkan a-b dari n <label>" di kiri + pagination di kanan; aksi baris =
+  tanpa menu titik tiga (contoh Design System: tautan teks Edit/Hapus dengan header aksi `sr-only`; `yudisium.html`: tombol outline berikon dengan header "Aksi"). Footer diterapkan ke `yudisium.html` (pilihan baris per halaman
+  dihapus dari footer; fitur `data-table-page-size` tetap tersedia di `table.js`).
+- **Setiap tabel punya kolom No** (`.table-col-num` + `data-num`). `table.js` menomori
+  ulang sesuai urutan tampilan: tetap berurutan setelah sortir, filter, pagination
+  (halaman 2 lanjut dari 6), dan hapus baris.
+- Modifier `.table-fit`: padding sel horizontal lebih rapat di bawah `xl`, supaya tabel 5-6 kolom muat di ponsel, tablet, dan laptop kecil tanpa scroll.
+- Gaya baru di `src/input.css`: container `.table-wrap` (+ `-shadow`,
+  `-borderless`), `.table-striped`, `.table-striped-cols`, `.table-hover`,
+  `.table-static`, `.table-borderless`, `.table-bordered`, `.table-sm`,
+  `.table-sticky` + `.table-scroll`, `.table-head-soft`, `.table-caption`,
+  `tfoot`, `.th-sort` (ikon sortir mengikuti `aria-sort`), `.table-toolbar`,
+  `.table-footer`, `.table-bulk`, `.table-empty`, serta `.counter` (input
+  jumlah). Kelas lama (`.table`, `.th-sortable`, `.table-lg`, `.table-col-*`)
+  tidak berubah, jadi template yang sudah ada tetap sama.
+- **Komponen DataTable dan section "Table — Katalog Produk" dihapus.**
+  Keduanya sudah terduplikasi penuh oleh komponen Table yang baru dirombak di
+  atas (`Table with users`/`Table with products`/`Table with modal` sudah
+  mencakup pencarian, filter, sortir, pagination, dan bulk-select) — dihapus
+  dari `index.html` (section + nav pill + JS), Storybook
+  (`DataTable.stories.js`), `storySort`, `Guides/Introduction`, dan
+  `STORYBOOK.md`.
+- **Storybook kini benar-benar interaktif di semua story, bukan cuma
+  tampilan statis.** Behavior script yang sama dipakai `index.html`
+  (`assets/js/table.js`, `modal.js`, `datepicker.js`, `ui.js`, `qr-code.js`,
+  `wysiwyg.js`) sekarang dimuat secara global lewat
+  `.storybook/preview-head.html`, jadi tidak perlu lagi membuka `index.html`
+  untuk mencoba interaksi sungguhan. `Guides/Introduction` dan `STORYBOOK.md`
+  diperbarui, menghapus klaim lama bahwa combobox/date picker/DataTable
+  "statis saja di Storybook".
+- **Penamaan komponen disamakan di semua tempat** (Storybook, `index.html`,
+  docs): story `Components/Date Picker` → `Components/Datepicker` (file
+  `DatePicker.stories.js` → `Datepicker.stories.js`) supaya konsisten dengan
+  `Components/Timepicker` (satu kata, huruf besar di depan, bukan dua kata
+  berspasi). Nav pill dan heading `<h2>` di `index.html` yang sebelumnya
+  dwibahasa kini memakai kata Inggris yang sama persis dengan judul story
+  Storybook-nya: Warna → Colors, Tipografi → Typography, Ikon → Icons, Tombol
+  → Button, Kartu → Card, Formulir → Forms, Navigasi → Navigation, Tabel →
+  Table; heading yang sebelumnya jamak/tidak cocok juga diseragamkan ke
+  bentuk tunggal story-nya (Buttons/Badges/Avatars/Cards/Tables → Button/
+  Badge/Avatar/Card/Table, "Alerts & Callouts" → Alert, "Progress & Lainnya"
+  → "Progress & Misc"). Tab navbar atas untuk halaman ikon (`index.html` dan
+  `icons.html`) disederhanakan jadi **"Icon"** di semua lebar layar
+  (sebelumnya "KarirIcon" di layar `sm` ke atas) — judul halaman, heading,
+  dan teks isi `icons.html` sendiri tetap "KarirIcon".
+
+### Added
+
+- **Komponen Modal dilengkapi.** Bagian Modal di `index.html` dan story **Components -> Modal** ditulis ulang dengan 10 contoh interaktif: Default modal,
+  Pop-up modal, Form element, Modal sizes (sm sampai 2xl), Modal placement (9 posisi), Static modal, Scrolling modal, Timeline modal, Choice list modal, dan
+  Create modal. Contohnya berasal dari satu sumber (`stories/Components/modal/examples.js`) sehingga Storybook dan `index.html` selalu sama; story di docs
+  tampil dalam iframe sendiri agar modal bisa dicoba langsung.
+- `assets/js/modal.js` (opsional, tanpa dependensi): pemicu `data-modal-toggle` / `data-modal-show` / `data-modal-hide` (alias `data-modal-target`,
+  `data-modal-trigger`, `data-modal-close`), `data-modal-placement` per pemicu, `data-modal-backdrop="static"`, `data-modal-keyboard="false"`,
+  `KKModal.open/close/toggle/closeAll/isOpen`, serta event `modal:show` dan `modal:hide`. Otomatis mengatur `role="dialog"`, `aria-modal`,
+  `aria-labelledby`, kunci scroll halaman, Escape yang hanya menutup modal paling atas, klik backdrop (tekan dan lepas harus di backdrop, jadi menyeleksi
+  teks lalu melepas di luar tidak menutup modal), fokus pindah ke dalam modal dan tertahan saat Tab, lalu kembali ke pemicu saat ditutup. Pengatur lama di
+  `index.html` diganti file ini.
+- Gaya modal baru di `src/input.css`: posisi `.modal-top-left` sampai `.modal-bottom-right` (+ `.modal-center`), ukuran `.modal-2xl`, footer
+  `.modal-footer-start|center|between`, pop-up konfirmasi `.modal-popup` + `.modal-icon` (`-primary|success|danger|warning|info`), dan
+  `.modal-contained` untuk pratinjau statis. Panel kini kolom flex dengan `max-h-full`: isi panjang menggulir di `.modal-body` sementara header dan
+  footer tetap terlihat (sebelumnya panel yang lebih tinggi dari layar terpotong). Kelas lama (`.modal-backdrop`, `.modal-panel`, `.modal-sm|md|lg|xl`,
+  `.is-open`) tidak berubah. Tata letak dengan lapisan sendiri di atas `--z-overlay` (mis. sidebar `z-50`) perlu menaikkan backdrop, contoh `z-[60]`.
+- `table.js` untuk integrasi halaman: `KKTable.get(root)` dengan `addFilter(fn)` (predikat baris kustom, mis. filter dropdown) dan
+  `refresh()`, event `table:render` (`detail.visible` = semua baris yang lolos filter, untuk KPI/ringkasan), `<select data-table-page-size>`
+  untuk baris per halaman, dan `data-item-label` untuk teks "dari 15 periode".
+- `assets/js/table.js` (opsional, tanpa dependensi) memberi fungsi pada tabel
+  lewat atribut: urutkan kolom teks/angka/tanggal (`data-sort`, dengan
+  `aria-sort`), cari (`data-table-search`), filter dropdown
+  (`data-filter-col`), pagination dengan info "Menampilkan a-b dari n"
+  (`data-page-size`), pilih semua/baris + bar aksi massal
+  (`data-table-select*`, `data-table-bulk`), status kosong
+  (`data-table-empty`), counter jumlah dengan total otomatis dan hapus baris
+  (`data-counter`, `data-row-remove`), dan modal edit yang mengisi form dari
+  baris lalu memperbarui baris (`data-table-modal-*`).
+- **Komponen Datepicker dirombak total jadi kalender sungguhan tanpa
+  dependensi**, menggantikan versi lama yang cuma kombinasi `.combo` +
+  input teks statis. Bagian Datepicker di `index.html` dan story
+  **Components -> Datepicker** ditulis ulang dengan contoh: Default
+  datepicker, Inline datepicker, Datepicker with title, Datepicker with
+  buttons, Autohide, Date format, Min and max dates, Disabled dates, Week
+  start and language, Orientation, Date range picker, Inline date range, dan
+  Datepicker in modal — semua interaktif, dari satu sumber
+  (`stories/Components/datepicker/examples.js`) sehingga Storybook dan
+  `index.html` selalu sama.
+- `assets/js/datepicker.js` (opsional, tanpa dependensi): popup
+  (`data-datepicker`), inline (`data-datepicker-inline`), dan rentang
+  tanggal (`data-daterangepicker`); tampilan hari/bulan/tahun dengan drill-up
+  lewat klik judul, ketik langsung dengan format custom
+  (`data-datepicker-format`), locale `id`/`en`
+  (`data-datepicker-locale`), awal pekan (`data-datepicker-week-start`),
+  batas min/max (`data-datepicker-min/-max`, mendukung `today` atau selisih
+  hari seperti `+30`), tanggal/hari yang dinonaktifkan
+  (`data-datepicker-disabled`, `data-datepicker-disabled-days`), footer
+  Hari ini/Hapus (`data-datepicker-buttons`), autohide
+  (`data-datepicker-autohide`), judul (`data-datepicker-title`), arah buka
+  (`data-datepicker-orientation`), autoselect hari ini
+  (`data-datepicker-autoselect-today`), output elemen terpisah untuk mode
+  inline (`data-datepicker-output`), navigasi keyboard penuh (panah,
+  PageUp/PageDown, Home/End, Escape), event `datepicker:change` /
+  `daterangepicker:change`, dan API `KKDatepicker.get(el)`.
+- Gaya Datepicker baru di `src/input.css`: `.datepicker`, `.datepicker-icon`,
+  `.datepicker-panel`, `.datepicker-inline`, `.datepicker-title`,
+  `.datepicker-range` (+ `-sep`, `-mode`), state hari dalam rentang
+  (`.is-in-range`, `.is-range-start`, `.is-range-end`) dan dinonaktifkan
+  (`.is-disabled`) — memakai ulang bagian `.date-cal-*` yang sudah ada
+  sebelumnya.
+
 ## [1.3.2] - 2026-10-01
 
 ### Added
