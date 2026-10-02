@@ -29,6 +29,31 @@
 <meta name="twitter:title" content="Kuesioner | KarirLink" />
 <meta name="twitter:description" content="Kelola template kuesioner Tracer Study - Lulusan, Pengguna Lulusan, dan Kosong - di panel admin KarirLink." />
 <meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<style>
+  /* QR Tracer Study: modal dua kolom (panggung merek + info), layar penuh untuk monitor, dan lembar cetak */
+  #qrPresentModal .qr-present-qr { width: min(16rem, 62vw); height: min(16rem, 62vw); flex: none; }
+  #qrPresentModal [data-qr-fs-only] { display: none; }
+  #qrPresentModal:fullscreen { background: #fff; padding: 0; }
+  #qrPresentModal:fullscreen .modal-panel { max-width: none; width: 100%; height: 100%; border: 0; border-radius: 0; box-shadow: none; }
+  #qrPresentModal:fullscreen .qr-grid { display: block; height: 100%; }
+  #qrPresentModal:fullscreen .qr-stage { height: 100%; min-height: 0; gap: 2.5vh; }
+  #qrPresentModal:fullscreen .qr-present-qr { width: min(60vh, 60vw); height: min(60vh, 60vw); padding: 1.5vh; }
+  #qrPresentModal:fullscreen .qr-stage-logo { height: 3.2vh; }
+  #qrPresentModal:fullscreen .qr-stage-campus { font-size: clamp(1.125rem, 3.2vh, 2.375rem); }
+  #qrPresentModal:fullscreen .qr-stage-title { font-size: clamp(1.375rem, 3.8vh, 2.75rem); }
+  #qrPresentModal:fullscreen .qr-stage-hint { font-size: clamp(1rem, 2.4vh, 1.5rem); }
+  #qrPresentModal:fullscreen .qr-stage-link { font-size: clamp(0.875rem, 2.2vh, 1.375rem); }
+  #qrPresentModal:fullscreen [data-qr-fs-hide] { display: none; }
+  #qrPresentModal:fullscreen [data-qr-fs-only] { display: block; }
+  #qrPrintSheet { display: none; }
+  @media print {
+    @page { size: A4 portrait; margin: 14mm; }
+    body.printing-qr { background: #fff; }
+    body.printing-qr > *:not(#qrPrintSheet) { display: none !important; }
+    body.printing-qr #qrPrintSheet { display: flex; }
+    #qrPrintSheet { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
@@ -178,15 +203,19 @@
   <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
 
     <!-- Greeting -->
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
       <div>
         <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Kuesioner Tracer Study</h2>
         <p class="mt-1 text-sm text-slate-500">Kelola template pertanyaan untuk tiga sasaran responden. Hanya template <span class="font-medium text-slate-700">Kosong</span> yang mendukung banyak versi.</p>
       </div>
-      <div class="flex flex-col gap-2.5 sm:flex-row">
+      <div class="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
         <button type="button" id="openPanduanBtn" class="btn-outline btn-md w-full sm:w-auto">
           <i class="kk kk-question h-4 w-4 shrink-0"></i>
           Lihat Panduan
+        </button>
+        <button type="button" class="btn-outline btn-md w-full sm:w-auto" data-modal-toggle="qrPresentModal" title="QR code Tracer Study">
+          <i class="kk kk-qr-code h-4 w-4 shrink-0"></i>
+          QR Tracer
         </button>
         <a href="kuesioner-simulasi.html" class="btn-primary btn-md w-full sm:w-auto">
           <i class="kk kk-eye h-4 w-4 shrink-0"></i>
@@ -438,8 +467,93 @@
   </div>
 </div>
 
+<!-- QR Tracer Study: panggung merek (tampil di layar / monitor / layar penuh) + info, salin tautan, cetak, unduh.
+     z-[60]: sidebar karirlink z-50 -->
+<div class="modal-backdrop z-[60]" id="qrPresentModal" aria-labelledby="qrInfoTitle">
+  <div class="modal-panel modal-2xl overflow-hidden">
+    <div class="qr-grid grid min-h-0 flex-1 auto-rows-max overflow-y-auto md:auto-rows-auto md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:overflow-hidden">
+
+      <!-- Panggung: ini juga tampilan layar penuh untuk monitor -->
+      <div class="qr-stage relative flex flex-col items-center justify-center gap-4 overflow-hidden bg-brand-gradient px-6 py-8 text-center text-white md:min-h-[34rem] md:py-10">
+        <span class="pointer-events-none absolute -left-16 -top-16 h-56 w-56 rounded-full bg-white/10" aria-hidden="true"></span>
+        <span class="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-white/10" aria-hidden="true"></span>
+        <button type="button" class="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 md:hidden" data-modal-hide="qrPresentModal" aria-label="Tutup" data-qr-fs-hide><i class="kk kk-x h-4 w-4"></i></button>
+        <img src="../../assets/logo/karirlink-logo-white.svg" alt="KarirLink" class="qr-stage-logo relative h-5 w-auto" />
+        <div class="relative">
+          <p class="qr-stage-campus font-display text-base font-semibold text-white sm:text-lg">Universitas Sentra Vidya Utama</p>
+          <h3 id="qrStageTitle" class="qr-stage-title mt-1 font-display text-lg font-bold text-white sm:text-xl">Tracer Study</h3>
+        </div>
+        <div class="qr-code qr-present-qr relative border-white/60 p-3 shadow-card-lg">
+          <div id="traceQr" data-qr data-qr-text="https://karirlink.id/tracer-study" data-qr-brand class="h-full w-full"></div>
+        </div>
+        <p class="qr-stage-hint relative flex items-center gap-2 text-sm font-medium text-white sm:text-base"><i class="kk kk-scan h-5 w-5"></i>Pindai dengan kamera ponsel</p>
+        <p class="qr-stage-link relative max-w-full break-all font-mono text-xs text-white/75 sm:text-sm">https://karirlink.id/tracer-study</p>
+        <p class="relative text-sm text-white/70" data-qr-fs-only>Tekan Esc untuk keluar dari layar penuh</p>
+      </div>
+
+      <!-- Info + aksi -->
+      <div class="relative flex min-h-0 flex-col gap-5 p-6 sm:p-8 md:overflow-y-auto" data-qr-fs-hide>
+        <button type="button" class="modal-close absolute right-4 top-4 hidden md:flex" data-modal-hide="qrPresentModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        <div class="pr-8">
+          <span class="badge-info"><i class="kk kk-link-simple h-3 w-3"></i>Satu tautan untuk semua</span>
+          <h3 id="qrInfoTitle" class="mt-3 font-display text-xl font-bold text-slate-900">QR Tracer Study</h3>
+          <p class="mt-1.5 text-sm text-slate-500">Lulusan <span class="font-medium text-slate-700">Universitas Sentra Vidya Utama</span> memindai QR code ini untuk mengisi <span class="font-medium text-slate-700">Kuesioner Lulusan</span>. Tautan satu untuk semua, QR code selalu sama.</p>
+        </div>
+
+        <ol class="space-y-3">
+          <li class="flex items-start gap-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-semibold text-primary-600">1</span><p class="text-sm text-slate-600"><span class="font-medium text-slate-800">Tampilkan</span> di monitor, atau cetak dan tempel di lokasi acara.</p></li>
+          <li class="flex items-start gap-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-semibold text-primary-600">2</span><p class="text-sm text-slate-600">Lulusan <span class="font-medium text-slate-800">memindai</span> QR code dengan kamera ponsel.</p></li>
+          <li class="flex items-start gap-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-semibold text-primary-600">3</span><p class="text-sm text-slate-600">Masuk ke kuesioner dan <span class="font-medium text-slate-800">mengisi</span> Tracer Study.</p></li>
+        </ol>
+
+        <div>
+          <label class="form-label" for="traceLink">Tautan kuesioner</label>
+          <div class="input-group">
+            <input id="traceLink" type="text" class="input" value="https://karirlink.id/tracer-study" readonly />
+            <button type="button" class="input-group-btn" data-trace-action="copy">
+              <i class="kk kk-copy h-4 w-4" data-copy-default></i><i class="kk kk-check h-4 w-4 hidden" data-copy-done></i>
+              <span data-copy-label>Salin</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-auto space-y-2.5">
+          <button type="button" class="btn-primary btn-md w-full" data-trace-action="fullscreen"><i class="kk kk-corners-out h-4 w-4"></i><span data-fs-label>Tampilkan layar penuh</span></button>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" class="btn-outline btn-md" data-trace-action="print" title="Cetak lembar A4"><i class="kk kk-printer h-4 w-4"></i>Cetak</button>
+            <button type="button" class="btn-outline btn-md" data-trace-action="png" title="Unduh PNG 1200 px"><i class="kk kk-download-simple h-4 w-4"></i>PNG</button>
+            <button type="button" class="btn-outline btn-md" data-trace-action="svg" title="Unduh SVG (vektor)"><i class="kk kk-download-simple h-4 w-4"></i>SVG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lembar cetak (hanya tampil saat mencetak) -->
+<div id="qrPrintSheet" class="min-h-[240mm] flex-col items-center justify-center gap-6 text-center" aria-hidden="true">
+  <img src="../../assets/logo/karirlink-logo.svg" alt="" class="h-8 w-auto" />
+  <div>
+    <p class="text-2xl font-semibold text-slate-700">Universitas Sentra Vidya Utama</p>
+    <h1 class="mt-2 font-display text-4xl font-bold text-slate-900">Tracer Study</h1>
+  </div>
+  <div class="qr-code h-[105mm] w-[105mm] shadow-none!">
+    <div data-qr data-qr-text="https://karirlink.id/tracer-study" data-qr-brand class="h-full w-full"></div>
+  </div>
+  <p class="text-2xl font-semibold text-slate-800">Pindai QR code ini untuk mengisi kuesioner</p>
+  <div>
+    <p class="text-base text-slate-500">Atau buka tautan berikut:</p>
+    <p class="mt-1 break-all font-mono text-lg text-slate-800">https://karirlink.id/tracer-study</p>
+  </div>
+  <p class="text-sm text-slate-400">KarirLink &middot; SEVIMA</p>
+</div>
+
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
+<script src="../../assets/js/toast.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/vendor/qrcode.js"></script>
+<script src="../../assets/js/qr-code.js"></script>
 <script>
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sidebarOverlay');
@@ -610,5 +724,96 @@
       trigger.addEventListener('blur', hide);
     });
   })();</script>
+<script>
+  // QR Tracer Study: salin tautan, layar penuh, cetak, unduh PNG/SVG.
+  // QR-nya dirender assets/js/qr-code.js (data-qr); tautan kuesioner satu untuk semua, jadi QR selalu sama.
+  (function () {
+    const linkEl = document.getElementById('traceLink');
+    const modal = document.getElementById('qrPresentModal');
+    if (!linkEl || !modal) return;
+    const slug = 'qr-tracer-study';
+    const toast = (type, message) => { if (window.KKToast) window.KKToast.show({ type, message, duration: 3500 }); };
+
+    function save(blob, name) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }
+    function qrSvg(size) { // a fresh copy of the rendered QR, sized for export
+      const src = document.querySelector('#traceQr svg');
+      if (!src) return null;
+      const svg = src.cloneNode(true);
+      svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      if (size) { svg.setAttribute('width', size); svg.setAttribute('height', size); }
+      return new XMLSerializer().serializeToString(svg);
+    }
+    function savePng(size) { // SVG -> canvas -> PNG, white background, 1200px (sharp enough for A4 print)
+      const markup = qrSvg(size);
+      if (!markup) return toast('danger', 'QR code belum siap.');
+      const url = URL.createObjectURL(new Blob([markup], { type: 'image/svg+xml;charset=utf-8' }));
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, size, size);
+        ctx.drawImage(img, 0, 0, size, size);
+        URL.revokeObjectURL(url);
+        canvas.toBlob((blob) => { save(blob, slug + '.png'); toast('success', 'QR code diunduh (PNG ' + size + ' px).'); }, 'image/png');
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); toast('danger', 'Gagal membuat PNG.'); };
+      img.src = url;
+    }
+    function printSheet() {
+      if (window.KKModal) window.KKModal.close(modal);
+      document.body.classList.add('printing-qr');
+      const done = () => { document.body.classList.remove('printing-qr'); window.removeEventListener('afterprint', done); };
+      window.addEventListener('afterprint', done);
+      window.print();
+    }
+    let copyTimer;
+    function copied() { // button flips to a check for 2s, plus a toast
+      const btn = modal.querySelector('[data-trace-action="copy"]');
+      const swap = (done) => {
+        btn.querySelector('[data-copy-default]').classList.toggle('hidden', done);
+        btn.querySelector('[data-copy-done]').classList.toggle('hidden', !done);
+        btn.querySelector('[data-copy-label]').textContent = done ? 'Tersalin' : 'Salin';
+      };
+      swap(true);
+      clearTimeout(copyTimer);
+      copyTimer = setTimeout(() => swap(false), 2000);
+      toast('success', 'Tautan kuesioner disalin.');
+    }
+    function copyLink() {
+      const fail = () => toast('danger', 'Gagal menyalin tautan.');
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(linkEl.value).then(copied, fail);
+      linkEl.select();
+      (document.execCommand('copy') ? copied : fail)();
+    }
+    function toggleFullscreen() {
+      if (document.fullscreenElement) return document.exitFullscreen();
+      if (modal.requestFullscreen) modal.requestFullscreen().catch(() => toast('danger', 'Layar penuh tidak didukung browser ini.'));
+      else toast('danger', 'Layar penuh tidak didukung browser ini.');
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-trace-action]');
+      if (!btn) return;
+      const action = btn.dataset.traceAction;
+      if (action === 'copy') copyLink();
+      else if (action === 'print') printSheet();
+      else if (action === 'png') savePng(1200);
+      else if (action === 'svg') { save(new Blob([qrSvg(0)], { type: 'image/svg+xml' }), slug + '.svg'); toast('success', 'QR code diunduh (SVG).'); }
+      else if (action === 'fullscreen') toggleFullscreen();
+    });
+    document.addEventListener('fullscreenchange', () => {
+      const label = modal.querySelector('[data-fs-label]');
+      if (label) label.textContent = document.fullscreenElement === modal ? 'Keluar layar penuh' : 'Tampilkan layar penuh';
+    });
+  })();
+</script>
 </body>
 </html>

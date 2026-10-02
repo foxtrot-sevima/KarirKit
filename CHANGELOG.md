@@ -2,6 +2,71 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+### Added
+
+- **Tombol "QR Tracer" di `templates/karirlink/kuesioner.html`** (header halaman, di antara Lihat Panduan dan Simulasi Tracer) yang membuka modal
+  QR code Tracer Study. Tautan kuesioner satu untuk semua calon lulusan (contoh `https://karirlink.id/tracer-study`, bukan per
+  periode yudisium, karena itu tidak ditaruh di halaman detail yudisium), jadi QR code-nya selalu sama; admin Karir bisa menampilkannya di monitor atau
+  mencetak/mengunduhnya sendiri. Modal dua kolom: **panggung** bermerek (gradien brand, logo KarirLink putih berukuran kecil, **nama perguruan tinggi** (contoh "Universitas Sentra
+  Vidya Utama"), judul, QR bermerek di kartu putih, ajakan "Pindai dengan kamera ponsel", tautan) dan kolom info (badge "Satu tautan untuk semua", tiga langkah singkat, kolom tautan dengan tombol **Salin**
+  yang berubah jadi centang "Tersalin" selama 2 detik, tombol **Tampilkan layar penuh**, serta **Cetak**, **PNG**, dan **SVG**). Layar penuh (Fullscreen
+  API) hanya menampilkan panggung dengan QR besar yang mengisi layar monitor/TV beserta petunjuk "Tekan Esc"; kolom info disembunyikan. Cetak memakai
+  lembar A4 khusus lewat `@media print` (logo kecil, nama perguruan tinggi, judul, QR 105 mm, petunjuk, tautan; sisa halaman disembunyikan dan dipulihkan pada `afterprint`); PNG
+  1200 x 1200 px berlatar putih (SVG -> canvas); SVG vektor untuk percetakan. Header halaman kini baru berjajar sejajar dengan judul mulai `xl` (di
+  bawahnya tombol turun ke bawah teks) supaya tiga tombol tidak menyempitkan teks judul. Halaman memuat `toast.js`, `modal.js`,
+  `vendor/qrcode.js`, dan `qr-code.js`; modal memakai `z-[60]` karena sidebar karirlink `z-50`. Diverifikasi lewat jsQR bahwa QR di layar, hasil
+  unduhan PNG, dan hasil unduhan SVG sama-sama terbaca sebagai tautan yang benar, header dan modal muat tanpa scroll horizontal di 360 sampai 1440px
+  (di layar kecil kolom menumpuk dan isi modal menggulir; kartu QR berukuran persegi tetap dan tidak lagi menyusut jadi tipis di layar pendek, 198 px di lebar 320 sampai 256 px, dan tombol tutup pindah ke atas panggung karena kolom info ada di bawah layar), dan tampil benar di mode terang maupun gelap (QR tetap gelap di atas putih).
+- **QR Code bisa dipersonalisasi dengan branding KarirLink.** Atribut baru
+  `data-qr-brand` pada `assets/js/qr-code.js` mengubah modul data jadi
+  bentuk bulat yang menyambung mulus ke modul tetangga yang gelap (sudut
+  cuma membulat di sisi yang "bebas" - gaya yang sama seperti referensi di
+  `moodboard/qr-code/qrcode.svg`), warna jadi solid `primary` (bukan
+  gradien - pada pola modul kecil yang padat, gradien kebanyakan cuma
+  terbaca sebagai warna tidak rata, bukan efek yang disengaja; dua corak
+  komplementer `primary` -> `secondary` yang dicoba lebih dulu malah
+  berbaur jadi abu-abu/coklat kusam saat di-interlace lewat ratusan modul
+  kecil - gradien dua corak tetap bisa dipakai manual lewat
+  `data-qr-color` + `data-qr-color-end`, idealnya dua corak satu hue, bukan
+  komplementer), pola pencari jadi cincin membulat + kotak tengah (proporsi
+  1:1:3:1:1 dipertahankan presisi supaya tetap terbaca), dan logo mark
+  **KarirLink** (produk yang dituju QR ini, bukan KarirKit) di tengah,
+  diwarnai memakai warna/gradien yang sama persis dengan modulnya (bukan
+  warna biru/oranye asli mark-nya) supaya logo selalu konsisten dengan QR
+  di sekitarnya, bukan warna tetap sendiri yang bentrok begitu
+  `data-qr-color` diganti. Logo tidak punya kotak/lingkaran latar sendiri -
+  modul di sekitarnya cuma dikosongkan dalam satu lingkaran (tanpa bentuk
+  eksplisit apa pun digambar), jadi logo tampil menyatu dengan pola di
+  sekitarnya alih-alih
+  seperti stiker yang ditumpuk di atasnya. Otomatis memaksa
+  error-correction level H (bukan default M) karena area kosong itu
+  menutupi modul data asli - scanner tetap bisa membaca lewat redundansi
+  level H, seperti generator QR personalisasi lain pada umumnya; dropdown
+  **Error correction** (L/M/Q/H) dan kotak centang **Logo di tengah**
+  ditambahkan ke contoh QR bermerek supaya levelnya benar-benar bisa diatur
+  (dipaksa H lagi otomatis begitu logo dicentang ulang). Bisa diatur manual
+  lewat `data-qr-style="dots"` (bentuk saja, warna tetap hitam),
+  `data-qr-color`/`data-qr-color-end` (satu warna solid secara default),
+  dan `data-qr-logo="none"` (matikan logo saat `data-qr-brand` aktif).
+  Diverifikasi lewat jsQR (bukan cuma tampilan), termasuk tiga bug yang
+  ketemu lewat verifikasi itu, bukan cuma lewat mata: (1) percobaan pertama
+  modul bentuk titik lepas (radius 0.47 modul) gagal terbaca scanner sama
+  sekali meski pola pencarinya benar - pindah ke gaya modul menyambung di
+  atas (radius sudut 0.44 modul) memperbaikinya sekaligus menghasilkan
+  tampilan yang lebih sesuai referensi; (2) `gradientUnits` default
+  `objectBoundingBox` membuat tiap modul kecil independen mengulang seluruh
+  gradien dari awal alih-alih menyapu satu kali ke seluruh kode - diperbaiki
+  ke `userSpaceOnUse`; (3) listener generik `input` yang tadinya dipakai
+  untuk field teks ternyata juga kepicu oleh kotak centang **Logo di
+  tengah** (sama-sama elemen `<input>` berisi `data-qr-target`), diam-diam
+  meng-encode ulang QR jadi literal `"on"` setiap kali dicentang/dilepas -
+  sekarang listener itu mengecualikan `type="checkbox"`/`"radio"`. Story
+  baru **Components -> QR Code -> Branded QR code (KarirLink)** dan
+  **Branded QR code variants**; section QR Code di `index.html` mendapat
+  dua contoh baru yang sama.
+
 ## [1.3.3] - 2026-10-02
 
 ### Changed
