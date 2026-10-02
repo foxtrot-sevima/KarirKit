@@ -213,15 +213,16 @@
       </div>
     </div>
 
-    <!-- Periode list -->
-    <div class="card overflow-hidden">
+    <!-- Periode list: Design System table (table-wrap + table.js) -->
+    <div class="table-wrap overflow-visible" id="periodeTableRoot" data-table data-page-size="10" data-item-label="periode" data-combo-boundary>
       <!-- Toolbar -->
-      <div class="flex flex-col gap-3 border-b border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between" data-combo-boundary>
+      <div class="table-toolbar">
         <div class="relative w-full sm:w-64">
           <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
             <i class="kk kk-magnifying-glass h-4 w-4"></i>
           </span>
-          <input id="periodeSearch" class="input h-9 pl-9" placeholder="Cari periode..." />
+          <label for="periodeSearch" class="sr-only">Cari periode</label>
+          <input id="periodeSearch" type="search" class="input h-9 pl-9" placeholder="Cari periode..." data-table-search />
         </div>
         <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
           <div id="filterTahun" class="combo w-full sm:w-52" data-combo data-value="all">
@@ -260,390 +261,308 @@
       </div>
 
       <div class="overflow-x-auto">
-        <table class="table table-lg table-fixed w-auto sm:w-full" id="periodeTable" data-item-label="periode">
+        <table class="table table-lg table-fit table-head-soft" id="periodeTable">
           <thead>
             <tr>
-              <th class="table-col-num hidden xl:table-cell">No</th>
-              <th class="w-52 sm:w-64 lg:w-80">Periode Yudisium</th>
-              <th class="hidden sm:table-cell">Tanggal Yudisium</th>
-              <th class="hidden sm:table-cell">Jumlah Lulusan</th>
-              <th><span class="sm:hidden">Isi</span><span class="hidden sm:inline">Partisipasi Mengisi</span></th>
-              <th class="table-col-actions">Aksi</th>
+              <th scope="col" class="table-col-num">No</th>
+              <th scope="col" data-sort="text"><button type="button" class="th-sort">Periode Yudisium<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" class="hidden md:table-cell" data-sort="date"><button type="button" class="th-sort">Tanggal Yudisium<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" class="hidden md:table-cell" data-sort="number"><button type="button" class="th-sort">Jumlah Lulusan<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" data-sort="number"><button type="button" class="th-sort"><span class="sm:hidden">Isi</span><span class="hidden sm:inline xl:hidden">Partisipasi</span><span class="hidden xl:inline">Partisipasi Mengisi</span><i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" class="table-col-actions">Aksi</th>
             </tr>
           </thead>
-          <tbody id="periodeBody"><tr data-tahun="2025/2026" data-jenis="genap" data-total="342" data-filled="0" data-status="belum-dikirim" data-name="Yudisium Genap 2025/2026">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+          <tbody id="periodeBody">
+            <tr data-tahun="2025/2026" data-jenis="genap" data-total="342" data-filled="0" data-status="belum-dikirim" data-name="Yudisium Genap 2025/2026">
+              <td class="table-col-num" data-num>1</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2025/2026</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">28 Agu 2026 &middot; 342 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">28 Agu 2026 &middot; 342 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">28 Agu 2026</td>
-              <td class="hidden sm:table-cell">342 lulusan</td>
-              <td><span class="text-xs font-medium text-slate-400">Belum dikirim</span></td>
+              <td class="hidden md:table-cell" data-value="2026-08-28">28 Agu 2026</td>
+              <td class="hidden md:table-cell" data-value="342">342 lulusan</td>
+              <td data-value="-1"><span class="text-xs font-medium text-slate-400">Belum dikirim</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  <button type="button" class="dropdown-item"><i class="kk kk-check-circle h-4 w-4"></i> Kirim Kuesioner</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2025/2026" data-jenis="ganjil" data-total="298" data-filled="122" data-status="terkirim" data-name="Yudisium Ganjil 2025/2026">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>2</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2025/2026</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">20 Feb 2026 &middot; 298 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">20 Feb 2026 &middot; 298 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">20 Feb 2026</td>
-              <td class="hidden sm:table-cell">298 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 41%"></div></div>
+              <td class="hidden md:table-cell" data-value="2026-02-20">20 Feb 2026</td>
+              <td class="hidden md:table-cell" data-value="298">298 lulusan</td>
+              <td data-value="41"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 41%"></div></div>
                   <span class="text-sm font-semibold text-warning-700">41%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(122/298)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(122/298)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2024/2025" data-jenis="genap" data-total="356" data-filled="278" data-status="selesai" data-name="Yudisium Genap 2024/2025">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>3</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2024/2025</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">29 Agu 2025 &middot; 356 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">29 Agu 2025 &middot; 356 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">29 Agu 2025</td>
-              <td class="hidden sm:table-cell">356 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 78%"></div></div>
+              <td class="hidden md:table-cell" data-value="2025-08-29">29 Agu 2025</td>
+              <td class="hidden md:table-cell" data-value="356">356 lulusan</td>
+              <td data-value="78"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 78%"></div></div>
                   <span class="text-sm font-semibold text-success-700">78%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(278/356)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(278/356)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2024/2025" data-jenis="ganjil" data-total="288" data-filled="207" data-status="selesai" data-name="Yudisium Ganjil 2024/2025">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>4</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2024/2025</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">21 Feb 2025 &middot; 288 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">21 Feb 2025 &middot; 288 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">21 Feb 2025</td>
-              <td class="hidden sm:table-cell">288 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 72%"></div></div>
+              <td class="hidden md:table-cell" data-value="2025-02-21">21 Feb 2025</td>
+              <td class="hidden md:table-cell" data-value="288">288 lulusan</td>
+              <td data-value="72"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 72%"></div></div>
                   <span class="text-sm font-semibold text-success-700">72%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(207/288)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(207/288)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2023/2024" data-jenis="genap" data-total="340" data-filled="221" data-status="selesai" data-name="Yudisium Genap 2023/2024">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>5</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2023/2024</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">30 Agu 2024 &middot; 340 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">30 Agu 2024 &middot; 340 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">30 Agu 2024</td>
-              <td class="hidden sm:table-cell">340 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 65%"></div></div>
+              <td class="hidden md:table-cell" data-value="2024-08-30">30 Agu 2024</td>
+              <td class="hidden md:table-cell" data-value="340">340 lulusan</td>
+              <td data-value="65"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 65%"></div></div>
                   <span class="text-sm font-semibold text-success-700">65%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(221/340)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(221/340)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2023/2024" data-jenis="ganjil" data-total="275" data-filled="168" data-status="selesai" data-name="Yudisium Ganjil 2023/2024">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>6</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2023/2024</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">22 Feb 2024 &middot; 275 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">22 Feb 2024 &middot; 275 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">22 Feb 2024</td>
-              <td class="hidden sm:table-cell">275 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 61%"></div></div>
+              <td class="hidden md:table-cell" data-value="2024-02-22">22 Feb 2024</td>
+              <td class="hidden md:table-cell" data-value="275">275 lulusan</td>
+              <td data-value="61"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 61%"></div></div>
                   <span class="text-sm font-semibold text-success-700">61%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(168/275)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(168/275)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2022/2023" data-jenis="genap" data-total="312" data-filled="181" data-status="selesai" data-name="Yudisium Genap 2022/2023">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>7</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2022/2023</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">31 Agu 2023 &middot; 312 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">31 Agu 2023 &middot; 312 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">31 Agu 2023</td>
-              <td class="hidden sm:table-cell">312 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 58%"></div></div>
+              <td class="hidden md:table-cell" data-value="2023-08-31">31 Agu 2023</td>
+              <td class="hidden md:table-cell" data-value="312">312 lulusan</td>
+              <td data-value="58"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 58%"></div></div>
                   <span class="text-sm font-semibold text-success-700">58%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(181/312)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(181/312)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2022/2023" data-jenis="ganjil" data-total="260" data-filled="143" data-status="selesai" data-name="Yudisium Ganjil 2022/2023">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>8</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2022/2023</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">23 Feb 2023 &middot; 260 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">23 Feb 2023 &middot; 260 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">23 Feb 2023</td>
-              <td class="hidden sm:table-cell">260 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 55%"></div></div>
+              <td class="hidden md:table-cell" data-value="2023-02-23">23 Feb 2023</td>
+              <td class="hidden md:table-cell" data-value="260">260 lulusan</td>
+              <td data-value="55"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 55%"></div></div>
                   <span class="text-sm font-semibold text-success-700">55%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(143/260)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(143/260)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2021/2022" data-jenis="genap" data-total="298" data-filled="155" data-status="selesai" data-name="Yudisium Genap 2021/2022">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>9</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2021/2022</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">25 Agu 2022 &middot; 298 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">25 Agu 2022 &middot; 298 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">25 Agu 2022</td>
-              <td class="hidden sm:table-cell">298 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 52%"></div></div>
+              <td class="hidden md:table-cell" data-value="2022-08-25">25 Agu 2022</td>
+              <td class="hidden md:table-cell" data-value="298">298 lulusan</td>
+              <td data-value="52"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 52%"></div></div>
                   <span class="text-sm font-semibold text-success-700">52%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(155/298)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(155/298)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2021/2022" data-jenis="ganjil" data-total="245" data-filled="120" data-status="selesai" data-name="Yudisium Ganjil 2021/2022">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>10</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2021/2022</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">18 Feb 2022 &middot; 245 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">18 Feb 2022 &middot; 245 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">18 Feb 2022</td>
-              <td class="hidden sm:table-cell">245 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 49%"></div></div>
+              <td class="hidden md:table-cell" data-value="2022-02-18">18 Feb 2022</td>
+              <td class="hidden md:table-cell" data-value="245">245 lulusan</td>
+              <td data-value="49"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 49%"></div></div>
                   <span class="text-sm font-semibold text-warning-700">49%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(120/245)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(120/245)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2020/2021" data-jenis="genap" data-total="270" data-filled="127" data-status="selesai" data-name="Yudisium Genap 2020/2021">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>11</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2020/2021</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">26 Agu 2021 &middot; 270 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">26 Agu 2021 &middot; 270 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">26 Agu 2021</td>
-              <td class="hidden sm:table-cell">270 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 47%"></div></div>
+              <td class="hidden md:table-cell" data-value="2021-08-26">26 Agu 2021</td>
+              <td class="hidden md:table-cell" data-value="270">270 lulusan</td>
+              <td data-value="47"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 47%"></div></div>
                   <span class="text-sm font-semibold text-warning-700">47%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(127/270)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(127/270)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2020/2021" data-jenis="ganjil" data-total="230" data-filled="101" data-status="selesai" data-name="Yudisium Ganjil 2020/2021">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>12</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2020/2021</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">19 Feb 2021 &middot; 230 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">19 Feb 2021 &middot; 230 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">19 Feb 2021</td>
-              <td class="hidden sm:table-cell">230 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 44%"></div></div>
+              <td class="hidden md:table-cell" data-value="2021-02-19">19 Feb 2021</td>
+              <td class="hidden md:table-cell" data-value="230">230 lulusan</td>
+              <td data-value="44"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 44%"></div></div>
                   <span class="text-sm font-semibold text-warning-700">44%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(101/230)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(101/230)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2019/2020" data-jenis="genap" data-total="255" data-filled="105" data-status="selesai" data-name="Yudisium Genap 2019/2020">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>13</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2019/2020</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">27 Agu 2020 &middot; 255 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">27 Agu 2020 &middot; 255 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">27 Agu 2020</td>
-              <td class="hidden sm:table-cell">255 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 41%"></div></div>
+              <td class="hidden md:table-cell" data-value="2020-08-27">27 Agu 2020</td>
+              <td class="hidden md:table-cell" data-value="255">255 lulusan</td>
+              <td data-value="41"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 41%"></div></div>
                   <span class="text-sm font-semibold text-warning-700">41%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(105/255)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(105/255)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2019/2020" data-jenis="ganjil" data-total="210" data-filled="80" data-status="selesai" data-name="Yudisium Ganjil 2019/2020">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>14</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2019/2020</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">21 Feb 2020 &middot; 210 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">21 Feb 2020 &middot; 210 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">21 Feb 2020</td>
-              <td class="hidden sm:table-cell">210 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 38%"></div></div>
+              <td class="hidden md:table-cell" data-value="2020-02-21">21 Feb 2020</td>
+              <td class="hidden md:table-cell" data-value="210">210 lulusan</td>
+              <td data-value="38"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 38%"></div></div>
                   <span class="text-sm font-semibold text-warning-700">38%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(80/210)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(80/210)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
             <tr data-tahun="2018/2019" data-jenis="genap" data-total="240" data-filled="84" data-status="selesai" data-name="Yudisium Genap 2018/2019">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-num" data-num>15</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2018/2019</span>
-                <p class="mt-0.5 text-xs text-slate-400 sm:hidden">29 Agu 2019 &middot; 240 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">29 Agu 2019 &middot; 240 lulusan</p>
               </td>
-              <td class="hidden sm:table-cell">29 Agu 2019</td>
-              <td class="hidden sm:table-cell">240 lulusan</td>
-              <td><div class="flex items-center gap-2">
-                  <div class="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-warning-600" style="width: 35%"></div></div>
+              <td class="hidden md:table-cell" data-value="2019-08-29">29 Agu 2019</td>
+              <td class="hidden md:table-cell" data-value="240">240 lulusan</td>
+              <td data-value="35"><div class="flex items-center gap-2">
+                  <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 35%"></div></div>
                   <span class="text-sm font-semibold text-warning-700">35%</span>
-                  <span class="hidden text-xs text-slate-400 sm:inline">(84/240)</span>
+                  <span class="hidden text-xs text-slate-400 xl:inline">(84/240)</span>
                 </div></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <a href="yudisium-detail.html" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</a>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <div data-table-empty hidden class="table-empty">Tidak ada periode yang cocok.</div>
 
       <!-- Pagination footer -->
-      <div class="flex flex-col gap-3 border-t border-slate-100 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-        <div class="flex items-center gap-2 text-xs text-slate-500">
-          <span>Baris per halaman</span>
-          <select id="periodePageSize" class="input h-8 w-auto py-0 text-xs">
-            <option value="5">5</option>
-            <option value="10" selected>10</option>
-            <option value="25">25</option>
-          </select>
-        </div>
-        <p class="text-xs text-slate-500" id="periodeRangeText">Menampilkan 1-10 dari 15 periode</p>
-        <div class="flex items-center gap-1" id="periodePagination"></div>
+      <div class="table-footer" data-table-pagination>
+        <span data-table-info></span>
+        <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
       </div>
     </div>
   </main>
@@ -658,6 +577,7 @@
 
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
+<script src="../../assets/js/table.js"></script>
 <script>
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sidebarOverlay');
@@ -704,60 +624,17 @@
     });
   })();
 
-  // Row action kebab menus — same fix as the design system's "Table —
-  // Katalog Produk" pattern: opens below the trigger, but flips above it
-  // when there isn't room within the nearest ancestor that actually clips
-  // this element's paint (walks computed overflow rather than guessing a
-  // class name, since `.overflow-x-auto` on the table wrapper clips
-  // vertically too, per the CSS overflow-x/-y interaction).
-  function findClipAncestor(el) {
-    let node = el.parentElement;
-    while (node && node !== document.body) {
-      const cs = getComputedStyle(node);
-      if (cs.overflowY !== 'visible' || cs.overflowX !== 'visible') return node;
-      node = node.parentElement;
-    }
-    return null;
-  }
-  function openDropdownMenu(trigger, menu) {
-    menu.classList.remove('hidden');
-    const r = trigger.getBoundingClientRect();
-    const mRect = menu.getBoundingClientRect();
-    const clipAncestor = findClipAncestor(trigger);
-    const boundaryBottom = clipAncestor
-      ? Math.min(window.innerHeight, clipAncestor.getBoundingClientRect().bottom)
-      : window.innerHeight;
-    const fitsBelow = boundaryBottom - r.bottom >= mRect.height + 8;
-    menu.classList.toggle('dropdown-menu-up', !fitsBelow);
-  }
+  // Periode Yudisium table - Design System table.js handles search, sort, paging,
+  // numbering ("No") and the row action menus. This page only adds its two combo
+  // filters (as a custom row predicate) and the KPI cards, which are recomputed
+  // from whatever rows pass the filters ('table:render').
   (function () {
-    document.querySelectorAll('.dt-menu-btn').forEach((btn) => {
-      const menu = btn.nextElementSibling;
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const willOpen = menu.classList.contains('hidden');
-        document.querySelectorAll('.dropdown-menu').forEach((m) => { m.classList.add('hidden'); m.classList.remove('dropdown-menu-up'); });
-        if (willOpen) openDropdownMenu(btn, menu);
-      });
-    });
-    document.addEventListener('click', () => {
-      document.querySelectorAll('.dropdown-menu').forEach((m) => { m.classList.add('hidden'); m.classList.remove('dropdown-menu-up'); });
-    });
-  })();
-
-  // Filter (Tahun Ajaran + Jenis Periode) + Periode Yudisium table pagination.
-  // Filtering recomputes both the KPI cards above and which rows the table
-  // paginates over, so "Filter" affects the cards and the periode list together.
-  (function () {
-    const table = document.getElementById('periodeTable');
-    const tbody = document.getElementById('periodeBody');
-    const allRows = Array.from(document.querySelectorAll('#periodeBody tr'));
-    const search = document.getElementById('periodeSearch');
+    const root = document.getElementById('periodeTableRoot');
     const filterTahun = document.getElementById('filterTahun');
     const filterJenis = document.getElementById('filterJenis');
-    const pageSizeSelect = document.getElementById('periodePageSize');
-    const rangeText = document.getElementById('periodeRangeText');
-    const paginationEl = document.getElementById('periodePagination');
+    if (!root || !window.KKTable) return;
+    const table = window.KKTable.get(root) || (window.KKTable.init(root), window.KKTable.get(root));
+    if (!table) return;
 
     const kpiPeriode = document.getElementById('kpiPeriode');
     const kpiTotalLulusan = document.getElementById('kpiTotalLulusan');
@@ -765,126 +642,41 @@
     const kpiSudahMengisiPct = document.getElementById('kpiSudahMengisiPct');
     const kpiTarget = document.getElementById('kpiTarget');
     const kpiMenungguFinalisasi = document.getElementById('kpiMenungguFinalisasi');
-
     const TARGET_RATE = 0.5; // contoh target minimum 50% partisipasi per periode
+    const fmt = (n) => n.toLocaleString('id-ID');
 
-    // Read once from `data-item-label` on the <table> so a new table just
-    // sets one attribute instead of hand-editing "periode" strings in JS
-    // for its range-state messages.
-    const itemLabel = table?.dataset.itemLabel || 'item';
-
-    let pageSize = Number(pageSizeSelect.value);
-    let currentPage = 1;
-    let visibleRows = allRows;
-
-    function fmt(n) {
-      return n.toLocaleString('id-ID');
-    }
-
-    function applyFilter() {
-      const term = search.value.trim().toLowerCase();
+    table.addFilter((row) => {
       const tahun = filterTahun.dataset.value;
       const jenis = filterJenis.dataset.value;
-      visibleRows = allRows.filter((row) => {
-        const matchTerm = !term || (row.dataset.name || '').toLowerCase().includes(term);
-        const matchTahun = tahun === 'all' || row.dataset.tahun === tahun;
-        const matchJenis = jenis === 'all' || row.dataset.jenis === jenis;
-        return matchTerm && matchTahun && matchJenis;
-      });
-      currentPage = 1;
-    }
+      return (tahun === 'all' || row.dataset.tahun === tahun) && (jenis === 'all' || row.dataset.jenis === jenis);
+    });
 
-    function updateKpis() {
-      const totalLulusan = visibleRows.reduce((sum, r) => sum + Number(r.dataset.total), 0);
-      const totalFilled = visibleRows.reduce((sum, r) => sum + Number(r.dataset.filled), 0);
-      const targetMet = visibleRows.filter((r) => Number(r.dataset.filled) / Number(r.dataset.total) >= TARGET_RATE).length;
-      const menungguFinalisasi = visibleRows.filter((r) => r.dataset.status === 'belum-dikirim').length;
+    root.addEventListener('table:render', (e) => {
+      const rows = e.detail.visible;
+      const totalLulusan = rows.reduce((sum, r) => sum + Number(r.dataset.total), 0);
+      const totalFilled = rows.reduce((sum, r) => sum + Number(r.dataset.filled), 0);
+      const targetMet = rows.filter((r) => Number(r.dataset.filled) / Number(r.dataset.total) >= TARGET_RATE).length;
+      const menungguFinalisasi = rows.filter((r) => r.dataset.status === 'belum-dikirim').length;
       const overallPct = totalLulusan > 0 ? Math.round((totalFilled / totalLulusan) * 100) : 0;
 
-      kpiPeriode.textContent = fmt(visibleRows.length);
+      kpiPeriode.textContent = fmt(rows.length);
       kpiTotalLulusan.textContent = fmt(totalLulusan);
       kpiSudahMengisi.textContent = fmt(totalFilled);
       kpiSudahMengisiPct.textContent = `(${overallPct}%)`;
-      kpiTarget.textContent = `${fmt(targetMet)} dari ${fmt(visibleRows.length)}`;
+      kpiTarget.textContent = `${fmt(targetMet)} dari ${fmt(rows.length)}`;
       kpiMenungguFinalisasi.textContent = fmt(menungguFinalisasi);
-    }
-
-    function renderPaginationButtons(totalPages) {
-      paginationEl.innerHTML = '';
-
-      function makeButton(label, page, opts = {}) {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.textContent = label;
-        b.disabled = !!opts.disabled;
-        b.className = 'pagination-btn' + (opts.active ? ' pagination-btn-active' : '');
-        b.addEventListener('click', () => {
-          currentPage = page;
-          renderTable();
-        });
-        return b;
-      }
-
-      paginationEl.appendChild(makeButton('‹', currentPage - 1, { disabled: currentPage <= 1 }));
-      for (let i = 1; i <= totalPages; i++) {
-        paginationEl.appendChild(makeButton(String(i), i, { active: i === currentPage }));
-      }
-      paginationEl.appendChild(makeButton('›', currentPage + 1, { disabled: currentPage >= totalPages }));
-    }
-
-    function renderTable() {
-      const totalPages = Math.max(1, Math.ceil(visibleRows.length / pageSize));
-      currentPage = Math.min(currentPage, totalPages);
-
-      const start = (currentPage - 1) * pageSize;
-      const end = start + pageSize;
-
-      allRows.forEach((row) => row.classList.add('hidden'));
-      visibleRows.forEach((row, i) => {
-        const isPageRow = i >= start && i < end;
-        row.classList.toggle('hidden', !isPageRow);
-        if (isPageRow) {
-          const numEl = row.querySelector('[data-num]');
-          if (numEl) numEl.textContent = String(i + 1);
-        }
-      });
-
-      tbody.querySelectorAll('.periode-empty-row').forEach((r) => r.remove());
-      if (visibleRows.length === 0) {
-        const tr = document.createElement('tr');
-        tr.className = 'periode-empty-row';
-        tr.innerHTML = `<td colspan="6" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada ${itemLabel} yang cocok.</td>`;
-        tbody.appendChild(tr);
-      }
-
-      renderPaginationButtons(totalPages);
-      rangeText.textContent = `Menampilkan ${visibleRows.length ? start + 1 : 0}-${Math.min(end, visibleRows.length)} dari ${visibleRows.length} ${itemLabel}`;
-    }
-
-    function render() {
-      applyFilter();
-      updateKpis();
-      renderTable();
-    }
-
-    pageSizeSelect.addEventListener('change', () => {
-      pageSize = Number(pageSizeSelect.value);
-      currentPage = 1;
-      renderTable();
     });
-
-    search.addEventListener('input', render);
 
     [filterTahun, filterJenis].forEach((combo) => {
       combo.querySelectorAll('[data-combo-item]').forEach((item) => {
         item.addEventListener('click', () => {
           combo.dataset.value = item.dataset.value;
-          render();
+          table.refresh();
         });
       });
     });
 
-    render();
+    table.refresh();
   })();
 
   // KarirKit combo dropdown (self-positioning select replacement) — same

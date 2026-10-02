@@ -187,11 +187,11 @@
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <span class="group relative w-full sm:w-auto">
-          <button class="btn-outline btn-md w-full sm:w-auto">
+          <button type="button" id="yudSendAll" class="btn-outline btn-md w-full sm:w-auto">
             <i class="kk kk-check-circle h-4 w-4 shrink-0"></i>
             Kirim Kuesioner
           </button>
-          <span class="pointer-events-none absolute right-0 top-full z-30 mt-2 w-64 whitespace-normal rounded-lg bg-slate-900 px-3 py-2 text-left text-xs font-normal leading-relaxed text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Ini kirim manual untuk lulusan yang belum mengisi kuesioner.</span>
+          <span class="pointer-events-none absolute right-0 top-full z-30 mt-2 w-64 whitespace-normal rounded-lg bg-slate-900 px-3 py-2 text-left text-xs font-normal leading-relaxed text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">Kirim manual ke semua lulusan yang belum mengisi: kuesioner untuk yang belum dikirim, reminder untuk yang menunggu mengisi.</span>
         </span>
       </div>
     </div>
@@ -216,309 +216,256 @@
       </div>
     </div>
 
-    <!-- Students table -->
-    <div class="card overflow-hidden">
-      <div class="flex flex-col gap-3 border-b border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between">
-        <div class="flex gap-1 overflow-x-auto scrollbar-none rounded-xl bg-slate-100 p-1" id="yudStatusTabs">
-          <button type="button" data-status="all" class="tab tab-active">Semua</button>
-          <button type="button" data-status="belum-dikirim" class="tab">Belum Dikirim</button>
-          <button type="button" data-status="terkirim" class="tab">Terkirim</button>
-          <button type="button" data-status="menunggu" class="tab">Menunggu Mengisi</button>
-          <button type="button" data-status="sudah" class="tab">Sudah Mengisi</button>
-        </div>
-        <div class="relative">
+    <!-- Students table: Design System table (table-wrap + table.js) -->
+    <div class="table-wrap overflow-visible" id="yudTableRoot" data-table data-page-size="5" data-item-label="mahasiswa" data-combo-boundary>
+      <!-- Toolbar -->
+      <div class="table-toolbar">
+        <div class="relative w-full sm:w-64">
           <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-            <i class="kk kk-magnifying-glass h-3.5 w-3.5"></i>
+            <i class="kk kk-magnifying-glass h-4 w-4"></i>
           </span>
-          <input id="yudSearch" class="input h-9 w-full pl-8 sm:w-64" placeholder="Cari nama atau email..." />
+          <label for="yudSearch" class="sr-only">Cari nama, NIM, atau email</label>
+          <input id="yudSearch" type="search" class="input h-9 pl-9" placeholder="Cari nama, NIM, atau email..." data-table-search />
+        </div>
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <div id="filterStatus" class="combo w-full sm:w-52" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Status</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Status">Semua Status</button>
+                <button type="button" class="combo-item" data-combo-item data-value="belum-dikirim" data-label="Belum Dikirim">Belum Dikirim</button>
+                <button type="button" class="combo-item" data-combo-item data-value="terkirim" data-label="Terkirim">Terkirim</button>
+                <button type="button" class="combo-item" data-combo-item data-value="menunggu" data-label="Menunggu Mengisi">Menunggu Mengisi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="sudah" data-label="Sudah Mengisi">Sudah Mengisi</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- Bulk action bar: shown while rows are selected -->
+      <div class="table-bulk" data-table-bulk hidden>
+        <span><b data-table-selected-count>0</b> mahasiswa dipilih</span>
+        <button type="button" id="yudBulkReminder" class="btn-primary btn-sm ml-auto"><i class="kk kk-paper-plane-tilt h-3.5 w-3.5"></i>Kirim Reminder</button>
+      </div>
+
       <div class="overflow-x-auto">
-        <table class="table table-lg table-fixed w-auto sm:w-full" id="yudTable" data-item-label="mahasiswa">
+        <table class="table table-lg table-fit table-head-soft" id="yudTable">
           <thead>
             <tr>
-              <th class="table-col-num hidden xl:table-cell">No</th>
-              <th class="w-52 sm:w-64 lg:w-80">Nama</th>
-              <th class="hidden sm:table-cell">Prodi</th>
-              <th class="hidden sm:table-cell">Email</th>
-              <th>Status</th>
-              <th class="table-col-actions">Aksi</th>
+              <th scope="col" class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select-all aria-label="Pilih semua yang menunggu mengisi" title="Pilih semua yang menunggu mengisi" /></th>
+              <th scope="col" class="table-col-num">No</th>
+              <th scope="col" data-sort="text"><button type="button" class="th-sort">Nama<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" class="hidden lg:table-cell" data-sort="text"><button type="button" class="th-sort">Prodi<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" class="hidden xl:table-cell" data-sort="text"><button type="button" class="th-sort">Email<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" data-sort="text"><button type="button" class="th-sort">Status<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" class="table-col-actions">Aksi</th>
             </tr>
           </thead>
           <tbody id="yudBody">
             <tr data-status="menunggu">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Andi Nugroho" /></td>
+              <td class="table-col-num" data-num>1</td>
               <td>
-                <div class="flex items-center gap-3">
-                  <span class="avatar h-11 w-11 bg-primary-50 text-primary-600">AN</span>
-                  <div class="min-w-0">
-                    <span class="block font-medium text-slate-800">Andi Nugroho</span>
-                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; andi.nugroho@mail.ac.id</p>
-                  </div>
-                </div>
+                <span class="block font-medium text-slate-800">Andi Nugroho</span>
+                <p class="mt-0.5 text-xs text-slate-400">NIM 2111500101</p>
+                <p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">S1 - Teknik Informatika &middot; andi.nugroho@mail.ac.id</p>
               </td>
-              <td class="hidden truncate sm:table-cell">S1 - Teknik Informatika</td>
-              <td class="hidden truncate sm:table-cell">andi.nugroho@mail.ac.id</td>
-              <td><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
+              <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Informatika</td>
+              <td class="hidden max-w-[220px] truncate xl:table-cell">andi.nugroho@mail.ac.id</td>
+              <td><span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
-                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Andi Nugroho"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>
                 </div>
               </td>
             </tr>
             <tr data-status="sudah">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Sari Puspita" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
+              <td class="table-col-num" data-num>2</td>
               <td>
-                <div class="flex items-center gap-3">
-                  <span class="avatar h-11 w-11 bg-warning-50 text-warning-600">SP</span>
-                  <div class="min-w-0">
-                    <span class="block font-medium text-slate-800">Sari Puspita</span>
-                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Sistem Informasi &middot; sari.puspita@mail.ac.id</p>
-                  </div>
-                </div>
+                <span class="block font-medium text-slate-800">Sari Puspita</span>
+                <p class="mt-0.5 text-xs text-slate-400">NIM 2111500214</p>
+                <p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">S1 - Sistem Informasi &middot; sari.puspita@mail.ac.id</p>
               </td>
-              <td class="hidden truncate sm:table-cell">S1 - Sistem Informasi</td>
-              <td class="hidden truncate sm:table-cell">sari.puspita@mail.ac.id</td>
-              <td><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Sistem Informasi</td>
+              <td class="hidden max-w-[220px] truncate xl:table-cell">sari.puspita@mail.ac.id</td>
+              <td><span class="badge-success max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-success-600"></span>Sudah Mengisi</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat Jawaban"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></button>
                 </div>
               </td>
             </tr>
             <tr data-status="menunggu">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Rudi Hartono" /></td>
+              <td class="table-col-num" data-num>3</td>
               <td>
-                <div class="flex items-center gap-3">
-                  <span class="avatar h-11 w-11 bg-info-50 text-info-600">RD</span>
-                  <div class="min-w-0">
-                    <span class="block font-medium text-slate-800">Rudi Hartono</span>
-                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; rudi.hartono@mail.ac.id</p>
-                  </div>
-                </div>
+                <span class="block font-medium text-slate-800">Rudi Hartono</span>
+                <p class="mt-0.5 text-xs text-slate-400">NIM 2111500327</p>
+                <p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">S1 - Teknik Informatika &middot; rudi.hartono@mail.ac.id</p>
               </td>
-              <td class="hidden truncate sm:table-cell">S1 - Teknik Informatika</td>
-              <td class="hidden truncate sm:table-cell">rudi.hartono@mail.ac.id</td>
-              <td><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
+              <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Informatika</td>
+              <td class="hidden max-w-[220px] truncate xl:table-cell">rudi.hartono@mail.ac.id</td>
+              <td><span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
-                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Rudi Hartono"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>
                 </div>
               </td>
             </tr>
             <tr data-status="belum-dikirim">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Dewi Pratiwi" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
+              <td class="table-col-num" data-num>4</td>
               <td>
-                <div class="flex items-center gap-3">
-                  <span class="avatar h-11 w-11 bg-danger-50 text-danger-600">DP</span>
-                  <div class="min-w-0">
-                    <span class="block font-medium text-slate-800">Dewi Pratiwi</span>
-                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">D3 - Manajemen Informatika &middot; dewi.pratiwi@mail.ac.id</p>
-                  </div>
-                </div>
+                <span class="block font-medium text-slate-800">Dewi Pratiwi</span>
+                <p class="mt-0.5 text-xs text-slate-400">NIM 2111500439</p>
+                <p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">D3 - Manajemen Informatika &middot; dewi.pratiwi@mail.ac.id</p>
               </td>
-              <td class="hidden truncate sm:table-cell">D3 - Manajemen Informatika</td>
-              <td class="hidden truncate sm:table-cell">dewi.pratiwi@mail.ac.id</td>
-              <td><span class="badge-neutral max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-slate-400"></span>Belum Dikirim</span></td>
+              <td class="hidden max-w-[180px] truncate lg:table-cell">D3 - Manajemen Informatika</td>
+              <td class="hidden max-w-[220px] truncate xl:table-cell">dewi.pratiwi@mail.ac.id</td>
+              <td><span class="badge-neutral max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-slate-400"></span>Belum Dikirim</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
-                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Kuesioner</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-send-row title="Kirim Kuesioner" aria-label="Kirim kuesioner ke Dewi Pratiwi"><i class="kk kk-envelope-simple h-4 w-4"></i><span class="hidden xl:inline">Kirim Kuesioner</span></button>
                 </div>
               </td>
             </tr>
             <tr data-status="sudah">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Bella Lestari" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
+              <td class="table-col-num" data-num>5</td>
               <td>
-                <div class="flex items-center gap-3">
-                  <span class="avatar h-11 w-11 bg-slate-100 text-slate-600">BL</span>
-                  <div class="min-w-0">
-                    <span class="block font-medium text-slate-800">Bella Lestari</span>
-                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Elektro &middot; bella.lestari@mail.ac.id</p>
-                  </div>
-                </div>
+                <span class="block font-medium text-slate-800">Bella Lestari</span>
+                <p class="mt-0.5 text-xs text-slate-400">NIM 2111500552</p>
+                <p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">S1 - Teknik Elektro &middot; bella.lestari@mail.ac.id</p>
               </td>
-              <td class="hidden truncate sm:table-cell">S1 - Teknik Elektro</td>
-              <td class="hidden truncate sm:table-cell">bella.lestari@mail.ac.id</td>
-              <td><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Elektro</td>
+              <td class="hidden max-w-[220px] truncate xl:table-cell">bella.lestari@mail.ac.id</td>
+              <td><span class="badge-success max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-success-600"></span>Sudah Mengisi</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat Jawaban"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></button>
                 </div>
               </td>
             </tr>
             <tr data-status="menunggu">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Fajar Ardiansyah" /></td>
+              <td class="table-col-num" data-num>6</td>
               <td>
-                <div class="flex items-center gap-3">
-                  <span class="avatar h-11 w-11 bg-primary-50 text-primary-600">FA</span>
-                  <div class="min-w-0">
-                    <span class="block font-medium text-slate-800">Fajar Ardiansyah</span>
-                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; fajar.ardiansyah@mail.ac.id</p>
-                  </div>
-                </div>
+                <span class="block font-medium text-slate-800">Fajar Ardiansyah</span>
+                <p class="mt-0.5 text-xs text-slate-400">NIM 2111500665</p>
+                <p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">S1 - Teknik Informatika &middot; fajar.ardiansyah@mail.ac.id</p>
               </td>
-              <td class="hidden truncate sm:table-cell">S1 - Teknik Informatika</td>
-              <td class="hidden truncate sm:table-cell">fajar.ardiansyah@mail.ac.id</td>
-              <td><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
+              <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Informatika</td>
+              <td class="hidden max-w-[220px] truncate xl:table-cell">fajar.ardiansyah@mail.ac.id</td>
+              <td><span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
-                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Fajar Ardiansyah"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>
                 </div>
               </td>
             </tr>
             <tr data-status="sudah">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Indah Nuraini" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
+              <td class="table-col-num" data-num>7</td>
               <td>
-                <div class="flex items-center gap-3">
-                  <span class="avatar h-11 w-11 bg-warning-50 text-warning-600">IN</span>
-                  <div class="min-w-0">
-                    <span class="block font-medium text-slate-800">Indah Nuraini</span>
-                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Sistem Informasi &middot; indah.nuraini@mail.ac.id</p>
-                  </div>
-                </div>
+                <span class="block font-medium text-slate-800">Indah Nuraini</span>
+                <p class="mt-0.5 text-xs text-slate-400">NIM 2111500778</p>
+                <p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">S1 - Sistem Informasi &middot; indah.nuraini@mail.ac.id</p>
               </td>
-              <td class="hidden truncate sm:table-cell">S1 - Sistem Informasi</td>
-              <td class="hidden truncate sm:table-cell">indah.nuraini@mail.ac.id</td>
-              <td><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Sistem Informasi</td>
+              <td class="hidden max-w-[220px] truncate xl:table-cell">indah.nuraini@mail.ac.id</td>
+              <td><span class="badge-success max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-success-600"></span>Sudah Mengisi</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat Jawaban"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></button>
                 </div>
               </td>
             </tr>
             <tr data-status="menunggu">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Yoga Pratama" /></td>
+              <td class="table-col-num" data-num>8</td>
               <td>
-                <div class="flex items-center gap-3">
-                  <span class="avatar h-11 w-11 bg-info-50 text-info-600">YP</span>
-                  <div class="min-w-0">
-                    <span class="block font-medium text-slate-800">Yoga Pratama</span>
-                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">D3 - Manajemen Informatika &middot; yoga.pratama@mail.ac.id</p>
-                  </div>
-                </div>
+                <span class="block font-medium text-slate-800">Yoga Pratama</span>
+                <p class="mt-0.5 text-xs text-slate-400">NIM 2111500890</p>
+                <p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">D3 - Manajemen Informatika &middot; yoga.pratama@mail.ac.id</p>
               </td>
-              <td class="hidden truncate sm:table-cell">D3 - Manajemen Informatika</td>
-              <td class="hidden truncate sm:table-cell">yoga.pratama@mail.ac.id</td>
-              <td><span class="badge-warning max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
+              <td class="hidden max-w-[180px] truncate lg:table-cell">D3 - Manajemen Informatika</td>
+              <td class="hidden max-w-[220px] truncate xl:table-cell">yoga.pratama@mail.ac.id</td>
+              <td><span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
-                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Reminder</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Yoga Pratama"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>
                 </div>
               </td>
             </tr>
             <tr data-status="belum-dikirim">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Maya Ramadhani" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
+              <td class="table-col-num" data-num>9</td>
               <td>
-                <div class="flex items-center gap-3">
-                  <span class="avatar h-11 w-11 bg-danger-50 text-danger-600">MR</span>
-                  <div class="min-w-0">
-                    <span class="block font-medium text-slate-800">Maya Ramadhani</span>
-                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Elektro &middot; maya.ramadhani@mail.ac.id</p>
-                  </div>
-                </div>
+                <span class="block font-medium text-slate-800">Maya Ramadhani</span>
+                <p class="mt-0.5 text-xs text-slate-400">NIM 2111500903</p>
+                <p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">S1 - Teknik Elektro &middot; maya.ramadhani@mail.ac.id</p>
               </td>
-              <td class="hidden truncate sm:table-cell">S1 - Teknik Elektro</td>
-              <td class="hidden truncate sm:table-cell">maya.ramadhani@mail.ac.id</td>
-              <td><span class="badge-neutral max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-slate-400"></span>Belum Dikirim</span></td>
+              <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Elektro</td>
+              <td class="hidden max-w-[220px] truncate xl:table-cell">maya.ramadhani@mail.ac.id</td>
+              <td><span class="badge-neutral max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-slate-400"></span>Belum Dikirim</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Detail</button>
-                    <button type="button" class="dropdown-item"><i class="kk kk-clipboard-text h-4 w-4"></i> Kirim Kuesioner</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-send-row title="Kirim Kuesioner" aria-label="Kirim kuesioner ke Maya Ramadhani"><i class="kk kk-envelope-simple h-4 w-4"></i><span class="hidden xl:inline">Kirim Kuesioner</span></button>
                 </div>
               </td>
             </tr>
             <tr data-status="sudah">
-              <td class="table-col-num hidden xl:table-cell" data-num></td>
+              <td class="table-col-check"><input type="checkbox" class="form-check form-check-sm" data-table-select aria-label="Pilih Hendra Wijaya" disabled title="Reminder hanya untuk yang berstatus Menunggu Mengisi" /></td>
+              <td class="table-col-num" data-num>10</td>
               <td>
-                <div class="flex items-center gap-3">
-                  <span class="avatar h-11 w-11 bg-slate-100 text-slate-600">HW</span>
-                  <div class="min-w-0">
-                    <span class="block font-medium text-slate-800">Hendra Wijaya</span>
-                    <p class="mt-0.5 truncate text-xs text-slate-400 sm:hidden">S1 - Teknik Informatika &middot; hendra.wijaya@mail.ac.id</p>
-                  </div>
-                </div>
+                <span class="block font-medium text-slate-800">Hendra Wijaya</span>
+                <p class="mt-0.5 text-xs text-slate-400">NIM 2111501016</p>
+                <p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">S1 - Teknik Informatika &middot; hendra.wijaya@mail.ac.id</p>
               </td>
-              <td class="hidden truncate sm:table-cell">S1 - Teknik Informatika</td>
-              <td class="hidden truncate sm:table-cell">hendra.wijaya@mail.ac.id</td>
-              <td><span class="badge-success max-w-[64px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
+              <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Informatika</td>
+              <td class="hidden max-w-[220px] truncate xl:table-cell">hendra.wijaya@mail.ac.id</td>
+              <td><span class="badge-success max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-success-600"></span>Sudah Mengisi</span></td>
               <td class="table-col-actions">
-                <div class="relative inline-block">
-                  <button type="button" class="dt-menu-btn flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
-                    <i class="kk kk-dots-three-vertical h-4 w-4"></i>
-                  </button>
-                  <div class="dropdown-menu hidden">
-                    <button type="button" class="dropdown-item"><i class="kk kk-magnifying-glass h-4 w-4"></i> Lihat Jawaban</button>
-                  </div>
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat Jawaban"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></button>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <div data-table-empty hidden class="table-empty">Tidak ada mahasiswa yang cocok.</div>
 
       <!-- Pagination footer -->
-      <div class="flex flex-col gap-3 border-t border-slate-100 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-        <div class="flex items-center gap-2 text-xs text-slate-500">
-          <span>Baris per halaman</span>
-          <select id="yudPageSize" class="input h-8 w-auto py-0 text-xs">
-            <option value="5" selected>5</option>
-            <option value="10">10</option>
-            <option value="25">25</option>
-          </select>
+      <div class="table-footer" data-table-pagination>
+        <span data-table-info></span>
+        <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+      </div>
+
+      <!-- Confirm: bulk reminder -->
+      <div class="modal-backdrop z-[60]" id="yudReminderModal" role="dialog" aria-modal="true" aria-labelledby="yudReminderTitle">
+        <div class="modal-panel modal-md">
+          <div class="modal-header">
+            <div>
+              <h3 class="modal-title" id="yudReminderTitle">Kirim Reminder</h3>
+              <p class="modal-description" id="yudReminderDesc">Pengingat pengisian Kuesioner Lulusan dikirim sekaligus ke semua yang dipilih.</p>
+            </div>
+            <button type="button" class="modal-close" data-reminder-close aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+          </div>
+          <div class="modal-body">
+            <p id="yudReminderText">Kirim reminder ke <b id="yudReminderCount" class="text-slate-900">0</b> mahasiswa berstatus <span class="font-medium text-slate-800">Menunggu Mengisi</span>?</p>
+            <ul id="yudReminderList" class="mt-3 max-h-40 list-disc space-y-1 overflow-y-auto pl-5 text-sm text-slate-600"></ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-outline btn-md" data-reminder-close>Batal</button>
+            <button type="button" class="btn-primary btn-md" id="yudReminderConfirm"><i class="kk kk-paper-plane-tilt h-4 w-4" id="yudReminderConfirmIcon"></i><span id="yudReminderConfirmLabel">Kirim Reminder</span></button>
+          </div>
         </div>
-        <p class="text-xs text-slate-500" id="yudRangeText">Menampilkan 1-5 dari 10 mahasiswa</p>
-        <div class="flex items-center gap-1" id="yudPagination"></div>
       </div>
     </div>
 
@@ -611,6 +558,8 @@
 
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
+<script src="../../assets/js/toast.js"></script>
+<script src="../../assets/js/table.js"></script>
 <script>
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sidebarOverlay');
@@ -657,167 +606,272 @@
     });
   })();
 
-  // Row action kebab menus — same fix as the design system's "Table —
-  // Katalog Produk" pattern: opens below the trigger, but flips above it
-  // when there isn't room within the nearest ancestor that actually clips
-  // this element's paint (walks computed overflow rather than guessing a
-  // class name, since `.overflow-x-auto` on the table wrapper clips
-  // vertically too, per the CSS overflow-x/-y interaction).
-  function findClipAncestor(el) {
-    let node = el.parentElement;
-    while (node && node !== document.body) {
-      const cs = getComputedStyle(node);
-      if (cs.overflowY !== 'visible' || cs.overflowX !== 'visible') return node;
-      node = node.parentElement;
-    }
-    return null;
-  }
-  function openDropdownMenu(trigger, menu) {
-    menu.classList.remove('hidden');
-    const r = trigger.getBoundingClientRect();
-    const mRect = menu.getBoundingClientRect();
-    const clipAncestor = findClipAncestor(trigger);
-    const boundaryBottom = clipAncestor
-      ? Math.min(window.innerHeight, clipAncestor.getBoundingClientRect().bottom)
-      : window.innerHeight;
-    const fitsBelow = boundaryBottom - r.bottom >= mRect.height + 8;
-    menu.classList.toggle('dropdown-menu-up', !fitsBelow);
-  }
+  // Students table - Design System table.js handles search, sort, paging, numbering
+  // ("No") and the empty state. This page only adds the status dropdown as a custom
+  // row predicate.
   (function () {
-    document.querySelectorAll('.dt-menu-btn').forEach((btn) => {
-      const menu = btn.nextElementSibling;
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const willOpen = menu.classList.contains('hidden');
-        document.querySelectorAll('.dropdown-menu').forEach((m) => { m.classList.add('hidden'); m.classList.remove('dropdown-menu-up'); });
-        if (willOpen) openDropdownMenu(btn, menu);
-      });
-    });
-    document.addEventListener('click', () => {
-      document.querySelectorAll('.dropdown-menu').forEach((m) => { m.classList.add('hidden'); m.classList.remove('dropdown-menu-up'); });
-    });
-  })();
+    const root = document.getElementById('yudTableRoot');
+    const filterStatus = document.getElementById('filterStatus');
+    if (!root || !filterStatus || !window.KKTable) return;
+    const table = window.KKTable.get(root) || (window.KKTable.init(root), window.KKTable.get(root));
+    if (!table) return;
 
-  // Status tabs + live search filter + pagination, combined: pagination
-  // always operates on the currently filtered set, and resets to page 1
-  // whenever the filter (tab or search) changes.
-  (function () {
-    const table = document.getElementById('yudTable');
-    const tabs = document.querySelectorAll('#yudStatusTabs .tab');
-    const search = document.getElementById('yudSearch');
-    const pageSizeSelect = document.getElementById('yudPageSize');
-    const tbody = document.getElementById('yudBody');
-    const rows = Array.from(document.querySelectorAll('#yudBody tr'));
-    const rangeText = document.getElementById('yudRangeText');
-    const paginationEl = document.getElementById('yudPagination');
-
-    // Read once from `data-item-label` on the <table> so a new table just
-    // sets one attribute instead of hand-editing "mahasiswa" strings in JS
-    // for its empty/range-state messages.
-    const itemLabel = table?.dataset.itemLabel || 'item';
-
-    let activeStatus = 'all';
-    let pageSize = Number(pageSizeSelect.value);
-    let currentPage = 1;
-
-    // "Terkirim" isn't its own row status — every row is either belum-dikirim,
+    // "Terkirim" isn't its own row status - every row is either belum-dikirim,
     // menunggu, or sudah. A row can only be "menunggu"/"sudah" once it has
     // actually been sent, so "Terkirim" is the parent of both: filtering by
     // it should show everyone who's been sent the questionnaire, regardless
     // of whether they've filled it in yet.
     const STATUS_GROUPS = { terkirim: ['menunggu', 'sudah'] };
 
-    function rowMatchesStatus(row) {
-      if (activeStatus === 'all') return true;
+    table.addFilter((row) => {
+      const active = filterStatus.dataset.value;
+      if (active === 'all') return true;
       const rowStatus = row.getAttribute('data-status');
-      const group = STATUS_GROUPS[activeStatus];
-      return group ? group.includes(rowStatus) : rowStatus === activeStatus;
-    }
-
-    function getFilteredRows() {
-      const query = search.value.trim().toLowerCase();
-      return rows.filter((row) => {
-        const matchesSearch = !query || row.textContent.toLowerCase().includes(query);
-        return rowMatchesStatus(row) && matchesSearch;
-      });
-    }
-
-    function renderPaginationButtons(totalPages) {
-      paginationEl.innerHTML = '';
-
-      function makeButton(label, page, opts = {}) {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.textContent = label;
-        b.disabled = !!opts.disabled;
-        b.className = 'pagination-btn' + (opts.active ? ' pagination-btn-active' : '');
-        b.addEventListener('click', () => {
-          currentPage = page;
-          render();
-        });
-        return b;
-      }
-
-      paginationEl.appendChild(makeButton('‹', currentPage - 1, { disabled: currentPage <= 1 }));
-      for (let i = 1; i <= totalPages; i++) {
-        paginationEl.appendChild(makeButton(String(i), i, { active: i === currentPage }));
-      }
-      paginationEl.appendChild(makeButton('›', currentPage + 1, { disabled: currentPage >= totalPages }));
-    }
-
-    function render() {
-      const filtered = getFilteredRows();
-      const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
-      currentPage = Math.min(currentPage, totalPages);
-
-      rows.forEach((row) => row.classList.add('hidden'));
-
-      const start = (currentPage - 1) * pageSize;
-      const pageRows = filtered.slice(start, start + pageSize);
-      pageRows.forEach((row, i) => {
-        row.classList.remove('hidden');
-        const numEl = row.querySelector('[data-num]');
-        if (numEl) numEl.textContent = String(start + i + 1);
-      });
-
-      tbody.querySelectorAll('.yud-empty-row').forEach((r) => r.remove());
-      if (filtered.length === 0) {
-        const tr = document.createElement('tr');
-        tr.className = 'yud-empty-row';
-        tr.innerHTML = `<td colspan="6" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada ${itemLabel} yang cocok.</td>`;
-        tbody.appendChild(tr);
-      }
-      renderPaginationButtons(totalPages);
-
-      if (filtered.length === 0) {
-        rangeText.textContent = `Menampilkan 0-0 dari 0 ${itemLabel}`;
-      } else {
-        rangeText.textContent = `Menampilkan ${start + 1}-${Math.min(start + pageRows.length, filtered.length)} dari ${filtered.length} ${itemLabel}`;
-      }
-    }
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        tabs.forEach((t) => t.classList.remove('tab-active'));
-        tab.classList.add('tab-active');
-        activeStatus = tab.getAttribute('data-status');
-        currentPage = 1;
-        render();
-      });
-    });
-    search.addEventListener('input', () => {
-      currentPage = 1;
-      render();
-    });
-    pageSizeSelect.addEventListener('change', () => {
-      pageSize = Number(pageSizeSelect.value);
-      currentPage = 1;
-      render();
+      const group = STATUS_GROUPS[active];
+      return group ? group.includes(rowStatus) : rowStatus === active;
     });
 
-    render();
+    filterStatus.querySelectorAll('[data-combo-item]').forEach((item) => {
+      item.addEventListener('click', () => {
+        filterStatus.dataset.value = item.dataset.value;
+        table.refresh();
+      });
+    });
   })();
 
+  // Send / remind: the header button, the bulk bar and the per-row buttons share one
+  // confirm modal. "Belum Dikirim" -> the questionnaire is sent (the row becomes
+  // "Menunggu Mengisi"); "Menunggu Mengisi" -> a reminder is sent; "Sudah Mengisi" is never a target.
+  (function () {
+    const root = document.getElementById('yudTableRoot');
+    const bulkBtn = document.getElementById('yudBulkReminder');
+    const sendAllBtn = document.getElementById('yudSendAll');
+    const modal = document.getElementById('yudReminderModal');
+    const titleEl = document.getElementById('yudReminderTitle');
+    const descEl = document.getElementById('yudReminderDesc');
+    const textEl = document.getElementById('yudReminderText');
+    const listEl = document.getElementById('yudReminderList');
+    const confirmBtn = document.getElementById('yudReminderConfirm');
+    const confirmLabel = document.getElementById('yudReminderConfirmLabel');
+    const confirmIcon = document.getElementById('yudReminderConfirmIcon');
+    if (!root || !modal) return;
+
+    const WAITING_BADGE = '<span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span>';
+    const REMIND_BTN = '<button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>';
+
+    let pending = []; // rows the open confirm modal will send to
+
+    const rows = () => Array.from(root.querySelectorAll('tbody tr'));
+    const selectedRows = () => rows().filter((r) => r.querySelector('[data-table-select]:checked'));
+    const outstandingRows = () => rows().filter((r) => r.dataset.status !== 'sudah');
+    const nameOf = (r) => r.querySelector('td .font-medium').textContent.trim();
+    const isNew = (r) => r.dataset.status === 'belum-dikirim'; // not sent yet -> questionnaire, otherwise reminder
+    const closeModal = () => modal.classList.remove('is-open');
+
+    function openConfirm(list) {
+      if (!list.length) return;
+      pending = list;
+      const q = list.filter(isNew).length, r = list.length - q;
+      const bold = (n) => '<b class="text-slate-900">' + n + '</b>';
+      if (!q) {
+        titleEl.textContent = 'Kirim Reminder';
+        descEl.textContent = 'Pengingat pengisian Kuesioner Lulusan dikirim ke semua yang dipilih.';
+        textEl.innerHTML = 'Kirim reminder ke <b id="yudReminderCount" class="text-slate-900">' + r + '</b> mahasiswa berstatus <span class="font-medium text-slate-800">Menunggu Mengisi</span>?';
+        confirmLabel.textContent = 'Kirim Reminder';
+        confirmIcon.className = 'kk kk-paper-plane-tilt h-4 w-4';
+      } else if (!r) {
+        titleEl.textContent = 'Kirim Kuesioner';
+        descEl.textContent = 'Kuesioner Lulusan dikirim ke lulusan yang belum pernah dikirimi.';
+        textEl.innerHTML = 'Kirim kuesioner ke <b id="yudReminderCount" class="text-slate-900">' + q + '</b> mahasiswa berstatus <span class="font-medium text-slate-800">Belum Dikirim</span>?';
+        confirmLabel.textContent = 'Kirim Kuesioner';
+        confirmIcon.className = 'kk kk-envelope-simple h-4 w-4';
+      } else {
+        titleEl.textContent = 'Kirim Kuesioner';
+        descEl.textContent = 'Kirim manual ke semua lulusan yang belum mengisi kuesioner.';
+        textEl.innerHTML = 'Kirim ke <b id="yudReminderCount" class="text-slate-900">' + list.length + '</b> mahasiswa yang belum mengisi? ' + bold(q) + ' yang belum dikirim menerima kuesioner, ' + bold(r) + ' yang menunggu mengisi menerima reminder.';
+        confirmLabel.textContent = 'Kirim Kuesioner';
+        confirmIcon.className = 'kk kk-envelope-simple h-4 w-4';
+      }
+      listEl.replaceChildren(...list.map((row) => {
+        const li = document.createElement('li');
+        li.textContent = nameOf(row);
+        const sub = document.createElement('span');
+        sub.className = 'ml-1 text-slate-400';
+        sub.textContent = row.querySelector('td p')?.textContent.trim() || '';
+        li.appendChild(sub);
+        if (q && r) {
+          const tag = document.createElement('span');
+          tag.className = (isNew(row) ? 'badge-info' : 'badge-warning') + ' ml-2';
+          tag.textContent = isNew(row) ? 'Kuesioner' : 'Reminder';
+          li.appendChild(tag);
+        }
+        return li;
+      }));
+      modal.classList.add('is-open');
+      confirmBtn.focus();
+    }
+
+    // The questionnaire went out: the row is now waiting for an answer (can be reminded / selected).
+    function markSent(row) {
+      row.dataset.status = 'menunggu';
+      row.querySelector('td:nth-child(6)').innerHTML = WAITING_BADGE;
+      const cell = row.querySelector('td:last-child > div');
+      cell.innerHTML = REMIND_BTN;
+      cell.firstElementChild.setAttribute('aria-label', 'Kirim reminder ke ' + nameOf(row));
+      const box = row.querySelector('[data-table-select]');
+      if (box) { box.disabled = false; box.removeAttribute('title'); }
+    }
+
+    bulkBtn?.addEventListener('click', () => openConfirm(selectedRows()));
+    sendAllBtn?.addEventListener('click', () => openConfirm(outstandingRows()));
+    root.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-reminder-row],[data-send-row]');
+      if (btn) openConfirm([btn.closest('tr')]);
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target.closest('[data-reminder-close]')) closeModal();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    confirmBtn.addEventListener('click', () => {
+      const list = pending;
+      pending = [];
+      closeModal();
+      const q = list.filter(isNew).length, r = list.length - q;
+      const one = list.length === 1 ? nameOf(list[0]) : null;
+      list.forEach((row) => {
+        const box = row.querySelector('[data-table-select]'); if (box) box.checked = false;
+        if (isNew(row)) markSent(row);
+      });
+      // Re-run filters (a status filter may now hide/show rows) and refresh the bulk bar.
+      const table = window.KKTable && window.KKTable.get(root);
+      if (table) table.render();
+      let message;
+      if (q && r) message = 'Kuesioner terkirim ke ' + q + ' mahasiswa dan reminder ke ' + r + ' mahasiswa.';
+      else if (q) message = 'Kuesioner terkirim ke ' + (one || q + ' mahasiswa') + '.';
+      else message = 'Reminder terkirim ke ' + (one || r + ' mahasiswa') + '.';
+      if (window.KKToast) window.KKToast.show({ type: 'success', message, duration: 4500 });
+    });
+  })();
+
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
 
   // Topbar profile dropdown menu.
   (function () {
