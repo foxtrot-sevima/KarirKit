@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Email Tracer Study | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Email undangan Tracer Study yang diterima alumni atau atasan, langkah kedua simulasi tracer di panel admin KarirLink." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/kuesioner-mail.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Email Tracer Study | KarirLink" />
+<meta property="og:description" content="Email undangan Tracer Study yang diterima alumni atau atasan, langkah kedua simulasi tracer di panel admin KarirLink." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/kuesioner-mail.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Email Tracer Study | KarirLink" />
+<meta name="twitter:description" content="Email undangan Tracer Study yang diterima alumni atau atasan, langkah kedua simulasi tracer di panel admin KarirLink." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= EMAIL =============================
+     Halaman ini hanya berisi emailnya (tanpa topbar, tab, indikator progres, atau catatan), sama seperti yang
+     dilihat penerima. Dibuka dari popup "Simulasi Tracer" di kuesioner.html (?tracer=pra-lulus|pasca-1th|
+     pasca-4th|pengguna-lulusan); tombol di dalam email membuka kuesioner-simulasi.html (tampilan responden).
+     Opsional untuk menguji Pasca-Lulus 1 Tahun: tambahkan ?exit=belum|bekerja|wiraswasta (kondisi jawaban
+     Pra-Lulus alumni), diteruskan ke kuesioner lewat tombol di email. -->
+<main class="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-10">
+  <article class="card overflow-hidden" aria-label="Email undangan">
+
+    <!-- Kepala email: subjek, pengirim, penerima, tanggal -->
+    <div class="p-5 sm:p-6">
+      <h1 id="emailSubject" class="text-lg font-bold leading-snug text-slate-900 sm:text-xl"></h1>
+      <div class="mt-4 flex items-start gap-3">
+        <span class="avatar avatar-md avatar-square shrink-0 bg-white ring-1 ring-slate-200"><img src="../../assets/logo/karirlink-mark.svg" alt="" class="object-contain p-1" /></span>
+        <div class="min-w-0 flex-1 text-sm">
+          <p class="truncate"><span id="emailFromName" class="font-semibold text-slate-800"></span> <span id="emailFromAddr" class="text-slate-400"></span></p>
+          <p class="truncate text-xs text-slate-500">Kepada: <span id="emailToName" class="text-slate-700"></span> <span id="emailToAddr" class="text-slate-400"></span></p>
+          <p id="emailDateSm" class="text-xs text-slate-400 sm:hidden"></p>
+        </div>
+        <span id="emailDate" class="hidden shrink-0 text-xs text-slate-400 sm:block"></span>
+      </div>
+    </div>
+
+    <!-- Isi email -->
+    <div class="border-t border-slate-100 bg-slate-50/70 p-3 sm:p-6">
+      <div class="mx-auto max-w-[34rem] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        <div class="flex items-center justify-between gap-3 border-b border-slate-100 px-5 py-4">
+          <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-6 w-auto shrink-0" />
+          <span id="emailBrandCampus" class="min-w-0 text-right text-xs font-medium leading-snug text-slate-500"></span>
+        </div>
+        <div class="space-y-4 px-5 py-6 text-sm leading-relaxed text-slate-600">
+          <p id="emailGreeting" class="font-semibold text-slate-800"></p>
+          <div id="emailParas" class="space-y-3"></div>
+          <ul id="emailFacts" class="grid gap-2 rounded-xl bg-slate-50 p-3.5 sm:grid-cols-3"></ul>
+          <div class="pt-1 text-center">
+            <a id="emailCta" href="kuesioner-simulasi.html" class="btn-primary btn-lg w-full justify-center sm:w-auto"></a>
+            <p class="mt-3 break-words text-xs text-slate-400">Atau salin tautan ini ke peramban Anda:<br /><span id="emailLink" class="font-medium text-primary-600"></span></p>
+          </div>
+          <p id="emailNote" class="text-xs text-slate-500"></p>
+          <p>Hormat kami,<br /><span id="emailSignoff" class="font-medium text-slate-700"></span></p>
+        </div>
+        <div class="border-t border-slate-100 bg-slate-50 px-5 py-3 text-center text-[11px] leading-relaxed text-slate-400">
+          Email ini dikirim otomatis oleh KarirLink atas nama <span id="emailFooterCampus"></span>. Mohon tidak membalas email ini.
+        </div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<script>
+  // ---- Isi email per tracer. Empat tracer: tiga gelombang alumni + Survei Pengguna Lulusan (diisi atasan).
+  // Nama pengirim, tanggal, durasi, dan batas waktu hanyalah contoh. Teks dipasang lewat textContent. ----
+  const CAMPUS = 'Universitas Sentra Vidya Utama';
+  const MAIL_FROM = { name: 'Karir ' + CAMPUS, address: '<noreply@karirlink.id>' };
+  const MAIL_ALUMNI = { name: 'Ahmad Dimas', address: '<ahmad.dimas@gmail.com>' };
+  const SIGNOFF = 'Pusat Karir ' + CAMPUS;
+
+  const TRACERS = {
+    'pra-lulus': {
+      label: 'Pra-Lulus',
+      email: {
+        subject: 'Tracer Study: lengkapi data Anda sebelum wisuda',
+        from: MAIL_FROM,
+        to: MAIL_ALUMNI,
+        date: 'Rabu, 12 Agustus 2026 · 10.00',
+        greeting: 'Halo Ahmad,',
+        paras: [
+          `Selamat atas yudisium Anda! Sebelum meninggalkan kampus, bantu kami memperbarui kontak Anda dan mengetahui rencana Anda setelah lulus lewat Tracer Study ${CAMPUS}.`,
+          'Jawaban Anda membantu kampus meningkatkan kualitas pendidikan dan layanan karir bagi alumni.',
+        ],
+        facts: [['clock', 'Sekitar 3 menit'], ['clipboard-text', '3 langkah singkat'], ['calendar-check', 'Sampai 26 Agu 2026']],
+        cta: 'Isi Tracer Study',
+        link: 'karirlink.id/tracer-study',
+        note: 'Tautan ini untuk Anda pribadi. Jika sudah mengisi, abaikan email ini.',
+      },
+    },
+    'pasca-1th': {
+      label: 'Pasca-Lulus 1 Tahun',
+      email: {
+        subject: 'Satu tahun setelah lulus: ceritakan perjalanan karier Anda',
+        from: MAIL_FROM,
+        to: MAIL_ALUMNI,
+        date: 'Kamis, 12 Agustus 2027 · 09.00',
+        greeting: 'Halo Ahmad,',
+        paras: [
+          `Sudah setahun sejak Anda lulus dari ${CAMPUS}. Kami ingin tahu kabar Anda: apakah sudah bekerja, berwirausaha, atau melanjutkan studi, dan seberapa siap bekal kuliah Anda menghadapi dunia kerja.`,
+          'Isian ini juga menjadi bagian dari pelaporan Tracer Study ke Dikti, sehingga jawaban Anda sangat berarti bagi program studi Anda.',
+        ],
+        facts: [['clock', 'Sekitar 8 menit'], ['clipboard-text', '4 langkah'], ['calendar-check', 'Sampai 26 Agu 2027']],
+        cta: 'Isi Tracer Study',
+        link: 'karirlink.id/tracer-study',
+        note: 'Tautan ini untuk Anda pribadi. Jika sudah mengisi, abaikan email ini.',
+      },
+    },
+    'pasca-4th': {
+      label: 'Pasca-Lulus 4 Tahun',
+      email: {
+        subject: 'Empat tahun setelah lulus: bagikan perkembangan karier Anda',
+        from: MAIL_FROM,
+        to: MAIL_ALUMNI,
+        date: 'Senin, 12 Agustus 2030 · 09.00',
+        greeting: 'Halo Ahmad,',
+        paras: [
+          `Empat tahun telah berlalu sejak Anda lulus dari ${CAMPUS}. Kami ingin melihat perkembangan karier Anda dan mendengar masukan Anda untuk pengembangan program studi serta layanan karir bagi adik-adik angkatan.`,
+          'Mengisinya hanya butuh beberapa menit, dan jawaban Anda sangat berarti.',
+        ],
+        facts: [['clock', 'Sekitar 8 menit'], ['clipboard-text', '4 langkah'], ['calendar-check', 'Sampai 26 Agu 2030']],
+        cta: 'Isi Tracer Study',
+        link: 'karirlink.id/tracer-study',
+        note: 'Tautan ini untuk Anda pribadi. Jika sudah mengisi, abaikan email ini.',
+      },
+    },
+    // Survei Pengguna Lulusan: dikirim ke atasan setelah alumni membuat link di state "Data Atasan"
+    // (G1 cabang Bekerja); tautan contohnya sama dengan yang ditampilkan state itu.
+    'pengguna-lulusan': {
+      label: 'Pengguna Lulusan',
+      email: {
+        subject: 'Mohon penilaian kinerja alumni kami: Ahmad Dimas',
+        from: MAIL_FROM,
+        to: { name: 'Rina Wulandari', address: '<rina.wulandari@sinergidigital.co.id>' },
+        date: 'Kamis, 12 Agustus 2027 · 14.20',
+        greeting: 'Yth. Ibu Rina Wulandari,',
+        paras: [
+          `Ahmad Dimas (S1 Teknik Informatika, lulus 2026), alumni ${CAMPUS} yang saat ini bekerja di PT Sinergi Digital Nusantara, mencantumkan Ibu sebagai atasannya.`,
+          'Kami mohon kesediaan Ibu menilai kinerja alumni tersebut melalui Survei Pengguna Lulusan. Penilaian Ibu dipakai kampus untuk mengevaluasi mutu lulusan dan memenuhi kebutuhan akreditasi.',
+        ],
+        facts: [['clock', 'Sekitar 5 menit'], ['clipboard-text', '12 aspek kinerja'], ['star', 'Skala 4 tingkat']],
+        cta: 'Isi Survei Pengguna Lulusan',
+        link: 'karirlink.id/survei/pgl-8f2a91',
+        note: 'Tautan ini khusus untuk Ibu dan hanya berlaku untuk penilaian Ahmad Dimas.',
+      },
+    },
+  };
+
+  const byId = (id) => document.getElementById(id);
+  const params = new URLSearchParams(location.search);
+  const current = TRACERS[params.get('tracer')] ? params.get('tracer') : 'pra-lulus';
+  const exit = ['belum', 'bekerja', 'wiraswasta'].includes(params.get('exit')) ? params.get('exit') : null;
+
+  // Tombol di email membuka kuesioner (tampilan responden). ?exit= (jika ada) hanya diteruskan untuk Pasca-Lulus 1 Tahun.
+  const ctaQuery = new URLSearchParams({ tracer: current });
+  if (current === 'pasca-1th' && exit) ctaQuery.set('exit', exit);
+
+  const t = TRACERS[current];
+  const m = t.email;
+  byId('emailSubject').textContent = m.subject;
+  byId('emailFromName').textContent = m.from.name;
+  byId('emailFromAddr').textContent = m.from.address;
+  byId('emailToName').textContent = m.to.name;
+  byId('emailToAddr').textContent = m.to.address;
+  byId('emailDate').textContent = m.date;
+  byId('emailDateSm').textContent = m.date;
+  byId('emailBrandCampus').textContent = CAMPUS;
+  byId('emailFooterCampus').textContent = CAMPUS;
+  byId('emailGreeting').textContent = m.greeting;
+  byId('emailParas').innerHTML = m.paras.map((p) => `<p>${p}</p>`).join('');
+  byId('emailFacts').innerHTML = m.facts.map(([icon, text]) => `<li class="flex items-center gap-2 text-xs text-slate-600"><i class="kk kk-${icon} h-4 w-4 shrink-0 text-primary-600"></i><span>${text}</span></li>`).join('');
+  byId('emailCta').textContent = m.cta;
+  byId('emailCta').href = `kuesioner-simulasi.html?${ctaQuery}`;
+  byId('emailLink').textContent = m.link;
+  byId('emailNote').textContent = m.note;
+  byId('emailSignoff').textContent = SIGNOFF;
+  document.title = `${m.subject} | KarirLink`;
+</script>
+</body>
+</html>

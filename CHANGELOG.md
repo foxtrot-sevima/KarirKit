@@ -74,9 +74,41 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `data-campus-logo` pada `.sidebar-header` (path relatif terhadap halaman, URL, atau data-URL; contoh `assets/logo/ub.webp`), dan dipasang di kedua avatar;
   kosong atau gagal dimuat = avatar menampilkan dua inisial ("US"). Logo ditampilkan utuh di atas latar putih sehingga logo persegi, lebar, maupun transparan
   tidak terpotong. Diverifikasi di 1440 px, drawer mobile 390 dan 320 px, dan mode lipat, tanpa scroll horizontal maupun galat.
+- **Alur Simulasi Tracer dipecah jadi tiga halaman: popup pemilih, email undangan, lalu kuesioner tampilan responden.** Tombol "Simulasi Tracer" di
+  `templates/karirlink/kuesioner.html` kini membuka **popup pemilih dua kolom bergaya QR Tracer**. Panggung merek bergradien di kiri menampilkan
+  **pratinjau email yang berganti mengikuti pilihan** (subjek, penerima, salam, dan tombol; memudar sebentar saat berganti, dan tanpa animasi bila pengguna
+  memilih `prefers-reduced-motion`) beserta alur tiga langkah. Di kanan ada empat kartu radio dengan ikon, deskripsi, estimasi menit, jumlah langkah, dan
+  penanda terpilih (**Pra-Lulus** terpilih awal, **Pasca-Lulus 1 Tahun**, **Pasca-Lulus 4 Tahun** diisi alumni; **Pengguna Lulusan** diisi atasan dan
+  beraksen oranye) dan tombol **Lihat Email Undangan**. Klik dua kali pada kartu langsung lanjut, dan panah keyboard berpindah pilihan. Memilih
+  Pasca-Lulus 1 Tahun membuka pilihan **kondisi alumni sebelum membuka kuesioner** (belum bekerja, sudah bekerja, berwirausaha) langsung di dalam popup
+  dengan transisi tinggi; pilihan itu hanya ikut terkirim untuk tracer tersebut. Di layar kecil panggung meringkas jadi banner dan isi popup menggulir
+  di dalam panel. Formulir GET membuka halaman baru **`kuesioner-mail.html?tracer=...`** (ditambah `&exit=...` untuk Pasca-Lulus 1 Tahun) yang hanya berisi
+  emailnya, tanpa topbar, tab, indikator progres, maupun catatan: kepala email (subjek, pengirim, penerima, tanggal) dan isi email per tracer (salam,
+  ajakan, butir info durasi/langkah/batas waktu, tombol, dan tautan; untuk Pengguna Lulusan penerimanya atasan dan tautannya sama dengan contoh di state
+  Data Atasan). Kondisi alumni dibawa sebagai `?exit=belum|bekerja|wiraswasta` (boleh juga ditulis langsung di URL email) dan diteruskan ke kuesioner lewat
+  tombol di email, sehingga pertanyaan verifikasi dan auto-fill status/masa tunggu tetap bisa diuji. Tombol di dalam email membuka
+  **`kuesioner-simulasi.html?tracer=...`**, yang sekarang **murni tampilan responden**: tanpa topbar, tab tracer, stepper, kartu admin, maupun catatan
+  simulasi, sehingga admin mencoba kuesioner seperti alumni tanpa masuk dari sisi alumni (parameter lama `?gelombang=` tetap terbaca). **Simulasi Survei
+  Pengguna Lulusan** (baru) mengikuti `docs/template-question/template-pengguna-lulusan.json` apa adanya dalam empat langkah: alumni yang dinilai
+  (`gu_nama_alumni`, `gu_prodi_alumni`, `gu_tahun_lulus` terkunci), data penilai (nama, perusahaan, alamat, jabatan wajib), matriks **12 aspek kinerja**
+  berskala Kurang/Cukup/Baik/Sangat Baik (semua wajib, penghitung "Terisi N dari 12", baris yang belum dinilai ditandai merah dan halaman menggulir ke
+  sana), lalu harapan dan saran (opsional). Tombol "Lewati" di state Data Atasan tidak lagi menyebut kata "simulasi". Panduan di halaman Kuesioner
+  diperbarui. Diverifikasi di browser (103 pemeriksaan: popup di 1440, 1280x720, 768, 390, dan 320 px, pratinjau dan kondisi alumni, tiap tracer dari email
+  sampai layar sukses, validasi, parameter `exit`, tautan lama) dan tanpa scroll horizontal di 360 dan 320 px.
 
 ### Changed
 
+- **Tampilan `kuesioner-simulasi.html` dirombak agar lebih nyaman untuk pengisian tracer study** (isi dan urutan pertanyaan tidak berubah; tanpa indikator
+  progres, tanpa nomor soal, dan tanpa pasangan kiri-kanan). Halaman diperlebar ke 64 rem (`max-w-5xl`) dan langkah 1 diawali **hero** bermerek (kampus, judul
+  tracer, pengantar, estimasi waktu, dan petunjuk "bertanda * wajib diisi") yang hanya tampil di langkah 1. Judul langkah dan teks soal lebih tegas, dan **semua
+  soal serta isian tersusun atas-bawah dalam satu kolom** (daftar pilihan, isian teks, dropdown, dan skala "saat lulus" lalu "saat ini" pada matriks kompetensi);
+  satu-satunya yang tetap berjajar adalah deretan tombol skala angka/kata pada satu soal. **Bilah aksi lengket** di dasar kartu (Kembali, Lanjut/Kirim) tetap
+  terjangkau di langkah yang panjang; di layar sempit label tombol kirim menjadi "Kirim". Langkah 1 menampilkan identitas sebagai **ringkasan terkunci** (avatar,
+  nama, NIM, prodi, tanggal yudisium; Survei Pengguna Lulusan serupa untuk alumni yang dinilai), bukan kolom isian nonaktif. Layar **Data Atasan** berisi lima
+  isian berlabel, dan layar **sukses** bergradien menjelaskan langkah berikutnya (Pra-Lulus dan 1 Tahun menyebut undangan tracer berikutnya, 4 Tahun menyebut
+  ini yang terakhir). Perpindahan langkah masuk dengan animasi halus (dimatikan untuk `prefers-reduced-motion`). Email contoh di isian kontak disamakan dengan
+  alamat penerima di email undangan. Diverifikasi di browser (164 pemeriksaan, termasuk pemindaian otomatis bahwa tidak ada soal atau isian yang berdampingan)
+  dan tanpa scroll horizontal di 390, 360, dan 320 px.
 - **Total pertanyaan dihapus dari tampilan ringkasan kuesioner.** Tiga kartu template di `kuesioner.html` (Lulusan, Pengguna Lulusan, Kosong) tidak lagi
   menampilkan "N pertanyaan", dan header tiap gelombang di `kuesioner-builder.html` (Pra-Lulus, Pasca-Lulus 1 Tahun, Pasca-Lulus 4 Tahun) tidak lagi
   menampilkan badge total pertanyaan; badge "Estimasi ... menit" tetap ada. Hitungan per bagian dan per cabang status di builder (mis. "5 pertanyaan",
