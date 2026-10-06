@@ -39,6 +39,23 @@ npm run storybook
 
 Hentikan server dengan `Ctrl+C` di terminal.
 
+### Error `npm.ps1 cannot be loaded because running scripts is disabled`
+
+Muncul di **PowerShell Windows** karena kebijakan eksekusi (*execution policy*)
+bawaan memblokir `npm.ps1`. Ini bukan masalah di repo. Pilih salah satu:
+
+- Pakai `npm.cmd`, tanpa mengubah pengaturan apa pun:
+  ```powershell
+  npm.cmd run storybook
+  ```
+- Atau jalankan dari **Command Prompt** / **Git Bash**, di sana `npm run storybook` langsung jalan.
+- Atau izinkan skrip lokal untuk akun Anda sekali saja (permanen untuk user ini):
+  ```powershell
+  Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+  ```
+
+Pastikan juga nama skripnya benar: `storybook` (bukan `stoybook`).
+
 ## Build versi statis (opsional)
 
 Untuk menghasilkan build statis Storybook (mis. untuk di-hosting atau
@@ -99,6 +116,6 @@ ganti `title` dan markup di dalam `render()` memakai class yang sudah ada di
 
 Story-story di Storybook benar-benar interaktif, bukan sekadar tampilan
 statis — behavior script yang sama dipakai `index.html`
-(`assets/js/table.js`, `modal.js`, `datepicker.js`, `ui.js`, `qr-code.js`,
+(`assets/js/table.js`, `modal.js`, `datepicker.js`, `pagination.js`, `ui.js`, `qr-code.js`,
 `wysiwyg.js`) ikut dimuat secara global di Storybook lewat
 `.storybook/preview-head.html`.

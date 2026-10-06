@@ -29,6 +29,62 @@
 <meta name="twitter:title" content="Kuesioner | KarirLink" />
 <meta name="twitter:description" content="Kelola template kuesioner Tracer Study - Lulusan, Pengguna Lulusan, dan Kosong - di panel admin KarirLink." />
 <meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<style>
+  /* QR Tracer Study: modal dua kolom (panggung merek + info), layar penuh untuk monitor, dan lembar cetak */
+  #qrPresentModal .qr-present-qr { width: min(16rem, 62vw); height: min(16rem, 62vw); flex: none; }
+  #qrPresentModal [data-qr-fs-only] { display: none; }
+  #qrPresentModal:fullscreen { background: #fff; padding: 0; }
+  #qrPresentModal:fullscreen .modal-panel { max-width: none; width: 100%; height: 100%; border: 0; border-radius: 0; box-shadow: none; }
+  #qrPresentModal:fullscreen .qr-grid { display: block; height: 100%; }
+  #qrPresentModal:fullscreen .qr-stage { height: 100%; min-height: 0; gap: 2.5vh; }
+  #qrPresentModal:fullscreen .qr-present-qr { width: min(60vh, 60vw); height: min(60vh, 60vw); padding: 1.5vh; }
+  #qrPresentModal:fullscreen .qr-stage-logo { height: 3.2vh; }
+  #qrPresentModal:fullscreen .qr-stage-campus { font-size: clamp(1.125rem, 3.2vh, 2.375rem); }
+  #qrPresentModal:fullscreen .qr-stage-title { font-size: clamp(1.375rem, 3.8vh, 2.75rem); }
+  #qrPresentModal:fullscreen .qr-stage-hint { font-size: clamp(1rem, 2.4vh, 1.5rem); }
+  #qrPresentModal:fullscreen .qr-stage-link { font-size: clamp(0.875rem, 2.2vh, 1.375rem); }
+  #qrPresentModal:fullscreen [data-qr-fs-hide] { display: none; }
+  #qrPresentModal:fullscreen [data-qr-fs-only] { display: block; }
+  #qrPrintSheet { display: none; }
+  @media print {
+    @page { size: A4 portrait; margin: 14mm; }
+    body.printing-qr { background: #fff; }
+    body.printing-qr > *:not(#qrPrintSheet) { display: none !important; }
+    body.printing-qr #qrPrintSheet { display: flex; }
+    #qrPrintSheet { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  /* Popup Simulasi Tracer: kartu pilihan tracer (radio), pilihan kondisi alumni, dan pratinjau email di panggung */
+  #simulasiPilihModal .tracer-option { display: flex; align-items: center; gap: 0.875rem; cursor: pointer; border-radius: 0.75rem; border: 1px solid var(--color-slate-200); background-color: #fff; padding: 0.75rem; transition: border-color 150ms, background-color 150ms, box-shadow 150ms, transform 150ms; }
+  #simulasiPilihModal .tracer-option:hover { border-color: var(--color-primary-300); transform: translateY(-1px); }
+  #simulasiPilihModal .tracer-option[data-tone="secondary"]:hover { border-color: var(--color-secondary-300); }
+  #simulasiPilihModal .tracer-option:has(input:checked) { border-color: var(--color-primary-500); background-color: color-mix(in srgb, var(--color-primary-50) 70%, #fff); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-500) 16%, transparent); }
+  #simulasiPilihModal .tracer-option[data-tone="secondary"]:has(input:checked) { border-color: var(--color-secondary-500); background-color: color-mix(in srgb, var(--color-secondary-50) 70%, #fff); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-secondary-500) 18%, transparent); }
+  #simulasiPilihModal .tracer-option:has(input:focus-visible) { outline: 2px solid var(--color-primary-400); outline-offset: 2px; }
+  #simulasiPilihModal .tracer-option[data-tone="secondary"]:has(input:focus-visible) { outline-color: var(--color-secondary-400); }
+  #simulasiPilihModal .tracer-icon { display: flex; height: 2.5rem; width: 2.5rem; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 0.75rem; background-color: var(--color-primary-50); color: var(--color-primary-600); transition: background-color 150ms, color 150ms; }
+  #simulasiPilihModal .tracer-option[data-tone="secondary"] .tracer-icon { background-color: var(--color-secondary-50); color: var(--color-secondary-600); }
+  #simulasiPilihModal .tracer-option:has(input:checked) .tracer-icon { background-color: var(--color-primary-600); color: #fff; }
+  #simulasiPilihModal .tracer-option[data-tone="secondary"]:has(input:checked) .tracer-icon { background-color: var(--color-secondary-600); }
+  #simulasiPilihModal .tracer-check { display: flex; height: 1.5rem; width: 1.5rem; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 9999px; border: 1.5px solid var(--color-slate-300); color: transparent; transition: background-color 150ms, border-color 150ms, color 150ms; }
+  #simulasiPilihModal .tracer-option:has(input:checked) .tracer-check { border-color: var(--color-primary-600); background-color: var(--color-primary-600); color: #fff; }
+  #simulasiPilihModal .tracer-option[data-tone="secondary"]:has(input:checked) .tracer-check { border-color: var(--color-secondary-600); background-color: var(--color-secondary-600); }
+
+  /* Kondisi alumni (hanya Pasca-Lulus 1 Tahun): membuka/menutup dengan transisi tinggi */
+  #simulasiPilihModal .tracer-extra { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 250ms ease, opacity 200ms ease; }
+  #simulasiPilihModal .tracer-extra[data-open="true"] { grid-template-rows: 1fr; opacity: 1; }
+  #simulasiPilihModal .exit-pill { display: flex; cursor: pointer; align-items: center; justify-content: center; border-radius: 0.625rem; border: 1px solid var(--color-slate-200); background-color: #fff; padding: 0.5rem 0.5rem; text-align: center; font-size: 0.75rem; font-weight: 500; color: var(--color-slate-600); transition: background-color 150ms, border-color 150ms, color 150ms; }
+  #simulasiPilihModal .exit-pill:hover { background-color: var(--color-slate-50); }
+  #simulasiPilihModal .exit-pill:has(input:checked) { border-color: var(--color-primary-500); background-color: var(--color-primary-600); color: #fff; }
+  #simulasiPilihModal .exit-pill:has(input:focus-visible) { outline: 2px solid var(--color-primary-400); outline-offset: 2px; }
+
+  /* Pratinjau email di panggung: memudar sebentar saat isinya diganti */
+  #simulasiPilihModal .sim-preview { transition: opacity 140ms ease, transform 140ms ease; }
+  #simulasiPilihModal .sim-preview.is-swapping { opacity: 0; transform: translateY(4px); }
+  @media (prefers-reduced-motion: reduce) {
+    #simulasiPilihModal .tracer-option, #simulasiPilihModal .tracer-extra, #simulasiPilihModal .sim-preview { transition: none; }
+    #simulasiPilihModal .tracer-option:hover { transform: none; }
+  }
+</style>
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
@@ -178,20 +234,24 @@
   <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
 
     <!-- Greeting -->
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
       <div>
         <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Kuesioner Tracer Study</h2>
         <p class="mt-1 text-sm text-slate-500">Kelola template pertanyaan untuk tiga sasaran responden. Hanya template <span class="font-medium text-slate-700">Kosong</span> yang mendukung banyak versi.</p>
       </div>
-      <div class="flex flex-col gap-2.5 sm:flex-row">
+      <div class="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap xl:shrink-0 xl:flex-nowrap">
         <button type="button" id="openPanduanBtn" class="btn-outline btn-md w-full sm:w-auto">
           <i class="kk kk-question h-4 w-4 shrink-0"></i>
           Lihat Panduan
         </button>
-        <a href="kuesioner-simulasi.html" class="btn-primary btn-md w-full sm:w-auto">
+        <button type="button" class="btn-outline btn-md w-full sm:w-auto" data-modal-toggle="qrPresentModal" title="QR code Tracer Study">
+          <i class="kk kk-qr-code h-4 w-4 shrink-0"></i>
+          QR Tracer
+        </button>
+        <button type="button" class="btn-primary btn-md w-full sm:w-auto" data-modal-toggle="simulasiPilihModal">
           <i class="kk kk-eye h-4 w-4 shrink-0"></i>
           Simulasi Tracer
-        </a>
+        </button>
       </div>
     </div>
 
@@ -204,10 +264,6 @@
         </span>
         <h3 class="mt-4 text-base font-semibold text-slate-800">Kuesioner Lulusan</h3>
         <p class="mt-1 text-sm text-slate-500">Ditujukan ke mahasiswa yang baru diyudisium — inti dari Tracer Study.</p>
-        <div class="mt-4 flex items-center gap-2 text-xs text-slate-400">
-          <i class="kk kk-clipboard-text h-3.5 w-3.5"></i>
-          <span>38 pertanyaan</span>
-        </div>
         <a href="kuesioner-builder.html?tpl=lulusan" class="btn-outline btn-md mt-5 w-full">Kelola</a>
       </div>
 
@@ -218,10 +274,6 @@
         </span>
         <h3 class="mt-4 text-base font-semibold text-slate-800">Kuesioner Pengguna Lulusan</h3>
         <p class="mt-1 text-sm text-slate-500">Diisi oleh atasan/perusahaan tempat lulusan bekerja untuk menilai kinerja.</p>
-        <div class="mt-4 flex items-center gap-2 text-xs text-slate-400">
-          <i class="kk kk-clipboard-text h-3.5 w-3.5"></i>
-          <span>22 pertanyaan</span>
-        </div>
         <a href="kuesioner-builder.html?tpl=pengguna-lulusan" class="btn-outline btn-md mt-5 w-full">Kelola</a>
       </div>
 
@@ -232,10 +284,6 @@
         </span>
         <h3 class="mt-4 text-base font-semibold text-slate-800">Kuesioner Kosong</h3>
         <p class="mt-1 text-sm text-slate-500">Template kosong untuk kebutuhan survei kustom di luar dua jenis di atas.</p>
-        <div class="mt-4 flex items-center gap-2 text-xs text-slate-400">
-          <i class="kk kk-clipboard-text h-3.5 w-3.5"></i>
-          <span>0 pertanyaan</span>
-        </div>
         <a href="kuesioner-builder.html?tpl=kosong" class="btn-outline btn-md mt-5 w-full">Buat</a>
       </div>
     </div>
@@ -248,94 +296,273 @@
       </div>
       <p class="mt-1 text-sm text-slate-500">Kuesioner yang pernah difinalisasi dan dikirim sebelum migrasi ke KarirLink. Data ini bersifat arsip dan hanya dapat dilihat sebagai preview.</p>
 
-      <div class="mt-4 space-y-3">
-        <!-- Tracer Study Lengkap & Pengguna Lulusan 2025 -->
-        <div class="card overflow-hidden">
-          <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-            <div class="flex min-w-0 items-center gap-3">
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                <i class="kk kk-file-text h-5 w-5"></i>
-              </span>
-              <div class="min-w-0">
-                <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2025</p>
-                <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 27 Agustus 2026, 16:25</p>
+      <!-- Single pagination: maksimal 5 arsip per halaman (assets/js/pagination.js); jumlah halaman dihitung dari kartu [data-arsip] -->
+      <div id="arsipPager" data-pagination data-pagination-total="1" data-pagination-page="1" data-pagination-size="5" data-pagination-label="arsip" class="mt-4">
+        <div class="space-y-3">
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2025</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 27 Agustus 2026, 16:25</p>
+                </div>
               </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2025">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
             </div>
-            <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2025">
-              <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-              Lihat Preview
-            </button>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
+              <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
+            </div>
           </div>
-          <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-            <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
-            <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Kemdikbud 2026</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 31 Juli 2026, 14:42</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Kemdikbud 2026">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap 2026</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 21 Juli 2026, 09:25</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Lengkap 2026">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Pengguna Lulusan 2026</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 21 Juli 2026, 09:24</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Pengguna Lulusan 2026">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Pengguna Lulusan 2025</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 14 Juni 2026, 10:12</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Pengguna Lulusan 2025">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap 2025</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 14 Juni 2026, 10:05</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Lengkap 2025">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Kemdikbud 2025</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 2 Mei 2026, 13:30</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Kemdikbud 2025">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2024</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 19 Desember 2025, 15:20</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2024">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
+              <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Kemdikbud 2024</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 5 September 2025, 09:45</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Kemdikbud 2024">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap 2024</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 28 Agustus 2025, 10:03</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Lengkap 2024">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Pengguna Lulusan 2024</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 28 Agustus 2025, 09:58</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Pengguna Lulusan 2024">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden" data-arsip>
+            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+              <div class="flex min-w-0 items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+                  <i class="kk kk-file-text h-5 w-5"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap 2023</p>
+                  <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 12 Mei 2025, 11:40</p>
+                </div>
+              </div>
+              <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Lengkap 2023">
+                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                Lihat Preview
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
+              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
+            </div>
           </div>
         </div>
 
-        <!-- Tracer Study Kemdikbud 2026 -->
-        <div class="card overflow-hidden">
-          <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-            <div class="flex min-w-0 items-center gap-3">
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                <i class="kk kk-file-text h-5 w-5"></i>
-              </span>
-              <div class="min-w-0">
-                <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Kemdikbud 2026</p>
-                <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 31 Juli 2026, 14:42</p>
-              </div>
+        <div class="mt-4 flex flex-col items-center justify-between gap-3 sm:flex-row">
+          <p class="pagination-info" data-pagination-text="info" aria-live="polite"></p>
+          <nav aria-label="Halaman arsip kuesioner">
+            <div class="pagination" role="group">
+              <button type="button" class="pagination-link" data-pagination-prev><i class="kk kk-arrow-left h-4 w-4"></i>Sebelumnya</button>
+              <span class="pagination-static" aria-live="polite"><b data-pagination-text="page" class="font-semibold text-fg"></b>&nbsp;dari&nbsp;<b data-pagination-text="total" class="font-semibold text-fg"></b></span>
+              <button type="button" class="pagination-link" data-pagination-next>Berikutnya<i class="kk kk-arrow-right h-4 w-4"></i></button>
             </div>
-            <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Kemdikbud 2026">
-              <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-              Lihat Preview
-            </button>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-            <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
-          </div>
-        </div>
-
-        <!-- Tracer Study Lengkap 2026 -->
-        <div class="card overflow-hidden">
-          <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-            <div class="flex min-w-0 items-center gap-3">
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                <i class="kk kk-file-text h-5 w-5"></i>
-              </span>
-              <div class="min-w-0">
-                <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap 2026</p>
-                <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 21 Juli 2026, 09:25</p>
-              </div>
-            </div>
-            <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Lengkap 2026">
-              <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-              Lihat Preview
-            </button>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-            <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
-          </div>
-        </div>
-
-        <!-- Tracer Study Pengguna Lulusan 2026 -->
-        <div class="card overflow-hidden">
-          <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-            <div class="flex min-w-0 items-center gap-3">
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                <i class="kk kk-file-text h-5 w-5"></i>
-              </span>
-              <div class="min-w-0">
-                <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Pengguna Lulusan 2026</p>
-                <p class="mt-0.5 text-xs text-slate-400">Dibuat pada 21 Juli 2026, 09:24</p>
-              </div>
-            </div>
-            <button type="button" class="btn-outline btn-sm js-open-tracer-lama shrink-0" data-lama-title="Kuesioner Tracer Study Pengguna Lulusan 2026">
-              <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-              Lihat Preview
-            </button>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-            <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
-          </div>
+          </nav>
         </div>
       </div>
     </div>
@@ -374,7 +601,7 @@
         </div>
         <div>
           <h4 class="text-sm font-semibold text-slate-800">4. Simulasi Pengisian Alumni</h4>
-          <p class="mt-1 text-sm text-slate-500">Gunakan tombol <span class="font-medium text-slate-700">Simulasi Tracer</span> untuk melihat tampilan pengisian kuesioner dari sudut pandang alumni, untuk ketiga gelombang di atas.</p>
+          <p class="mt-1 text-sm text-slate-500">Klik <span class="font-medium text-slate-700">Simulasi Tracer</span>, lalu pilih <span class="font-medium text-slate-700">Pra-Lulus</span>, <span class="font-medium text-slate-700">Pasca-Lulus 1 Tahun</span>, <span class="font-medium text-slate-700">Pasca-Lulus 4 Tahun</span>, atau <span class="font-medium text-slate-700">Pengguna Lulusan</span> dan tekan <span class="font-medium text-slate-700">Lihat Email Undangan</span>. Simulasi dimulai dari email undangan yang diterima responden; klik tombol di dalam email untuk membuka kuesionernya dari sudut pandang alumni (atau atasan, untuk Pengguna Lulusan).</p>
         </div>
       </div>
     </div>
@@ -438,8 +665,290 @@
   </div>
 </div>
 
+<!-- Simulasi Tracer: pilih tracer yang disimulasikan, lihat pratinjau emailnya di panggung, lalu "Lihat Email Undangan".
+     Formulir GET membuka kuesioner-mail.html?tracer=...; &exit=... hanya terkirim untuk Pasca-Lulus 1 Tahun (pilihan
+     kondisi alumni di-disable saat tracer lain terpilih). Gaya mengikuti modal QR Tracer: panggung merek di kiri,
+     pilihan di kanan. z-[60]: sidebar karirlink z-50 -->
+<div class="modal-backdrop z-[60]" id="simulasiPilihModal" aria-labelledby="simulasiPilihTitle">
+  <div class="modal-panel modal-2xl overflow-hidden">
+    <div class="grid min-h-0 flex-1 auto-rows-max overflow-y-auto md:auto-rows-auto md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:overflow-hidden">
+
+      <!-- Panggung merek: judul, pratinjau email yang berganti sesuai pilihan, dan alur -->
+      <div class="relative flex flex-col gap-6 overflow-hidden bg-brand-gradient px-6 py-6 text-white md:min-h-[34rem] md:justify-between md:px-7 md:py-8">
+        <span class="pointer-events-none absolute -left-16 -top-16 h-56 w-56 rounded-full bg-white/10" aria-hidden="true"></span>
+        <span class="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-white/10" aria-hidden="true"></span>
+        <button type="button" class="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 md:hidden" data-modal-hide="simulasiPilihModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+
+        <div class="relative">
+          <img src="../../assets/logo/karirlink-logo-white.svg" alt="KarirLink" class="h-5 w-auto" />
+          <p class="mt-3 font-display text-sm font-semibold text-white/80">Universitas Sentra Vidya Utama</p>
+          <h3 class="mt-1 font-display text-2xl font-bold text-white sm:text-3xl">Simulasi Tracer</h3>
+          <p class="mt-2 max-w-xs text-sm leading-relaxed text-white/80">Coba kuesioner persis seperti yang dilihat responden, tanpa perlu masuk sebagai alumni.</p>
+        </div>
+
+        <div class="relative hidden space-y-4 md:block">
+          <!-- Pratinjau email: isinya diganti skrip di bawah (data PREVIEW) saat pilihan berubah -->
+          <div>
+            <p class="mb-2 flex items-center gap-1.5 text-xs font-medium text-white/80"><i class="kk kk-envelope-simple h-3.5 w-3.5"></i>Pratinjau email undangan</p>
+            <div class="sim-preview rounded-xl bg-white p-3.5 text-left shadow-card-lg" data-sim-preview aria-live="polite">
+              <div class="flex items-center gap-2">
+                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-slate-50 ring-1 ring-slate-200"><img src="../../assets/logo/karirlink-mark.svg" alt="" class="h-4 w-4 object-contain" /></span>
+                <span class="min-w-0 truncate text-[11px] font-semibold text-slate-700">Karir Universitas Sentra Vidya Utama</span>
+              </div>
+              <p data-pv="subject" class="mt-2.5 line-clamp-2 text-[13px] font-bold leading-snug text-slate-900"></p>
+              <p class="mt-1 truncate text-[11px] text-slate-400">Kepada: <span data-pv="to" class="text-slate-600"></span></p>
+              <div class="my-2.5 border-t border-slate-100"></div>
+              <p data-pv="greeting" class="text-[11px] font-semibold text-slate-700"></p>
+              <div class="mt-1.5 space-y-1.5" aria-hidden="true">
+                <span class="block h-1.5 w-full rounded-full bg-slate-200/80"></span>
+                <span class="block h-1.5 w-4/5 rounded-full bg-slate-200/80"></span>
+                <span class="block h-1.5 w-3/5 rounded-full bg-slate-200/80"></span>
+              </div>
+              <span data-pv="cta" class="mt-3 inline-flex items-center rounded-lg bg-primary-600 px-3 py-1.5 text-[11px] font-semibold text-white"></span>
+            </div>
+          </div>
+
+          <ol class="flex items-center gap-2 text-[11px] font-medium text-white/80" aria-label="Alur simulasi">
+            <li class="flex items-center gap-1.5"><span class="flex h-5 w-5 items-center justify-center rounded-full bg-white text-[10px] font-bold text-primary-700">1</span>Pilih</li>
+            <li class="h-px flex-1 bg-white/30" aria-hidden="true"></li>
+            <li class="flex items-center gap-1.5"><span class="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[10px] font-bold text-white">2</span>Email</li>
+            <li class="h-px flex-1 bg-white/30" aria-hidden="true"></li>
+            <li class="flex items-center gap-1.5"><span class="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[10px] font-bold text-white">3</span>Kuesioner</li>
+          </ol>
+
+          <p class="flex items-start gap-2 text-xs leading-relaxed text-white/70"><i class="kk kk-shield-check mt-px h-3.5 w-3.5 shrink-0"></i>Tidak ada email yang terkirim dan jawaban simulasi tidak tersimpan ke data sesungguhnya.</p>
+        </div>
+      </div>
+
+      <!-- Pilihan tracer -->
+      <form id="simulasiPilihForm" action="kuesioner-mail.html" method="get" class="relative flex min-h-0 flex-col gap-5 p-6 sm:p-7 md:overflow-y-auto">
+        <button type="button" class="modal-close absolute right-4 top-4 hidden md:flex" data-modal-hide="simulasiPilihModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        <div class="md:pr-8">
+          <span class="badge-info"><i class="kk kk-eye h-3 w-3"></i>Sudut pandang responden</span>
+          <h3 id="simulasiPilihTitle" class="mt-3 font-display text-xl font-bold text-slate-900">Pilih tracer yang disimulasikan</h3>
+          <p class="mt-1.5 text-sm text-slate-500">Anda akan melihat <span class="font-medium text-slate-700">email undangannya</span> lebih dulu, lalu membuka kuesionernya dari tombol di dalam email.</p>
+        </div>
+
+        <fieldset>
+          <legend class="mb-2.5 flex items-center gap-2 text-xs font-semibold text-slate-500"><i class="kk kk-graduation-cap h-3.5 w-3.5 text-primary-600"></i>Kuesioner Lulusan <span class="font-normal text-slate-400">· diisi alumni</span></legend>
+          <div class="space-y-2.5">
+            <label class="tracer-option" data-tone="primary">
+              <input type="radio" name="tracer" value="pra-lulus" class="sr-only" checked />
+              <span class="tracer-icon"><i class="kk kk-graduation-cap h-5 w-5"></i></span>
+              <span class="min-w-0 flex-1">
+                <span class="block text-sm font-semibold text-slate-800">Pra-Lulus</span>
+                <span class="mt-0.5 block text-xs text-slate-500">Saat yudisium · kontak aktif dan rencana setelah lulus</span>
+                <span class="mt-1.5 flex items-center gap-3 text-[11px] text-slate-400"><span class="flex items-center gap-1"><i class="kk kk-clock h-3 w-3"></i>±3 menit</span><span class="flex items-center gap-1"><i class="kk kk-clipboard-text h-3 w-3"></i>3 langkah</span></span>
+              </span>
+              <span class="tracer-check" aria-hidden="true"><i class="kk kk-check h-3.5 w-3.5"></i></span>
+            </label>
+
+            <div>
+              <label class="tracer-option" data-tone="primary">
+                <input type="radio" name="tracer" value="pasca-1th" class="sr-only" />
+                <span class="tracer-icon"><i class="kk kk-calendar-check h-5 w-5"></i></span>
+                <span class="min-w-0 flex-1">
+                  <span class="block text-sm font-semibold text-slate-800">Pasca-Lulus 1 Tahun</span>
+                  <span class="mt-0.5 block text-xs text-slate-500">Satu tahun setelah lulus · status, masa tunggu, kompetensi</span>
+                  <span class="mt-1.5 flex items-center gap-3 text-[11px] text-slate-400"><span class="flex items-center gap-1"><i class="kk kk-clock h-3 w-3"></i>±6 menit</span><span class="flex items-center gap-1"><i class="kk kk-clipboard-text h-3 w-3"></i>4 langkah</span></span>
+                </span>
+                <span class="tracer-check" aria-hidden="true"><i class="kk kk-check h-3.5 w-3.5"></i></span>
+              </label>
+              <!-- Hanya Pasca-Lulus 1 Tahun: jawaban Pra-Lulus alumni ini menentukan pertanyaan verifikasi & auto-fill di kuesioner (dibawa lewat ?exit=) -->
+              <div class="tracer-extra" data-extra-for="pasca-1th" inert>
+                <div class="min-h-0 overflow-hidden">
+                  <fieldset class="mt-2 rounded-xl border border-primary-100 bg-primary-50/40 p-3.5">
+                    <legend class="sr-only">Kondisi alumni sebelum membuka kuesioner</legend>
+                    <p class="text-xs font-semibold text-slate-700">Kondisi alumni sebelum membuka kuesioner</p>
+                    <p class="mt-0.5 text-[11px] leading-relaxed text-slate-500">Jawaban Pra-Lulus alumni ini menentukan apakah pertanyaan verifikasi dan auto-fill status muncul.</p>
+                    <div class="mt-2.5 grid gap-1.5 sm:grid-cols-3">
+                      <label class="exit-pill"><input type="radio" name="exit" value="belum" class="sr-only" disabled /><span>Belum bekerja</span></label>
+                      <label class="exit-pill"><input type="radio" name="exit" value="bekerja" class="sr-only" checked disabled /><span>Sudah bekerja</span></label>
+                      <label class="exit-pill"><input type="radio" name="exit" value="wiraswasta" class="sr-only" disabled /><span>Berwirausaha</span></label>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+
+            <label class="tracer-option" data-tone="primary">
+              <input type="radio" name="tracer" value="pasca-4th" class="sr-only" />
+              <span class="tracer-icon"><i class="kk kk-chart-bar h-5 w-5"></i></span>
+              <span class="min-w-0 flex-1">
+                <span class="block text-sm font-semibold text-slate-800">Pasca-Lulus 4 Tahun</span>
+                <span class="mt-0.5 block text-xs text-slate-500">Empat tahun setelah lulus · perkembangan karier</span>
+                <span class="mt-1.5 flex items-center gap-3 text-[11px] text-slate-400"><span class="flex items-center gap-1"><i class="kk kk-clock h-3 w-3"></i>±6 menit</span><span class="flex items-center gap-1"><i class="kk kk-clipboard-text h-3 w-3"></i>4 langkah</span></span>
+              </span>
+              <span class="tracer-check" aria-hidden="true"><i class="kk kk-check h-3.5 w-3.5"></i></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="mb-2.5 flex items-center gap-2 text-xs font-semibold text-slate-500"><i class="kk kk-briefcase h-3.5 w-3.5 text-secondary-600"></i>Survei Pengguna Lulusan <span class="font-normal text-slate-400">· diisi atasan</span></legend>
+          <label class="tracer-option" data-tone="secondary">
+            <input type="radio" name="tracer" value="pengguna-lulusan" class="sr-only" />
+            <span class="tracer-icon"><i class="kk kk-briefcase h-5 w-5"></i></span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-sm font-semibold text-slate-800">Pengguna Lulusan</span>
+              <span class="mt-0.5 block text-xs text-slate-500">Atasan menilai kinerja alumni · 12 aspek kinerja</span>
+              <span class="mt-1.5 flex items-center gap-3 text-[11px] text-slate-400"><span class="flex items-center gap-1"><i class="kk kk-clock h-3 w-3"></i>±5 menit</span><span class="flex items-center gap-1"><i class="kk kk-clipboard-text h-3 w-3"></i>4 langkah</span></span>
+            </span>
+            <span class="tracer-check" aria-hidden="true"><i class="kk kk-check h-3.5 w-3.5"></i></span>
+          </label>
+        </fieldset>
+
+        <div class="mt-auto border-t border-slate-100 pt-4">
+          <p class="mb-3 flex items-start gap-2 text-xs text-slate-400 md:hidden"><i class="kk kk-shield-check mt-px h-3.5 w-3.5 shrink-0"></i>Tidak ada email yang terkirim dan jawaban simulasi tidak tersimpan ke data sesungguhnya.</p>
+          <div class="flex flex-col-reverse gap-2.5 sm:flex-row sm:justify-end">
+            <button type="button" class="btn-outline btn-md" data-modal-hide="simulasiPilihModal">Batal</button>
+            <button type="submit" class="btn-primary btn-md">Lihat Email Undangan<i class="kk kk-arrow-right h-4 w-4"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- QR Tracer Study: panggung merek (tampil di layar / monitor / layar penuh) + info, salin tautan, cetak, unduh.
+     z-[60]: sidebar karirlink z-50 -->
+<div class="modal-backdrop z-[60]" id="qrPresentModal" aria-labelledby="qrInfoTitle">
+  <div class="modal-panel modal-2xl overflow-hidden">
+    <div class="qr-grid grid min-h-0 flex-1 auto-rows-max overflow-y-auto md:auto-rows-auto md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:overflow-hidden">
+
+      <!-- Panggung: ini juga tampilan layar penuh untuk monitor -->
+      <div class="qr-stage relative flex flex-col items-center justify-center gap-4 overflow-hidden bg-brand-gradient px-6 py-8 text-center text-white md:min-h-[34rem] md:py-10">
+        <span class="pointer-events-none absolute -left-16 -top-16 h-56 w-56 rounded-full bg-white/10" aria-hidden="true"></span>
+        <span class="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-white/10" aria-hidden="true"></span>
+        <button type="button" class="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 md:hidden" data-modal-hide="qrPresentModal" aria-label="Tutup" data-qr-fs-hide><i class="kk kk-x h-4 w-4"></i></button>
+        <img src="../../assets/logo/karirlink-logo-white.svg" alt="KarirLink" class="qr-stage-logo relative h-5 w-auto" />
+        <div class="relative">
+          <p class="qr-stage-campus font-display text-base font-semibold text-white sm:text-lg">Universitas Sentra Vidya Utama</p>
+          <h3 id="qrStageTitle" class="qr-stage-title mt-1 font-display text-lg font-bold text-white sm:text-xl">Tracer Study</h3>
+        </div>
+        <div class="qr-code qr-present-qr relative border-white/60 p-3 shadow-card-lg">
+          <div id="traceQr" data-qr data-qr-text="https://karirlink.id/tracer-study" data-qr-brand class="h-full w-full"></div>
+        </div>
+        <p class="qr-stage-hint relative flex items-center gap-2 text-sm font-medium text-white sm:text-base"><i class="kk kk-scan h-5 w-5"></i>Pindai dengan kamera ponsel</p>
+        <p class="qr-stage-link relative max-w-full break-all font-mono text-xs text-white/75 sm:text-sm">https://karirlink.id/tracer-study</p>
+        <p class="relative text-sm text-white/70" data-qr-fs-only>Tekan Esc untuk keluar dari layar penuh</p>
+      </div>
+
+      <!-- Info + aksi -->
+      <div class="relative flex min-h-0 flex-col gap-5 p-6 sm:p-8 md:overflow-y-auto" data-qr-fs-hide>
+        <button type="button" class="modal-close absolute right-4 top-4 hidden md:flex" data-modal-hide="qrPresentModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+        <div class="pr-8">
+          <span class="badge-info"><i class="kk kk-link-simple h-3 w-3"></i>Satu tautan untuk semua</span>
+          <h3 id="qrInfoTitle" class="mt-3 font-display text-xl font-bold text-slate-900">QR Tracer Study</h3>
+          <p class="mt-1.5 text-sm text-slate-500">Lulusan <span class="font-medium text-slate-700">Universitas Sentra Vidya Utama</span> memindai QR code ini untuk mengisi <span class="font-medium text-slate-700">Kuesioner Lulusan</span>. Tautan satu untuk semua, QR code selalu sama.</p>
+        </div>
+
+        <ol class="space-y-3">
+          <li class="flex items-start gap-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-semibold text-primary-600">1</span><p class="text-sm text-slate-600"><span class="font-medium text-slate-800">Tampilkan</span> di monitor, atau cetak dan tempel di lokasi acara.</p></li>
+          <li class="flex items-start gap-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-semibold text-primary-600">2</span><p class="text-sm text-slate-600">Lulusan <span class="font-medium text-slate-800">memindai</span> QR code dengan kamera ponsel.</p></li>
+          <li class="flex items-start gap-3"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-semibold text-primary-600">3</span><p class="text-sm text-slate-600">Masuk ke kuesioner dan <span class="font-medium text-slate-800">mengisi</span> Tracer Study.</p></li>
+        </ol>
+
+        <div>
+          <label class="form-label" for="traceLink">Tautan kuesioner</label>
+          <div class="input-group">
+            <input id="traceLink" type="text" class="input" value="https://karirlink.id/tracer-study" readonly />
+            <button type="button" class="input-group-btn" data-trace-action="copy">
+              <i class="kk kk-copy h-4 w-4" data-copy-default></i><i class="kk kk-check h-4 w-4 hidden" data-copy-done></i>
+              <span data-copy-label>Salin</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-auto space-y-2.5">
+          <button type="button" class="btn-primary btn-md w-full" data-trace-action="fullscreen"><i class="kk kk-corners-out h-4 w-4"></i><span data-fs-label>Tampilkan layar penuh</span></button>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" class="btn-outline btn-md" data-trace-action="print" title="Cetak lembar A4"><i class="kk kk-printer h-4 w-4"></i>Cetak</button>
+            <button type="button" class="btn-outline btn-md" data-trace-action="png" title="Unduh PNG 1200 px"><i class="kk kk-download-simple h-4 w-4"></i>PNG</button>
+            <button type="button" class="btn-outline btn-md" data-trace-action="svg" title="Unduh SVG (vektor)"><i class="kk kk-download-simple h-4 w-4"></i>SVG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lembar cetak (hanya tampil saat mencetak) -->
+<div id="qrPrintSheet" class="min-h-[240mm] flex-col items-center justify-center gap-6 text-center" aria-hidden="true">
+  <img src="../../assets/logo/karirlink-logo.svg" alt="" class="h-8 w-auto" />
+  <div>
+    <p class="text-2xl font-semibold text-slate-700">Universitas Sentra Vidya Utama</p>
+    <h1 class="mt-2 font-display text-4xl font-bold text-slate-900">Tracer Study</h1>
+  </div>
+  <div class="qr-code h-[105mm] w-[105mm] shadow-none!">
+    <div data-qr data-qr-text="https://karirlink.id/tracer-study" data-qr-brand class="h-full w-full"></div>
+  </div>
+  <p class="text-2xl font-semibold text-slate-800">Pindai QR code ini untuk mengisi kuesioner</p>
+  <div>
+    <p class="text-base text-slate-500">Atau buka tautan berikut:</p>
+    <p class="mt-1 break-all font-mono text-lg text-slate-800">https://karirlink.id/tracer-study</p>
+  </div>
+  <p class="text-sm text-slate-400">KarirLink &middot; SEVIMA</p>
+</div>
+
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
+<script src="../../assets/js/toast.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/pagination.js"></script>
+<script src="../../assets/js/vendor/qrcode.js"></script>
+<script src="../../assets/js/qr-code.js"></script>
+<script>
+  // Popup Simulasi Tracer: pratinjau email di panggung mengikuti pilihan, dan pilihan "kondisi alumni"
+  // hanya aktif untuk Pasca-Lulus 1 Tahun (input yang di-disable tidak ikut terkirim sebagai ?exit=).
+  // Data PREVIEW menyalin subjek/penerima/salam/tombol dari kuesioner-mail.html; ubah keduanya bersama.
+  (function () {
+    const form = document.getElementById('simulasiPilihForm');
+    const modal = document.getElementById('simulasiPilihModal');
+    if (!form || !modal) return;
+
+    const PREVIEW = {
+      'pra-lulus': { subject: 'Tracer Study: lengkapi data Anda sebelum wisuda', to: 'Ahmad Dimas', greeting: 'Halo Ahmad,', cta: 'Isi Tracer Study' },
+      'pasca-1th': { subject: 'Satu tahun setelah lulus: ceritakan perjalanan karier Anda', to: 'Ahmad Dimas', greeting: 'Halo Ahmad,', cta: 'Isi Tracer Study' },
+      'pasca-4th': { subject: 'Empat tahun setelah lulus: bagikan perkembangan karier Anda', to: 'Ahmad Dimas', greeting: 'Halo Ahmad,', cta: 'Isi Tracer Study' },
+      'pengguna-lulusan': { subject: 'Mohon penilaian kinerja alumni kami: Ahmad Dimas', to: 'Rina Wulandari (atasan)', greeting: 'Yth. Ibu Rina Wulandari,', cta: 'Isi Survei Pengguna Lulusan' },
+    };
+    const preview = modal.querySelector('[data-sim-preview]');
+    const extra = form.querySelector('[data-extra-for="pasca-1th"]');
+    const exitInputs = extra.querySelectorAll('input[name="exit"]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let shown = null;
+
+    function fill(id) {
+      const p = PREVIEW[id];
+      preview.querySelectorAll('[data-pv]').forEach((el) => { el.textContent = p[el.dataset.pv]; });
+      shown = id;
+    }
+
+    function sync() {
+      const picked = form.querySelector('input[name="tracer"]:checked');
+      const id = picked ? picked.value : 'pra-lulus';
+      if (id !== shown) {
+        if (shown === null || reduceMotion) fill(id);
+        else {
+          preview.classList.add('is-swapping');
+          setTimeout(() => { fill(id); preview.classList.remove('is-swapping'); }, 140);
+        }
+      }
+      const open = id === 'pasca-1th';
+      extra.dataset.open = String(open);
+      extra.toggleAttribute('inert', !open);
+      exitInputs.forEach((input) => { input.disabled = !open; });
+    }
+
+    form.addEventListener('change', sync);
+    // Klik dua kali pada kartu = langsung lanjut ke email.
+    form.addEventListener('dblclick', (e) => {
+      if (e.target.closest('.tracer-option')) form.requestSubmit();
+    });
+    sync();
+  })();
+</script>
 <script>
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sidebarOverlay');
@@ -554,6 +1063,31 @@
     });
   })();
 
+  // Arsip Kuesioner Tracer Study: Single pagination, maksimal 5 arsip per halaman. Jumlah halaman
+  // dihitung dari kartu [data-arsip]; assets/js/pagination.js mengurus tombol dan teks info,
+  // di sini hanya menampilkan kartu milik halaman aktif.
+  (function () {
+    const PER_PAGE = 5;
+    const pager = document.getElementById("arsipPager");
+    if (!pager || !window.KKPagination) return;
+    const items = Array.from(pager.querySelectorAll("[data-arsip]"));
+    pager.dataset.paginationSize = PER_PAGE;
+    pager.dataset.paginationCount = items.length;
+    pager.dataset.paginationTotal = Math.max(1, Math.ceil(items.length / PER_PAGE));
+    window.KKPagination.init(pager);
+
+    function show(page) {
+      items.forEach((el, i) => el.classList.toggle("hidden", Math.floor(i / PER_PAGE) + 1 !== page));
+    }
+    show(1);
+    pager.addEventListener("pagination:change", (e) => {
+      show(e.detail.page);
+      // Header halaman menempel di atas (sticky), jadi beri ruang saat daftar digulung ke atas.
+      const top = pager.parentElement.getBoundingClientRect().top;
+      if (top < 72) window.scrollTo({ top: window.scrollY + top - 80, behavior: "smooth" });
+    });
+  })();
+
   // Footer copyright year - kept current automatically (no backend templating here).
   document.querySelectorAll(".js-current-year").forEach((el) => {
     el.textContent = new Date().getFullYear();
@@ -610,5 +1144,96 @@
       trigger.addEventListener('blur', hide);
     });
   })();</script>
+<script>
+  // QR Tracer Study: salin tautan, layar penuh, cetak, unduh PNG/SVG.
+  // QR-nya dirender assets/js/qr-code.js (data-qr); tautan kuesioner satu untuk semua, jadi QR selalu sama.
+  (function () {
+    const linkEl = document.getElementById('traceLink');
+    const modal = document.getElementById('qrPresentModal');
+    if (!linkEl || !modal) return;
+    const slug = 'qr-tracer-study';
+    const toast = (type, message) => { if (window.KKToast) window.KKToast.show({ type, message, duration: 3500 }); };
+
+    function save(blob, name) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }
+    function qrSvg(size) { // a fresh copy of the rendered QR, sized for export
+      const src = document.querySelector('#traceQr svg');
+      if (!src) return null;
+      const svg = src.cloneNode(true);
+      svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      if (size) { svg.setAttribute('width', size); svg.setAttribute('height', size); }
+      return new XMLSerializer().serializeToString(svg);
+    }
+    function savePng(size) { // SVG -> canvas -> PNG, white background, 1200px (sharp enough for A4 print)
+      const markup = qrSvg(size);
+      if (!markup) return toast('danger', 'QR code belum siap.');
+      const url = URL.createObjectURL(new Blob([markup], { type: 'image/svg+xml;charset=utf-8' }));
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, size, size);
+        ctx.drawImage(img, 0, 0, size, size);
+        URL.revokeObjectURL(url);
+        canvas.toBlob((blob) => { save(blob, slug + '.png'); toast('success', 'QR code diunduh (PNG ' + size + ' px).'); }, 'image/png');
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); toast('danger', 'Gagal membuat PNG.'); };
+      img.src = url;
+    }
+    function printSheet() {
+      if (window.KKModal) window.KKModal.close(modal);
+      document.body.classList.add('printing-qr');
+      const done = () => { document.body.classList.remove('printing-qr'); window.removeEventListener('afterprint', done); };
+      window.addEventListener('afterprint', done);
+      window.print();
+    }
+    let copyTimer;
+    function copied() { // button flips to a check for 2s, plus a toast
+      const btn = modal.querySelector('[data-trace-action="copy"]');
+      const swap = (done) => {
+        btn.querySelector('[data-copy-default]').classList.toggle('hidden', done);
+        btn.querySelector('[data-copy-done]').classList.toggle('hidden', !done);
+        btn.querySelector('[data-copy-label]').textContent = done ? 'Tersalin' : 'Salin';
+      };
+      swap(true);
+      clearTimeout(copyTimer);
+      copyTimer = setTimeout(() => swap(false), 2000);
+      toast('success', 'Tautan kuesioner disalin.');
+    }
+    function copyLink() {
+      const fail = () => toast('danger', 'Gagal menyalin tautan.');
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(linkEl.value).then(copied, fail);
+      linkEl.select();
+      (document.execCommand('copy') ? copied : fail)();
+    }
+    function toggleFullscreen() {
+      if (document.fullscreenElement) return document.exitFullscreen();
+      if (modal.requestFullscreen) modal.requestFullscreen().catch(() => toast('danger', 'Layar penuh tidak didukung browser ini.'));
+      else toast('danger', 'Layar penuh tidak didukung browser ini.');
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-trace-action]');
+      if (!btn) return;
+      const action = btn.dataset.traceAction;
+      if (action === 'copy') copyLink();
+      else if (action === 'print') printSheet();
+      else if (action === 'png') savePng(1200);
+      else if (action === 'svg') { save(new Blob([qrSvg(0)], { type: 'image/svg+xml' }), slug + '.svg'); toast('success', 'QR code diunduh (SVG).'); }
+      else if (action === 'fullscreen') toggleFullscreen();
+    });
+    document.addEventListener('fullscreenchange', () => {
+      const label = modal.querySelector('[data-fs-label]');
+      if (label) label.textContent = document.fullscreenElement === modal ? 'Keluar layar penuh' : 'Tampilkan layar penuh';
+    });
+  })();
+</script>
 </body>
 </html>

@@ -8,7 +8,7 @@ export default {
     docs: {
       description: {
         component:
-          "QR code sebagai SVG inline, dirender offline oleh `assets/js/qr-code.js` (library `qrcode-generator`, MIT, di-vendor di `assets/js/vendor/qrcode.js`). Markup: `.qr-code` > `<div data-qr data-qr-text=\"…\" data-qr-level=\"M\" class=\"h-48 w-48\">`. Overlay status: `.qr-overlay` (+ `.qr-spinner`). Kode selalu hitam-di-atas-putih, tidak mengikuti dark theme, supaya tetap terbaca scanner. Aksi: `[data-qr-action=\"copy-svg|save|refresh\"]`, input live `[data-qr-target]`, salin input `[data-copy-input]`.",
+          "QR code sebagai SVG inline, dirender offline oleh `assets/js/qr-code.js` (library `qrcode-generator`, MIT, di-vendor di `assets/js/vendor/qrcode.js`). Markup: `.qr-code` > `<div data-qr data-qr-text=\"…\" data-qr-level=\"M\" class=\"h-48 w-48\">`. Overlay status: `.qr-overlay` (+ `.qr-spinner`). Kode selalu hitam-di-atas-putih, tidak mengikuti dark theme, supaya tetap terbaca scanner. Aksi: `[data-qr-action=\"copy-svg|save|refresh\"]`, input live `[data-qr-target]`, salin input `[data-copy-input]`.\n\n**Personalisasi/branding** - tambahkan `data-qr-brand` untuk modul membulat yang nyambung mulus ke modul tetangga, warna solid `primary`, dan logo mark KarirLink (produk yang dituju QR ini, bukan KarirKit) di tengah. Logo tidak punya kotak/lingkaran latar sendiri - modul di sekitarnya cuma dikosongkan secara alami, jadi menyatu dengan pola, bukan seperti stiker yang ditumpuk (otomatis memaksa error-correction level H selama logo aktif, karena area kosong itu menutupi modul data asli). Atur manual lewat `data-qr-style=\"dots\"` (bentuk saja, warna tetap hitam), `data-qr-color`/`data-qr-color-end` (satu warna solid secara default; isi keduanya untuk gradien - pilih warna sehue, bukan komplementer, supaya tidak berbaur kusam), dan `data-qr-logo=\"none\"` (matikan logo saat `data-qr-brand` aktif) atau checkbox `data-qr-logo-toggle`.",
       },
     },
   },
@@ -40,6 +40,66 @@ export const QrCodeGenerator = {
           <button type="button" class="btn-outline btn-sm" data-qr-action="copy-svg" data-qr-target="#qr-gen"><span data-label>Copy as SVG</span></button>
           <button type="button" class="btn-primary btn-sm" data-qr-action="save" data-qr-target="#qr-gen">Save as file</button>
         </div>
+      </div>
+    </div>`),
+};
+
+export const BrandedQrCode = {
+  name: "Branded QR code (KarirLink)",
+  render: () =>
+    wrap(`
+    <div class="grid max-w-3xl gap-6 md:grid-cols-[auto_1fr]">
+      <div class="qr-code self-start">
+        <div id="qr-brand" data-qr data-qr-text="${URL_DEMO}" data-qr-brand class="h-48 w-48"></div>
+      </div>
+      <div class="space-y-4">
+        <p class="text-sm text-fg-muted">Modul membulat (nyambung mulus antar modul yang berdekatan), warna solid <code class="kbd">primary</code>, pola pencari membulat, dan logo mark KarirLink (produk yang dituju QR ini) di tengah - semua cuma lewat satu atribut <code class="kbd">data-qr-brand</code>.</p>
+        <div>
+          <label class="mb-1.5 block text-sm font-medium text-fg" for="qr-brand-input">Teks atau URL</label>
+          <input id="qr-brand-input" class="input" value="${URL_DEMO}" data-qr-target="#qr-brand" />
+        </div>
+        <label class="flex items-center gap-2 text-sm text-fg">
+          <input type="checkbox" class="form-check" checked data-qr-logo-toggle data-qr-target="#qr-brand" />
+          Logo di tengah
+        </label>
+        <div>
+          <label class="mb-1.5 block text-sm font-medium text-fg" for="qr-brand-level">Error correction</label>
+          <select id="qr-brand-level" class="input" data-qr-level-select data-qr-target="#qr-brand">
+            <option value="L">L - Low (7%)</option>
+            <option value="M">M - Medium (15%)</option>
+            <option value="Q">Q - Quartile (25%)</option>
+            <option value="H" selected>H - High (30%)</option>
+          </select>
+          <p class="form-hint">Logo menutupi modul data asli, jadi dipaksa ke H selama kotak "Logo di tengah" dicentang. Hapus centangnya untuk coba level lain.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="btn-outline btn-sm" data-qr-action="copy-svg" data-qr-target="#qr-brand"><span data-label>Copy as SVG</span></button>
+          <button type="button" class="btn-primary btn-sm" data-qr-action="save" data-qr-target="#qr-brand">Save as file</button>
+        </div>
+      </div>
+    </div>`),
+};
+
+export const BrandedQrCodeVariants = {
+  name: "Branded QR code variants",
+  render: () =>
+    wrap(`
+    <div class="flex flex-wrap gap-6">
+      <div class="space-y-2 text-center">
+        <div class="qr-code"><div data-qr data-qr-text="${URL_DEMO}" data-qr-style="dots" class="h-36 w-36"></div></div>
+        <p class="text-xs text-fg-muted">Dots saja (hitam)</p>
+      </div>
+      <div class="space-y-2 text-center">
+        <div class="qr-code"><div data-qr data-qr-text="${URL_DEMO}" data-qr-brand data-qr-logo="none" class="h-36 w-36"></div></div>
+        <p class="text-xs text-fg-muted">Brand tanpa logo</p>
+      </div>
+      <div class="space-y-2 text-center">
+        <div class="qr-code"><div data-qr data-qr-text="${URL_DEMO}" data-qr-brand data-qr-color="#1843a0" class="h-36 w-36"></div></div>
+        <p class="text-xs text-fg-muted">Warna solid kustom</p>
+      </div>
+      <div class="space-y-2 text-center">
+        <div class="qr-code"><div data-qr data-qr-text="${URL_DEMO}" data-qr-brand data-qr-color="#059669" data-qr-color-end="#2361e7" class="h-36 w-36"></div></div>
+        <p class="text-xs text-fg-muted">Gradien kustom</p>
       </div>
     </div>`),
 };

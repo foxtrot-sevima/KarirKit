@@ -19356,6 +19356,39 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .btn-group-item-danger { @apply border-danger-700 bg-danger-600 text-white hover:bg-[#b91c1c] hover:text-white; }
   .btn-group-item-dark { @apply border-[#0f172a] bg-[#1e293b] text-white hover:bg-[#0f172a] hover:text-white; }
 
+  /* ==== Pagination ====
+     Daftar halaman: <nav aria-label="Paginasi"><ul class="pagination"><li><a class="pagination-link">...</a></li></ul></nav>.
+     Item boleh juga anak langsung .pagination (mis. grup Sebelumnya | 1 dari 99 | Berikutnya). Default: item menyatu (garis
+     berimpit, sudut membulat di ujung); .pagination-separate memisahkan item satu per satu; ukuran lewat .pagination-sm / -lg.
+     .pagination-static = sel yang tidak bisa diklik (elipsis, "1 dari 99"). Berbeda dari .pagination-btn (datar, dipakai footer tabel).
+     Perilaku opsional (render halaman, Sebelumnya/Berikutnya, lompat ke halaman) ada di assets/js/pagination.js. */
+  .pagination { @apply m-0 inline-flex list-none flex-wrap items-center p-0; }
+  .pagination-link,
+  .pagination-static {
+    @apply relative inline-flex h-10 min-w-10 items-center justify-center gap-1.5 rounded-control border border-border bg-surface px-3.5 text-sm font-medium text-fg-muted;
+  }
+  .pagination-link {
+    @apply cursor-pointer transition-colors hover:bg-neutral-50 hover:text-primary-700
+           focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500
+           disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50;
+  }
+  .pagination-link[aria-current="page"],
+  .pagination-link.is-active { @apply z-10 border-primary-300 bg-primary-50 font-semibold text-primary-700 hover:bg-primary-50; }
+  .pagination-static { @apply cursor-default select-none; }
+  .pagination-info { @apply text-sm text-fg-muted; }
+  .pagination-info b,
+  .pagination-info strong { @apply font-semibold text-fg; }
+  .pagination-separate { @apply gap-1.5; }
+  .pagination:not(.pagination-separate) { @apply flex-nowrap rounded-control shadow-xs; }
+  .pagination:not(.pagination-separate) > :not(:first-child) { @apply -ml-px; }
+  .pagination:not(.pagination-separate) :is(.pagination-link, .pagination-static) { @apply rounded-none; }
+  .pagination:not(.pagination-separate) > :first-child,
+  .pagination:not(.pagination-separate) > :first-child > :is(.pagination-link, .pagination-static) { @apply rounded-l-control; }
+  .pagination:not(.pagination-separate) > :last-child,
+  .pagination:not(.pagination-separate) > :last-child > :is(.pagination-link, .pagination-static) { @apply rounded-r-control; }
+  .pagination-sm :is(.pagination-link, .pagination-static) { @apply h-8 min-w-8 gap-1 px-2.5 text-xs; }
+  .pagination-lg :is(.pagination-link, .pagination-static) { @apply h-12 min-w-12 gap-2 px-5 text-base; }
+
   /* ==== Cards ==== */
   .card-body { @apply p-6; }
   .card-title { @apply font-display text-lg font-bold text-fg; }

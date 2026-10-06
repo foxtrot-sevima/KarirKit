@@ -2,6 +2,140 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.3.4] - 2026-10-06
+
+### Added
+
+- **Tombol "QR Tracer" di `templates/karirlink/kuesioner.html`** (header halaman, di antara Lihat Panduan dan Simulasi Tracer) yang membuka modal
+  QR code Tracer Study. Tautan kuesioner satu untuk semua calon lulusan (contoh `https://karirlink.id/tracer-study`, bukan per
+  periode yudisium, karena itu tidak ditaruh di halaman detail yudisium), jadi QR code-nya selalu sama; admin Karir bisa menampilkannya di monitor atau
+  mencetak/mengunduhnya sendiri. Modal dua kolom: **panggung** bermerek (gradien brand, logo KarirLink putih berukuran kecil, **nama perguruan tinggi** (contoh "Universitas Sentra
+  Vidya Utama"), judul, QR bermerek di kartu putih, ajakan "Pindai dengan kamera ponsel", tautan) dan kolom info (badge "Satu tautan untuk semua", tiga langkah singkat, kolom tautan dengan tombol **Salin**
+  yang berubah jadi centang "Tersalin" selama 2 detik, tombol **Tampilkan layar penuh**, serta **Cetak**, **PNG**, dan **SVG**). Layar penuh (Fullscreen
+  API) hanya menampilkan panggung dengan QR besar yang mengisi layar monitor/TV beserta petunjuk "Tekan Esc"; kolom info disembunyikan. Cetak memakai
+  lembar A4 khusus lewat `@media print` (logo kecil, nama perguruan tinggi, judul, QR 105 mm, petunjuk, tautan; sisa halaman disembunyikan dan dipulihkan pada `afterprint`); PNG
+  1200 x 1200 px berlatar putih (SVG -> canvas); SVG vektor untuk percetakan. Header halaman kini baru berjajar sejajar dengan judul mulai `xl` (di
+  bawahnya tombol turun ke bawah teks) supaya tiga tombol tidak menyempitkan teks judul. Halaman memuat `toast.js`, `modal.js`,
+  `vendor/qrcode.js`, dan `qr-code.js`; modal memakai `z-[60]` karena sidebar karirlink `z-50`. Diverifikasi lewat jsQR bahwa QR di layar, hasil
+  unduhan PNG, dan hasil unduhan SVG sama-sama terbaca sebagai tautan yang benar, header dan modal muat tanpa scroll horizontal di 360 sampai 1440px
+  (di layar kecil kolom menumpuk dan isi modal menggulir; kartu QR berukuran persegi tetap dan tidak lagi menyusut jadi tipis di layar pendek, 198 px di lebar 320 sampai 256 px, dan tombol tutup pindah ke atas panggung karena kolom info ada di bawah layar), dan tampil benar di mode terang maupun gelap (QR tetap gelap di atas putih).
+- **QR Code bisa dipersonalisasi dengan branding KarirLink.** Atribut baru
+  `data-qr-brand` pada `assets/js/qr-code.js` mengubah modul data jadi
+  bentuk bulat yang menyambung mulus ke modul tetangga yang gelap (sudut
+  cuma membulat di sisi yang "bebas" - gaya yang sama seperti referensi di
+  `moodboard/qr-code/qrcode.svg`), warna jadi solid `primary` (bukan
+  gradien - pada pola modul kecil yang padat, gradien kebanyakan cuma
+  terbaca sebagai warna tidak rata, bukan efek yang disengaja; dua corak
+  komplementer `primary` -> `secondary` yang dicoba lebih dulu malah
+  berbaur jadi abu-abu/coklat kusam saat di-interlace lewat ratusan modul
+  kecil - gradien dua corak tetap bisa dipakai manual lewat
+  `data-qr-color` + `data-qr-color-end`, idealnya dua corak satu hue, bukan
+  komplementer), pola pencari jadi cincin membulat + kotak tengah (proporsi
+  1:1:3:1:1 dipertahankan presisi supaya tetap terbaca), dan logo mark
+  **KarirLink** (produk yang dituju QR ini, bukan KarirKit) di tengah,
+  diwarnai memakai warna/gradien yang sama persis dengan modulnya (bukan
+  warna biru/oranye asli mark-nya) supaya logo selalu konsisten dengan QR
+  di sekitarnya, bukan warna tetap sendiri yang bentrok begitu
+  `data-qr-color` diganti. Logo tidak punya kotak/lingkaran latar sendiri -
+  modul di sekitarnya cuma dikosongkan dalam satu lingkaran (tanpa bentuk
+  eksplisit apa pun digambar), jadi logo tampil menyatu dengan pola di
+  sekitarnya alih-alih
+  seperti stiker yang ditumpuk di atasnya. Otomatis memaksa
+  error-correction level H (bukan default M) karena area kosong itu
+  menutupi modul data asli - scanner tetap bisa membaca lewat redundansi
+  level H, seperti generator QR personalisasi lain pada umumnya; dropdown
+  **Error correction** (L/M/Q/H) dan kotak centang **Logo di tengah**
+  ditambahkan ke contoh QR bermerek supaya levelnya benar-benar bisa diatur
+  (dipaksa H lagi otomatis begitu logo dicentang ulang). Bisa diatur manual
+  lewat `data-qr-style="dots"` (bentuk saja, warna tetap hitam),
+  `data-qr-color`/`data-qr-color-end` (satu warna solid secara default),
+  dan `data-qr-logo="none"` (matikan logo saat `data-qr-brand` aktif).
+  Diverifikasi lewat jsQR (bukan cuma tampilan), termasuk tiga bug yang
+  ketemu lewat verifikasi itu, bukan cuma lewat mata: (1) percobaan pertama
+  modul bentuk titik lepas (radius 0.47 modul) gagal terbaca scanner sama
+  sekali meski pola pencarinya benar - pindah ke gaya modul menyambung di
+  atas (radius sudut 0.44 modul) memperbaikinya sekaligus menghasilkan
+  tampilan yang lebih sesuai referensi; (2) `gradientUnits` default
+  `objectBoundingBox` membuat tiap modul kecil independen mengulang seluruh
+  gradien dari awal alih-alih menyapu satu kali ke seluruh kode - diperbaiki
+  ke `userSpaceOnUse`; (3) listener generik `input` yang tadinya dipakai
+  untuk field teks ternyata juga kepicu oleh kotak centang **Logo di
+  tengah** (sama-sama elemen `<input>` berisi `data-qr-target`), diam-diam
+  meng-encode ulang QR jadi literal `"on"` setiap kali dicentang/dilepas -
+  sekarang listener itu mengecualikan `type="checkbox"`/`"radio"`. Story
+  baru **Components -> QR Code -> Branded QR code (KarirLink)** dan
+  **Branded QR code variants**; section QR Code di `index.html` mendapat
+  dua contoh baru yang sama.
+- **Template white-label `templates/custom/index.html`**: Dashboard Admin KarirLink dengan identitas perguruan tinggi di header sidebar, untuk kampus
+  yang meminta logo dan nama sendiri. Susunannya avatar kotak logo kampus (48 px; 40 px saat sidebar dilipat, bingkai abu-abu netral) lalu teks
+  "Karirlink" kecil (Karir biru `#22489E`, link oranye `#F05925`, sama dengan logo KarirLink) di atas nama kampus yang tebal. Nama tampil 14 px bila
+  satu baris dan mengecil ke 13 px bila membungkus jadi dua baris (panjang baris diseimbangkan, maksimal dua baris, sisanya dipotong "..."), sehingga tinggi
+  teks tetap sejajar dengan logo untuk nama pendek maupun panjang; tooltip nama kampus muncul pada rail sidebar yang terlipat. Logo diatur lewat satu atribut,
+  `data-campus-logo` pada `.sidebar-header` (path relatif terhadap halaman, URL, atau data-URL; contoh `assets/logo/ub.webp`), dan dipasang di kedua avatar;
+  kosong atau gagal dimuat = avatar menampilkan dua inisial ("US"). Logo ditampilkan utuh di atas latar putih sehingga logo persegi, lebar, maupun transparan
+  tidak terpotong. Diverifikasi di 1440 px, drawer mobile 390 dan 320 px, dan mode lipat, tanpa scroll horizontal maupun galat.
+- **Alur Simulasi Tracer dipecah jadi tiga halaman: popup pemilih, email undangan, lalu kuesioner tampilan responden.** Tombol "Simulasi Tracer" di
+  `templates/karirlink/kuesioner.html` kini membuka **popup pemilih dua kolom bergaya QR Tracer**. Panggung merek bergradien di kiri menampilkan
+  **pratinjau email yang berganti mengikuti pilihan** (subjek, penerima, salam, dan tombol; memudar sebentar saat berganti, dan tanpa animasi bila pengguna
+  memilih `prefers-reduced-motion`) beserta alur tiga langkah. Di kanan ada empat kartu radio dengan ikon, deskripsi, estimasi menit, jumlah langkah, dan
+  penanda terpilih (**Pra-Lulus** terpilih awal, **Pasca-Lulus 1 Tahun**, **Pasca-Lulus 4 Tahun** diisi alumni; **Pengguna Lulusan** diisi atasan dan
+  beraksen oranye) dan tombol **Lihat Email Undangan**. Klik dua kali pada kartu langsung lanjut, dan panah keyboard berpindah pilihan. Memilih
+  Pasca-Lulus 1 Tahun membuka pilihan **kondisi alumni sebelum membuka kuesioner** (belum bekerja, sudah bekerja, berwirausaha) langsung di dalam popup
+  dengan transisi tinggi; pilihan itu hanya ikut terkirim untuk tracer tersebut. Di layar kecil panggung meringkas jadi banner dan isi popup menggulir
+  di dalam panel. Formulir GET membuka halaman baru **`kuesioner-mail.html?tracer=...`** (ditambah `&exit=...` untuk Pasca-Lulus 1 Tahun) yang hanya berisi
+  emailnya, tanpa topbar, tab, indikator progres, maupun catatan: kepala email (subjek, pengirim, penerima, tanggal) dan isi email per tracer (salam,
+  ajakan, butir info durasi/langkah/batas waktu, tombol, dan tautan; untuk Pengguna Lulusan penerimanya atasan dan tautannya sama dengan contoh di state
+  Data Atasan). Kondisi alumni dibawa sebagai `?exit=belum|bekerja|wiraswasta` (boleh juga ditulis langsung di URL email) dan diteruskan ke kuesioner lewat
+  tombol di email, sehingga pertanyaan verifikasi dan auto-fill status/masa tunggu tetap bisa diuji. Tombol di dalam email membuka
+  **`kuesioner-simulasi.html?tracer=...`**, yang sekarang **murni tampilan responden**: tanpa topbar, tab tracer, stepper, kartu admin, maupun catatan
+  simulasi, sehingga admin mencoba kuesioner seperti alumni tanpa masuk dari sisi alumni (parameter lama `?gelombang=` tetap terbaca). **Simulasi Survei
+  Pengguna Lulusan** (baru) mengikuti `docs/template-question/template-pengguna-lulusan.json` apa adanya dalam empat langkah: alumni yang dinilai
+  (`gu_nama_alumni`, `gu_prodi_alumni`, `gu_tahun_lulus` terkunci), data penilai (nama, perusahaan, alamat, jabatan wajib), matriks **12 aspek kinerja**
+  berskala Kurang/Cukup/Baik/Sangat Baik (semua wajib, penghitung "Terisi N dari 12", baris yang belum dinilai ditandai merah dan halaman menggulir ke
+  sana), lalu harapan dan saran (opsional). Tombol "Lewati" di state Data Atasan tidak lagi menyebut kata "simulasi". Panduan di halaman Kuesioner
+  diperbarui. Diverifikasi di browser (103 pemeriksaan: popup di 1440, 1280x720, 768, 390, dan 320 px, pratinjau dan kondisi alumni, tiap tracer dari email
+  sampai layar sukses, validasi, parameter `exit`, tautan lama) dan tanpa scroll horizontal di 360 dan 320 px.
+- **Komponen Pagination** (`.pagination`, `.pagination-link`, `.pagination-static`, `.pagination-info`, `.pagination-separate`, `.pagination-sm` dan `.pagination-lg`).
+  Navigasi antarhalaman bergaris: **menyatu** (garis berimpit, sudut membulat di ujung; default) atau **terpisah** (`.pagination-separate`, boleh turun baris),
+  tiga ukuran, halaman aktif lewat `aria-current="page"` (atau `.is-active`), nonaktif lewat `disabled`/`aria-disabled`, cincin fokus untuk keyboard, dan
+  mengikuti tema gelap lewat token. Item boleh di dalam `li` atau langsung menjadi anak `.pagination` (grup Sebelumnya | 1 dari 99 | Berikutnya); `.pagination-static`
+  untuk sel yang tidak bisa diklik (elipsis, posisi saat ini) dan `.pagination-info` untuk ringkasan jumlah data. `.pagination-btn` yang dipakai footer tabel tidak
+  berubah. **`assets/js/pagination.js`** (opsional, tanpa dependensi): bungkus dengan `data-pagination` untuk merender daftar halaman (lebar tetap dengan elipsis;
+  `data-pagination-siblings`, `-boundary`, `-nav="text|icon|both|none"`), tombol `data-pagination-prev`/`-next` yang otomatis nonaktif di ujung, lompat ke halaman
+  (`data-pagination-jump`, nomor di luar rentang dijepit), pilih halaman (`data-pagination-select`, opsi dibuat otomatis), dan teks yang diperbarui
+  (`data-pagination-text="info|page|total|range"`, mis. "Menampilkan 1 sampai 10 dari 100 data"); event `pagination:change` dan `KKPagination.get(el)`
+  (`goTo`, `next`, `prev`, `setTotal`). Storybook **Components -> Pagination** berisi Playground dan 13 contoh (Default pagination, Pagination with icons,
+  Previous and next, Previous and next with icons, Table data pagination, Table pagination with icons, Pagination with dropdown, Pagination with input, Input
+  field and button, Select input and buttons, Single pagination, Separated pagination, Pagination with ellipsis) dari satu sumber
+  (`stories/Components/pagination/examples.js`) yang juga membangkitkan section Pagination dan pil navigasinya di `index.html`; keenam contoh pertama hanya markup
+  dan CSS. Diverifikasi: 9.840 kombinasi algoritma daftar halaman (urut, ujung dan halaman aktif selalu tampil, elipsis tidak menutupi satu halaman, lebar
+  konstan) dan 49 pemeriksaan di browser (ukuran, sudut dan garis berimpit, interaksi, penjepitan nomor, `aria-*`, fokus keyboard, tema gelap, tanpa
+  elemen keluar layar di 390, 360, dan 320 px).
+- **Single pagination di daftar "Arsip Kuesioner Tracer Study" (`templates/karirlink/kuesioner.html`).** Daftar arsip kini tampil **maksimal 5 arsip per
+  halaman**, dengan teks "Menampilkan 1 sampai 5 dari 12 arsip" di kiri dan grup Sebelumnya | 1 dari 3 | Berikutnya di kanan (satu baris dari `sm`, bertumpuk
+  di layar kecil). Jumlah halaman dihitung otomatis dari kartu `[data-arsip]` lewat `assets/js/pagination.js`, jadi arsip baru cukup ditambah sebagai kartu.
+  Untuk memperlihatkan halamannya, ditambahkan 8 arsip contoh (2023 sampai 2025) di samping 4 arsip yang sudah ada. Modal Preview tidak berubah.
+  Diverifikasi di browser: 5/5/2 arsip di tiga halaman, teks info dan tombol nonaktif di ujung, Lihat Preview tetap membuka modal di tiap halaman, dan tanpa
+  elemen keluar layar di 390 px.
+
+### Changed
+
+- **Tampilan `kuesioner-simulasi.html` dirombak agar lebih nyaman untuk pengisian tracer study** (isi dan urutan pertanyaan tidak berubah; tanpa indikator
+  progres, tanpa nomor soal, dan tanpa pasangan kiri-kanan). Halaman diperlebar ke 64 rem (`max-w-5xl`) dan langkah 1 diawali **hero** bermerek (kampus, judul
+  tracer, pengantar, estimasi waktu, dan petunjuk "bertanda * wajib diisi") yang hanya tampil di langkah 1. Judul langkah dan teks soal lebih tegas, dan **semua
+  soal serta isian tersusun atas-bawah dalam satu kolom** (daftar pilihan, isian teks, dropdown, dan skala "saat lulus" lalu "saat ini" pada matriks kompetensi);
+  satu-satunya yang tetap berjajar adalah deretan tombol skala angka/kata pada satu soal. **Bilah aksi lengket** di dasar kartu (Kembali, Lanjut/Kirim) tetap
+  terjangkau di langkah yang panjang; di layar sempit label tombol kirim menjadi "Kirim". Langkah 1 menampilkan identitas sebagai **ringkasan terkunci** (avatar,
+  nama, NIM, prodi, tanggal yudisium; Survei Pengguna Lulusan serupa untuk alumni yang dinilai), bukan kolom isian nonaktif. Layar **Data Atasan** berisi lima
+  isian berlabel, dan layar **sukses** bergradien menjelaskan langkah berikutnya (Pra-Lulus dan 1 Tahun menyebut undangan tracer berikutnya, 4 Tahun menyebut
+  ini yang terakhir). Perpindahan langkah masuk dengan animasi halus (dimatikan untuk `prefers-reduced-motion`). Email contoh di isian kontak disamakan dengan
+  alamat penerima di email undangan. Diverifikasi di browser (164 pemeriksaan, termasuk pemindaian otomatis bahwa tidak ada soal atau isian yang berdampingan)
+  dan tanpa scroll horizontal di 390, 360, dan 320 px.
+- **Total pertanyaan dihapus dari tampilan ringkasan kuesioner.** Tiga kartu template di `kuesioner.html` (Lulusan, Pengguna Lulusan, Kosong) tidak lagi
+  menampilkan "N pertanyaan", dan header tiap gelombang di `kuesioner-builder.html` (Pra-Lulus, Pasca-Lulus 1 Tahun, Pasca-Lulus 4 Tahun) tidak lagi
+  menampilkan badge total pertanyaan; badge "Estimasi ... menit" tetap ada. Hitungan per bagian dan per cabang status di builder (mis. "5 pertanyaan",
+  "Cabang: Bekerja") sengaja dipertahankan.
+
 ## [1.3.3] - 2026-10-02
 
 ### Changed

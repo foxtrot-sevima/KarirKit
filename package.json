@@ -1,6 +1,6 @@
 {
   "name": "@foxtrot-sevima/karirkit",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "license": "UNLICENSED",
   "author": "Ahmad Dimas <ahmad.dimas@sevima.id>",
   "description": "KarirKit design system - tokens and components built with Tailwind CSS.",
