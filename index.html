@@ -165,6 +165,7 @@
       <a href="#dropdowns" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Dropdown</a>
       <a href="#modals" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Modal</a>
       <a href="#navigation" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Navigation</a>
+      <a href="#pagination" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Pagination</a>
       <a href="#tables" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Table</a>
       <a href="#alerts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Alert</a>
       <a href="#toasts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Toast</a>
@@ -3318,6 +3319,272 @@
     <!-- /gen:navigation -->
   </section>
 
+  <!-- ============================= PAGINATION ============================= -->
+  <section id="pagination" class="scroll-mt-32 py-12">
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Pagination</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Navigasi antarhalaman - daftar bernomor, ikon, Sebelumnya/Berikutnya, ringkasan data di bawah tabel, dropdown jumlah per halaman, lompat ke halaman, pilih halaman, grup tunggal, tombol terpisah, dan elipsis untuk halaman yang banyak. Contoh pertama sampai keenam hanya markup dan CSS; sisanya interaktif lewat <code class="kbd">assets/js/pagination.js</code> (<code class="kbd">data-pagination</code>, <code class="kbd">KKPagination.get()</code>, event <code class="kbd">pagination:change</code>). Gaya lewat <code class="kbd">.pagination</code> dan <code class="kbd">.pagination-link</code>.</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Default pagination</h3>
+      <p class="mb-3 text-sm text-slate-500">Daftar bernomor yang menyatu: <code class="kbd">.pagination</code> &gt; <code class="kbd">li</code> &gt; <code class="kbd">.pagination-link</code>, halaman aktif memakai <code class="kbd">aria-current="page"</code>. Ukuran lewat <code class="kbd">.pagination-sm</code> dan <code class="kbd">.pagination-lg</code> pada daftar. Hanya markup dan CSS.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="space-y-5">
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Small</p>
+<nav aria-label="Paginasi">
+  <ul class="pagination pagination-sm">
+    <li><a href="#" class="pagination-link" >Sebelumnya</a></li>
+    <li><a href="#" class="pagination-link" >1</a></li>
+    <li><a href="#" class="pagination-link" >2</a></li>
+    <li><a href="#" class="pagination-link" aria-current="page">3</a></li>
+    <li><a href="#" class="pagination-link" >4</a></li>
+    <li><a href="#" class="pagination-link" >5</a></li>
+    <li><a href="#" class="pagination-link" >Berikutnya</a></li>
+  </ul>
+</nav></div>
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Default</p>
+<nav aria-label="Paginasi">
+  <ul class="pagination ">
+    <li><a href="#" class="pagination-link" >Sebelumnya</a></li>
+    <li><a href="#" class="pagination-link" >1</a></li>
+    <li><a href="#" class="pagination-link" >2</a></li>
+    <li><a href="#" class="pagination-link" aria-current="page">3</a></li>
+    <li><a href="#" class="pagination-link" >4</a></li>
+    <li><a href="#" class="pagination-link" >5</a></li>
+    <li><a href="#" class="pagination-link" >Berikutnya</a></li>
+  </ul>
+</nav></div>
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Large</p>
+<nav aria-label="Paginasi">
+  <ul class="pagination pagination-lg">
+    <li><a href="#" class="pagination-link" >Sebelumnya</a></li>
+    <li><a href="#" class="pagination-link" >1</a></li>
+    <li><a href="#" class="pagination-link" >2</a></li>
+    <li><a href="#" class="pagination-link" aria-current="page">3</a></li>
+    <li><a href="#" class="pagination-link" >4</a></li>
+    <li><a href="#" class="pagination-link" >5</a></li>
+    <li><a href="#" class="pagination-link" >Berikutnya</a></li>
+  </ul>
+</nav></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Pagination with icons</h3>
+      <p class="mb-3 text-sm text-slate-500">Sebelumnya/Berikutnya diganti ikon. Teks tetap ada untuk pembaca layar (<code class="kbd">.sr-only</code>).</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="space-y-5">
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Small</p>
+<nav aria-label="Paginasi">
+  <ul class="pagination pagination-sm">
+    <li><a href="#" class="pagination-link" ><i class="kk kk-caret-left h-4 w-4"></i><span class="sr-only">Sebelumnya</span></a></li>
+    <li><a href="#" class="pagination-link" >1</a></li>
+    <li><a href="#" class="pagination-link" >2</a></li>
+    <li><a href="#" class="pagination-link" aria-current="page">3</a></li>
+    <li><a href="#" class="pagination-link" >4</a></li>
+    <li><a href="#" class="pagination-link" >5</a></li>
+    <li><a href="#" class="pagination-link" ><i class="kk kk-caret-right h-4 w-4"></i><span class="sr-only">Berikutnya</span></a></li>
+  </ul>
+</nav></div>
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Default</p>
+<nav aria-label="Paginasi">
+  <ul class="pagination ">
+    <li><a href="#" class="pagination-link" ><i class="kk kk-caret-left h-4 w-4"></i><span class="sr-only">Sebelumnya</span></a></li>
+    <li><a href="#" class="pagination-link" >1</a></li>
+    <li><a href="#" class="pagination-link" >2</a></li>
+    <li><a href="#" class="pagination-link" aria-current="page">3</a></li>
+    <li><a href="#" class="pagination-link" >4</a></li>
+    <li><a href="#" class="pagination-link" >5</a></li>
+    <li><a href="#" class="pagination-link" ><i class="kk kk-caret-right h-4 w-4"></i><span class="sr-only">Berikutnya</span></a></li>
+  </ul>
+</nav></div>
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Large</p>
+<nav aria-label="Paginasi">
+  <ul class="pagination pagination-lg">
+    <li><a href="#" class="pagination-link" ><i class="kk kk-caret-left h-4 w-4"></i><span class="sr-only">Sebelumnya</span></a></li>
+    <li><a href="#" class="pagination-link" >1</a></li>
+    <li><a href="#" class="pagination-link" >2</a></li>
+    <li><a href="#" class="pagination-link" aria-current="page">3</a></li>
+    <li><a href="#" class="pagination-link" >4</a></li>
+    <li><a href="#" class="pagination-link" >5</a></li>
+    <li><a href="#" class="pagination-link" ><i class="kk kk-caret-right h-4 w-4"></i><span class="sr-only">Berikutnya</span></a></li>
+  </ul>
+</nav></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Previous and next</h3>
+      <p class="mb-3 text-sm text-slate-500">Hanya dua tombol, tanpa nomor halaman: <code class="kbd">.pagination.pagination-separate</code> agar tiap tombol membulat sendiri.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="space-y-5">
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Small</p>
+<nav aria-label="Paginasi">
+  <div class="pagination pagination-separate pagination-sm">
+    <a href="#" class="pagination-link" >Sebelumnya</a>
+    <a href="#" class="pagination-link" >Berikutnya</a>
+  </div>
+</nav></div>
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Default</p>
+<nav aria-label="Paginasi">
+  <div class="pagination pagination-separate ">
+    <a href="#" class="pagination-link" >Sebelumnya</a>
+    <a href="#" class="pagination-link" >Berikutnya</a>
+  </div>
+</nav></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Previous and next with icons</h3>
+      <p class="mb-3 text-sm text-slate-500">Dua tombol dengan panah dan teks.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="space-y-5">
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Small</p>
+<nav aria-label="Paginasi">
+  <div class="pagination pagination-separate pagination-sm">
+    <a href="#" class="pagination-link" ><i class="kk kk-arrow-left h-4 w-4"></i>Sebelumnya</a>
+    <a href="#" class="pagination-link" >Berikutnya<i class="kk kk-arrow-right h-4 w-4"></i></a>
+  </div>
+</nav></div>
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Default</p>
+<nav aria-label="Paginasi">
+  <div class="pagination pagination-separate ">
+    <a href="#" class="pagination-link" ><i class="kk kk-arrow-left h-4 w-4"></i>Sebelumnya</a>
+    <a href="#" class="pagination-link" >Berikutnya<i class="kk kk-arrow-right h-4 w-4"></i></a>
+  </div>
+</nav></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Table data pagination</h3>
+      <p class="mb-3 text-sm text-slate-500">Ringkasan jumlah data (<code class="kbd">.pagination-info</code>) di atas tombol, cocok di bawah tabel.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="space-y-8">
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Small</p>
+<div class="flex flex-col items-center gap-3">
+  <span class="pagination-info">Menampilkan <b>1</b> sampai <b>10</b> dari <b>100</b> data</span>
+  <nav aria-label="Paginasi data">
+    <div class="pagination pagination-sm">
+      <a href="#" class="pagination-link" >Sebelumnya</a>
+      <a href="#" class="pagination-link" >Berikutnya</a>
+    </div>
+  </nav>
+</div></div>
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Default</p>
+<div class="flex flex-col items-center gap-3">
+  <span class="pagination-info">Menampilkan <b>1</b> sampai <b>10</b> dari <b>100</b> data</span>
+  <nav aria-label="Paginasi data">
+    <div class="pagination ">
+      <a href="#" class="pagination-link" >Sebelumnya</a>
+      <a href="#" class="pagination-link" >Berikutnya</a>
+    </div>
+  </nav>
+</div></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Table pagination with icons</h3>
+      <p class="mb-3 text-sm text-slate-500">Pola yang sama dengan tombol berpanah.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="space-y-8">
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Small</p>
+<div class="flex flex-col items-center gap-3">
+  <span class="pagination-info">Menampilkan <b>1</b> sampai <b>10</b> dari <b>100</b> data</span>
+  <nav aria-label="Paginasi data">
+    <div class="pagination pagination-sm">
+      <a href="#" class="pagination-link" ><i class="kk kk-arrow-left h-4 w-4"></i>Sebelumnya</a>
+      <a href="#" class="pagination-link" >Berikutnya<i class="kk kk-arrow-right h-4 w-4"></i></a>
+    </div>
+  </nav>
+</div></div>
+  <div><p class="mb-2 text-xs font-medium text-fg-subtle">Default</p>
+<div class="flex flex-col items-center gap-3">
+  <span class="pagination-info">Menampilkan <b>1</b> sampai <b>10</b> dari <b>100</b> data</span>
+  <nav aria-label="Paginasi data">
+    <div class="pagination ">
+      <a href="#" class="pagination-link" ><i class="kk kk-arrow-left h-4 w-4"></i>Sebelumnya</a>
+      <a href="#" class="pagination-link" >Berikutnya<i class="kk kk-arrow-right h-4 w-4"></i></a>
+    </div>
+  </nav>
+</div></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Pagination with dropdown</h3>
+      <p class="mb-3 text-sm text-slate-500">Daftar halaman interaktif di samping pilihan jumlah data per halaman. Perubahan jumlah per halaman ditangani aplikasi (mis. lewat <code class="kbd">setTotal()</code>).</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div data-pagination data-pagination-total="5" data-pagination-page="1" class="flex flex-wrap items-center gap-4">
+  <nav aria-label="Paginasi"><ul class="pagination" data-pagination-list></ul></nav>
+  <select class="input h-10 w-auto" aria-label="Data per halaman">
+    <option>10 per halaman</option>
+    <option>25 per halaman</option>
+    <option>50 per halaman</option>
+    <option>100 per halaman</option>
+  </select>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Pagination with input</h3>
+      <p class="mb-3 text-sm text-slate-500">Lompat ke halaman tertentu: ketik nomor lalu tekan Enter (<code class="kbd">data-pagination-jump</code>). Nomor di luar rentang dijepit ke halaman pertama/terakhir.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div data-pagination data-pagination-total="12" data-pagination-page="1" data-pagination-nav="icon" class="flex flex-wrap items-center gap-x-6 gap-y-3">
+  <nav aria-label="Paginasi"><ul class="pagination" data-pagination-list></ul></nav>
+  <form data-pagination-jump class="flex items-center gap-2 text-sm text-fg-muted">
+    <label for="pg-jump-a">Ke halaman</label>
+    <input id="pg-jump-a" type="number" min="1" inputmode="numeric" class="input h-10 w-20 px-2 text-center" max="12" aria-describedby="pg-jump-a-hint" />
+    <span id="pg-jump-a-hint" class="sr-only">Tekan Enter untuk pindah halaman</span>
+  </form>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Input field and button</h3>
+      <p class="mb-3 text-sm text-slate-500">Kolom nomor halaman dengan tombol Buka. Teks info (<code class="kbd">data-pagination-text="info"</code>) menunjukkan halaman aktif.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div data-pagination data-pagination-total="99" data-pagination-page="1" class="space-y-3">
+  <form data-pagination-jump class="flex flex-wrap items-center gap-3 text-sm text-fg-muted">
+    <label for="pg-jump-b">Ke halaman</label>
+    <input id="pg-jump-b" type="number" min="1" inputmode="numeric" class="input h-10 w-20 px-2 text-center" max="99" />
+    <button type="submit" class="btn-primary btn-md">Buka</button>
+  </form>
+  <p class="pagination-info" data-pagination-text="info" aria-live="polite"></p>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Select input and buttons</h3>
+      <p class="mb-3 text-sm text-slate-500">Pilih halaman dari daftar (<code class="kbd">data-pagination-select</code>, opsi dibuat otomatis), dengan jumlah halaman dan tombol panah berpetunjuk (tooltip).</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div data-pagination data-pagination-total="99" data-pagination-page="1" class="flex flex-wrap items-center gap-3">
+  <label class="sr-only" for="pg-select-a">Halaman</label>
+  <select id="pg-select-a" class="input h-10 w-24" data-pagination-select></select>
+  <span class="text-sm text-fg-muted">dari <span data-pagination-text="total"></span> halaman</span>
+  <nav aria-label="Paginasi">
+    <div class="pagination" role="group">
+      <span class="group relative inline-flex"><button type="button" class="pagination-link" data-pagination-prev ><i class="kk kk-caret-left h-4 w-4"></i><span class="sr-only">Halaman sebelumnya</span></button><span class="tooltip-content">Sebelumnya</span></span>
+      <span class="group relative inline-flex"><button type="button" class="pagination-link" data-pagination-next ><i class="kk kk-caret-right h-4 w-4"></i><span class="sr-only">Halaman berikutnya</span></button><span class="tooltip-content">Berikutnya</span></span>
+    </div>
+  </nav>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Single pagination</h3>
+      <p class="mb-3 text-sm text-slate-500">Satu grup: Sebelumnya, posisi saat ini (<code class="kbd">.pagination-static</code>), dan Berikutnya. Tombol otomatis nonaktif di ujung (<code class="kbd">data-pagination-prev</code> / <code class="kbd">data-pagination-next</code>).</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div data-pagination data-pagination-total="99" data-pagination-page="1">
+  <nav aria-label="Paginasi">
+    <div class="pagination" role="group">
+      <button type="button" class="pagination-link" data-pagination-prev ><i class="kk kk-arrow-left h-4 w-4"></i>Sebelumnya</button>
+      <span class="pagination-static" aria-live="polite"><b data-pagination-text="page" class="font-semibold text-fg"></b>&nbsp;dari&nbsp;<b data-pagination-text="total" class="font-semibold text-fg"></b></span>
+      <button type="button" class="pagination-link" data-pagination-next >Berikutnya<i class="kk kk-arrow-right h-4 w-4"></i></button>
+    </div>
+  </nav>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Separated pagination</h3>
+      <p class="mb-3 text-sm text-slate-500">Tiap tombol berdiri sendiri: tambahkan <code class="kbd">.pagination-separate</code> (jarak <code class="kbd">gap-1.5</code>, semua sudut membulat). Cocok bila daftar boleh turun baris di layar sempit.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div data-pagination data-pagination-total="8" data-pagination-page="2" data-pagination-nav="icon">
+  <nav aria-label="Paginasi"><ul class="pagination pagination-separate" data-pagination-list></ul></nav>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Pagination with ellipsis</h3>
+      <p class="mb-3 text-sm text-slate-500">Untuk halaman yang banyak: lebar daftar tetap, elipsis muncul di sela halaman yang disembunyikan. Atur <code class="kbd">data-pagination-siblings</code> dan <code class="kbd">data-pagination-boundary</code>; dengarkan event <code class="kbd">pagination:change</code>.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div data-pagination data-pagination-total="24" data-pagination-page="9" data-pagination-size="10" data-pagination-count="236" data-pagination-nav="both" class="flex flex-col items-start gap-4">
+  <p class="pagination-info" data-pagination-text="info" aria-live="polite"></p>
+  <nav aria-label="Paginasi"><ul class="pagination" data-pagination-list></ul></nav>
+</div></div>
+    </div>
+    </div>
+  </section>
+
   <!-- ============================= TABLES ============================= -->
   <section id="tables" class="scroll-mt-32 py-12">
     <div class="mb-8">
@@ -5063,6 +5330,7 @@
 <script src="assets/js/table.js"></script>
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/datepicker.js"></script>
+<script src="assets/js/pagination.js"></script>
 <script src="assets/js/theme.js"></script>
 </body>
 </html>

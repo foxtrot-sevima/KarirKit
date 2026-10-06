@@ -95,6 +95,28 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   sana), lalu harapan dan saran (opsional). Tombol "Lewati" di state Data Atasan tidak lagi menyebut kata "simulasi". Panduan di halaman Kuesioner
   diperbarui. Diverifikasi di browser (103 pemeriksaan: popup di 1440, 1280x720, 768, 390, dan 320 px, pratinjau dan kondisi alumni, tiap tracer dari email
   sampai layar sukses, validasi, parameter `exit`, tautan lama) dan tanpa scroll horizontal di 360 dan 320 px.
+- **Komponen Pagination** (`.pagination`, `.pagination-link`, `.pagination-static`, `.pagination-info`, `.pagination-separate`, `.pagination-sm` dan `.pagination-lg`).
+  Navigasi antarhalaman bergaris: **menyatu** (garis berimpit, sudut membulat di ujung; default) atau **terpisah** (`.pagination-separate`, boleh turun baris),
+  tiga ukuran, halaman aktif lewat `aria-current="page"` (atau `.is-active`), nonaktif lewat `disabled`/`aria-disabled`, cincin fokus untuk keyboard, dan
+  mengikuti tema gelap lewat token. Item boleh di dalam `li` atau langsung menjadi anak `.pagination` (grup Sebelumnya | 1 dari 99 | Berikutnya); `.pagination-static`
+  untuk sel yang tidak bisa diklik (elipsis, posisi saat ini) dan `.pagination-info` untuk ringkasan jumlah data. `.pagination-btn` yang dipakai footer tabel tidak
+  berubah. **`assets/js/pagination.js`** (opsional, tanpa dependensi): bungkus dengan `data-pagination` untuk merender daftar halaman (lebar tetap dengan elipsis;
+  `data-pagination-siblings`, `-boundary`, `-nav="text|icon|both|none"`), tombol `data-pagination-prev`/`-next` yang otomatis nonaktif di ujung, lompat ke halaman
+  (`data-pagination-jump`, nomor di luar rentang dijepit), pilih halaman (`data-pagination-select`, opsi dibuat otomatis), dan teks yang diperbarui
+  (`data-pagination-text="info|page|total|range"`, mis. "Menampilkan 1 sampai 10 dari 100 data"); event `pagination:change` dan `KKPagination.get(el)`
+  (`goTo`, `next`, `prev`, `setTotal`). Storybook **Components -> Pagination** berisi Playground dan 13 contoh (Default pagination, Pagination with icons,
+  Previous and next, Previous and next with icons, Table data pagination, Table pagination with icons, Pagination with dropdown, Pagination with input, Input
+  field and button, Select input and buttons, Single pagination, Separated pagination, Pagination with ellipsis) dari satu sumber
+  (`stories/Components/pagination/examples.js`) yang juga membangkitkan section Pagination dan pil navigasinya di `index.html`; keenam contoh pertama hanya markup
+  dan CSS. Diverifikasi: 9.840 kombinasi algoritma daftar halaman (urut, ujung dan halaman aktif selalu tampil, elipsis tidak menutupi satu halaman, lebar
+  konstan) dan 49 pemeriksaan di browser (ukuran, sudut dan garis berimpit, interaksi, penjepitan nomor, `aria-*`, fokus keyboard, tema gelap, tanpa
+  elemen keluar layar di 390, 360, dan 320 px).
+- **Single pagination di daftar "Arsip Kuesioner Tracer Study" (`templates/karirlink/kuesioner.html`).** Daftar arsip kini tampil **maksimal 5 arsip per
+  halaman**, dengan teks "Menampilkan 1 sampai 5 dari 12 arsip" di kiri dan grup Sebelumnya | 1 dari 3 | Berikutnya di kanan (satu baris dari `sm`, bertumpuk
+  di layar kecil). Jumlah halaman dihitung otomatis dari kartu `[data-arsip]` lewat `assets/js/pagination.js`, jadi arsip baru cukup ditambah sebagai kartu.
+  Untuk memperlihatkan halamannya, ditambahkan 8 arsip contoh (2023 sampai 2025) di samping 4 arsip yang sudah ada. Modal Preview tidak berubah.
+  Diverifikasi di browser: 5/5/2 arsip di tiga halaman, teks info dan tombol nonaktif di ujung, Lihat Preview tetap membuka modal di tiap halaman, dan tanpa
+  elemen keluar layar di 390 px.
 
 ### Changed
 

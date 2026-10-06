@@ -35,6 +35,7 @@ const preview = {
             "Sidebar",
             "Tabs",
             "Breadcrumb",
+            "Pagination",
             "Table",
             "Alert",
             "Toast",
