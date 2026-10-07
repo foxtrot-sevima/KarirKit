@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Atur Minat Karier | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Onboarding KarirLink: ceritakan minat, preferensi kerja, dan keahlianmu agar rekomendasi lowongan dan magang sesuai." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/onboarding.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Atur Minat Karier | KarirLink" />
+<meta property="og:description" content="Onboarding KarirLink: ceritakan minat, preferensi kerja, dan keahlianmu agar rekomendasi lowongan dan magang sesuai." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/onboarding.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Atur Minat Karier | KarirLink" />
+<meta name="twitter:description" content="Onboarding KarirLink: ceritakan minat, preferensi kerja, dan keahlianmu agar rekomendasi lowongan dan magang sesuai." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="font-sans text-slate-800 antialiased">
+
+<!-- Tata letak dua panel seperti login.html dan register.html. Kiri: pertanyaan, tombol navigasi dipaku di bawah (header hanya di layar kecil, karena di layar lebar logo dan "Lewati semua" ada di panel kanan); setelah langkah terakhir langsung membuka index.html (beranda portal).
+     Kanan (layar lebar): progres vertikal dan penjelasan singkat kenapa tiap pertanyaan diajukan. Logo kiri hanya di layar
+     kecil karena panel kanan sudah memuat logo; di layar kecil progres tampil sebagai balok bersegmen di bawah header. -->
+<div class="flex min-h-screen flex-col lg:flex-row">
+
+  <!-- ============================= FORM PANEL ============================= -->
+  <div class="flex w-full flex-1 flex-col lg:w-3/5">
+    <header class="sticky top-0 z-20 bg-surface/90 px-6 pb-4 pt-6 backdrop-blur-md sm:px-12 lg:hidden">
+      <div class="mx-auto w-full max-w-xl">
+        <div class="flex items-center justify-between gap-4">
+          <a href="login.html" class="inline-flex lg:hidden">
+            <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+          </a>
+          <button type="button" id="skipAllBtn" class="btn-ghost btn-sm ml-auto">Lewati semua</button>
+        </div>
+        <div class="mt-5 flex gap-2 lg:hidden" id="segments" role="progressbar" aria-label="Kemajuan onboarding" aria-valuemin="0" aria-valuemax="3" aria-valuenow="1">
+          <span class="h-1.5 flex-1 rounded-full bg-neutral-200 transition-colors" data-segment="1"></span>
+          <span class="h-1.5 flex-1 rounded-full bg-neutral-200 transition-colors" data-segment="2"></span>
+          <span class="h-1.5 flex-1 rounded-full bg-neutral-200 transition-colors" data-segment="3"></span>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex flex-1 flex-col px-6 py-8 sm:px-12 lg:px-16">
+      <div class="mx-auto my-auto w-full max-w-xl">
+
+        <form id="onboardingForm" novalidate>
+
+          <!-- ---------- Langkah 1: minat bidang ---------- -->
+          <section data-step="1" aria-labelledby="step1Title">
+            <div class="flex items-center gap-3">
+              <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-md shadow-primary-600/20"><i class="kk kk-target h-5 w-5"></i></span>
+              <p class="text-xs font-semibold uppercase tracking-wider text-primary-600">Langkah 1 dari 3</p>
+            </div>
+            <h1 id="step1Title" tabindex="-1" class="mt-4 font-display text-2xl font-bold text-slate-900 outline-none sm:text-3xl"><span id="greeting">Halo!</span> Bidang apa yang paling menarik buatmu?</h1>
+            <p class="mt-2 text-sm text-slate-500 sm:text-base">Pilih sebanyak yang kamu suka. Ini sinyal terkuat untuk mengurutkan lowongan di berandamu.</p>
+
+            <fieldset class="mt-8">
+              <legend class="sr-only">Bidang pekerjaan yang diminati</legend>
+              <div class="mb-3 flex items-center justify-between gap-3">
+                <span class="text-xs font-medium text-slate-500">12 bidang tersedia</span>
+                <span id="interestCount" class="badge-primary" aria-live="polite">0 dipilih</span>
+              </div>
+              <div class="grid grid-cols-2 gap-3" id="interestGrid">
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Teknologi &amp; IT" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-colors group-has-checked/c:bg-primary-600 group-has-checked/c:text-white"><i class="kk kk-code h-5 w-5"></i></span><span class="choice-title">Teknologi &amp; IT</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Desain &amp; Kreatif" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600 transition-colors group-has-checked/c:bg-secondary-600 group-has-checked/c:text-white"><i class="kk kk-palette h-5 w-5"></i></span><span class="choice-title">Desain &amp; Kreatif</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Keuangan &amp; Akuntansi" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success-50 text-success-600 transition-colors group-has-checked/c:bg-success-600 group-has-checked/c:text-white"><i class="kk kk-bank h-5 w-5"></i></span><span class="choice-title">Keuangan &amp; Akuntansi</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Pemasaran &amp; Penjualan" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning-50 text-warning-600 transition-colors group-has-checked/c:bg-warning-600 group-has-checked/c:text-white"><i class="kk kk-megaphone h-5 w-5"></i></span><span class="choice-title">Pemasaran &amp; Penjualan</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Kesehatan" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-danger-50 text-danger-600 transition-colors group-has-checked/c:bg-danger-600 group-has-checked/c:text-white"><i class="kk kk-stethoscope h-5 w-5"></i></span><span class="choice-title">Kesehatan</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Pendidikan &amp; Pelatihan" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600 transition-colors group-has-checked/c:bg-info-600 group-has-checked/c:text-white"><i class="kk kk-books h-5 w-5"></i></span><span class="choice-title">Pendidikan &amp; Pelatihan</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Teknik &amp; Manufaktur" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-colors group-has-checked/c:bg-primary-600 group-has-checked/c:text-white"><i class="kk kk-gear h-5 w-5"></i></span><span class="choice-title">Teknik &amp; Manufaktur</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Hukum &amp; Pemerintahan" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600 transition-colors group-has-checked/c:bg-secondary-600 group-has-checked/c:text-white"><i class="kk kk-scales h-5 w-5"></i></span><span class="choice-title">Hukum &amp; Pemerintahan</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Hospitality &amp; Pariwisata" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600 transition-colors group-has-checked/c:bg-info-600 group-has-checked/c:text-white"><i class="kk kk-airplane h-5 w-5"></i></span><span class="choice-title">Hospitality &amp; Pariwisata</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Logistik &amp; Rantai Pasok" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning-50 text-warning-600 transition-colors group-has-checked/c:bg-warning-600 group-has-checked/c:text-white"><i class="kk kk-truck h-5 w-5"></i></span><span class="choice-title">Logistik &amp; Rantai Pasok</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Media &amp; Komunikasi" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-danger-50 text-danger-600 transition-colors group-has-checked/c:bg-danger-600 group-has-checked/c:text-white"><i class="kk kk-newspaper h-5 w-5"></i></span><span class="choice-title">Media &amp; Komunikasi</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+                <label class="choice group/c"><input type="checkbox" name="interests" value="Riset &amp; Sains" /><span class="choice-body items-center gap-2.5 py-4 text-center sm:flex-row sm:gap-3 sm:py-3 sm:pr-10 sm:text-left"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success-50 text-success-600 transition-colors group-has-checked/c:bg-success-600 group-has-checked/c:text-white"><i class="kk kk-flask h-5 w-5"></i></span><span class="choice-title">Riset &amp; Sains</span></span><span class="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+              </div>
+              <p class="form-error mt-3" data-error="interests" hidden>Pilih minimal satu bidang, atau lewati langkah ini.</p>
+            </fieldset>
+          </section>
+
+          <!-- ---------- Langkah 2: preferensi kerja ---------- -->
+          <section data-step="2" aria-labelledby="step2Title" hidden>
+            <div class="flex items-center gap-3">
+              <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-md shadow-primary-600/20"><i class="kk kk-sliders h-5 w-5"></i></span>
+              <p class="text-xs font-semibold uppercase tracking-wider text-primary-600">Langkah 2 dari 3</p>
+            </div>
+            <h1 id="step2Title" tabindex="-1" class="mt-4 font-display text-2xl font-bold text-slate-900 outline-none sm:text-3xl">Seperti apa pekerjaan yang kamu cari?</h1>
+            <p class="mt-2 text-sm text-slate-500 sm:text-base">Boleh pilih lebih dari satu. Sesuaikan dengan pekerjaan yang kamu inginkan.</p>
+
+            <div class="mt-8 divide-y divide-border">
+              <div class="pb-7"><fieldset>
+                <legend class="w-full"><span class="flex items-start justify-between gap-3"><span class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-briefcase h-5 w-5"></i></span><span class="block"><span class="block text-base font-semibold text-slate-900">Jenis pekerjaan</span><span class="mt-0.5 block text-xs font-normal text-slate-500">Jenis hubungan kerja yang kamu cari.</span></span></span><span class="shrink-0 text-xs text-fg-subtle" data-count="jobTypes">Belum dipilih</span></span></legend>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <label class="choice choice-slot"><input type="checkbox" name="jobTypes" value="Magang" /><span class="choice-body flex-row gap-2 rounded-full px-4"><i class="kk kk-graduation-cap h-4 w-4"></i>Magang</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="jobTypes" value="Penuh waktu" /><span class="choice-body flex-row gap-2 rounded-full px-4"><i class="kk kk-briefcase h-4 w-4"></i>Penuh waktu</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="jobTypes" value="Paruh waktu" /><span class="choice-body flex-row gap-2 rounded-full px-4"><i class="kk kk-clock h-4 w-4"></i>Paruh waktu</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="jobTypes" value="Kontrak" /><span class="choice-body flex-row gap-2 rounded-full px-4"><i class="kk kk-file-text h-4 w-4"></i>Kontrak</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="jobTypes" value="Freelance" /><span class="choice-body flex-row gap-2 rounded-full px-4"><i class="kk kk-laptop h-4 w-4"></i>Freelance</span></label>
+                </div>
+                <p class="form-error" data-error="jobTypes" hidden>Pilih minimal satu jenis pekerjaan, atau lewati langkah ini.</p>
+              </fieldset></div>
+
+              <div class="py-7"><fieldset>
+                <legend class="w-full"><span class="flex items-start justify-between gap-3"><span class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-laptop h-5 w-5"></i></span><span class="block"><span class="block text-base font-semibold text-slate-900">Model kerja</span><span class="mt-0.5 block text-xs font-normal text-slate-500">Cara kerja yang kamu inginkan sehari-hari.</span></span></span><span class="shrink-0 text-xs text-fg-subtle" data-count="workModes">Belum dipilih</span></span></legend>
+                <div class="mt-4 grid grid-cols-3 gap-3">
+                  <label class="choice group/c"><input type="checkbox" name="workModes" value="Di kantor" /><span class="choice-body items-center gap-1.5 px-2 py-4 text-center sm:px-4"><span class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-600 transition-colors group-has-checked/c:bg-primary-600 group-has-checked/c:text-white"><i class="kk kk-buildings h-5 w-5"></i></span><span class="choice-title mt-1">Di kantor</span><span class="hidden text-xs sm:block">Datang ke kantor</span></span></label>
+                  <label class="choice group/c"><input type="checkbox" name="workModes" value="Hybrid" /><span class="choice-body items-center gap-1.5 px-2 py-4 text-center sm:px-4"><span class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-600 transition-colors group-has-checked/c:bg-primary-600 group-has-checked/c:text-white"><i class="kk kk-arrows-left-right h-5 w-5"></i></span><span class="choice-title mt-1">Hybrid</span><span class="hidden text-xs sm:block">Kantor dan rumah</span></span></label>
+                  <label class="choice group/c"><input type="checkbox" name="workModes" value="Remote" /><span class="choice-body items-center gap-1.5 px-2 py-4 text-center sm:px-4"><span class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-600 transition-colors group-has-checked/c:bg-primary-600 group-has-checked/c:text-white"><i class="kk kk-globe h-5 w-5"></i></span><span class="choice-title mt-1">Remote</span><span class="hidden text-xs sm:block">Dari mana saja</span></span></label>
+                </div>
+              </fieldset></div>
+
+              <div class="py-7"><fieldset>
+                <legend class="w-full"><span class="flex items-start justify-between gap-3"><span class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-map-pin h-5 w-5"></i></span><span class="block"><span class="block text-base font-semibold text-slate-900">Lokasi yang diminati</span><span class="mt-0.5 block text-xs font-normal text-slate-500">Kota tempat kamu siap bekerja.</span></span></span><span class="shrink-0 text-xs text-fg-subtle" data-count="locations">Belum dipilih</span></span></legend>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <label class="choice choice-slot"><input type="checkbox" name="locations" value="Jakarta" /><span class="choice-body">Jakarta</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="locations" value="Bandung" /><span class="choice-body">Bandung</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="locations" value="Surabaya" /><span class="choice-body">Surabaya</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="locations" value="Yogyakarta" /><span class="choice-body">Yogyakarta</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="locations" value="Semarang" /><span class="choice-body">Semarang</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="locations" value="Medan" /><span class="choice-body">Medan</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="locations" value="Denpasar" /><span class="choice-body">Denpasar</span></label>
+                  <label class="choice choice-slot"><input type="checkbox" name="locations" value="Di mana saja" /><span class="choice-body">Di mana saja</span></label>
+                </div>
+              </fieldset></div>
+
+              <div class="pt-7"><fieldset>
+                <legend class="w-full"><span class="flex items-start justify-between gap-3"><span class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-coins h-5 w-5"></i></span><span class="block"><span class="block text-base font-semibold text-slate-900">Ekspektasi gaji per bulan</span><span class="mt-0.5 block text-xs font-normal text-slate-500">Hanya untuk menyaring rekomendasi, tidak ditampilkan ke perusahaan.</span></span></span></span></legend>
+                <div class="mt-4 grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="salaryMin" class="form-label">Minimum</label>
+                    <div class="relative">
+                      <span class="pointer-events-none absolute inset-y-0 left-0 flex w-11 items-center justify-center text-sm font-medium text-fg-subtle">Rp</span>
+                      <input id="salaryMin" name="salaryMin" type="text" inputmode="numeric" autocomplete="off" class="input pl-11" placeholder="3.000.000" />
+                    </div>
+                  </div>
+                  <div>
+                    <label for="salaryMax" class="form-label">Maksimum</label>
+                    <div class="relative">
+                      <span class="pointer-events-none absolute inset-y-0 left-0 flex w-11 items-center justify-center text-sm font-medium text-fg-subtle">Rp</span>
+                      <input id="salaryMax" name="salaryMax" type="text" inputmode="numeric" autocomplete="off" class="input pl-11" placeholder="8.000.000" />
+                    </div>
+                    <p class="form-error" data-error="salaryMax" hidden>Maksimum tidak boleh lebih kecil dari minimum.</p>
+                  </div>
+                </div>
+              </fieldset></div>
+            </div>
+          </section>
+
+          <!-- ---------- Langkah 3: keahlian ---------- -->
+          <section data-step="3" aria-labelledby="step3Title" hidden>
+            <div class="flex items-center gap-3">
+              <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-md shadow-primary-600/20"><i class="kk kk-lightbulb h-5 w-5"></i></span>
+              <p class="text-xs font-semibold uppercase tracking-wider text-primary-600">Langkah 3 dari 3</p>
+            </div>
+            <h1 id="step3Title" tabindex="-1" class="mt-4 font-display text-2xl font-bold text-slate-900 outline-none sm:text-3xl">Keahlian apa yang kamu punya?</h1>
+            <p class="mt-2 text-sm text-slate-500 sm:text-base">Tambahkan sampai 10 keahlian. Kami cocokkan dengan kualifikasi yang diminta di setiap lowongan.</p>
+
+            <div class="mt-8 divide-y divide-border">
+              <div class="pb-7"><fieldset>
+                <legend class="w-full"><span class="flex items-start justify-between gap-3"><span class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-star h-5 w-5"></i></span><span class="block"><span class="block text-base font-semibold text-slate-900">Keahlian kamu</span><span class="mt-0.5 block text-xs font-normal text-slate-500">Ketik lalu tekan Enter, atau pilih dari saran di bawah.</span></span></span><span class="shrink-0 text-xs text-fg-subtle" data-count="skills">Belum dipilih</span></span></legend>
+                <div class="relative mt-4">
+                  <div id="skillField" class="flex min-h-12 cursor-text flex-wrap items-center gap-2 rounded-control border border-border bg-surface px-3 py-2 transition-shadow focus-within:border-primary-400 focus-within:ring-4 focus-within:ring-primary-500/10">
+                    <span id="skillChips" class="contents"></span>
+                    <input id="skillInput" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="skillMenu" aria-label="Tambah keahlian" class="min-w-[9rem] flex-1 bg-transparent py-1 text-sm text-neutral-700 outline-none placeholder:text-fg-subtle disabled:cursor-not-allowed" placeholder="Ketik keahlian, mis. Python" maxlength="40" autocomplete="off" />
+                  </div>
+                  <div id="skillMenu" role="listbox" aria-label="Saran keahlian" class="absolute inset-x-0 top-full z-20 mt-2 max-h-72 scroll-mb-28 overflow-y-auto rounded-xl border border-border bg-surface p-1.5 shadow-lg" hidden></div>
+                </div>
+                <div class="progress-track mt-4 h-1.5"><div id="skillMeter" class="progress-bar transition-all duration-300" style="width: 0%"></div></div>
+                <p id="skillHint" class="mt-2 text-xs text-fg-subtle" aria-live="polite">Tambah minimal 3 keahlian agar rekomendasi lebih tepat.</p>
+              </fieldset></div>
+
+              <div class="pt-7"><fieldset>
+                <legend class="w-full"><span class="flex items-start justify-between gap-3"><span class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-sparkle h-5 w-5"></i></span><span class="block"><span class="block text-base font-semibold text-slate-900">Saran untukmu</span><span class="mt-0.5 block text-xs font-normal text-slate-500">Berdasarkan bidang yang kamu pilih. Ketuk untuk menambah, ketuk lagi untuk menghapus.</span></span></span></span></legend>
+                <div id="skillSuggestions" class="mt-5 space-y-5"></div>
+              </fieldset></div>
+            </div>
+          </section>
+        </form>
+      </div>
+    </main>
+
+    <!-- Navigasi dipaku di bawah supaya posisinya tetap di setiap langkah -->
+    <div id="stepFooter" class="sticky bottom-0 z-10 border-t border-border bg-surface/90 px-6 py-4 backdrop-blur-md sm:px-12 lg:px-16">
+      <div class="mx-auto flex w-full max-w-xl items-center justify-between gap-3">
+        <button type="button" id="backBtn" class="btn-outline btn-md" aria-label="Kembali" hidden>
+          <i class="kk kk-arrow-left h-4 w-4"></i>
+          <span class="hidden min-[380px]:inline">Kembali</span>
+        </button>
+        <span id="navSpacer"></span>
+        <div class="flex items-center gap-2">
+          <button type="button" id="skipStepBtn" class="btn-ghost btn-md"><span>Lewati<span class="hidden sm:inline"> langkah ini</span></span></button>
+          <button type="submit" form="onboardingForm" id="nextBtn" class="btn-primary btn-md">
+            <span id="nextLabel">Lanjut</span>
+            <i class="kk kk-arrow-right h-4 w-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= VISUAL PANEL: PROGRES ============================= -->
+  <aside class="relative hidden overflow-hidden bg-brand-gradient lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-2/5 lg:flex-col lg:justify-between lg:self-start lg:p-12 xl:p-14" aria-label="Progres onboarding">
+    <!-- Dot texture -->
+    <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
+    <!-- Soft glow accents -->
+    <div class="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-secondary-400/30 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 -left-16 h-96 w-96 rounded-full bg-primary-300/30 blur-3xl"></div>
+
+    <div class="relative flex items-center justify-between gap-4">
+      <img src="../../assets/logo/karirlink-logo-white.svg" alt="KarirLink" class="h-8 w-auto" />
+      <button type="button" id="skipAllBtnLg" class="inline-flex items-center rounded-control px-3 py-1.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white">Lewati semua</button>
+    </div>
+
+    <div class="relative">
+      <span class="badge bg-white/15 text-white">Atur berandamu</span>
+      <h2 class="mt-4 font-display text-2xl font-bold leading-tight text-white xl:text-3xl">Beberapa langkah singkat, rekomendasi yang pas.</h2>
+
+      <nav aria-label="Langkah onboarding" class="mt-9">
+        <ol class="space-y-6" id="stepper">
+          <li class="relative flex gap-4" data-stepper="1" data-icon="target">
+            <span class="step-dot relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors"><i class="kk kk-target h-5 w-5"></i></span>
+            <span class="step-line absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full transition-colors"></span>
+            <div class="pt-0.5">
+              <p class="step-label text-sm font-semibold transition-colors">Minat</p>
+              <p class="mt-0.5 text-xs text-primary-100/80">Bidang pekerjaan yang paling kamu sukai.</p>
+            </div>
+          </li>
+          <li class="relative flex gap-4" data-stepper="2" data-icon="sliders">
+            <span class="step-dot relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors"><i class="kk kk-sliders h-5 w-5"></i></span>
+            <span class="step-line absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full transition-colors"></span>
+            <div class="pt-0.5">
+              <p class="step-label text-sm font-semibold transition-colors">Preferensi</p>
+              <p class="mt-0.5 text-xs text-primary-100/80">Jenis, model kerja, lokasi, dan gaji.</p>
+            </div>
+          </li>
+          <li class="relative flex gap-4" data-stepper="3" data-icon="lightbulb">
+            <span class="step-dot relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors"><i class="kk kk-lightbulb h-5 w-5"></i></span>
+            <div class="pt-0.5">
+              <p class="step-label text-sm font-semibold transition-colors">Keahlian</p>
+              <p class="mt-0.5 text-xs text-primary-100/80">Keahlian yang kamu punya hari ini.</p>
+            </div>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- Penjelasan statis per langkah (teks biasa, tanpa hitungan di server) -->
+    <div id="whyCard" class="relative rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
+      <div class="flex items-start gap-3">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white"><i class="kk kk-question h-5 w-5"></i></span>
+        <div>
+          <p class="text-sm font-semibold text-white">Kenapa kami menanyakan ini?</p>
+          <p id="whyText" class="mt-1 text-sm text-primary-100/90"></p>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+  (function () {
+    var STORE_KEY = 'kk_portal_onboarding';
+    var USER_KEY = 'kk_portal_user';
+    var HOME_URL = 'index.html'; // portal home; opened right after the last step (or "Lewati semua")
+    var TOTAL_STEPS = 3;
+    var MAX_SKILLS = 10;
+
+    // Skill catalogue per interest: feeds the suggestions (first four chosen interests, then "Umum") and the type-ahead.
+    var SKILLS = {
+      'Teknologi & IT': ['JavaScript', 'Python', 'SQL', 'HTML & CSS', 'React', 'Git', 'Node.js', 'Java'],
+      'Desain & Kreatif': ['Figma', 'Desain grafis', 'Riset pengguna', 'Ilustrasi', 'Adobe Photoshop', 'Adobe Illustrator', 'Desain UI', 'Animasi'],
+      'Keuangan & Akuntansi': ['Microsoft Excel', 'Akuntansi', 'Analisis laporan keuangan', 'SQL', 'Power BI', 'Perpajakan', 'Audit', 'Penganggaran'],
+      'Pemasaran & Penjualan': ['SEO', 'Copywriting', 'Google Ads', 'Media sosial', 'Analitik pemasaran', 'Email marketing', 'Negosiasi', 'CRM'],
+      'Kesehatan': ['Pelayanan pasien', 'Rekam medis', 'Pertolongan pertama', 'Microsoft Office', 'Farmasi klinis', 'Keperawatan dasar', 'Edukasi kesehatan', 'K3'],
+      'Pendidikan & Pelatihan': ['Pengajaran', 'Penyusunan kurikulum', 'Public speaking', 'Pembuatan materi', 'Manajemen kelas', 'Asesmen belajar', 'E-learning', 'Bimbingan'],
+      'Teknik & Manufaktur': ['AutoCAD', 'Pengendalian mutu', 'Pemeliharaan mesin', 'K3', 'Microsoft Excel', 'SolidWorks', 'Lean manufacturing', 'Gambar teknik'],
+      'Hukum & Pemerintahan': ['Penyusunan kontrak', 'Riset hukum', 'Kepatuhan', 'Administrasi publik', 'Analisis kebijakan', 'Negosiasi', 'Korespondensi resmi', 'Arsip dokumen'],
+      'Hospitality & Pariwisata': ['Layanan pelanggan', 'Bahasa Inggris', 'Manajemen reservasi', 'Event organizing', 'Pemandu wisata', 'Tata hidang', 'Front office', 'Penanganan keluhan'],
+      'Logistik & Rantai Pasok': ['Manajemen gudang', 'SAP', 'Perencanaan rantai pasok', 'Microsoft Excel', 'Pengadaan', 'Inventori', 'Distribusi', 'Pelacakan pengiriman'],
+      'Media & Komunikasi': ['Penulisan konten', 'Penyuntingan video', 'Fotografi', 'Media sosial', 'Public relations', 'Desain grafis', 'Podcast', 'Jurnalistik'],
+      'Riset & Sains': ['Analisis data', 'Metodologi penelitian', 'Statistik', 'Penulisan ilmiah', 'Python', 'Laboratorium', 'SPSS', 'Survei']
+    };
+    var GENERIC_SKILLS = ['Komunikasi', 'Kerja sama tim', 'Bahasa Inggris', 'Microsoft Office', 'Manajemen waktu', 'Kepemimpinan', 'Pemecahan masalah', 'Berpikir kritis'];
+    // Same accent per interest as the cards in step 1 (full class names so the CSS build picks them up).
+    var FIELD_ACCENT = {
+      'Teknologi & IT': 'bg-primary-50 text-primary-600', 'Desain & Kreatif': 'bg-secondary-50 text-secondary-600',
+      'Keuangan & Akuntansi': 'bg-success-50 text-success-600', 'Pemasaran & Penjualan': 'bg-warning-50 text-warning-600',
+      'Kesehatan': 'bg-danger-50 text-danger-600', 'Pendidikan & Pelatihan': 'bg-info-50 text-info-600',
+      'Teknik & Manufaktur': 'bg-primary-50 text-primary-600', 'Hukum & Pemerintahan': 'bg-secondary-50 text-secondary-600',
+      'Hospitality & Pariwisata': 'bg-info-50 text-info-600', 'Logistik & Rantai Pasok': 'bg-warning-50 text-warning-600',
+      'Media & Komunikasi': 'bg-danger-50 text-danger-600', 'Riset & Sains': 'bg-success-50 text-success-600'
+    };
+    var FIELD_ICON = {
+      'Teknologi & IT': 'code', 'Desain & Kreatif': 'palette', 'Keuangan & Akuntansi': 'bank', 'Pemasaran & Penjualan': 'megaphone',
+      'Kesehatan': 'stethoscope', 'Pendidikan & Pelatihan': 'books', 'Teknik & Manufaktur': 'gear', 'Hukum & Pemerintahan': 'scales',
+      'Hospitality & Pariwisata': 'airplane', 'Logistik & Rantai Pasok': 'truck', 'Media & Komunikasi': 'newspaper', 'Riset & Sains': 'flask'
+    };
+
+    // Static copy on the brand panel: why each question is asked (no calculation, nothing sent to a server).
+    var WHY = [
+      'Bidang minat adalah sinyal terkuat untuk menentukan lowongan, magang, dan event yang tampil di berandamu. Kamu bisa mengubahnya kapan saja.',
+      'Jenis pekerjaan, model kerja, dan lokasi dipakai untuk menyaring lowongan supaya yang tampil benar-benar bisa kamu lamar.',
+      'Keahlianmu dicocokkan dengan kualifikasi di tiap lowongan, jadi kamu tahu seberapa siap untuk melamar.'
+    ];
+
+    // Stepper on the brand panel per state (full class names so the CSS build picks them up).
+    var STEP_STYLE = {
+      todo: { dot: 'border border-white/30 bg-white/10 text-white/70', label: 'text-white/70', line: 'bg-white/20' },
+      current: { dot: 'bg-white text-primary-700 shadow-lg shadow-primary-900/20 ring-4 ring-white/25', label: 'text-white', line: 'bg-white/20' },
+      done: { dot: 'bg-success-500 text-white shadow-md shadow-success-900/25 ring-4 ring-success-500/25', label: 'text-white', line: 'bg-white/70' }
+    };
+
+    var form = document.getElementById('onboardingForm');
+    var steps = Array.prototype.slice.call(form.querySelectorAll('[data-step]'));
+    var stepperItems = Array.prototype.slice.call(document.querySelectorAll('[data-stepper]'));
+    var segments = Array.prototype.slice.call(document.querySelectorAll('[data-segment]'));
+    var segmentBar = document.getElementById('segments');
+    var backBtn = document.getElementById('backBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    var nextLabel = document.getElementById('nextLabel');
+    var skipAllBtns = [document.getElementById('skipAllBtn'), document.getElementById('skipAllBtnLg')]; // small-screen header + brand panel
+    var skipStepBtn = document.getElementById('skipStepBtn');
+    var current = 1;
+    var skills = [];
+    var leaving = false;
+
+    function esc(s) {
+      var d = document.createElement('div');
+      d.textContent = s == null ? '' : String(s);
+      return d.innerHTML;
+    }
+    function read(key) {
+      try { return JSON.parse(localStorage.getItem(key)); } catch (e) { return null; }
+    }
+    function write(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage unavailable: demo still works */ }
+    }
+    function checked(name) {
+      return Array.prototype.map.call(form.querySelectorAll('input[name="' + name + '"]:checked'), function (i) { return i.value; });
+    }
+
+    // ---- greeting
+    var user = read(USER_KEY);
+    if (user && user.name) document.getElementById('greeting').textContent = 'Halo, ' + user.name.split(' ')[0] + '!';
+
+    // ---- progress: vertical stepper on the brand panel (done = check) and segments for small screens
+    function paintStepper(active) {
+      stepperItems.forEach(function (li) {
+        var n = parseInt(li.getAttribute('data-stepper'), 10);
+        var state = n < active ? 'done' : n === active ? 'current' : 'todo';
+        var s = STEP_STYLE[state];
+        var dot = li.querySelector('.step-dot');
+        dot.className = 'step-dot relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors ' + s.dot;
+        dot.firstElementChild.className = 'kk kk-' + (state === 'done' ? 'check kk-bold' : li.getAttribute('data-icon')) + ' h-5 w-5';
+        li.querySelector('.step-label').className = 'step-label text-sm font-semibold transition-colors ' + s.label;
+        var line = li.querySelector('.step-line');
+        if (line) line.className = 'step-line absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full transition-colors ' + s.line;
+        if (state === 'current') li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+      });
+      segments.forEach(function (seg) {
+        var on = parseInt(seg.getAttribute('data-segment'), 10) <= Math.min(active, TOTAL_STEPS);
+        seg.className = 'h-1.5 flex-1 rounded-full transition-colors ' + (on ? 'bg-primary-600' : 'bg-neutral-200');
+      });
+      segmentBar.setAttribute('aria-valuenow', Math.min(active, TOTAL_STEPS));
+    }
+
+    // ---- step 1: any number of interests
+    var interestBoxes = Array.prototype.slice.call(form.querySelectorAll('input[name="interests"]'));
+    function syncInterests() {
+      var n = interestBoxes.filter(function (b) { return b.checked; }).length;
+      document.getElementById('interestCount').textContent = n + ' dipilih';
+      if (n) setError('interests', false);
+    }
+    interestBoxes.forEach(function (b) { b.addEventListener('change', syncInterests); });
+    form.querySelectorAll('input[name="jobTypes"]').forEach(function (b) { b.addEventListener('change', function () { setError('jobTypes', false); }); });
+
+    // ---- step 2: the header of each group shows how many options are picked
+    function syncCounts() {
+      ['jobTypes', 'workModes', 'locations'].forEach(function (name) {
+        var el = form.querySelector('[data-count="' + name + '"]');
+        if (!el) return;
+        var n = checked(name).length;
+        el.textContent = n ? n + ' dipilih' : 'Belum dipilih';
+        el.className = n ? 'badge-primary shrink-0' : 'shrink-0 text-xs text-fg-subtle';
+      });
+    }
+    form.addEventListener('change', syncCounts);
+
+    // ---- step 2: salary range as two rupiah fields (digits only, shown with thousand dots)
+    var salaryMin = document.getElementById('salaryMin');
+    var salaryMax = document.getElementById('salaryMax');
+    function onlyDigits(str) {
+      return String(str == null ? '' : str).split('').filter(function (c) { return c >= '0' && c <= '9'; }).join('');
+    }
+    function rupiah(digits) {
+      return digits ? Number(digits).toLocaleString('id-ID') : '';
+    }
+    function amount(input) {
+      return parseInt(onlyDigits(input.value), 10) || null;
+    }
+    function maskMoney(e) {
+      var el = e.target;
+      var digitsBeforeCaret = onlyDigits(el.value.slice(0, el.selectionStart)).length;
+      var d = onlyDigits(el.value).slice(0, 9);
+      while (d.length > 1 && d.charAt(0) === '0') d = d.slice(1);
+      el.value = rupiah(d);
+      var pos = 0, seen = 0; // keep the caret after the same number of digits
+      while (pos < el.value.length && seen < digitsBeforeCaret) { if (el.value.charAt(pos) >= "0" && el.value.charAt(pos) <= "9") seen++; pos++; }
+      el.setSelectionRange(pos, pos);
+      setError('salaryMax', false);
+    }
+    salaryMin.addEventListener('input', maskMoney);
+    salaryMax.addEventListener('input', maskMoney);
+
+    // ---- step 3: skills. A tag field with type-ahead, a progress hint, and one-tap suggestions per chosen interest.
+    var MIN_GOOD = 3; // below this the hint nudges the user to add more (never blocks)
+    var CHIP_OFF = 'inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-sm font-medium text-fg-muted transition-colors hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700 disabled:cursor-not-allowed disabled:opacity-50';
+    var CHIP_ON = 'inline-flex items-center gap-1.5 rounded-full border border-primary-600 bg-primary-50 px-3 py-1.5 text-sm font-medium text-primary-700 transition-colors';
+    var skillInput = document.getElementById('skillInput');
+    var skillField = document.getElementById('skillField');
+    var skillMenu = document.getElementById('skillMenu');
+    var menuOptions = [];
+    var activeOption = -1;
+    var CATALOG = [];
+    (function () {
+      var seen = {};
+      Object.keys(SKILLS).forEach(function (k) { SKILLS[k].forEach(function (s) { if (!seen[s.toLowerCase()]) { seen[s.toLowerCase()] = true; CATALOG.push(s); } }); });
+      GENERIC_SKILLS.forEach(function (s) { if (!seen[s.toLowerCase()]) { seen[s.toLowerCase()] = true; CATALOG.push(s); } });
+    })();
+
+    function cleanSkill(raw) { return String(raw || '').split(' ').filter(Boolean).join(' '); }
+    function canonical(s) {
+      var hit = CATALOG.filter(function (c) { return c.toLowerCase() === s.toLowerCase(); })[0];
+      return hit || s;
+    }
+    function hasSkill(s) { return skills.some(function (x) { return x.toLowerCase() === s.toLowerCase(); }); }
+
+    function renderSuggestions() {
+      var full = skills.length >= MAX_SKILLS;
+      var seen = {};
+      var groups = checked('interests').slice(0, 4).map(function (f) { return { label: f, icon: FIELD_ICON[f] || 'briefcase', accent: FIELD_ACCENT[f] || 'bg-primary-50 text-primary-600', list: SKILLS[f] || [] }; });
+      groups.push({ label: 'Umum', icon: 'sparkle', accent: 'bg-neutral-100 text-neutral-600', list: GENERIC_SKILLS });
+      document.getElementById('skillSuggestions').innerHTML = groups.map(function (g) {
+        var items = [];
+        g.list.forEach(function (s) {
+          var k = s.toLowerCase();
+          if (!seen[k] && items.length < 6) { seen[k] = true; items.push(s); }
+        });
+        if (!items.length) return '';
+        return '<div><p class="flex items-center gap-2 text-xs font-semibold text-slate-600"><span class="flex h-6 w-6 items-center justify-center rounded-md ' + g.accent + '"><i class="kk kk-' + g.icon + ' h-3.5 w-3.5"></i></span>' + esc(g.label) + '</p>' +
+          '<div class="mt-2.5 flex flex-wrap gap-2">' + items.map(function (s) {
+            var on = hasSkill(s);
+            return '<button type="button" class="' + (on ? CHIP_ON : CHIP_OFF) + '" data-toggle-skill="' + esc(s) + '" aria-pressed="' + on + '"' + (full && !on ? ' disabled' : '') + '>' +
+              '<i class="kk kk-' + (on ? 'check' : 'plus') + ' h-3.5 w-3.5"></i>' + esc(s) + '</button>';
+          }).join('') + '</div></div>';
+      }).join('');
+    }
+    function renderSkills() {
+      var n = skills.length;
+      var full = n >= MAX_SKILLS;
+      document.getElementById('skillChips').innerHTML = skills.map(function (s, i) {
+        return '<span class="chip">' + esc(s) + '<button type="button" class="chip-remove" data-remove-skill="' + i + '" aria-label="Hapus ' + esc(s) + '"><i class="kk kk-x h-3 w-3"></i></button></span>';
+      }).join('');
+      skillInput.disabled = full;
+      skillInput.placeholder = full ? 'Batas ' + MAX_SKILLS + ' keahlian tercapai' : n ? 'Tambah keahlian lain' : 'Ketik keahlian, mis. Python';
+      var badge = form.querySelector('[data-count="skills"]');
+      badge.textContent = n ? n + ' dari ' + MAX_SKILLS : 'Belum ada';
+      badge.className = n ? 'badge-primary shrink-0' : 'shrink-0 text-xs text-fg-subtle';
+      document.getElementById('skillMeter').style.width = (n / MAX_SKILLS * 100) + '%';
+      var hint = document.getElementById('skillHint');
+      hint.textContent = full ? 'Batas ' + MAX_SKILLS + ' keahlian tercapai. Hapus satu untuk menambah yang lain.'
+        : n < MIN_GOOD ? 'Tambah minimal ' + MIN_GOOD + ' keahlian agar rekomendasi lebih tepat.'
+        : 'Bagus! Kamu masih bisa menambah sampai ' + MAX_SKILLS + ' keahlian.';
+      hint.className = n >= MIN_GOOD ? 'mt-2 text-xs font-medium text-success-600' : 'mt-2 text-xs text-fg-subtle';
+      renderSuggestions();
+    }
+    function addSkill(raw) {
+      var s = canonical(cleanSkill(raw));
+      if (!s || skills.length >= MAX_SKILLS || hasSkill(s)) return false;
+      skills.push(s);
+      skillInput.value = '';
+      closeMenu();
+      renderSkills();
+      return true;
+    }
+    function removeSkill(i) {
+      skills.splice(i, 1);
+      renderSkills();
+    }
+
+    // type-ahead menu under the field
+    function closeMenu() {
+      skillMenu.hidden = true;
+      menuOptions = [];
+      activeOption = -1;
+      skillInput.setAttribute('aria-expanded', 'false');
+      skillInput.removeAttribute('aria-activedescendant');
+    }
+    function renderMenu() {
+      skillMenu.innerHTML = menuOptions.map(function (o, i) {
+        var on = i === activeOption;
+        var label;
+        if (o.custom) {
+          label = 'Tambahkan &ldquo;<strong class="font-semibold text-slate-900">' + esc(o.label) + '</strong>&rdquo;';
+        } else {
+          var at = o.label.toLowerCase().indexOf(o.query);
+          label = esc(o.label.slice(0, at)) + '<strong class="font-semibold text-slate-900">' + esc(o.label.slice(at, at + o.query.length)) + '</strong>' + esc(o.label.slice(at + o.query.length));
+        }
+        return '<button type="button" role="option" id="skillOpt-' + i + '" aria-selected="' + on + '" data-pick-option="' + i + '" class="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm ' + (on ? 'bg-primary-50 text-primary-700' : 'text-slate-600 hover:bg-neutral-50') + '">' +
+          '<i class="kk kk-plus h-4 w-4 shrink-0 text-primary-600"></i><span class="truncate">' + label + '</span></button>';
+      }).join('');
+      skillMenu.hidden = !menuOptions.length;
+      skillInput.setAttribute('aria-expanded', menuOptions.length ? 'true' : 'false');
+      if (activeOption >= 0) skillInput.setAttribute('aria-activedescendant', 'skillOpt-' + activeOption); else skillInput.removeAttribute('aria-activedescendant');
+    }
+    function updateMenu() {
+      var q = cleanSkill(skillInput.value);
+      if (!q || skills.length >= MAX_SKILLS) { closeMenu(); return; }
+      var ql = q.toLowerCase();
+      var hits = CATALOG.filter(function (s) { return !hasSkill(s) && s.toLowerCase().indexOf(ql) !== -1; });
+      hits.sort(function (a, b) { return (a.toLowerCase().indexOf(ql) === 0 ? 0 : 1) - (b.toLowerCase().indexOf(ql) === 0 ? 0 : 1); });
+      menuOptions = hits.slice(0, 6).map(function (s) { return { label: s, query: ql, custom: false }; });
+      var exists = CATALOG.some(function (s) { return s.toLowerCase() === ql; }) || hasSkill(q);
+      if (!exists) menuOptions.push({ label: q, custom: true });
+      activeOption = menuOptions.length ? 0 : -1;
+      renderMenu();
+      if (menuOptions.length) skillMenu.scrollIntoView({ block: 'nearest' });
+    }
+    function pickOption(i) {
+      var o = menuOptions[i];
+      if (o) addSkill(o.label);
+    }
+    // text still typed when the user moves on counts as a skill
+    function commitPendingSkill() {
+      if (cleanSkill(skillInput.value)) addSkill(skillInput.value);
+      closeMenu();
+    }
+
+    skillInput.addEventListener('input', updateMenu);
+    skillInput.addEventListener('focus', updateMenu);
+    skillInput.addEventListener('blur', closeMenu);
+    skillInput.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        if (!menuOptions.length) return;
+        e.preventDefault();
+        activeOption = (activeOption + (e.key === 'ArrowDown' ? 1 : -1) + menuOptions.length) % menuOptions.length;
+        renderMenu();
+      } else if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        if (activeOption >= 0) pickOption(activeOption); else if (cleanSkill(skillInput.value)) addSkill(skillInput.value);
+      } else if (e.key === 'Escape') {
+        if (!skillMenu.hidden) { e.preventDefault(); closeMenu(); }
+      } else if (e.key === 'Backspace' && !skillInput.value && skills.length) {
+        removeSkill(skills.length - 1);
+      }
+    });
+    // keep the focus in the input while the menu is clicked
+    skillMenu.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    skillField.addEventListener('click', function (e) { if (!e.target.closest('[data-remove-skill]')) skillInput.focus(); });
+    form.addEventListener('click', function (e) {
+      var rm = e.target.closest('[data-remove-skill]');
+      var tog = e.target.closest('[data-toggle-skill]');
+      var pick = e.target.closest('[data-pick-option]');
+      if (rm) { removeSkill(parseInt(rm.getAttribute('data-remove-skill'), 10)); skillInput.focus(); }
+      if (tog) {
+        var s = tog.getAttribute('data-toggle-skill');
+        if (hasSkill(s)) removeSkill(skills.map(function (x) { return x.toLowerCase(); }).indexOf(s.toLowerCase())); else addSkill(s);
+      }
+      if (pick) pickOption(parseInt(pick.getAttribute('data-pick-option'), 10));
+    });
+
+    // ---- validation
+    function setError(key, bad) {
+      var el = form.querySelector('[data-error="' + key + '"]');
+      if (el) el.hidden = !bad;
+    }
+    function clearErrors() {
+      form.querySelectorAll('[data-error]').forEach(function (e) { e.hidden = true; });
+    }
+    // Returns the field keys that fail for a step.
+    function problems(step) {
+      var bad = [];
+      if (step === 1 && !checked('interests').length) bad.push('interests');
+      if (step === 2 && !checked('jobTypes').length) bad.push('jobTypes');
+      if (step === 2 && amount(salaryMin) && amount(salaryMax) && amount(salaryMax) < amount(salaryMin)) bad.push('salaryMax');
+      return bad;
+    }
+    function validate(step) {
+      clearErrors();
+      var bad = problems(step);
+      bad.forEach(function (k) { setError(k, true); });
+      if (bad.length) {
+        var first = form.querySelector('[data-error="' + bad[0] + '"]');
+        var target = first && first.parentElement.querySelector('input');
+        if (target && target.focus) target.focus();
+        if (first) first.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      }
+      return !bad.length;
+    }
+
+    // ---- step navigation
+    function show(step) {
+      current = step;
+      steps.forEach(function (s) { s.hidden = parseInt(s.getAttribute('data-step'), 10) !== step; });
+      paintStepper(step);
+      backBtn.hidden = step === 1;
+      nextLabel.textContent = step === TOTAL_STEPS ? 'Selesai' : 'Lanjut';
+      document.getElementById('whyText').textContent = WHY[step - 1];
+      if (step === 3) renderSkills();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      var title = document.getElementById('step' + step + 'Title');
+      if (title) title.focus({ preventScroll: true });
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (leaving) return;
+      if (current === TOTAL_STEPS) commitPendingSkill();
+      if (!validate(current)) return;
+      if (current < TOTAL_STEPS) show(current + 1); else finish(false);
+    });
+    backBtn.addEventListener('click', function () { clearErrors(); if (current > 1) show(current - 1); });
+    skipStepBtn.addEventListener('click', function () {
+      if (leaving) return;
+      clearErrors();
+      if (current < TOTAL_STEPS) show(current + 1); else finish(false);
+    });
+    skipAllBtns.forEach(function (b) { b.addEventListener('click', function () { if (!leaving) { clearErrors(); finish(true); } }); });
+
+    // ---- collect / prefill / store
+    function collect() {
+      return {
+        interests: checked('interests'),
+        jobTypes: checked('jobTypes'),
+        workModes: checked('workModes'),
+        locations: checked('locations'),
+        salaryMin: amount(salaryMin),
+        salaryMax: amount(salaryMax),
+        skills: skills.slice()
+      };
+    }
+    function prefill(d) {
+      form.reset();
+      skills = (d.skills || []).slice();
+      ['interests', 'jobTypes', 'workModes', 'locations'].forEach(function (name) {
+        (d[name] || []).forEach(function (v) {
+          Array.prototype.forEach.call(form.querySelectorAll('input[name="' + name + '"]'), function (i) { if (i.value === v) i.checked = true; });
+        });
+      });
+      salaryMin.value = rupiah(onlyDigits(d.salaryMin));
+      salaryMax.value = rupiah(onlyDigits(d.salaryMax));
+      syncCounts();
+      syncInterests();
+      renderSkills();
+    }
+
+    // ---- finish: save the answers, then open the portal home (no summary page in between)
+    function finish(skipped) {
+      var d = collect();
+      d.skipped = !!skipped;
+      d.completedAt = new Date().toISOString();
+      write(STORE_KEY, d);
+      leaving = true;
+      [backBtn, nextBtn, skipStepBtn].concat(skipAllBtns).forEach(function (b) { b.disabled = true; });
+      nextLabel.textContent = 'Menyimpan...';
+      paintStepper(TOTAL_STEPS + 1);
+      window.location.href = HOME_URL;
+    }
+
+    // ---- start: a finished user goes straight to the home page; "?ubah" reopens the form with the saved answers
+    var saved = read(STORE_KEY);
+    var editing = /[?&]ubah(=|&|$)/.test(window.location.search);
+    if (saved && saved.completedAt && !editing) {
+      window.location.replace(HOME_URL);
+    } else {
+      if (saved && editing) prefill(saved);
+      syncCounts();
+      syncInterests();
+      show(1);
+    }
+  })();
+</script>
+</body>
+</html>
