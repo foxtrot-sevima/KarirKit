@@ -2,6 +2,27 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+### Added
+
+- **Template Portal Karir (`templates/portal-karir/`)**, halaman untuk pengguna KarirLink (mahasiswa, alumni, dan pengunjung diperlakukan sama, tanpa
+  pilihan status atau data profil): `login.html`, `register.html`, dan `onboarding.html`. Login dan register mengikuti gaya `login-fancy.html` dan `register-fancy.html` (form di kiri, panel merek bergradien di kanan dengan badge dan tiga kotak
+  angka, masuk dengan Google atau Microsoft; logo kiri hanya di layar kecil karena panel kanan sudah memuat logo, tanpa lencana "Portal Karir"). Formulir
+  registrasi berisi nama, email, dan kata sandi (minimal 8 karakter), dengan pesan galat di tempat dan tombol tampilkan kata sandi. Setelah
+  daftar, pengguna diarahkan ke **onboarding tiga langkah** untuk menyesuaikan algoritma rekomendasi: (1) bidang minat dari 12 bidang, **boleh memilih berapa
+  pun** (tiap bidang punya warna aksen sendiri), (2) preferensi kerja dengan kontrol yang berbeda-beda (jenis pekerjaan sebagai pil berikon, model kerja
+  sebagai tiga kartu, lokasi sebagai pil, ekspektasi gaji sebagai dua isian rupiah, minimum dan maksimum, berformat titik ribuan dan maksimum tidak boleh lebih kecil dari minimum; tiap seksi berkepala ikon, judul, keterangan, dan penghitung pilihan), (3) hingga 10 keahlian lewat kolom tag yang
+  memunculkan saran saat mengetik (Enter atau ketuk untuk menambah, Backspace untuk menghapus yang terakhir, teks di luar katalog bisa ditambahkan sendiri), bilah kemajuan dengan petunjuk
+  "minimal 3 keahlian", dan saran satu ketukan per bidang minat (ikon berwarna sama dengan kartu bidang, saran yang dipilih tidak berpindah tempat dan bisa
+  dilepas dengan ketuk lagi). Teks yang masih diketik saat menekan Selesai ikut tersimpan. Progres vertikal (langkah selesai berupa lingkaran hijau dengan centang tebal, langkah aktif lingkaran putih, langkah berikutnya redup) ada di panel kanan bersama kartu "Kenapa kami menanyakan ini?" (teks statis per langkah,
+  tanpa hitungan rekomendasi di server); di layar kecil progres tampil sebagai balok bersegmen. Tombol Kembali, Lewati, dan Lanjut dipaku di bawah sehingga
+  posisinya sama di setiap langkah. Setiap langkah dan seluruh onboarding bisa dilewati; "Lewati semua" ada di pojok kanan atas panel kanan (di layar kecil di header). **Tidak ada halaman "selesai"**: menekan Selesai (atau Lewati semua)
+  menyimpan jawaban di `localStorage` lalu langsung membuka `templates/portal-karir/index.html` (beranda portal); pengguna yang sudah onboarding juga langsung
+  ke `index.html` saat login atau membuka `onboarding.html`, dan `onboarding.html?ubah` membuka kembali formulir dengan jawaban tersimpan. `index.html` belum
+  dibuat. Hanya demo tanpa backend. Komponen yang dipakai: `.choice`, `.chip`, `.card`, dan `.badge-*`. Diverifikasi di browser (106 pemeriksaan: validasi tiap
+  langkah, progres, pilihan tanpa batas, isian gaji, pengalihan ke `index.html`, `?ubah`, Lewati, serta tanpa elemen keluar layar di 390 dan 320 px).
+
 ## [1.3.4] - 2026-10-06
 
 ### Added
