@@ -41,6 +41,8 @@ const config = {
     { from: "../assets", to: "/assets" },
     { from: "../dist", to: "/dist" },
     { from: "../templates", to: "/templates" },
+    // Tab icon: a favicon.svg at the root of a static dir replaces Storybook's default (copy of assets/logo/karirkit-mark.svg)
+    { from: "./public", to: "/" },
   ],
   async viteFinal(viteConfig) {
     const { mergeConfig } = await import("vite");

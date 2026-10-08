@@ -5,7 +5,7 @@ export default {
     docs: {
       description: {
         component:
-          "Halaman utuh dari `templates/*.html`, ditampilkan lewat `<iframe>` (bukan disalin ulang di sini) supaya yang terlihat di Storybook selalu sama persis dengan file aslinya, termasuk JS-nya sendiri (toggle password, dst). Edit langsung file `templates/*.html`-nya, bukan story ini.",
+          "Halaman utuh dari `templates/*.html`, ditampilkan lewat `<iframe>` (bukan disalin ulang di sini) supaya yang terlihat di Storybook selalu sama persis dengan file aslinya, termasuk JS-nya sendiri (toggle password, dst). Tombol login sosial memakai logo lewat class aset (`kk-app-siakadcloud`, `kk-brand-google`, lihat Foundations/Assets). Edit langsung file `templates/*.html`-nya, bukan story ini.",
       },
     },
   },

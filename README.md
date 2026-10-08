@@ -203,7 +203,7 @@ pinjaman Tailwind `slate` untuk DS.
 `src/input.css` (`html[data-theme="dark"] { … }`) — ubah token di sana, jangan
 tambah `dark:` ad-hoc di template. Preferensi (`light` / `dark` / `system`)
 disimpan di `localStorage` key `kk-theme`. Panduan lengkap + snippet pasang di
-halaman baru: story **Foundations → Theming** (`stories/Foundations/Theming.mdx`).
+halaman baru: story **Foundations → Colors** (bagian Theming, `stories/Foundations/Colors.mdx`).
 
 ## Font
 
