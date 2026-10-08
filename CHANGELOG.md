@@ -16,6 +16,26 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Storybook**: story **Foundations/Assets** (galeri bendera dengan pencarian, logo pembayaran, merek, aplikasi, dan tipe file lengkap dengan variasi warna, serta contoh tombol login sosial),
   dan **Templates/Portal Karir** (Login, Register, Onboarding, Dashboard). Daftar nama untuk story dibangkitkan oleh skrip yang sama (`stories/Foundations/asset-names.js`).
 
+- **Detail Arsip Kuesioner Tracer Study** (hanya-baca, untuk kebutuhan FOX-1179 Arsip): tombol **Lihat Preview** pada kartu arsip di `kuesioner.html` diganti **Lihat Detail** yang membuka halaman baru, dan
+  modal preview arsip dihapus. `kuesioner-arsip-detail.html?id=` (gaya detail yudisium) menampilkan daftar alumni penerima: kartu ringkasan (total, pernah dikirim, belum pernah dikirim, sudah mengisi,
+  belum mengisi), tabel dengan pencarian, filter Pengiriman dan Pengisian, urut, pagination, serta daftar pertanyaan. `kuesioner-arsip-jawaban.html?id=&alumni=` menampilkan jawaban per alumni
+  (ringkasan pengiriman, jawaban pilihan, skala bintang, nominal, dan teks, navigasi alumni sebelumnya dan berikutnya). Tidak ada tombol kirim, kirim ulang, atau pengisian. Di layar kecil kolom
+  Pengiriman dan Pengisian digabung menjadi Status. Data contoh dibangkitkan di `kuesioner-arsip-data.js` (pengganti API Arsip). Diverifikasi di browser (66 pemeriksaan, termasuk 820, 390, dan 320 px).
+
+- **Halaman Lihat Jawaban di detail yudisium** (tanpa modal): tombol Lihat Jawaban pada mahasiswa berstatus Sudah Mengisi di `yudisium-detail.html` membuka `yudisium-jawaban.html?nim=`, dan ada
+  `yudisium-jawaban-kosong.html` untuk keadaan semua gelombang belum terisi. Keduanya memakai satu skrip bersama (`yudisium-jawaban.js`) dengan tab gelombang **Pra-Lulus**, **Pasca-Lulus 1 Tahun**,
+  **Pasca-Lulus 4 Tahun**, dan **Pengguna Lulusan** (bisa dibuka langsung lewat `&gelombang=`), ringkasan, dan navigasi mahasiswa sebelumnya dan berikutnya. **Terisi**: Pra-Lulus per bagian;
+  Pasca-Lulus 1 dan 4 Tahun menampilkan bagian sesuai status lulusan (Bekerja, Wiraswasta, atau Melanjutkan Pendidikan, ditambah Informasi Umum dan Tingkat Kompetensi ditampilkan seperti form survei aslinya (skala 1-5 dengan jawaban terpilih disorot, kolom Dikuasai saat lulus dan Dibutuhkan saat ini, serta status selisih) dan metode
+  pembelajaran); Pengguna Lulusan (jawaban atasan) dalam 3 tingkatan dengan nilai bintang. **Kosong**: Pra-Lulus berstatus Menunggu Mengisi atau Belum Dikirim, gelombang lain Belum Dikirim beserta
+  jadwalnya (sesuai Pengaturan Gelombang Pengiriman), keadaan kosong, dan pratinjau pertanyaan yang bisa dibuka (Pra-Lulus 10, Pasca-Lulus 48, Pengguna Lulusan 8) sesuai `kuesioner-builder.html`.
+  Hanya-baca; data contoh. Diverifikasi di browser (64 pemeriksaan, termasuk 820, 390, dan 320 px).
+
+- **Breadcrumb dengan dropdown** di topbar halaman karirlink bertingkat 3 atau lebih (`kuesioner-arsip-detail`, `kuesioner-arsip-jawaban`, `yudisium-detail`, `yudisium-jawaban`, `yudisium-jawaban-kosong`,
+  `kuesioner-builder`, `kuesioner-builder-2`, `mahasiswa-alumni-detail`): halaman aktif selalu tampil utuh tanpa dipotong "..." dan maksimal 3 breadcrumb terlihat. Di layar 640px ke atas menu pertama
+  setelah Dashboard tetap tampil dengan namanya; pada halaman 4 tingkat menu itu berikon dropdown dan memuat tingkat tengah, contoh `Dashboard > Daftar Yudisium v > Jawaban Lulusan`
+  (`.breadcrumb-trigger`, `data-ui-dropdown`). Di ponsel (di bawah 640px) cukup ikon home dan halaman aktif, tanpa dropdown (nama halaman aktif turun ke baris kedua bila sempit). Diverifikasi di
+  browser (193 pemeriksaan pada 7 halaman dan 5 lebar layar).
+
 - **Template Portal Karir (`templates/portal-karir/`)**, halaman untuk pengguna KarirLink (mahasiswa, alumni, dan pengunjung diperlakukan sama, tanpa
   pilihan status atau data profil): `login.html`, `register.html`, dan `onboarding.html`. Login dan register mengikuti gaya `login-fancy.html` dan `register-fancy.html` (form di kiri, panel merek bergradien di kanan dengan badge dan tiga kotak
   angka, masuk dengan Google atau Microsoft; logo kiri hanya di layar kecil karena panel kanan sudah memuat logo, tanpa lencana "Portal Karir"). Formulir
