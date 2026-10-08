@@ -1,8 +1,18 @@
-import { Meta } from "@storybook/addon-docs/blocks";
+import { Meta, Stories } from "@storybook/addon-docs/blocks";
+import * as ColorsStories from "./Colors.stories";
 
-<Meta title="Foundations/Theming" />
+<Meta of={ColorsStories} />
 
-# Theming — Light, Dark & System
+# Colors & Theming
+
+Primary & secondary diturunkan langsung dari logo KarirLink, plus warna semantik dan skala netral. Semuanya tersedia sebagai utility `bg-*`, `text-*`, `border-*`. Bagian **Theming** di bawah menjelaskan bagaimana token yang sama berubah di mode gelap.
+
+## Palet warna
+
+<Stories title="" />
+
+## Theming — Light, Dark & System
+
 
 KarirKit mendukung tiga mode tampilan: **Terang**, **Gelap**, dan **Ikuti
 sistem** (mengikuti preferensi OS). Dark mode bersifat **opt-in per halaman**:
@@ -11,7 +21,7 @@ lain tetap light. Implementasi acuan ada di `templates/dashboard.html` —
 buka story **Templates → Dashboard** lalu pakai tombol matahari / bulan /
 monitor di topbar.
 
-## Cara kerja
+### Cara kerja
 
 1. **Satu atribut, satu sumber kebenaran.** Tema aktif hanya ditentukan oleh
    `<html data-theme="light|dark">`. Nilainya selalu `light` atau `dark` —
@@ -31,7 +41,7 @@ monitor di topbar.
 | `dark`     | `dark` |
 | `system`   | `dark` bila `prefers-color-scheme: dark`, selain itu `light` |
 
-## Yang di-override di mode gelap
+### Yang di-override di mode gelap
 
 | Kelompok | Perlakuan |
 | -------- | --------- |
@@ -47,7 +57,7 @@ monitor di topbar.
 > yang tampak salah di dark, ganti ke token semantic (`bg-surface`,
 > `text-fg`) atau tambahkan satu aturan di blok `data-theme="dark"`.
 
-## Memasang di halaman baru
+### Memasang di halaman baru
 
 **1. Skrip anti-kedip di `<head>`** (sebelum body dirender, supaya tidak ada
 flash putih saat refresh):
@@ -107,7 +117,7 @@ applyTheme(getThemePref());
 site data diblokir, akses bisa melempar error; halaman tetap jalan dengan
 default `system`.
 
-## Switcher bersama (`assets/js/theme.js`)
+### Switcher bersama (`assets/js/theme.js`)
 
 `index.html` dan `icons.html` memakai skrip bersama `assets/js/theme.js`
 (opsional) sebagai ganti logika inline: cukup pasang snippet anti-kedip di
@@ -125,7 +135,7 @@ Skrip ini mengatur `aria-checked`, mengikuti perubahan tema OS secara langsung
 saat mode "sistem", dan menyinkronkan beberapa tab lewat event `storage`.
 API: `KKTheme.get()` dan `KKTheme.set('dark')`.
 
-## Logo
+### Logo
 
 Logo berwarna (`#22489E` + oranye) tidak terbaca di latar gelap. Pasang dua
 `<img>`; CSS (`.logo-on-light` / `.logo-on-dark`) menampilkan salah satunya
@@ -139,7 +149,7 @@ sesuai tema, tanpa JS dan tanpa kedip:
 Varian `*-white.svg` berwarna putih penuh (termasuk segitiga oranye). Pola
 yang sama berlaku untuk `karirkit-*` dan `*-mark-*`.
 
-## Batasan saat ini
+### Batasan saat ini
 
 - **Halaman yang sudah memasang tema:** `templates/dashboard.html`,
   `index.html`, dan `icons.html` (satu preferensi `kk-theme` dipakai

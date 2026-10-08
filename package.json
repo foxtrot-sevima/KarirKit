@@ -26,6 +26,10 @@
     "dist",
     "assets/fonts",
     "assets/icons",
+    "assets/flags",
+    "assets/misc-icons/payment",
+    "assets/misc-icons/brand-logo",
+    "assets/misc-icons/files",
     "assets/logo",
     "assets/js",
     "src/input.css",
@@ -50,7 +54,8 @@
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "icons:names": "node scripts/gen-icon-names.mjs"
+    "icons:names": "node scripts/gen-icon-names.mjs",
+    "assets:classes": "node scripts/gen-asset-classes.mjs"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.6.0",
