@@ -6,6 +6,16 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **Aset berwarna dari Quantum** di `assets/flags` (266 bendera, file diganti nama menjadi kode ISO), `assets/misc-icons/payment` (83 logo pembayaran), `brand-logo` (28 logo merek,
+  4 warna), `application` (29 logo aplikasi termasuk SiAkadCloud, 3 warna), dan `files` (51 tipe file, 3 tampilan), serta `badges` dan `assets/illustrations` (dipakai lewat `<img>`, tanpa class).
+  Class dibangkitkan oleh `npm run assets:classes` ke `src/asset-classes.css`: `kk-flag kk-flag-id`, `kk-pay kk-pay-visa`, `kk-brand kk-brand-github` (+ `kk-brand-black|white|disabled`),
+  `kk-app kk-app-siakadcloud` (+ `kk-app-white|disabled`), `kk-file kk-file-pdf` (+ `kk-file-gray|solid`). Warnanya asli (`background-image`, bukan mask) dan ukurannya mengikuti `font-size`.
+  `kk-flag` dan `kk-file` juga nama ikon Phosphor, jadi aturannya hanya berlaku pada elemen tanpa class `kk` dan ikon lama tidak berubah. Folder `flags`, `payment`, `brand-logo`, dan
+  `files` ikut paket npm (ukuran paket sekitar 10,7 MB).
+  Versi **disabled** untuk SiAkadCloud (`siakadcloud-disabled.svg`) dibuat sendiri mengikuti logo lain (abu-abu `#94969C`, opacity 0,68), karena belum ada di sumber Quantum.
+- **Storybook**: story **Foundations/Assets** (galeri bendera dengan pencarian, logo pembayaran, merek, aplikasi, dan tipe file lengkap dengan variasi warna, serta contoh tombol login sosial),
+  dan **Templates/Portal Karir** (Login, Register, Onboarding, Dashboard). Daftar nama untuk story dibangkitkan oleh skrip yang sama (`stories/Foundations/asset-names.js`).
+
 - **Template Portal Karir (`templates/portal-karir/`)**, halaman untuk pengguna KarirLink (mahasiswa, alumni, dan pengunjung diperlakukan sama, tanpa
   pilihan status atau data profil): `login.html`, `register.html`, dan `onboarding.html`. Login dan register mengikuti gaya `login-fancy.html` dan `register-fancy.html` (form di kiri, panel merek bergradien di kanan dengan badge dan tiga kotak
   angka, masuk dengan Google atau Microsoft; logo kiri hanya di layar kecil karena panel kanan sudah memuat logo, tanpa lencana "Portal Karir"). Formulir
@@ -22,6 +32,23 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   ke `index.html` saat login atau membuka `onboarding.html`, dan `onboarding.html?ubah` membuka kembali formulir dengan jawaban tersimpan. `index.html` belum
   dibuat. Hanya demo tanpa backend. Komponen yang dipakai: `.choice`, `.chip`, `.card`, dan `.badge-*`. Diverifikasi di browser (106 pemeriksaan: validasi tiap
   langkah, progres, pilihan tanpa batas, isian gaji, pengalihan ke `index.html`, `?ubah`, Lewati, serta tanpa elemen keluar layar di 390 dan 320 px).
+
+- **Dashboard Portal Karir (`templates/portal-karir/index.html`)**, tujuan setelah onboarding dan login, berbentuk dashboard seperti halaman admin KarirLink: sidebar (bisa dilipat,
+  menu geser di layar kecil), topbar dengan breadcrumb, notifikasi, dan menu profil (Ubah Minat, Keluar). Isi: sapaan sesuai waktu, empat kartu KPI (Lamaran Terkirim, Dalam Proses,
+  Tersimpan, Rata-rata Kecocokan), grafik **Aktivitas Lamaran** per bulan, donut **Status Lamaran**, tabel **Lowongan Rekomendasi** (Design System table: pencarian di kiri, filter
+  Jenis dan Kota di kanan, kolom No, urut, pagination 6 baris, aksi Simpan dan Lamar), Lamaran Terakhir, Event Karier, serta Profil Karier dengan kelengkapan dan keahlian yang sering
+  dicari. Urutan dan persentase kecocokan dihitung di browser dari jawaban onboarding; pengguna yang belum onboarding melihat lowongan populer dan ajakan Atur Minat. Data hanya demo
+  (18 lowongan, 9 lamaran contoh); Simpan dan Lamar disimpan di `localStorage`.
+  Diverifikasi di browser (103 pemeriksaan: KPI, grafik, donut, tabel, filter, urut, pagination, Simpan, Lamar, pengguna baru, alur daftar ke dashboard, sidebar, 820/390/320 px).
+
+### Changed
+
+- **Tombol login sosial** di `login`, `register`, `login-fancy`, `register-fancy`, dan `portal-karir/login` serta `register`: tombol Microsoft diganti **Lanjutkan dengan SiAkadCloud**
+  (di atas **Lanjutkan dengan Google**), dan semua teks memakai "Lanjutkan dengan" (sebelumnya register memakai "Daftar dengan"). Logo Google dan SiAkadCloud kini memakai class aset
+  (`kk-brand-google`, `kk-app-siakadcloud`) sebagai pengganti SVG inline.
+- **Storybook**: halaman **Foundations → Theming** digabung ke **Foundations → Colors** (satu halaman "Colors & Theming": palet warna, lalu panduan mode terang/gelap; `Theming.mdx` menjadi `Colors.mdx`).
+  Ikon tab Storybook diganti menjadi ikon KarirKit (`.storybook/public/favicon.svg`, salinan `assets/logo/karirkit-mark.svg`).
+
 
 ## [1.3.4] - 2026-10-06
 
