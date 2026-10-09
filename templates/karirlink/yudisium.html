@@ -190,26 +190,41 @@
     </div>
 
     <!-- KPI row -->
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
-      <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-slate-900" id="kpiPeriode">15</p>
-        <p class="text-sm text-slate-500">Periode Yudisium</p>
+    <div class="stat-grid" style="--stat-cols: 5; --stat-lg: 3">
+      <div class="stat-card">
+        <span class="stat-icon"><i class="kk kk-calendar-blank h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p id="kpiPeriode" class="stat-value">15</p>
+          <p class="stat-label">Periode Yudisium</p>
+        </div>
       </div>
-      <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-slate-900" id="kpiTotalLulusan">4.219</p>
-        <p class="text-sm text-slate-500">Total Lulusan Tercatat</p>
+      <div class="stat-card">
+        <span class="stat-icon bg-info-50 text-info-600"><i class="kk kk-graduation-cap h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p id="kpiTotalLulusan" class="stat-value">4.219</p>
+          <p class="stat-label">Total Lulusan Tercatat</p>
+        </div>
       </div>
-      <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-success-600" id="kpiSudahMengisi">2.092</p>
-        <p class="text-sm text-slate-500">Alumni Sudah Mengisi <span class="text-slate-400" id="kpiSudahMengisiPct">(50%)</span></p>
+      <div class="stat-card">
+        <span class="stat-icon bg-success-50 text-success-600"><i class="kk kk-check-circle h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p id="kpiSudahMengisi" class="stat-value">2.092</p>
+          <p class="stat-label">Alumni Sudah Mengisi <span class="stat-note" id="kpiSudahMengisiPct">(50%)</span></p>
+        </div>
       </div>
-      <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-slate-900" id="kpiTarget">7 dari 15</p>
-        <p class="text-sm text-slate-500">Periode Capai Target <span class="text-slate-400">(&ge;50%)</span></p>
+      <div class="stat-card">
+        <span class="stat-icon bg-secondary-50 text-secondary-600"><i class="kk kk-target h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p id="kpiTarget" class="stat-value">7 dari 15</p>
+          <p class="stat-label">Periode Capai Target <span class="stat-note">(&ge;50%)</span></p>
+        </div>
       </div>
-      <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-warning-600" id="kpiMenungguFinalisasi">1</p>
-        <p class="text-sm text-slate-500">Menunggu Finalisasi</p>
+      <div class="stat-card">
+        <span class="stat-icon bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p id="kpiMenungguFinalisasi" class="stat-value">1</p>
+          <p class="stat-label">Menunggu Finalisasi</p>
+        </div>
       </div>
     </div>
 
@@ -224,7 +239,7 @@
           <label for="periodeSearch" class="sr-only">Cari periode</label>
           <input id="periodeSearch" type="search" class="input h-9 pl-9" placeholder="Cari periode..." data-table-search />
         </div>
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+        <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
           <div id="filterTahun" class="combo w-full sm:w-52" data-combo data-value="all">
             <button type="button" class="combo-trigger" data-combo-trigger>
               <span data-combo-label>Semua Tahun Lulus</span>
