@@ -298,9 +298,7 @@
       $('ansTabsWrap').hidden = false;
       $('ansTabs').innerHTML = tpls.map(function (t) {
         var on = t.slug === cur.slug;
-        var done = me.forms[t.slug].filled;
-        return '<a href="' + jawabanUrl(me, t.slug) + '" class="tab flex items-center gap-1.5 whitespace-nowrap' + (on ? ' tab-active' : '') + '"' + (on ? ' aria-current="page"' : '') + '>' + esc(t.name) +
-          (done ? '' : '<span class="text-xs font-normal text-slate-400">belum</span>') + '</a>';
+        return '<a href="' + jawabanUrl(me, t.slug) + '" class="tab whitespace-nowrap' + (on ? ' tab-active' : '') + '"' + (on ? ' aria-current="page"' : '') + '>' + esc(t.name) + '</a>';
       }).join('');
     }
 
@@ -342,7 +340,7 @@
         return '<li class="flex gap-3 p-4"><span class="kbd mt-0.5 shrink-0 self-start">' + (i + 1) + '</span><div class="min-w-0 flex-1"><p class="text-sm text-slate-500">' + esc(q.text) + '</p><div class="mt-1.5">' + answerHtml(q, form.answers[i]) + '</div></div></li>';
       }).join('');
     } else {
-      var why = !me.sent ? 'Kuesioner belum pernah dikirim ke alumni ini' : multi ? 'Alumni ini belum mengisi ' + esc(cur.name) : 'Alumni ini belum mengisi kuesioner';
+      var why = !me.sent ? 'Kuesioner belum pernah dikirim ke alumni ini' : multi ? 'Alumni ini belum mengisi ' + esc(cur.name.replace('Template ', 'Kuesioner ')) : 'Alumni ini belum mengisi kuesioner';
       $('ansList').outerHTML = '<div class="mt-4 rounded-xl border border-dashed border-slate-200 px-4 py-10 text-center"><span class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-500"><i class="kk kk-file-text h-5 w-5"></i></span><p class="mt-3 text-sm font-medium text-slate-700">' + why + '</p><p class="mt-1 text-xs text-slate-400">Tidak ada jawaban yang dapat ditampilkan.</p></div>';
     }
 
