@@ -197,22 +197,34 @@
     </div>
 
     <!-- KPI row -->
-    <div class="grid grid-cols-2 gap-5 sm:grid-cols-4">
-      <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-slate-900">10</p>
-        <p class="text-sm text-slate-500">Total Lulusan</p>
+    <div class="stat-grid" style="--stat-cols: 4">
+      <div class="stat-card">
+        <span class="stat-icon"><i class="kk kk-graduation-cap h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p class="stat-value">10</p>
+          <p class="stat-label">Total Lulusan</p>
+        </div>
       </div>
-      <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-success-600">4</p>
-        <p class="text-sm text-slate-500">Sudah Mengisi</p>
+      <div class="stat-card">
+        <span class="stat-icon bg-success-50 text-success-600"><i class="kk kk-check-circle h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p class="stat-value">4</p>
+          <p class="stat-label">Sudah Mengisi</p>
+        </div>
       </div>
-      <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-warning-600">6</p>
-        <p class="text-sm text-slate-500">Belum Mengisi</p>
+      <div class="stat-card">
+        <span class="stat-icon bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p class="stat-value">6</p>
+          <p class="stat-label">Belum Mengisi</p>
+        </div>
       </div>
-      <div class="card p-5">
-        <p class="font-display text-2xl font-bold text-slate-900">40%</p>
-        <p class="text-sm text-slate-500">Tingkat Partisipasi</p>
+      <div class="stat-card">
+        <span class="stat-icon bg-info-50 text-info-600"><i class="kk kk-percent h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p class="stat-value">40%</p>
+          <p class="stat-label">Tingkat Partisipasi</p>
+        </div>
       </div>
     </div>
 
@@ -227,7 +239,7 @@
           <label for="yudSearch" class="sr-only">Cari nama, NIM, atau email</label>
           <input id="yudSearch" type="search" class="input h-9 pl-9" placeholder="Cari nama, NIM, atau email..." data-table-search />
         </div>
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+        <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
           <div id="filterStatus" class="combo w-full sm:w-52" data-combo data-value="all">
             <button type="button" class="combo-trigger" data-combo-trigger>
               <span data-combo-label>Semua Status</span>
@@ -472,10 +484,10 @@
     <!-- Pengaturan gelombang pengiriman — khusus periode ini, agar tiap periode yudisium bisa punya jadwal sendiri -->
     <div class="card p-5 sm:p-6">
       <h3 class="text-base font-semibold text-slate-800">Pengaturan Gelombang Pengiriman</h3>
-      <p class="mt-1 text-sm text-slate-500">Menentukan kapan Kuesioner Lulusan dikirim ke lulusan periode <span class="font-medium text-slate-700">Yudisium Genap 2025/2026</span> ini, per gelombang.</p>
+      <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Jadwal pengiriman Kuesioner Lulusan per gelombang.</span><span class="hidden sm:inline">Menentukan kapan Kuesioner Lulusan dikirim ke lulusan periode <span class="font-medium text-slate-700">Yudisium Genap 2025/2026</span> ini, per gelombang.</span></p>
       <div class="callout-info mt-4 flex items-start gap-3">
         <i class="kk kk-clock h-4 w-4 shrink-0 text-info-600"></i>
-        <p class="text-sm text-slate-600">Pengiriman otomatis dijalankan setiap pukul <span class="font-medium text-slate-800">09.00 WIB</span> selama rentang tanggal tiap gelombang di bawah ini.</p>
+        <p class="text-sm text-slate-600"><span class="sm:hidden">Dikirim otomatis pukul <span class="font-medium text-slate-800">09.00 WIB</span> selama rentang tiap gelombang.</span><span class="hidden sm:inline">Pengiriman otomatis dijalankan setiap pukul <span class="font-medium text-slate-800">09.00 WIB</span> selama rentang tanggal tiap gelombang di bawah ini.</span></p>
       </div>
       <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <div class="rounded-xl border border-slate-100 p-4">
@@ -485,7 +497,7 @@
             </span>
             <div>
               <p class="text-sm font-semibold text-slate-800">Gelombang Pra-Lulus</p>
-              <p class="mt-1 text-sm text-slate-500">Dikirim menjelang tanggal yudisium, sebelum mahasiswa resmi dinyatakan lulus.</p>
+              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim menjelang yudisium.</span><span class="hidden sm:inline">Dikirim menjelang tanggal yudisium, sebelum mahasiswa resmi dinyatakan lulus.</span></p>
             </div>
           </div>
           <div class="mt-4 grid grid-cols-2 gap-3">
@@ -507,7 +519,7 @@
             </span>
             <div>
               <p class="text-sm font-semibold text-slate-800">Gelombang Pasca-Lulus 1 Tahun</p>
-              <p class="mt-1 text-sm text-slate-500">Dikirim 1 tahun setelah tanggal yudisium untuk memantau status karier lulusan.</p>
+              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim 1 tahun setelah yudisium.</span><span class="hidden sm:inline">Dikirim 1 tahun setelah tanggal yudisium untuk memantau status karier lulusan.</span></p>
             </div>
           </div>
           <div class="mt-4 grid grid-cols-2 gap-3">
@@ -529,7 +541,7 @@
             </span>
             <div>
               <p class="text-sm font-semibold text-slate-800">Gelombang Pasca-Lulus 4 Tahun</p>
-              <p class="mt-1 text-sm text-slate-500">Dikirim 4 tahun setelah tanggal yudisium untuk memantau perkembangan karier jangka panjang.</p>
+              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim 4 tahun setelah yudisium.</span><span class="hidden sm:inline">Dikirim 4 tahun setelah tanggal yudisium untuk memantau perkembangan karier jangka panjang.</span></p>
             </div>
           </div>
           <div class="mt-4 grid grid-cols-2 gap-3">
