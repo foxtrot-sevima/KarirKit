@@ -142,9 +142,9 @@
         <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
         <span class="relative hidden min-w-[4.5rem] shrink sm:block">
           <button type="button" class="breadcrumb-trigger max-w-full" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Pilih halaman: Kuesioner"><span class="truncate">Kuesioner</span><i class="kk kk-caret-down h-3 w-3 shrink-0"></i></button>
-          <div class="dropdown-menu left-0 right-auto hidden w-64">
-            <a href="kuesioner.html" class="dropdown-item">Kuesioner</a>
-            <a id="crumbArsip" href="kuesioner-arsip-detail.html" class="dropdown-item">Detail Arsip</a>
+          <div class="dropdown-menu left-0 right-auto hidden w-max max-w-[calc(100vw-2rem)]">
+            <a href="kuesioner.html" class="dropdown-item whitespace-nowrap">Kuesioner</a>
+            <a id="crumbArsip" href="kuesioner-arsip-detail.html" class="dropdown-item whitespace-nowrap">Detail Arsip</a>
           </div>
         </span>
         <span class="breadcrumb-separator hidden shrink-0 sm:flex"><i class="kk kk-caret-right h-3 w-3"></i></span>
@@ -200,7 +200,6 @@
             <div class="min-w-0">
               <div class="flex flex-wrap items-center gap-2">
                 <h2 id="ansName" class="font-display text-xl font-bold text-slate-900"></h2>
-                <span class="badge-neutral">Arsip</span>
               </div>
               <p id="ansMeta" class="mt-1 text-sm text-slate-500"></p>
               <p id="ansEmail" class="mt-0.5 truncate text-xs text-slate-400"></p>
@@ -210,15 +209,20 @@
         </div>
       </div>
 
+      <!-- Template: hanya tampil bila arsip punya lebih dari satu template -->
+      <div id="ansTabsWrap" class="overflow-x-auto scrollbar-none" hidden>
+        <nav id="ansTabs" class="inline-flex min-w-max gap-1 rounded-xl bg-slate-100 p-1" aria-label="Template kuesioner"></nav>
+      </div>
+
       <div class="callout-info flex items-start gap-3">
         <i class="kk kk-lock-simple mt-0.5 h-4 w-4 shrink-0 text-info-600"></i>
-        <p class="text-sm text-slate-600">Jawaban arsip hanya dapat dilihat. Kuesioner tidak dapat dikirim ulang atau diisi kembali.</p>
+        <p class="text-sm text-slate-600"><span class="sm:hidden">Arsip hanya dapat dilihat, tidak dapat dikirim ulang.</span><span class="hidden sm:inline">Jawaban arsip hanya dapat dilihat. Kuesioner tidak dapat dikirim ulang atau diisi kembali.</span></p>
       </div>
 
       <!-- Ringkasan pengiriman -->
-      <div class="card p-5 sm:p-6">
+      <div class="card p-4 sm:p-5">
         <h3 class="text-base font-semibold text-slate-800">Ringkasan Pengiriman</h3>
-        <div id="ansSummary" class="mt-4 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4"></div>
+        <div id="ansSummary" class="mt-3 grid grid-cols-2 gap-x-5 gap-y-3 sm:grid-cols-3 lg:grid-cols-4"></div>
       </div>
 
       <!-- Jawaban -->
@@ -280,27 +284,46 @@
     $('ansBack').setAttribute('href', detailUrl);
     document.title = 'Jawaban ' + me.name + ' | KarirLink';
     $('ansName').textContent = me.name;
-    $('ansMeta').textContent = 'NIM ' + me.nim + ' \u00b7 ' + me.prodi + ' \u00b7 Lulusan ' + me.tahunLulus;
+    $('ansMeta').textContent = 'NIM ' + me.nim + ' ' + String.fromCharCode(183) + ' ' + me.prodi + ' ' + String.fromCharCode(183) + ' Lulusan ' + me.tahunLulus;
     $('ansEmail').textContent = me.email;
-    $('ansStatus').innerHTML = me.filled
+
+    // template yang sedang dilihat: dari ?template=, kalau tidak ada template pertama yang sudah diisi
+    var tpls = D.templatesOf(arsip);
+    var multi = tpls.length > 1;
+    var want = params.get('template');
+    var cur = tpls.filter(function (t) { return t.slug === want; })[0] || tpls.filter(function (t) { return me.forms[t.slug].filled; })[0] || tpls[0];
+    var form = me.forms[cur.slug];
+    function jawabanUrl(a, slug) { return 'kuesioner-arsip-jawaban.html?id=' + arsip.id + '&alumni=' + a.id + (multi ? '&template=' + slug : ''); }
+    if (multi) {
+      $('ansTabsWrap').hidden = false;
+      $('ansTabs').innerHTML = tpls.map(function (t) {
+        var on = t.slug === cur.slug;
+        var done = me.forms[t.slug].filled;
+        return '<a href="' + jawabanUrl(me, t.slug) + '" class="tab flex items-center gap-1.5 whitespace-nowrap' + (on ? ' tab-active' : '') + '"' + (on ? ' aria-current="page"' : '') + '>' + esc(t.name) +
+          (done ? '' : '<span class="text-xs font-normal text-slate-400">belum</span>') + '</a>';
+      }).join('');
+    }
+
+    $('ansStatus').innerHTML = form.filled
       ? '<span class="badge-success"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span>'
       : me.sent ? '<span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Belum Mengisi</span>' : '<span class="badge-neutral"><span class="badge-dot bg-neutral-400"></span>Belum Pernah Dikirim</span>';
 
-    function cell(label, value) {
-      return '<div><p class="text-xs text-slate-400">' + label + '</p><p class="mt-0.5 text-sm font-medium text-slate-700">' + value + '</p></div>';
+    function cell(label, value, extra) {
+      return '<div' + (extra ? ' class="' + extra + '"' : '') + '><p class="text-xs text-slate-400">' + label + '</p><p class="mt-0.5 text-sm font-medium text-slate-700">' + value + '</p></div>';
     }
     $('ansSummary').innerHTML =
       cell('Status Pengiriman', me.sent ? 'Pernah dikirim' : 'Belum pernah dikirim') +
       cell('Jumlah Pengiriman', me.sent ? me.sentCount + ' kali' : '-') +
       cell('Pertama Dikirim', me.sent ? D.fmt(me.firstSent) : '-') +
       cell('Terakhir Dikirim', me.sent ? D.fmt(me.lastSent) : '-') +
-      cell('Status Pengisian', me.filled ? 'Sudah mengisi' : 'Belum mengisi') +
-      cell('Diisi Pada', me.filled ? D.fmt(me.filledAt) : '-') +
-      '<div class="col-span-2">' + '<p class="text-xs text-slate-400">Kuesioner</p><p class="mt-0.5 text-sm font-medium text-slate-700">' + esc(arsip.title) + '</p></div>';
+      cell('Status Pengisian', form.filled ? 'Sudah mengisi' : 'Belum mengisi') +
+      cell('Diisi Pada', form.filled ? D.fmt(form.at) : '-') +
+      cell('Template', esc(cur.name), 'col-span-2') +
+      cell('Kuesioner', esc(arsip.title), 'col-span-2');
 
-    var qs = D.questionsOf(arsip);
-    $('ansArsipTitle').textContent = arsip.title;
-    $('ansCount').textContent = me.filled ? qs.length + ' pertanyaan dijawab' : 'Belum ada jawaban';
+    var qs = cur.questions;
+    $('ansArsipTitle').textContent = multi ? cur.name : arsip.title;
+    $('ansCount').textContent = form.filled ? qs.length + ' pertanyaan dijawab' : 'Belum ada jawaban';
 
     function stars(n) {
       var out = '<span class="flex items-center gap-0.5" aria-label="' + n + ' dari 5">';
@@ -314,12 +337,13 @@
       return '<span class="text-sm font-medium text-slate-800">' + esc(v) + '</span>';
     }
 
-    if (me.filled) {
+    if (form.filled) {
       $('ansList').innerHTML = qs.map(function (q, i) {
-        return '<li class="flex gap-3 p-4"><span class="kbd mt-0.5 shrink-0 self-start">' + (i + 1) + '</span><div class="min-w-0 flex-1"><p class="text-sm text-slate-500">' + esc(q.text) + '</p><div class="mt-1.5">' + answerHtml(q, me.answers[i]) + '</div></div></li>';
+        return '<li class="flex gap-3 p-4"><span class="kbd mt-0.5 shrink-0 self-start">' + (i + 1) + '</span><div class="min-w-0 flex-1"><p class="text-sm text-slate-500">' + esc(q.text) + '</p><div class="mt-1.5">' + answerHtml(q, form.answers[i]) + '</div></div></li>';
       }).join('');
     } else {
-      $('ansList').outerHTML = '<div class="mt-4 rounded-xl border border-dashed border-slate-200 px-4 py-10 text-center"><span class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-500"><i class="kk kk-file-text h-5 w-5"></i></span><p class="mt-3 text-sm font-medium text-slate-700">' + (me.sent ? 'Alumni ini belum mengisi kuesioner' : 'Kuesioner belum pernah dikirim ke alumni ini') + '</p><p class="mt-1 text-xs text-slate-400">Tidak ada jawaban yang dapat ditampilkan.</p></div>';
+      var why = !me.sent ? 'Kuesioner belum pernah dikirim ke alumni ini' : multi ? 'Alumni ini belum mengisi ' + esc(cur.name) : 'Alumni ini belum mengisi kuesioner';
+      $('ansList').outerHTML = '<div class="mt-4 rounded-xl border border-dashed border-slate-200 px-4 py-10 text-center"><span class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-500"><i class="kk kk-file-text h-5 w-5"></i></span><p class="mt-3 text-sm font-medium text-slate-700">' + why + '</p><p class="mt-1 text-xs text-slate-400">Tidak ada jawaban yang dapat ditampilkan.</p></div>';
     }
 
     // previous / next alumni that has answers
@@ -327,7 +351,7 @@
     var idx = withAnswers.indexOf(me);
     function link(el, target) {
       if (!target) { el.setAttribute('aria-disabled', 'true'); el.classList.add('pointer-events-none', 'opacity-50'); el.removeAttribute('href'); return; }
-      el.setAttribute('href', 'kuesioner-arsip-jawaban.html?id=' + arsip.id + '&alumni=' + target.id);
+      el.setAttribute('href', jawabanUrl(target, cur.slug));
     }
     link($('ansPrev'), idx > 0 ? withAnswers[idx - 1] : null);
     link($('ansNext'), idx >= 0 && idx < withAnswers.length - 1 ? withAnswers[idx + 1] : (idx < 0 ? withAnswers[0] : null));

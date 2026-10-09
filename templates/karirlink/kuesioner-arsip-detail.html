@@ -191,7 +191,7 @@
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div class="min-w-0">
           <div class="flex flex-wrap items-center gap-2.5">
-            <h2 id="arsipTitle" class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Arsip Kuesioner</h2>
+            <h2 id="arsipTitle" class="font-display text-xl font-bold text-slate-900 sm:text-3xl">Arsip Kuesioner</h2>
             <span class="badge-neutral">Arsip</span>
           </div>
           <p id="arsipLead" class="mt-1 text-sm text-slate-500"></p>
@@ -205,32 +205,68 @@
 
       <div class="callout-info flex items-start gap-3">
         <i class="kk kk-lock-simple mt-0.5 h-4 w-4 shrink-0 text-info-600"></i>
-        <p class="text-sm text-slate-600">Ini adalah data arsip dari sistem Tracer Study sebelum migrasi ke KarirLink. Kamu hanya dapat melihat status dan jawaban alumni; kuesioner tidak dapat dikirim ulang, diisi, atau diubah.</p>
+        <p class="text-sm text-slate-600"><span class="sm:hidden">Data arsip dari sistem lama. Hanya dapat dilihat, tidak dapat dikirim ulang.</span><span class="hidden sm:inline">Ini adalah data arsip dari sistem Tracer Study sebelum migrasi ke KarirLink. Kamu hanya dapat melihat status dan jawaban alumni; kuesioner tidak dapat dikirim ulang, diisi, atau diubah.</span></p>
+      </div>
+
+      <!-- Informasi arsip: data yang juga ada di Tracer Study lama -->
+      <div class="card p-4 sm:p-5">
+        <h3 class="text-base font-semibold text-slate-800">Informasi Arsip</h3>
+        <div class="mt-3 grid grid-cols-2 gap-x-5 gap-y-3 sm:grid-cols-3 lg:grid-cols-4">
+          <div>
+            <p class="text-xs text-slate-400">Periode Pengisian</p>
+            <p id="infoPeriod" class="mt-0.5 text-sm font-medium text-slate-700"></p>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400">Jumlah Pertanyaan</p>
+            <p id="infoQuestions" class="mt-0.5 text-sm font-medium text-slate-700"></p>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400">Tahun Lulus</p>
+            <p id="infoYears" class="mt-0.5 text-sm font-medium text-slate-700"></p>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400">Program Studi</p>
+            <p id="infoProdi" class="mt-0.5 text-sm font-medium text-slate-700"></p>
+          </div>
+        </div>
       </div>
 
       <!-- KPI row -->
-      <div class="grid grid-cols-2 gap-5 lg:grid-cols-3 xl:grid-cols-5">
-        <div class="card p-5">
-          <p id="kpiTotal" class="font-display text-2xl font-bold text-slate-900">0</p>
-          <p class="text-sm text-slate-500">Total Alumni</p>
+      <div class="stat-grid" style="--stat-cols: 5; --stat-lg: 3">
+        <div class="stat-card">
+          <span class="stat-icon"><i class="kk kk-users h-[18px] w-[18px]"></i></span>
+          <div class="min-w-0">
+            <p id="kpiTotal" class="stat-value">0</p>
+            <p class="stat-label">Total Alumni</p>
+          </div>
         </div>
-        <div class="card p-5">
-          <p id="kpiSent" class="font-display text-2xl font-bold text-info-600">0</p>
-          <p class="text-sm text-slate-500">Pernah Dikirim</p>
-          <p id="kpiSentNote" class="mt-1 text-xs text-slate-400"></p>
+        <div class="stat-card">
+          <span class="stat-icon bg-info-50 text-info-600"><i class="kk kk-paper-plane-tilt h-[18px] w-[18px]"></i></span>
+          <div class="min-w-0">
+            <p id="kpiSent" class="stat-value">0</p>
+            <p class="stat-label">Pernah Dikirim <span id="kpiSentNote" class="stat-note" title="dari total alumni"></span></p>
+          </div>
         </div>
-        <div class="card p-5">
-          <p id="kpiNotSent" class="font-display text-2xl font-bold text-slate-900">0</p>
-          <p class="text-sm text-slate-500">Belum Pernah Dikirim</p>
+        <div class="stat-card">
+          <span class="stat-icon bg-neutral-100 text-neutral-500"><i class="kk kk-prohibit h-[18px] w-[18px]"></i></span>
+          <div class="min-w-0">
+            <p id="kpiNotSent" class="stat-value">0</p>
+            <p class="stat-label">Belum Pernah Dikirim</p>
+          </div>
         </div>
-        <div class="card p-5">
-          <p id="kpiFilled" class="font-display text-2xl font-bold text-success-600">0</p>
-          <p class="text-sm text-slate-500">Sudah Mengisi</p>
-          <p id="kpiFilledNote" class="mt-1 text-xs text-slate-400"></p>
+        <div class="stat-card">
+          <span class="stat-icon bg-success-50 text-success-600"><i class="kk kk-check-circle h-[18px] w-[18px]"></i></span>
+          <div class="min-w-0">
+            <p id="kpiFilled" class="stat-value">0</p>
+            <p class="stat-label">Sudah Mengisi <span id="kpiFilledNote" class="stat-note" title="dari yang dikirim"></span></p>
+          </div>
         </div>
-        <div class="card p-5">
-          <p id="kpiNotFilled" class="font-display text-2xl font-bold text-warning-600">0</p>
-          <p class="text-sm text-slate-500">Belum Mengisi</p>
+        <div class="stat-card">
+          <span class="stat-icon bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-[18px] w-[18px]"></i></span>
+          <div class="min-w-0">
+            <p id="kpiNotFilled" class="stat-value">0</p>
+            <p class="stat-label">Belum Mengisi</p>
+          </div>
         </div>
       </div>
 
@@ -244,7 +280,7 @@
             <label for="alumniSearch" class="sr-only">Cari nama, NIM, atau email</label>
             <input id="alumniSearch" type="search" class="input h-9 pl-9" placeholder="Cari nama, NIM, atau email..." data-table-search />
           </div>
-          <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
             <div id="filterKirim" class="combo w-full sm:w-52" data-combo data-value="all">
               <button type="button" class="combo-trigger" data-combo-trigger>
                 <span data-combo-label>Semua Pengiriman</span>
@@ -269,6 +305,16 @@
                   <button type="button" class="combo-item" data-combo-item data-value="filled" data-label="Sudah Mengisi">Sudah Mengisi</button>
                   <button type="button" class="combo-item" data-combo-item data-value="not-filled" data-label="Belum Mengisi">Belum Mengisi</button>
                 </div>
+              </div>
+            </div>
+            <!-- Hanya tampil bila arsip punya lebih dari satu template -->
+            <div id="filterTemplate" class="combo hidden w-full sm:w-56" data-combo data-value="all">
+              <button type="button" class="combo-trigger" data-combo-trigger>
+                <span data-combo-label>Semua Template</span>
+                <i class="kk kk-caret-down combo-chevron"></i>
+              </button>
+              <div class="combo-menu" data-combo-menu>
+                <div class="combo-list" data-combo-list id="filterTemplateList"></div>
               </div>
             </div>
           </div>
@@ -307,7 +353,7 @@
           </div>
           <span id="questionCount" class="badge-neutral"></span>
         </div>
-        <ol id="questionList" class="mt-4 divide-y divide-slate-100 rounded-xl border border-slate-100"></ol>
+        <div id="questionList" class="mt-4 space-y-4"></div>
       </div>
     </div>
   </main>
@@ -342,10 +388,11 @@
     }
 
     var alumni = D.getAlumni(arsip.id);
-    var qs = D.questionsOf(arsip);
+    var tpls = D.templatesOf(arsip);
+    var multi = tpls.length > 1;
     document.title = arsip.title + ' | KarirLink';
     $('arsipTitle').textContent = arsip.title;
-    $('arsipLead').innerHTML = 'Dibuat pada ' + D.fmtLong(arsip.created) + ', ' + arsip.time + ' &middot; <span class="font-medium text-slate-700">' + alumni.length + ' alumni</span> tercatat sebagai penerima.';
+    $('arsipLead').textContent = 'Dikirim pada ' + D.fmtLong(arsip.created) + ', ' + arsip.time;
     $('arsipTemplates').innerHTML = arsip.templates.map(function (t) {
       var icon = t.indexOf('Pengguna') !== -1 ? 'kk-briefcase' : t.indexOf('Kemdikbud') !== -1 ? 'kk-graduation-cap' : 'kk-file-text';
       return '<span class="badge-neutral"><i class="kk ' + icon + ' h-3.5 w-3.5"></i>' + esc(t) + '</span>';
@@ -355,19 +402,23 @@
     var filled = alumni.filter(function (a) { return a.filled; }).length;
     $('kpiTotal').textContent = alumni.length;
     $('kpiSent').textContent = sent;
-    $('kpiSentNote').textContent = pct(sent, alumni.length) + '% dari total alumni';
+    $('kpiSentNote').textContent = '(' + pct(sent, alumni.length) + '%)';
     $('kpiNotSent').textContent = alumni.length - sent;
     $('kpiFilled').textContent = filled;
-    $('kpiFilledNote').textContent = pct(filled, sent) + '% dari yang dikirim';
+    $('kpiFilledNote').textContent = '(' + pct(filled, sent) + '%)';
     $('kpiNotFilled').textContent = alumni.length - filled;
 
+    $('infoPeriod').textContent = D.period(arsip);
+    $('infoQuestions').textContent = tpls.map(function (t) { return t.questions.length; }).join(' + ') + ' pertanyaan';
+    $('infoYears').textContent = arsip.years.join(', ');
+    $('infoProdi').textContent = arsip.prodi ? arsip.prodi.join(', ') : 'Semua Program Studi';
     // rows are built before the table is initialised (table.js records the original order at init)
     $('alumniBody').innerHTML = alumni.map(function (a) {
       var sendBadge = a.sent
         ? '<span class="badge-info"><span class="badge-dot hidden sm:inline-block bg-info-600"></span><span class="sm:hidden">Dikirim</span><span class="hidden sm:inline">Pernah Dikirim</span></span><p class="mt-1 hidden text-xs text-slate-400 sm:block">' + a.sentCount + 'x &middot; terakhir ' + D.fmt(a.lastSent) + '</p>'
         : '<span class="badge-neutral"><span class="badge-dot hidden sm:inline-block bg-neutral-400"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Pernah Dikirim</span></span>';
       var fillBadge = a.filled
-        ? '<span class="badge-success"><span class="badge-dot hidden sm:inline-block bg-success-600"></span><span class="sm:hidden">Sudah</span><span class="hidden sm:inline">Sudah Mengisi</span></span><p class="mt-1 hidden text-xs text-slate-400 sm:block">Diisi ' + D.fmt(a.filledAt) + '</p>'
+        ? '<span class="badge-success"><span class="badge-dot hidden sm:inline-block bg-success-600"></span><span class="sm:hidden">Sudah</span><span class="hidden sm:inline">Sudah Mengisi</span></span><p class="mt-1 hidden text-xs text-slate-400 sm:block">Diisi ' + D.fmt(a.filledAt) + (multi ? ' &middot; ' + a.templatesFilled.map(function (slug) { return tpls.filter(function (t) { return t.slug === slug; })[0].short; }).join(', ') : '') + '</p>'
         : a.sent
           ? '<span class="badge-warning"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Mengisi</span></span>'
           : '<span class="badge-neutral"><span class="badge-dot hidden sm:inline-block bg-neutral-400"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Mengisi</span></span>';
@@ -376,7 +427,7 @@
       var action = a.filled
         ? '<a href="kuesioner-arsip-jawaban.html?id=' + arsip.id + '&amp;alumni=' + a.id + '" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat jawaban ' + esc(a.name) + '"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></a>'
         : '<button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" disabled title="Belum mengisi, belum ada jawaban" aria-label="Belum ada jawaban ' + esc(a.name) + '"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></button>';
-      return '<tr data-sent="' + (a.sent ? 'sent' : 'not-sent') + '" data-filled="' + (a.filled ? 'filled' : 'not-filled') + '">' +
+      return '<tr data-sent="' + (a.sent ? 'sent' : 'not-sent') + '" data-filled="' + (a.filled ? 'filled' : 'not-filled') + '" data-templates="' + a.templatesFilled.join(' ') + '">' +
         '<td class="table-col-num" data-num>0</td>' +
         '<td data-value="' + esc(a.name) + '"><span class="block font-medium text-slate-800">' + esc(a.name) + '</span><p class="mt-0.5 text-xs text-slate-400">NIM ' + a.nim + '</p><p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">' + esc(a.prodi) + '</p><span class="sr-only">' + esc(a.email) + '</span></td>' +
         '<td class="hidden max-w-[180px] truncate lg:table-cell" data-value="' + esc(a.prodi) + '">' + esc(a.prodi) + '</td>' +
@@ -386,15 +437,24 @@
         '<td class="table-col-actions"><div class="flex items-center justify-end">' + action + '</div></td></tr>';
     }).join('');
 
+    var fTpl = $('filterTemplate');
+    if (multi) {
+      fTpl.classList.remove('hidden');
+      $('filterTemplateList').innerHTML = '<button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Template">Semua Template</button>' + tpls.map(function (t) {
+        return '<button type="button" class="combo-item" data-combo-item data-value="' + t.slug + '" data-label="Mengisi ' + esc(t.short) + '">Mengisi ' + esc(t.name) + '</button>';
+      }).join('');
+    }
+
     var root = $('alumniTableRoot');
     KKTable.init(root);
     var table = KKTable.get(root);
     var fKirim = $('filterKirim'), fIsi = $('filterIsi');
     table.addFilter(function (row) {
       return (fKirim.dataset.value === 'all' || row.dataset.sent === fKirim.dataset.value) &&
-             (fIsi.dataset.value === 'all' || row.dataset.filled === fIsi.dataset.value);
+             (fIsi.dataset.value === 'all' || row.dataset.filled === fIsi.dataset.value) &&
+             (fTpl.dataset.value === 'all' || row.dataset.templates.split(' ').indexOf(fTpl.dataset.value) !== -1);
     });
-    [fKirim, fIsi].forEach(function (c) {
+    [fKirim, fIsi, fTpl].forEach(function (c) {
       c.querySelectorAll('[data-combo-item]').forEach(function (item) {
         item.addEventListener('click', function () { c.dataset.value = item.dataset.value; table.refresh(); });
       });
@@ -402,9 +462,12 @@
     table.refresh();
 
     var typeLabel = { choice: 'Pilihan', rating: 'Skala 1-5', rupiah: 'Nominal', text: 'Jawaban teks' };
-    $('questionCount').textContent = qs.length + ' pertanyaan';
-    $('questionList').innerHTML = qs.map(function (q, i) {
-      return '<li class="flex items-center gap-3 p-3"><span class="kbd shrink-0">' + (i + 1) + '</span><p class="min-w-0 flex-1 text-sm text-slate-700">' + esc(q.text) + '</p><span class="badge-neutral hidden shrink-0 sm:inline-flex">' + typeLabel[q.type] + '</span></li>';
+    $('questionCount').textContent = tpls.reduce(function (n, t) { return n + t.questions.length; }, 0) + ' pertanyaan';
+    $('questionList').innerHTML = tpls.map(function (t) {
+      return (multi ? '<p class="mb-2 text-xs font-medium text-slate-500">' + esc(t.name) + ' <span class="text-slate-400">(' + t.questions.length + ' pertanyaan)</span></p>' : '') +
+        '<ol class="divide-y divide-slate-100 rounded-xl border border-slate-100">' + t.questions.map(function (q, i) {
+          return '<li class="flex items-center gap-3 p-3"><span class="kbd shrink-0">' + (i + 1) + '</span><p class="min-w-0 flex-1 text-sm text-slate-700">' + esc(q.text) + '</p><span class="badge-neutral hidden shrink-0 sm:inline-flex">' + typeLabel[q.type] + '</span></li>';
+        }).join('') + '</ol>';
     }).join('');
   })();
 
