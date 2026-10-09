@@ -85,7 +85,7 @@ echo 'export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"' >> ~/.bashrc
 ### 3. Install
 
 ```
-npm install @foxtrot-sevima/karirkit@1.3.4
+npm install @foxtrot-sevima/karirkit@1.3.5
 ```
 
 Tanpa versi (`npm install @foxtrot-sevima/karirkit`) akan mengambil versi

@@ -2,7 +2,7 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.3.5] - 2026-10-09
 
 ### Added
 
