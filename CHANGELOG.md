@@ -2,6 +2,94 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.3.5] - 2026-10-09
+
+### Added
+
+- **Aset berwarna dari Quantum** di `assets/flags` (266 bendera, file diganti nama menjadi kode ISO), `assets/misc-icons/payment` (83 logo pembayaran), `brand-logo` (28 logo merek,
+  4 warna), `application` (29 logo aplikasi termasuk SiAkadCloud, 3 warna), dan `files` (51 tipe file, 3 tampilan), serta `badges` dan `assets/illustrations` (dipakai lewat `<img>`, tanpa class).
+  Class dibangkitkan oleh `npm run assets:classes` ke `src/asset-classes.css`: `kk-flag kk-flag-id`, `kk-pay kk-pay-visa`, `kk-brand kk-brand-github` (+ `kk-brand-black|white|disabled`),
+  `kk-app kk-app-siakadcloud` (+ `kk-app-white|disabled`), `kk-file kk-file-pdf` (+ `kk-file-gray|solid`). Warnanya asli (`background-image`, bukan mask) dan ukurannya mengikuti `font-size`.
+  `kk-flag` dan `kk-file` juga nama ikon Phosphor, jadi aturannya hanya berlaku pada elemen tanpa class `kk` dan ikon lama tidak berubah. Folder `flags`, `payment`, `brand-logo`, dan
+  `files` ikut paket npm (ukuran paket sekitar 10,7 MB).
+  Versi **disabled** untuk SiAkadCloud (`siakadcloud-disabled.svg`) dibuat sendiri mengikuti logo lain (abu-abu `#94969C`, opacity 0,68), karena belum ada di sumber Quantum.
+- **Storybook**: story **Foundations/Assets** (galeri bendera dengan pencarian, logo pembayaran, merek, aplikasi, dan tipe file lengkap dengan variasi warna, serta contoh tombol login sosial),
+  dan **Templates/Portal Karir** (Login, Register, Onboarding, Dashboard). Daftar nama untuk story dibangkitkan oleh skrip yang sama (`stories/Foundations/asset-names.js`).
+
+- **Detail Arsip Kuesioner Tracer Study** (hanya-baca, untuk kebutuhan FOX-1179 Arsip): tombol **Lihat Preview** pada kartu arsip di `kuesioner.html` diganti **Lihat Detail** (keterangan tanggal kini "Dikirim pada", bukan "Dibuat pada") yang membuka halaman baru, dan
+  modal preview arsip dihapus. `kuesioner-arsip-detail.html?id=` (gaya detail yudisium) menampilkan daftar alumni penerima: kartu ringkasan (total, pernah dikirim, belum pernah dikirim, sudah mengisi,
+  belum mengisi), kartu **Informasi Arsip** (Periode Pengisian, Jumlah Pertanyaan, Tahun Lulus, dan Program Studi; data yang juga ada di Tracer Study lama), tabel dengan pencarian, filter Pengiriman dan Pengisian, urut, pagination, serta daftar pertanyaan. `kuesioner-arsip-jawaban.html?id=&alumni=` menampilkan jawaban per alumni
+  (ringkasan pengiriman, jawaban pilihan, skala bintang, nominal, dan teks, navigasi alumni sebelumnya dan berikutnya). Tidak ada tombol kirim, kirim ulang, atau pengisian. Di layar kecil kolom
+  Pengiriman dan Pengisian digabung menjadi Status. Data contoh dibangkitkan di `kuesioner-arsip-data.js` (pengganti API Arsip). Diverifikasi di browser (66 pemeriksaan, termasuk 820, 390, dan 320 px).
+
+- **Halaman Lihat Jawaban di detail yudisium** (tanpa modal): tombol Lihat Jawaban pada mahasiswa berstatus Sudah Mengisi di `yudisium-detail.html` membuka `yudisium-jawaban.html?nim=`, dan ada
+  `yudisium-jawaban-kosong.html` untuk keadaan semua gelombang belum terisi. Keduanya memakai satu skrip bersama (`yudisium-jawaban.js`) dengan tab gelombang **Pra-Lulus**, **Pasca-Lulus 1 Tahun**,
+  **Pasca-Lulus 4 Tahun**, dan **Pengguna Lulusan** (bisa dibuka langsung lewat `&gelombang=`), ringkasan, dan navigasi mahasiswa sebelumnya dan berikutnya. **Terisi**: Pra-Lulus per bagian;
+  Pasca-Lulus 1 dan 4 Tahun menampilkan bagian sesuai status lulusan (Bekerja, Wiraswasta, atau Melanjutkan Pendidikan, ditambah Informasi Umum dan Tingkat Kompetensi ditampilkan seperti form survei aslinya (skala 1-5 dengan jawaban terpilih disorot, kolom Dikuasai saat lulus dan Dibutuhkan saat ini, serta status selisih) dan metode
+  pembelajaran); Pengguna Lulusan (jawaban atasan) dalam 3 tingkatan dengan nilai bintang. **Kosong**: Pra-Lulus berstatus Menunggu Mengisi atau Belum Dikirim, gelombang lain Belum Dikirim beserta
+  jadwalnya (sesuai Pengaturan Gelombang Pengiriman), keadaan kosong, dan pratinjau pertanyaan yang bisa dibuka (Pra-Lulus 10, Pasca-Lulus 48, Pengguna Lulusan 8) sesuai `kuesioner-builder.html`.
+  Hanya-baca; data contoh. Diverifikasi di browser (64 pemeriksaan, termasuk 820, 390, dan 320 px).
+
+- **Breadcrumb dengan dropdown** di topbar halaman karirlink bertingkat 3 atau lebih (`kuesioner-arsip-detail`, `kuesioner-arsip-jawaban`, `yudisium-detail`, `yudisium-jawaban`, `yudisium-jawaban-kosong`,
+  `kuesioner-builder`, `kuesioner-builder-2`, `mahasiswa-alumni-detail`): halaman aktif selalu tampil utuh tanpa dipotong "..." dan maksimal 3 breadcrumb terlihat. Di layar 640px ke atas menu pertama
+  setelah Dashboard tetap tampil dengan namanya; pada halaman 4 tingkat menu itu berikon dropdown dan memuat tingkat tengah, contoh `Dashboard > Daftar Yudisium v > Jawaban Lulusan`
+  (`.breadcrumb-trigger`, `data-ui-dropdown`; lebar menu mengikuti teks terpanjang). Di ponsel (di bawah 640px) cukup ikon home dan halaman aktif, tanpa dropdown (nama halaman aktif turun ke baris kedua bila sempit). Diverifikasi di
+  browser (193 pemeriksaan pada 7 halaman dan 5 lebar layar).
+
+- **Teks ringkas di ponsel**: subjudul, callout, dan keterangan yang panjang (subjudul Arsip Kuesioner di `kuesioner.html`, keterangan halaman detail dan jawaban arsip, keterangan tiap tab di halaman jawaban
+  yudisium, ajakan Atur Minat di dashboard Portal Karir, dan keterangan Pengaturan Gelombang di `yudisium-detail`) kini punya versi singkat di bawah 640px (maksimal 2 sampai 3 baris); teks lengkap tetap tampil
+  di layar yang lebih lebar. Judul arsip pada halaman detail diperkecil di ponsel supaya cukup dua baris.
+
+- **Stat card** (`.stat-grid`, `.stat-card`, `.stat-icon`, `.stat-value`, `.stat-label`, `.stat-note`): komponen baru untuk angka ringkasan biasa berupa kartu kecil berikon, tingginya sekitar 60px
+  (kartu KPI lama sekitar 112px). Kolom menyesuaikan lebar layar lewat `--stat-cols` dan `--stat-lg` (1 kolom di bawah 360px, 2 di ponsel, 3 dari sm). Dipakai menggantikan kartu angka biasa di
+  `yudisium`, `yudisium-detail`, `mahasiswa-alumni`, dan `kuesioner-arsip-detail` (kartu dashboard yang berikon atau bertren tidak diubah); persentase di kartu arsip kini ringkas, "(90%)", dengan
+  keterangan pada tooltip; kartu Informasi Arsip juga dirapatkan. Story: Components/Stat Card.
+
+- **Template pada arsip kuesioner**: pada arsip dengan lebih dari satu template (mis. Template Lengkap dan Template Pengguna Lulusan), halaman `kuesioner-arsip-jawaban` punya tab per template (tab bertanda "belum" bila
+  template itu belum diisi; pertanyaan, jawaban, dan tanggal isi masing-masing, dan navigasi alumni tetap di template yang sama), sedangkan `kuesioner-arsip-detail` menyebut template yang diisi pada kolom
+  Pengisian, punya filter "Mengisi Template ...", dan mengelompokkan daftar pertanyaan per template. Template Kemdikbud memakai set pertanyaan yang lebih singkat. Arsip satu template
+  tampil seperti biasa tanpa tab dan filter. Badge "Arsip" dihapus dari kartu profil halaman jawaban. Diverifikasi di browser (84 pemeriksaan pada halaman arsip).
+
+- **Dropdown filter selebar kolom pencarian di ponsel**: pada toolbar tabel `yudisium`, `yudisium-detail`, `mahasiswa-alumni`, `kuesioner-arsip-detail`, dan dashboard Portal Karir, kelompok filter kini penuh selebar toolbar di bawah
+  640px (sebelumnya selebar isinya sehingga dropdown tampak pendek); dari 640px tampilan tidak berubah.
+
+- **Kartu ringkasan seragam**: Informasi Arsip (`kuesioner-arsip-detail`), Ringkasan Pengiriman (`kuesioner-arsip-jawaban`), dan Ringkasan Pengisian atau Pengiriman (`yudisium-jawaban`, `yudisium-jawaban-kosong`)
+  kini memakai satu pola: kartu `p-4 sm:p-5`, judul `text-base`, kolom sama lebar (2 di ponsel, 3 dari sm, 4 dari lg), dan nilai berupa teks biasa (Tahun Lulus dan Program Studi tidak lagi berupa chip).
+
+- **Template Portal Karir (`templates/portal-karir/`)**, halaman untuk pengguna KarirLink (mahasiswa, alumni, dan pengunjung diperlakukan sama, tanpa
+  pilihan status atau data profil): `login.html`, `register.html`, dan `onboarding.html`. Login dan register mengikuti gaya `login-fancy.html` dan `register-fancy.html` (form di kiri, panel merek bergradien di kanan dengan badge dan tiga kotak
+  angka, masuk dengan Google atau Microsoft; logo kiri hanya di layar kecil karena panel kanan sudah memuat logo, tanpa lencana "Portal Karir"). Formulir
+  registrasi berisi nama, email, dan kata sandi (minimal 8 karakter), dengan pesan galat di tempat dan tombol tampilkan kata sandi. Setelah
+  daftar, pengguna diarahkan ke **onboarding tiga langkah** untuk menyesuaikan algoritma rekomendasi: (1) bidang minat dari 12 bidang, **boleh memilih berapa
+  pun** (tiap bidang punya warna aksen sendiri), (2) preferensi kerja dengan kontrol yang berbeda-beda (jenis pekerjaan sebagai pil berikon, model kerja
+  sebagai tiga kartu, lokasi sebagai pil, ekspektasi gaji sebagai dua isian rupiah, minimum dan maksimum, berformat titik ribuan dan maksimum tidak boleh lebih kecil dari minimum; tiap seksi berkepala ikon, judul, keterangan, dan penghitung pilihan), (3) hingga 10 keahlian lewat kolom tag yang
+  memunculkan saran saat mengetik (Enter atau ketuk untuk menambah, Backspace untuk menghapus yang terakhir, teks di luar katalog bisa ditambahkan sendiri), bilah kemajuan dengan petunjuk
+  "minimal 3 keahlian", dan saran satu ketukan per bidang minat (ikon berwarna sama dengan kartu bidang, saran yang dipilih tidak berpindah tempat dan bisa
+  dilepas dengan ketuk lagi). Teks yang masih diketik saat menekan Selesai ikut tersimpan. Progres vertikal (langkah selesai berupa lingkaran hijau dengan centang tebal, langkah aktif lingkaran putih, langkah berikutnya redup) ada di panel kanan bersama kartu "Kenapa kami menanyakan ini?" (teks statis per langkah,
+  tanpa hitungan rekomendasi di server); di layar kecil progres tampil sebagai balok bersegmen. Tombol Kembali, Lewati, dan Lanjut dipaku di bawah sehingga
+  posisinya sama di setiap langkah. Setiap langkah dan seluruh onboarding bisa dilewati; "Lewati semua" ada di pojok kanan atas panel kanan (di layar kecil di header). **Tidak ada halaman "selesai"**: menekan Selesai (atau Lewati semua)
+  menyimpan jawaban di `localStorage` lalu langsung membuka `templates/portal-karir/index.html` (beranda portal); pengguna yang sudah onboarding juga langsung
+  ke `index.html` saat login atau membuka `onboarding.html`, dan `onboarding.html?ubah` membuka kembali formulir dengan jawaban tersimpan. `index.html` belum
+  dibuat. Hanya demo tanpa backend. Komponen yang dipakai: `.choice`, `.chip`, `.card`, dan `.badge-*`. Diverifikasi di browser (106 pemeriksaan: validasi tiap
+  langkah, progres, pilihan tanpa batas, isian gaji, pengalihan ke `index.html`, `?ubah`, Lewati, serta tanpa elemen keluar layar di 390 dan 320 px).
+
+- **Dashboard Portal Karir (`templates/portal-karir/index.html`)**, tujuan setelah onboarding dan login, berbentuk dashboard seperti halaman admin KarirLink: sidebar (bisa dilipat,
+  menu geser di layar kecil), topbar dengan breadcrumb, notifikasi, dan menu profil (Ubah Minat, Keluar). Isi: sapaan sesuai waktu, empat kartu KPI (Lamaran Terkirim, Dalam Proses,
+  Tersimpan, Rata-rata Kecocokan), grafik **Aktivitas Lamaran** per bulan, donut **Status Lamaran**, tabel **Lowongan Rekomendasi** (Design System table: pencarian di kiri, filter
+  Jenis dan Kota di kanan, kolom No, urut, pagination 6 baris, aksi Simpan dan Lamar), Lamaran Terakhir, Event Karier, serta Profil Karier dengan kelengkapan dan keahlian yang sering
+  dicari. Urutan dan persentase kecocokan dihitung di browser dari jawaban onboarding; pengguna yang belum onboarding melihat lowongan populer dan ajakan Atur Minat. Data hanya demo
+  (18 lowongan, 9 lamaran contoh); Simpan dan Lamar disimpan di `localStorage`.
+  Diverifikasi di browser (103 pemeriksaan: KPI, grafik, donut, tabel, filter, urut, pagination, Simpan, Lamar, pengguna baru, alur daftar ke dashboard, sidebar, 820/390/320 px).
+
+### Changed
+
+- **Tombol login sosial** di `login`, `register`, `login-fancy`, `register-fancy`, dan `portal-karir/login` serta `register`: tombol Microsoft diganti **Lanjutkan dengan SiAkadCloud**
+  (di atas **Lanjutkan dengan Google**), dan semua teks memakai "Lanjutkan dengan" (sebelumnya register memakai "Daftar dengan"). Logo Google dan SiAkadCloud kini memakai class aset
+  (`kk-brand-google`, `kk-app-siakadcloud`) sebagai pengganti SVG inline.
+- **Storybook**: halaman **Foundations → Theming** digabung ke **Foundations → Colors** (satu halaman "Colors & Theming": palet warna, lalu panduan mode terang/gelap; `Theming.mdx` menjadi `Colors.mdx`).
+  Ikon tab Storybook diganti menjadi ikon KarirKit (`.storybook/public/favicon.svg`, salinan `assets/logo/karirkit-mark.svg`).
+
+
 ## [1.3.4] - 2026-10-06
 
 ### Added

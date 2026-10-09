@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Dashboard Portal Karir KarirLink: pantau lamaran, lowongan yang cocok, event karier, dan kelengkapan profilmu dalam satu halaman." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/index.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Dashboard | Portal Karir KarirLink" />
+<meta property="og:description" content="Dashboard Portal Karir KarirLink: pantau lamaran, lowongan yang cocok, event karier, dan kelengkapan profilmu dalam satu halaman." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/index.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Dashboard | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Dashboard Portal Karir KarirLink: pantau lamaran, lowongan yang cocok, event karier, dan kelengkapan profilmu dalam satu halaman." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- Mobile overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out lg:translate-x-0">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden" aria-label="Tutup menu">
+      <i class="kk kk-x h-5 w-5"></i>
+    </button>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5" aria-label="Menu utama">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item nav-item-active" aria-current="page" data-tooltip-trigger data-tooltip-text="Dashboard" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Dashboard</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Karier</p>
+      <div class="space-y-1">
+        <a href="#lowongan" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a href="#lamaran" class="nav-item" data-tooltip-trigger data-tooltip-text="Lamaran Saya" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lamaran Saya</span>
+        </a>
+        <a href="#event" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Akun</p>
+      <div class="space-y-1">
+        <a href="#profil" class="nav-item" data-tooltip-trigger data-tooltip-text="Profil Saya" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-user-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Profil Saya</span>
+        </a>
+        <a href="onboarding.html?ubah" class="nav-item" id="editInterestNav" data-tooltip-trigger data-tooltip-text="Minat dan Preferensi" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-sliders h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Minat dan Preferensi</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pengaturan</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="login.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Keluar" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-sign-out h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Keluar</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0" aria-label="Breadcrumb">
+        <span class="breadcrumb-current min-w-0" aria-current="page">
+          <i class="kk kk-house h-4 w-4 shrink-0"></i>
+          <span class="min-w-0 truncate">Dashboard</span>
+        </span>
+      </nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <button type="button" class="relative flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-100" aria-label="Notifikasi">
+        <i class="kk kk-bell h-5 w-5"></i>
+        <span class="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-danger-500 ring-2 ring-white"></span>
+      </button>
+      <div class="relative">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span id="avatarInitials" class="avatar h-9 w-9 shrink-0 text-sm">U</span>
+          <span class="hidden min-w-0 sm:block">
+            <span id="profileName" class="block max-w-[10rem] truncate text-sm font-semibold text-slate-800">Pengguna</span>
+            <span id="profileEmail" class="block max-w-[10rem] truncate text-xs text-slate-400">Portal Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-56">
+          <a href="#profil" class="dropdown-item">
+            <i class="kk kk-user-circle h-4 w-4"></i>
+            Profil Saya
+          </a>
+          <a href="onboarding.html?ubah" class="dropdown-item" id="editInterestMenu">
+            <i class="kk kk-sliders h-4 w-4"></i>
+            Ubah Minat
+          </a>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <div class="my-1 border-t border-slate-100"></div>
+          <a href="login.html" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Greeting -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="min-w-0">
+        <h1 id="greeting" class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Selamat datang</h1>
+        <p id="greetingLead" class="mt-1 text-sm text-slate-500"></p>
+      </div>
+      <div class="flex shrink-0 flex-wrap gap-2">
+        <a href="#lowongan" class="btn-primary btn-md">
+          <i class="kk kk-magnifying-glass h-4 w-4 shrink-0"></i>
+          Cari Lowongan
+        </a>
+        <a href="onboarding.html?ubah" class="btn-outline btn-md">
+          <i class="kk kk-sliders h-4 w-4 shrink-0"></i>
+          Ubah Minat
+        </a>
+      </div>
+    </div>
+
+    <!-- Ajakan melengkapi minat (hanya jika belum onboarding) -->
+    <div id="onboardNudge" class="callout-info flex flex-col gap-3 sm:flex-row sm:items-center" hidden>
+      <div class="flex items-start gap-3">
+        <i class="kk kk-sparkle mt-0.5 h-4 w-4 shrink-0 text-info-600"></i>
+        <p class="text-sm text-slate-600"><span class="font-semibold text-slate-800">Rekomendasimu masih umum.</span> <span class="sm:hidden">Atur minat agar lowongan lebih pas.</span><span class="hidden sm:inline">Ceritakan minat, preferensi, dan keahlianmu dalam 2 menit agar lowongan yang tampil lebih pas.</span></p>
+      </div>
+      <a href="onboarding.html" class="btn-primary btn-sm shrink-0 sm:ml-auto">Atur Minat</a>
+    </div>
+
+    <!-- KPI row -->
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4 animate-fade-in">
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-file-text h-5 w-5"></i></span>
+          <span class="badge-success"><i class="kk kk-trend-up h-3 w-3"></i><span id="kpiWeek">+0</span></span>
+        </div>
+        <p id="kpiApplied" class="mt-4 font-display text-2xl font-bold text-slate-900">0</p>
+        <p class="text-sm text-slate-500">Lamaran Terkirim</p>
+        <p class="mt-2 text-xs text-slate-400">Minggu ini</p>
+      </div>
+
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-5 w-5"></i></span>
+        </div>
+        <p id="kpiProgress" class="mt-4 font-display text-2xl font-bold text-slate-900">0</p>
+        <p class="text-sm text-slate-500">Lamaran Dalam Proses</p>
+        <p id="kpiInterview" class="mt-2 text-xs text-slate-400"></p>
+      </div>
+
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-bookmark-simple h-5 w-5"></i></span>
+        </div>
+        <p id="kpiSaved" class="mt-4 font-display text-2xl font-bold text-slate-900">0</p>
+        <p class="text-sm text-slate-500">Lowongan Tersimpan</p>
+        <p class="mt-2 text-xs text-slate-400">Dari <span id="kpiTotalJobs">18</span> lowongan tersedia</p>
+      </div>
+
+      <div class="card p-5">
+        <div class="flex items-center justify-between">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-target h-5 w-5"></i></span>
+        </div>
+        <p id="kpiMatch" class="mt-4 font-display text-2xl font-bold text-slate-900">-</p>
+        <p class="text-sm text-slate-500">Rata-rata Kecocokan</p>
+        <p id="kpiMatchNote" class="mt-2 text-xs text-slate-400"></p>
+      </div>
+    </div>
+
+    <!-- Aktivitas + status lamaran -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div class="card min-w-0 p-5 sm:p-6 lg:col-span-2">
+        <div class="mb-5 flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-semibold text-slate-800">Aktivitas Lamaran</h3>
+            <p class="text-xs text-slate-400">Jumlah lamaran per bulan</p>
+          </div>
+          <span class="badge-neutral shrink-0">6 bulan terakhir</span>
+        </div>
+        <div id="activityChart" class="flex h-52 items-end gap-3 sm:gap-5" role="img" aria-label="Grafik jumlah lamaran per bulan"></div>
+      </div>
+
+      <div class="card min-w-0 p-5 sm:p-6">
+        <div class="mb-5">
+          <h3 class="text-base font-semibold text-slate-800">Status Lamaran</h3>
+          <p class="text-xs text-slate-400">Semua lamaran sejauh ini</p>
+        </div>
+        <div class="flex flex-col items-center gap-5 sm:flex-row lg:flex-col xl:flex-row">
+          <div class="relative h-36 w-36 shrink-0" role="img" aria-label="Diagram status lamaran">
+            <div id="donut" class="h-full w-full rounded-full bg-neutral-100"></div>
+            <div class="absolute inset-4 flex flex-col items-center justify-center rounded-full bg-surface">
+              <span id="donutTotal" class="font-display text-2xl font-bold text-slate-900">0</span>
+              <span class="text-xs text-slate-400">Lamaran</span>
+            </div>
+          </div>
+          <ul id="donutLegend" class="w-full space-y-2.5 text-sm"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lowongan rekomendasi: Design System table (table-wrap + table.js) -->
+    <section id="lowongan" class="scroll-mt-24" aria-labelledby="jobsTitle">
+      <div class="mb-3">
+        <h3 id="jobsTitle" class="text-base font-semibold text-slate-800">Lowongan Rekomendasi</h3>
+        <p id="jobsNote" class="text-xs text-slate-400">Diurutkan berdasarkan kecocokan dengan minat dan keahlianmu</p>
+      </div>
+      <div class="table-wrap overflow-visible" id="jobTableRoot" data-page-size="6" data-item-label="lowongan" data-combo-boundary>
+        <!-- Toolbar -->
+        <div class="table-toolbar">
+          <div class="relative w-full sm:w-64">
+            <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+              <i class="kk kk-magnifying-glass h-4 w-4"></i>
+            </span>
+            <label for="jobSearch" class="sr-only">Cari lowongan</label>
+            <input id="jobSearch" type="search" class="input h-9 pl-9" placeholder="Cari lowongan..." data-table-search />
+          </div>
+          <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
+            <div id="filterJenis" class="combo w-full sm:w-44" data-combo data-value="all">
+              <button type="button" class="combo-trigger" data-combo-trigger>
+                <span data-combo-label>Semua Jenis</span>
+                <i class="kk kk-caret-down combo-chevron"></i>
+              </button>
+              <div class="combo-menu" data-combo-menu>
+                <div class="combo-list" data-combo-list>
+                  <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Jenis">Semua Jenis</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Magang" data-label="Magang">Magang</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Penuh waktu" data-label="Penuh waktu">Penuh waktu</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Paruh waktu" data-label="Paruh waktu">Paruh waktu</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Kontrak" data-label="Kontrak">Kontrak</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Freelance" data-label="Freelance">Freelance</button>
+                </div>
+              </div>
+            </div>
+            <div id="filterKota" class="combo w-full sm:w-44" data-combo data-value="all">
+              <button type="button" class="combo-trigger" data-combo-trigger>
+                <span data-combo-label>Semua Kota</span>
+                <i class="kk kk-caret-down combo-chevron"></i>
+              </button>
+              <div class="combo-menu" data-combo-menu>
+                <div class="combo-list" data-combo-list>
+                  <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Kota">Semua Kota</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Jakarta" data-label="Jakarta">Jakarta</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Bandung" data-label="Bandung">Bandung</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Surabaya" data-label="Surabaya">Surabaya</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Yogyakarta" data-label="Yogyakarta">Yogyakarta</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Semarang" data-label="Semarang">Semarang</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Medan" data-label="Medan">Medan</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="Denpasar" data-label="Denpasar">Denpasar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="table table-lg table-fit table-head-soft" id="jobTable">
+            <thead>
+              <tr>
+                <th scope="col" class="table-col-num">No</th>
+                <th scope="col" data-sort="text"><button type="button" class="th-sort">Posisi<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                <th scope="col" class="hidden md:table-cell" data-sort="text"><button type="button" class="th-sort">Jenis<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                <th scope="col" class="hidden lg:table-cell" data-sort="number"><button type="button" class="th-sort">Gaji<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                <th scope="col" class="hidden sm:table-cell" data-sort="number"><button type="button" class="th-sort">Kecocokan<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                <th scope="col" class="table-col-actions">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="jobBody"></tbody>
+          </table>
+        </div>
+        <div data-table-empty hidden class="table-empty">Tidak ada lowongan yang cocok.</div>
+
+        <!-- Pagination footer -->
+        <div class="table-footer" data-table-pagination>
+          <span data-table-info></span>
+          <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lamaran, event, profil -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div id="lamaran" class="card min-w-0 scroll-mt-24 p-5 sm:p-6">
+        <div class="mb-4 flex items-center justify-between gap-3">
+          <div>
+            <h3 class="text-base font-semibold text-slate-800">Lamaran Terakhir</h3>
+            <p class="text-xs text-slate-400">Perkembangan terbaru</p>
+          </div>
+        </div>
+        <ul id="appliedList" class="space-y-4"></ul>
+      </div>
+
+      <div id="event" class="card min-w-0 scroll-mt-24 p-5 sm:p-6">
+        <div class="mb-4">
+          <h3 class="text-base font-semibold text-slate-800">Event Karier Mendatang</h3>
+          <p class="text-xs text-slate-400">Daftar sebelum kuota penuh</p>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3">
+            <span class="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-primary-50 text-primary-700"><span class="text-base font-bold leading-none">14</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">Okt</span></span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-semibold text-slate-800">Job Fair Teknologi 2026</p>
+              <p class="truncate text-xs text-slate-500">Jakarta Convention Hall &middot; 09.00</p>
+            </div>
+            <button type="button" class="btn-outline btn-sm shrink-0" data-event="Job Fair Teknologi 2026">Daftar</button>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-secondary-50 text-secondary-700"><span class="text-base font-bold leading-none">21</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">Okt</span></span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-semibold text-slate-800">Workshop Wawancara</p>
+              <p class="truncate text-xs text-slate-500">Online (Zoom) &middot; 13.00</p>
+            </div>
+            <button type="button" class="btn-outline btn-sm shrink-0" data-event="Workshop Wawancara">Daftar</button>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-success-50 text-success-700"><span class="text-base font-bold leading-none">28</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">Okt</span></span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-semibold text-slate-800">Webinar Karier Kreatif</p>
+              <p class="truncate text-xs text-slate-500">Online (YouTube) &middot; 19.30</p>
+            </div>
+            <button type="button" class="btn-outline btn-sm shrink-0" data-event="Webinar Karier Kreatif">Daftar</button>
+          </li>
+        </ul>
+      </div>
+
+      <div id="profil" class="card min-w-0 scroll-mt-24 p-5 sm:p-6">
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <h3 class="text-base font-semibold text-slate-800">Profil Karier</h3>
+            <p class="text-xs text-slate-400">Kelengkapan dan keahlian</p>
+          </div>
+          <span id="profilePct" class="badge-primary shrink-0">25%</span>
+        </div>
+        <div class="progress-track mt-4 h-2"><div id="profileBar" class="progress-bar transition-all duration-500" style="width: 25%"></div></div>
+        <ul id="profileSteps" class="mt-4 space-y-2.5 text-sm"></ul>
+        <div class="mt-5 border-t border-border pt-4">
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Keahlian yang Sering Dicari</p>
+          <ul id="skillGap" class="mt-3 space-y-3"></ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-<span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
+<script src="../../assets/js/toast.js"></script>
+<script src="../../assets/js/table.js"></script>
+<script>
+  (function () {
+    var STORE_KEY = 'kk_portal_onboarding';
+    var USER_KEY = 'kk_portal_user';
+    var SAVED_KEY = 'kk_portal_saved';
+    var APPLIED_KEY = 'kk_portal_applied';
+    var DAY = 86400000;
+
+    // Same accent per field as the interest cards in onboarding.html (full class names so the CSS build picks them up).
+    var FIELD_ACCENT = {
+      'Teknologi & IT': 'bg-primary-50 text-primary-600', 'Desain & Kreatif': 'bg-secondary-50 text-secondary-600',
+      'Keuangan & Akuntansi': 'bg-success-50 text-success-600', 'Pemasaran & Penjualan': 'bg-warning-50 text-warning-600',
+      'Kesehatan': 'bg-danger-50 text-danger-600', 'Pendidikan & Pelatihan': 'bg-info-50 text-info-600',
+      'Teknik & Manufaktur': 'bg-primary-50 text-primary-600', 'Hukum & Pemerintahan': 'bg-secondary-50 text-secondary-600',
+      'Hospitality & Pariwisata': 'bg-info-50 text-info-600', 'Logistik & Rantai Pasok': 'bg-warning-50 text-warning-600',
+      'Media & Komunikasi': 'bg-danger-50 text-danger-600', 'Riset & Sains': 'bg-success-50 text-success-600'
+    };
+
+    // Sample catalogue. `pop` = popularity (used while the user has no answers), `payMin` in million rupiah (sorting).
+    var JOBS = [
+      { id: 1, title: 'Frontend Developer Intern', company: 'PT Nusantara Digital', field: 'Teknologi & IT', type: 'Magang', mode: 'Hybrid', city: 'Bandung', skills: ['JavaScript', 'HTML & CSS', 'React'], pay: 'Rp3 - 5 juta', payMin: 3, pop: 9 },
+      { id: 2, title: 'Data Analyst', company: 'Bank Sentra Mandiri', field: 'Keuangan & Akuntansi', type: 'Penuh waktu', mode: 'Di kantor', city: 'Jakarta', skills: ['SQL', 'Microsoft Excel', 'Power BI'], pay: 'Rp8 - 12 juta', payMin: 8, pop: 8 },
+      { id: 3, title: 'UI/UX Designer', company: 'Studio Kreatif Kita', field: 'Desain & Kreatif', type: 'Kontrak', mode: 'Remote', city: 'Di mana saja', skills: ['Figma', 'Riset pengguna'], pay: 'Rp6 - 9 juta', payMin: 6, pop: 8 },
+      { id: 4, title: 'Digital Marketing Executive', company: 'Toko Bumi Raya', field: 'Pemasaran & Penjualan', type: 'Penuh waktu', mode: 'Hybrid', city: 'Surabaya', skills: ['SEO', 'Copywriting', 'Google Ads'], pay: 'Rp5 - 7 juta', payMin: 5, pop: 7 },
+      { id: 5, title: 'Staf Administrasi Rumah Sakit', company: 'RS Harapan Sehat', field: 'Kesehatan', type: 'Penuh waktu', mode: 'Di kantor', city: 'Yogyakarta', skills: ['Rekam medis', 'Microsoft Office'], pay: 'Rp4 - 5 juta', payMin: 4, pop: 5 },
+      { id: 6, title: 'Guru Pendamping Kelas', company: 'Sekolah Cendekia', field: 'Pendidikan & Pelatihan', type: 'Paruh waktu', mode: 'Di kantor', city: 'Semarang', skills: ['Pengajaran', 'Public speaking'], pay: 'Rp2 - 3 juta', payMin: 2, pop: 5 },
+      { id: 7, title: 'Quality Control Engineer', company: 'PT Mekatronika Prima', field: 'Teknik & Manufaktur', type: 'Penuh waktu', mode: 'Di kantor', city: 'Medan', skills: ['Pengendalian mutu', 'K3', 'AutoCAD'], pay: 'Rp6 - 8 juta', payMin: 6, pop: 6 },
+      { id: 8, title: 'Staf Legal', company: 'Kantor Hukum Adil Makmur', field: 'Hukum & Pemerintahan', type: 'Kontrak', mode: 'Di kantor', city: 'Jakarta', skills: ['Penyusunan kontrak', 'Riset hukum'], pay: 'Rp5 - 7 juta', payMin: 5, pop: 4 },
+      { id: 9, title: 'Front Office Staff', company: 'Hotel Samudra', field: 'Hospitality & Pariwisata', type: 'Penuh waktu', mode: 'Di kantor', city: 'Denpasar', skills: ['Layanan pelanggan', 'Bahasa Inggris'], pay: 'Rp4 - 6 juta', payMin: 4, pop: 6 },
+      { id: 10, title: 'Supply Chain Officer', company: 'Logistik Garuda', field: 'Logistik & Rantai Pasok', type: 'Penuh waktu', mode: 'Di kantor', city: 'Jakarta', skills: ['SAP', 'Microsoft Excel', 'Manajemen gudang'], pay: 'Rp6 - 9 juta', payMin: 6, pop: 7 },
+      { id: 11, title: 'Content Writer Freelance', company: 'Media Kampus Id', field: 'Media & Komunikasi', type: 'Freelance', mode: 'Remote', city: 'Di mana saja', skills: ['Penulisan konten', 'SEO'], pay: 'Per proyek', payMin: 0, pop: 6 },
+      { id: 12, title: 'Research Assistant', company: 'Pusat Riset Terapan', field: 'Riset & Sains', type: 'Magang', mode: 'Hybrid', city: 'Bandung', skills: ['Analisis data', 'Statistik', 'Penulisan ilmiah'], pay: 'Rp2 - 3 juta', payMin: 2, pop: 5 },
+      { id: 13, title: 'Backend Developer', company: 'Teknologi Cakra', field: 'Teknologi & IT', type: 'Penuh waktu', mode: 'Hybrid', city: 'Jakarta', skills: ['Python', 'SQL', 'Git'], pay: 'Rp9 - 14 juta', payMin: 9, pop: 8 },
+      { id: 14, title: 'Graphic Designer Intern', company: 'Agensi Warna', field: 'Desain & Kreatif', type: 'Magang', mode: 'Di kantor', city: 'Yogyakarta', skills: ['Desain grafis', 'Adobe Photoshop'], pay: 'Rp1,5 - 2,5 juta', payMin: 1.5, pop: 6 },
+      { id: 15, title: 'Staf Akuntansi', company: 'KAP Mitra Jaya', field: 'Keuangan & Akuntansi', type: 'Kontrak', mode: 'Di kantor', city: 'Bandung', skills: ['Akuntansi', 'Microsoft Excel'], pay: 'Rp5 - 6 juta', payMin: 5, pop: 5 },
+      { id: 16, title: 'Social Media Specialist', company: 'Kopi Nusa', field: 'Pemasaran & Penjualan', type: 'Paruh waktu', mode: 'Remote', city: 'Di mana saja', skills: ['Media sosial', 'Copywriting'], pay: 'Rp3 - 4 juta', payMin: 3, pop: 7 },
+      { id: 17, title: 'Perawat Klinik', company: 'Klinik Sehat Bersama', field: 'Kesehatan', type: 'Penuh waktu', mode: 'Di kantor', city: 'Surabaya', skills: ['Pelayanan pasien', 'Pertolongan pertama'], pay: 'Rp5 - 7 juta', payMin: 5, pop: 4 },
+      { id: 18, title: 'Data Science Intern', company: 'Laboratorium Data Nusantara', field: 'Riset & Sains', type: 'Magang', mode: 'Hybrid', city: 'Jakarta', skills: ['Python', 'Statistik', 'Analisis data'], pay: 'Rp3 - 4 juta', payMin: 3, pop: 7 }
+    ];
+
+    // Sample application history (examples). Applications made on this page are added on top.
+    var SAMPLE_APPLIED = [
+      { title: 'UI/UX Designer', company: 'Studio Kreatif Kita', status: 'Wawancara', ago: 2 },
+      { title: 'Data Analyst', company: 'Bank Sentra Mandiri', status: 'Diproses', ago: 5 },
+      { title: 'Backend Developer', company: 'Teknologi Cakra', status: 'Terkirim', ago: 9 },
+      { title: 'Content Writer Freelance', company: 'Media Kampus Id', status: 'Diterima', ago: 21 },
+      { title: 'Digital Marketing Executive', company: 'Toko Bumi Raya', status: 'Ditolak', ago: 34 },
+      { title: 'Staf Legal', company: 'Kantor Hukum Adil Makmur', status: 'Ditolak', ago: 48 },
+      { title: 'Social Media Specialist', company: 'Kopi Nusa', status: 'Diterima', ago: 66 },
+      { title: 'Quality Control Engineer', company: 'PT Mekatronika Prima', status: 'Ditolak', ago: 90 },
+      { title: 'Front Office Staff', company: 'Hotel Samudra', status: 'Ditolak', ago: 125 }
+    ];
+    var STATUSES = [
+      { key: 'Terkirim', dot: 'bg-info-500', badge: 'badge-info' },
+      { key: 'Diproses', dot: 'bg-warning-500', badge: 'badge-warning' },
+      { key: 'Wawancara', dot: 'bg-primary-500', badge: 'badge-primary' },
+      { key: 'Diterima', dot: 'bg-success-500', badge: 'badge-success' },
+      { key: 'Ditolak', dot: 'bg-danger-400', badge: 'badge-danger' }
+    ];
+
+    function esc(s) {
+      var d = document.createElement('div');
+      d.textContent = s == null ? '' : String(s);
+      return d.innerHTML;
+    }
+    function read(key, fallback) {
+      try { var v = JSON.parse(localStorage.getItem(key)); return v == null ? fallback : v; } catch (e) { return fallback; }
+    }
+    function write(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage unavailable: demo still works for this visit */ }
+    }
+    function $(id) { return document.getElementById(id); }
+    function initials(name) {
+      var parts = String(name || '').split(' ').filter(Boolean);
+      if (!parts.length) return 'U';
+      return (parts[0].charAt(0) + (parts.length > 1 ? parts[1].charAt(0) : '')).toUpperCase();
+    }
+    function when(ago) {
+      if (ago <= 0) return 'Hari ini';
+      if (ago < 7) return ago + ' hari lalu';
+      if (ago < 30) return Math.floor(ago / 7) + ' minggu lalu';
+      return Math.floor(ago / 30) + ' bulan lalu';
+    }
+
+    // ---- who is signed in and what they answered in onboarding
+    var user = read(USER_KEY, null) || {};
+    var saved0 = read(STORE_KEY, null);
+    var prefs = {
+      interests: (saved0 && saved0.interests) || [],
+      jobTypes: (saved0 && saved0.jobTypes) || [],
+      workModes: (saved0 && saved0.workModes) || [],
+      locations: (saved0 && saved0.locations) || [],
+      skills: (saved0 && saved0.skills) || []
+    };
+    var onboarded = !!(saved0 && saved0.completedAt);
+    var hasPrefs = !!(prefs.interests.length || prefs.jobTypes.length || prefs.workModes.length || prefs.locations.length || prefs.skills.length);
+    var savedIds = read(SAVED_KEY, []);
+    var applied = read(APPLIED_KEY, []); // [{ id, at }]
+
+    function score(job) {
+      var s = 0, why = [];
+      if (prefs.interests.indexOf(job.field) !== -1) { s += 45; why.push('bidang'); }
+      if (prefs.jobTypes.indexOf(job.type) !== -1) { s += 20; why.push('jenis pekerjaan'); }
+      if (prefs.workModes.indexOf(job.mode) !== -1) { s += 10; why.push('model kerja'); }
+      if (prefs.locations.indexOf(job.city) !== -1 || prefs.locations.indexOf('Di mana saja') !== -1 || (job.mode === 'Remote' && prefs.locations.length)) { s += 10; why.push('lokasi'); }
+      var mine = prefs.skills.map(function (x) { return x.toLowerCase(); });
+      var overlap = job.skills.filter(function (k) { return mine.indexOf(k.toLowerCase()) !== -1; }).length;
+      if (overlap) { s += Math.min(15, overlap * 5); why.push('keahlian'); }
+      return { job: job, score: hasPrefs ? s : 0, why: why };
+    }
+    var ranked = JOBS.map(score).sort(function (a, b) { return b.score - a.score || b.job.pop - a.job.pop; });
+
+    // ---- application history = samples + what the user applied for here
+    function applications() {
+      var mine = applied.map(function (a) {
+        var j = JOBS.filter(function (x) { return x.id === a.id; })[0];
+        return j ? { title: j.title, company: j.company, status: 'Terkirim', ago: Math.max(0, Math.floor((Date.now() - a.at) / DAY)) } : null;
+      }).filter(Boolean);
+      return mine.concat(SAMPLE_APPLIED).sort(function (a, b) { return a.ago - b.ago; });
+    }
+
+    // ================= table rows (built before the table is initialised) =================
+    var body = $('jobBody');
+    function accentOf(j) { return FIELD_ACCENT[j.field] || 'bg-primary-50 text-primary-600'; }
+    function rowHtml(r) {
+      var j = r.job;
+      var isSaved = savedIds.indexOf(j.id) !== -1;
+      var didApply = applied.some(function (a) { return a.id === j.id; });
+      var match = hasPrefs && r.score > 0
+        ? '<div class="flex items-center gap-2" title="' + (r.why.length ? 'Cocok karena ' + esc(r.why.join(', ')) : '') + '"><div class="progress-track hidden h-1.5 w-20 sm:block"><div class="progress-bar" style="width: ' + r.score + '%"></div></div><span class="text-xs font-semibold ' + (r.score >= 60 ? 'text-success-600' : 'text-slate-500') + '">' + r.score + '%</span></div>'
+        : '<span class="badge-neutral">Populer</span>';
+      return '<tr data-id="' + j.id + '" data-type="' + esc(j.type) + '" data-city="' + esc(j.city) + '">' +
+        '<td class="table-col-num" data-num>' + 0 + '</td>' +
+        '<td data-value="' + esc(j.title) + '"><div class="flex items-center gap-3"><span class="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xs font-bold sm:flex ' + accentOf(j) + '">' + esc(initials(j.company)) + '</span>' +
+          '<div class="min-w-0"><span class="font-medium text-slate-800">' + esc(j.title) + '</span><p class="mt-0.5 text-xs text-slate-400">' + esc(j.company) + ' &middot; ' + esc(j.city) + '</p>' +
+          '<p class="mt-0.5 text-xs text-slate-400 md:hidden">' + esc(j.type) + ' &middot; ' + esc(j.pay) + (hasPrefs && r.score > 0 ? ' &middot; <span class="font-semibold text-primary-600">' + r.score + '%</span>' : '') + '</p></div></div>' +
+          '<span class="sr-only">' + esc(j.field + ' ' + j.mode + ' ' + j.skills.join(' ')) + '</span></td>' +
+        '<td class="hidden md:table-cell" data-value="' + esc(j.type) + '"><span class="badge-neutral">' + esc(j.type) + '</span><p class="mt-1 text-xs text-slate-400">' + esc(j.mode) + '</p></td>' +
+        '<td class="hidden lg:table-cell" data-value="' + j.payMin + '">' + esc(j.pay) + '</td>' +
+        '<td class="hidden sm:table-cell" data-value="' + r.score + '">' + match + '</td>' +
+        '<td class="table-col-actions"><div class="flex items-center justify-end gap-2">' +
+          '<button type="button" class="btn-outline btn-sm w-8 px-0" data-save="' + j.id + '" aria-pressed="' + isSaved + '" title="' + (isSaved ? 'Lepas simpanan' : 'Simpan') + '" aria-label="' + (isSaved ? 'Lepas simpanan' : 'Simpan lowongan') + '"><i class="kk kk-bookmark-simple ' + (isSaved ? 'kk-fill text-primary-600' : '') + ' h-4 w-4"></i></button>' +
+          (didApply
+            ? '<button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" disabled title="Terkirim" aria-label="Lamaran terkirim"><i class="kk kk-check h-4 w-4"></i><span class="hidden xl:inline">Terkirim</span></button>'
+            : '<button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-apply="' + j.id + '" title="Lamar" aria-label="Lamar"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Lamar</span></button>') +
+        '</div></td></tr>';
+    }
+    body.innerHTML = ranked.map(rowHtml).join('');
+
+    // ================= dashboard pieces =================
+    function renderGreeting() {
+      var h = new Date().getHours();
+      var part = h < 11 ? 'pagi' : h < 15 ? 'siang' : h < 18 ? 'sore' : 'malam';
+      var first = user.name ? user.name.split(' ')[0] : '';
+      $('greeting').textContent = 'Selamat ' + part + (first ? ', ' + first : '');
+      var apps = applications();
+      var inProgress = apps.filter(function (a) { return a.status === 'Diproses' || a.status === 'Wawancara' || a.status === 'Terkirim'; }).length;
+      $('greetingLead').innerHTML = 'Kamu punya <span class="font-medium text-slate-700">' + inProgress + ' lamaran dalam proses</span> dan <span class="font-medium text-slate-700">3 event</span> karier bulan ini.';
+    }
+    function renderKpis() {
+      var apps = applications();
+      var week = apps.filter(function (a) { return a.ago <= 7; }).length;
+      var inProgress = apps.filter(function (a) { return a.status === 'Diproses' || a.status === 'Wawancara' || a.status === 'Terkirim'; }).length;
+      var interviews = apps.filter(function (a) { return a.status === 'Wawancara'; }).length;
+      $('kpiApplied').textContent = apps.length;
+      $('kpiWeek').textContent = '+' + week;
+      $('kpiProgress').textContent = inProgress;
+      $('kpiInterview').textContent = interviews ? interviews + ' jadwal wawancara' : 'Belum ada jadwal wawancara';
+      $('kpiSaved').textContent = savedIds.length;
+      $('kpiTotalJobs').textContent = JOBS.length;
+      if (hasPrefs) {
+        var top = ranked.slice(0, 5);
+        $('kpiMatch').textContent = Math.round(top.reduce(function (n, r) { return n + r.score; }, 0) / top.length) + '%';
+        $('kpiMatchNote').textContent = '5 lowongan teratas untukmu';
+      } else {
+        $('kpiMatch').textContent = '-';
+        $('kpiMatchNote').textContent = 'Atur minat untuk melihat kecocokan';
+      }
+    }
+    function renderActivity() {
+      var now = new Date();
+      var months = [];
+      for (var i = 5; i >= 0; i--) {
+        var d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+        months.push({ y: d.getFullYear(), m: d.getMonth(), label: d.toLocaleDateString('id-ID', { month: 'short' }), n: 0 });
+      }
+      applications().forEach(function (a) {
+        var d = new Date(Date.now() - a.ago * DAY);
+        months.forEach(function (mo) { if (mo.y === d.getFullYear() && mo.m === d.getMonth()) mo.n++; });
+      });
+      var max = Math.max.apply(null, months.map(function (m) { return m.n; }).concat([1]));
+      $('activityChart').innerHTML = months.map(function (mo, idx) {
+        var current = idx === months.length - 1;
+        var h = mo.n ? Math.max(8, Math.round(mo.n / max * 150)) : 4;
+        return '<div class="flex h-full flex-1 flex-col items-center justify-end gap-2">' +
+          '<span class="text-xs font-semibold text-slate-600">' + mo.n + '</span>' +
+          '<div class="w-full max-w-[44px] rounded-t-lg ' + (current ? 'bg-primary-600' : mo.n ? 'bg-primary-200' : 'bg-neutral-200') + '" style="height: ' + h + 'px" title="' + mo.n + ' lamaran"></div>' +
+          '<span class="text-xs ' + (current ? 'font-semibold text-slate-700' : 'text-slate-400') + '">' + esc(mo.label) + '</span></div>';
+      }).join('');
+    }
+    function renderStatus() {
+      var apps = applications();
+      var counts = STATUSES.map(function (s) { return apps.filter(function (a) { return a.status === s.key; }).length; });
+      var total = counts.reduce(function (a, b) { return a + b; }, 0);
+      $('donutTotal').textContent = total;
+      $('donutLegend').innerHTML = STATUSES.map(function (s, i) {
+        return '<li class="flex items-center justify-between gap-3"><span class="flex items-center gap-2.5 text-slate-600"><span class="h-2.5 w-2.5 shrink-0 rounded-full ' + s.dot + '" data-dot></span>' + s.key + '</span><span class="font-semibold text-slate-800">' + counts[i] + '</span></li>';
+      }).join('');
+      // the gradient takes its colours from the legend dots, so the chart always matches the theme tokens
+      var colors = Array.prototype.map.call($('donutLegend').querySelectorAll('[data-dot]'), function (d) { return getComputedStyle(d).backgroundColor; });
+      var acc = 0, stops = [];
+      counts.forEach(function (n, i) {
+        if (!n) return;
+        var from = acc / total * 100;
+        acc += n;
+        stops.push(colors[i] + ' ' + from.toFixed(2) + '% ' + (acc / total * 100).toFixed(2) + '%');
+      });
+      $('donut').style.background = stops.length ? 'conic-gradient(' + stops.join(', ') + ')' : '';
+    }
+    function renderApplied() {
+      $('appliedList').innerHTML = applications().slice(0, 4).map(function (a) {
+        var s = STATUSES.filter(function (x) { return x.key === a.status; })[0];
+        return '<li class="flex items-start justify-between gap-3"><div class="min-w-0"><p class="truncate text-sm font-semibold text-slate-800">' + esc(a.title) + '</p><p class="truncate text-xs text-slate-500">' + esc(a.company) + ' &middot; ' + when(a.ago) + '</p></div><span class="' + (s ? s.badge : 'badge-neutral') + ' shrink-0">' + esc(a.status) + '</span></li>';
+      }).join('');
+    }
+    function renderProfile() {
+      var steps = [
+        { label: 'Akun dibuat', done: true },
+        { label: 'Bidang minat', done: prefs.interests.length > 0 },
+        { label: 'Preferensi kerja', done: !!(prefs.jobTypes.length || prefs.workModes.length || prefs.locations.length) },
+        { label: 'Keahlian', done: prefs.skills.length > 0 }
+      ];
+      var done = steps.filter(function (s) { return s.done; }).length;
+      var pct = Math.round(done / steps.length * 100);
+      $('profilePct').textContent = pct + '%';
+      $('profileBar').style.width = pct + '%';
+      $('profileSteps').innerHTML = steps.map(function (s) {
+        return s.done
+          ? '<li class="flex items-center gap-2.5 text-slate-700"><i class="kk kk-check-circle kk-fill h-[18px] w-[18px] shrink-0 text-success-600"></i>' + esc(s.label) + '</li>'
+          : '<li class="flex items-center gap-2.5 text-slate-500"><span class="flex h-[18px] w-[18px] shrink-0 rounded-full border-2 border-dashed border-neutral-300"></span><span class="flex-1">' + esc(s.label) + '</span><a href="onboarding.html?ubah" class="text-xs font-semibold text-primary-600 hover:text-primary-700">Lengkapi</a></li>';
+      }).join('');
+    }
+    // skills asked for in the user's fields (all fields when nothing is picked) that the user does not list yet
+    function renderSkillGap() {
+      var pool = JOBS.filter(function (j) { return !prefs.interests.length || prefs.interests.indexOf(j.field) !== -1; });
+      var mine = prefs.skills.map(function (x) { return x.toLowerCase(); });
+      var count = {};
+      pool.forEach(function (j) { j.skills.forEach(function (s) { if (mine.indexOf(s.toLowerCase()) === -1) count[s] = (count[s] || 0) + 1; }); });
+      var top = Object.keys(count).sort(function (a, b) { return count[b] - count[a] || a.localeCompare(b); }).slice(0, 4);
+      var max = top.length ? count[top[0]] : 1;
+      $('skillGap').innerHTML = top.length ? top.map(function (s) {
+        return '<li><div class="flex items-center justify-between text-sm"><span class="text-slate-700">' + esc(s) + '</span><span class="text-xs text-slate-400">' + count[s] + ' lowongan</span></div><div class="progress-track mt-1.5 h-1.5"><div class="progress-bar" style="width: ' + Math.round(count[s] / max * 100) + '%"></div></div></li>';
+      }).join('') : '<li class="text-sm text-slate-400">Keahlianmu sudah mencakup yang dicari.</li>';
+    }
+    function renderAll() {
+      renderGreeting(); renderKpis(); renderActivity(); renderStatus(); renderApplied(); renderProfile(); renderSkillGap();
+    }
+
+    $('onboardNudge').hidden = onboarded;
+    ['avatarInitials'].forEach(function (id) { $(id).textContent = initials(user.name); });
+    $('profileName').textContent = user.name || 'Pengguna';
+    $('profileEmail').textContent = user.email || 'Portal Karir';
+    $('jobsNote').textContent = hasPrefs ? 'Diurutkan berdasarkan kecocokan dengan minat dan keahlianmu' : 'Lowongan populer. Atur minatmu agar urutannya sesuai kebutuhanmu';
+    renderAll();
+
+    // ================= table: search, sort, paging and "No" come from table.js =================
+    var root = $('jobTableRoot');
+    KKTable.init(root);
+    var table = KKTable.get(root);
+    var filterJenis = $('filterJenis');
+    var filterKota = $('filterKota');
+    table.addFilter(function (row) {
+      var jenis = filterJenis.dataset.value;
+      var kota = filterKota.dataset.value;
+      return (jenis === 'all' || row.dataset.type === jenis) && (kota === 'all' || row.dataset.city === kota || row.dataset.city === 'Di mana saja');
+    });
+    [filterJenis, filterKota].forEach(function (combo) {
+      combo.querySelectorAll('[data-combo-item]').forEach(function (item) {
+        item.addEventListener('click', function () { combo.dataset.value = item.dataset.value; table.refresh(); });
+      });
+    });
+    table.refresh();
+
+    // ---- row actions (save / apply)
+    function refreshRow(id) {
+      var tr = body.querySelector('tr[data-id="' + id + '"]');
+      var r = ranked.filter(function (x) { return x.job.id === id; })[0];
+      if (!tr || !r) return;
+      var holder = document.createElement('tbody');
+      holder.innerHTML = rowHtml(r);
+      tr.querySelector('.table-col-actions').innerHTML = holder.querySelector('.table-col-actions').innerHTML;
+    }
+    body.addEventListener('click', function (e) {
+      var save = e.target.closest('[data-save]');
+      var apply = e.target.closest('[data-apply]');
+      if (save) {
+        var id = parseInt(save.getAttribute('data-save'), 10);
+        var at = savedIds.indexOf(id);
+        if (at === -1) savedIds.push(id); else savedIds.splice(at, 1);
+        write(SAVED_KEY, savedIds);
+        refreshRow(id);
+        renderKpis();
+      }
+      if (apply) {
+        var jid = parseInt(apply.getAttribute('data-apply'), 10);
+        if (!applied.some(function (a) { return a.id === jid; })) applied.push({ id: jid, at: Date.now() });
+        write(APPLIED_KEY, applied);
+        var job = JOBS.filter(function (x) { return x.id === jid; })[0];
+        refreshRow(jid);
+        renderAll();
+        if (window.KKToast) window.KKToast.show({ type: 'success', message: 'Lamaran untuk ' + job.title + ' di ' + job.company + ' terkirim.' });
+      }
+    });
+
+    // ---- events
+    document.addEventListener('click', function (e) {
+      var ev = e.target.closest('[data-event]');
+      if (!ev || !window.KKToast) return;
+      ev.disabled = true;
+      ev.textContent = 'Terdaftar';
+      window.KKToast.show({ type: 'success', message: 'Kamu terdaftar di ' + ev.getAttribute('data-event') + '.' });
+    });
+  })();
+
+  // ================= shell: sidebar, combo, profile menu, tooltip (same behaviour as the admin pages) =================
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const openBtn = document.getElementById('openSidebarBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  openBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+  sidebar.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', closeSidebar));
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+
+  // KarirKit combo dropdown (self-positioning select replacement).
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front, otherwise
+      // its default static position can inflate the page's scroll width before first open.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById('profileMenuBtn');
+    const menu = document.getElementById('profileMenu');
+    const chevron = document.querySelector('[data-profile-chevron]');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden', isOpen);
+      chevron?.classList.toggle('rotate-180', !isOpen);
+    });
+    document.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      chevron?.classList.remove('rotate-180');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        menu.classList.add('hidden');
+        chevron?.classList.remove('rotate-180');
+      }
+    });
+  })();
+
+  document.querySelectorAll('.js-current-year').forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+  // Fixed-position tooltip: shown on the sidebar's collapsed icon rail.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();
+</script>
+</body>
+</html>

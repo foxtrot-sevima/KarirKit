@@ -85,7 +85,7 @@ echo 'export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"' >> ~/.bashrc
 ### 3. Install
 
 ```
-npm install @foxtrot-sevima/karirkit@1.3.4
+npm install @foxtrot-sevima/karirkit@1.3.5
 ```
 
 Tanpa versi (`npm install @foxtrot-sevima/karirkit`) akan mengambil versi
@@ -203,7 +203,7 @@ pinjaman Tailwind `slate` untuk DS.
 `src/input.css` (`html[data-theme="dark"] { … }`) — ubah token di sana, jangan
 tambah `dark:` ad-hoc di template. Preferensi (`light` / `dark` / `system`)
 disimpan di `localStorage` key `kk-theme`. Panduan lengkap + snippet pasang di
-halaman baru: story **Foundations → Theming** (`stories/Foundations/Theming.mdx`).
+halaman baru: story **Foundations → Colors** (bagian Theming, `stories/Foundations/Colors.mdx`).
 
 ## Font
 

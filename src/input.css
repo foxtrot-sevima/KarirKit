@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./asset-classes.css";
 
 /* ==========================================================================
    Instrument Sans
@@ -18642,6 +18643,26 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
 
   /* ----- Surfaces ----- */
   .card { @apply rounded-card border border-border/70 bg-surface shadow-card; }
+
+  /* ==== Stat card: compact figure with an icon tile (use instead of big KPI cards for plain counts) ====
+     <div class="stat-grid" style="--stat-cols: 4">
+       <div class="stat-card">
+         <span class="stat-icon bg-success-50 text-success-600"><i class="kk kk-check-circle h-[18px] w-[18px]"></i></span>
+         <div class="min-w-0"><p class="stat-value">12</p><p class="stat-label">Sudah Mengisi <span class="stat-note">(50%)</span></p></div>
+       </div> ...
+     1 column under 360px, 2 on phones (an odd last card spans both), 3 from sm (capped by --stat-cols), --stat-lg (default --stat-cols)
+     from lg and --stat-cols from xl, so five cards get 3 columns on a small laptop and all five on a wide screen. */
+  .stat-grid { @apply grid grid-cols-2 gap-3; }
+  .stat-card { @apply flex items-center gap-3 rounded-card border border-border/70 bg-surface px-3.5 py-3 shadow-card; }
+  .stat-icon { @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600; }
+  .stat-value { @apply font-display text-lg font-bold leading-tight text-fg; }
+  .stat-label { @apply text-xs leading-snug text-fg-muted; }
+  .stat-note { @apply text-fg-subtle; }
+  @media (max-width: 639.98px) { .stat-card:last-child:nth-child(odd) { grid-column: span 2; } }
+  @media (min-width: 640px) { .stat-grid { grid-template-columns: repeat(min(var(--stat-cols, 4), 3), minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .stat-grid { grid-template-columns: repeat(var(--stat-lg, var(--stat-cols, 4)), minmax(0, 1fr)); } }
+  @media (min-width: 1280px) { .stat-grid { grid-template-columns: repeat(var(--stat-cols, 4), minmax(0, 1fr)); } }
+  @media (max-width: 359.98px) { .stat-grid { grid-template-columns: minmax(0, 1fr); } .stat-card:last-child:nth-child(odd) { grid-column: auto; } }
   .card-hover { @apply transition-shadow hover:shadow-card-lg; transition-duration: var(--duration-normal); }
 
   /* ----- Forms ----- */

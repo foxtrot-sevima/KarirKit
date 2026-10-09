@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Detail Arsip Kuesioner | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Lihat alumni yang sudah atau belum dikirimi kuesioner Tracer Study arsip, status pengisian, dan jawabannya. Hanya-baca." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/kuesioner-arsip-detail.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Detail Arsip Kuesioner | KarirLink" />
+<meta property="og:description" content="Lihat alumni yang sudah atau belum dikirimi kuesioner Tracer Study arsip, status pengisian, dan jawabannya. Hanya-baca." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/kuesioner-arsip-detail.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Detail Arsip Kuesioner | KarirLink" />
+<meta name="twitter:description" content="Lihat alumni yang sudah atau belum dikirimi kuesioner Tracer Study arsip, status pengisian, dan jawabannya. Hanya-baca." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- Mobile overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out lg:translate-x-0">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
+      <i class="kk kk-x h-5 w-5"></i>
+    </button>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Dashboard" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Dashboard</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
+        </a>
+        <a href="yudisium.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a href="mahasiswa-alumni.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pengaturan Landing Page</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+        <a href="index.html" class="breadcrumb-link shrink-0">
+          <i class="kk kk-house h-4 w-4"></i>
+          <span class="hidden sm:inline">Dashboard</span>
+        </a>
+        <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
+        <a href="kuesioner.html" class="breadcrumb-link hidden min-w-[4rem] shrink sm:flex"><span class="truncate">Kuesioner</span></a>
+        <span class="breadcrumb-separator hidden shrink-0 sm:flex"><i class="kk kk-caret-right h-3 w-3"></i></span>
+        <span class="breadcrumb-current min-w-min shrink-[4]" aria-current="page">
+          <span class="leading-tight">Detail Arsip</span>
+        </span>
+      </nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <div class="relative">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-52">
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <div class="my-1 border-t border-slate-100"></div>
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <div id="arsipMissing" class="card p-8 text-center" hidden>
+      <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-500"><i class="kk kk-archive h-6 w-6"></i></span>
+      <h2 class="mt-4 font-display text-xl font-bold text-slate-900">Arsip tidak ditemukan</h2>
+      <p class="mt-1 text-sm text-slate-500">Arsip kuesioner yang kamu buka tidak ada atau sudah dihapus.</p>
+      <a href="kuesioner.html" class="btn-primary btn-md mt-5"><i class="kk kk-arrow-left h-4 w-4 shrink-0"></i>Kembali ke Kuesioner</a>
+    </div>
+
+    <div id="arsipContent" class="space-y-6">
+      <!-- Header -->
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-center gap-2.5">
+            <h2 id="arsipTitle" class="font-display text-xl font-bold text-slate-900 sm:text-3xl">Arsip Kuesioner</h2>
+            <span class="badge-neutral">Arsip</span>
+          </div>
+          <p id="arsipLead" class="mt-1 text-sm text-slate-500"></p>
+          <div id="arsipTemplates" class="mt-3 flex flex-wrap items-center gap-2"></div>
+        </div>
+        <a href="kuesioner.html" class="btn-outline btn-md shrink-0">
+          <i class="kk kk-arrow-left h-4 w-4 shrink-0"></i>
+          Kembali ke Kuesioner
+        </a>
+      </div>
+
+      <div class="callout-info flex items-start gap-3">
+        <i class="kk kk-lock-simple mt-0.5 h-4 w-4 shrink-0 text-info-600"></i>
+        <p class="text-sm text-slate-600"><span class="sm:hidden">Data arsip dari sistem lama. Hanya dapat dilihat, tidak dapat dikirim ulang.</span><span class="hidden sm:inline">Ini adalah data arsip dari sistem Tracer Study sebelum migrasi ke KarirLink. Kamu hanya dapat melihat status dan jawaban alumni; kuesioner tidak dapat dikirim ulang, diisi, atau diubah.</span></p>
+      </div>
+
+      <!-- Informasi arsip: data yang juga ada di Tracer Study lama -->
+      <div class="card p-4 sm:p-5">
+        <h3 class="text-base font-semibold text-slate-800">Informasi Arsip</h3>
+        <div class="mt-3 grid grid-cols-2 gap-x-5 gap-y-3 sm:grid-cols-3 lg:grid-cols-4">
+          <div>
+            <p class="text-xs text-slate-400">Periode Pengisian</p>
+            <p id="infoPeriod" class="mt-0.5 text-sm font-medium text-slate-700"></p>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400">Jumlah Pertanyaan</p>
+            <p id="infoQuestions" class="mt-0.5 text-sm font-medium text-slate-700"></p>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400">Tahun Lulus</p>
+            <p id="infoYears" class="mt-0.5 text-sm font-medium text-slate-700"></p>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400">Program Studi</p>
+            <p id="infoProdi" class="mt-0.5 text-sm font-medium text-slate-700"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI row -->
+      <div class="stat-grid" style="--stat-cols: 5; --stat-lg: 3">
+        <div class="stat-card">
+          <span class="stat-icon"><i class="kk kk-users h-[18px] w-[18px]"></i></span>
+          <div class="min-w-0">
+            <p id="kpiTotal" class="stat-value">0</p>
+            <p class="stat-label">Total Alumni</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon bg-info-50 text-info-600"><i class="kk kk-paper-plane-tilt h-[18px] w-[18px]"></i></span>
+          <div class="min-w-0">
+            <p id="kpiSent" class="stat-value">0</p>
+            <p class="stat-label">Pernah Dikirim <span id="kpiSentNote" class="stat-note" title="dari total alumni"></span></p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon bg-neutral-100 text-neutral-500"><i class="kk kk-prohibit h-[18px] w-[18px]"></i></span>
+          <div class="min-w-0">
+            <p id="kpiNotSent" class="stat-value">0</p>
+            <p class="stat-label">Belum Pernah Dikirim</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon bg-success-50 text-success-600"><i class="kk kk-check-circle h-[18px] w-[18px]"></i></span>
+          <div class="min-w-0">
+            <p id="kpiFilled" class="stat-value">0</p>
+            <p class="stat-label">Sudah Mengisi <span id="kpiFilledNote" class="stat-note" title="dari yang dikirim"></span></p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-[18px] w-[18px]"></i></span>
+          <div class="min-w-0">
+            <p id="kpiNotFilled" class="stat-value">0</p>
+            <p class="stat-label">Belum Mengisi</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alumni table: Design System table (table-wrap + table.js) -->
+      <div class="table-wrap overflow-visible" id="alumniTableRoot" data-page-size="5" data-item-label="alumni" data-combo-boundary>
+        <div class="table-toolbar">
+          <div class="relative w-full sm:w-64">
+            <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+              <i class="kk kk-magnifying-glass h-4 w-4"></i>
+            </span>
+            <label for="alumniSearch" class="sr-only">Cari nama, NIM, atau email</label>
+            <input id="alumniSearch" type="search" class="input h-9 pl-9" placeholder="Cari nama, NIM, atau email..." data-table-search />
+          </div>
+          <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
+            <div id="filterKirim" class="combo w-full sm:w-52" data-combo data-value="all">
+              <button type="button" class="combo-trigger" data-combo-trigger>
+                <span data-combo-label>Semua Pengiriman</span>
+                <i class="kk kk-caret-down combo-chevron"></i>
+              </button>
+              <div class="combo-menu" data-combo-menu>
+                <div class="combo-list" data-combo-list>
+                  <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Pengiriman">Semua Pengiriman</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="sent" data-label="Pernah Dikirim">Pernah Dikirim</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="not-sent" data-label="Belum Pernah Dikirim">Belum Pernah Dikirim</button>
+                </div>
+              </div>
+            </div>
+            <div id="filterIsi" class="combo w-full sm:w-52" data-combo data-value="all">
+              <button type="button" class="combo-trigger" data-combo-trigger>
+                <span data-combo-label>Semua Pengisian</span>
+                <i class="kk kk-caret-down combo-chevron"></i>
+              </button>
+              <div class="combo-menu" data-combo-menu>
+                <div class="combo-list" data-combo-list>
+                  <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Pengisian">Semua Pengisian</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="filled" data-label="Sudah Mengisi">Sudah Mengisi</button>
+                  <button type="button" class="combo-item" data-combo-item data-value="not-filled" data-label="Belum Mengisi">Belum Mengisi</button>
+                </div>
+              </div>
+            </div>
+            <!-- Hanya tampil bila arsip punya lebih dari satu template -->
+            <div id="filterTemplate" class="combo hidden w-full sm:w-56" data-combo data-value="all">
+              <button type="button" class="combo-trigger" data-combo-trigger>
+                <span data-combo-label>Semua Template</span>
+                <i class="kk kk-caret-down combo-chevron"></i>
+              </button>
+              <div class="combo-menu" data-combo-menu>
+                <div class="combo-list" data-combo-list id="filterTemplateList"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="table table-lg table-fit table-head-soft" id="alumniTable">
+            <thead>
+              <tr>
+                <th scope="col" class="table-col-num">No</th>
+                <th scope="col" data-sort="text"><button type="button" class="th-sort">Nama<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                <th scope="col" class="hidden lg:table-cell" data-sort="text"><button type="button" class="th-sort">Prodi<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                <th scope="col" class="hidden sm:table-cell" data-sort="number"><button type="button" class="th-sort">Pengiriman<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                <th scope="col" class="hidden sm:table-cell" data-sort="number"><button type="button" class="th-sort">Pengisian<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                <th scope="col" class="sm:hidden">Status</th>
+                <th scope="col" class="table-col-actions">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="alumniBody"></tbody>
+          </table>
+        </div>
+        <div data-table-empty hidden class="table-empty">Tidak ada alumni yang cocok.</div>
+
+        <div class="table-footer" data-table-pagination>
+          <span data-table-info></span>
+          <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+        </div>
+      </div>
+
+      <!-- Pertanyaan -->
+      <div class="card p-5 sm:p-6">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h3 class="text-base font-semibold text-slate-800">Pertanyaan Kuesioner</h3>
+            <p class="text-xs text-slate-400">Pertanyaan yang dikirim ke alumni pada arsip ini</p>
+          </div>
+          <span id="questionCount" class="badge-neutral"></span>
+        </div>
+        <div id="questionList" class="mt-4 space-y-4"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
+<script src="../../assets/js/table.js"></script>
+<script src="kuesioner-arsip-data.js"></script>
+<script>
+  (function () {
+    var D = window.KKArsip;
+    var params = new URLSearchParams(location.search);
+    var arsip = D.getArsip(params.get('id'));
+    function $(id) { return document.getElementById(id); }
+    function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
+    function pct(a, b) { return b ? Math.round(a / b * 100) : 0; }
+    function initials(name) { var p = name.split(' '); return (p[0].charAt(0) + (p[1] ? p[1].charAt(0) : '')).toUpperCase(); }
+
+    if (!arsip) {
+      $('arsipContent').hidden = true;
+      $('arsipMissing').hidden = false;
+      document.title = 'Arsip tidak ditemukan | KarirLink';
+      return;
+    }
+
+    var alumni = D.getAlumni(arsip.id);
+    var tpls = D.templatesOf(arsip);
+    var multi = tpls.length > 1;
+    document.title = arsip.title + ' | KarirLink';
+    $('arsipTitle').textContent = arsip.title;
+    $('arsipLead').textContent = 'Dikirim pada ' + D.fmtLong(arsip.created) + ', ' + arsip.time;
+    $('arsipTemplates').innerHTML = arsip.templates.map(function (t) {
+      var icon = t.indexOf('Pengguna') !== -1 ? 'kk-briefcase' : t.indexOf('Kemdikbud') !== -1 ? 'kk-graduation-cap' : 'kk-file-text';
+      return '<span class="badge-neutral"><i class="kk ' + icon + ' h-3.5 w-3.5"></i>' + esc(t) + '</span>';
+    }).join('');
+
+    var sent = alumni.filter(function (a) { return a.sent; }).length;
+    var filled = alumni.filter(function (a) { return a.filled; }).length;
+    $('kpiTotal').textContent = alumni.length;
+    $('kpiSent').textContent = sent;
+    $('kpiSentNote').textContent = '(' + pct(sent, alumni.length) + '%)';
+    $('kpiNotSent').textContent = alumni.length - sent;
+    $('kpiFilled').textContent = filled;
+    $('kpiFilledNote').textContent = '(' + pct(filled, sent) + '%)';
+    $('kpiNotFilled').textContent = alumni.length - filled;
+
+    $('infoPeriod').textContent = D.period(arsip);
+    $('infoQuestions').textContent = tpls.map(function (t) { return t.questions.length; }).join(' + ') + ' pertanyaan';
+    $('infoYears').textContent = arsip.years.join(', ');
+    $('infoProdi').textContent = arsip.prodi ? arsip.prodi.join(', ') : 'Semua Program Studi';
+    // rows are built before the table is initialised (table.js records the original order at init)
+    $('alumniBody').innerHTML = alumni.map(function (a) {
+      var sendBadge = a.sent
+        ? '<span class="badge-info"><span class="badge-dot hidden sm:inline-block bg-info-600"></span><span class="sm:hidden">Dikirim</span><span class="hidden sm:inline">Pernah Dikirim</span></span><p class="mt-1 hidden text-xs text-slate-400 sm:block">' + a.sentCount + 'x &middot; terakhir ' + D.fmt(a.lastSent) + '</p>'
+        : '<span class="badge-neutral"><span class="badge-dot hidden sm:inline-block bg-neutral-400"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Pernah Dikirim</span></span>';
+      var fillBadge = a.filled
+        ? '<span class="badge-success"><span class="badge-dot hidden sm:inline-block bg-success-600"></span><span class="sm:hidden">Sudah</span><span class="hidden sm:inline">Sudah Mengisi</span></span><p class="mt-1 hidden text-xs text-slate-400 sm:block">Diisi ' + D.fmt(a.filledAt) + (multi ? ' &middot; ' + a.templatesFilled.map(function (slug) { return tpls.filter(function (t) { return t.slug === slug; })[0].short; }).join(', ') : '') + '</p>'
+        : a.sent
+          ? '<span class="badge-warning"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Mengisi</span></span>'
+          : '<span class="badge-neutral"><span class="badge-dot hidden sm:inline-block bg-neutral-400"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Mengisi</span></span>';
+      var miniSend = a.sent ? '<span class="badge-info">Dikirim</span>' : '<span class="badge-neutral">Belum Dikirim</span>';
+      var miniFill = a.filled ? '<span class="badge-success">Sudah Mengisi</span>' : a.sent ? '<span class="badge-warning">Belum Mengisi</span>' : '<span class="badge-neutral">Belum Mengisi</span>';
+      var action = a.filled
+        ? '<a href="kuesioner-arsip-jawaban.html?id=' + arsip.id + '&amp;alumni=' + a.id + '" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat jawaban ' + esc(a.name) + '"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></a>'
+        : '<button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" disabled title="Belum mengisi, belum ada jawaban" aria-label="Belum ada jawaban ' + esc(a.name) + '"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></button>';
+      return '<tr data-sent="' + (a.sent ? 'sent' : 'not-sent') + '" data-filled="' + (a.filled ? 'filled' : 'not-filled') + '" data-templates="' + a.templatesFilled.join(' ') + '">' +
+        '<td class="table-col-num" data-num>0</td>' +
+        '<td data-value="' + esc(a.name) + '"><span class="block font-medium text-slate-800">' + esc(a.name) + '</span><p class="mt-0.5 text-xs text-slate-400">NIM ' + a.nim + '</p><p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">' + esc(a.prodi) + '</p><span class="sr-only">' + esc(a.email) + '</span></td>' +
+        '<td class="hidden max-w-[180px] truncate lg:table-cell" data-value="' + esc(a.prodi) + '">' + esc(a.prodi) + '</td>' +
+        '<td class="hidden sm:table-cell" data-value="' + (a.sent ? a.sentCount : 0) + '">' + sendBadge + '</td>' +
+        '<td class="hidden sm:table-cell" data-value="' + (a.filled ? 2 : a.sent ? 1 : 0) + '">' + fillBadge + '</td>' +
+        '<td class="sm:hidden"><div class="flex flex-col items-start gap-1">' + miniSend + miniFill + '</div></td>' +
+        '<td class="table-col-actions"><div class="flex items-center justify-end">' + action + '</div></td></tr>';
+    }).join('');
+
+    var fTpl = $('filterTemplate');
+    if (multi) {
+      fTpl.classList.remove('hidden');
+      $('filterTemplateList').innerHTML = '<button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Template">Semua Template</button>' + tpls.map(function (t) {
+        return '<button type="button" class="combo-item" data-combo-item data-value="' + t.slug + '" data-label="Mengisi ' + esc(t.short) + '">Mengisi ' + esc(t.name) + '</button>';
+      }).join('');
+    }
+
+    var root = $('alumniTableRoot');
+    KKTable.init(root);
+    var table = KKTable.get(root);
+    var fKirim = $('filterKirim'), fIsi = $('filterIsi');
+    table.addFilter(function (row) {
+      return (fKirim.dataset.value === 'all' || row.dataset.sent === fKirim.dataset.value) &&
+             (fIsi.dataset.value === 'all' || row.dataset.filled === fIsi.dataset.value) &&
+             (fTpl.dataset.value === 'all' || row.dataset.templates.split(' ').indexOf(fTpl.dataset.value) !== -1);
+    });
+    [fKirim, fIsi, fTpl].forEach(function (c) {
+      c.querySelectorAll('[data-combo-item]').forEach(function (item) {
+        item.addEventListener('click', function () { c.dataset.value = item.dataset.value; table.refresh(); });
+      });
+    });
+    table.refresh();
+
+    var typeLabel = { choice: 'Pilihan', rating: 'Skala 1-5', rupiah: 'Nominal', text: 'Jawaban teks' };
+    $('questionCount').textContent = tpls.reduce(function (n, t) { return n + t.questions.length; }, 0) + ' pertanyaan';
+    $('questionList').innerHTML = tpls.map(function (t) {
+      return (multi ? '<p class="mb-2 text-xs font-medium text-slate-500">' + esc(t.name) + ' <span class="text-slate-400">(' + t.questions.length + ' pertanyaan)</span></p>' : '') +
+        '<ol class="divide-y divide-slate-100 rounded-xl border border-slate-100">' + t.questions.map(function (q, i) {
+          return '<li class="flex items-center gap-3 p-3"><span class="kbd shrink-0">' + (i + 1) + '</span><p class="min-w-0 flex-1 text-sm text-slate-700">' + esc(q.text) + '</p><span class="badge-neutral hidden shrink-0 sm:inline-flex">' + typeLabel[q.type] + '</span></li>';
+        }).join('') + '</ol>';
+    }).join('');
+  })();
+
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const openBtn = document.getElementById('openSidebarBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  openBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // KarirKit combo dropdown (self-positioning select replacement).
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front, otherwise
+      // its default static position can inflate the page's scroll width before first open.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();</script>
+</body>
+</html>
