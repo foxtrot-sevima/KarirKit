@@ -11,6 +11,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- **Menu profil di topbar template** (karirlink, portal-karir, custom): kini memakai layout dropdown baru - kepala menu berisi avatar, nama, dan email, pembatas `.dropdown-divider`, lebar `w-64`. Di portal-karir kepala menu ikut terisi dari data pengguna.
 - **Dashboard template memakai komponen Chart**: enam grafik Tracer Study di `templates/karirlink/index.html` (sebelumnya Chart.js dari CDN) dan grafik aktivitas serta status lamaran di `templates/portal-karir/index.html` (sebelumnya bar dan donut buatan sendiri) kini memakai `data-chart` / `KKChart`. Ketergantungan CDN dihapus.
 - **Tab template pada jawaban arsip** (`kuesioner-arsip-jawaban`): keterangan "belum" pada template yang belum diisi dihapus; tab hanya berisi nama template, dan keadaan kosong di bawah tab menjelaskan bila alumni belum mengisi, dengan kalimat "Alumni ini belum mengisi Kuesioner Pengguna Lulusan" (bukan "Template ...").
 

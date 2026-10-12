@@ -132,11 +132,18 @@
           <span id="avatarInitials" class="avatar h-9 w-9 shrink-0 text-sm">U</span>
           <span class="hidden min-w-0 sm:block">
             <span id="profileName" class="block max-w-[10rem] truncate text-sm font-semibold text-slate-800">Pengguna</span>
-            <span id="profileEmail" class="block max-w-[10rem] truncate text-xs text-slate-400">Portal Karir</span>
+            <span id="profileEmail" class="block max-w-[10rem] truncate text-xs text-slate-400">Alumni</span>
           </span>
           <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
         </button>
-        <div id="profileMenu" class="dropdown-menu hidden w-56">
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span id="profileMenuAvatar" class="avatar h-9 w-9 shrink-0 text-sm">U</span>
+            <div class="min-w-0 flex-1">
+              <p id="profileMenuName" class="dropdown-header-title">Pengguna</p>
+              <p id="profileMenuEmail" class="dropdown-header-desc">Email belum diisi</p>
+            </div>
+          </div>
           <a href="#profil" class="dropdown-item">
             <i class="kk kk-user-circle h-4 w-4"></i>
             Profil Saya
@@ -149,7 +156,7 @@
             <i class="kk kk-gear-six h-4 w-4"></i>
             Pengaturan Akun
           </button>
-          <div class="my-1 border-t border-slate-100"></div>
+          <hr class="dropdown-divider" />
           <a href="login.html" class="dropdown-item dropdown-item-danger">
             <i class="kk kk-sign-out h-4 w-4"></i>
             Keluar
@@ -664,7 +671,10 @@
     $('onboardNudge').hidden = onboarded;
     ['avatarInitials'].forEach(function (id) { $(id).textContent = initials(user.name); });
     $('profileName').textContent = user.name || 'Pengguna';
-    $('profileEmail').textContent = user.email || 'Portal Karir';
+    $('profileEmail').textContent = 'Alumni';
+    $('profileMenuAvatar').textContent = initials(user.name);
+    $('profileMenuName').textContent = user.name || 'Pengguna';
+    $('profileMenuEmail').textContent = user.email || 'Email belum diisi';
     $('jobsNote').textContent = hasPrefs ? 'Diurutkan berdasarkan kecocokan dengan minat dan keahlianmu' : 'Lowongan populer. Atur minatmu agar urutannya sesuai kebutuhanmu';
     renderAll();
 
