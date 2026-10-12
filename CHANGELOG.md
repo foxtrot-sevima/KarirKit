@@ -4,6 +4,23 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Komponen Navbar** (`.navbar`, `.navbar-inner`, `.navbar-brand`, `.navbar-toggle`, `.navbar-menu`, `.navbar-nav`, `.navbar-link`, `.navbar-actions`; varian `.navbar-sticky`, `-fixed`, `-solid`, `-plain`, `-app`): 11 contoh - dasar, dropdown, dropdown bertingkat, tombol ajakan, dua baris, pencarian, pemilih bahasa, menu pengguna, mega menu, latar solid, dan menu hamburger. Menu ponsel lewat `data-ui-collapse` (atribut baru `data-ui-collapse-static` agar ikon tombol tidak berputar).
+- **Komponen Footer** (`.footer`, `.footer-card`, `.footer-inner`, `.footer-row`, `.footer-copy`, `.footer-links`, `.footer-heading`, `.footer-list`, `.footer-divider`, `.footer-social`, `.footer-fixed`, `.footer-bar`, `.footer-center`): enam contoh - dasar, dengan logo, ikon sosial, peta situs, menempel di bawah, dan varian ringkas halaman aplikasi.
+- **Komponen Tabs** (`.tabs` + `.tabs-default`, `.tabs-underline`, `.tabs-pills`, `.tabs-vertical`, `.tabs-full` > `.tabs-item`): tab berlatar, bergaris bawah (dengan ikon), pil, vertikal, selebar kontainer dengan `select` di ponsel, serta tab interaktif dengan panel dan warna aktif/nonaktif yang dapat diganti (`data-ui-tabs-active-classes`, `-inactive-classes`). `ui.js` kini mendukung navigasi panah/Home/End, `select` pendamping (`data-ui-tab-select`), dan tidak melompat ke atas untuk tab bertautan `#`. Sembilan contoh di Storybook dan `index.html`; tab bersegmen `.tab` tidak berubah.
+- **Komponen Timeline** (`.timeline`, `.timeline-item`, `.timeline-marker`, `.timeline-dot`, `.timeline-time`, `.timeline-title`, `.timeline-body`, `.timeline-steps`): urutan peristiwa vertikal (titik polos dan penanda berikon), stepper mendatar yang menumpuk di ponsel, log aktivitas dengan avatar, dan linimasa berkelompok per tanggal. Hanya CSS. Lima contoh di Storybook dan `index.html`.
+
+### Fixed
+
+- **Pilihan periode pada layout kartu Chart** kini memakai kelas `input` (sebelumnya kelas `select` yang tidak ada, sehingga tampil tanpa gaya).
+- **Contoh Dropdown navbar** tidak lagi membuat halaman `index.html` bergeser ke samping di layar ponsel (tautan navbar kini membungkus ke baris berikutnya).
+
+### Changed
+
+- **Navbar dan footer di template memakai komponen baru**: bilah atas aplikasi (`.navbar.navbar-sticky.navbar-app`, 16 halaman), header logo halaman error (`.navbar.navbar-plain`, 8 halaman), footer aplikasi (`.footer.footer-bar`, 14 halaman) dan footer tengah login/error (`.footer.footer-center`, 10 halaman). Tampilan tidak berubah.
+- **Badge hero `index.html`** kini berbunyi "Dibangun dengan Tailwind CSS v4" tanpa nomor versi, supaya tidak perlu diubah setiap rilis.
+
 ## [1.3.6] - 2026-10-12
 
 ### Added
