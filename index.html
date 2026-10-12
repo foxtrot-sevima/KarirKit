@@ -173,6 +173,7 @@
       <a href="#wysiwyg" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">WYSIWYG</a>
       <a href="#chart" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Chart</a>
       <a href="#clipboard" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Clipboard</a>
+      <a href="#list-group" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">List Group</a>
       <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Misc</a>
     </div>
   </div>
@@ -5688,6 +5689,148 @@
       </div>
     </div>
     <div class="modal-footer"><button type="button" class="btn-outline btn-md" data-modal-hide="cb-modal">Tutup</button></div>
+  </div>
+</div></div>
+    </div>
+    </div>
+  </section>
+
+  <section id="list-group" class="scroll-mt-32 py-12">
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">List Group</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Daftar baris dalam satu bingkai - teks, tautan, tombol, ikon, daftar fitur, statistik dengan pemisah, dan daftar pengguna dengan aksi. Anatomi: <code class="kbd">.list-group</code> &gt; <code class="kbd">.list-group-item</code> (<code class="kbd">li</code>, <code class="kbd">a</code>, atau <code class="kbd">button</code>); tambahkan <code class="kbd">.list-group-item-action</code> untuk hover dan fokus, <code class="kbd">aria-current="true"</code> untuk baris aktif, <code class="kbd">disabled</code> untuk baris nonaktif. Hanya CSS.</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Default list group</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>.list-group</code> membungkus baris-baris <code>.list-group-item</code> yang dipisah garis. Lebar diatur dengan utilitas (<code>w-48</code>).</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><ul class="list-group w-48">
+    <li class="list-group-item">Profil</li>
+    <li class="list-group-item">Pengaturan</li>
+    <li class="list-group-item">Pesan</li>
+    <li class="list-group-item">Unduh</li>
+  </ul></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">List group with links</h3>
+      <p class="mb-3 text-sm text-slate-500">Tautan sebagai item dengan <code>.list-group-item-action</code> (hover dan fokus); item aktif memakai <code>aria-current="true"</code>.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="list-group w-48">
+    <a href="#" class="list-group-item list-group-item-action" aria-current="true">Profil</a>
+    <a href="#" class="list-group-item list-group-item-action">Pengaturan</a>
+    <a href="#" class="list-group-item list-group-item-action">Pesan</a>
+    <a href="#" class="list-group-item list-group-item-action">Unduh</a>
+  </div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">List group with buttons</h3>
+      <p class="mb-3 text-sm text-slate-500">Tombol sebagai item. Atribut <code>disabled</code> mematikan baris dan memberi kursor tidak boleh.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="list-group w-48">
+    <button type="button" class="list-group-item list-group-item-action" aria-current="true">Profil</button>
+    <button type="button" class="list-group-item list-group-item-action">Pengaturan</button>
+    <button type="button" class="list-group-item list-group-item-action">Pesan</button>
+    <button type="button" class="list-group-item list-group-item-action">Opsi</button>
+    <button type="button" class="list-group-item list-group-item-action" disabled>Unduh</button>
+  </div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">List group with icons</h3>
+      <p class="mb-3 text-sm text-slate-500">Ikon <code>kk-*</code> di kiri label; jarak antar-isi dari <code>gap-2</code> pada item.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="list-group w-48">
+    <a href="#" class="list-group-item list-group-item-action" aria-current="true"><i class="kk kk-user h-4 w-4" aria-hidden="true"></i>Profil</a>
+    <a href="#" class="list-group-item list-group-item-action"><i class="kk kk-gear-six h-4 w-4" aria-hidden="true"></i>Pengaturan</a>
+    <a href="#" class="list-group-item list-group-item-action"><i class="kk kk-chat-circle h-4 w-4" aria-hidden="true"></i>Pesan</a>
+    <a href="#" class="list-group-item list-group-item-action"><i class="kk kk-download-simple h-4 w-4" aria-hidden="true"></i>Unduh</a>
+  </div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Features list group</h3>
+      <p class="mb-3 text-sm text-slate-500">Daftar fitur dalam kartu: ikon centang untuk fitur yang tersedia, teks tercoret untuk yang tidak.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card w-72 p-6">
+  <ul role="list" class="space-y-4 text-sm">
+    <li class="flex items-center gap-2"><i class="kk kk-check-circle h-5 w-5 shrink-0 text-primary-600" aria-hidden="true"></i><span class="text-fg-muted">2 anggota tim</span></li>
+    <li class="flex items-center gap-2"><i class="kk kk-check-circle h-5 w-5 shrink-0 text-primary-600" aria-hidden="true"></i><span class="text-fg-muted">Penyimpanan 20 GB</span></li>
+    <li class="flex items-center gap-2"><i class="kk kk-check-circle h-5 w-5 shrink-0 text-primary-600" aria-hidden="true"></i><span class="text-fg-muted">Bantuan integrasi</span></li>
+    <li class="flex items-center gap-2 line-through decoration-fg-subtle"><i class="kk kk-check-circle h-5 w-5 shrink-0 text-fg-subtle" aria-hidden="true"></i><span class="text-fg-subtle">Berkas desain</span></li>
+    <li class="flex items-center gap-2 line-through decoration-fg-subtle"><i class="kk kk-check-circle h-5 w-5 shrink-0 text-fg-subtle" aria-hidden="true"></i><span class="text-fg-subtle">Akses API</span></li>
+    <li class="flex items-center gap-2 line-through decoration-fg-subtle"><i class="kk kk-check-circle h-5 w-5 shrink-0 text-fg-subtle" aria-hidden="true"></i><span class="text-fg-subtle">Dokumentasi lengkap</span></li>
+    <li class="flex items-center gap-2 line-through decoration-fg-subtle"><i class="kk kk-check-circle h-5 w-5 shrink-0 text-fg-subtle" aria-hidden="true"></i><span class="text-fg-subtle">Telepon 24x7</span></li>
+  </ul>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Statistic list with divider</h3>
+      <p class="mb-3 text-sm text-slate-500">Label berikon di kiri dan nilai di kanan; pemisah antar-baris dari <code>divide-y</code>.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card w-96 max-w-full p-6">
+  <ul role="list" class="space-y-3 divide-y divide-border text-sm">
+    <li class="flex items-center justify-between pb-3"><span class="flex items-center gap-2 text-fg-muted"><i class="kk kk-devices h-5 w-5 shrink-0" aria-hidden="true"></i>Elektronik</span><span class="font-medium text-fg">Rp5 M</span></li>
+    <li class="flex items-center justify-between pb-3"><span class="flex items-center gap-2 text-fg-muted"><i class="kk kk-t-shirt h-5 w-5 shrink-0" aria-hidden="true"></i>Fesyen</span><span class="font-medium text-fg">Rp2,78 M</span></li>
+    <li class="flex items-center justify-between pb-3"><span class="flex items-center gap-2 text-fg-muted"><i class="kk kk-couch h-5 w-5 shrink-0" aria-hidden="true"></i>Perabot rumah</span><span class="font-medium text-fg">Rp1,8 M</span></li>
+    <li class="flex items-center justify-between pb-3"><span class="flex items-center gap-2 text-fg-muted"><i class="kk kk-car h-5 w-5 shrink-0" aria-hidden="true"></i>Otomotif</span><span class="font-medium text-fg">Rp1,1 M</span></li>
+    <li class="flex items-center justify-between pb-3"><span class="flex items-center gap-2 text-fg-muted"><i class="kk kk-fork-knife h-5 w-5 shrink-0" aria-hidden="true"></i>Makanan dan minuman</span><span class="font-medium text-fg">Rp987 jt</span></li>
+    <li class="flex items-center justify-between pb-3"><span class="flex items-center gap-2 text-fg-muted"><i class="kk kk-puzzle-piece h-5 w-5 shrink-0" aria-hidden="true"></i>Mainan</span><span class="font-medium text-fg">Rp705 jt</span></li>
+    <li class="flex items-center justify-between pb-3"><span class="flex items-center gap-2 text-fg-muted"><i class="kk kk-book-open h-5 w-5 shrink-0" aria-hidden="true"></i>Buku dan musik</span><span class="font-medium text-fg">Rp688 jt</span></li>
+    <li class="flex items-center justify-between "><span class="flex items-center gap-2 text-fg-muted"><i class="kk kk-printer h-5 w-5 shrink-0" aria-hidden="true"></i>Perlengkapan kantor</span><span class="font-medium text-fg">Rp534 jt</span></li>
+  </ul>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">List with avatars and CTA</h3>
+      <p class="mb-3 text-sm text-slate-500">Daftar pengguna dalam kartu: avatar, nama dan email (terpotong bila panjang), tombol aksi, dan tombol ikon dengan tooltip.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card w-full max-w-sm p-6">
+  <h3 class="mb-6 text-xl font-semibold text-fg">Pengguna terbaru</h3>
+  <div class="flow-root">
+    <ul role="list" class="divide-y divide-border">
+      <li class="pb-4">
+        <div class="flex items-center gap-3">
+          <span class="avatar avatar-md bg-primary-100 text-primary-700 shrink-0">NS</span>
+          <div class="min-w-0 flex-1"><p class="truncate text-sm font-medium text-fg">Neil Sims</p><p class="truncate text-sm text-fg-muted">neil@karirkit.com</p></div>
+          <div class="inline-flex shrink-0 items-center gap-1.5">
+            <button type="button" class="btn-outline btn-sm">Ikuti</button>
+            <span class="group relative inline-flex"><button type="button" class="btn-ghost btn-icon-sm text-danger-600" aria-label="Hapus Neil Sims"><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i></button><span class="tooltip-content">Hapus</span></span>
+          </div>
+        </div>
+      </li>
+      <li class="py-4">
+        <div class="flex items-center gap-3">
+          <span class="avatar avatar-md bg-success-100 text-success-700 shrink-0">BG</span>
+          <div class="min-w-0 flex-1"><p class="truncate text-sm font-medium text-fg">Bonnie Green</p><p class="truncate text-sm text-fg-muted">bonnie@karirkit.com</p></div>
+          <div class="inline-flex shrink-0 items-center gap-1.5">
+            <button type="button" class="btn-outline btn-sm">Ikuti</button>
+            <span class="group relative inline-flex"><button type="button" class="btn-ghost btn-icon-sm text-danger-600" aria-label="Hapus Bonnie Green"><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i></button><span class="tooltip-content">Hapus</span></span>
+          </div>
+        </div>
+      </li>
+      <li class="py-4">
+        <div class="flex items-center gap-3">
+          <span class="avatar avatar-md bg-info-100 text-info-700 shrink-0">MG</span>
+          <div class="min-w-0 flex-1"><p class="truncate text-sm font-medium text-fg">Michael Gough</p><p class="truncate text-sm text-fg-muted">michael@karirkit.com</p></div>
+          <div class="inline-flex shrink-0 items-center gap-1.5">
+            <button type="button" class="btn-outline btn-sm">Ikuti</button>
+            <span class="group relative inline-flex"><button type="button" class="btn-ghost btn-icon-sm text-danger-600" aria-label="Hapus Michael Gough"><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i></button><span class="tooltip-content">Hapus</span></span>
+          </div>
+        </div>
+      </li>
+      <li class="py-4">
+        <div class="flex items-center gap-3">
+          <span class="avatar avatar-md bg-warning-100 text-warning-700 shrink-0">LB</span>
+          <div class="min-w-0 flex-1"><p class="truncate text-sm font-medium text-fg">Lana Byrd</p><p class="truncate text-sm text-fg-muted">lana@karirkit.com</p></div>
+          <div class="inline-flex shrink-0 items-center gap-1.5">
+            <button type="button" class="btn-outline btn-sm">Ikuti</button>
+            <span class="group relative inline-flex"><button type="button" class="btn-ghost btn-icon-sm text-danger-600" aria-label="Hapus Lana Byrd"><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i></button><span class="tooltip-content">Hapus</span></span>
+          </div>
+        </div>
+      </li>
+      <li class="pt-4">
+        <div class="flex items-center gap-3">
+          <span class="avatar avatar-md bg-danger-100 text-danger-700 shrink-0">TL</span>
+          <div class="min-w-0 flex-1"><p class="truncate text-sm font-medium text-fg">Thomas Lean</p><p class="truncate text-sm text-fg-muted">thomas@karirkit.com</p></div>
+          <div class="inline-flex shrink-0 items-center gap-1.5">
+            <button type="button" class="btn-outline btn-sm">Ikuti</button>
+            <span class="group relative inline-flex"><button type="button" class="btn-ghost btn-icon-sm text-danger-600" aria-label="Hapus Thomas Lean"><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i></button><span class="tooltip-content">Hapus</span></span>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </div></div>
     </div>

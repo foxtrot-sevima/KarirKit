@@ -19527,6 +19527,15 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
     @apply inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 border border-primary-600 bg-primary-600 px-4 text-sm font-semibold text-white
            transition-colors hover:bg-primary-700 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/40;
   }
+  /* ==== List group — .list-group > .list-group-item (li | a | button) ==== */
+  .list-group { @apply w-full overflow-hidden rounded-control border border-border bg-surface text-sm font-medium text-fg; }
+  .list-group-flush { @apply rounded-none border-0; }
+  .list-group-item { @apply flex w-full items-center gap-2 border-b border-border px-4 py-2 text-left; }
+  .list-group > :last-child { @apply border-b-0; }
+  .list-group-item-action { @apply cursor-pointer transition-colors hover:bg-neutral-50 hover:text-primary-600 focus-visible:relative focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500; }
+  .list-group-item[aria-current="true"], .list-group-item.is-active { @apply bg-primary-50 text-primary-700; }
+  .list-group-item:disabled, .list-group-item[aria-disabled="true"] { @apply pointer-events-none cursor-not-allowed text-fg-subtle; }
+
   .input-group-addon { @apply inline-flex h-10 shrink-0 items-center border border-border bg-neutral-50 px-3.5 text-sm text-fg-muted; }
   .input-group > .relative > .input-group-btn { @apply rounded-none; }
   .input-group > :last-child > .input-group-btn,
