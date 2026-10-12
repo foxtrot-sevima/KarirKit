@@ -125,6 +125,8 @@
       if (type === 'bar') o.xaxis.labels = numLabels;
     }
 
+    if (pieLike) o.grid.padding = { left: 0, right: 0, top: 0, bottom: 0 };
+
     if (type === 'area') {
       o.fill = { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.32, opacityTo: 0, stops: [0, 95, 100] } };
       o.markers = { size: 0, hover: { size: 5, sizeOffset: 2 } };
