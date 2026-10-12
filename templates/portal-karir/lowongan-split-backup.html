@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="id">
+<!-- BACKUP 2026-10-12: Lowongan versi tampilan bagi dua (kartu, lalu daftar di kiri + panel detail di kanan dengan scroll sendiri), sebelum diganti halaman detail satu scroll. Versi aktif: lowongan.html. -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lowongan | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/lowongan.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Lowongan | Portal Karir KarirLink" />
+<meta property="og:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/lowongan.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Lowongan | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<nav class="navbar navbar-sticky transition-[background-color,box-shadow] duration-300 data-[scrolled=true]:border-border/40 data-[scrolled=true]:bg-surface/70 data-[scrolled=true]:shadow-sm data-[scrolled=true]:backdrop-blur-xl" data-glass-nav aria-label="Navigasi utama">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand md:order-1">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+
+    <div class="flex items-center gap-1.5 md:order-3">
+      <!-- Notifikasi -->
+      <div class="dropdown">
+        <button type="button" class="relative flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Notifikasi, 3 baru">
+          <i class="kk kk-bell h-5 w-5" aria-hidden="true"></i>
+          <span class="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-danger-500 ring-2 ring-white"></span>
+        </button>
+        <div class="dropdown-menu hidden w-80 max-w-[calc(100vw-2rem)]" data-placement="bottom-end">
+          <div class="flex items-center justify-between px-3 pb-2 pt-1">
+            <p class="text-sm font-semibold text-fg">Notifikasi</p>
+            <span class="badge-primary">3 baru</span>
+          </div>
+          <a href="lamaran.html?id=3" class="dropdown-item items-start gap-3">
+            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600"><i class="kk kk-calendar-check h-4 w-4" aria-hidden="true"></i></span>
+            <span class="min-w-0"><span class="dropdown-item-title">Jadwal wawancara</span><span class="dropdown-item-desc">Studio Kreatif Kita mengundangmu wawancara Kamis, 15 Oktober.</span><span class="mt-0.5 block text-xs text-fg-subtle">2 jam lalu</span></span>
+          </a>
+          <a href="lamaran.html?id=2" class="dropdown-item items-start gap-3">
+            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-4 w-4" aria-hidden="true"></i></span>
+            <span class="min-w-0"><span class="dropdown-item-title">Lamaran sedang ditinjau</span><span class="dropdown-item-desc">Data Analyst di Bank Sentra Mandiri mulai diperiksa tim rekrutmen.</span><span class="mt-0.5 block text-xs text-fg-subtle">Kemarin</span></span>
+          </a>
+          <a href="lowongan.html" class="dropdown-item items-start gap-3">
+            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600"><i class="kk kk-briefcase h-4 w-4" aria-hidden="true"></i></span>
+            <span class="min-w-0"><span class="dropdown-item-title">Lowongan baru untukmu</span><span class="dropdown-item-desc">5 lowongan baru cocok dengan minat dan keahlianmu.</span><span class="mt-0.5 block text-xs text-fg-subtle">2 hari lalu</span></span>
+          </a>
+          <hr class="dropdown-divider" />
+          <a href="lamaran.html" class="dropdown-item justify-center font-medium text-primary-600 hover:text-primary-700">Lihat semua lamaran</a>
+        </div>
+      </div>
+
+      <!-- Akun -->
+      <div class="dropdown">
+        <button type="button" class="flex items-center gap-2 rounded-xl py-1 pl-1 pr-2 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Menu akun">
+          <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
+          <span class="hidden max-w-[9rem] truncate text-sm font-semibold text-slate-800 sm:block" data-user-name>Pengguna</span>
+          <i class="kk kk-caret-down hidden h-4 w-4 text-slate-400 sm:block" aria-hidden="true"></i>
+        </button>
+        <div class="dropdown-menu hidden w-64" data-placement="bottom-end">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title" data-user-name>Pengguna</p>
+              <p class="dropdown-header-desc" data-user-email>Email belum diisi</p>
+            </div>
+          </div>
+          <a href="index.html#profil" class="dropdown-item"><i class="kk kk-user-circle h-4 w-4" aria-hidden="true"></i>Profil Saya</a>
+          <a href="lamaran.html" class="dropdown-item"><i class="kk kk-file-text h-4 w-4" aria-hidden="true"></i>Lamaran Saya</a>
+          <a href="lowongan.html?simpan=1" class="dropdown-item"><i class="kk kk-bookmark-simple h-4 w-4" aria-hidden="true"></i>Lowongan Tersimpan</a>
+          <hr class="dropdown-divider" />
+          <a href="login.html" class="dropdown-item dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4" aria-hidden="true"></i>Keluar</a>
+        </div>
+      </div>
+
+      <button type="button" class="navbar-toggle" data-ui-collapse data-ui-collapse-static aria-controls="pkMenu" aria-expanded="false" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="navbar-menu md:order-2 md:ml-10 md:mr-auto" id="pkMenu">
+      <ul class="navbar-nav">
+        <li><a href="index.html" class="navbar-link">Beranda</a></li>
+        <li><a href="lowongan.html" class="navbar-link" aria-current="page">Lowongan</a></li>
+        <li><a href="lamaran.html" class="navbar-link">Lamaran Saya</a></li>
+        <li><a href="index.html#event" class="navbar-link">Event</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="flex-1">
+
+  <!-- ============================= PENCARIAN ============================= -->
+  <section class="relative bg-brand-gradient text-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
+      <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-secondary-400/30 blur-3xl"></div>
+      <div class="absolute -bottom-32 -left-16 h-96 w-96 rounded-full bg-primary-300/30 blur-3xl"></div>
+    </div>
+    <div class="relative mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
+      <h1 class="font-display text-2xl font-bold sm:text-3xl">Cari lowongan</h1>
+      <p class="mt-1 text-sm text-white/80">Jelajahi kartu lowongan, lalu pilih satu untuk melihat detailnya tanpa pindah halaman.</p>
+
+      <form id="filterForm" role="search" class="mt-5 rounded-2xl bg-white p-4 text-slate-800 shadow-xl shadow-primary-900/30" data-combo-boundary>
+        <div class="grid grid-cols-1 gap-3 lg:grid-cols-[1.4fr_repeat(4,1fr)_auto] lg:items-end">
+          <div class="flex items-end gap-2 lg:contents">
+            <div class="min-w-0 flex-1">
+              <label for="fQ" class="form-label">Kata kunci</label>
+              <div class="relative">
+                <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+                <input id="fQ" type="search" class="input pl-9" placeholder="Cari posisi atau perusahaan" autocomplete="off" />
+              </div>
+            </div>
+            <button type="button" class="btn-outline btn-md shrink-0 sm:hidden" data-ui-collapse data-ui-collapse-static aria-controls="fMore" aria-expanded="false">
+              <i class="kk kk-sliders h-4 w-4" aria-hidden="true"></i>Filter
+              <span id="filterBadge" class="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary-600 px-1 text-xs font-semibold text-white" hidden>0</span>
+            </button>
+          </div>
+          <div id="fMore" class="hidden space-y-3 sm:grid sm:grid-cols-4 sm:gap-3 sm:space-y-0 lg:contents">
+            <div><p class="form-label">Bidang</p><div id="hBidang"></div></div>
+            <div><p class="form-label">Kota</p><div id="hKota"></div></div>
+            <div><p class="form-label">Jenis Pekerjaan</p><div id="hJenis"></div></div>
+            <div><p class="form-label">Model Kerja</p><div id="hMode"></div></div>
+          </div>
+          <button type="submit" class="btn-primary btn-md px-6">Cari</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Bilah hasil -->
+    <div id="resultBar" class="flex scroll-mt-20 flex-wrap items-center justify-between gap-3">
+      <div class="flex flex-wrap items-center gap-3">
+        <button type="button" id="browseBack" class="btn-outline btn-sm max-lg:hidden" data-browse hidden><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i>Semua lowongan</button>
+        <p id="resultText" class="text-sm text-slate-600" aria-live="polite">Memuat lowongan...</p>
+        <button type="button" id="onlySaved" class="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-neutral-50 aria-pressed:border-primary-300 aria-pressed:bg-primary-50 aria-pressed:text-primary-700" aria-pressed="false">
+          <i class="kk kk-bookmark-simple h-3.5 w-3.5" aria-hidden="true"></i>Tersimpan <span id="savedCount" class="font-semibold">0</span>
+        </button>
+      </div>
+      <div id="sortWrap" class="flex items-center gap-2" data-combo-boundary>
+        <span class="text-xs text-slate-500">Urutkan</span>
+        <div class="w-48" id="hSort"></div>
+      </div>
+    </div>
+    <div id="chips" class="mt-3 flex flex-wrap items-center gap-2" hidden></div>
+
+    <!-- Daftar + detail -->
+    <div id="split" class="mt-5 grid grid-cols-1 gap-6">
+      <div class="min-w-0">
+        <div id="jobList" class="transition-opacity" aria-live="polite"></div>
+        <div id="pager" class="mt-5"></div>
+      </div>
+
+      <section id="detailPane" class="hidden max-lg:fixed max-lg:inset-0 max-lg:z-40 max-lg:hidden max-lg:flex-col max-lg:overflow-y-auto bg-surface lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:rounded-2xl lg:border lg:border-border/70 lg:shadow-card" aria-label="Detail lowongan">
+        <div class="sticky top-0 z-10 flex items-center gap-2 border-b border-border bg-surface/95 px-4 py-3 backdrop-blur lg:hidden">
+          <button type="button" class="btn-ghost btn-sm" data-close><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i>Kembali ke daftar</button>
+        </div>
+        <div id="detailBody"></div>
+        <div id="detailBar" class="sticky bottom-0 z-10 flex lg:hidden items-center gap-2 border-t border-border bg-surface/95 p-4 backdrop-blur" hidden></div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="footer footer-bar">
+  <p>&copy; 2005-<span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
+  <p>KarirLink</p>
+</footer>
+
+<!-- ============================= KONFIRMASI LAMARAN ============================= -->
+<div class="modal-backdrop z-[60]" id="applyModal">
+  <div class="modal-panel modal-md">
+    <div class="modal-header">
+      <div>
+        <h3 class="modal-title">Kirim lamaran</h3>
+        <p class="modal-description" id="applyDesc"></p>
+      </div>
+      <button type="button" class="modal-close" data-modal-hide="applyModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+    </div>
+    <form id="applyForm" class="flex min-h-0 flex-1 flex-col" novalidate>
+      <div class="modal-body space-y-4">
+        <div class="flex items-center gap-3 rounded-xl bg-neutral-50 p-3">
+          <span class="avatar h-10 w-10 text-sm" data-user-initials>U</span>
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-semibold text-slate-900" data-user-name>Pengguna</p>
+            <p class="truncate text-xs text-slate-500" data-user-email>Email belum diisi</p>
+          </div>
+          <span id="applyPct" class="badge-primary shrink-0">0%</span>
+        </div>
+        <div id="applyHint" class="callout-warning text-sm text-slate-600" hidden>
+          Profilmu belum lengkap, jadi kecocokanmu bisa tampak lebih rendah di mata perusahaan. Lengkapi data di halaman profil.
+        </div>
+        <div>
+          <label class="form-label" for="applyNote">Catatan untuk perusahaan <span class="font-normal text-slate-400">(opsional)</span></label>
+          <textarea id="applyNote" class="input h-auto min-h-24 py-2.5" rows="4" maxlength="300" placeholder="Ceritakan singkat kenapa kamu cocok untuk posisi ini."></textarea>
+          <p class="form-hint text-right"><span id="noteCount">0</span>/300</p>
+        </div>
+        <div>
+          <label class="flex items-start gap-2.5 text-sm text-slate-600"><input type="checkbox" id="applyAgree" class="form-check mt-0.5" />Saya setuju profil dan keahlianku dibagikan kepada perusahaan ini.</label>
+          <p class="form-error mt-1.5 hidden" id="applyAgreeErr">Centang persetujuan untuk melanjutkan.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="flex w-full justify-end gap-2">
+          <button type="button" class="btn-outline btn-md" data-modal-hide="applyModal">Batal</button>
+          <button type="submit" class="btn-primary btn-md" id="applySubmit"><i class="kk kk-paper-plane-tilt h-4 w-4" aria-hidden="true"></i>Kirim Lamaran</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/pagination.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="portal.js"></script>
+<script>
+  /* Tampilan awal berupa kartu lowongan (browse); detail baru muncul setelah satu lowongan dipilih (tampilan daftar + detail).
+     Halaman ini bicara dengan server lewat PK.api (lihat portal.js): daftar diminta per halaman (8 lowongan) beserta filternya,
+     detail baru diminta saat lowongan dipilih, dan pengetikan di kolom cari ditunda 350 ms. Respons yang kalah cepat
+     dari permintaan yang lebih baru dibuang. Semua pilihan tersimpan di URL, jadi tombol kembali dan tautan berbagi bekerja. */
+  (function () {
+    var PK = window.PK;
+    var api = PK.api;
+    var esc = PK.esc;
+    var PAGE_SIZE = 9;
+    function $(id) { return document.getElementById(id); }
+    PK.initShell();
+
+    var BIDANG = Object.keys(PK.FIELDS);
+    var KOTA = ['Bandung', 'Denpasar', 'Jakarta', 'Medan', 'Semarang', 'Surabaya', 'Yogyakarta'];
+    var JENIS = ['Magang', 'Penuh waktu', 'Paruh waktu', 'Kontrak', 'Freelance'];
+    var MODE = ['Di kantor', 'Hybrid', 'Remote'];
+
+    var params = new URLSearchParams(location.search);
+    var state = {
+      q: params.get('q') || '', bidang: params.get('bidang') || '', kota: params.get('kota') || '',
+      jenis: params.get('jenis') || '', mode: params.get('mode') || '', sort: params.get('urut') || 'cocok',
+      saved: params.get('simpan') === '1', page: parseInt(params.get('page'), 10) || 1,
+      id: parseInt(params.get('id'), 10) || null
+    };
+    var paneOpen = !!state.id; // di layar kecil, detail baru terbuka setelah lowongan dipilih
+    var lastRes = null;        // respons daftar terakhir (dipakai untuk menggambar ulang tanpa meminta lagi)
+    var shownId = null;        // id lowongan yang sedang tampil di panel detail
+    var current = null;        // data detail yang sedang tampil
+    var listToken = PK.latest();
+    var detailToken = PK.latest();
+
+    function opts(list) { return list.map(function (v) { return [v, v]; }); }
+    $('hBidang').innerHTML = PK.comboHtml({ id: 'fBidang', all: 'Semua bidang', label: 'Bidang', value: state.bidang, options: opts(BIDANG) });
+    $('hKota').innerHTML = PK.comboHtml({ id: 'fKota', all: 'Semua kota', label: 'Kota', value: state.kota, options: opts(KOTA) });
+    $('hJenis').innerHTML = PK.comboHtml({ id: 'fJenis', all: 'Semua jenis', label: 'Jenis pekerjaan', value: state.jenis, options: opts(JENIS) });
+    $('hMode').innerHTML = PK.comboHtml({ id: 'fMode', all: 'Semua model', label: 'Model kerja', value: state.mode, options: opts(MODE) });
+    $('hSort').innerHTML = PK.comboHtml({ id: 'fSort', all: 'Paling cocok', label: 'Urutkan', value: state.sort === 'cocok' ? '' : state.sort, options: [['terbaru', 'Terbaru'], ['gaji', 'Gaji tertinggi']] });
+    PK.initCombos(document);
+    $('fQ').value = state.q;
+
+    function hasFilter() { return !!(state.q || state.bidang || state.kota || state.jenis || state.mode || state.saved); }
+
+    function syncUrl() {
+      var p = new URLSearchParams();
+      if (state.q) p.set('q', state.q);
+      if (state.bidang) p.set('bidang', state.bidang);
+      if (state.kota) p.set('kota', state.kota);
+      if (state.jenis) p.set('jenis', state.jenis);
+      if (state.mode) p.set('mode', state.mode);
+      if (state.sort !== 'cocok') p.set('urut', state.sort);
+      if (state.saved) p.set('simpan', '1');
+      if (state.page > 1) p.set('page', state.page);
+      if (state.id) p.set('id', state.id);
+      try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) { /* file:// */ }
+    }
+
+    // ---- chip filter aktif
+    var CHIP_LABEL = { q: 'Kata kunci', bidang: 'Bidang', kota: 'Kota', jenis: 'Jenis', mode: 'Model' };
+    function renderChips() {
+      var chips = ['q', 'bidang', 'kota', 'jenis', 'mode'].filter(function (k) { return state[k]; }).map(function (k) {
+        return '<button type="button" class="inline-flex items-center gap-1.5 rounded-full bg-primary-50 py-1 pl-3 pr-2 text-xs font-medium text-primary-700 transition-colors hover:bg-primary-100" data-clear="' + k + '" aria-label="Hapus filter ' + CHIP_LABEL[k] + '">' +
+          CHIP_LABEL[k] + ': ' + esc(state[k]) + PK.icon('x', 'h-3.5 w-3.5') + '</button>';
+      });
+      if (state.saved) chips.push('<button type="button" class="inline-flex items-center gap-1.5 rounded-full bg-primary-50 py-1 pl-3 pr-2 text-xs font-medium text-primary-700 transition-colors hover:bg-primary-100" data-clear="saved" aria-label="Hapus filter Tersimpan">Hanya tersimpan' + PK.icon('x', 'h-3.5 w-3.5') + '</button>');
+      $('chips').hidden = !chips.length;
+      $('chips').innerHTML = chips.join('') + (chips.length > 1 ? '<button type="button" class="px-2 text-xs font-semibold text-primary-600 hover:text-primary-700" data-reset>Hapus semua</button>' : '');
+      var n = ['bidang', 'kota', 'jenis', 'mode'].filter(function (k) { return state[k]; }).length;
+      $('filterBadge').hidden = !n;
+      $('filterBadge').textContent = n;
+      $('onlySaved').setAttribute('aria-pressed', String(state.saved));
+      $('savedCount').textContent = PK.savedCount();
+    }
+
+    // ---- tata letak: tanpa lowongan terpilih = kartu penuh; ada yang terpilih = daftar di kiri + detail di kanan
+    function layout() {
+      var detail = !!state.id;
+      $('split').classList.toggle('lg:grid-cols-[minmax(20rem,25rem)_1fr]', detail);
+      $('split').classList.toggle('lg:items-start', detail);
+      $('detailPane').classList.toggle('hidden', !detail);
+      $('detailPane').classList.toggle('max-lg:hidden', !(detail && paneOpen));
+      $('detailPane').classList.toggle('max-lg:flex', detail && paneOpen);
+      // tampilan kartu: jumlah, filter tersimpan, dan urutan; tampilan detail: hanya tombol kembali (di mobile bilah ini disembunyikan)
+      $('browseBack').hidden = !detail;
+      $('resultText').hidden = detail;
+      $('onlySaved').hidden = detail;
+      $('sortWrap').hidden = detail;
+      $('resultBar').classList.toggle('max-lg:hidden', detail);
+    }
+    function skeletonList() {
+      return state.id ? PK.skeletonRows(5) : '<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">' + PK.skeletonCards(6) + '</div>';
+    }
+
+    // ---- daftar
+    function renderList() {
+      var res = lastRes;
+      layout();
+      $('jobList').innerHTML = res.items.length
+        ? (state.id
+          ? '<div class="space-y-3">' + res.items.map(function (r) { return PK.jobRow(r, r.job.id === state.id); }).join('') + '</div>'
+          : '<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">' + res.items.map(function (r) { return PK.jobCard(r, true); }).join('') + '</div>')
+        : state.saved && !state.q && !state.bidang && !state.kota && !state.jenis && !state.mode
+          ? PK.emptyBox('bookmark-simple', 'Belum ada lowongan tersimpan', 'Ketuk ikon penanda pada lowongan untuk menyimpannya, lalu temukan lagi di sini.', '<button type="button" class="btn-outline btn-sm" data-clear="saved">Lihat semua lowongan</button>')
+          : PK.emptyBox('magnifying-glass', 'Tidak ada lowongan yang cocok', 'Coba ubah kata kunci atau hapus sebagian filter.', hasFilter() ? '<button type="button" class="btn-outline btn-sm" data-reset>Hapus semua filter</button>' : '');
+      $('resultText').innerHTML = '<span class="font-display text-lg font-bold text-slate-900">' + res.total + '</span> lowongan ditemukan';
+      PK.pager($('pager'), res, 'lowongan');
+    }
+
+    function loadList() {
+      syncUrl();
+      renderChips();
+      var list = $('jobList');
+      list.setAttribute('aria-busy', 'true');
+      if (lastRes) list.classList.add('opacity-50', 'pointer-events-none'); // jaga tinggi daftar, hindari kedip
+      else { layout(); list.innerHTML = skeletonList(); if (state.id) $('detailBody').innerHTML = PK.skeletonDetail(); $('resultText').textContent = 'Memuat lowongan...'; }
+      var ok = listToken();
+      api.listJobs({ q: state.q, bidang: state.bidang, kota: state.kota, jenis: state.jenis, mode: state.mode, saved: state.saved, sort: state.sort, page: state.page, pageSize: PAGE_SIZE }).then(function (res) {
+        if (!ok()) return;
+        lastRes = res;
+        state.page = res.page;
+        if (state.id && !res.items.some(function (r) { return r.job.id === state.id; })) {
+          state.id = res.items.length ? res.items[0].job.id : null;
+          if (!state.id) paneOpen = false;
+        }
+        list.classList.remove('opacity-50', 'pointer-events-none');
+        list.removeAttribute('aria-busy');
+        renderList();
+        syncUrl();
+        loadDetail();
+      }).catch(function (err) {
+        if (!ok()) return;
+        list.classList.remove('opacity-50', 'pointer-events-none');
+        list.removeAttribute('aria-busy');
+        list.innerHTML = PK.errorBox(err.message);
+        $('pager').innerHTML = '';
+        $('detailBody').innerHTML = EMPTY_DETAIL;
+        $('resultText').textContent = 'Gagal memuat lowongan';
+      });
+    }
+
+    // ---- detail
+    var EMPTY_DETAIL = '<div class="flex min-h-[20rem] flex-col items-center justify-center p-10 text-center"><span class="flex h-14 w-14 items-center justify-center rounded-full bg-primary-50 text-primary-600">' + PK.icon('briefcase', 'h-7 w-7') + '</span><p class="mt-4 text-base font-semibold text-slate-800">Pilih lowongan untuk melihat detailnya</p><p class="mt-1 max-w-xs text-sm text-slate-500">Detail, kecocokan, dan tombol lamar akan muncul di sini.</p></div>';
+    function list3(items) {
+      return '<ul class="mt-3 space-y-2.5 text-sm text-slate-600">' + items.map(function (t) {
+        return '<li class="flex items-start gap-2.5">' + PK.icon('check-circle', 'kk-fill mt-0.5 h-4 w-4 shrink-0 text-primary-500') + '<span>' + esc(t) + '</span></li>';
+      }).join('') + '</ul>';
+    }
+    function fact(label, value, ic) {
+      return '<div class="rounded-xl bg-neutral-50 p-3.5"><p class="flex items-center gap-1.5 text-xs text-slate-500">' + PK.icon(ic, 'h-3.5 w-3.5') + label + '</p><p class="mt-1 text-sm font-semibold text-slate-900">' + esc(value) + '</p></div>';
+    }
+    function actionsHtml(j, applied, saveFirst) {
+      var on = PK.isSaved(j.id);
+      var save = '<button type="button" class="btn-outline btn-lg shrink-0" data-save="' + j.id + '" aria-pressed="' + on + '">' + PK.icon('bookmark-simple', 'h-4 w-4 ' + (on ? 'kk-fill text-primary-600' : '')) + '<span data-save-label>' + (on ? 'Tersimpan' : 'Simpan') + '</span></button>';
+      var main = (applied
+          ? '<a href="lamaran.html?id=' + j.id + '" class="btn-secondary btn-lg min-w-0 flex-1">' + PK.icon('check', 'h-4 w-4') + '<span class="truncate">Lamaran terkirim<span class="hidden sm:inline">, lihat status</span></span></a>'
+          : '<button type="button" class="btn-primary btn-lg min-w-0 flex-1" data-apply>' + PK.icon('paper-plane-tilt', 'h-4 w-4') + 'Lamar Sekarang</button>');
+      return saveFirst ? save + main : main + save;
+    }
+    function renderDetail(res) {
+      var r = res.rank, j = r.job, d = res.detail;
+      var mine = PK.prefs.skills.map(function (s) { return s.toLowerCase(); });
+      $('detailBody').innerHTML =
+        '<div class="p-5 sm:p-7">' +
+          '<div class="flex items-start gap-4">' + PK.logo(j, 'h-14 w-14 text-base') +
+            '<div class="min-w-0 flex-1"><h2 class="font-display text-xl font-bold leading-snug text-slate-900 sm:text-2xl">' + esc(j.title) + '</h2>' +
+            '<p class="mt-1 flex flex-wrap items-center gap-x-2 text-sm text-slate-500"><span class="font-medium text-primary-600">' + esc(j.company) + '</span><span aria-hidden="true">&middot;</span>' + PK.icon('map-pin', 'h-3.5 w-3.5') + esc(j.city) + '</p>' +
+            '<div class="mt-3 flex flex-wrap gap-1.5">' + PK.tag(j.type, 'badge-neutral') + PK.tag(j.mode, 'badge-neutral') + PK.tag(j.field, 'badge-primary') + '</div></div>' +
+            '<button type="button" class="btn-ghost btn-sm w-9 shrink-0 px-0" data-share aria-label="Salin tautan lowongan">' + PK.icon('share-network', 'h-4 w-4') + '</button>' +
+          '</div>' +
+
+          '<div class="mt-5 flex flex-wrap items-center gap-2 max-lg:hidden">' + actionsHtml(j, res.applied, false) + '</div>' +
+
+          (PK.hasPrefs && r.score > 0
+            ? '<div class="mt-5 rounded-xl bg-primary-50 p-4"><div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1"><p class="flex items-center gap-2 text-sm font-semibold text-primary-800">' + PK.icon('target', 'h-4 w-4') + r.score + '% cocok dengan profilmu</p><span class="text-xs text-primary-700">Cocok di ' + esc(r.why.join(', ')) + '</span></div><div class="progress-track mt-3 h-1.5 bg-white"><div class="progress-bar" style="width: ' + r.score + '%"></div></div></div>'
+            : '<div class="callout-info mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"><p class="text-sm text-slate-600">Lengkapi profilmu untuk melihat seberapa cocok lowongan ini.</p><a href="index.html#profil" class="btn-outline btn-sm shrink-0 sm:ml-auto">Lengkapi Profil</a></div>') +
+
+          '<div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">' +
+            fact('Gaji', j.pay, 'money') + fact('Model kerja', j.mode, 'laptop') + fact('Pelamar', j.applicants + ' orang', 'users') + fact('Batas lamar', d.deadline + ' hari lagi', 'clock-countdown') +
+          '</div>' +
+
+          '<h3 class="mt-8 text-base font-semibold text-slate-900">Tentang pekerjaan</h3>' +
+          '<p class="mt-2 text-sm leading-relaxed text-slate-600">' + esc(j.about) + '</p>' +
+          '<h3 class="mt-7 text-base font-semibold text-slate-900">Tanggung jawab</h3>' + list3(d.tasks) +
+          '<h3 class="mt-7 text-base font-semibold text-slate-900">Kualifikasi</h3>' + list3(d.reqs) +
+          '<h3 class="mt-7 text-base font-semibold text-slate-900">Keahlian yang dibutuhkan</h3>' +
+          '<div class="mt-3 flex flex-wrap gap-2">' + j.skills.map(function (s) {
+            return mine.indexOf(s.toLowerCase()) !== -1
+              ? '<span class="inline-flex items-center gap-1 rounded-full bg-success-50 px-3 py-1 text-xs font-medium text-success-700">' + PK.icon('check', 'h-3 w-3') + esc(s) + '</span>'
+              : '<span class="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-600">' + esc(s) + '</span>';
+          }).join('') + '</div>' +
+          (PK.hasPrefs ? '<p class="mt-2 text-xs text-slate-400">Tanda centang berarti keahlian itu sudah ada di profilmu.</p>' : '') +
+          '<h3 class="mt-7 text-base font-semibold text-slate-900">Yang kamu dapatkan</h3>' + list3(d.perks) +
+
+          '<div class="mt-8 flex items-center gap-4 rounded-2xl border border-border/70 p-4">' + PK.logo(j, 'h-12 w-12 text-sm') +
+            '<div class="min-w-0 flex-1"><p class="flex items-center gap-1.5 text-sm font-semibold text-slate-900">' + esc(j.company) + PK.icon('seal-check', 'kk-fill h-4 w-4 text-primary-600') + '</p>' +
+            '<p class="mt-0.5 text-xs text-slate-500">' + esc(j.field) + ' &middot; ' + d.size + ' &middot; Berdiri ' + d.founded + '</p></div></div>' +
+
+          (res.similar.length ? '<h3 class="mt-8 text-base font-semibold text-slate-900">Lowongan serupa</h3><div class="mt-3 space-y-3">' + res.similar.map(function (x) { return PK.jobRow(x, false); }).join('') + '</div>' : '') +
+        '</div>';
+      $('detailBar').innerHTML = actionsHtml(j, res.applied, true);
+      $('detailBar').hidden = false;
+    }
+
+    function loadDetail(force) {
+      var pane = $('detailPane');
+      pane.classList.toggle('max-lg:hidden', !(paneOpen && state.id));
+      pane.classList.toggle('max-lg:flex', !!(paneOpen && state.id));
+      if (!state.id) {
+        shownId = null; current = null;
+        $('detailBar').hidden = true;
+        $('detailBody').innerHTML = EMPTY_DETAIL;
+        return;
+      }
+      if (shownId === state.id && !force) return;
+      shownId = state.id;
+      $('detailBar').hidden = true;
+      $('detailBody').innerHTML = PK.skeletonDetail();
+      pane.scrollTop = 0;
+      var ok = detailToken();
+      var id = state.id;
+      api.getJob(id).then(function (res) {
+        if (!ok()) return;
+        current = res;
+        renderDetail(res);
+      }).catch(function (err) {
+        if (!ok()) return;
+        shownId = null;
+        $('detailBody').innerHTML = '<div class="p-5">' + PK.errorBox(err.message).replace('data-retry', 'data-retry-detail') + '</div>';
+      });
+    }
+
+    // kembali ke tampilan kartu (tanpa lowongan terpilih)
+    function browse() {
+      state.id = null; paneOpen = false; shownId = null; current = null;
+      detailToken();
+      syncUrl();
+      if (lastRes) renderList();
+    }
+
+    function select(id) {
+      var wasBrowse = !state.id;
+      state.id = id;
+      paneOpen = true;
+      syncUrl();
+      renderList();
+      loadDetail();
+      if (wasBrowse) $('resultBar').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ---- lamar: konfirmasi di modal lalu kirim lewat API
+    function openApply() {
+      if (!current) return;
+      var j = current.rank.job;
+      var p = PK.profile();
+      $('applyDesc').textContent = j.title + ' di ' + j.company;
+      $('applyPct').textContent = 'Profil ' + p.pct + '%';
+      $('applyHint').hidden = p.pct >= 100;
+      $('applyNote').value = ''; $('noteCount').textContent = '0';
+      $('applyAgree').checked = false; $('applyAgreeErr').classList.add('hidden');
+      KKModal.open('applyModal');
+    }
+    $('applyNote').addEventListener('input', function () { $('noteCount').textContent = this.value.length; });
+    $('applyAgree').addEventListener('change', function () { if (this.checked) $('applyAgreeErr').classList.add('hidden'); });
+    $('applyForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!$('applyAgree').checked) { $('applyAgreeErr').classList.remove('hidden'); $('applyAgree').focus(); return; }
+      var j = current.rank.job;
+      var btn = $('applySubmit');
+      btn.disabled = true; btn.classList.add('btn-loading');
+      api.applyJob(j.id, $('applyNote').value).then(function () {
+        KKModal.close('applyModal');
+        btn.disabled = false; btn.classList.remove('btn-loading');
+        PK.toast('success', 'Lamaran untuk ' + j.title + ' di ' + j.company + ' terkirim.');
+        if (lastRes) renderList();
+        loadDetail(true);
+      }).catch(function () {
+        btn.disabled = false; btn.classList.remove('btn-loading');
+        PK.toast('danger', 'Lamaran belum terkirim. Periksa koneksimu lalu coba lagi.');
+      });
+    });
+
+    // ---- interaksi
+    document.addEventListener('click', function (e) {
+      var pick = e.target.closest('[data-pick]');
+      if (pick) { select(parseInt(pick.getAttribute('data-pick'), 10)); return; }
+      if (e.target.closest('[data-close]') || e.target.closest('[data-browse]')) { browse(); return; }
+      if (e.target.closest('[data-apply]')) { openApply(); return; }
+      if (e.target.closest('[data-retry]')) { loadList(); return; }
+      if (e.target.closest('[data-retry-detail]')) { loadDetail(true); return; }
+      var clr = e.target.closest('[data-clear]');
+      if (clr) {
+        var k = clr.getAttribute('data-clear');
+        if (k === 'saved') state.saved = false; else { state[k] = ''; if (k === 'q') $('fQ').value = ''; else PK.comboSet($({ bidang: 'fBidang', kota: 'fKota', jenis: 'fJenis', mode: 'fMode' }[k]), ''); }
+        state.page = 1; paneOpen = false; state.id = null; loadList();
+        return;
+      }
+      if (e.target.closest('[data-reset]')) {
+        state.q = state.bidang = state.kota = state.jenis = state.mode = ''; state.saved = false; state.page = 1; paneOpen = false; state.id = null;
+        $('fQ').value = '';
+        ['fBidang', 'fKota', 'fJenis', 'fMode'].forEach(function (id) { PK.comboSet($(id), ''); });
+        loadList();
+        return;
+      }
+      if (e.target.closest('[data-share]')) {
+        var url = location.href.split('?')[0] + '?id=' + state.id;
+        var done = function () { PK.toast('success', 'Tautan lowongan disalin.'); };
+        try { navigator.clipboard.writeText(url).then(done, done); } catch (err) { done(); }
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && paneOpen && window.innerWidth < 1024 && !document.querySelector('.modal-backdrop.is-open')) { browse(); }
+    });
+    PK.bindSave(document, function (id, on) {
+      $('savedCount').textContent = PK.savedCount();
+      if (state.saved && !on) loadList(); // sedang melihat daftar tersimpan: lowongan ini harus hilang dari daftar
+    });
+    $('pager').addEventListener('pagination:change', function (e) {
+      state.page = e.detail.page;
+      $('resultBar').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      loadList();
+    });
+
+    var searchLater = PK.debounce(function () { state.page = 1; paneOpen = false; state.id = null; loadList(); }, 350);
+    $('fQ').addEventListener('input', function () { state.q = this.value; searchLater(); });
+    $('filterForm').addEventListener('combo:change', function () {
+      state.bidang = $('fBidang').dataset.value; state.kota = $('fKota').dataset.value; state.jenis = $('fJenis').dataset.value; state.mode = $('fMode').dataset.value;
+      state.page = 1; paneOpen = false; state.id = null; loadList();
+    });
+    $('fSort').addEventListener('combo:change', function (e) { state.sort = e.detail.value || 'cocok'; state.page = 1; paneOpen = false; state.id = null; loadList(); });
+    $('filterForm').addEventListener('submit', function (e) { e.preventDefault(); state.q = $('fQ').value; state.page = 1; paneOpen = false; state.id = null; loadList(); });
+    $('onlySaved').addEventListener('click', function () { state.saved = !state.saved; state.page = 1; paneOpen = false; state.id = null; loadList(); });
+
+    loadList();
+  })();
+</script>
+</body>
+</html>
