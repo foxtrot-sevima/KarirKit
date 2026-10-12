@@ -2711,72 +2711,494 @@
 
   <!-- ============================= DROPDOWN ============================= -->
   <section id="dropdowns" class="scroll-mt-32 py-12">
-    <div class="mb-6">
+    <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Dropdown</h2>
-      <p class="mt-1 text-sm text-slate-500">Menu yang otomatis membalik posisi (bawah/atas, kiri/kanan) sesuai ruang yang tersedia. Contoh dropdown pencarian, checkbox multi-pilih, dan tag ada di bagian Formulir.</p>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Menu yang terbuka dari sebuah tombol - dasar, hover, pembatas, kepala menu, submenu, checkbox, radio, toggle, daftar yang menggulir, pencarian, ikon, notifikasi, avatar, navbar, kalender, ukuran, posisi, dan jarak. Anatomi: <code class="kbd">.dropdown</code> &gt; tombol <code class="kbd">data-ui-dropdown</code> + <code class="kbd">.dropdown-menu</code> &gt; <code class="kbd">.dropdown-item</code>; perilaku di <code class="kbd">assets/js/ui.js</code>. Contoh dropdown pencarian dan tag untuk formulir ada di bagian Formulir.</p>
     </div>
-
-    <div class="card p-6 sm:p-8">
-      <p class="form-label mb-1">Auto-placement (down / up / left / right)</p>
-      <p class="form-hint mb-4 mt-0">Tombol diletakkan di 4 sudut kotak — coba klik tiap tombol, menu otomatis membalik arah agar tidak terpotong.</p>
-      <div class="relative h-64 rounded-xl border border-dashed border-slate-200 bg-slate-50/60" data-combo-boundary>
-        <div class="combo absolute left-3 top-3" data-combo>
-          <button type="button" class="btn-outline btn-sm" data-combo-trigger>
-            Kiri Atas
-            <i class="kk kk-caret-down combo-chevron"></i>
-          </button>
-          <div class="combo-menu" data-combo-menu>
-            <div class="combo-list">
-              <button type="button" class="combo-item" data-combo-item>Lihat Detail</button>
-              <button type="button" class="combo-item" data-combo-item>Edit</button>
-              <button type="button" class="combo-item" data-combo-item>Duplikat</button>
-              <button type="button" class="combo-item dropdown-item-danger" data-combo-item>Hapus</button>
-            </div>
-          </div>
-        </div>
-        <div class="combo absolute right-3 top-3" data-combo>
-          <button type="button" class="btn-outline btn-sm" data-combo-trigger>
-            Kanan Atas
-            <i class="kk kk-caret-down combo-chevron"></i>
-          </button>
-          <div class="combo-menu" data-combo-menu>
-            <div class="combo-list">
-              <button type="button" class="combo-item" data-combo-item>Lihat Detail</button>
-              <button type="button" class="combo-item" data-combo-item>Edit</button>
-              <button type="button" class="combo-item" data-combo-item>Duplikat</button>
-              <button type="button" class="combo-item dropdown-item-danger" data-combo-item>Hapus</button>
-            </div>
-          </div>
-        </div>
-        <div class="combo absolute bottom-3 left-3" data-combo>
-          <button type="button" class="btn-outline btn-sm" data-combo-trigger>
-            Kiri Bawah
-            <i class="kk kk-caret-down combo-chevron"></i>
-          </button>
-          <div class="combo-menu" data-combo-menu>
-            <div class="combo-list">
-              <button type="button" class="combo-item" data-combo-item>Lihat Detail</button>
-              <button type="button" class="combo-item" data-combo-item>Edit</button>
-              <button type="button" class="combo-item" data-combo-item>Duplikat</button>
-              <button type="button" class="combo-item dropdown-item-danger" data-combo-item>Hapus</button>
-            </div>
-          </div>
-        </div>
-        <div class="combo absolute bottom-3 right-3" data-combo>
-          <button type="button" class="btn-outline btn-sm" data-combo-trigger>
-            Kanan Bawah
-            <i class="kk kk-caret-down combo-chevron"></i>
-          </button>
-          <div class="combo-menu" data-combo-menu>
-            <div class="combo-list">
-              <button type="button" class="combo-item" data-combo-item>Lihat Detail</button>
-              <button type="button" class="combo-item" data-combo-item>Edit</button>
-              <button type="button" class="combo-item" data-combo-item>Duplikat</button>
-              <button type="button" class="combo-item dropdown-item-danger" data-combo-item>Hapus</button>
-            </div>
-          </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown</h3>
+      <p class="mb-3 text-sm text-slate-500">Tombol pemicu dan menu bersebelahan di dalam <code>.dropdown</code>; menu memakai <code>.dropdown-menu</code> dan tiap baris <code>.dropdown-item</code>. Pemicu memakai <code>data-ui-dropdown</code> (klik untuk buka/tutup, Escape atau klik di luar untuk menutup).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:11rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown button<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <a href="#" class="dropdown-item ">Sign out</a>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown hover</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>data-ui-dropdown-trigger="hover"</code> membuka menu saat kursor di atas pemicu dan menutupnya setelah jeda (default 300 ms). Atur jeda lewat <code>data-ui-dropdown-delay</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:11rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-trigger="hover">Dropdown hover<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <a href="#" class="dropdown-item ">Sign out</a>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Delay duration</h3>
+      <p class="mb-3 text-sm text-slate-500">Jeda penutupan 500 ms lewat <code>data-ui-dropdown-delay="500"</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:11rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-trigger="hover" data-ui-dropdown-delay="500">Dropdown delay<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <a href="#" class="dropdown-item ">Sign out</a>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown divider</h3>
+      <p class="mb-3 text-sm text-slate-500">Pisahkan kelompok dengan <code>&lt;hr class="dropdown-divider"&gt;</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:12rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown button<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <hr class="dropdown-divider" />
+      <a href="#" class="dropdown-item ">Separated link</a>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown header</h3>
+      <p class="mb-3 text-sm text-slate-500">Kepala menu <code>.dropdown-header</code> berisi avatar, nama (<code>.dropdown-header-title</code>), email (<code>.dropdown-header-desc</code>), dan badge; item memakai ikon di kiri dan toggle di baris tertentu.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:26rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown button<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-72 hidden"  data-placement="bottom-start">
+      <div class="dropdown-header">
+        <span class="avatar avatar-md bg-primary-100 text-primary-700">BG</span>
+        <div class="min-w-0 flex-1"><p class="dropdown-header-title">Bonnie Green</p><p class="dropdown-header-desc">name@karirkit.com</p></div>
+        <span class="badge-primary ml-auto">PRO</span>
+      </div>
+      <a href="#" class="dropdown-item "><i class="kk kk-user-circle h-4 w-4"></i>Account</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-gear-six h-4 w-4"></i>Settings</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-shield-check h-4 w-4"></i>Privacy</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-bell h-4 w-4"></i>Notifications</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-lifebuoy h-4 w-4"></i>Help center</a>
+      <label for="dd-dark" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2"><i class="kk kk-moon h-4 w-4"></i>Dark mode</span><span class="toggle"><input id="dd-dark" type="checkbox" class="toggle-input" /><span class="toggle-track"></span></span></label>
+      <hr class="dropdown-divider" />
+      <a href="#" class="dropdown-item text-primary-600"><i class="kk kk-crown h-4 w-4"></i>Upgrade to PRO</a>
+      <a href="#" class="dropdown-item dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Sign out</a>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Multi-level dropdown</h3>
+      <p class="mb-3 text-sm text-slate-500">Pemicu di dalam <code>.dropdown-menu</code> membuka submenu dan menjaga menu induk tetap terbuka. Pasang <code>data-ui-dropdown-placement="right-start"</code> agar submenu muncul di samping.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:14rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown button<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <div class="relative">
+        <button type="button" class="dropdown-item justify-between" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="right-start" data-ui-dropdown-offset-distance="8">Dropdown <i class="kk kk-caret-right h-3.5 w-3.5"></i></button>
+        <div class="dropdown-menu hidden w-44">
+          <a href="#" class="dropdown-item ">Overview</a>
+          <a href="#" class="dropdown-item ">My downloads</a>
+          <a href="#" class="dropdown-item ">Billing</a>
+          <a href="#" class="dropdown-item ">Rewards</a>
         </div>
       </div>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <a href="#" class="dropdown-item ">Sign out</a>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown with checkbox</h3>
+      <p class="mb-3 text-sm text-slate-500">Baris berisi <code>.form-check</code>; pakai <code>&lt;label class="dropdown-item"&gt;</code> supaya seluruh baris bisa diklik dan mendapat warna hover.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:11rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown button<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-52 hidden"  data-placement="bottom-start">
+      <label for="dd-c1" class="dropdown-item gap-3"><input id="dd-c1" type="checkbox" class="form-check"  />Default checkbox</label>
+      <label for="dd-c2" class="dropdown-item gap-3"><input id="dd-c2" type="checkbox" class="form-check" checked />Checked state</label>
+      <label for="dd-c3" class="dropdown-item gap-3"><input id="dd-c3" type="checkbox" class="form-check"  />Default checkbox</label>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Checkbox with helper text</h3>
+      <p class="mb-3 text-sm text-slate-500">Judul (<code>.dropdown-item-title</code>) dan keterangan (<code>.dropdown-item-desc</code>) di samping kotak centang, dengan <code>.dropdown-item-check</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:14rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown button<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-64 hidden"  data-placement="bottom-start">
+      <label for="dd-h1" class="dropdown-item dropdown-item-check"><input id="dd-h1"  type="checkbox" class="form-check" checked /><span><span class="dropdown-item-title">Enable notifications</span><span class="dropdown-item-desc">Some helpful instruction goes over here.</span></span></label>
+      <label for="dd-h2" class="dropdown-item dropdown-item-check"><input id="dd-h2"  type="checkbox" class="form-check"  /><span><span class="dropdown-item-title">Enable 2FA auth</span><span class="dropdown-item-desc">Some helpful instruction goes over here.</span></span></label>
+      <label for="dd-h3" class="dropdown-item dropdown-item-check"><input id="dd-h3"  type="checkbox" class="form-check"  /><span><span class="dropdown-item-title">Subscribe newsletter</span><span class="dropdown-item-desc">Some helpful instruction goes over here.</span></span></label>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown with radio</h3>
+      <p class="mb-3 text-sm text-slate-500">Pilihan tunggal memakai <code>.form-radio</code> dengan <code>name</code> yang sama.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:11rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown radio<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <label for="dd-r1" class="dropdown-item gap-3"><input id="dd-r1" name="dd-radio" type="radio" class="form-radio"  />Default radio</label>
+      <label for="dd-r2" class="dropdown-item gap-3"><input id="dd-r2" name="dd-radio" type="radio" class="form-radio" checked />Checked radio</label>
+      <label for="dd-r3" class="dropdown-item gap-3"><input id="dd-r3" name="dd-radio" type="radio" class="form-radio"  />Default radio</label>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Radio with helper text</h3>
+      <p class="mb-3 text-sm text-slate-500">Sama seperti checkbox: tambahkan judul dan keterangan di samping radio.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:14rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown radio<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-60 hidden"  data-placement="bottom-start">
+      <label for="dd-rh1" class="dropdown-item dropdown-item-check"><input id="dd-rh1" name="dd-rh" type="radio" class="form-radio" checked /><span><span class="dropdown-item-title">Individual</span><span class="dropdown-item-desc">Some helpful instruction goes over here.</span></span></label>
+      <label for="dd-rh2" class="dropdown-item dropdown-item-check"><input id="dd-rh2" name="dd-rh" type="radio" class="form-radio"  /><span><span class="dropdown-item-title">Company</span><span class="dropdown-item-desc">Some helpful instruction goes over here.</span></span></label>
+      <label for="dd-rh3" class="dropdown-item dropdown-item-check"><input id="dd-rh3" name="dd-rh" type="radio" class="form-radio"  /><span><span class="dropdown-item-title">Non profit</span><span class="dropdown-item-desc">Some helpful instruction goes over here.</span></span></label>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown with toggle switch</h3>
+      <p class="mb-3 text-sm text-slate-500">Baris <code>.dropdown-item.justify-between</code> dengan <code>.toggle</code> di kanan.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:11rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown button<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-72 hidden"  data-placement="bottom-start">
+      <label for="dd-t1" class="dropdown-item justify-between">
+        <span>Enable notifications</span>
+        <span class="toggle"><input id="dd-t1" type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></span>
+      </label>
+      <label for="dd-t2" class="dropdown-item justify-between">
+        <span>Enable 2FA authentication</span>
+        <span class="toggle"><input id="dd-t2" type="checkbox" class="toggle-input"  /><span class="toggle-track"></span></span>
+      </label>
+      <label for="dd-t3" class="dropdown-item justify-between">
+        <span>Subscribe to newsletter</span>
+        <span class="toggle"><input id="dd-t3" type="checkbox" class="toggle-input"  /><span class="toggle-track"></span></span>
+      </label>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown with scrolling</h3>
+      <p class="mb-3 text-sm text-slate-500">Daftar panjang di dalam <code>.dropdown-scroll</code> (tinggi maks. 12 rem) dengan kaki menu <code>.dropdown-footer</code> berisi tombol aksi.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:20rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown button<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-56 hidden"  data-placement="bottom-start">
+      <div class="dropdown-scroll">
+        <a href="#" class="dropdown-item gap-2.5"><span class="avatar avatar-sm bg-primary-100 text-primary-700">JL</span>Jese Leos</a>
+        <a href="#" class="dropdown-item gap-2.5"><span class="avatar avatar-sm bg-info-100 text-info-700">RG</span>Robert Gough</a>
+        <a href="#" class="dropdown-item gap-2.5"><span class="avatar avatar-sm bg-success-100 text-success-700">BG</span>Bonnie Green</a>
+        <a href="#" class="dropdown-item gap-2.5"><span class="avatar avatar-sm bg-warning-100 text-warning-700">LL</span>Leslie Livingston</a>
+        <a href="#" class="dropdown-item gap-2.5"><span class="avatar avatar-sm bg-danger-100 text-danger-700">MG</span>Michael Gough</a>
+        <a href="#" class="dropdown-item gap-2.5"><span class="avatar avatar-sm bg-primary-100 text-primary-700">JM</span>Joseph Mcfall</a>
+        <a href="#" class="dropdown-item gap-2.5"><span class="avatar avatar-sm bg-info-100 text-info-700">RC</span>Roberta Casas</a>
+        <a href="#" class="dropdown-item gap-2.5"><span class="avatar avatar-sm bg-success-100 text-success-700">NS</span>Neil Sims</a>
+      </div>
+      <div class="dropdown-footer"><a href="#" class="btn-primary btn-sm w-full"><i class="kk kk-user-plus h-4 w-4"></i>Add new user</a></div>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Scrollable checkboxes</h3>
+      <p class="mb-3 text-sm text-slate-500">Daftar pengguna dengan kotak centang di kanan dan tombol bahaya di kaki menu.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:20rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown button<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-56 hidden"  data-placement="bottom-start">
+      <div class="dropdown-scroll">
+        <label for="dd-u-0" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-primary-100 text-primary-700">JL</span>Jese Leos</span><input id="dd-u-0" type="checkbox" class="form-check" /></label>
+        <label for="dd-u-1" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-info-100 text-info-700">RG</span>Robert Gough</span><input id="dd-u-1" type="checkbox" class="form-check" /></label>
+        <label for="dd-u-2" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-success-100 text-success-700">BG</span>Bonnie Green</span><input id="dd-u-2" type="checkbox" class="form-check" /></label>
+        <label for="dd-u-3" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-warning-100 text-warning-700">LL</span>Leslie Livingston</span><input id="dd-u-3" type="checkbox" class="form-check" /></label>
+        <label for="dd-u-4" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-danger-100 text-danger-700">MG</span>Michael Gough</span><input id="dd-u-4" type="checkbox" class="form-check" /></label>
+        <label for="dd-u-5" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-primary-100 text-primary-700">JM</span>Joseph Mcfall</span><input id="dd-u-5" type="checkbox" class="form-check" /></label>
+        <label for="dd-u-6" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-info-100 text-info-700">RC</span>Roberta Casas</span><input id="dd-u-6" type="checkbox" class="form-check" /></label>
+        <label for="dd-u-7" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-success-100 text-success-700">NS</span>Neil Sims</span><input id="dd-u-7" type="checkbox" class="form-check" /></label>
+      </div>
+      <div class="dropdown-footer"><a href="#" class="btn-danger btn-sm w-full"><i class="kk kk-trash h-4 w-4"></i>Delete user</a></div>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown with search</h3>
+      <p class="mb-3 text-sm text-slate-500">Kolom pencarian di atas menu dengan <code>.dropdown-search</code>, lalu daftar yang dapat digulir dan aksi di kaki.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:22rem"><div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown button<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-56 hidden"  data-placement="bottom-start">
+      <div class="dropdown-search">
+        <div class="relative"><span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-3.5 w-3.5"></i></span><input type="search" class="input h-9 pl-9 text-sm" placeholder="Search for users" aria-label="Search for users" /></div>
+      </div>
+      <div class="dropdown-scroll">
+        <label for="dd-s-0" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-primary-100 text-primary-700">JL</span>Jese Leos</span><input id="dd-s-0" type="checkbox" class="form-check" /></label>
+        <label for="dd-s-1" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-info-100 text-info-700">RG</span>Robert Gough</span><input id="dd-s-1" type="checkbox" class="form-check" /></label>
+        <label for="dd-s-2" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-success-100 text-success-700">BG</span>Bonnie Green</span><input id="dd-s-2" type="checkbox" class="form-check" /></label>
+        <label for="dd-s-3" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-warning-100 text-warning-700">LL</span>Leslie Livingston</span><input id="dd-s-3" type="checkbox" class="form-check" /></label>
+        <label for="dd-s-4" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-danger-100 text-danger-700">MG</span>Michael Gough</span><input id="dd-s-4" type="checkbox" class="form-check" /></label>
+        <label for="dd-s-5" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-primary-100 text-primary-700">JM</span>Joseph Mcfall</span><input id="dd-s-5" type="checkbox" class="form-check" /></label>
+        <label for="dd-s-6" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-info-100 text-info-700">RC</span>Roberta Casas</span><input id="dd-s-6" type="checkbox" class="form-check" /></label>
+        <label for="dd-s-7" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2.5"><span class="avatar avatar-sm bg-success-100 text-success-700">NS</span>Neil Sims</span><input id="dd-s-7" type="checkbox" class="form-check" /></label>
+      </div>
+      <div class="dropdown-footer"><a href="#" class="btn-danger btn-sm w-full"><i class="kk kk-trash h-4 w-4"></i>Delete user</a></div>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Menu icon</h3>
+      <p class="mb-3 text-sm text-slate-500">Tombol ikon tanpa label (titik tiga vertikal atau horizontal) untuk menu aksi baris.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:13rem"><div class="flex items-start gap-6">
+  <div class="dropdown">
+    <button type="button" class="btn-ghost btn-icon-sm" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Opsi"><i class="kk kk-dots-three-vertical h-5 w-5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <hr class="dropdown-divider" />
+      <a href="#" class="dropdown-item ">Separated link</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" class="btn-ghost btn-icon-sm" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Opsi"><i class="kk kk-dots-three h-5 w-5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <hr class="dropdown-divider" />
+      <a href="#" class="dropdown-item ">Separated link</a>
+    </div>
+  </div>
+</div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Notification bell</h3>
+      <p class="mb-3 text-sm text-slate-500">Ikon lonceng dengan titik merah membuka daftar notifikasi: judul di tengah, baris dengan avatar dan lencana status, serta tautan "View all" di bawah.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:30rem"><div class="dropdown">
+    <button type="button" class="btn-ghost btn-icon-md relative" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Notifikasi"><i class="kk kk-bell h-5 w-5"></i><span class="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-danger-500 ring-2 ring-surface"></span></button>
+    <div class="dropdown-menu hidden w-80 max-w-[calc(100vw-2rem)] divide-y divide-border/70 p-0 sm:w-96" data-placement="bottom-start">
+      <div class="rounded-t-control bg-neutral-50 px-4 py-2 text-center text-sm font-semibold text-fg">Notifications</div>
+      <div class="divide-y divide-border/70">
+        <a href="#" class="flex gap-3 px-4 py-3 hover:bg-neutral-50">
+        <span class="relative shrink-0"><span class="avatar avatar-lg bg-primary-100 text-primary-700">JL</span><span class="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-surface bg-primary-500 text-white"><i class="kk kk-chat-circle h-2.5 w-2.5"></i></span></span>
+        <span class="min-w-0 flex-1"><span class="block text-sm text-fg-muted">New message from <b class="font-semibold text-fg">Jese Leos</b>: "Hey, what's up? All set for the presentation?"</span><span class="mt-1 block text-xs font-medium text-primary-600">a few moments ago</span></span>
+      </a>
+        <a href="#" class="flex gap-3 px-4 py-3 hover:bg-neutral-50">
+        <span class="relative shrink-0"><span class="avatar avatar-lg bg-info-100 text-info-700">JM</span><span class="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-surface bg-secondary-500 text-white"><i class="kk kk-user-plus h-2.5 w-2.5"></i></span></span>
+        <span class="min-w-0 flex-1"><span class="block text-sm text-fg-muted"><b class="font-semibold text-fg">Joseph Mcfall</b> and 5 others started following you.</span><span class="mt-1 block text-xs font-medium text-primary-600">10 minutes ago</span></span>
+      </a>
+        <a href="#" class="flex gap-3 px-4 py-3 hover:bg-neutral-50">
+        <span class="relative shrink-0"><span class="avatar avatar-lg bg-success-100 text-success-700">BG</span><span class="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-surface bg-danger-500 text-white"><i class="kk kk-heart h-2.5 w-2.5"></i></span></span>
+        <span class="min-w-0 flex-1"><span class="block text-sm text-fg-muted"><b class="font-semibold text-fg">Bonnie Green</b> and 141 others love your story.</span><span class="mt-1 block text-xs font-medium text-primary-600">44 minutes ago</span></span>
+      </a>
+        <a href="#" class="flex gap-3 px-4 py-3 hover:bg-neutral-50">
+        <span class="relative shrink-0"><span class="avatar avatar-lg bg-warning-100 text-warning-700">LL</span><span class="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-surface bg-success-500 text-white"><i class="kk kk-at h-2.5 w-2.5"></i></span></span>
+        <span class="min-w-0 flex-1"><span class="block text-sm text-fg-muted"><b class="font-semibold text-fg">Leslie Livingston</b> mentioned you in a comment.</span><span class="mt-1 block text-xs font-medium text-primary-600">1 hour ago</span></span>
+      </a>
+        <a href="#" class="flex gap-3 px-4 py-3 hover:bg-neutral-50">
+        <span class="relative shrink-0"><span class="avatar avatar-lg bg-danger-100 text-danger-700">RB</span><span class="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-surface bg-info-500 text-white"><i class="kk kk-video-camera h-2.5 w-2.5"></i></span></span>
+        <span class="min-w-0 flex-1"><span class="block text-sm text-fg-muted"><b class="font-semibold text-fg">Robert Brown</b> posted a new video.</span><span class="mt-1 block text-xs font-medium text-primary-600">3 hours ago</span></span>
+      </a>
+      </div>
+      <a href="#" class="flex items-center justify-center gap-2 rounded-b-control bg-neutral-50 py-2.5 text-sm font-medium text-fg hover:bg-neutral-100"><i class="kk kk-eye h-4 w-4"></i>View all</a>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">User avatar</h3>
+      <p class="mb-3 text-sm text-slate-500">Avatar bulat sebagai pemicu; menu berisi kepala pengguna dan daftar pengaturan.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:26rem"><div class="dropdown">
+    <button type="button" class="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Open user menu"><span class="avatar avatar-lg bg-primary-100 text-primary-700">JM</span></button>
+    <div class="dropdown-menu w-72 hidden"  data-placement="bottom-start">
+      <div class="dropdown-header">
+        <span class="avatar avatar-md bg-primary-100 text-primary-700">JM</span>
+        <div class="min-w-0 flex-1"><p class="dropdown-header-title">Joseph McFall</p><p class="dropdown-header-desc">name@karirkit.com</p></div>
+        <span class="badge-primary ml-auto">PRO</span>
+      </div>
+      <a href="#" class="dropdown-item "><i class="kk kk-user-circle h-4 w-4"></i>Account</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-gear-six h-4 w-4"></i>Settings</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-shield-check h-4 w-4"></i>Privacy</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-bell h-4 w-4"></i>Notifications</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-lifebuoy h-4 w-4"></i>Help center</a>
+      <label for="dd-dark-2" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2"><i class="kk kk-moon h-4 w-4"></i>Dark mode</span><span class="toggle"><input id="dd-dark-2" type="checkbox" class="toggle-input" /><span class="toggle-track"></span></span></label>
+      <hr class="dropdown-divider" />
+      <a href="#" class="dropdown-item text-primary-600"><i class="kk kk-crown h-4 w-4"></i>Upgrade to PRO</a>
+      <a href="#" class="dropdown-item dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Sign out</a>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Avatar with name</h3>
+      <p class="mb-3 text-sm text-slate-500">Pemicu berisi avatar, nama, dan panah.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:26rem"><div class="dropdown">
+    <button type="button" class="inline-flex items-center gap-2 rounded-full py-1 pl-1 pr-3 text-sm font-medium text-fg hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500" data-ui-dropdown aria-expanded="false" aria-haspopup="true"><span class="avatar avatar-md bg-primary-100 text-primary-700">JM</span>Joseph McFall<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-72 hidden"  data-placement="bottom-start">
+      <div class="dropdown-header">
+        <span class="avatar avatar-md bg-primary-100 text-primary-700">JM</span>
+        <div class="min-w-0 flex-1"><p class="dropdown-header-title">Joseph McFall</p><p class="dropdown-header-desc">name@karirkit.com</p></div>
+        <span class="badge-primary ml-auto">PRO</span>
+      </div>
+      <a href="#" class="dropdown-item "><i class="kk kk-user-circle h-4 w-4"></i>Account</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-gear-six h-4 w-4"></i>Settings</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-shield-check h-4 w-4"></i>Privacy</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-bell h-4 w-4"></i>Notifications</a>
+      <a href="#" class="dropdown-item "><i class="kk kk-lifebuoy h-4 w-4"></i>Help center</a>
+      <label for="dd-dark-3" class="dropdown-item justify-between"><span class="inline-flex items-center gap-2"><i class="kk kk-moon h-4 w-4"></i>Dark mode</span><span class="toggle"><input id="dd-dark-3" type="checkbox" class="toggle-input" /><span class="toggle-track"></span></span></label>
+      <hr class="dropdown-divider" />
+      <a href="#" class="dropdown-item text-primary-600"><i class="kk kk-crown h-4 w-4"></i>Upgrade to PRO</a>
+      <a href="#" class="dropdown-item dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Sign out</a>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown navbar</h3>
+      <p class="mb-3 text-sm text-slate-500">Tautan menu dengan submenu di dalam navbar; item aktif memakai warna primer.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:15rem"><nav class="flex items-center justify-between rounded-control border border-border bg-surface px-4 py-3">
+  <span class="font-display text-base font-bold text-fg">KarirKit</span>
+  <ul class="flex items-center gap-1 text-sm font-medium">
+    <li><a href="#" class="rounded-lg px-3 py-2 text-primary-600">Home</a></li>
+    <li><div class="dropdown">
+    <button type="button" class="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-fg-muted hover:bg-neutral-50 hover:text-fg" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Dropdown<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden" data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+    </div>
+  </div></li>
+    <li><a href="#" class="rounded-lg px-3 py-2 text-fg-muted hover:bg-neutral-50 hover:text-fg">Services</a></li>
+    <li><a href="#" class="rounded-lg px-3 py-2 text-fg-muted hover:bg-neutral-50 hover:text-fg">Pricing</a></li>
+    <li><a href="#" class="rounded-lg px-3 py-2 text-fg-muted hover:bg-neutral-50 hover:text-fg">Contact</a></li>
+  </ul>
+</nav></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown datepicker</h3>
+      <p class="mb-3 text-sm text-slate-500">Pemicu berupa teks rentang tanggal; menu memuat kalender rentang inline (<code>assets/js/datepicker.js</code>).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:26rem"><div class="dropdown">
+    <button type="button" class="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 hover:underline" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Last 7 days<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-auto p-3 hidden" data-placement="bottom-start">
+      <div data-datepicker-inline data-datepicker-range data-datepicker-week-start="1"></div>
+    </div>
+  </div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Sizes</h3>
+      <p class="mb-3 text-sm text-slate-500">Ukuran pemicu mengikuti tombol: <code>btn-sm</code>, <code>btn-md</code>, dan <code>btn-lg</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:13rem"><div class="flex flex-wrap items-start gap-6">
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-sm" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Small dropdown<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <a href="#" class="dropdown-item ">Sign out</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-lg" data-ui-dropdown aria-expanded="false" aria-haspopup="true" >Large dropdown<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <a href="#" class="dropdown-item ">Sign out</a>
+    </div>
+  </div>
+</div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Placement</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>data-ui-dropdown-placement</code>: <code>top</code>, <code>right</code>, <code>bottom</code>, atau <code>left</code>, dengan akhiran <code>-start</code> / <code>-end</code> untuk perataan (contoh <code>left-end</code>, <code>right-end</code>). Default <code>bottom-end</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:16rem"><div class="grid grid-cols-2 place-items-center gap-6 pt-36 sm:grid-cols-4">
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="top" >Dropdown top<i class="kk kk-caret-up h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="right" >Dropdown right<i class="kk kk-caret-right h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="bottom" >Dropdown bottom<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="left" >Dropdown left<i class="kk kk-caret-left h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="left-end" >Dropdown left-end<i class="kk kk-caret-left h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="right-end" >Dropdown right-end<i class="kk kk-caret-right h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="top-start" >Dropdown top-start<i class="kk kk-caret-up h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="bottom-start" >Dropdown bottom-start<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+    </div>
+  </div>
+</div></div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropdown offset</h3>
+      <p class="mb-3 text-sm text-slate-500">Jarak dari pemicu lewat <code>data-ui-dropdown-offset-distance</code> dan geser menyamping lewat <code>data-ui-dropdown-offset-skidding</code> (piksel).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div style="min-height:13rem"><div class="flex flex-wrap items-start gap-10">
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="bottom-start" data-ui-dropdown-offset-distance="35">Distance 35<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <a href="#" class="dropdown-item ">Sign out</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" class="btn-primary btn-md" data-ui-dropdown aria-expanded="false" aria-haspopup="true" data-ui-dropdown-placement="bottom-start" data-ui-dropdown-offset-skidding="100">Skidding 100<i class="kk kk-caret-down h-3.5 w-3.5"></i></button>
+    <div class="dropdown-menu w-44 hidden"  data-placement="bottom-start">
+      <a href="#" class="dropdown-item ">Dashboard</a>
+      <a href="#" class="dropdown-item ">Settings</a>
+      <a href="#" class="dropdown-item ">Earnings</a>
+      <a href="#" class="dropdown-item ">Sign out</a>
+    </div>
+  </div>
+</div></div></div>
+    </div>
     </div>
   </section>
 

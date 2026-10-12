@@ -6,6 +6,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **Dropdown diperluas** (`.dropdown`, `assets/js/ui.js`): 23 contoh layout - hover (dengan jeda), pembatas, kepala menu pengguna, submenu bertingkat, checkbox/radio/toggle (dengan teks bantuan), daftar menggulir dengan kaki menu, pencarian, tombol ikon, notifikasi, avatar, navbar, kalender, ukuran, posisi, dan jarak. Kelas baru: `.dropdown`, `.dropdown-header`, `.dropdown-divider`, `.dropdown-item-check`, `.dropdown-scroll`, `.dropdown-search`, `.dropdown-footer`. Atribut baru pada tombol: `data-ui-dropdown-placement`, `-offset-distance`, `-offset-skidding`, `-trigger="hover"`, `-delay`. Padding menu menjadi `p-2`. Contoh di Storybook dan `index.html` kini berasal dari satu sumber (`stories/Components/dropdown/examples.js`).
 - **Komponen Chart** (`data-chart`, `assets/js/chart.js`): grafik line, area, column, bar horizontal, donut, pie, radial, dan sparkline yang mengikuti token warna serta mode gelap, tanpa CDN (mesin grafik di-vendor di `assets/js/vendor/apexcharts.min.js`, MIT 4.7.0). Konfigurasi lewat atribut `data-chart-series|categories|colors|height|legend|format|stacked|options`; API `KKChart.init|render|get|destroy`. Disertai lima layout kartu (area, statistik ringkas, kolom, donut dengan rincian, bar), story Storybook, dan bagian Chart di `index.html`.
 
 ### Changed
