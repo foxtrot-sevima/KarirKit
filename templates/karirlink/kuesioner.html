@@ -185,7 +185,7 @@
 <!-- ============================= MAIN COLUMN ============================= -->
 <div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
   <!-- Topbar -->
-  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+  <header class="navbar navbar-sticky navbar-app">
     <div class="flex min-w-0 flex-1 items-center gap-3">
       <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
         <i class="kk kk-list h-5 w-5"></i>
@@ -575,11 +575,9 @@
     </div>
   </main>
 
-  <footer>
-    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
-      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
-      <p>KarirLink</p>
-    </div>
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
   </footer>
 </div>
 

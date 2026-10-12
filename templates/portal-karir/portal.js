@@ -1,0 +1,636 @@
+/* Portal Karir - data contoh dan helper bersama untuk index.html, lowongan.html, dan lamaran.html.
+   Semua data tinggal di browser (localStorage): jawaban onboarding, lowongan tersimpan, dan lamaran yang dikirim dari portal. */
+(function () {
+  var STORE_KEY = 'kk_portal_onboarding';
+  var USER_KEY = 'kk_portal_user';
+  var SAVED_KEY = 'kk_portal_saved';
+  var APPLIED_KEY = 'kk_portal_applied';
+  var DAY = 86400000;
+
+  function esc(s) {
+    var d = document.createElement('div');
+    d.textContent = s == null ? '' : String(s);
+    return d.innerHTML;
+  }
+  function read(key, fallback) {
+    try { var v = JSON.parse(localStorage.getItem(key)); return v == null ? fallback : v; } catch (e) { return fallback; }
+  }
+  function write(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage tidak tersedia: demo tetap jalan untuk kunjungan ini */ }
+  }
+  function initials(name) {
+    var parts = String(name || '').split(' ').filter(Boolean);
+    if (!parts.length) return 'U';
+    return (parts[0].charAt(0) + (parts.length > 1 ? parts[1].charAt(0) : '')).toUpperCase();
+  }
+  function when(ago) {
+    if (ago <= 0) return 'Hari ini';
+    if (ago === 1) return 'Kemarin';
+    if (ago < 7) return ago + ' hari lalu';
+    if (ago < 30) return Math.floor(ago / 7) + ' minggu lalu';
+    return Math.floor(ago / 30) + ' bulan lalu';
+  }
+  function dateOf(ago) {
+    return new Date(Date.now() - ago * DAY).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  // Warna per bidang (nama kelas ditulis utuh supaya terbaca build CSS).
+  var TINT = {
+    primary: { soft: 'bg-primary-50', logo: 'bg-primary-100 text-primary-700', text: 'text-primary-700' },
+    secondary: { soft: 'bg-secondary-50', logo: 'bg-secondary-100 text-secondary-700', text: 'text-secondary-700' },
+    success: { soft: 'bg-success-50', logo: 'bg-success-100 text-success-700', text: 'text-success-700' },
+    warning: { soft: 'bg-warning-50', logo: 'bg-warning-100 text-warning-700', text: 'text-warning-700' },
+    danger: { soft: 'bg-danger-50', logo: 'bg-danger-100 text-danger-700', text: 'text-danger-700' },
+    info: { soft: 'bg-info-50', logo: 'bg-info-100 text-info-700', text: 'text-info-700' }
+  };
+  var FIELDS = {
+    'Teknologi & IT': { color: 'primary', icon: 'laptop' },
+    'Desain & Kreatif': { color: 'secondary', icon: 'palette' },
+    'Keuangan & Akuntansi': { color: 'success', icon: 'bank' },
+    'Pemasaran & Penjualan': { color: 'warning', icon: 'megaphone' },
+    'Kesehatan': { color: 'danger', icon: 'heartbeat' },
+    'Pendidikan & Pelatihan': { color: 'info', icon: 'graduation-cap' },
+    'Teknik & Manufaktur': { color: 'primary', icon: 'wrench' },
+    'Hukum & Pemerintahan': { color: 'secondary', icon: 'scales' },
+    'Hospitality & Pariwisata': { color: 'info', icon: 'airplane-tilt' },
+    'Logistik & Rantai Pasok': { color: 'warning', icon: 'truck' },
+    'Media & Komunikasi': { color: 'danger', icon: 'newspaper' },
+    'Riset & Sains': { color: 'success', icon: 'flask' }
+  };
+  function tintOf(job) { return TINT[(FIELDS[job.field] || FIELDS['Teknologi & IT']).color]; }
+
+  // Katalog contoh. `pop` = popularitas (dipakai saat pengguna belum mengisi minat), `payMin` dalam juta rupiah (urutan gaji),
+  // `posted` = berapa hari lalu diposting, `applicants` = jumlah pelamar.
+  var JOBS = [
+    { id: 1, title: 'Frontend Developer Intern', company: 'PT Nusantara Digital', field: 'Teknologi & IT', type: 'Magang', mode: 'Hybrid', city: 'Bandung', skills: ['JavaScript', 'HTML & CSS', 'React'], pay: 'Rp3 - 5 juta', payMin: 3, pop: 9, posted: 1, applicants: 42, about: 'Bergabung dengan tim produk yang membangun aplikasi web untuk ribuan pengguna kampus. Kamu akan dibimbing langsung oleh engineer senior.' },
+    { id: 2, title: 'Data Analyst', company: 'Bank Sentra Mandiri', field: 'Keuangan & Akuntansi', type: 'Penuh waktu', mode: 'Di kantor', city: 'Jakarta', skills: ['SQL', 'Microsoft Excel', 'Power BI'], pay: 'Rp8 - 12 juta', payMin: 8, pop: 8, posted: 3, applicants: 87, about: 'Mengolah data transaksi menjadi wawasan yang membantu tim bisnis mengambil keputusan lebih cepat dan tepat.' },
+    { id: 3, title: 'UI/UX Designer', company: 'Studio Kreatif Kita', field: 'Desain & Kreatif', type: 'Kontrak', mode: 'Remote', city: 'Di mana saja', skills: ['Figma', 'Riset pengguna'], pay: 'Rp6 - 9 juta', payMin: 6, pop: 8, posted: 2, applicants: 64, about: 'Merancang pengalaman digital untuk klien dari berbagai industri, dari riset pengguna sampai prototipe siap pakai.' },
+    { id: 4, title: 'Digital Marketing Executive', company: 'Toko Bumi Raya', field: 'Pemasaran & Penjualan', type: 'Penuh waktu', mode: 'Hybrid', city: 'Surabaya', skills: ['SEO', 'Copywriting', 'Google Ads'], pay: 'Rp5 - 7 juta', payMin: 5, pop: 7, posted: 5, applicants: 51, about: 'Mengelola kampanye digital toko online yang sedang tumbuh cepat, mulai dari iklan berbayar sampai konten organik.' },
+    { id: 5, title: 'Staf Administrasi Rumah Sakit', company: 'RS Harapan Sehat', field: 'Kesehatan', type: 'Penuh waktu', mode: 'Di kantor', city: 'Yogyakarta', skills: ['Rekam medis', 'Microsoft Office'], pay: 'Rp4 - 5 juta', payMin: 4, pop: 5, posted: 6, applicants: 23, about: 'Mendukung layanan administrasi pasien dan pengelolaan rekam medis di rumah sakit tipe B.' },
+    { id: 6, title: 'Guru Pendamping Kelas', company: 'Sekolah Cendekia', field: 'Pendidikan & Pelatihan', type: 'Paruh waktu', mode: 'Di kantor', city: 'Semarang', skills: ['Pengajaran', 'Public speaking'], pay: 'Rp2 - 3 juta', payMin: 2, pop: 5, posted: 8, applicants: 18, about: 'Mendampingi guru utama di kelas, membantu siswa yang butuh perhatian lebih, dan menyiapkan bahan ajar.' },
+    { id: 7, title: 'Quality Control Engineer', company: 'PT Mekatronika Prima', field: 'Teknik & Manufaktur', type: 'Penuh waktu', mode: 'Di kantor', city: 'Medan', skills: ['Pengendalian mutu', 'K3', 'AutoCAD'], pay: 'Rp6 - 8 juta', payMin: 6, pop: 6, posted: 4, applicants: 31, about: 'Memastikan setiap produk lini perakitan memenuhi standar mutu dan keselamatan sebelum dikirim ke pelanggan.' },
+    { id: 8, title: 'Staf Legal', company: 'Kantor Hukum Adil Makmur', field: 'Hukum & Pemerintahan', type: 'Kontrak', mode: 'Di kantor', city: 'Jakarta', skills: ['Penyusunan kontrak', 'Riset hukum'], pay: 'Rp5 - 7 juta', payMin: 5, pop: 4, posted: 9, applicants: 27, about: 'Membantu advokat senior menyusun dokumen hukum, meninjau kontrak, dan meriset peraturan terbaru.' },
+    { id: 9, title: 'Front Office Staff', company: 'Hotel Samudra', field: 'Hospitality & Pariwisata', type: 'Penuh waktu', mode: 'Di kantor', city: 'Denpasar', skills: ['Layanan pelanggan', 'Bahasa Inggris'], pay: 'Rp4 - 6 juta', payMin: 4, pop: 6, posted: 2, applicants: 45, about: 'Menyambut tamu hotel bintang empat dan memastikan proses check-in sampai check-out berjalan nyaman.' },
+    { id: 10, title: 'Supply Chain Officer', company: 'Logistik Garuda', field: 'Logistik & Rantai Pasok', type: 'Penuh waktu', mode: 'Di kantor', city: 'Jakarta', skills: ['SAP', 'Microsoft Excel', 'Manajemen gudang'], pay: 'Rp6 - 9 juta', payMin: 6, pop: 7, posted: 7, applicants: 38, about: 'Memantau arus barang dari gudang sampai tujuan dan mencari cara memangkas waktu pengiriman.' },
+    { id: 11, title: 'Content Writer Freelance', company: 'Media Kampus Id', field: 'Media & Komunikasi', type: 'Freelance', mode: 'Remote', city: 'Di mana saja', skills: ['Penulisan konten', 'SEO'], pay: 'Per proyek', payMin: 0, pop: 6, posted: 1, applicants: 56, about: 'Menulis artikel seputar dunia kampus dan karier untuk pembaca muda, dengan jadwal yang fleksibel.' },
+    { id: 12, title: 'Research Assistant', company: 'Pusat Riset Terapan', field: 'Riset & Sains', type: 'Magang', mode: 'Hybrid', city: 'Bandung', skills: ['Analisis data', 'Statistik', 'Penulisan ilmiah'], pay: 'Rp2 - 3 juta', payMin: 2, pop: 5, posted: 10, applicants: 14, about: 'Mendukung peneliti dalam pengumpulan data lapangan, analisis, dan penulisan laporan hasil riset.' },
+    { id: 13, title: 'Backend Developer', company: 'Teknologi Cakra', field: 'Teknologi & IT', type: 'Penuh waktu', mode: 'Hybrid', city: 'Jakarta', skills: ['Python', 'SQL', 'Git'], pay: 'Rp9 - 14 juta', payMin: 9, pop: 8, posted: 3, applicants: 96, about: 'Membangun layanan API yang menopang platform pembayaran dengan jutaan transaksi setiap bulan.' },
+    { id: 14, title: 'Graphic Designer Intern', company: 'Agensi Warna', field: 'Desain & Kreatif', type: 'Magang', mode: 'Di kantor', city: 'Yogyakarta', skills: ['Desain grafis', 'Adobe Photoshop'], pay: 'Rp1,5 - 2,5 juta', payMin: 1.5, pop: 6, posted: 4, applicants: 73, about: 'Ikut menggarap materi visual kampanye klien, dari poster dan media sosial sampai kemasan produk.' },
+    { id: 15, title: 'Staf Akuntansi', company: 'KAP Mitra Jaya', field: 'Keuangan & Akuntansi', type: 'Kontrak', mode: 'Di kantor', city: 'Bandung', skills: ['Akuntansi', 'Microsoft Excel'], pay: 'Rp5 - 6 juta', payMin: 5, pop: 5, posted: 6, applicants: 29, about: 'Membantu penyusunan laporan keuangan dan rekonsiliasi untuk klien kantor akuntan publik.' },
+    { id: 16, title: 'Social Media Specialist', company: 'Kopi Nusa', field: 'Pemasaran & Penjualan', type: 'Paruh waktu', mode: 'Remote', city: 'Di mana saja', skills: ['Media sosial', 'Copywriting'], pay: 'Rp3 - 4 juta', payMin: 3, pop: 7, posted: 2, applicants: 61, about: 'Mengelola akun media sosial jaringan kedai kopi dan membangun komunitas pelanggan yang aktif.' },
+    { id: 17, title: 'Perawat Klinik', company: 'Klinik Sehat Bersama', field: 'Kesehatan', type: 'Penuh waktu', mode: 'Di kantor', city: 'Surabaya', skills: ['Pelayanan pasien', 'Pertolongan pertama'], pay: 'Rp5 - 7 juta', payMin: 5, pop: 4, posted: 11, applicants: 19, about: 'Memberikan pelayanan keperawatan dasar di klinik rawat jalan dengan jam kerja yang teratur.' },
+    { id: 18, title: 'Data Science Intern', company: 'Laboratorium Data Nusantara', field: 'Riset & Sains', type: 'Magang', mode: 'Hybrid', city: 'Jakarta', skills: ['Python', 'Statistik', 'Analisis data'], pay: 'Rp3 - 4 juta', payMin: 3, pop: 7, posted: 5, applicants: 82, about: 'Belajar membangun model prediksi pada data nyata bersama tim data science yang suportif.' }
+  ];
+
+  // Lowongan tambahan (dibangkitkan dari daftar ringkas) supaya paginasi terasa nyata: 54 lowongan.
+  [
+    ['Backend Developer Intern', 'Inovasi Teknologi Nusa', 'Teknologi & IT', 'Magang', 'Remote', 'Di mana saja', ['Node.js', 'SQL', 'Git'], 'Rp3 - 4 juta', 3],
+    ['Mobile Developer', 'Aplikasi Karya Bangsa', 'Teknologi & IT', 'Penuh waktu', 'Hybrid', 'Jakarta', ['Flutter', 'Dart', 'Git'], 'Rp8 - 13 juta', 8],
+    ['QA Engineer', 'Pixel Perfect Studio', 'Teknologi & IT', 'Kontrak', 'Hybrid', 'Bandung', ['Pengujian perangkat lunak', 'Selenium'], 'Rp6 - 9 juta', 6],
+    ['DevOps Engineer', 'Cloud Nusantara', 'Teknologi & IT', 'Penuh waktu', 'Remote', 'Di mana saja', ['Docker', 'Linux', 'CI/CD'], 'Rp12 - 18 juta', 12],
+    ['IT Support', 'Rumah Sakit Pelita', 'Teknologi & IT', 'Penuh waktu', 'Di kantor', 'Semarang', ['Jaringan', 'Troubleshooting'], 'Rp4 - 6 juta', 4],
+    ['Product Designer', 'Dompet Digital Kita', 'Desain & Kreatif', 'Penuh waktu', 'Hybrid', 'Jakarta', ['Figma', 'Prototyping', 'Riset pengguna'], 'Rp9 - 14 juta', 9],
+    ['Motion Graphic Intern', 'Studio Gerak', 'Desain & Kreatif', 'Magang', 'Di kantor', 'Bandung', ['After Effects', 'Ilustrasi'], 'Rp1,5 - 2,5 juta', 1.5],
+    ['Videografer', 'Kreasi Visual', 'Desain & Kreatif', 'Kontrak', 'Di kantor', 'Yogyakarta', ['Videografi', 'Adobe Premiere'], 'Rp5 - 7 juta', 5],
+    ['Akuntan Junior', 'KAP Sejahtera', 'Keuangan & Akuntansi', 'Penuh waktu', 'Di kantor', 'Surabaya', ['Akuntansi', 'Microsoft Excel', 'Perpajakan'], 'Rp5 - 7 juta', 5],
+    ['Financial Analyst', 'Investama Prima', 'Keuangan & Akuntansi', 'Penuh waktu', 'Hybrid', 'Jakarta', ['Pemodelan keuangan', 'Microsoft Excel'], 'Rp9 - 13 juta', 9],
+    ['Staf Pajak', 'Konsultan Pajak Mandiri', 'Keuangan & Akuntansi', 'Magang', 'Di kantor', 'Medan', ['Perpajakan', 'Microsoft Excel'], 'Rp2 - 3 juta', 2],
+    ['Sales Executive', 'Distribusi Maju Jaya', 'Pemasaran & Penjualan', 'Penuh waktu', 'Di kantor', 'Medan', ['Negosiasi', 'Penjualan'], 'Rp4 - 8 juta', 4],
+    ['Brand Strategist', 'Agensi Citra', 'Pemasaran & Penjualan', 'Penuh waktu', 'Hybrid', 'Jakarta', ['Strategi merek', 'Riset pasar'], 'Rp8 - 12 juta', 8],
+    ['E-commerce Specialist', 'Belanja Mudah', 'Pemasaran & Penjualan', 'Kontrak', 'Remote', 'Di mana saja', ['Marketplace', 'Analisis penjualan'], 'Rp5 - 8 juta', 5],
+    ['Apoteker Pendamping', 'Apotek Sehat Sentosa', 'Kesehatan', 'Penuh waktu', 'Di kantor', 'Bandung', ['Farmasi klinis', 'Pelayanan pasien'], 'Rp6 - 8 juta', 6],
+    ['Ahli Gizi', 'Klinik Gizi Prima', 'Kesehatan', 'Kontrak', 'Di kantor', 'Jakarta', ['Gizi klinis', 'Konseling'], 'Rp5 - 7 juta', 5],
+    ['Dosen Tamu', 'Politeknik Mandiri', 'Pendidikan & Pelatihan', 'Paruh waktu', 'Hybrid', 'Surabaya', ['Pengajaran', 'Penyusunan kurikulum'], 'Rp3 - 5 juta', 3],
+    ['Instruktur Pelatihan', 'Akademi Kerja Pintar', 'Pendidikan & Pelatihan', 'Kontrak', 'Remote', 'Di mana saja', ['Public speaking', 'Desain pembelajaran'], 'Rp4 - 6 juta', 4],
+    ['Tutor Bahasa Inggris', 'Bimbel Cerdas', 'Pendidikan & Pelatihan', 'Paruh waktu', 'Di kantor', 'Yogyakarta', ['Bahasa Inggris', 'Pengajaran'], 'Rp2 - 3 juta', 2],
+    ['Maintenance Engineer', 'PT Baja Perkasa', 'Teknik & Manufaktur', 'Penuh waktu', 'Di kantor', 'Semarang', ['Perawatan mesin', 'K3'], 'Rp6 - 9 juta', 6],
+    ['Drafter Teknik', 'Konstruksi Andal', 'Teknik & Manufaktur', 'Kontrak', 'Di kantor', 'Surabaya', ['AutoCAD', 'Gambar teknik'], 'Rp4 - 6 juta', 4],
+    ['Production Planner', 'Pabrik Pangan Nusantara', 'Teknik & Manufaktur', 'Penuh waktu', 'Di kantor', 'Bandung', ['Perencanaan produksi', 'SAP'], 'Rp6 - 8 juta', 6],
+    ['Paralegal', 'Firma Hukum Pratama', 'Hukum & Pemerintahan', 'Magang', 'Di kantor', 'Jakarta', ['Riset hukum', 'Penyusunan kontrak'], 'Rp2 - 3 juta', 2],
+    ['Analis Kebijakan', 'Lembaga Kajian Publik', 'Hukum & Pemerintahan', 'Kontrak', 'Hybrid', 'Yogyakarta', ['Analisis kebijakan', 'Penulisan ilmiah'], 'Rp5 - 7 juta', 5],
+    ['Tour Consultant', 'Wisata Nusantara', 'Hospitality & Pariwisata', 'Penuh waktu', 'Di kantor', 'Denpasar', ['Layanan pelanggan', 'Bahasa Inggris'], 'Rp4 - 6 juta', 4],
+    ['Barista Trainee', 'Kopi Senja', 'Hospitality & Pariwisata', 'Magang', 'Di kantor', 'Yogyakarta', ['Layanan pelanggan', 'Kerja tim'], 'Rp1,5 - 2 juta', 1.5],
+    ['Event Coordinator', 'Pesta Rakyat Organizer', 'Hospitality & Pariwisata', 'Kontrak', 'Hybrid', 'Denpasar', ['Manajemen acara', 'Negosiasi'], 'Rp5 - 7 juta', 5],
+    ['Warehouse Supervisor', 'Gudang Sentral', 'Logistik & Rantai Pasok', 'Penuh waktu', 'Di kantor', 'Surabaya', ['Manajemen gudang', 'Microsoft Excel'], 'Rp6 - 8 juta', 6],
+    ['Procurement Staff', 'Pengadaan Bersama', 'Logistik & Rantai Pasok', 'Kontrak', 'Hybrid', 'Jakarta', ['Pengadaan', 'Negosiasi', 'SAP'], 'Rp5 - 7 juta', 5],
+    ['Jurnalis Muda', 'Warta Kampus', 'Media & Komunikasi', 'Magang', 'Hybrid', 'Jakarta', ['Penulisan berita', 'Wawancara'], 'Rp2 - 3 juta', 2],
+    ['Public Relations Officer', 'Komunikasi Prima', 'Media & Komunikasi', 'Penuh waktu', 'Hybrid', 'Bandung', ['Hubungan media', 'Penulisan konten'], 'Rp5 - 8 juta', 5],
+    ['Podcast Producer', 'Suara Muda', 'Media & Komunikasi', 'Freelance', 'Remote', 'Di mana saja', ['Penyuntingan audio', 'Penulisan konten'], 'Per proyek', 0],
+    ['Lab Analyst', 'Laboratorium Mutu Indonesia', 'Riset & Sains', 'Penuh waktu', 'Di kantor', 'Bandung', ['Analisis laboratorium', 'Statistik'], 'Rp5 - 7 juta', 5],
+    ['Bioinformatics Intern', 'Institut Genomika', 'Riset & Sains', 'Magang', 'Hybrid', 'Jakarta', ['Python', 'Biostatistik'], 'Rp2 - 3 juta', 2],
+    ['UX Researcher', 'Studio Kreatif Kita', 'Desain & Kreatif', 'Paruh waktu', 'Remote', 'Di mana saja', ['Riset pengguna', 'Wawancara'], 'Rp4 - 6 juta', 4],
+    ['Customer Success', 'Teknologi Cakra', 'Teknologi & IT', 'Penuh waktu', 'Hybrid', 'Jakarta', ['Layanan pelanggan', 'SQL'], 'Rp6 - 9 juta', 6]
+  ].forEach(function (t, i) {
+    var id = 19 + i;
+    JOBS.push({
+      id: id, title: t[0], company: t[1], field: t[2], type: t[3], mode: t[4], city: t[5], skills: t[6], pay: t[7], payMin: t[8],
+      pop: 4 + (id * 5) % 6, posted: 1 + (id * 7) % 14, applicants: 12 + (id * 37) % 90,
+      about: t[1] + ' membuka posisi ' + t[0] + ' untuk kamu yang ingin berkembang di bidang ' + t[2].toLowerCase() + '.'
+    });
+  });
+
+  // Uraian per bidang untuk halaman detail lowongan (contoh).
+  var FIELD_TEXT = {
+    'Teknologi & IT': { tasks: ['Membangun dan merawat fitur sesuai kebutuhan produk', 'Menulis kode yang rapi, teruji, dan mudah dibaca', 'Berdiskusi rutin dengan desainer dan tim produk'], reqs: ['Mahasiswa tingkat akhir atau lulusan Teknik Informatika/Sistem Informasi', 'Terbiasa membaca dokumentasi dan belajar mandiri'] },
+    'Desain & Kreatif': { tasks: ['Menerjemahkan brief menjadi konsep visual', 'Menyiapkan aset desain untuk berbagai kanal', 'Menerima dan mengolah masukan dari tim dan klien'], reqs: ['Memiliki portofolio yang bisa dilihat', 'Peka terhadap detail, tipografi, dan tata letak'] },
+    'Keuangan & Akuntansi': { tasks: ['Menyiapkan laporan berkala dengan data yang akurat', 'Memeriksa kewajaran angka dan melaporkan selisih', 'Mendukung tim dalam proses audit dan evaluasi'], reqs: ['Lulusan Akuntansi, Manajemen, Statistika, atau bidang terkait', 'Teliti dan nyaman bekerja dengan angka'] },
+    'Pemasaran & Penjualan': { tasks: ['Merencanakan dan menjalankan kampanye pemasaran', 'Memantau performa kampanye dan menyusun laporannya', 'Mencari ide konten dan promosi yang relevan'], reqs: ['Memahami perilaku audiens di media sosial', 'Mampu menulis dengan gaya yang menarik'] },
+    'Kesehatan': { tasks: ['Melayani pasien dengan ramah dan sesuai prosedur', 'Mencatat data pelayanan secara lengkap dan rapi', 'Menjaga kebersihan dan keselamatan area kerja'], reqs: ['Memiliki latar belakang kesehatan atau administrasi', 'Bersedia bekerja dengan jadwal bergilir'] },
+    'Pendidikan & Pelatihan': { tasks: ['Mendampingi kegiatan belajar mengajar di kelas', 'Menyiapkan bahan ajar dan alat peraga', 'Melaporkan perkembangan siswa kepada guru utama'], reqs: ['Sabar, komunikatif, dan menyukai dunia anak atau remaja', 'Mahasiswa atau lulusan kependidikan lebih diutamakan'] },
+    'Teknik & Manufaktur': { tasks: ['Memeriksa produk dan proses sesuai standar mutu', 'Mencatat temuan dan mengusulkan perbaikan', 'Menerapkan prosedur keselamatan kerja di lini produksi'], reqs: ['Lulusan Teknik Industri, Mesin, atau bidang terkait', 'Bersedia ditempatkan di area pabrik'] },
+    'Hukum & Pemerintahan': { tasks: ['Menyusun dan meninjau draf dokumen hukum', 'Meriset peraturan dan putusan yang relevan', 'Mengarsipkan berkas perkara dengan tertib'], reqs: ['Lulusan Ilmu Hukum', 'Terbiasa menulis dengan bahasa yang baku dan runtut'] },
+    'Hospitality & Pariwisata': { tasks: ['Menyambut dan melayani tamu dengan ramah', 'Menangani reservasi, check-in, dan check-out', 'Menindaklanjuti keluhan tamu dengan cepat'], reqs: ['Berpenampilan rapi dan komunikatif', 'Bersedia bekerja dengan jadwal bergilir'] },
+    'Logistik & Rantai Pasok': { tasks: ['Memantau stok dan pergerakan barang', 'Berkoordinasi dengan gudang, pemasok, dan kurir', 'Menyusun laporan pengiriman mingguan'], reqs: ['Lulusan Logistik, Teknik Industri, atau Manajemen', 'Teliti dan terbiasa bekerja dengan tenggat'] },
+    'Media & Komunikasi': { tasks: ['Menulis dan menyunting konten sesuai panduan gaya', 'Mengusulkan topik yang sedang dicari pembaca', 'Memeriksa fakta dan sumber sebelum terbit'], reqs: ['Memiliki contoh tulisan atau portofolio', 'Mampu bekerja dengan tenggat yang jelas'] },
+    'Riset & Sains': { tasks: ['Mengumpulkan dan membersihkan data penelitian', 'Menjalankan analisis dan mencatat hasilnya', 'Menyusun ringkasan temuan untuk tim peneliti'], reqs: ['Mahasiswa tingkat akhir atau lulusan sains, statistika, atau bidang terkait', 'Teliti dan terbiasa mendokumentasikan pekerjaan'] }
+  };
+
+  // Lamaran contoh. `sent` = hari sejak dikirim, `upd` = hari sejak pembaruan terakhir. Lamaran yang dikirim dari portal ditambahkan di atasnya.
+  var SAMPLE_APPLIED = [
+    { id: 3, status: 'Wawancara', sent: 7, upd: 2, interviewIn: 3 },
+    { id: 2, status: 'Diproses', sent: 5, upd: 3 },
+    { id: 13, status: 'Terkirim', sent: 2, upd: 2 },
+    { id: 11, status: 'Diterima', sent: 21, upd: 4 },
+    { id: 4, status: 'Ditolak', sent: 34, upd: 20 },
+    { id: 8, status: 'Ditolak', sent: 48, upd: 30 },
+    { id: 16, status: 'Diterima', sent: 66, upd: 40 },
+    { id: 7, status: 'Ditolak', sent: 90, upd: 70 },
+    { id: 9, status: 'Ditolak', sent: 125, upd: 100 },
+    { id: 20, status: 'Diproses', sent: 10, upd: 6 },
+    { id: 24, status: 'Wawancara', sent: 9, upd: 4, interviewIn: 5 },
+    { id: 31, status: 'Terkirim', sent: 3, upd: 3 },
+    { id: 27, status: 'Ditolak', sent: 60, upd: 45 }
+  ];
+  var STATUSES = [
+    { key: 'Terkirim', badge: 'badge-info', step: 0 },
+    { key: 'Diproses', badge: 'badge-warning', step: 1 },
+    { key: 'Wawancara', badge: 'badge-primary', step: 2 },
+    { key: 'Diterima', badge: 'badge-success', step: 3 },
+    { key: 'Ditolak', badge: 'badge-danger', step: 3 }
+  ];
+  var STEPS = ['Terkirim', 'Diproses', 'Wawancara', 'Keputusan'];
+
+  function jobById(id) { return JOBS.filter(function (j) { return j.id === id; })[0]; }
+  function statusOf(key) { return STATUSES.filter(function (s) { return s.key === key; })[0] || STATUSES[0]; }
+
+  // ---- siapa yang masuk dan apa jawaban onboarding-nya
+  var user = read(USER_KEY, null) || {};
+  var saved0 = read(STORE_KEY, null);
+  var prefs = {
+    interests: (saved0 && saved0.interests) || [],
+    jobTypes: (saved0 && saved0.jobTypes) || [],
+    workModes: (saved0 && saved0.workModes) || [],
+    locations: (saved0 && saved0.locations) || [],
+    skills: (saved0 && saved0.skills) || []
+  };
+  var onboarded = !!(saved0 && saved0.completedAt);
+  var hasPrefs = !!(prefs.interests.length || prefs.jobTypes.length || prefs.workModes.length || prefs.locations.length || prefs.skills.length);
+  var savedIds = read(SAVED_KEY, []);
+  var applied = read(APPLIED_KEY, []); // [{ id, at }]
+
+  function score(job) {
+    var s = 0, why = [];
+    if (prefs.interests.indexOf(job.field) !== -1) { s += 45; why.push('bidang'); }
+    if (prefs.jobTypes.indexOf(job.type) !== -1) { s += 20; why.push('jenis pekerjaan'); }
+    if (prefs.workModes.indexOf(job.mode) !== -1) { s += 10; why.push('model kerja'); }
+    if (prefs.locations.indexOf(job.city) !== -1 || prefs.locations.indexOf('Di mana saja') !== -1 || (job.mode === 'Remote' && prefs.locations.length)) { s += 10; why.push('lokasi'); }
+    var mine = prefs.skills.map(function (x) { return x.toLowerCase(); });
+    var overlap = job.skills.filter(function (k) { return mine.indexOf(k.toLowerCase()) !== -1; }).length;
+    if (overlap) { s += Math.min(15, overlap * 5); why.push('keahlian'); }
+    return { job: job, score: hasPrefs ? s : 0, why: why };
+  }
+  var ranked = JOBS.map(score).sort(function (a, b) { return b.score - a.score || b.job.pop - a.job.pop; });
+  function rankOf(id) { return ranked.filter(function (r) { return r.job.id === id; })[0]; }
+
+  // ---- lamaran = contoh + yang dikirim dari portal, urut dari yang terbaru diperbarui
+  function allApplications() {
+    var mine = applied.map(function (a) {
+      var days = Math.max(0, Math.floor((Date.now() - a.at) / DAY));
+      return { id: a.id, status: 'Terkirim', sent: days, upd: days, mine: true };
+    });
+    return mine.concat(SAMPLE_APPLIED).map(function (a) {
+      return { id: a.id, job: jobById(a.id), status: a.status, sent: a.sent, upd: a.upd, interviewIn: a.interviewIn, mine: !!a.mine };
+    }).filter(function (a) { return a.job; }).sort(function (a, b) { return a.upd - b.upd || a.sent - b.sent; });
+  }
+  function hasApplied(id) {
+    return applied.some(function (a) { return a.id === id; }) || SAMPLE_APPLIED.some(function (a) { return a.id === id; });
+  }
+  function isActive(a) { return a.status === 'Terkirim' || a.status === 'Diproses' || a.status === 'Wawancara'; }
+
+  // Riwayat per lamaran: satu peristiwa untuk tiap tahap yang sudah dilewati.
+  function history(app) {
+    var stage = statusOf(app.status).step;
+    var rows = [];
+    for (var k = 0; k <= stage; k++) {
+      var ago = stage === 0 ? app.sent : Math.round(app.sent - (app.sent - app.upd) * k / stage);
+      var title, body;
+      if (k === 0) { title = 'Lamaran terkirim'; body = 'Lamaranmu sudah diterima ' + app.job.company + '.'; }
+      else if (k === 1) { title = 'Lamaran sedang ditinjau'; body = 'Tim rekrutmen memeriksa profil dan keahlianmu.'; }
+      else if (k === 2) { title = 'Lolos ke tahap wawancara'; body = 'Kamu dipilih untuk berbincang langsung dengan tim ' + app.job.company + '.'; }
+      else if (app.status === 'Diterima') { title = 'Selamat, kamu diterima'; body = app.job.company + ' menawarkan posisi ' + app.job.title + ' kepadamu.'; }
+      else { title = 'Belum lolos kali ini'; body = 'Terima kasih sudah melamar. Masih banyak lowongan lain yang cocok untukmu.'; }
+      rows.push({ ago: Math.max(0, ago), title: title, body: body, step: k });
+    }
+    return rows.reverse();
+  }
+
+  function detailOf(job) {
+    var t = FIELD_TEXT[job.field] || FIELD_TEXT['Teknologi & IT'];
+    var perks = job.type === 'Magang'
+      ? ['Sertifikat magang dan surat rekomendasi', 'Mentor yang membimbing langsung', 'Peluang diangkat menjadi karyawan']
+      : ['BPJS Kesehatan dan Ketenagakerjaan', 'Jenjang karier yang jelas', 'Pelatihan dan pengembangan keahlian'];
+    var sizes = ['11 - 50 karyawan', '51 - 200 karyawan', '201 - 500 karyawan', '501 - 1.000 karyawan', 'Lebih dari 1.000 karyawan'];
+    return {
+      tasks: t.tasks,
+      reqs: t.reqs.concat(['Menguasai ' + job.skills.join(', ')]),
+      perks: perks,
+      size: sizes[job.id % sizes.length],
+      founded: 1998 + (job.id * 3) % 24,
+      deadline: Math.max(2, 14 - job.posted)
+    };
+  }
+
+  // Kelengkapan profil dari jawaban onboarding.
+  function profile() {
+    var steps = [
+      { label: 'Akun dibuat', done: true },
+      { label: 'Bidang minat', done: prefs.interests.length > 0 },
+      { label: 'Preferensi kerja', done: !!(prefs.jobTypes.length || prefs.workModes.length || prefs.locations.length) },
+      { label: 'Keahlian', done: prefs.skills.length > 0 }
+    ];
+    return { steps: steps, pct: Math.round(steps.filter(function (s) { return s.done; }).length / steps.length * 100) };
+  }
+
+  // ---- tindakan: simpan dan lamar
+  function toggleSave(id) {
+    var at = savedIds.indexOf(id);
+    if (at === -1) savedIds.push(id); else savedIds.splice(at, 1);
+    write(SAVED_KEY, savedIds);
+    return at === -1;
+  }
+  function isSaved(id) { return savedIds.indexOf(id) !== -1; }
+  function apply(id) {
+    if (hasApplied(id)) return false;
+    applied.push({ id: id, at: Date.now() });
+    write(APPLIED_KEY, applied);
+    return true;
+  }
+  function toast(type, message) {
+    if (window.KKToast) window.KKToast.show({ type: type, message: message });
+  }
+
+  /* ==========================================================================
+     Lapisan data (API). Halaman tidak pernah membaca JOBS langsung: semua lewat fungsi di bawah yang
+     mengembalikan Promise, meniru server (jeda jaringan, paginasi, penyaringan di sisi server).
+     Untuk memakai server sungguhan cukup mengganti isi fungsi ini dengan fetch(); halaman tidak berubah.
+
+       GET  /api/jobs?q&bidang&kota&jenis&mode&saved&urut=cocok|terbaru|gaji&page&pageSize
+            -> { items:[{ job, score, why }], total, page, pageSize, pages }
+       GET  /api/jobs/:id                      -> { rank, detail, applied, similar:[rank] }   (dimuat saat lowongan dipilih)
+       GET  /api/jobs/facets                   -> { total, fields:{ bidang: jumlah } }        (cache, jarang berubah)
+       GET  /api/applications?status&q&active&page&pageSize
+            -> { items, total, page, pageSize, pages, counts:{ all, Terkirim, ... } }
+       GET  /api/applications/:id              -> { app }
+       POST /api/jobs/:id/apply  { note }      -> { ok }
+       PUT/DELETE /api/jobs/:id/save           -> { saved }  (UI memperbarui tombol lebih dulu, lalu menyelaraskan)
+     Tambahkan ?galat=1 di URL halaman untuk mencoba tampilan gagal-muat (permintaan pertama ditolak sekali).
+     ========================================================================== */
+  var failOnce = /[?&]galat=1/.test(location.search);
+  function simulate(fn, ms) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        if (failOnce) { failOnce = false; reject(new Error('Koneksi terputus')); return; }
+        try { resolve(fn()); } catch (e) { reject(e); }
+      }, ms == null ? 260 + Math.random() * 240 : ms);
+    });
+  }
+  function paginate(list, page, size) {
+    var pages = Math.max(1, Math.ceil(list.length / size));
+    var p = Math.min(Math.max(parseInt(page, 10) || 1, 1), pages);
+    return { items: list.slice((p - 1) * size, p * size), total: list.length, page: p, pageSize: size, pages: pages };
+  }
+  var api = {
+    listJobs: function (o) {
+      o = o || {};
+      return simulate(function () {
+        var q = (o.q || '').trim().toLowerCase();
+        var list = ranked.filter(function (r) {
+          var j = r.job;
+          if (o.bidang && j.field !== o.bidang) return false;
+          if (o.kota && j.city !== o.kota && j.city !== 'Di mana saja') return false;
+          if (o.jenis && j.type !== o.jenis) return false;
+          if (o.mode && j.mode !== o.mode) return false;
+          if (o.saved && !isSaved(j.id)) return false;
+          if (q && (j.title + ' ' + j.company + ' ' + j.field + ' ' + j.city + ' ' + j.skills.join(' ')).toLowerCase().indexOf(q) === -1) return false;
+          return true;
+        });
+        if (o.sort === 'terbaru') list = list.slice().sort(function (a, b) { return a.job.posted - b.job.posted || a.job.id - b.job.id; });
+        if (o.sort === 'gaji') list = list.slice().sort(function (a, b) { return b.job.payMin - a.job.payMin || a.job.id - b.job.id; });
+        return paginate(list, o.page, o.pageSize || 8);
+      });
+    },
+    getJob: function (id) {
+      return simulate(function () {
+        var r = rankOf(id);
+        if (!r) throw new Error('Lowongan tidak ditemukan');
+        return {
+          rank: r, detail: detailOf(r.job), applied: hasApplied(id),
+          similar: ranked.filter(function (x) { return x.job.field === r.job.field && x.job.id !== id; }).slice(0, 3)
+        };
+      });
+    },
+    facets: function () {
+      return simulate(function () {
+        var fields = {};
+        Object.keys(FIELDS).forEach(function (f) { fields[f] = JOBS.filter(function (j) { return j.field === f; }).length; });
+        return { total: JOBS.length, fields: fields };
+      }, 180);
+    },
+    listApplications: function (o) {
+      o = o || {};
+      return simulate(function () {
+        var q = (o.q || '').trim().toLowerCase();
+        var base = allApplications().filter(function (a) { return !q || (a.job.title + ' ' + a.job.company).toLowerCase().indexOf(q) !== -1; });
+        var counts = { all: base.length };
+        STATUSES.forEach(function (s) { counts[s.key] = base.filter(function (a) { return a.status === s.key; }).length; });
+        counts.active = base.filter(isActive).length;
+        var list = base.filter(function (a) { return (!o.status || a.status === o.status) && (!o.active || isActive(a)); });
+        var res = paginate(list, o.page, o.pageSize || 6);
+        res.counts = counts;
+        return res;
+      });
+    },
+    getApplication: function (id) {
+      return simulate(function () {
+        var a = allApplications().filter(function (x) { return x.id === id; })[0];
+        if (!a) throw new Error('Lamaran tidak ditemukan');
+        return { app: a };
+      });
+    },
+    applyJob: function (id) {
+      return simulate(function () { return { ok: apply(id) }; }, 700);
+    }
+  };
+
+  // Penjaga respons usang: ambil token sebelum meminta, abaikan hasilnya bila sudah ada permintaan yang lebih baru.
+  function latest() {
+    var n = 0;
+    return function () { var mine = ++n; return function () { return mine === n; }; };
+  }
+  function debounce(fn, ms) {
+    var t;
+    return function () { var args = arguments, self = this; clearTimeout(t); t = setTimeout(function () { fn.apply(self, args); }, ms); };
+  }
+
+  // ---- potongan HTML yang dipakai bersama
+  function icon(name, cls) { return '<i class="kk kk-' + name + ' ' + (cls || 'h-4 w-4') + '" aria-hidden="true"></i>'; }
+
+  function saveButton(id, cls) {
+    var on = isSaved(id);
+    return '<button type="button" class="' + (cls || 'flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-slate-500 transition-colors hover:text-primary-600') + '" data-save="' + id + '" aria-pressed="' + on + '" aria-label="' + (on ? 'Lepas simpanan' : 'Simpan lowongan') + '">' +
+      icon('bookmark-simple', 'h-[18px] w-[18px] ' + (on ? 'kk-fill text-primary-600' : '')) + '</button>';
+  }
+  function logo(job, size) {
+    return '<span class="flex ' + (size || 'h-11 w-11 text-sm') + ' shrink-0 items-center justify-center rounded-xl font-bold ' + tintOf(job).logo + '" aria-hidden="true">' + esc(initials(job.company)) + '</span>';
+  }
+  function tag(text, cls) {
+    return '<span class="' + (cls || 'rounded-full border border-slate-900/10 px-2.5 py-0.5 text-xs text-slate-600') + '">' + esc(text) + '</span>';
+  }
+  function matchText(r) {
+    return hasPrefs && r.score > 0 ? '<span class="font-semibold text-primary-600">' + r.score + '% cocok</span>' : '<span>' + esc(r.job.city) + '</span>';
+  }
+
+  // Kartu lowongan berlatar pastel (beranda).
+  function jobCard(r, pick) {
+    var j = r.job;
+    return '<article class="relative flex flex-col rounded-2xl border border-border/70 bg-surface p-2 shadow-card transition-shadow hover:shadow-card-lg" data-job="' + j.id + '">' +
+      '<div class="flex flex-1 flex-col rounded-xl p-4 ' + tintOf(j).soft + '">' +
+        '<div class="flex items-start justify-between gap-2">' +
+          '<span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700">' + when(j.posted) + '</span>' +
+          saveButton(j.id, pick ? 'relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-slate-500 transition-colors hover:text-primary-600' : null) +
+        '</div>' +
+        '<div class="mt-5 flex items-start justify-between gap-3">' +
+          '<div class="min-w-0"><p class="truncate text-xs text-slate-500">' + esc(j.company) + '</p>' +
+          '<h3 class="mt-1 font-display text-lg font-semibold leading-snug text-slate-900">' + (pick ? '<button type="button" class="text-left after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500" data-pick="' + j.id + '">' + esc(j.title) + '</button>' : esc(j.title)) + '</h3></div>' +
+          logo(j, 'h-11 w-11 bg-white text-sm') +
+        '</div>' +
+        '<div class="mt-4 flex flex-wrap gap-1.5">' + tag(j.type) + tag(j.mode) + tag(j.city) + '</div>' +
+      '</div>' +
+      '<div class="flex items-center justify-between gap-3 px-3 pb-2 pt-3.5">' +
+        '<div class="min-w-0"><p class="truncate text-sm font-semibold leading-5 text-slate-900">' + esc(j.pay) + '</p><p class="mt-0.5 flex h-4 items-center text-xs text-slate-400">' + (hasApplied(j.id) ? '<span class="inline-flex items-center gap-1 font-medium text-success-700">' + icon('check', 'h-3 w-3') + 'Sudah dilamar</span>' : matchText(r)) + '</p></div>' +
+        (pick ? '<span class="btn-primary btn-sm shrink-0" aria-hidden="true">Lihat Detail</span>' : '<a href="lowongan.html?id=' + j.id + '" class="btn-primary btn-sm shrink-0">Detail</a>') +
+      '</div></article>';
+  }
+
+  // Baris kompak untuk daftar lowongan (halaman lowongan).
+  function jobRow(r, selected) {
+    var j = r.job;
+    var mutedTag = 'rounded-md bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600';
+    return '<article class="relative rounded-2xl border p-4 transition-colors ' + (selected ? 'border-primary-500 bg-primary-50/40 ring-1 ring-primary-500' : 'border-border/70 bg-surface hover:border-primary-200 hover:bg-neutral-50') + '">' +
+      '<div class="flex items-start gap-3">' + logo(j) +
+        '<div class="min-w-0 flex-1"><h3 class="text-sm font-semibold text-slate-900"><button type="button" class="block w-full truncate text-left after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500" data-pick="' + j.id + '" aria-current="' + (selected ? 'true' : 'false') + '">' + esc(j.title) + '</button></h3>' +
+        '<p class="mt-0.5 truncate text-xs text-slate-500">' + esc(j.company) + ' &middot; ' + esc(j.city) + '</p></div>' +
+        saveButton(j.id, 'relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-primary-600') +
+      '</div>' +
+      '<div class="mt-3 flex flex-wrap items-center gap-1.5">' + tag(j.type, mutedTag) + tag(j.mode, mutedTag) +
+        (hasPrefs && r.score > 0 ? tag(r.score + '% cocok', 'rounded-md bg-primary-50 px-2 py-0.5 text-xs font-semibold text-primary-700') : '') +
+        (hasApplied(j.id) ? '<span class="inline-flex items-center gap-1 rounded-md bg-success-50 px-2 py-0.5 text-xs font-medium text-success-700">' + icon('check', 'h-3 w-3') + 'Sudah dilamar</span>' : '') + '</div>' +
+      '<div class="mt-3 flex items-center justify-between gap-2 text-xs"><span class="font-semibold text-slate-800">' + esc(j.pay) + '</span>' +
+        '<span class="flex items-center gap-1.5 text-slate-400">' + (j.posted <= 2 ? '<span class="rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">Baru</span>' : '') + when(j.posted) + '</span></div></article>';
+  }
+
+  // Penanda tahap lamaran: 4 segmen, terisi sampai tahap sekarang.
+  function stageBar(app) {
+    var st = statusOf(app.status);
+    var bad = app.status === 'Ditolak';
+    var out = '<div class="flex gap-1" role="img" aria-label="Tahap ' + (st.step + 1) + ' dari 4: ' + esc(app.status) + '">';
+    for (var i = 0; i < 4; i++) {
+      var on = i <= st.step;
+      out += '<span class="h-1.5 flex-1 rounded-full ' + (on ? (bad && i === 3 ? 'bg-danger-400' : (app.status === 'Diterima' && i === 3 ? 'bg-success-500' : 'bg-primary-600')) : 'bg-neutral-200') + '"></span>';
+    }
+    return out + '</div>';
+  }
+
+  // ---- keadaan memuat, kosong, dan gagal
+  function sk(cls) { return '<span class="block animate-pulse rounded-md bg-neutral-200 ' + cls + '"></span>'; }
+  function skeletonRows(n) {
+    var out = '<div role="status" aria-label="Memuat" class="space-y-3">';
+    for (var i = 0; i < n; i++) {
+      out += '<div class="rounded-2xl border border-border/70 bg-surface p-4"><div class="flex items-start gap-3">' + sk('h-11 w-11 shrink-0 rounded-xl') +
+        '<div class="flex-1 space-y-2 pt-1">' + sk('h-3.5 w-3/4') + sk('h-3 w-1/2') + '</div></div>' +
+        '<div class="mt-4 flex gap-2">' + sk('h-5 w-16') + sk('h-5 w-14') + '</div>' +
+        '<div class="mt-4 flex justify-between">' + sk('h-3 w-20') + sk('h-3 w-14') + '</div></div>';
+    }
+    return out + '<span class="sr-only">Memuat...</span></div>';
+  }
+  function skeletonCards(n) {
+    var out = '';
+    for (var i = 0; i < n; i++) {
+      out += '<div class="rounded-2xl border border-border/70 bg-surface p-2" aria-hidden="true"><div class="rounded-xl bg-neutral-50 p-4">' +
+        '<div class="flex justify-between">' + sk('h-6 w-20 rounded-full') + sk('h-9 w-9 rounded-full') + '</div>' +
+        '<div class="mt-5 flex justify-between gap-3"><div class="flex-1 space-y-2">' + sk('h-3 w-1/3') + sk('h-5 w-3/4') + '</div>' + sk('h-11 w-11 rounded-xl') + '</div>' +
+        '<div class="mt-4 flex gap-1.5">' + sk('h-5 w-14 rounded-full') + sk('h-5 w-14 rounded-full') + sk('h-5 w-16 rounded-full') + '</div></div>' +
+        '<div class="flex items-center justify-between px-3 pb-2 pt-3.5"><div class="space-y-2">' + sk('h-3.5 w-24') + sk('h-3 w-14') + '</div>' + sk('h-8 w-16 rounded-xl') + '</div></div>';
+    }
+    return out;
+  }
+  function skeletonDetail() {
+    return '<div role="status" aria-label="Memuat detail" class="p-5 sm:p-7"><div class="flex items-start gap-4">' + sk('h-14 w-14 shrink-0 rounded-xl') +
+      '<div class="flex-1 space-y-3 pt-1">' + sk('h-6 w-2/3') + sk('h-3.5 w-1/3') + '<div class="flex gap-2">' + sk('h-5 w-16') + sk('h-5 w-16') + '</div></div></div>' +
+      '<div class="mt-6">' + sk('h-16 w-full rounded-xl') + '</div>' +
+      '<div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">' + sk('h-16 rounded-xl') + sk('h-16 rounded-xl') + sk('h-16 rounded-xl') + sk('h-16 rounded-xl') + '</div>' +
+      '<div class="mt-8 space-y-3">' + sk('h-4 w-40') + sk('h-3 w-full') + sk('h-3 w-5/6') + sk('h-3 w-2/3') + '</div>' +
+      '<div class="mt-8 space-y-3">' + sk('h-4 w-32') + sk('h-3 w-3/4') + sk('h-3 w-2/3') + sk('h-3 w-3/4') + '</div><span class="sr-only">Memuat...</span></div>';
+  }
+  function emptyBox(ic, title, text, actionHtml) {
+    return '<div class="rounded-2xl border border-dashed border-border bg-surface p-8 text-center"><span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral-100 text-slate-400">' + icon(ic, 'h-6 w-6') + '</span>' +
+      '<p class="mt-3 text-sm font-semibold text-slate-800">' + esc(title) + '</p><p class="mx-auto mt-1 max-w-xs text-sm text-slate-500">' + esc(text) + '</p>' + (actionHtml ? '<div class="mt-4">' + actionHtml + '</div>' : '') + '</div>';
+  }
+  function errorBox(message) {
+    return '<div role="alert" class="rounded-2xl border border-danger-200 bg-danger-50/50 p-8 text-center"><span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-danger-100 text-danger-600">' + icon('seal-warning', 'h-6 w-6') + '</span>' +
+      '<p class="mt-3 text-sm font-semibold text-slate-800">Data belum bisa dimuat</p><p class="mt-1 text-sm text-slate-500">' + esc(message || 'Periksa koneksimu lalu coba lagi.') + '</p>' +
+      '<button type="button" class="btn-outline btn-sm mt-4" data-retry>' + icon('clock-counter-clockwise', 'h-4 w-4') + 'Coba lagi</button></div>';
+  }
+
+  // Paginasi ringkas (komponen Pagination DS). Isi `host` ulang setiap respons; dengarkan `pagination:change` pada host.
+  function pager(host, res, label) {
+    if (!res || !res.total) { host.innerHTML = ''; return; }
+    var from = (res.page - 1) * res.pageSize + 1;
+    var info = '<p class="text-center text-xs text-slate-500">Menampilkan ' + from + ' sampai ' + Math.min(res.page * res.pageSize, res.total) + ' dari ' + res.total + ' ' + esc(label) + '</p>';
+    if (res.pages <= 1) { host.innerHTML = info; return; }
+    host.innerHTML = '<div data-pagination data-pagination-total="' + res.pages + '" data-pagination-page="' + res.page + '" data-pagination-siblings="0" data-pagination-nav="none" class="flex flex-col items-center gap-3">' + info +
+      '<div class="flex items-center justify-center gap-2">' +
+        '<button type="button" class="btn-outline btn-sm w-8 px-0" data-pagination-prev aria-label="Halaman sebelumnya">' + icon('caret-left') + '</button>' +
+        '<nav aria-label="Halaman"><ul class="pagination pagination-separate" data-pagination-list></ul></nav>' +
+        '<button type="button" class="btn-outline btn-sm w-8 px-0" data-pagination-next aria-label="Halaman berikutnya">' + icon('caret-right') + '</button>' +
+      '</div></div>';
+    if (window.KKPagination) window.KKPagination.init(host);
+  }
+
+  // Aksi simpan (tombol [data-save]) untuk wadah mana pun. Tombol diperbarui di tempat (tanpa render ulang), lalu onChange dipanggil.
+  function paintSave(id, on) {
+    document.querySelectorAll('[data-save="' + id + '"]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(on));
+      b.setAttribute('aria-label', on ? 'Lepas simpanan' : 'Simpan lowongan');
+      var i = b.querySelector('i');
+      if (i) { i.classList.toggle('kk-fill', on); i.classList.toggle('text-primary-600', on); }
+      var l = b.querySelector('[data-save-label]');
+      if (l) l.textContent = on ? 'Tersimpan' : 'Simpan';
+    });
+  }
+  function bindSave(root, onChange) {
+    root.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-save]');
+      if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var id = parseInt(btn.getAttribute('data-save'), 10);
+      var on = toggleSave(id);
+      paintSave(id, on);
+      toast('success', on ? 'Lowongan disimpan.' : 'Simpanan dilepas.');
+      if (onChange) onChange(id, on);
+    });
+  }
+
+  // ---- komponen Combo (dropdown pilihan KarirKit): markup dibuat dari daftar opsi, perilakunya sama dengan halaman tracer study.
+  // options: [[nilai, label], ...]; `all` = label untuk nilai kosong ("Semua kota"). Perubahan memicu event `combo:change` (detail.value).
+  function comboHtml(o) {
+    var items = [['', o.all]].concat(o.options);
+    var cur = items.filter(function (i) { return i[0] === (o.value || ''); })[0] || items[0];
+    return '<div id="' + o.id + '" class="combo combo-full" data-combo data-value="' + esc(cur[0]) + '">' +
+      '<button type="button" class="combo-trigger ' + (o.triggerClass || '') + '" data-combo-trigger aria-haspopup="listbox" aria-expanded="false" aria-label="' + esc(o.label || o.all) + '">' +
+        '<span data-combo-label class="truncate">' + esc(cur[1]) + '</span>' + icon('caret-down', 'combo-chevron') + '</button>' +
+      '<div class="combo-menu ' + (o.menuClass || '') + '" data-combo-menu><div class="combo-list" data-combo-list role="listbox">' +
+        items.map(function (i) {
+          return '<button type="button" role="option" class="combo-item' + (i[0] === cur[0] ? ' is-selected' : '') + '" data-combo-item data-value="' + esc(i[0]) + '" data-label="' + esc(i[1]) + '">' + esc(i[1]) + '</button>';
+        }).join('') +
+      '</div></div></div>';
+  }
+  function comboSet(root, value) {
+    var found = null;
+    root.querySelectorAll('[data-combo-item]').forEach(function (it) {
+      var on = it.getAttribute('data-value') === value;
+      it.classList.toggle('is-selected', on);
+      if (on) found = it;
+    });
+    if (!found) return;
+    root.dataset.value = value;
+    root.querySelector('[data-combo-label]').textContent = found.getAttribute('data-label');
+  }
+  function initCombo(root) {
+    if (root._kkCombo) return;
+    var trigger = root.querySelector('[data-combo-trigger]');
+    var menu = root.querySelector('[data-combo-menu]');
+    if (!trigger || !menu) return;
+    root._kkCombo = true;
+
+    function place() {
+      var tr = trigger.getBoundingClientRect();
+      var mr = menu.getBoundingClientRect();
+      var vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
+      var below = vh - tr.bottom, above = tr.top;
+      var vertical = below >= mr.height + 8 || below >= above ? 'bottom' : 'top';
+      var horizontal = vw - tr.left >= mr.width + 8 || vw - tr.left >= tr.right ? 'start' : 'end';
+      menu.setAttribute('data-placement', vertical + '-' + horizontal);
+    }
+    function isOpen() { return menu.classList.contains('is-open'); }
+    function close() {
+      if (!isOpen()) return;
+      menu.classList.remove('is-open');
+      root.removeAttribute('data-open');
+      trigger.setAttribute('aria-expanded', 'false');
+      document.removeEventListener('click', outside, true);
+      document.removeEventListener('keydown', onKey);
+    }
+    function open() {
+      document.querySelectorAll('.combo-menu.is-open').forEach(function (m) { if (m !== menu) { m.classList.remove('is-open'); m.parentNode.removeAttribute('data-open'); } });
+      place();
+      menu.classList.add('is-open');
+      root.setAttribute('data-open', 'true');
+      trigger.setAttribute('aria-expanded', 'true');
+      document.addEventListener('click', outside, true);
+      document.addEventListener('keydown', onKey);
+    }
+    function outside(e) { if (!root.contains(e.target)) close(); }
+    function onKey(e) { if (e.key === 'Escape') { close(); trigger.focus(); } }
+
+    trigger.addEventListener('click', function (e) { e.stopPropagation(); if (isOpen()) close(); else open(); });
+    menu.addEventListener('click', function (e) {
+      var item = e.target.closest('[data-combo-item]');
+      if (!item) return;
+      var value = item.getAttribute('data-value') || '';
+      comboSet(root, value);
+      close();
+      root.dispatchEvent(new CustomEvent('combo:change', { bubbles: true, detail: { value: value } }));
+    });
+    place();
+  }
+  function initCombos(scope) { (scope || document).querySelectorAll('[data-combo]').forEach(initCombo); }
+
+  // Isi nama pengguna di navbar, tahun di footer, dan beri efek kaca pada navbar saat halaman digulir.
+  function initShell() {
+    var name = user.name || 'Pengguna';
+    document.querySelectorAll('[data-user-initials]').forEach(function (el) { el.textContent = initials(user.name); });
+    document.querySelectorAll('[data-user-name]').forEach(function (el) { el.textContent = name; });
+    document.querySelectorAll('[data-user-email]').forEach(function (el) { el.textContent = user.email || 'Email belum diisi'; });
+    document.querySelectorAll('.js-current-year').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+    var nav = document.querySelector('[data-glass-nav]');
+    if (nav) {
+      var sync = function () { nav.setAttribute('data-scrolled', String(window.scrollY > 8)); };
+      sync();
+      window.addEventListener('scroll', sync, { passive: true });
+    }
+  }
+
+  window.PK = {
+    JOBS: JOBS, STATUSES: STATUSES, STEPS: STEPS, FIELDS: FIELDS, api: api,
+    user: user, prefs: prefs, onboarded: onboarded, hasPrefs: hasPrefs,
+    esc: esc, initials: initials, when: when, dateOf: dateOf, icon: icon, profile: profile,
+    statusOf: statusOf, tintOf: tintOf, isActive: isActive, history: history, hasApplied: hasApplied,
+    isSaved: isSaved, savedCount: function () { return savedIds.length; }, toast: toast,
+    latest: latest, debounce: debounce,
+    comboHtml: comboHtml, comboSet: comboSet, initCombos: initCombos,
+    logo: logo, tag: tag, saveButton: saveButton, jobCard: jobCard, jobRow: jobRow, stageBar: stageBar, bindSave: bindSave, initShell: initShell,
+    skeletonRows: skeletonRows, skeletonCards: skeletonCards, skeletonDetail: skeletonDetail, emptyBox: emptyBox, errorBox: errorBox, pager: pager
+  };
+})();
