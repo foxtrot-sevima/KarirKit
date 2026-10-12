@@ -4,6 +4,10 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Komponen Chart** (`data-chart`, `assets/js/chart.js`): grafik line, area, column, bar horizontal, donut, pie, radial, dan sparkline yang mengikuti token warna serta mode gelap, tanpa CDN (mesin grafik di-vendor di `assets/js/vendor/apexcharts.min.js`, MIT 4.7.0). Konfigurasi lewat atribut `data-chart-series|categories|colors|height|legend|format|stacked|options`; API `KKChart.init|render|get|destroy`. Disertai lima layout kartu (area, statistik ringkas, kolom, donut dengan rincian, bar), story Storybook, dan bagian Chart di `index.html`.
+
 ### Changed
 
 - **Tab template pada jawaban arsip** (`kuesioner-arsip-jawaban`): keterangan "belum" pada template yang belum diisi dihapus; tab hanya berisi nama template, dan keadaan kosong di bawah tab menjelaskan bila alumni belum mengisi, dengan kalimat "Alumni ini belum mengisi Kuesioner Pengguna Lulusan" (bukan "Template ...").

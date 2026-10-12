@@ -54,3 +54,12 @@ part of KarirKit's own icon set, not branded as Phosphor Icons.
 - Di-vendor apa adanya (tanpa modifikasi) supaya komponen QR Code
   (`assets/js/qr-code.js`) berjalan sepenuhnya offline, tanpa CDN. Teks lisensi
   MIT tercantum di header file tersebut.
+
+## ApexCharts
+
+- **Location:** `assets/js/vendor/apexcharts.min.js` (lisensi: `assets/js/vendor/apexcharts.LICENSE.txt`)
+- **Copyright:** ApexCharts (https://github.com/apexcharts/apexcharts.js)
+- **License:** MIT — versi 4.7.0, rilis MIT terakhir (versi 5 ke atas memakai lisensi lain)
+- Di-vendor apa adanya supaya komponen Chart (`assets/js/chart.js`) berjalan
+  offline tanpa CDN. Versi dikunci persis di `devDependencies`; jangan dinaikkan
+  ke major baru tanpa memeriksa lisensinya.

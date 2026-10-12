@@ -171,6 +171,7 @@
       <a href="#toasts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Toast</a>
       <a href="#qr-code" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">QR Code</a>
       <a href="#wysiwyg" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">WYSIWYG</a>
+      <a href="#chart" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Chart</a>
       <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Misc</a>
     </div>
   </div>
@@ -4986,6 +4987,162 @@
   </section>
 
   <!-- ============================= PROGRESS / MISC ============================= -->
+  <section id="chart" class="scroll-mt-32 py-12">
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Chart</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Grafik line, area, column, bar, donut, pie, radial, dan sparkline yang mengikuti token warna dan mode gelap, plus layout kartu dengan ringkasan, periode, dan tautan laporan. Cukup tulis <code class="kbd">data-chart="line"</code> dengan <code class="kbd">data-chart-series</code>, <code class="kbd">-categories</code>, <code class="kbd">-colors</code>, <code class="kbd">-height</code>, <code class="kbd">-legend</code>, <code class="kbd">-format</code>; dirender oleh <code class="kbd">assets/js/chart.js</code> (API <code class="kbd">KKChart.init|render|get|destroy</code>).</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Line chart</h3>
+      <p class="mb-3 text-sm text-slate-500">Garis halus untuk tren. Beberapa seri otomatis memakai warna token berurutan.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <p class="text-sm font-semibold text-fg">Lamaran per bulan</p>
+  <p class="mb-3 text-xs text-fg-muted">6 bulan terakhir</p>
+  <div data-chart="line" data-chart-series="[{&quot;name&quot;:&quot;Lamaran&quot;,&quot;data&quot;:[4,7,5,9,12,10]},{&quot;name&quot;:&quot;Diterima&quot;,&quot;data&quot;:[1,2,2,3,5,4]}]" data-chart-categories="[&quot;Mei&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Agu&quot;,&quot;Sep&quot;,&quot;Okt&quot;]" data-chart-colors="[&quot;primary&quot;,&quot;secondary&quot;]" data-chart-height="260"></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Area chart</h3>
+      <p class="mb-3 text-sm text-slate-500">Garis dengan isian gradasi lembut; cocok untuk satu seri berkelanjutan.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <p class="text-sm font-semibold text-fg">Kunjungan lowongan</p>
+  <p class="mb-3 text-xs text-fg-muted">Tren pengunjung</p>
+  <div data-chart="area" data-chart-series="[{&quot;name&quot;:&quot;Kunjungan&quot;,&quot;data&quot;:[31,40,28,51,42,62]}]" data-chart-categories="[&quot;Mei&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Agu&quot;,&quot;Sep&quot;,&quot;Okt&quot;]" data-chart-colors="[&quot;primary&quot;]" data-chart-height="260" data-chart-legend="none"></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Column chart (stacked)</h3>
+      <p class="mb-3 text-sm text-slate-500">Kolom bersudut membulat. Tambahkan <code>data-chart-stacked</code> untuk menumpuk seri.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <p class="text-sm font-semibold text-fg">Pengisian kuesioner</p>
+  <p class="mb-3 text-xs text-fg-muted">Per angkatan</p>
+  <div data-chart="column" data-chart-series="[{&quot;name&quot;:&quot;Sudah&quot;,&quot;data&quot;:[12,18,15,22]},{&quot;name&quot;:&quot;Belum&quot;,&quot;data&quot;:[8,6,9,4]}]" data-chart-categories="[&quot;2022&quot;,&quot;2023&quot;,&quot;2024&quot;,&quot;2025&quot;]" data-chart-colors="[&quot;primary&quot;,&quot;secondary&quot;]" data-chart-height="260" data-chart-stacked="true"></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Bar chart (horizontal)</h3>
+      <p class="mb-3 text-sm text-slate-500">Batang horizontal untuk peringkat. Format angka lewat <code>data-chart-format</code> (number, percent, rupiah, compact).</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <p class="text-sm font-semibold text-fg">Sebaran lokasi kerja</p>
+  <p class="mb-3 text-xs text-fg-muted">Persentase alumni</p>
+  <div data-chart="bar" data-chart-series="[{&quot;name&quot;:&quot;Alumni&quot;,&quot;data&quot;:[62,48,35,20]}]" data-chart-categories="[&quot;Jakarta&quot;,&quot;Bandung&quot;,&quot;Surabaya&quot;,&quot;Medan&quot;]" data-chart-colors="[&quot;primary&quot;]" data-chart-height="240" data-chart-legend="none" data-chart-format="percent"></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Donut chart</h3>
+      <p class="mb-3 text-sm text-slate-500">Total ditampilkan di tengah; label lewat <code>data-chart-total-label</code>.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <p class="text-sm font-semibold text-fg">Status lamaran</p>
+  <p class="mb-3 text-xs text-fg-muted">Semua lamaran</p>
+  <div data-chart="donut" data-chart-series="[2,2,2,4,5]" data-chart-categories="[&quot;Terkirim&quot;,&quot;Diproses&quot;,&quot;Wawancara&quot;,&quot;Diterima&quot;,&quot;Ditolak&quot;]" data-chart-colors="[&quot;info&quot;,&quot;warning&quot;,&quot;primary&quot;,&quot;success&quot;,&quot;danger&quot;]" data-chart-height="300" data-chart-total-label="Lamaran"></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Pie chart</h3>
+      <p class="mb-3 text-sm text-slate-500">Proporsi sederhana tanpa lubang di tengah.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <p class="text-sm font-semibold text-fg">Status setelah lulus</p>
+  <p class="mb-3 text-xs text-fg-muted">Hasil tracer study</p>
+  <div data-chart="pie" data-chart-series="[42,48,10]" data-chart-categories="[&quot;Bekerja&quot;,&quot;Studi&quot;,&quot;Mencari&quot;]" data-chart-colors="[&quot;success&quot;,&quot;info&quot;,&quot;warning&quot;]" data-chart-height="300"></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Radial chart</h3>
+      <p class="mb-3 text-sm text-slate-500">Capaian dalam cincin (0–100). Dengan lebih dari satu seri, tengahnya menampilkan rata-rata.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <p class="text-sm font-semibold text-fg">Capaian respon</p>
+  <p class="mb-3 text-xs text-fg-muted">Terhadap target</p>
+  <div data-chart="radial" data-chart-series="[76,64]" data-chart-categories="[&quot;Respon&quot;,&quot;Target&quot;]" data-chart-colors="[&quot;primary&quot;,&quot;success&quot;]" data-chart-height="300"></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Sparkline</h3>
+      <p class="mb-3 text-sm text-slate-500">Grafik mini tanpa sumbu, legenda, atau grid — untuk dipasang di dalam kartu statistik.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card flex items-center justify-between gap-4 p-5">
+  <div><p class="text-xs text-fg-muted">Pelamar baru</p><p class="text-2xl font-bold text-fg">1.284</p><span class="badge badge-success mt-1">+12%</span></div>
+  <div class="w-40"><div data-chart="sparkline" data-chart-series="[{&quot;name&quot;:&quot;Pelamar&quot;,&quot;data&quot;:[12,18,14,22,19,28,31]}]" data-chart-colors="[&quot;success&quot;]" data-chart-height="64"></div></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Kartu area dengan ringkasan</h3>
+      <p class="mb-3 text-sm text-slate-500">Layout kartu umum: nilai besar + persentase perubahan di atas, grafik area di tengah, pilihan periode dan tautan laporan di bawah.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <div class="flex items-start justify-between">
+    <div><p class="text-3xl font-bold text-fg">32,4 rb</p><p class="text-sm text-fg-muted">Pelamar minggu ini</p></div>
+    <span class="inline-flex items-center gap-0.5 text-sm font-semibold text-success-600">12%<i class="kk kk-arrow-up h-3.5 w-3.5"></i></span>
+  </div>
+  <div data-chart="area" data-chart-series="[{&quot;name&quot;:&quot;Pelamar&quot;,&quot;data&quot;:[180,220,190,280,260,340,320]}]" data-chart-categories="[&quot;Sen&quot;,&quot;Sel&quot;,&quot;Rab&quot;,&quot;Kam&quot;,&quot;Jum&quot;,&quot;Sab&quot;,&quot;Min&quot;]" data-chart-colors="[&quot;primary&quot;]" data-chart-height="200" data-chart-legend="none"></div>
+  <div class="mt-4 flex items-center justify-between border-t border-border pt-4">
+  <select class="select h-9 w-auto py-0 text-sm" aria-label="Periode"><option>7 hari terakhir</option><option>30 hari terakhir</option><option>90 hari terakhir</option></select>
+  <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600 hover:underline">Laporan lengkap<i class="kk kk-caret-right h-3.5 w-3.5"></i></a>
+</div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Kartu dengan statistik ringkas</h3>
+      <p class="mb-3 text-sm text-slate-500">Beberapa angka ringkas di atas grafik garis dua seri, dengan footer periode.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <div class="mb-4 grid grid-cols-2 gap-3">
+    <div class="rounded-xl bg-surface-muted p-3"><p class="text-xs text-fg-muted">Lamaran</p><p class="text-lg font-bold text-fg">1.284</p><span class="inline-flex items-center gap-0.5 text-sm font-semibold text-success-600">8,2%<i class="kk kk-arrow-up h-3.5 w-3.5"></i></span></div>
+    <div class="rounded-xl bg-surface-muted p-3"><p class="text-xs text-fg-muted">Diterima</p><p class="text-lg font-bold text-fg">312</p><span class="inline-flex items-center gap-0.5 text-sm font-semibold text-danger-600">2,1%<i class="kk kk-arrow-down h-3.5 w-3.5"></i></span></div>
+  </div>
+  <div data-chart="line" data-chart-series="[{&quot;name&quot;:&quot;Lamaran&quot;,&quot;data&quot;:[4,7,5,9,12,10]},{&quot;name&quot;:&quot;Diterima&quot;,&quot;data&quot;:[1,2,2,3,5,4]}]" data-chart-categories="[&quot;Mei&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Agu&quot;,&quot;Sep&quot;,&quot;Okt&quot;]" data-chart-colors="[&quot;primary&quot;,&quot;secondary&quot;]" data-chart-height="220"></div>
+  <div class="mt-4 flex items-center justify-between border-t border-border pt-4">
+  <select class="select h-9 w-auto py-0 text-sm" aria-label="Periode"><option>7 hari terakhir</option><option>30 hari terakhir</option><option>90 hari terakhir</option></select>
+  <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600 hover:underline">Lihat detail<i class="kk kk-caret-right h-3.5 w-3.5"></i></a>
+</div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Kartu kolom dengan legenda</h3>
+      <p class="mb-3 text-sm text-slate-500">Kolom bertumpuk dengan keterangan warna di header kartu, cocok untuk perbandingan dua kelompok.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <div class="mb-1 flex items-center justify-between">
+    <p class="text-lg font-bold text-fg">Pengisian kuesioner</p>
+    <div class="flex items-center gap-3 text-xs text-fg-muted"><span class="inline-flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-full bg-primary-600"></span>Sudah</span><span class="inline-flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-full bg-secondary-500"></span>Belum</span></div>
+  </div>
+  <p class="mb-2 text-sm text-fg-muted">Per angkatan</p>
+  <div data-chart="column" data-chart-series="[{&quot;name&quot;:&quot;Sudah&quot;,&quot;data&quot;:[12,18,15,22]},{&quot;name&quot;:&quot;Belum&quot;,&quot;data&quot;:[8,6,9,4]}]" data-chart-categories="[&quot;2022&quot;,&quot;2023&quot;,&quot;2024&quot;,&quot;2025&quot;]" data-chart-colors="[&quot;primary&quot;,&quot;secondary&quot;]" data-chart-height="240" data-chart-legend="none" data-chart-stacked="true"></div>
+  <div class="mt-4 flex items-center justify-between border-t border-border pt-4">
+  <select class="select h-9 w-auto py-0 text-sm" aria-label="Periode"><option>7 hari terakhir</option><option>30 hari terakhir</option><option>90 hari terakhir</option></select>
+  <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600 hover:underline">Laporan lengkap<i class="kk kk-caret-right h-3.5 w-3.5"></i></a>
+</div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Kartu donut dengan rincian</h3>
+      <p class="mb-3 text-sm text-slate-500">Donut dengan daftar rincian per kategori di bawahnya, lengkap dengan nilai dan titik warna.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <p class="text-lg font-bold text-fg">Status lamaran</p>
+  <p class="mb-2 text-sm text-fg-muted">Semua lowongan aktif</p>
+  <div data-chart="donut" data-chart-series="[4,5,2]" data-chart-categories="[&quot;Diterima&quot;,&quot;Ditolak&quot;,&quot;Diproses&quot;]" data-chart-colors="[&quot;success&quot;,&quot;danger&quot;,&quot;warning&quot;]" data-chart-height="260" data-chart-legend="none" data-chart-total-label="Lamaran"></div>
+  <ul class="mt-2 divide-y divide-border text-sm">
+    <li class="flex items-center justify-between py-2"><span class="inline-flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-success-500"></span>Diterima</span><span class="font-semibold text-fg">4</span></li>
+    <li class="flex items-center justify-between py-2"><span class="inline-flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-danger-500"></span>Ditolak</span><span class="font-semibold text-fg">5</span></li>
+    <li class="flex items-center justify-between py-2"><span class="inline-flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-warning-500"></span>Diproses</span><span class="font-semibold text-fg">2</span></li>
+  </ul>
+  <div class="mt-4 flex items-center justify-between border-t border-border pt-4">
+  <select class="select h-9 w-auto py-0 text-sm" aria-label="Periode"><option>7 hari terakhir</option><option>30 hari terakhir</option><option>90 hari terakhir</option></select>
+  <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600 hover:underline">Laporan lengkap<i class="kk kk-caret-right h-3.5 w-3.5"></i></a>
+</div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Kartu bar dengan peringkat</h3>
+      <p class="mb-3 text-sm text-slate-500">Batang horizontal untuk peringkat dengan judul dan tautan di footer.</p>
+      <div class="flex-1 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card p-5">
+  <div class="flex items-start justify-between"><div><p class="text-lg font-bold text-fg">Lokasi kerja alumni</p><p class="text-sm text-fg-muted">Empat kota teratas</p></div><span class="inline-flex items-center gap-0.5 text-sm font-semibold text-success-600">4,5%<i class="kk kk-arrow-up h-3.5 w-3.5"></i></span></div>
+  <div data-chart="bar" data-chart-series="[{&quot;name&quot;:&quot;Alumni&quot;,&quot;data&quot;:[62,48,35,20]}]" data-chart-categories="[&quot;Jakarta&quot;,&quot;Bandung&quot;,&quot;Surabaya&quot;,&quot;Medan&quot;]" data-chart-colors="[&quot;primary&quot;]" data-chart-height="220" data-chart-legend="none" data-chart-format="percent"></div>
+  <div class="mt-4 flex items-center justify-between border-t border-border pt-4">
+  <select class="select h-9 w-auto py-0 text-sm" aria-label="Periode"><option>7 hari terakhir</option><option>30 hari terakhir</option><option>90 hari terakhir</option></select>
+  <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600 hover:underline">Laporan lengkap<i class="kk kk-caret-right h-3.5 w-3.5"></i></a>
+</div>
+</div></div>
+    </div>
+    </div>
+  </section>
+
   <section id="progress" class="scroll-mt-32 py-12">
     <div class="mb-6">
       <h2 class="font-display text-2xl font-bold text-slate-900">Progress &amp; Misc</h2>
@@ -5331,6 +5488,8 @@
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/datepicker.js"></script>
 <script src="assets/js/pagination.js"></script>
+<script src="assets/js/vendor/apexcharts.min.js"></script>
+<script src="assets/js/chart.js"></script>
 <script src="assets/js/theme.js"></script>
 </body>
 </html>
