@@ -1,48 +1,55 @@
+import { byKey } from "./examples.js";
+
 export default {
   title: "Components/Dropdown",
   tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
-        component:
-          "Menu yang otomatis membalik posisi (bawah/atas, kiri/kanan) sesuai ruang yang tersedia. Ditampilkan dalam state tertutup di sini — buka `index.html` untuk mencoba perilaku auto-placement-nya secara langsung.",
+        component: `
+Menu yang terbuka dari sebuah tombol. Anatomi: \`.dropdown\` > tombol \`[data-ui-dropdown]\` + \`.dropdown-menu\` (tersembunyi lewat \`hidden\`) > \`.dropdown-item\`. Perilaku buka/tutup (klik, Escape, klik di luar) ada di \`assets/js/ui.js\`; CSS saja cukup untuk tampilan.
+
+**Bagian menu:** \`.dropdown-header\` (+ \`-title\`, \`-desc\`) · \`.dropdown-divider\` · \`.dropdown-item-danger\` · \`.dropdown-item-check\` (+ \`.dropdown-item-title\`, \`.dropdown-item-desc\`) · \`.dropdown-search\` · \`.dropdown-scroll\` · \`.dropdown-footer\`. Lebar menu lewat utilitas \`w-*\`.
+
+| Atribut pada tombol | Fungsi |
+| --- | --- |
+| \`data-ui-dropdown-placement\` | \`top\` · \`right\` · \`bottom\` · \`left\`, boleh diakhiri \`-start\` / \`-end\` (default \`bottom-end\`) |
+| \`data-ui-dropdown-offset-distance\` · \`-skidding\` | Jarak dari tombol · geser menyamping (px) |
+| \`data-ui-dropdown-trigger="hover"\` | Buka saat kursor di atas tombol |
+| \`data-ui-dropdown-delay\` | Jeda penutupan untuk mode hover (ms, default 300) |
+
+Tombol di dalam \`.dropdown-menu\` membuka submenu tanpa menutup menu induk.
+`,
       },
     },
   },
 };
 
-function corner(label) {
-  return `
-    <div class="combo">
-      <button type="button" class="btn-outline btn-sm">
-        ${label}
-        <i class="kk kk-caret-down combo-chevron"></i>
-      </button>
-    </div>`;
-}
+const story = (key) => ({
+  parameters: { docs: { description: { story: byKey[key].note } } },
+  render: () => `<div class="p-6">${byKey[key].demo}</div>`,
+});
 
-export const AutoPlacement = {
-  name: "Auto-placement (down / up / left / right)",
-  render: () => `
-    <div class="p-6">
-      <div class="relative h-64 rounded-xl border border-dashed border-slate-200 bg-slate-50/60">
-        <div class="absolute left-3 top-3">${corner("Kiri Atas")}</div>
-        <div class="absolute right-3 top-3">${corner("Kanan Atas")}</div>
-        <div class="absolute bottom-3 left-3">${corner("Kiri Bawah")}</div>
-        <div class="absolute bottom-3 right-3">${corner("Kanan Bawah")}</div>
-      </div>
-    </div>`,
-};
-
-export const MenuContent = {
-  name: "Menu Content",
-  render: () => `
-    <div class="p-6">
-      <div class="dropdown-menu static inline-block w-56">
-        <button type="button" class="dropdown-item">Lihat Detail</button>
-        <button type="button" class="dropdown-item">Edit</button>
-        <button type="button" class="dropdown-item">Duplikat</button>
-        <button type="button" class="dropdown-item dropdown-item-danger">Hapus</button>
-      </div>
-    </div>`,
-};
+export const Default = story("default");
+export const Hover = story("hover");
+export const Delay = story("delay");
+export const Divider = story("divider");
+export const Header = story("header");
+export const MultiLevel = story("multilevel");
+export const Checkbox = story("checkbox");
+export const CheckboxHelper = story("checkbox-helper");
+export const Radio = story("radio");
+export const RadioHelper = story("radio-helper");
+export const Toggle = story("toggle");
+export const Scrolling = story("scroll");
+export const ScrollableCheckboxes = story("scroll-check");
+export const Search = story("search");
+export const MenuIcon = story("icon");
+export const NotificationBell = story("notification");
+export const UserAvatar = story("avatar");
+export const AvatarWithName = story("avatar-name");
+export const Navbar = story("navbar");
+export const Datepicker = story("datepicker");
+export const Sizes = story("sizes");
+export const Placement = story("placement");
+export const Offset = story("offset");
