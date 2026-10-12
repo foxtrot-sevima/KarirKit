@@ -18948,7 +18948,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .th-sortable.is-sorted .sort-icon { @apply text-primary-600 opacity-100; }
 
   .dropdown-menu {
-    @apply absolute right-0 mt-1 w-44 rounded-control border border-border/70 bg-surface p-1 shadow-card-lg;
+    @apply absolute right-0 mt-1 w-44 rounded-control border border-border/70 bg-surface p-2 shadow-card-lg;
     z-index: var(--z-dropdown);
   }
   /* Flip-up variant — set by the shared openDropdownMenu() helper when the
@@ -18958,6 +18958,34 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .dropdown-menu.dropdown-menu-up { @apply top-auto bottom-full mt-0 mb-1; }
   .dropdown-item { @apply flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-neutral-600 hover:bg-neutral-50 hover:text-fg; }
   .dropdown-item-danger { @apply text-danger-600 hover:bg-danger-50 hover:text-danger-700; }
+
+  /* Dropdown — wrapper, placement, and menu parts.
+     Placement: data-placement="top|right|bottom|left[-start|-end]" on .dropdown-menu (set by assets/js/ui.js
+     from data-ui-dropdown-placement on the trigger). Offset: --dd-distance / --dd-skidding. */
+  .dropdown { @apply relative inline-block; }
+  .dropdown-menu[data-placement] { top: auto; right: auto; bottom: auto; left: auto; margin: 0; }
+  .dropdown-menu[data-placement^="bottom"] { top: calc(100% + var(--dd-distance, 4px)); }
+  .dropdown-menu[data-placement^="top"] { bottom: calc(100% + var(--dd-distance, 4px)); }
+  .dropdown-menu[data-placement^="right"] { left: calc(100% + var(--dd-distance, 4px)); }
+  .dropdown-menu[data-placement^="left"] { right: calc(100% + var(--dd-distance, 4px)); }
+  .dropdown-menu[data-placement="bottom"], .dropdown-menu[data-placement="top"] { left: 50%; transform: translateX(calc(-50% + var(--dd-skidding, 0px))); }
+  .dropdown-menu[data-placement$="-start"][data-placement^="bottom"], .dropdown-menu[data-placement$="-start"][data-placement^="top"] { left: var(--dd-skidding, 0px); }
+  .dropdown-menu[data-placement$="-end"][data-placement^="bottom"], .dropdown-menu[data-placement$="-end"][data-placement^="top"] { right: calc(0px - var(--dd-skidding, 0px)); }
+  .dropdown-menu[data-placement="right"], .dropdown-menu[data-placement="left"] { top: 50%; transform: translateY(calc(-50% + var(--dd-skidding, 0px))); }
+  .dropdown-menu[data-placement$="-start"][data-placement^="right"], .dropdown-menu[data-placement$="-start"][data-placement^="left"] { top: calc(-0.5rem + var(--dd-skidding, 0px)); }
+  .dropdown-menu[data-placement$="-end"][data-placement^="right"], .dropdown-menu[data-placement$="-end"][data-placement^="left"] { bottom: calc(-0.5rem - var(--dd-skidding, 0px)); }
+  .dropdown-item[aria-expanded="true"] { @apply bg-neutral-50 text-fg; }
+  .dropdown-divider { @apply my-1.5 h-px border-0 bg-border/70; }
+  .dropdown-header { @apply mb-1 flex items-center gap-3 rounded-lg bg-neutral-50 p-3 text-sm; }
+  .dropdown-header-title { @apply truncate text-sm font-semibold text-fg; }
+  .dropdown-header-desc { @apply truncate text-xs text-fg-muted; }
+  .dropdown-item-title { @apply block text-sm font-medium text-fg; }
+  .dropdown-item-desc { @apply block text-xs font-normal text-fg-muted; }
+  .dropdown-item-check { @apply items-start gap-3; }
+  .dropdown-item-check .form-check, .dropdown-item-check .form-radio { @apply mt-0.5; }
+  .dropdown-scroll { @apply max-h-48 overflow-y-auto; }
+  .dropdown-search { @apply -mx-2 -mt-2 mb-1 border-b border-border/70 p-2; }
+  .dropdown-footer { @apply -mx-2 -mb-2 mt-1 rounded-b-control border-t border-border/70 p-2; }
 
   .pagination-btn { @apply flex h-8 min-w-8 cursor-pointer items-center justify-center rounded-lg px-2 text-sm font-medium text-fg-muted hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-40; }
   .pagination-btn-active { @apply bg-primary-600! text-white! hover:bg-primary-600!; }
@@ -19499,6 +19527,19 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
     @apply inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 border border-primary-600 bg-primary-600 px-4 text-sm font-semibold text-white
            transition-colors hover:bg-primary-700 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/40;
   }
+  /* ==== List group — .list-group > .list-group-item (li | a | button) ==== */
+  .list-group { @apply w-full overflow-hidden rounded-control border border-border bg-surface text-sm font-medium text-fg; }
+  .list-group-flush { @apply rounded-none border-0; }
+  .list-group-item { @apply flex w-full items-center gap-2 border-b border-border px-4 py-2 text-left; }
+  .list-group > :last-child { @apply border-b-0; }
+  .list-group-item-action { @apply cursor-pointer transition-colors hover:bg-neutral-50 hover:text-primary-600 focus-visible:relative focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500; }
+  .list-group-item[aria-current="true"], .list-group-item.is-active { @apply bg-primary-50 text-primary-700; }
+  .list-group-item:disabled, .list-group-item[aria-disabled="true"] { @apply pointer-events-none cursor-not-allowed text-fg-subtle; }
+
+  .input-group-addon { @apply inline-flex h-10 shrink-0 items-center border border-border bg-neutral-50 px-3.5 text-sm text-fg-muted; }
+  .input-group > .relative > .input-group-btn { @apply rounded-none; }
+  .input-group > :last-child > .input-group-btn,
+  .input-group > :last-child > .btn-group-item { @apply rounded-r-control; }
   .input-icon-btn {
     @apply absolute top-1/2 right-1.5 inline-flex h-7 w-7 -translate-y-1/2 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg;
   }
