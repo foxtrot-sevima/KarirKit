@@ -172,6 +172,7 @@
       <a href="#qr-code" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">QR Code</a>
       <a href="#wysiwyg" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">WYSIWYG</a>
       <a href="#chart" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Chart</a>
+      <a href="#clipboard" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Clipboard</a>
       <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Misc</a>
     </div>
   </div>
@@ -5222,9 +5223,9 @@
           <div class="relative flex items-center gap-2">
             <input id="qr-input-url" class="input" readonly value="https://karirkit.vercel.app/profil/ahmad-dimas" aria-label="URL QR code" />
             <span class="group relative inline-flex">
-              <button type="button" class="btn-outline h-10 w-10 shrink-0 p-0" data-copy-input="#qr-input-url" aria-label="Salin URL">
-                <i data-copy-default class="kk kk-copy h-4 w-4"></i>
-                <i data-copy-success class="kk kk-check hidden h-4 w-4 text-success-600"></i>
+              <button type="button" class="btn-outline h-10 w-10 shrink-0 p-0" data-clipboard-target="#qr-input-url" aria-label="Salin URL">
+                <i data-clipboard-default class="kk kk-copy h-4 w-4"></i>
+                <i data-clipboard-success class="kk kk-check hidden h-4 w-4 text-success-600"></i>
               </button>
               <span class="tooltip-content">Salin URL</span>
             </span>
@@ -5560,6 +5561,134 @@
   <select class="select h-9 w-auto py-0 text-sm" aria-label="Periode"><option>7 hari terakhir</option><option>30 hari terakhir</option><option>90 hari terakhir</option></select>
   <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600 hover:underline">Laporan lengkap<i class="kk kk-caret-right h-3.5 w-3.5"></i></a>
 </div>
+</div></div>
+    </div>
+    </div>
+  </section>
+
+  <section id="clipboard" class="scroll-mt-32 py-12">
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Clipboard</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Tombol untuk menyalin teks - input, input dengan ikon, tombol berlabel, grup input, blok kode, kartu kredensial, detail kontak, dan dialog bagikan. Pasang <code class="kbd">data-clipboard-target</code> pada tombol; <code class="kbd">assets/js/clipboard.js</code> menyalin isi elemen tujuan dan menukar <code class="kbd">[data-clipboard-default]</code> dengan <code class="kbd">[data-clipboard-success]</code> selama 2 detik (opsi <code class="kbd">data-clipboard-type</code>, <code class="kbd">-text</code>, <code class="kbd">-duration</code>, <code class="kbd">-toast</code>; API <code class="kbd">KKClipboard.copy()</code>).</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Default copy to clipboard</h3>
+      <p class="mb-3 text-sm text-slate-500">Tombol dengan <code>data-clipboard-target</code> menyalin isi input. Bagian <code>[data-clipboard-default]</code> berganti ke <code>[data-clipboard-success]</code> selama 2 detik.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="flex w-full max-w-sm gap-2">
+  <input id="cb-npm" type="text" class="input flex-1" value="npm install karirkit" readonly aria-label="npm install karirkit" />
+  <button type="button" class="btn-primary btn-md shrink-0" data-clipboard-target="#cb-npm"><span data-clipboard-default class="inline-flex items-center gap-1.5"><i class="kk kk-copy h-4 w-4"></i>Salin</span><span data-clipboard-success class="hidden items-center gap-1.5 text-success-600"><i class="kk kk-check h-4 w-4"></i>Tersalin!</span></button>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Input with copy button</h3>
+      <p class="mb-3 text-sm text-slate-500">Tombol ikon di dalam input (<code>.input-icon-btn</code>) dengan tooltip yang berubah menjadi "Tersalin!".</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="relative max-w-xs">
+  <input id="cb-icon" type="text" class="input pr-11" value="npm install karirkit" readonly aria-label="npm install karirkit" />
+  <span class="group absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex"><button type="button" class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg" data-clipboard-target="#cb-icon"  aria-label="Salin ke papan klip"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin ke papan klip</span></span>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Copy button with text</h3>
+      <p class="mb-3 text-sm text-slate-500">Tombol kecil berlabel di tepi kanan input.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="relative max-w-xs">
+  <input id="cb-text" type="text" class="input pr-24" value="npm install karirkit" readonly aria-label="npm install karirkit" />
+  <button type="button" class="btn-outline btn-sm absolute right-1.5 top-1/2 -translate-y-1/2" data-clipboard-target="#cb-text"><span data-clipboard-default class="inline-flex items-center gap-1.5"><i class="kk kk-copy h-3.5 w-3.5"></i>Salin</span><span data-clipboard-success class="hidden items-center gap-1.5 text-success-600"><i class="kk kk-check h-3.5 w-3.5"></i>Tersalin</span></button>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Input group with copy</h3>
+      <p class="mb-3 text-sm text-slate-500">Awalan "URL" (<code>.input-group-addon</code>), input, dan tombol salin menyatu dalam <code>.input-group</code>; teks bantuan di bawahnya.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="max-w-sm">
+  <label class="form-label" for="cb-url">Tautan kuesioner</label>
+  <div class="input-group">
+    <span class="input-group-addon">URL</span>
+    <input id="cb-url" type="text" class="input " value="https://karirlink.id/tracer-study" readonly aria-label="https://karirlink.id/tracer-study" />
+    <span class="group relative inline-flex"><button type="button" class="input-group-btn" data-clipboard-target="#cb-url" aria-label="Salin tautan"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin tautan</span></span>
+  </div>
+  <p class="form-hint">Bagikan tautan ini ke alumni lewat email atau pesan.</p>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">URL shortener</h3>
+      <p class="mb-3 text-sm text-slate-500">Tombol aksi di kiri, tautan hasil di tengah, tombol salin di kanan.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="max-w-sm">
+  <label class="form-label" for="cb-short">Perpendek tautan</label>
+  <div class="input-group">
+    <button type="button" class="input-group-btn">Buat</button>
+    <input id="cb-short" type="text" class="input " value="https://krk.it/3U2SXcF" readonly aria-label="https://krk.it/3U2SXcF" />
+    <span class="group relative inline-flex"><button type="button" class="btn-group-item h-10 px-3" data-clipboard-target="#cb-short" aria-label="Salin tautan"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin tautan</span></span>
+  </div>
+  <p class="form-hint">Pastikan tautan yang dimasukkan valid.</p>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Copy source code block</h3>
+      <p class="mb-3 text-sm text-slate-500">Salin isi blok kode: <code>data-clipboard-type="html"</code> membaca <code>innerHTML</code> dengan entitas HTML didekode, jadi yang tersalin adalah kode aslinya.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="relative rounded-control border border-border bg-neutral-50 p-4">
+  <button type="button" class="btn-outline btn-sm absolute right-2 top-2 bg-surface" data-clipboard-target="#cb-code" data-clipboard-type="html"><span data-clipboard-default class="inline-flex items-center gap-1.5"><i class="kk kk-copy h-3.5 w-3.5"></i>Salin</span><span data-clipboard-success class="hidden items-center gap-1.5 text-success-600"><i class="kk kk-check h-3.5 w-3.5"></i>Tersalin</span></button>
+  <pre class="max-h-56 overflow-auto pr-24 font-mono text-sm leading-relaxed text-fg"><code id="cb-code">&lt;div data-chart="line"
+     data-chart-series='[{"name":"Lamaran","data":[4,7,5,9]}]'
+     data-chart-categories='["Mei","Jun","Jul","Agu"]'&gt;&lt;/div&gt;</code></pre>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Card with API keys</h3>
+      <p class="mb-3 text-sm text-slate-500">Beberapa kolom dalam satu kartu, masing-masing punya tombol salin dan tooltip sendiri.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="card max-w-md space-y-4 p-5 sm:p-6">
+  <div><h3 class="text-base font-semibold text-fg">Kredensial API</h3><p class="mt-1 text-sm text-fg-muted">Simpan nilai berikut di tempat yang aman; kunci hanya ditampilkan sekali.</p></div>
+  <div>
+    <label class="form-label" for="cb-acc">ID akun</label>
+    <div class="relative">
+      <input id="cb-acc" type="text" class="input pr-11" value="756593826" readonly aria-label="756593826" />
+      <span class="group absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex"><button type="button" class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg" data-clipboard-target="#cb-acc"  aria-label="Salin ID akun"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin</span></span>
+    </div>
+  </div>
+  <div>
+    <label class="form-label" for="cb-key">Kunci API</label>
+    <div class="relative">
+      <input id="cb-key" type="text" class="input pr-11" value="sk_live_51NzQ2eJf8a" readonly aria-label="sk_live_51NzQ2eJf8a" />
+      <span class="group absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex"><button type="button" class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg" data-clipboard-target="#cb-key"  aria-label="Salin Kunci API"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin</span></span>
+    </div>
+  </div>
+  <div>
+    <label class="form-label" for="cb-arn">Role ARN</label>
+    <div class="relative">
+      <input id="cb-arn" type="text" class="input pr-11" value="123456789012:user/KarirKit" readonly aria-label="123456789012:user/KarirKit" />
+      <span class="group absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex"><button type="button" class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg" data-clipboard-target="#cb-arn"  aria-label="Salin Role ARN"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin</span></span>
+    </div>
+  </div>
+  <div class="flex justify-end gap-3 pt-1"><button type="button" class="btn-outline btn-md">Batal</button><button type="button" class="btn-primary btn-md">Langkah berikutnya</button></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Copy contact details</h3>
+      <p class="mb-3 text-sm text-slate-500">Salin teks biasa dari sebuah blok (<code>data-clipboard-type="text"</code>); tiap baris menjadi satu baris hasil.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><address class="relative grid grid-cols-1 gap-1 rounded-control border border-border bg-neutral-50 p-4 pr-12 not-italic sm:grid-cols-2">
+  <div class="hidden space-y-1 text-sm text-fg-muted sm:block"><p>Nama</p><p>Email</p><p>Telepon</p></div>
+  <div id="cb-contact" class="space-y-1 text-sm font-medium text-fg"><p>Bonnie Green</p><p>bonnie@karirkit.com</p><p>+62 812 3456 7890</p></div>
+  <span class="group absolute right-2 top-2 inline-flex"><button type="button" class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg" data-clipboard-target="#cb-contact" data-clipboard-type="text" aria-label="Salin kontak"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin kontak</span></span>
+</address></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Copy button with modal</h3>
+      <p class="mb-3 text-sm text-slate-500">Tombol salin di dalam dialog bagikan; dialog dibuka dengan <code>data-modal-show</code> (<code>assets/js/modal.js</code>).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><button type="button" class="btn-primary btn-md" data-modal-show="cb-modal"><i class="kk kk-share-network h-4 w-4"></i>Bagikan kursus</button>
+<div class="modal-backdrop" id="cb-modal">
+  <div class="modal-panel modal-md">
+    <div class="modal-header">
+      <div><h3 class="modal-title">Bagikan kursus</h3></div>
+      <button type="button" class="modal-close" data-modal-hide="cb-modal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+    </div>
+    <div class="modal-body">
+      <label class="form-label" for="cb-course">Tautan kursus</label>
+      <div class="relative">
+        <input id="cb-course" type="text" class="input pr-11" value="https://karirlink.id/kursus/ui-ux-dasar" readonly aria-label="https://karirlink.id/kursus/ui-ux-dasar" />
+        <span class="group absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex"><button type="button" class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg" data-clipboard-target="#cb-course"  aria-label="Salin tautan"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin tautan</span></span>
+      </div>
+    </div>
+    <div class="modal-footer"><button type="button" class="btn-outline btn-md" data-modal-hide="cb-modal">Tutup</button></div>
+  </div>
 </div></div>
     </div>
     </div>
@@ -5910,6 +6039,7 @@
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/datepicker.js"></script>
 <script src="assets/js/pagination.js"></script>
+<script src="assets/js/clipboard.js"></script>
 <script src="assets/js/vendor/apexcharts.min.js"></script>
 <script src="assets/js/chart.js"></script>
 <script src="assets/js/theme.js"></script>

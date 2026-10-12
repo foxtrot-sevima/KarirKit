@@ -803,9 +803,9 @@
           <label class="form-label" for="traceLink">Tautan kuesioner</label>
           <div class="input-group">
             <input id="traceLink" type="text" class="input" value="https://karirlink.id/tracer-study" readonly />
-            <button type="button" class="input-group-btn" data-trace-action="copy">
-              <i class="kk kk-copy h-4 w-4" data-copy-default></i><i class="kk kk-check h-4 w-4 hidden" data-copy-done></i>
-              <span data-copy-label>Salin</span>
+            <button type="button" class="input-group-btn" data-clipboard-target="#traceLink" data-clipboard-toast="Tautan kuesioner disalin.">
+              <span data-clipboard-default class="inline-flex items-center gap-2"><i class="kk kk-copy h-4 w-4"></i>Salin</span>
+              <span data-clipboard-success class="hidden items-center gap-2"><i class="kk kk-check h-4 w-4"></i>Tersalin</span>
             </button>
           </div>
         </div>
@@ -848,6 +848,7 @@
 <script src="../../assets/js/pagination.js"></script>
 <script src="../../assets/js/vendor/qrcode.js"></script>
 <script src="../../assets/js/qr-code.js"></script>
+<script src="../../assets/js/clipboard.js"></script>
 <script>
   // Popup Simulasi Tracer: pratinjau email di panggung mengikuti pilihan, dan pilihan "kondisi alumni"
   // hanya aktif untuk Pasca-Lulus 1 Tahun (input yang di-disable tidak ikut terkirim sebagai ?exit=).
@@ -1067,7 +1068,7 @@
     });
   })();</script>
 <script>
-  // QR Tracer Study: salin tautan, layar penuh, cetak, unduh PNG/SVG.
+  // QR Tracer Study: layar penuh, cetak, unduh PNG/SVG (salin tautan lewat assets/js/clipboard.js).
   // QR-nya dirender assets/js/qr-code.js (data-qr); tautan kuesioner satu untuk semua, jadi QR selalu sama.
   (function () {
     const linkEl = document.getElementById('traceLink');
@@ -1116,25 +1117,6 @@
       window.addEventListener('afterprint', done);
       window.print();
     }
-    let copyTimer;
-    function copied() { // button flips to a check for 2s, plus a toast
-      const btn = modal.querySelector('[data-trace-action="copy"]');
-      const swap = (done) => {
-        btn.querySelector('[data-copy-default]').classList.toggle('hidden', done);
-        btn.querySelector('[data-copy-done]').classList.toggle('hidden', !done);
-        btn.querySelector('[data-copy-label]').textContent = done ? 'Tersalin' : 'Salin';
-      };
-      swap(true);
-      clearTimeout(copyTimer);
-      copyTimer = setTimeout(() => swap(false), 2000);
-      toast('success', 'Tautan kuesioner disalin.');
-    }
-    function copyLink() {
-      const fail = () => toast('danger', 'Gagal menyalin tautan.');
-      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(linkEl.value).then(copied, fail);
-      linkEl.select();
-      (document.execCommand('copy') ? copied : fail)();
-    }
     function toggleFullscreen() {
       if (document.fullscreenElement) return document.exitFullscreen();
       if (modal.requestFullscreen) modal.requestFullscreen().catch(() => toast('danger', 'Layar penuh tidak didukung browser ini.'));
@@ -1145,8 +1127,7 @@
       const btn = e.target.closest('[data-trace-action]');
       if (!btn) return;
       const action = btn.dataset.traceAction;
-      if (action === 'copy') copyLink();
-      else if (action === 'print') printSheet();
+      if (action === 'print') printSheet();
       else if (action === 'png') savePng(1200);
       else if (action === 'svg') { save(new Blob([qrSvg(0)], { type: 'image/svg+xml' }), slug + '.svg'); toast('success', 'QR code diunduh (SVG).'); }
       else if (action === 'fullscreen') toggleFullscreen();

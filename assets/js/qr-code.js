@@ -289,24 +289,6 @@
       }
       return;
     }
-    var copy = e.target.closest('[data-copy-input]');
-    if (copy) {
-      var input = document.querySelector(copy.getAttribute('data-copy-input'));
-      if (!input || !navigator.clipboard) return;
-      navigator.clipboard.writeText(input.value).then(function () {
-        var d = copy.querySelector('[data-copy-default]');
-        var ok = copy.querySelector('[data-copy-success]');
-        var tip = copy.parentElement.querySelector('.tooltip-content');
-        if (d) d.classList.add('hidden');
-        if (ok) ok.classList.remove('hidden');
-        if (tip) { tip.dataset.orig = tip.dataset.orig || tip.textContent; tip.textContent = 'Tersalin!'; }
-        setTimeout(function () {
-          if (d) d.classList.remove('hidden');
-          if (ok) ok.classList.add('hidden');
-          if (tip) tip.textContent = tip.dataset.orig;
-        }, 2000);
-      });
-    }
   });
 
   // Auto-init now, on DOM ready, and for markup inserted later (Storybook, SPA)

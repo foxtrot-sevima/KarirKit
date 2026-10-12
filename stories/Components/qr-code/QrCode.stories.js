@@ -124,9 +124,9 @@ export const QrCodeWithInput = {
       <div class="relative flex items-center gap-2">
         <input id="qr-input-url" class="input" readonly value="${URL_DEMO}/profil/ahmad-dimas" aria-label="URL QR code" />
         <span class="group relative inline-flex">
-          <button type="button" class="btn-outline h-10 w-10 shrink-0 p-0" data-copy-input="#qr-input-url" aria-label="Salin URL">
-            <i data-copy-default class="kk kk-copy h-4 w-4"></i>
-            <i data-copy-success class="kk kk-check hidden h-4 w-4 text-success-600"></i>
+          <button type="button" class="btn-outline h-10 w-10 shrink-0 p-0" data-clipboard-target="#qr-input-url" aria-label="Salin URL">
+            <i data-clipboard-default class="kk kk-copy h-4 w-4"></i>
+            <i data-clipboard-success class="kk kk-check hidden h-4 w-4 text-success-600"></i>
           </button>
           <span class="tooltip-content">Salin URL</span>
         </span>
