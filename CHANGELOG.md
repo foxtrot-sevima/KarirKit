@@ -4,12 +4,15 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.3.7] - 2026-10-13
+
 ### Added
 
 - **Komponen Navbar** (`.navbar`, `.navbar-inner`, `.navbar-brand`, `.navbar-toggle`, `.navbar-menu`, `.navbar-nav`, `.navbar-link`, `.navbar-actions`; varian `.navbar-sticky`, `-fixed`, `-solid`, `-plain`, `-app`): 11 contoh - dasar, dropdown, dropdown bertingkat, tombol ajakan, dua baris, pencarian, pemilih bahasa, menu pengguna, mega menu, latar solid, dan menu hamburger. Menu ponsel lewat `data-ui-collapse` (atribut baru `data-ui-collapse-static` agar ikon tombol tidak berputar).
 - **Komponen Footer** (`.footer`, `.footer-card`, `.footer-inner`, `.footer-row`, `.footer-copy`, `.footer-links`, `.footer-heading`, `.footer-list`, `.footer-divider`, `.footer-social`, `.footer-fixed`, `.footer-bar`, `.footer-center`): enam contoh - dasar, dengan logo, ikon sosial, peta situs, menempel di bawah, dan varian ringkas halaman aplikasi.
 - **Komponen Tabs** (`.tabs` + `.tabs-default`, `.tabs-underline`, `.tabs-pills`, `.tabs-vertical`, `.tabs-full` > `.tabs-item`): tab berlatar, bergaris bawah (dengan ikon), pil, vertikal, selebar kontainer dengan `select` di ponsel, serta tab interaktif dengan panel dan warna aktif/nonaktif yang dapat diganti (`data-ui-tabs-active-classes`, `-inactive-classes`). `ui.js` kini mendukung navigasi panah/Home/End, `select` pendamping (`data-ui-tab-select`), dan tidak melompat ke atas untuk tab bertautan `#`. Sembilan contoh di Storybook dan `index.html`; tab bersegmen `.tab` tidak berubah.
 - **Komponen Timeline** (`.timeline`, `.timeline-item`, `.timeline-marker`, `.timeline-dot`, `.timeline-time`, `.timeline-title`, `.timeline-body`, `.timeline-steps`): urutan peristiwa vertikal (titik polos dan penanda berikon), stepper mendatar yang menumpuk di ponsel, log aktivitas dengan avatar, dan linimasa berkelompok per tanggal. Hanya CSS. Lima contoh di Storybook dan `index.html`.
+- **Pola tabel daftar admin** (`.table-search`, `.table-filters`, `.table-toolbar-many`, `.table-col-aside`, `.table-action` + `.table-action-label`, `.badge-wrap`, `.card-heading` + `.card-heading-icon`): toolbar dengan pencarian di kiri dan filter di kanan (4 filter atau lebih jadi grid 1/2/4 kolom), kolom pendamping yang menyingkir di lebar sempit, tombol aksi baris ikon saja di bawah `xl`, badge status yang membungkus di ponsel, dan judul kartu berikon. Satu contoh baru di Storybook: "Admin list (filter, status, aksi)".
 
 ### Fixed
 
@@ -20,6 +23,11 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - **Navbar dan footer di template memakai komponen baru**: bilah atas aplikasi (`.navbar.navbar-sticky.navbar-app`, 16 halaman), header logo halaman error (`.navbar.navbar-plain`, 8 halaman), footer aplikasi (`.footer.footer-bar`, 14 halaman) dan footer tengah login/error (`.footer.footer-center`, 10 halaman). Tampilan tidak berubah.
 - **Badge hero `index.html`** kini berbunyi "Dibangun dengan Tailwind CSS v4" tanpa nomor versi, supaya tidak perlu diubah setiap rilis.
+- **Mahasiswa/Alumni dirombak penuh** (daftar dan detail di panel admin KarirLink): daftar memakai tabel standar (No, urut, cari nama/NIM/email, filter Program Studi, Angkatan, Tipe, Status Karier, paginasi, KPI mengikuti filter) dan tanpa avatar; detail berisi profil, progres Tracer Study per gelombang, riwayat karier (Timeline), preferensi karier, dan tabel aktivitas lamaran, tanpa data yang diulang.
+- **Yudisium, detail Yudisium, dan detail Arsip Kuesioner** memakai kelas pola tabel baru, sehingga toolbar, tombol aksi, dan badge statusnya seragam.
+- **Footer tabel (`.table-footer`) rata tengah di ponsel**: teks info di atas, nomor halaman di bawahnya; dari `sm` kembali ke satu baris.
+- **Label dropdown `.combo`** tidak lagi membungkus ke baris kedua (dipotong dengan elipsis bila terlalu panjang).
+- **Template Portal Karir didesain ulang** sebagai halaman dengan navbar atas: kartu lowongan, detail satu gulir, dan pelacak lamaran.
 
 ## [1.3.6] - 2026-10-12
 

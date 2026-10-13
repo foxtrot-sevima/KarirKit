@@ -239,15 +239,15 @@
     <div class="table-wrap overflow-visible" id="yudTableRoot" data-table data-page-size="5" data-item-label="mahasiswa" data-combo-boundary>
       <!-- Toolbar -->
       <div class="table-toolbar">
-        <div class="relative w-full sm:w-64">
+        <div class="table-search">
           <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
             <i class="kk kk-magnifying-glass h-4 w-4"></i>
           </span>
           <label for="yudSearch" class="sr-only">Cari nama, NIM, atau email</label>
           <input id="yudSearch" type="search" class="input h-9 pl-9" placeholder="Cari nama, NIM, atau email..." data-table-search />
         </div>
-        <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
-          <div id="filterStatus" class="combo w-full sm:w-52" data-combo data-value="all">
+        <div class="table-filters">
+          <div id="filterStatus" class="combo" data-combo data-value="all">
             <button type="button" class="combo-trigger" data-combo-trigger>
               <span data-combo-label>Semua Status</span>
               <i class="kk kk-caret-down combo-chevron"></i>
@@ -295,10 +295,10 @@
               </td>
               <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Informatika</td>
               <td class="hidden max-w-[220px] truncate xl:table-cell">andi.nugroho@mail.ac.id</td>
-              <td><span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span></td>
+              <td><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Andi Nugroho"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Andi Nugroho"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="table-action-label">Kirim Reminder</span></button>
                 </div>
               </td>
             </tr>
@@ -312,10 +312,10 @@
               </td>
               <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Sistem Informasi</td>
               <td class="hidden max-w-[220px] truncate xl:table-cell">sari.puspita@mail.ac.id</td>
-              <td><span class="badge-success max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-success-600"></span>Sudah Mengisi</span></td>
+              <td><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-jawaban.html?nim=2111500214" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat jawaban Sari Puspita"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></a>
+                  <a href="yudisium-jawaban.html?nim=2111500214" class="btn-outline btn-sm table-action" title="Lihat Jawaban" aria-label="Lihat jawaban Sari Puspita"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Jawaban</span></a>
                 </div>
               </td>
             </tr>
@@ -329,10 +329,10 @@
               </td>
               <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Informatika</td>
               <td class="hidden max-w-[220px] truncate xl:table-cell">rudi.hartono@mail.ac.id</td>
-              <td><span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span></td>
+              <td><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Rudi Hartono"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Rudi Hartono"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="table-action-label">Kirim Reminder</span></button>
                 </div>
               </td>
             </tr>
@@ -346,10 +346,10 @@
               </td>
               <td class="hidden max-w-[180px] truncate lg:table-cell">D3 - Manajemen Informatika</td>
               <td class="hidden max-w-[220px] truncate xl:table-cell">dewi.pratiwi@mail.ac.id</td>
-              <td><span class="badge-neutral max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-slate-400"></span>Belum Dikirim</span></td>
+              <td><span class="badge-neutral badge-wrap"><span class="badge-dot bg-slate-400"></span>Belum Dikirim</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-send-row title="Kirim Kuesioner" aria-label="Kirim kuesioner ke Dewi Pratiwi"><i class="kk kk-envelope-simple h-4 w-4"></i><span class="hidden xl:inline">Kirim Kuesioner</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-send-row title="Kirim Kuesioner" aria-label="Kirim kuesioner ke Dewi Pratiwi"><i class="kk kk-envelope-simple h-4 w-4"></i><span class="table-action-label">Kirim Kuesioner</span></button>
                 </div>
               </td>
             </tr>
@@ -363,10 +363,10 @@
               </td>
               <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Elektro</td>
               <td class="hidden max-w-[220px] truncate xl:table-cell">bella.lestari@mail.ac.id</td>
-              <td><span class="badge-success max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-success-600"></span>Sudah Mengisi</span></td>
+              <td><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-jawaban.html?nim=2111500552" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat jawaban Bella Lestari"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></a>
+                  <a href="yudisium-jawaban.html?nim=2111500552" class="btn-outline btn-sm table-action" title="Lihat Jawaban" aria-label="Lihat jawaban Bella Lestari"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Jawaban</span></a>
                 </div>
               </td>
             </tr>
@@ -380,10 +380,10 @@
               </td>
               <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Informatika</td>
               <td class="hidden max-w-[220px] truncate xl:table-cell">fajar.ardiansyah@mail.ac.id</td>
-              <td><span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span></td>
+              <td><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Fajar Ardiansyah"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Fajar Ardiansyah"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="table-action-label">Kirim Reminder</span></button>
                 </div>
               </td>
             </tr>
@@ -397,10 +397,10 @@
               </td>
               <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Sistem Informasi</td>
               <td class="hidden max-w-[220px] truncate xl:table-cell">indah.nuraini@mail.ac.id</td>
-              <td><span class="badge-success max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-success-600"></span>Sudah Mengisi</span></td>
+              <td><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-jawaban.html?nim=2111500778" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat jawaban Indah Nuraini"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></a>
+                  <a href="yudisium-jawaban.html?nim=2111500778" class="btn-outline btn-sm table-action" title="Lihat Jawaban" aria-label="Lihat jawaban Indah Nuraini"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Jawaban</span></a>
                 </div>
               </td>
             </tr>
@@ -414,10 +414,10 @@
               </td>
               <td class="hidden max-w-[180px] truncate lg:table-cell">D3 - Manajemen Informatika</td>
               <td class="hidden max-w-[220px] truncate xl:table-cell">yoga.pratama@mail.ac.id</td>
-              <td><span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span></td>
+              <td><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Yoga Pratama"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-reminder-row title="Kirim Reminder" aria-label="Kirim reminder ke Yoga Pratama"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="table-action-label">Kirim Reminder</span></button>
                 </div>
               </td>
             </tr>
@@ -431,10 +431,10 @@
               </td>
               <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Elektro</td>
               <td class="hidden max-w-[220px] truncate xl:table-cell">maya.ramadhani@mail.ac.id</td>
-              <td><span class="badge-neutral max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-slate-400"></span>Belum Dikirim</span></td>
+              <td><span class="badge-neutral badge-wrap"><span class="badge-dot bg-slate-400"></span>Belum Dikirim</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-send-row title="Kirim Kuesioner" aria-label="Kirim kuesioner ke Maya Ramadhani"><i class="kk kk-envelope-simple h-4 w-4"></i><span class="hidden xl:inline">Kirim Kuesioner</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-send-row title="Kirim Kuesioner" aria-label="Kirim kuesioner ke Maya Ramadhani"><i class="kk kk-envelope-simple h-4 w-4"></i><span class="table-action-label">Kirim Kuesioner</span></button>
                 </div>
               </td>
             </tr>
@@ -448,10 +448,10 @@
               </td>
               <td class="hidden max-w-[180px] truncate lg:table-cell">S1 - Teknik Informatika</td>
               <td class="hidden max-w-[220px] truncate xl:table-cell">hendra.wijaya@mail.ac.id</td>
-              <td><span class="badge-success max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-success-600"></span>Sudah Mengisi</span></td>
+              <td><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Sudah Mengisi</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-jawaban.html?nim=2111501016" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat jawaban Hendra Wijaya"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></a>
+                  <a href="yudisium-jawaban.html?nim=2111501016" class="btn-outline btn-sm table-action" title="Lihat Jawaban" aria-label="Lihat jawaban Hendra Wijaya"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Jawaban</span></a>
                 </div>
               </td>
             </tr>
@@ -673,8 +673,8 @@
     const confirmIcon = document.getElementById('yudReminderConfirmIcon');
     if (!root || !modal) return;
 
-    const WAITING_BADGE = '<span class="badge-warning max-w-[88px] whitespace-normal text-center sm:max-w-none sm:whitespace-nowrap sm:text-left"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span>Menunggu Mengisi</span>';
-    const REMIND_BTN = '<button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" data-reminder-row title="Kirim Reminder"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="hidden xl:inline">Kirim Reminder</span></button>';
+    const WAITING_BADGE = '<span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Mengisi</span>';
+    const REMIND_BTN = '<button type="button" class="btn-outline btn-sm table-action" data-reminder-row title="Kirim Reminder"><i class="kk kk-paper-plane-tilt h-4 w-4"></i><span class="table-action-label">Kirim Reminder</span></button>';
 
     let pending = []; // rows the open confirm modal will send to
 

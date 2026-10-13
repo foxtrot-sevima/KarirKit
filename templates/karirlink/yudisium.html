@@ -239,15 +239,15 @@
     <div class="table-wrap overflow-visible" id="periodeTableRoot" data-table data-page-size="10" data-item-label="periode" data-combo-boundary>
       <!-- Toolbar -->
       <div class="table-toolbar">
-        <div class="relative w-full sm:w-64">
+        <div class="table-search">
           <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
             <i class="kk kk-magnifying-glass h-4 w-4"></i>
           </span>
           <label for="periodeSearch" class="sr-only">Cari periode</label>
           <input id="periodeSearch" type="search" class="input h-9 pl-9" placeholder="Cari periode..." data-table-search />
         </div>
-        <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
-          <div id="filterTahun" class="combo w-full sm:w-52" data-combo data-value="all">
+        <div class="table-filters">
+          <div id="filterTahun" class="combo" data-combo data-value="all">
             <button type="button" class="combo-trigger" data-combo-trigger>
               <span data-combo-label>Semua Tahun Lulus</span>
               <i class="kk kk-caret-down combo-chevron"></i>
@@ -266,7 +266,7 @@
               </div>
             </div>
           </div>
-          <div id="filterJenis" class="combo w-full sm:w-44" data-combo data-value="all">
+          <div id="filterJenis" class="combo" data-combo data-value="all">
             <button type="button" class="combo-trigger" data-combo-trigger>
               <span data-combo-label>Semua Periode</span>
               <i class="kk kk-caret-down combo-chevron"></i>
@@ -306,7 +306,7 @@
               <td data-value="-1"><span class="text-xs font-medium text-slate-400">Belum dikirim</span></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -325,7 +325,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -344,7 +344,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -363,7 +363,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -382,7 +382,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -401,7 +401,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -420,7 +420,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -439,7 +439,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -458,7 +458,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -477,7 +477,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -496,7 +496,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -515,7 +515,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -534,7 +534,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -553,7 +553,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
@@ -572,7 +572,7 @@
                 </div></td>
               <td class="table-col-actions">
                 <div class="flex items-center justify-end">
-                  <a href="yudisium-detail.html" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Detail</span></a>
+                  <a href="yudisium-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
                 </div>
               </td>
             </tr>
