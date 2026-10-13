@@ -280,15 +280,15 @@
       <!-- Alumni table: Design System table (table-wrap + table.js) -->
       <div class="table-wrap overflow-visible" id="alumniTableRoot" data-page-size="5" data-item-label="alumni" data-combo-boundary>
         <div class="table-toolbar">
-          <div class="relative w-full sm:w-64">
+          <div class="table-search">
             <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
               <i class="kk kk-magnifying-glass h-4 w-4"></i>
             </span>
             <label for="alumniSearch" class="sr-only">Cari nama, NIM, atau email</label>
             <input id="alumniSearch" type="search" class="input h-9 pl-9" placeholder="Cari nama, NIM, atau email..." data-table-search />
           </div>
-          <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
-            <div id="filterKirim" class="combo w-full sm:w-52" data-combo data-value="all">
+          <div class="table-filters">
+            <div id="filterKirim" class="combo" data-combo data-value="all">
               <button type="button" class="combo-trigger" data-combo-trigger>
                 <span data-combo-label>Semua Pengiriman</span>
                 <i class="kk kk-caret-down combo-chevron"></i>
@@ -301,7 +301,7 @@
                 </div>
               </div>
             </div>
-            <div id="filterIsi" class="combo w-full sm:w-52" data-combo data-value="all">
+            <div id="filterIsi" class="combo" data-combo data-value="all">
               <button type="button" class="combo-trigger" data-combo-trigger>
                 <span data-combo-label>Semua Pengisian</span>
                 <i class="kk kk-caret-down combo-chevron"></i>
@@ -420,18 +420,18 @@
     // rows are built before the table is initialised (table.js records the original order at init)
     $('alumniBody').innerHTML = alumni.map(function (a) {
       var sendBadge = a.sent
-        ? '<span class="badge-info"><span class="badge-dot hidden sm:inline-block bg-info-600"></span><span class="sm:hidden">Dikirim</span><span class="hidden sm:inline">Pernah Dikirim</span></span><p class="mt-1 hidden text-xs text-slate-400 sm:block">' + a.sentCount + 'x &middot; terakhir ' + D.fmt(a.lastSent) + '</p>'
-        : '<span class="badge-neutral"><span class="badge-dot hidden sm:inline-block bg-neutral-400"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Pernah Dikirim</span></span>';
+        ? '<span class="badge-info"><span class="badge-dot bg-info-600"></span><span class="sm:hidden">Dikirim</span><span class="hidden sm:inline">Pernah Dikirim</span></span><p class="mt-1 hidden text-xs text-slate-400 sm:block">' + a.sentCount + 'x &middot; terakhir ' + D.fmt(a.lastSent) + '</p>'
+        : '<span class="badge-neutral"><span class="badge-dot bg-neutral-400"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Pernah Dikirim</span></span>';
       var fillBadge = a.filled
-        ? '<span class="badge-success"><span class="badge-dot hidden sm:inline-block bg-success-600"></span><span class="sm:hidden">Sudah</span><span class="hidden sm:inline">Sudah Mengisi</span></span><p class="mt-1 hidden text-xs text-slate-400 sm:block">Diisi ' + D.fmt(a.filledAt) + (multi ? ' &middot; ' + a.templatesFilled.map(function (slug) { return tpls.filter(function (t) { return t.slug === slug; })[0].short; }).join(', ') : '') + '</p>'
+        ? '<span class="badge-success"><span class="badge-dot bg-success-600"></span><span class="sm:hidden">Sudah</span><span class="hidden sm:inline">Sudah Mengisi</span></span><p class="mt-1 hidden text-xs text-slate-400 sm:block">Diisi ' + D.fmt(a.filledAt) + (multi ? ' &middot; ' + a.templatesFilled.map(function (slug) { return tpls.filter(function (t) { return t.slug === slug; })[0].short; }).join(', ') : '') + '</p>'
         : a.sent
-          ? '<span class="badge-warning"><span class="badge-dot hidden sm:inline-block bg-warning-600"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Mengisi</span></span>'
-          : '<span class="badge-neutral"><span class="badge-dot hidden sm:inline-block bg-neutral-400"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Mengisi</span></span>';
+          ? '<span class="badge-warning"><span class="badge-dot bg-warning-600"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Mengisi</span></span>'
+          : '<span class="badge-neutral"><span class="badge-dot bg-neutral-400"></span><span class="sm:hidden">Belum</span><span class="hidden sm:inline">Belum Mengisi</span></span>';
       var miniSend = a.sent ? '<span class="badge-info">Dikirim</span>' : '<span class="badge-neutral">Belum Dikirim</span>';
       var miniFill = a.filled ? '<span class="badge-success">Sudah Mengisi</span>' : a.sent ? '<span class="badge-warning">Belum Mengisi</span>' : '<span class="badge-neutral">Belum Mengisi</span>';
       var action = a.filled
-        ? '<a href="kuesioner-arsip-jawaban.html?id=' + arsip.id + '&amp;alumni=' + a.id + '" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" title="Lihat Jawaban" aria-label="Lihat jawaban ' + esc(a.name) + '"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></a>'
-        : '<button type="button" class="btn-outline btn-sm whitespace-nowrap max-xl:w-8 max-xl:px-0" disabled title="Belum mengisi, belum ada jawaban" aria-label="Belum ada jawaban ' + esc(a.name) + '"><i class="kk kk-eye h-4 w-4"></i><span class="hidden xl:inline">Lihat Jawaban</span></button>';
+        ? '<a href="kuesioner-arsip-jawaban.html?id=' + arsip.id + '&amp;alumni=' + a.id + '" class="btn-outline btn-sm table-action" title="Lihat Jawaban" aria-label="Lihat jawaban ' + esc(a.name) + '"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Jawaban</span></a>'
+        : '<button type="button" class="btn-outline btn-sm table-action" disabled title="Belum mengisi, belum ada jawaban" aria-label="Belum ada jawaban ' + esc(a.name) + '"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Jawaban</span></button>';
       return '<tr data-sent="' + (a.sent ? 'sent' : 'not-sent') + '" data-filled="' + (a.filled ? 'filled' : 'not-filled') + '" data-templates="' + a.templatesFilled.join(' ') + '">' +
         '<td class="table-col-num" data-num>0</td>' +
         '<td data-value="' + esc(a.name) + '"><span class="block font-medium text-slate-800">' + esc(a.name) + '</span><p class="mt-0.5 text-xs text-slate-400">NIM ' + a.nim + '</p><p class="mt-0.5 hidden max-w-[14rem] truncate text-xs text-slate-400 sm:block lg:hidden">' + esc(a.prodi) + '</p><span class="sr-only">' + esc(a.email) + '</span></td>' +

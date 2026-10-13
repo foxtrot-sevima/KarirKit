@@ -18770,6 +18770,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
            focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/10 focus-visible:border-primary-400;
   }
   .combo[data-open="true"] .combo-trigger { @apply ring-4 ring-primary-500/10 border-primary-400; }
+  .combo-trigger [data-combo-label] { @apply min-w-0 flex-1 truncate whitespace-nowrap; }
   .combo-tags { @apply flex flex-1 flex-wrap items-center gap-1.5; }
   .combo-placeholder { @apply text-fg-subtle; }
   .combo-chevron { @apply h-4 w-4 shrink-0 text-fg-subtle transition-transform; transition-duration: var(--duration-fast); }
@@ -19663,10 +19664,30 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   th[aria-sort="ascending"] .sort-icon,
   th[aria-sort="descending"] .sort-icon { @apply text-primary-600 opacity-100; }
   .table-toolbar { @apply flex flex-wrap items-center justify-between gap-3 border-b border-border-subtle p-4; }
-  .table-footer { @apply flex flex-wrap items-center justify-between gap-3 border-t border-border-subtle px-4 py-3 text-sm text-fg-muted; }
+  .table-footer { @apply flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left border-t border-border-subtle px-4 py-3 text-sm text-fg-muted; }
   .table-footer b { @apply font-semibold text-fg; }
   .table-bulk { @apply flex items-center gap-3 border-b border-primary-100 bg-primary-50 px-4 py-2.5 text-sm text-primary-700; }
   .table-empty { @apply px-4 py-12 text-center text-sm text-fg-muted; }
+  /* Admin list patterns (karirlink): toolbar filters, responsive columns, row action, status badge.
+     .table-filters       -> filter dropdowns (.combo) stack on phones, sit in a row from sm.
+     .table-toolbar-many  -> add to .table-toolbar when there are 4+ filters: search takes its own row and
+                            filters become a 1/2/4-column grid, one inline row only from 2xl.
+     .table-col-aside     -> secondary column: shown md, hidden lg (sidebar narrows the content), back at xl.
+     .table-action        -> row action button: icon only below xl, icon + .table-action-label from xl.
+     .badge-wrap          -> long status label wraps on phones instead of stretching its column. */
+  .table-filters { @apply flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center; }
+  .table-filters > .combo { @apply w-full sm:w-48; }
+  .table-toolbar-many .table-search { @apply w-full 2xl:w-56; }
+  .table-toolbar-many .table-filters { @apply grid w-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 2xl:flex 2xl:w-auto 2xl:items-center; }
+  .table-toolbar-many .table-filters > .combo { @apply w-full 2xl:w-52; }
+  .table-search { @apply relative w-full sm:w-64; }
+  .table-col-aside { @apply hidden md:table-cell lg:hidden xl:table-cell; }
+  .table-action { @apply whitespace-nowrap max-xl:w-8 max-xl:px-0; }
+  .table-action-label { @apply hidden xl:inline; }
+  .badge-wrap { @apply max-w-[112px] whitespace-normal text-left sm:max-w-none sm:whitespace-nowrap; }
+  .badge-wrap > .badge-dot { @apply hidden sm:inline-block; }
+  .card-heading { @apply flex items-center gap-2.5 text-base font-semibold text-fg; }
+  .card-heading-icon { @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-lg; }
   .counter { @apply inline-flex items-center rounded-lg border border-border bg-surface; }
   .counter-btn {
     @apply inline-flex h-8 w-8 cursor-pointer items-center justify-center text-fg-muted transition-colors first:rounded-l-lg last:rounded-r-lg hover:bg-neutral-100
