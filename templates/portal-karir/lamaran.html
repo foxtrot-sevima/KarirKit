@@ -33,9 +33,9 @@
 
 <!-- ============================= NAVBAR ============================= -->
 <nav class="navbar navbar-sticky transition-[background-color,box-shadow] duration-300 data-[scrolled=true]:border-border/40 data-[scrolled=true]:bg-surface/70 data-[scrolled=true]:shadow-sm data-[scrolled=true]:backdrop-blur-xl" data-glass-nav aria-label="Navigasi utama">
-  <div class="navbar-inner">
+  <div class="navbar-inner py-3">
     <a href="index.html" class="navbar-brand md:order-1">
-      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+      <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
     </a>
 
     <div class="flex items-center gap-1.5 md:order-3">
@@ -69,7 +69,7 @@
 
       <!-- Akun -->
       <div class="dropdown">
-        <button type="button" class="flex items-center gap-2 rounded-xl py-1 pl-1 pr-2 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Menu akun">
+        <button type="button" class="flex items-center gap-2 rounded-xl py-0.5 pl-0.5 pr-2 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Menu akun">
           <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
           <span class="hidden max-w-[9rem] truncate text-sm font-semibold text-slate-800 sm:block" data-user-name>Pengguna</span>
           <i class="kk kk-caret-down hidden h-4 w-4 text-slate-400 sm:block" aria-hidden="true"></i>
@@ -82,7 +82,7 @@
               <p class="dropdown-header-desc" data-user-email>Email belum diisi</p>
             </div>
           </div>
-          <a href="index.html#profil" class="dropdown-item"><i class="kk kk-user-circle h-4 w-4" aria-hidden="true"></i>Profil Saya</a>
+          <a href="profil.html" class="dropdown-item"><i class="kk kk-user-circle h-4 w-4" aria-hidden="true"></i>Profil Saya</a>
           <a href="lamaran.html" class="dropdown-item"><i class="kk kk-file-text h-4 w-4" aria-hidden="true"></i>Lamaran Saya</a>
           <a href="lowongan.html?simpan=1" class="dropdown-item"><i class="kk kk-bookmark-simple h-4 w-4" aria-hidden="true"></i>Lowongan Tersimpan</a>
           <hr class="dropdown-divider" />
@@ -95,12 +95,13 @@
       </button>
     </div>
 
-    <div class="navbar-menu md:order-2 md:ml-10 md:mr-auto" id="pkMenu">
+    <div class="navbar-menu hidden md:order-2 md:ml-10 md:mr-auto md:block max-md:not-[.hidden]:block" id="pkMenu">
       <ul class="navbar-nav">
         <li><a href="index.html" class="navbar-link">Beranda</a></li>
         <li><a href="lowongan.html" class="navbar-link">Lowongan</a></li>
+        <li><a href="event.html" class="navbar-link">Event</a></li>
+        <li><a href="course.html" class="navbar-link">Course</a></li>
         <li><a href="lamaran.html" class="navbar-link" aria-current="page">Lamaran Saya</a></li>
-        <li><a href="index.html#event" class="navbar-link">Event</a></li>
       </ul>
     </div>
   </div>
@@ -207,7 +208,7 @@
           '</div>' +
           '<div class="mt-4">' + PK.stageBar(a) + '<div class="mt-2 flex items-center justify-between text-xs text-slate-400"><span>Dikirim ' + PK.when(a.sent).toLowerCase() + '</span><span>' + PK.STEPS[st.step] + '</span></div></div></article>';
       }).join('') + '</div>'
-        : PK.emptyBox('file-text', state.q || state.status ? 'Tidak ada lamaran yang cocok' : 'Belum ada lamaran', state.q || state.status ? 'Coba kata kunci lain atau pilih tab Semua.' : 'Lamaran yang kamu kirim akan muncul di sini.',
+        : PK.emptyBox('document', state.q || state.status ? 'Tidak ada lamaran yang cocok' : 'Belum ada lamaran', state.q || state.status ? 'Coba kata kunci lain atau pilih tab Semua.' : 'Lamaran yang kamu kirim akan muncul di sini.',
             state.q || state.status ? '<button type="button" class="btn-outline btn-sm" data-reset>Hapus filter</button>' : '<a href="lowongan.html" class="btn-primary btn-sm">Cari lowongan</a>');
       PK.pager($('pager'), res, 'lamaran');
     }
@@ -291,7 +292,7 @@
       if (app.status === 'Diproses') {
         return '<div class="callout-warning"><p class="flex items-center gap-2 text-sm font-semibold text-slate-900">' + PK.icon('hourglass', 'h-4 w-4 text-warning-600') + 'Sedang ditinjau</p>' +
           '<p class="mt-1.5 text-sm text-slate-600">Tim rekrutmen memeriksa profilmu. Pastikan minat dan keahlianmu sudah lengkap sambil menunggu kabar.</p>' +
-          '<a href="index.html#profil" class="btn-outline btn-sm mt-3">Lihat profil</a></div>';
+          '<a href="profil.html" class="btn-outline btn-sm mt-3">Lihat profil</a></div>';
       }
       return '<div class="callout-info"><p class="flex items-center gap-2 text-sm font-semibold text-slate-900">' + PK.icon('paper-plane-tilt', 'h-4 w-4 text-info-600') + 'Lamaran sudah terkirim</p>' +
         '<p class="mt-1.5 text-sm text-slate-600">Perusahaan biasanya merespons dalam 3 sampai 7 hari kerja. Kami akan memberi tahu saat statusnya berubah.</p></div>';
