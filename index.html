@@ -178,6 +178,7 @@
       <a href="#tabs" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Tabs</a>
       <a href="#navbar" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Navbar</a>
       <a href="#footer" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Footer</a>
+      <a href="#drawer" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Drawer</a>
       <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Misc</a>
     </div>
   </div>
@@ -224,6 +225,22 @@
           <p class="mt-3 text-sm font-semibold text-slate-800">Lockup - White</p>
           <p class="mt-1 text-xs text-slate-500">Lockup di atas latar gelap, mis. footer gelap atau splash screen.</p>
           <p class="kbd mt-2 inline-block">karirlink-logo-white.svg</p>
+        </div>
+        <div class="rounded-xl border border-slate-200/70 p-5">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-[#f8fafc]">
+            <img src="assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+          </div>
+          <p class="mt-3 text-sm font-semibold text-slate-800">Lockup SEVIMA - Color</p>
+          <p class="mt-1 text-xs text-slate-500">Lockup dengan penanda SEVIMA di atas nama KarirLink. Dipakai di portal-karir: navbar, footer, dan header login.</p>
+          <p class="kbd mt-2 inline-block">karirlink-sevima.svg</p>
+        </div>
+        <div class="rounded-xl border border-slate-200/70 p-5">
+          <div class="flex h-20 items-center justify-center rounded-lg bg-[#1e293b]">
+            <img src="assets/logo/karirlink-sevima-white.svg" alt="KarirLink SEVIMA putih" class="h-9 w-auto" />
+          </div>
+          <p class="mt-3 text-sm font-semibold text-slate-800">Lockup SEVIMA - White</p>
+          <p class="mt-1 text-xs text-slate-500">Versi putih untuk panel berlatar biru atau gelap, mis. panel visual login dan onboarding.</p>
+          <p class="kbd mt-2 inline-block">karirlink-sevima-white.svg</p>
         </div>
       </div>
       <div class="mt-6 rounded-xl bg-slate-50 p-3">
@@ -6675,6 +6692,160 @@
     </div>
   </section>
 
+  <section id="drawer" class="scroll-mt-32 py-12">
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">Drawer</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Panel yang meluncur dari tepi layar - kiri, kanan, atas, bawah, bottom sheet dengan pegangan, pilihan penguncian halaman dan latar gelap, navigasi, formulir kontak, dan filter. Anatomi: <code class="kbd">.drawer</code> (+ <code class="kbd">-left</code>, <code class="kbd">-right</code>, <code class="kbd">-top</code>, <code class="kbd">-bottom</code>) &gt; <code class="kbd">.drawer-header</code> + <code class="kbd">.drawer-body</code> + <code class="kbd">.drawer-footer</code>; dibuka dengan <code class="kbd">data-drawer-toggle</code> (<code class="kbd">assets/js/drawer.js</code>, API <code class="kbd">KKDrawer</code>).</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Default drawer</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>.drawer</code> berisi <code>.drawer-header</code> (<code>.drawer-title</code> + <code>.drawer-close</code>), <code>.drawer-body</code>, dan <code>.drawer-footer</code>. Buka dengan <code>data-drawer-toggle="id"</code>; tutup dengan tombol silang, Escape, atau klik latar gelap. Default di kiri (<code>.drawer-left</code>).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><button type="button" class="btn-primary btn-md" data-drawer-toggle="dr-default" aria-controls="dr-default">Tampilkan drawer</button>
+<div class="drawer drawer-left " id="dr-default" >
+  <div class="drawer-header"><h3 class="drawer-title">Pengaturan Tracer</h3><button type="button" class="drawer-close" data-drawer-hide="dr-default" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><p class="mb-3">Pasang kuesioner Tracer Study ke seluruh angkatan lewat satu tautan. Alumni cukup memindai QR code dan mengisi kuesioner dari ponsel.</p>
+    <p>Hasilnya langsung masuk ke dasbor sehingga program studi dapat memantau partisipasi per angkatan.</p></div>
+  <div class="drawer-footer"><button type="button" class="btn-outline btn-md" data-drawer-hide="dr-default">Batal</button><button type="button" class="btn-primary btn-md" data-drawer-hide="dr-default">Simpan</button></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10 lg:col-span-2">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Drawer placement</h3>
+      <p class="mb-3 text-sm text-slate-500">Posisi lewat kelas <code>.drawer-left</code>, <code>.drawer-right</code>, <code>.drawer-top</code>, atau <code>.drawer-bottom</code> (atau atribut <code>data-drawer-placement</code>). Lebar kiri/kanan diatur dengan utilitas <code>w-*</code> (default 20rem).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="flex flex-wrap gap-3">
+  <button type="button" class="btn-outline btn-md" data-drawer-toggle="dr-left" aria-controls="dr-left"><i class="kk kk-arrow-line-left h-4 w-4" aria-hidden="true"></i>Kiri</button>
+  <button type="button" class="btn-outline btn-md" data-drawer-toggle="dr-right" aria-controls="dr-right"><i class="kk kk-arrow-line-right h-4 w-4" aria-hidden="true"></i>Kanan</button>
+  <button type="button" class="btn-outline btn-md" data-drawer-toggle="dr-top" aria-controls="dr-top"><i class="kk kk-arrow-line-up h-4 w-4" aria-hidden="true"></i>Atas</button>
+  <button type="button" class="btn-outline btn-md" data-drawer-toggle="dr-bottom" aria-controls="dr-bottom"><i class="kk kk-arrow-line-down h-4 w-4" aria-hidden="true"></i>Bawah</button>
+</div>
+<div class="drawer drawer-left w-96" id="dr-left" >
+  <div class="drawer-header"><h3 class="drawer-title">Drawer kiri</h3><button type="button" class="drawer-close" data-drawer-hide="dr-left" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><p class="mb-3">Pasang kuesioner Tracer Study ke seluruh angkatan lewat satu tautan. Alumni cukup memindai QR code dan mengisi kuesioner dari ponsel.</p>
+    <p>Hasilnya langsung masuk ke dasbor sehingga program studi dapat memantau partisipasi per angkatan.</p></div>
+</div>
+<div class="drawer drawer-right w-96" id="dr-right" >
+  <div class="drawer-header"><h3 class="drawer-title">Drawer kanan</h3><button type="button" class="drawer-close" data-drawer-hide="dr-right" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><p class="mb-3">Pasang kuesioner Tracer Study ke seluruh angkatan lewat satu tautan. Alumni cukup memindai QR code dan mengisi kuesioner dari ponsel.</p>
+    <p>Hasilnya langsung masuk ke dasbor sehingga program studi dapat memantau partisipasi per angkatan.</p></div>
+</div>
+<div class="drawer drawer-top " id="dr-top" >
+  <div class="drawer-header"><h3 class="drawer-title">Drawer atas</h3><button type="button" class="drawer-close" data-drawer-hide="dr-top" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><p class="mb-3">Pasang kuesioner Tracer Study ke seluruh angkatan lewat satu tautan. Alumni cukup memindai QR code dan mengisi kuesioner dari ponsel.</p>
+    <p>Hasilnya langsung masuk ke dasbor sehingga program studi dapat memantau partisipasi per angkatan.</p></div>
+</div>
+<div class="drawer drawer-bottom " id="dr-bottom" >
+  <div class="drawer-header"><h3 class="drawer-title">Drawer bawah</h3><button type="button" class="drawer-close" data-drawer-hide="dr-bottom" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><p class="mb-3">Pasang kuesioner Tracer Study ke seluruh angkatan lewat satu tautan. Alumni cukup memindai QR code dan mengisi kuesioner dari ponsel.</p>
+    <p>Hasilnya langsung masuk ke dasbor sehingga program studi dapat memantau partisipasi per angkatan.</p></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Bottom sheet with edge</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>.drawer-edge</code> pada drawer bawah menyisakan pegangan yang selalu terlihat; tombol pegangan memakai <code>data-drawer-toggle</code> dan drawer ini tanpa latar gelap (<code>data-drawer-backdrop="false"</code>). <code>.drawer-contained</code> menempatkannya di dalam kontainer <code>relative</code> (di sini kotak contoh) alih-alih di tepi layar.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="relative h-56 overflow-hidden rounded-control border border-dashed border-border bg-neutral-50">
+<p class="p-4 text-sm text-fg-muted">Pegangan muncul di tepi bawah kotak ini; klik untuk membuka widget.</p>
+<div class="drawer drawer-bottom drawer-edge drawer-contained" id="dr-edge" data-drawer-backdrop="false" aria-label="Widget cepat">
+  <button type="button" class="drawer-handle" data-drawer-toggle="dr-edge" aria-controls="dr-edge" aria-label="Buka atau tutup widget"><span class="drawer-grab"></span><span class="block pt-2 text-sm font-medium text-fg">Aksi cepat</span></button>
+  <div class="grid grid-cols-3 gap-4 p-4 lg:grid-cols-4">
+    <a href="#" class="cursor-pointer rounded-control border border-border bg-neutral-50 p-4 text-center hover:bg-neutral-100"><span class="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface"><i class="kk kk-briefcase h-5 w-5" aria-hidden="true"></i></span><span class="text-sm font-medium text-fg">Lowongan</span></a>
+    <a href="#" class="cursor-pointer rounded-control border border-border bg-neutral-50 p-4 text-center hover:bg-neutral-100"><span class="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface"><i class="kk kk-calendar-check h-5 w-5" aria-hidden="true"></i></span><span class="text-sm font-medium text-fg">Event</span></a>
+    <a href="#" class="cursor-pointer rounded-control border border-border bg-neutral-50 p-4 text-center hover:bg-neutral-100"><span class="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span><span class="text-sm font-medium text-fg">Dokumen</span></a>
+    <a href="#" class="hidden lg:block cursor-pointer rounded-control border border-border bg-neutral-50 p-4 text-center hover:bg-neutral-100"><span class="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface"><i class="kk kk-chart-bar h-5 w-5" aria-hidden="true"></i></span><span class="text-sm font-medium text-fg">Laporan</span></a>
+  </div>
+</div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Body scrolling</h3>
+      <p class="mb-3 text-sm text-slate-500">Dengan latar gelap, halaman terkunci saat drawer terbuka. <code>data-drawer-body-scrolling="true"</code> membiarkan halaman tetap bisa digulir.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="flex flex-wrap gap-3">
+  <button type="button" class="btn-outline btn-md" data-drawer-toggle="dr-lock" aria-controls="dr-lock">Halaman terkunci</button>
+  <button type="button" class="btn-outline btn-md" data-drawer-toggle="dr-scroll" aria-controls="dr-scroll">Halaman bisa digulir</button>
+</div>
+<div class="drawer drawer-left " id="dr-lock" >
+  <div class="drawer-header"><h3 class="drawer-title">Halaman terkunci</h3><button type="button" class="drawer-close" data-drawer-hide="dr-lock" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><p>Halaman di belakang tidak bisa digulir selama drawer terbuka.</p></div>
+</div>
+<div class="drawer drawer-left " id="dr-scroll" data-drawer-body-scrolling="true">
+  <div class="drawer-header"><h3 class="drawer-title">Halaman bisa digulir</h3><button type="button" class="drawer-close" data-drawer-hide="dr-scroll" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><p>Halaman di belakang masih bisa digulir.</p></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Backdrop options</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>data-drawer-backdrop="false"</code> menghilangkan latar gelap (halaman tetap bisa dipakai); <code>"static"</code> mempertahankan latar tetapi klik di luar tidak menutup drawer.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="flex flex-wrap gap-3">
+  <button type="button" class="btn-outline btn-md" data-drawer-toggle="dr-bd-on" aria-controls="dr-bd-on">Dengan latar</button>
+  <button type="button" class="btn-outline btn-md" data-drawer-toggle="dr-bd-off" aria-controls="dr-bd-off">Tanpa latar</button>
+  <button type="button" class="btn-outline btn-md" data-drawer-toggle="dr-bd-static" aria-controls="dr-bd-static">Latar statis</button>
+</div>
+<div class="drawer drawer-left " id="dr-bd-on" >
+  <div class="drawer-header"><h3 class="drawer-title">Dengan latar</h3><button type="button" class="drawer-close" data-drawer-hide="dr-bd-on" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><p>Klik di luar drawer untuk menutup.</p></div>
+</div>
+<div class="drawer drawer-left " id="dr-bd-off" data-drawer-backdrop="false">
+  <div class="drawer-header"><h3 class="drawer-title">Tanpa latar</h3><button type="button" class="drawer-close" data-drawer-hide="dr-bd-off" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><p>Tidak ada latar gelap; tutup lewat tombol silang atau Escape.</p></div>
+</div>
+<div class="drawer drawer-left " id="dr-bd-static" data-drawer-backdrop="static">
+  <div class="drawer-header"><h3 class="drawer-title">Latar statis</h3><button type="button" class="drawer-close" data-drawer-hide="dr-bd-static" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><p>Klik di luar tidak menutup drawer ini.</p></div>
+  <div class="drawer-footer"><button type="button" class="btn-primary btn-md" data-drawer-hide="dr-bd-static">Mengerti</button></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Navigation drawer</h3>
+      <p class="mb-3 text-sm text-slate-500">Menu navigasi samping, mis. untuk tampilan ponsel: daftar <code>.nav-item</code> dengan submenu yang dibuka <code>data-ui-collapse</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><button type="button" class="btn-primary btn-md" data-drawer-toggle="dr-nav" aria-controls="dr-nav"><i class="kk kk-list h-4 w-4" aria-hidden="true"></i>Buka menu</button>
+<div class="drawer drawer-left " id="dr-nav" >
+  <div class="drawer-header"><h3 class="drawer-title">Menu</h3><button type="button" class="drawer-close" data-drawer-hide="dr-nav" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><ul class="space-y-1">
+      <li><a href="#" class="nav-item nav-item-active"><i class="kk kk-house h-5 w-5" aria-hidden="true"></i>Dasbor</a></li>
+      <li><a href="#" class="nav-item"><i class="kk kk-briefcase h-5 w-5" aria-hidden="true"></i>Lowongan</a></li>
+      <li>
+        <button type="button" class="nav-item w-full" data-ui-collapse data-ui-collapse-static aria-controls="dr-nav-sub" aria-expanded="false"><i class="kk kk-clipboard-text h-5 w-5" aria-hidden="true"></i>Tracer Study<span class="ml-auto"><i class="kk kk-caret-down h-3.5 w-3.5" aria-hidden="true"></i></span></button>
+        <ul id="dr-nav-sub" class="hidden space-y-1 py-1 pl-8"><li><a href="#" class="nav-item">Kuesioner</a></li><li><a href="#" class="nav-item">Arsip</a></li><li><a href="#" class="nav-item">Laporan</a></li></ul>
+      </li>
+      <li><a href="#" class="nav-item"><i class="kk kk-gear-six h-5 w-5" aria-hidden="true"></i>Pengaturan</a></li>
+    </ul></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Contact form drawer</h3>
+      <p class="mb-3 text-sm text-slate-500">Formulir di dalam drawer kanan dengan aksi pada <code>.drawer-footer</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><button type="button" class="btn-primary btn-md" data-drawer-toggle="dr-contact" aria-controls="dr-contact"><i class="kk kk-envelope-simple h-4 w-4" aria-hidden="true"></i>Hubungi kami</button>
+<div class="drawer drawer-right " id="dr-contact" >
+  <div class="drawer-header"><h3 class="drawer-title">Hubungi kami</h3><button type="button" class="drawer-close" data-drawer-hide="dr-contact" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><form class="space-y-4" onsubmit="return false">
+      <div><label class="form-label" for="dr-c-name">Nama</label><input id="dr-c-name" class="input" placeholder="Nama lengkap" /></div>
+      <div><label class="form-label" for="dr-c-mail">Email</label><input id="dr-c-mail" class="input" type="email" placeholder="nama@email.com" /></div>
+      <div><label class="form-label" for="dr-c-msg">Pesan</label><textarea id="dr-c-msg" class="input" rows="4" placeholder="Tulis pesan Anda"></textarea></div>
+    </form></div>
+  <div class="drawer-footer"><button type="button" class="btn-outline btn-md" data-drawer-hide="dr-contact">Batal</button><button type="button" class="btn-primary btn-md" data-drawer-hide="dr-contact">Kirim</button></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Form elements drawer</h3>
+      <p class="mb-3 text-sm text-slate-500">Berbagai isian (teks, tanggal, pilihan, centang, sakelar) di dalam drawer; daftar yang panjang digulir di dalam <code>.drawer-body</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><button type="button" class="btn-outline btn-md" data-drawer-toggle="dr-form" aria-controls="dr-form"><i class="kk kk-funnel h-4 w-4" aria-hidden="true"></i>Filter lanjutan</button>
+<div class="drawer drawer-right " id="dr-form" >
+  <div class="drawer-header"><h3 class="drawer-title">Filter lanjutan</h3><button type="button" class="drawer-close" data-drawer-hide="dr-form" aria-label="Tutup"><i class="kk kk-x h-4 w-4" aria-hidden="true"></i></button></div>
+  <div class="drawer-body"><form class="space-y-4" onsubmit="return false">
+      <div><label class="form-label" for="dr-f-q">Cari</label><input id="dr-f-q" class="input" type="search" placeholder="Nama atau NIM" /></div>
+      <div><label class="form-label" for="dr-f-year">Tahun lulus</label><select id="dr-f-year" class="input"><option>Semua tahun</option><option>2026</option><option>2025</option><option>2024</option></select></div>
+      <div><label class="form-label" for="dr-f-date">Tanggal pengisian</label><input id="dr-f-date" class="input" type="date" /></div>
+      <fieldset><legend class="form-label">Status</legend><div class="space-y-2">
+        <label class="flex items-center gap-2 text-sm text-fg"><input type="checkbox" class="form-check" checked /> Sudah mengisi</label>
+        <label class="flex items-center gap-2 text-sm text-fg"><input type="checkbox" class="form-check" /> Belum mengisi</label>
+      </div></fieldset>
+      <label class="flex items-center justify-between text-sm text-fg">Hanya alumni aktif<span class="toggle"><input type="checkbox" class="toggle-input" /><span class="toggle-track"></span></span></label>
+    </form></div>
+  <div class="drawer-footer"><button type="button" class="btn-outline btn-md" data-drawer-hide="dr-form">Atur ulang</button><button type="button" class="btn-primary btn-md" data-drawer-hide="dr-form">Terapkan</button></div>
+</div></div>
+    </div>
+    </div>
+  </section>
+
   <section id="progress" class="scroll-mt-32 py-12">
     <div class="mb-6">
       <h2 class="font-display text-2xl font-bold text-slate-900">Progress &amp; Misc</h2>
@@ -7021,6 +7192,7 @@
 <script src="assets/js/datepicker.js"></script>
 <script src="assets/js/pagination.js"></script>
 <script src="assets/js/clipboard.js"></script>
+<script src="assets/js/drawer.js"></script>
 <script src="assets/js/vendor/apexcharts.min.js"></script>
 <script src="assets/js/chart.js"></script>
 <script src="assets/js/theme.js"></script>

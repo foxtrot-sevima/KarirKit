@@ -154,7 +154,7 @@ tanpa server, dan **tidak** ikut ter-publish di npm package.
 
 ## Brand & Logo
 
-Logo resmi **KarirLink** dari tim brand SEVIMA, tersedia dalam 4 varian di
+Logo resmi **KarirLink** dari tim brand SEVIMA, tersedia dalam 6 varian di
 `assets/logo/` — lihat bagian Logo di `index.html` untuk contoh visual &
 kapan memakai masing-masing:
 
@@ -164,6 +164,8 @@ kapan memakai masing-masing:
 | `karirlink-mark-white.svg` | Mark, putih | Mark di atas latar gelap/gradasi |
 | `karirlink-logo.svg` | Lockup, warna | Header & sidebar (penempatan utama) |
 | `karirlink-logo-white.svg` | Lockup, putih | Lockup di atas latar gelap |
+| `karirlink-sevima.svg` | Lockup SEVIMA, warna | Lockup dengan penanda SEVIMA (portal-karir) |
+| `karirlink-sevima-white.svg` | Lockup SEVIMA, putih | Lockup SEVIMA di atas latar biru/gelap |
 
 `karirlink-mark.svg` dipakai sebagai favicon kedua halaman; `karirlink-logo.svg`
 dipakai di header `index.html` dan sidebar `templates/dashboard.html`.
