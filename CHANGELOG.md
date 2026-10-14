@@ -4,6 +4,10 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Komponen Drawer** (`.drawer` + `.drawer-left|right|top|bottom`, `.drawer-header`, `.drawer-title`, `.drawer-close`, `.drawer-body`, `.drawer-footer`, `.drawer-edge`, `.drawer-handle`; `assets/js/drawer.js`): panel yang meluncur dari tepi layar dengan latar gelap otomatis, kunci gulir halaman, Escape, jebakan fokus, dan pengembalian fokus. Atribut `data-drawer-toggle|show|hide`, `-placement`, `-backdrop="false|static"`, `-body-scrolling`, `-keyboard`; event `drawer:show|hide`; API `KKDrawer`. Delapan contoh: default, posisi, bottom sheet berpegangan, penguncian halaman, opsi latar, navigasi, formulir kontak, dan filter.
+
 ## [1.3.7] - 2026-10-13
 
 ### Added

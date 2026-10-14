@@ -19528,6 +19528,29 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
     @apply inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 border border-primary-600 bg-primary-600 px-4 text-sm font-semibold text-white
            transition-colors hover:bg-primary-700 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/40;
   }
+  /* ==== Drawer — .drawer[.drawer-left|right|top|bottom] > .drawer-header + .drawer-body + .drawer-footer ====
+     Behaviour: assets/js/drawer.js (data-drawer-*). Closed = off-screen + invisible; .is-open slides it in. */
+  .drawer {
+    @apply invisible fixed z-40 flex flex-col overflow-hidden bg-surface shadow-card-lg outline-none;
+    transition: translate 0.3s ease-out, visibility 0s linear 0.3s;
+  }
+  .drawer-left { @apply inset-y-0 left-0 w-80 max-w-full -translate-x-full border-r border-border; }
+  .drawer-right { @apply inset-y-0 right-0 w-80 max-w-full translate-x-full border-l border-border; }
+  .drawer-top { @apply inset-x-0 top-0 max-h-[85vh] -translate-y-full border-b border-border; }
+  .drawer-bottom { @apply inset-x-0 bottom-0 max-h-[85vh] translate-y-full rounded-t-card border-t border-border; }
+  .drawer-contained { @apply absolute; }
+  .drawer-edge { @apply visible translate-y-[calc(100%-3.75rem)]; transition: translate 0.3s ease-out; }
+  .drawer.is-open { @apply visible translate-x-0 translate-y-0; transition: translate 0.3s ease-out, visibility 0s; }
+  .drawer-header { @apply flex shrink-0 items-center justify-between gap-4 border-b border-border-subtle px-5 py-4; }
+  .drawer-title { @apply text-base font-semibold text-fg; }
+  .drawer-close { @apply inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-control text-fg-muted transition-colors hover:bg-neutral-100 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500; }
+  .drawer-body { @apply flex-1 overflow-y-auto p-5 text-sm text-fg-muted; }
+  .drawer-footer { @apply flex shrink-0 items-center gap-3 border-t border-border-subtle p-4; }
+  .drawer-handle { @apply relative block h-[3.75rem] w-full cursor-pointer text-center transition-colors hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500; }
+  .drawer-grab { @apply absolute left-1/2 top-3 h-1 w-8 -translate-x-1/2 rounded-full bg-neutral-300; }
+  .drawer-backdrop { @apply fixed inset-0 z-30 bg-black/50 opacity-0 transition-opacity duration-300; }
+  .drawer-backdrop.is-open { @apply opacity-100; }
+
   /* ==== Navbar — nav.navbar > .navbar-inner > .navbar-brand + .navbar-toggle + .navbar-menu > ul.navbar-nav > li > .navbar-link ====
      Mobile menu: data-ui-collapse (assets/js/ui.js). Active link: aria-current="page" | .is-active. */
   .navbar { @apply relative z-20 w-full border-b border-border bg-surface; }
