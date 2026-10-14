@@ -1,6 +1,7 @@
 /* Portal Karir - data contoh dan helper bersama untuk index.html, lowongan.html, dan lamaran.html.
    Semua data tinggal di browser (localStorage): jawaban onboarding, lowongan tersimpan, dan lamaran yang dikirim dari portal. */
 (function () {
+  var ROOT = (function () { var s = document.currentScript; return s && s.src ? new URL('../../', s.src).href : '../../'; })();
   var STORE_KEY = 'kk_portal_onboarding';
   var USER_KEY = 'kk_portal_user';
   var SAVED_KEY = 'kk_portal_saved';
@@ -484,7 +485,7 @@
   }
   // Keadaan kosong memakai ilustrasi empty-state (assets/illustrations/empty-state); parameter pertama = nama berkas tanpa .svg.
   function emptyBox(art, title, text, actionHtml) {
-    return '<div class="rounded-2xl border border-dashed border-border bg-surface px-6 py-10 text-center"><img src="../../assets/illustrations/empty-state/' + art + '.svg" alt="" class="mx-auto h-36 w-auto" />' +
+    return '<div class="rounded-2xl border border-dashed border-border bg-surface px-6 py-10 text-center"><img src="' + ROOT + 'assets/illustrations/empty-state/' + art + '.svg" alt="" class="mx-auto h-36 w-auto" />' +
       '<p class="mt-4 text-base font-semibold text-slate-800">' + esc(title) + '</p><p class="mx-auto mt-1 max-w-sm text-sm text-slate-500">' + esc(text) + '</p>' + (actionHtml ? '<div class="mt-5">' + actionHtml + '</div>' : '') + '</div>';
   }
   function errorBox(message) {
@@ -609,18 +610,103 @@
   function initCombos(scope) { (scope || document).querySelectorAll('[data-combo]').forEach(initCombo); }
 
   // Isi nama pengguna di navbar, tahun di footer, dan beri efek kaca pada navbar saat halaman digulir.
+  // Merek di navbar: bawaan = logo KarirLink SEVIMA; bila CAMPUS.logo diisi, tampil logo kampus (white-label) dengan inisial sebagai cadangan.
+  function initBrand() {
+    document.querySelectorAll('[data-brand]').forEach(function (a) {
+      var def = a.querySelector('[data-brand-default]'), cus = a.querySelector('[data-brand-custom]');
+      if (!def || !cus || !CAMPUS.logo) return;
+      def.hidden = true; cus.hidden = false;
+      a.title = CAMPUS.name;
+      var nm = cus.querySelector('[data-campus-name]'); if (nm) nm.textContent = CAMPUS.name;
+      var av = cus.querySelector('[data-brand-avatar]');
+      if (av) {
+        av.textContent = CAMPUS.name.split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
+        var img = new Image(); img.alt = '';
+        img.className = 'absolute inset-0 h-full w-full bg-white object-contain p-1';
+        img.addEventListener('load', function () { av.appendChild(img); });
+        img.src = new URL(CAMPUS.logo, location.href).href;
+      }
+    });
+  }
+
+  // ---- shell bersama: navbar, drawer, dan footer (markup di shell.js)
+  var PAGE_FILE = { home: 'index.html', jobs: 'lowongan.html', event: 'event.html', course: 'course.html', tracer: 'tracer-study.html' };
+  function mountShell() {
+    var S = window.PK_SHELL; if (!S) return;
+    document.querySelectorAll('[data-shell]').forEach(function (ph) {
+      var kind = ph.getAttribute('data-shell'), page = ph.getAttribute('data-page');
+      var wrap = document.createElement('div'); wrap.innerHTML = (S[kind] || '').split('../../assets/').join(ROOT + 'assets/');
+      if (kind === 'nav' && PAGE_FILE[page]) {
+        wrap.querySelectorAll('[data-nav-links] a, #pkDrawer nav a').forEach(function (a) {
+          if (a.getAttribute('href') !== PAGE_FILE[page]) return;
+          a.setAttribute('aria-current', 'page');
+          if (a.closest('#pkDrawer')) { a.classList.remove('text-fg', 'hover:bg-neutral-50'); a.classList.add('bg-primary-50', 'text-primary-700'); }
+        });
+      }
+      var frag = document.createDocumentFragment();
+      while (wrap.firstChild) frag.appendChild(wrap.firstChild);
+      ph.replaceWith(frag);
+    });
+  }
+  // Navbar: transparan (teks putih) di atas band gradasi [data-nav-hero], putih solid bila tidak ada band atau setelah digulir.
+  function initNav() {
+    var header = document.querySelector('[data-shell-header]'), bar = document.querySelector('[data-glass-nav]');
+    if (!header || !bar) return;
+    function sync() {
+      var hero = Array.prototype.some.call(document.querySelectorAll('[data-nav-hero]'), function (e) { return !e.hidden && e.offsetParent !== null; });
+      header.classList.toggle('-mb-[4.5rem]', hero);
+      bar.setAttribute('data-scrolled', String(!hero || window.scrollY > 8));
+    }
+    sync();
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    if ('MutationObserver' in window) {
+      var mo = new MutationObserver(sync);
+      document.querySelectorAll('[data-nav-hero]').forEach(function (e) { mo.observe(e, { attributes: true, attributeFilter: ['hidden'] }); });
+    }
+    PK.syncNav = sync;
+  }
+  // Footer: identitas, kontak, dan media sosial milik kampus (PK.CAMPUS).
+  function initFooter() {
+    var C = CAMPUS;
+    var about = document.querySelector('[data-foot-about]'); if (about) about.textContent = C.about || '';
+    var def = document.querySelector('[data-foot-default]');
+    if (def && C.logo) {
+      var cus = document.querySelector('[data-foot-custom]'), lg = document.querySelector('[data-foot-logo]');
+      def.hidden = true; cus.hidden = false;
+      document.querySelector('[data-foot-name]').textContent = C.name;
+      lg.textContent = C.name.split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
+      var im = new Image(); im.alt = ''; im.className = 'absolute inset-0 h-full w-full bg-white object-contain p-1';
+      im.addEventListener('load', function () { lg.appendChild(im); }); im.src = new URL(C.logo, location.href).href;
+    }
+    function row(i, body) { return '<li class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-primary-50 text-primary-600">' + icon(i) + '</span><span class="min-w-0 pt-1 text-sm text-fg-muted">' + body + '</span></li>'; }
+    var rows = '';
+    if (C.address) rows += row('map-pin', esc(C.address));
+    if (C.email) rows += row('envelope-simple', '<a href="mailto:' + esc(C.email) + '" class="footer-link">' + esc(C.email) + '</a>');
+    if (C.phone) rows += row('phone', '<a href="tel:' + esc(C.phone.replace(/[^+0-9]/g, '')) + '" class="footer-link">' + esc(C.phone) + '</a>');
+    var ct = document.getElementById('footContact'); if (ct) ct.innerHTML = rows;
+    var SOC = [['facebook', 'facebook-logo', 'Facebook'], ['instagram', 'instagram-logo', 'Instagram'], ['x', 'x-logo', 'X'], ['youtube', 'youtube-logo', 'YouTube']];
+    var soc = SOC.filter(function (x) { return C.social && C.social[x[0]]; }).map(function (x) {
+      return '<a href="' + esc(C.social[x[0]]) + '" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center rounded-full border border-border text-fg-muted transition-colors hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600" aria-label="' + x[2] + '">' + icon(x[1], 'h-[18px] w-[18px]') + '</a>';
+    }).join('');
+    var so = document.getElementById('footSocial'), sw = document.getElementById('footSocialWrap');
+    if (so) so.innerHTML = soc; if (sw) sw.hidden = !soc;
+    // kolom footer: akordeon di ponsel, selalu terbuka di md ke atas
+    var mq = window.matchMedia('(min-width: 768px)');
+    function syncCols() { document.querySelectorAll('[data-footer-col]').forEach(function (d) { if (mq.matches) d.setAttribute('open', ''); else d.removeAttribute('open'); }); }
+    syncCols(); if (mq.addEventListener) mq.addEventListener('change', syncCols);
+  }
+
   function initShell() {
+    mountShell();
+    initBrand();
+    initNav();
+    initFooter();
     var name = user.name || 'Pengguna';
     document.querySelectorAll('[data-user-initials]').forEach(function (el) { el.textContent = initials(user.name); });
     document.querySelectorAll('[data-user-name]').forEach(function (el) { el.textContent = name; });
     document.querySelectorAll('[data-user-email]').forEach(function (el) { el.textContent = user.email || 'Email belum diisi'; });
     document.querySelectorAll('.js-current-year').forEach(function (el) { el.textContent = new Date().getFullYear(); });
-    var nav = document.querySelector('[data-glass-nav]');
-    if (nav) {
-      var sync = function () { nav.setAttribute('data-scrolled', String(window.scrollY > 8)); };
-      sync();
-      window.addEventListener('scroll', sync, { passive: true });
-    }
   }
 
   /* ==========================================================================
@@ -797,11 +883,53 @@
 
   function tintOfCat(cat) { return TINT[COURSE_TONE[cat] || 'primary']; }
 
+  /* ==========================================================================
+     Tracer Study: portal hanya menjadi pengingat. Kuesionernya sendiri diisi di aplikasi Tracer Study (CAMPUS.tracerUrl);
+     tiap kuesioner punya tautan langsung ke kuesionernya. Status diterima dari aplikasi Tracer Study.
+       GET /api/tracer -> { locked, items:[{ id, custom?, title, when, status:'selesai'|'perlu'|'belum', closes?, opensIn?, doneAgo? }] }
+     ========================================================================== */
+  var TRACER = [
+    { id: 'pra-lulus', title: 'Pra-lulus', when: 'Saat menjelang kelulusan', minutes: 5, status: 'selesai', doneAgo: 420,
+      desc: 'Pengalaman kuliah dan rencana setelah lulus. Diisi sebelum wisuda.' },
+    { id: 'pasca-1', title: 'Pasca-lulus 1 tahun', when: 'Satu tahun setelah lulus', minutes: 10, status: 'perlu', closes: 21,
+      desc: 'Status pekerjaan atau studi lanjutanmu setahun setelah lulus, dipakai untuk akreditasi dan pelaporan.' },
+    { id: 'pasca-4', title: 'Pasca-lulus 4 tahun', when: 'Empat tahun setelah lulus', minutes: 10, status: 'belum', opensIn: 1095,
+      desc: 'Perkembangan kariermu setelah empat tahun, termasuk kesesuaian pekerjaan dan kompetensi.' },
+    // Kuesioner custom yang dibuat admin kampus untuk alumni (custom: true). Nama, deskripsi, batas waktu, dan estimasi waktu diisi admin;
+    // semuanya boleh kosong, halaman memakai teks bawaan. Hanya tampil di halaman alumni.
+    { id: 'kampus-14', custom: true, title: 'Survei kepuasan layanan alumni', status: 'perlu', closes: 45, minutes: 3,
+      desc: 'Bantu kampus menilai layanan alumni dan kegiatan ikatan alumni.' },
+    { id: 'kampus-15', custom: true, title: '', status: 'perlu' }
+  ];
+  // Kuesioner hanya bisa diisi alumni. tracer-study.html = alumni (kuesioner terbuka); tracer-study-mahasiswa.html = mahasiswa (semua terkunci).
+  // Navbar menuju tracer-study.html; halaman mahasiswa dipilih server dan tidak ditautkan di prototipe.
+  api.listTracer = function (audience) {
+    return simulate(function () {
+      var alumni = audience === 'alumni';
+      return { locked: !alumni, items: TRACER.filter(function (t) { return alumni || !t.custom; }).map(function (t) { return alumni ? t : Object.assign({}, t, { status: 'terkunci' }); }) };
+    }, 220);
+  };
+  function tracerLink(item) { return (CAMPUS.tracerUrl || 'https://tracer.karirlink.id/kuesioner') + '?kuesioner=' + encodeURIComponent(item.id); }
+
   // Identitas kampus pengelola portal (diganti per universitas).
-  var CAMPUS = { name: 'Universitas Contoh', unit: 'Pusat Karier dan Alumni' };
+  // logo kosong = logo KarirLink SEVIMA bawaan. Isi URL gambar (relatif terhadap halaman) untuk tampilan white-label seperti templates/custom:
+  // avatar logo kampus + "Karirlink" kecil di atas nama kampus.
+  var CAMPUS = {
+    name: 'Universitas Contoh', unit: 'Pusat Karier dan Alumni', logo: '',
+    // Alamat aplikasi Tracer Study kampus (kuesioner diisi di sana).
+    tracerUrl: '../karirlink/kuesioner-simulasi.html',
+    // Kontak dan media sosial milik kampus (footer). Nilai kosong = barisnya tidak ditampilkan.
+    about: 'Pusat karier dan alumni yang membantu mahasiswa dan lulusan menemukan lowongan, mengikuti event dan pelatihan, serta mengembangkan kariernya.',
+    address: 'Gedung Rektorat Lt. 2, Jl. Contoh Raya No. 1, Surabaya, Jawa Timur', email: 'karier@contoh.ac.id', phone: '+62 31 5551 234',
+    social: { facebook: '#', instagram: '#', x: '', youtube: '#' }
+  };
+  if (window.PK_CAMPUS) {
+    var over = window.PK_CAMPUS;
+    Object.keys(over).forEach(function (k) { if (k === 'social') CAMPUS.social = Object.assign({}, CAMPUS.social, over.social); else CAMPUS[k] = over[k]; });
+  }
 
   window.PK = {
-    CAMPUS: CAMPUS, COURSES: COURSES, COURSE_CATS: COURSE_CATS, courseCard: courseCard, courseDuration: courseDuration, lessonsOf: lessonsOf, courseProgress: courseProgress, TINT_OF: tintOfCat, eventCard: eventCard, EVENTS: EVENTS, EVENT_CATS: EVENT_CATS, eventRegistered: eventRegistered, evDay: evDay, evMonth: evMonth, evWeekday: evWeekday, evFull: evFull,
+    CAMPUS: CAMPUS, tracerLink: tracerLink, COURSES: COURSES, COURSE_CATS: COURSE_CATS, courseCard: courseCard, courseDuration: courseDuration, lessonsOf: lessonsOf, courseProgress: courseProgress, TINT_OF: tintOfCat, eventCard: eventCard, EVENTS: EVENTS, EVENT_CATS: EVENT_CATS, eventRegistered: eventRegistered, evDay: evDay, evMonth: evMonth, evWeekday: evWeekday, evFull: evFull,
     JOBS: JOBS, STATUSES: STATUSES, STEPS: STEPS, FIELDS: FIELDS, api: api,
     user: user, prefs: prefs, onboarded: onboarded, hasPrefs: hasPrefs,
     esc: esc, initials: initials, when: when, dateOf: dateOf, icon: icon, profile: profile,

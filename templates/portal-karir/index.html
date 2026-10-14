@@ -43,90 +43,17 @@
 <body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
 
 <!-- ============================= NAVBAR ============================= -->
-<nav class="navbar navbar-sticky transition-[background-color,box-shadow] duration-300 data-[scrolled=true]:border-border/40 data-[scrolled=true]:bg-surface/70 data-[scrolled=true]:shadow-sm data-[scrolled=true]:backdrop-blur-xl" data-glass-nav aria-label="Navigasi utama">
-  <div class="navbar-inner py-3">
-    <a href="index.html" class="navbar-brand md:order-1">
-      <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
-    </a>
-
-    <div class="flex items-center gap-1.5 md:order-3">
-      <!-- Notifikasi -->
-      <div class="dropdown">
-        <button type="button" class="relative flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Notifikasi, 3 baru">
-          <i class="kk kk-bell h-5 w-5" aria-hidden="true"></i>
-          <span class="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-danger-500 ring-2 ring-white"></span>
-        </button>
-        <div class="dropdown-menu hidden w-80 max-w-[calc(100vw-2rem)]" data-placement="bottom-end">
-          <div class="flex items-center justify-between px-3 pb-2 pt-1">
-            <p class="text-sm font-semibold text-fg">Notifikasi</p>
-            <span class="badge-primary">3 baru</span>
-          </div>
-          <a href="lamaran.html?id=3" class="dropdown-item items-start gap-3">
-            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600"><i class="kk kk-calendar-check h-4 w-4" aria-hidden="true"></i></span>
-            <span class="min-w-0"><span class="dropdown-item-title">Jadwal wawancara</span><span class="dropdown-item-desc">Studio Kreatif Kita mengundangmu wawancara Kamis, 15 Oktober.</span><span class="mt-0.5 block text-xs text-fg-subtle">2 jam lalu</span></span>
-          </a>
-          <a href="lamaran.html?id=2" class="dropdown-item items-start gap-3">
-            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-4 w-4" aria-hidden="true"></i></span>
-            <span class="min-w-0"><span class="dropdown-item-title">Lamaran sedang ditinjau</span><span class="dropdown-item-desc">Data Analyst di Bank Sentra Mandiri mulai diperiksa tim rekrutmen.</span><span class="mt-0.5 block text-xs text-fg-subtle">Kemarin</span></span>
-          </a>
-          <a href="lowongan.html" class="dropdown-item items-start gap-3">
-            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600"><i class="kk kk-briefcase h-4 w-4" aria-hidden="true"></i></span>
-            <span class="min-w-0"><span class="dropdown-item-title">Lowongan baru untukmu</span><span class="dropdown-item-desc">5 lowongan baru cocok dengan minat dan keahlianmu.</span><span class="mt-0.5 block text-xs text-fg-subtle">2 hari lalu</span></span>
-          </a>
-          <hr class="dropdown-divider" />
-          <a href="lamaran.html" class="dropdown-item justify-center font-medium text-primary-600 hover:text-primary-700">Lihat semua lamaran</a>
-        </div>
-      </div>
-
-      <!-- Akun -->
-      <div class="dropdown">
-        <button type="button" class="flex items-center gap-2 rounded-xl py-0.5 pl-0.5 pr-2 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Menu akun">
-          <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
-          <span class="hidden max-w-[9rem] truncate text-sm font-semibold text-slate-800 sm:block" data-user-name>Pengguna</span>
-          <i class="kk kk-caret-down hidden h-4 w-4 text-slate-400 sm:block" aria-hidden="true"></i>
-        </button>
-        <div class="dropdown-menu hidden w-64" data-placement="bottom-end">
-          <div class="dropdown-header">
-            <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
-            <div class="min-w-0 flex-1">
-              <p class="dropdown-header-title" data-user-name>Pengguna</p>
-              <p class="dropdown-header-desc" data-user-email>Email belum diisi</p>
-            </div>
-          </div>
-          <a href="profil.html" class="dropdown-item"><i class="kk kk-user-circle h-4 w-4" aria-hidden="true"></i>Profil Saya</a>
-          <a href="lamaran.html" class="dropdown-item"><i class="kk kk-file-text h-4 w-4" aria-hidden="true"></i>Lamaran Saya</a>
-          <a href="lowongan.html?simpan=1" class="dropdown-item"><i class="kk kk-bookmark-simple h-4 w-4" aria-hidden="true"></i>Lowongan Tersimpan</a>
-          <hr class="dropdown-divider" />
-          <a href="login.html" class="dropdown-item dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4" aria-hidden="true"></i>Keluar</a>
-        </div>
-      </div>
-
-      <button type="button" class="navbar-toggle" data-ui-collapse data-ui-collapse-static aria-controls="pkMenu" aria-expanded="false" aria-label="Buka menu">
-        <i class="kk kk-list h-5 w-5" aria-hidden="true"></i>
-      </button>
-    </div>
-
-    <div class="navbar-menu hidden md:order-2 md:ml-10 md:mr-auto md:block max-md:not-[.hidden]:block" id="pkMenu">
-      <ul class="navbar-nav">
-        <li><a href="index.html" class="navbar-link" aria-current="page">Beranda</a></li>
-        <li><a href="lowongan.html" class="navbar-link">Lowongan</a></li>
-        <li><a href="event.html" class="navbar-link">Event</a></li>
-        <li><a href="course.html" class="navbar-link">Course</a></li>
-        <li><a href="lamaran.html" class="navbar-link">Lamaran Saya</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div data-shell="nav" data-page="home"></div>
 
 <main class="flex-1">
 
   <!-- ============================= HERO ============================= -->
-  <section class="relative overflow-hidden bg-brand-gradient text-white">
+  <section data-nav-hero class="relative overflow-hidden bg-brand-gradient text-white">
     <div aria-hidden="true" class="pointer-events-none absolute inset-0">
       <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
       <div class="absolute -right-24 -top-28 h-96 w-96 rounded-full bg-secondary-400/30 blur-3xl"></div>
     </div>
-    <div id="heroGrid" class="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.3fr_0.7fr]">
+    <div id="heroGrid" class="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:grid-cols-[1.3fr_0.7fr]">
       <div class="min-w-0">
         <p id="heroUnit" class="text-sm font-semibold uppercase tracking-wider text-white/80"></p>
         <h1 id="heroCampus" class="mt-3 text-balance font-display font-bold leading-tight tracking-tight"></h1>
@@ -164,11 +91,11 @@
   <div class="mx-auto w-full max-w-7xl space-y-14 px-4 py-10 sm:px-6 sm:py-12">
 
     <!-- ============================= LAYANAN ============================= -->
-    <section aria-labelledby="svcTitle">
+    <section id="layanan" class="scroll-mt-28" aria-labelledby="svcTitle">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <div><h2 id="svcTitle" class="font-display text-2xl font-bold text-fg">Layanan pusat karier</h2><p class="card-text mt-1">Semua yang kamu butuhkan untuk berkembang, dikelola langsung oleh kampus.</p></div>
       </div>
-      <div id="services" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
+      <div id="services" class="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4"></div>
     </section>
 
     <!-- ============================= EVENT ============================= -->
@@ -189,43 +116,31 @@
     </section>
 
     <!-- ============================= PENGEMBANGAN DIRI ============================= -->
-    <section aria-labelledby="growTitle">
+    <section id="pengembangan" class="scroll-mt-28" aria-labelledby="growTitle">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <div><h2 id="growTitle" class="font-display text-2xl font-bold text-fg">Kembangkan minat dan bakatmu</h2><p class="card-text mt-1">Bangun portofolio, kenali arah kariermu, dan dapatkan pendampingan dari kampus.</p></div>
       </div>
-      <div id="grow" class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3"></div>
+      <div id="grow" class="card mt-6 divide-y divide-border overflow-hidden md:grid md:grid-cols-3 md:gap-5 md:divide-y-0 md:overflow-visible md:rounded-none md:border-0 md:bg-transparent md:shadow-none"></div>
     </section>
 
     <!-- ============================= LOWONGAN PILIHAN ============================= -->
     <section aria-labelledby="jobsTitle">
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <div><h2 id="jobsTitle" class="font-display text-2xl font-bold text-fg">Lowongan pilihan</h2></div><a href="lowongan.html" class="btn-outline btn-md">Lihat semua lowongan<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+      <div class="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
+        <div><h2 id="jobsTitle" class="font-display text-2xl font-bold text-fg">Lowongan pilihan</h2><p id="jobsNote" class="card-text mt-1"></p></div>
+        <a href="lowongan.html" class="btn-outline btn-md w-full sm:w-auto">Lihat semua lowongan<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
       </div>
-      <p id="jobsNote" class="card-text mt-1"></p>
       <div id="jobGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
     </section>
 
   </div>
 </main>
 
-<footer class="footer border-t border-border">
-  <div class="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6">
-    <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-      <div class="col-span-2 md:col-span-1">
-        <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
-        <p class="mt-4 max-w-xs text-sm leading-relaxed text-fg-muted">Portal karier dan alumni <span class="js-campus"></span>, dikelola oleh pusat karier kampus.</p>
-      </div>
-      <div><h3 class="footer-heading">Layanan</h3><ul class="footer-list text-sm"><li><a href="lowongan.html" class="footer-link">Lowongan</a></li><li><a href="event.html" class="footer-link">Event dan kegiatan</a></li><li><a href="course.html" class="footer-link">Course</a></li><li><a href="profil.html" class="footer-link">Profil dan portofolio</a></li></ul></div>
-      <div><h3 class="footer-heading">Akun</h3><ul class="footer-list text-sm"><li><a href="profil.html" class="footer-link">Profil saya</a></li><li><a href="lamaran.html" class="footer-link">Lamaran saya</a></li><li><a href="lowongan.html?simpan=1" class="footer-link">Lowongan tersimpan</a></li></ul></div>
-      <div><h3 class="footer-heading">Kontak</h3><ul class="footer-list text-sm"><li class="flex items-start gap-2"><i class="kk kk-map-pin mt-0.5 h-4 w-4 shrink-0" aria-hidden="true"></i>Pusat Karier, Gedung Rektorat Lt. 2</li><li class="flex items-center gap-2"><i class="kk kk-clock h-4 w-4 shrink-0" aria-hidden="true"></i>Senin sampai Jumat, 08.00 sampai 16.00</li></ul></div>
-    </div>
-    <hr class="footer-divider" />
-    <div class="flex flex-col items-center justify-between gap-2 text-xs text-fg-subtle sm:flex-row"><p>&copy; 2005-<span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p><p>KarirLink</p></div>
-  </div>
-</footer>
+<div data-shell="footer"></div>
 
 <script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/drawer.js"></script>
 <script src="../../assets/js/toast.js"></script>
+<script src="shell.js"></script>
 <script src="portal.js"></script>
 <script>
   // Beranda = pintu masuk pusat karier kampus (CDC). Komponen KarirKit: card, stat-card, badge, list-group, button. Data event lewat PK.api.
@@ -265,11 +180,11 @@
       ['calendar-check', 'bg-info-50 text-info-600', 'Event dan job fair', 'Job fair, workshop, dan seminar karier.', 'event.html'],
       ['lightbulb', 'bg-warning-50 text-warning-600', 'Course dan pelatihan', 'Pengembangan keahlian dengan sertifikat.', 'course.html'],
       ['palette', 'bg-secondary-50 text-secondary-600', 'Portofolio', 'Tampilkan karya dan pengalamanmu di profil publik.', 'profil.html'],
-      ['target', 'bg-primary-50 text-primary-600', 'Minat dan bakat', 'Kenali arah kariermu dan dapatkan pendampingan.', 'profil.html'],
+      ['list-checks', 'bg-primary-50 text-primary-600', 'Tracer Study', 'Ceritakan perjalanan kariermu dan bantu kampus berkembang.', 'tracer-study.html'],
       ['users', 'bg-danger-50 text-danger-600', 'Kegiatan kampus', 'Temu alumni, wisuda, dan kegiatan kampus lainnya.', 'event.html?kategori=Kegiatan%20Kampus']
     ];
     $('services').innerHTML = SERVICES.map(function (x) {
-      return '<a href="' + x[4] + '" class="card card-hover flex flex-col gap-3 p-5"><span class="flex h-11 w-11 items-center justify-center rounded-control ' + x[1] + '">' + PK.icon(x[0], 'h-5 w-5') + '</span><span><span class="card-title block !text-base">' + x[2] + '</span><span class="card-text mt-1 block">' + x[3] + '</span></span></a>';
+      return '<a href="' + x[4] + '" class="card card-hover flex flex-col gap-2.5 p-3.5 sm:gap-3 sm:p-5"><span class="flex h-10 w-10 items-center justify-center rounded-control sm:h-11 sm:w-11 ' + x[1] + '">' + PK.icon(x[0], 'h-5 w-5') + '</span><span><span class="card-title block !text-sm sm:!text-base">' + x[2] + '</span><span class="card-text mt-1 hidden text-sm sm:block">' + x[3] + '</span></span></a>';
     }).join('');
 
     // ---- course (3 terpopuler; yang sedang diikuti tampil dengan progresnya)
@@ -281,9 +196,11 @@
       ['target', 'bg-primary-50 text-primary-600', 'Kenali minat dan bakat', 'Lengkapi profil agar rekomendasi lowongan dan kegiatan lebih tepat.', 'Lengkapi profil', 'profil.html'],
       ['handshake', 'bg-success-50 text-success-600', 'Konsultasi karier', 'Jadwalkan sesi bersama konselor pusat karier untuk arah dan strategi kariermu.', 'Jadwalkan sesi', '']
     ];
+    // mobile: baris dalam satu kartu, seluruh baris bisa ditekan; md ke atas: tiga kartu terpisah dengan tombol
     $('grow').innerHTML = GROW.map(function (x) {
-      var cta = x[5] ? '<a href="' + x[5] + '" class="btn-outline btn-sm mt-5 self-start">' + x[4] + '</a>' : '<button type="button" class="btn-outline btn-sm mt-5 self-start" data-soon="Penjadwalan konsultasi">' + x[4] + '</button>';
-      return '<div class="card card-body flex flex-col"><span class="flex h-11 w-11 items-center justify-center rounded-control ' + x[1] + '">' + PK.icon(x[0], 'h-5 w-5') + '</span><h3 class="card-title mt-4 !text-base">' + x[2] + '</h3><p class="card-text mt-2 flex-1">' + x[3] + '</p>' + cta + '</div>';
+      var inner = '<span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-control ' + x[1] + '">' + PK.icon(x[0], 'h-5 w-5') + '</span><span class="flex min-w-0 flex-1 flex-col"><span class="card-title !text-base md:mt-4">' + x[2] + '</span><span class="card-text mt-0.5 flex-1 md:mt-2">' + x[3] + '</span><span class="btn-outline btn-sm mt-5 hidden self-start md:inline-flex" aria-hidden="true">' + x[4] + '</span></span>';
+      var cls = 'flex min-h-16 w-full gap-4 p-4 text-left transition-colors hover:bg-neutral-50 active:bg-neutral-100 md:min-h-0 md:flex-col md:gap-0 md:rounded-card md:border md:border-border/70 md:bg-surface md:p-6 md:shadow-card md:hover:shadow-card-lg';
+      return x[5] ? '<a href="' + x[5] + '" class="' + cls + '">' + inner + '</a>' : '<button type="button" class="' + cls + '" data-soon="Penjadwalan konsultasi">' + inner + '</button>';
     }).join('');
     document.addEventListener('click', function (e) { var s = e.target.closest('[data-soon]'); if (s) PK.toast('info', s.getAttribute('data-soon') + ' akan tersedia segera.'); });
 

@@ -65,3 +65,8 @@ export const Course = {
   name: "Course",
   render: () => pageFrame("/templates/portal-karir/course.html", "Portal Karir Course"),
 };
+
+export const CustomKampus = {
+  name: "Custom Kampus (white-label)",
+  render: () => pageFrame("/templates/custom/portal-karir/index.html", "Portal Karir Custom Kampus"),
+};
