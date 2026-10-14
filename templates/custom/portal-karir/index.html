@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beranda | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../../dist/output.css" />
+<meta name="description" content="Beranda Portal Karir KarirLink: cari lowongan, lihat rekomendasi yang cocok, dan pantau lamaranmu." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/custom/portal-karir/index.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Beranda | Portal Karir KarirLink" />
+<meta property="og:description" content="Beranda Portal Karir KarirLink: cari lowongan yang cocok, pantau lamaran, dan ikuti event karier dalam satu tempat." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/custom/portal-karir/index.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Beranda | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Beranda Portal Karir KarirLink: cari lowongan yang cocok, pantau lamaran, dan ikuti event karier dalam satu tempat." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<style>
+  /* Animasi halus untuk visual hero; dimatikan bila pengguna meminta gerakan dikurangi. */
+  @keyframes pk-spin { to { rotate: 360deg; } }
+  @keyframes pk-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes pk-pulse { 0%, 100% { opacity: .35; scale: 1; } 50% { opacity: .1; scale: 1.12; } }
+  .pk-orbit { animation: pk-spin 60s linear infinite; }
+  .pk-orbit-rev { animation: pk-spin 90s linear infinite reverse; }
+  .pk-float { animation: pk-float 6s ease-in-out infinite; }
+  .pk-pulse { animation: pk-pulse 4s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) { .pk-orbit, .pk-orbit-rev, .pk-float, .pk-pulse { animation: none; } }
+</style>
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<div data-shell="nav" data-page="home"></div>
+
+<main class="flex-1">
+
+  <!-- ============================= HERO ============================= -->
+  <section data-nav-hero class="relative overflow-hidden bg-brand-gradient text-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
+      <div class="absolute -right-24 -top-28 h-96 w-96 rounded-full bg-secondary-400/30 blur-3xl"></div>
+    </div>
+    <div id="heroGrid" class="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:grid-cols-[1.3fr_0.7fr]">
+      <div class="min-w-0">
+        <p id="heroUnit" class="text-sm font-semibold uppercase tracking-wider text-white/80"></p>
+        <h1 id="heroCampus" class="mt-3 text-balance font-display font-bold leading-tight tracking-tight"></h1>
+        <p class="mt-4 max-w-xl text-base text-white/85 sm:text-lg">Lowongan, event, course, dan portofolio dalam satu tempat, dari masa kuliah sampai setelah lulus.</p>
+
+        <form id="heroSearch" role="search" class="card mt-8 max-w-2xl p-2 text-fg sm:flex sm:items-center sm:gap-2" data-combo-boundary>
+          <label class="relative min-w-0 flex-1">
+            <span class="sr-only">Kata kunci</span>
+            <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+            <input id="heroQ" type="search" class="input border-0 pl-9 shadow-none focus:ring-0" placeholder="Cari apa hari ini?" autocomplete="off" />
+          </label>
+          <div id="heroTypeHost" class="border-t border-border pt-2 sm:w-44 sm:border-l sm:border-t-0 sm:pl-2 sm:pt-0"></div>
+          <button type="submit" class="btn-primary btn-md mt-2 w-full sm:mt-0 sm:w-auto">Cari</button>
+        </form>
+      </div>
+
+      <div class="relative mx-auto hidden h-[26rem] w-full max-w-md lg:block" aria-hidden="true">
+        <!-- cincin orbit -->
+        <div class="absolute left-1/2 top-1/2 h-[23rem] w-[23rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15"></div>
+        <div class="pk-pulse absolute left-1/2 top-1/2 h-[12rem] w-[12rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-secondary-300/40 blur-2xl"></div>
+        <div class="absolute left-1/2 top-1/2 h-[16rem] w-[16rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/35 pk-orbit"></div>
+        <div class="absolute left-1/2 top-1/2 h-[10rem] w-[10rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-white/25 to-white/5 ring-1 ring-white/30 backdrop-blur-sm"></div>
+        <!-- pusat -->
+        <div class="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-2xl shadow-primary-950/40 ring-8 ring-white/20"><img src="../../../assets/logo/karirlink-mark.svg" alt="" class="h-14 w-14" /></div>
+        <!-- titik penghias -->
+        <span class="absolute left-[18%] top-[48%] h-2.5 w-2.5 rounded-full bg-secondary-300"></span><span class="absolute right-[16%] top-[56%] h-2 w-2 rounded-full bg-white/70"></span><span class="absolute left-[46%] top-[6%] h-2 w-2 rounded-full bg-white/60"></span><span class="absolute bottom-[8%] right-[40%] h-2.5 w-2.5 rounded-full bg-secondary-300"></span>
+        <div style="animation-delay:0s" class="pk-float absolute left-0 top-8 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-briefcase h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Lowongan</span></div>
+        <div style="animation-delay:-1.5s" class="pk-float absolute right-0 top-20 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-calendar-check h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Event</span></div>
+        <div style="animation-delay:-3s" class="pk-float absolute bottom-20 left-2 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-graduation-cap h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Course</span></div>
+        <div style="animation-delay:-4.5s" class="pk-float absolute bottom-6 right-6 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-palette h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Portofolio</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto w-full max-w-7xl space-y-14 px-4 py-10 sm:px-6 sm:py-12">
+
+    <!-- ============================= LAYANAN ============================= -->
+    <section id="layanan" class="scroll-mt-28" aria-labelledby="svcTitle">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h2 id="svcTitle" class="font-display text-2xl font-bold text-fg">Layanan pusat karier</h2><p class="card-text mt-1">Semua yang kamu butuhkan untuk berkembang, dikelola langsung oleh kampus.</p></div>
+      </div>
+      <div id="services" class="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4"></div>
+    </section>
+
+    <!-- ============================= EVENT ============================= -->
+    <section aria-labelledby="eventTitle">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h2 id="eventTitle" class="font-display text-2xl font-bold text-fg">Event dan kegiatan</h2><p class="card-text mt-1">Job fair, workshop, webinar, dan kegiatan kampus terdekat.</p></div><a href="event.html" class="btn-outline btn-md">Lihat semua event<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+      </div>
+      <div id="eventGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+
+    <!-- ============================= COURSE ============================= -->
+    <section id="course" class="scroll-mt-24" aria-labelledby="courseTitle">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h2 id="courseTitle" class="font-display text-2xl font-bold text-fg">Course dan pelatihan</h2><p class="card-text mt-1">Pelatihan gratis bersertifikat untuk mengembangkan keahlianmu.</p></div>
+        <a href="course.html" class="btn-outline btn-md">Lihat semua course<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+      </div>
+      <div id="courseGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+
+    <!-- ============================= PENGEMBANGAN DIRI ============================= -->
+    <section id="pengembangan" class="scroll-mt-28" aria-labelledby="growTitle">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h2 id="growTitle" class="font-display text-2xl font-bold text-fg">Kembangkan minat dan bakatmu</h2><p class="card-text mt-1">Bangun portofolio, kenali arah kariermu, dan dapatkan pendampingan dari kampus.</p></div>
+      </div>
+      <div id="grow" class="card mt-6 divide-y divide-border overflow-hidden md:grid md:grid-cols-3 md:gap-5 md:divide-y-0 md:overflow-visible md:rounded-none md:border-0 md:bg-transparent md:shadow-none"></div>
+    </section>
+
+    <!-- ============================= LOWONGAN PILIHAN ============================= -->
+    <section aria-labelledby="jobsTitle">
+      <div class="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
+        <div><h2 id="jobsTitle" class="font-display text-2xl font-bold text-fg">Lowongan pilihan</h2><p id="jobsNote" class="card-text mt-1"></p></div>
+        <a href="lowongan.html" class="btn-outline btn-md w-full sm:w-auto">Lihat semua lowongan<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+      </div>
+      <div id="jobGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+    </section>
+
+  </div>
+</main>
+
+<div data-shell="footer"></div>
+
+<script src="../../../assets/js/ui.js"></script>
+<script src="../../../assets/js/drawer.js"></script>
+<script src="../../../assets/js/toast.js"></script>
+<script src="../../portal-karir/shell.js"></script>
+<script src="campus.js"></script>
+<script src="../../portal-karir/portal.js"></script>
+<script>
+  // Beranda = pintu masuk pusat karier kampus (CDC). Komponen KarirKit: card, stat-card, badge, list-group, button. Data event lewat PK.api.
+  (function () {
+    var PK = window.PK, api = PK.api, esc = PK.esc;
+    function $(id) { return document.getElementById(id); }
+    PK.initShell();
+
+    $('heroUnit').textContent = PK.CAMPUS.unit;
+    $('heroCampus').textContent = PK.CAMPUS.name;
+    // ukuran judul mengikuti panjang nama kampus supaya nama panjang tidak memenuhi hero
+    var nl = PK.CAMPUS.name.length;
+    $('heroCampus').className += nl <= 22 ? ' text-4xl sm:text-5xl lg:text-6xl' : nl <= 34 ? ' text-3xl sm:text-4xl lg:text-5xl' : ' text-2xl sm:text-3xl lg:text-4xl';
+    document.querySelectorAll('.js-campus').forEach(function (el) { el.textContent = PK.CAMPUS.name; });
+
+    // pencarian terpadu: pilih jenis, lalu menuju halaman yang sesuai
+    $('heroTypeHost').innerHTML = PK.comboHtml({ id: 'heroType', all: 'Lowongan', label: 'Cari di', triggerClass: 'border-0 shadow-none focus-visible:ring-0', options: [['event', 'Event'], ['course', 'Course']] });
+    PK.initCombos($('heroSearch'));
+    $('heroSearch').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var type = $('heroType').dataset.value || 'lowongan', q = $('heroQ').value.trim();
+      location.href = type + '.html' + (q ? '?q=' + encodeURIComponent(q) : '');
+    });
+
+    var CAT_TONE = { 'Job Fair': 'badge-primary', 'Workshop': 'badge-secondary', 'Webinar': 'badge-info', 'Pelatihan': 'badge-success', 'Kegiatan Kampus': 'badge-warning' };
+    function dateBox(e) { return '<span class="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-control bg-primary-50 text-primary-700"><span class="text-base font-bold leading-none">' + PK.evDay(e) + '</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">' + PK.evMonth(e) + '</span></span>'; }
+
+    // ---- agenda di hero + kartu event (3 terdekat)
+    var next = PK.EVENTS.filter(function (e) { return e.in >= 0; }).sort(function (a, b) { return a.in - b.in; }).slice(0, 3);
+    $('eventGrid').innerHTML = next.length ? next.map(PK.eventCard).join('') : '<div class="col-span-full">' + PK.emptyBox('calendar', 'Belum ada event dalam waktu dekat', 'Event dan kegiatan baru akan muncul di sini saat dijadwalkan.', '') + '</div>';
+
+    // ---- layanan
+    var SERVICES = [
+      ['briefcase', 'bg-primary-50 text-primary-600', 'Lowongan kerja', 'Posisi penuh waktu dan kontrak dari mitra kampus.', 'lowongan.html?jenis=Penuh%20waktu'],
+      ['graduation-cap', 'bg-secondary-50 text-secondary-600', 'Magang', 'Magang bersertifikat untuk mahasiswa dan fresh graduate.', 'lowongan.html?jenis=Magang'],
+      ['laptop', 'bg-success-50 text-success-600', 'Freelance', 'Proyek lepas yang fleksibel sesuai keahlianmu.', 'lowongan.html?jenis=Freelance'],
+      ['calendar-check', 'bg-info-50 text-info-600', 'Event dan job fair', 'Job fair, workshop, dan seminar karier.', 'event.html'],
+      ['lightbulb', 'bg-warning-50 text-warning-600', 'Course dan pelatihan', 'Pengembangan keahlian dengan sertifikat.', 'course.html'],
+      ['palette', 'bg-secondary-50 text-secondary-600', 'Portofolio', 'Tampilkan karya dan pengalamanmu di profil publik.', 'profil.html'],
+      ['list-checks', 'bg-primary-50 text-primary-600', 'Tracer Study', 'Ceritakan perjalanan kariermu dan bantu kampus berkembang.', 'tracer-study.html'],
+      ['users', 'bg-danger-50 text-danger-600', 'Kegiatan kampus', 'Temu alumni, wisuda, dan kegiatan kampus lainnya.', 'event.html?kategori=Kegiatan%20Kampus']
+    ];
+    $('services').innerHTML = SERVICES.map(function (x) {
+      return '<a href="' + x[4] + '" class="card card-hover flex flex-col gap-2.5 p-3.5 sm:gap-3 sm:p-5"><span class="flex h-10 w-10 items-center justify-center rounded-control sm:h-11 sm:w-11 ' + x[1] + '">' + PK.icon(x[0], 'h-5 w-5') + '</span><span><span class="card-title block !text-sm sm:!text-base">' + x[2] + '</span><span class="card-text mt-1 hidden text-sm sm:block">' + x[3] + '</span></span></a>';
+    }).join('');
+
+    // ---- course (3 terpopuler; yang sedang diikuti tampil dengan progresnya)
+    $('courseGrid').innerHTML = PK.COURSES.slice().sort(function (a, b) { return (PK.courseProgress(b).enrolled - PK.courseProgress(a).enrolled) || b.learners - a.learners; }).slice(0, 3).map(function (c) { return PK.courseCard({ course: c }); }).join('');
+
+    // ---- pengembangan diri
+    var GROW = [
+      ['palette', 'bg-secondary-50 text-secondary-600', 'Bangun portofolio', 'Tampilkan pengalaman, keahlian, dan karyamu di profil yang bisa dibagikan.', 'Buka profil', 'profil.html'],
+      ['target', 'bg-primary-50 text-primary-600', 'Kenali minat dan bakat', 'Lengkapi profil agar rekomendasi lowongan dan kegiatan lebih tepat.', 'Lengkapi profil', 'profil.html'],
+      ['handshake', 'bg-success-50 text-success-600', 'Konsultasi karier', 'Jadwalkan sesi bersama konselor pusat karier untuk arah dan strategi kariermu.', 'Jadwalkan sesi', '']
+    ];
+    // mobile: baris dalam satu kartu, seluruh baris bisa ditekan; md ke atas: tiga kartu terpisah dengan tombol
+    $('grow').innerHTML = GROW.map(function (x) {
+      var inner = '<span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-control ' + x[1] + '">' + PK.icon(x[0], 'h-5 w-5') + '</span><span class="flex min-w-0 flex-1 flex-col"><span class="card-title !text-base md:mt-4">' + x[2] + '</span><span class="card-text mt-0.5 flex-1 md:mt-2">' + x[3] + '</span><span class="btn-outline btn-sm mt-5 hidden self-start md:inline-flex" aria-hidden="true">' + x[4] + '</span></span>';
+      var cls = 'flex min-h-16 w-full gap-4 p-4 text-left transition-colors hover:bg-neutral-50 active:bg-neutral-100 md:min-h-0 md:flex-col md:gap-0 md:rounded-card md:border md:border-border/70 md:bg-surface md:p-6 md:shadow-card md:hover:shadow-card-lg';
+      return x[5] ? '<a href="' + x[5] + '" class="' + cls + '">' + inner + '</a>' : '<button type="button" class="' + cls + '" data-soon="Penjadwalan konsultasi">' + inner + '</button>';
+    }).join('');
+    document.addEventListener('click', function (e) { var s = e.target.closest('[data-soon]'); if (s) PK.toast('info', s.getAttribute('data-soon') + ' akan tersedia segera.'); });
+
+    // ---- lowongan pilihan (3)
+    $('jobsNote').textContent = PK.hasPrefs ? 'Dipilih berdasarkan minat dan keahlianmu.' : 'Lowongan yang sedang ramai dilamar.';
+    var jobsToken = PK.latest();
+    function loadJobs() {
+      $('jobGrid').innerHTML = PK.skeletonCards(3);
+      var ok = jobsToken();
+      api.listJobs({ pageSize: 3 }).then(function (res) { if (ok()) $('jobGrid').innerHTML = res.items.map(function (r) { return PK.jobCard(r, true); }).join(''); })
+        .catch(function (err) { if (ok()) $('jobGrid').innerHTML = '<div class="col-span-full">' + PK.errorBox(err.message) + '</div>'; });
+    }
+    PK.bindSave($('jobGrid'));
+    $('jobGrid').addEventListener('click', function (e) {
+      if (e.target.closest('[data-retry]')) { loadJobs(); return; }
+      var pick = e.target.closest('[data-pick]'); // kartu yang sama dengan halaman Lowongan: buka detailnya di sana
+      if (pick) location.href = 'lowongan.html?id=' + pick.getAttribute('data-pick');
+    });
+    loadJobs();
+
+  })();
+</script>
+</body>
+</html>
