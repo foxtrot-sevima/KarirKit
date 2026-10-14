@@ -6,7 +6,7 @@
 <title>Beranda | Portal Karir KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
-<meta name="description" content="Beranda Portal Karir KarirLink: cari lowongan yang cocok, pantau lamaran, dan ikuti event karier dalam satu tempat." />
+<meta name="description" content="Beranda Portal Karir KarirLink: cari lowongan, lihat rekomendasi yang cocok, dan pantau lamaranmu." />
 <meta name="author" content="SEVIMA" />
 <link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/index.html" />
 <meta name="robots" content="noindex, nofollow" />
@@ -28,14 +28,25 @@
 <meta name="twitter:title" content="Beranda | Portal Karir KarirLink" />
 <meta name="twitter:description" content="Beranda Portal Karir KarirLink: cari lowongan yang cocok, pantau lamaran, dan ikuti event karier dalam satu tempat." />
 <meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<style>
+  /* Animasi halus untuk visual hero; dimatikan bila pengguna meminta gerakan dikurangi. */
+  @keyframes pk-spin { to { rotate: 360deg; } }
+  @keyframes pk-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes pk-pulse { 0%, 100% { opacity: .35; scale: 1; } 50% { opacity: .1; scale: 1.12; } }
+  .pk-orbit { animation: pk-spin 60s linear infinite; }
+  .pk-orbit-rev { animation: pk-spin 90s linear infinite reverse; }
+  .pk-float { animation: pk-float 6s ease-in-out infinite; }
+  .pk-pulse { animation: pk-pulse 4s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) { .pk-orbit, .pk-orbit-rev, .pk-float, .pk-pulse { animation: none; } }
+</style>
 </head>
 <body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
 
 <!-- ============================= NAVBAR ============================= -->
 <nav class="navbar navbar-sticky transition-[background-color,box-shadow] duration-300 data-[scrolled=true]:border-border/40 data-[scrolled=true]:bg-surface/70 data-[scrolled=true]:shadow-sm data-[scrolled=true]:backdrop-blur-xl" data-glass-nav aria-label="Navigasi utama">
-  <div class="navbar-inner">
+  <div class="navbar-inner py-3">
     <a href="index.html" class="navbar-brand md:order-1">
-      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+      <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
     </a>
 
     <div class="flex items-center gap-1.5 md:order-3">
@@ -69,7 +80,7 @@
 
       <!-- Akun -->
       <div class="dropdown">
-        <button type="button" class="flex items-center gap-2 rounded-xl py-1 pl-1 pr-2 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Menu akun">
+        <button type="button" class="flex items-center gap-2 rounded-xl py-0.5 pl-0.5 pr-2 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Menu akun">
           <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
           <span class="hidden max-w-[9rem] truncate text-sm font-semibold text-slate-800 sm:block" data-user-name>Pengguna</span>
           <i class="kk kk-caret-down hidden h-4 w-4 text-slate-400 sm:block" aria-hidden="true"></i>
@@ -82,7 +93,7 @@
               <p class="dropdown-header-desc" data-user-email>Email belum diisi</p>
             </div>
           </div>
-          <a href="index.html#profil" class="dropdown-item"><i class="kk kk-user-circle h-4 w-4" aria-hidden="true"></i>Profil Saya</a>
+          <a href="profil.html" class="dropdown-item"><i class="kk kk-user-circle h-4 w-4" aria-hidden="true"></i>Profil Saya</a>
           <a href="lamaran.html" class="dropdown-item"><i class="kk kk-file-text h-4 w-4" aria-hidden="true"></i>Lamaran Saya</a>
           <a href="lowongan.html?simpan=1" class="dropdown-item"><i class="kk kk-bookmark-simple h-4 w-4" aria-hidden="true"></i>Lowongan Tersimpan</a>
           <hr class="dropdown-divider" />
@@ -95,12 +106,13 @@
       </button>
     </div>
 
-    <div class="navbar-menu md:order-2 md:ml-10 md:mr-auto" id="pkMenu">
+    <div class="navbar-menu hidden md:order-2 md:ml-10 md:mr-auto md:block max-md:not-[.hidden]:block" id="pkMenu">
       <ul class="navbar-nav">
         <li><a href="index.html" class="navbar-link" aria-current="page">Beranda</a></li>
         <li><a href="lowongan.html" class="navbar-link">Lowongan</a></li>
+        <li><a href="event.html" class="navbar-link">Event</a></li>
+        <li><a href="course.html" class="navbar-link">Course</a></li>
         <li><a href="lamaran.html" class="navbar-link">Lamaran Saya</a></li>
-        <li><a href="index.html#event" class="navbar-link">Event</a></li>
       </ul>
     </div>
   </div>
@@ -109,317 +121,189 @@
 <main class="flex-1">
 
   <!-- ============================= HERO ============================= -->
-  <section class="relative bg-brand-gradient text-white">
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+  <section class="relative overflow-hidden bg-brand-gradient text-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
       <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
-      <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-secondary-400/30 blur-3xl"></div>
-      <div class="absolute -bottom-32 -left-16 h-96 w-96 rounded-full bg-primary-300/30 blur-3xl"></div>
+      <div class="absolute -right-24 -top-28 h-96 w-96 rounded-full bg-secondary-400/30 blur-3xl"></div>
     </div>
-
-    <div class="relative mx-auto grid w-full max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1fr_20rem] lg:items-center lg:py-20">
+    <div id="heroGrid" class="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.3fr_0.7fr]">
       <div class="min-w-0">
-        <p id="heroGreeting" class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-sm text-white/90">
-          <i class="kk kk-sparkle h-4 w-4 text-secondary-300" aria-hidden="true"></i><span>Selamat datang</span>
-        </p>
-        <h1 class="mt-5 font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">Temukan karier yang <span class="text-secondary-300">cocok</span> untukmu</h1>
-        <p class="mt-4 max-w-xl text-base text-white/70">Ratusan lowongan, magang, dan event karier dari perusahaan mitra kampus. Cari sesuai minat, lamar dalam satu klik, lalu pantau prosesnya di sini.</p>
+        <p id="heroUnit" class="text-sm font-semibold uppercase tracking-wider text-white/80"></p>
+        <h1 id="heroCampus" class="mt-3 text-balance font-display font-bold leading-tight tracking-tight"></h1>
+        <p class="mt-4 max-w-xl text-base text-white/85 sm:text-lg">Lowongan, event, course, dan portofolio dalam satu tempat, dari masa kuliah sampai setelah lulus.</p>
 
-        <form id="heroSearch" action="lowongan.html" method="get" class="mt-8 rounded-2xl bg-white p-2 text-slate-800 shadow-xl shadow-primary-900/30 sm:flex sm:items-center sm:gap-1">
-          <input type="hidden" name="kota" id="heroKota" value="" />
-          <label class="flex flex-1 items-center gap-2.5 px-3 py-2.5">
-            <i class="kk kk-magnifying-glass h-5 w-5 shrink-0 text-slate-400" aria-hidden="true"></i>
-            <span class="sr-only">Posisi, perusahaan, atau keahlian</span>
-            <input type="search" name="q" class="w-full bg-transparent text-sm outline-none placeholder:text-slate-400" placeholder="Posisi, perusahaan, atau keahlian" autocomplete="off" />
+        <form id="heroSearch" role="search" class="card mt-8 max-w-2xl p-2 text-fg sm:flex sm:items-center sm:gap-2" data-combo-boundary>
+          <label class="relative min-w-0 flex-1">
+            <span class="sr-only">Kata kunci</span>
+            <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+            <input id="heroQ" type="search" class="input border-0 pl-9 shadow-none focus:ring-0" placeholder="Cari apa hari ini?" autocomplete="off" />
           </label>
-          <span class="hidden h-8 w-px bg-slate-200 sm:block" aria-hidden="true"></span>
-          <div class="flex items-center gap-1 border-t border-slate-100 pl-3 sm:w-60 sm:border-t-0" data-combo-boundary><i class="kk kk-map-pin h-5 w-5 shrink-0 text-slate-400" aria-hidden="true"></i><div id="heroKotaHost" class="min-w-0 flex-1"></div></div>
-          <button type="submit" class="btn-primary btn-lg mt-1 w-full sm:mt-0 sm:w-auto">Cari Lowongan</button>
+          <div id="heroTypeHost" class="border-t border-border pt-2 sm:w-44 sm:border-l sm:border-t-0 sm:pl-2 sm:pt-0"></div>
+          <button type="submit" class="btn-primary btn-md mt-2 w-full sm:mt-0 sm:w-auto">Cari</button>
         </form>
-
-        <div class="mt-5 flex flex-wrap items-center gap-2">
-          <span class="text-sm text-white/60">Populer:</span>
-          <a href="lowongan.html?jenis=Magang" class="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20">Magang</a>
-          <a href="lowongan.html?mode=Remote" class="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20">Remote</a>
-          <a href="lowongan.html?bidang=Teknologi%20%26%20IT" class="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20">Teknologi &amp; IT</a>
-          <a href="lowongan.html?bidang=Desain%20%26%20Kreatif" class="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20">Desain &amp; Kreatif</a>
-          <a href="lowongan.html?kota=Jakarta" class="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20">Jakarta</a>
-        </div>
       </div>
 
-      <!-- Ringkasan lamaran (hanya layar lebar; di layar kecil ada di bagian Lamaran Aktif) -->
-      <aside class="hidden rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur lg:block" aria-label="Ringkasan lamaran">
-        <p class="text-xs font-semibold uppercase tracking-wider text-white/60">Lamaranmu</p>
-        <div class="mt-4 grid grid-cols-3 gap-2 text-center">
-          <div class="rounded-xl bg-white/10 px-2 py-3"><p id="heroProses" class="font-display text-2xl font-bold">&ndash;</p><p class="mt-0.5 text-xs text-white/60">Diproses</p></div>
-          <div class="rounded-xl bg-white/10 px-2 py-3"><p id="heroWawancara" class="font-display text-2xl font-bold">&ndash;</p><p class="mt-0.5 text-xs text-white/60">Wawancara</p></div>
-          <div class="rounded-xl bg-white/10 px-2 py-3"><p id="heroSaved" class="font-display text-2xl font-bold">0</p><p class="mt-0.5 text-xs text-white/60">Tersimpan</p></div>
-        </div>
-        <div class="mt-4 flex items-start gap-3 rounded-xl bg-white/10 p-3">
-          <i class="kk kk-calendar-check mt-0.5 h-5 w-5 shrink-0 text-primary-200" aria-hidden="true"></i>
-          <p id="heroNext" class="text-sm text-white/80">Belum ada jadwal wawancara.</p>
-        </div>
-        <a href="lamaran.html" class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white hover:underline">Pantau lamaran<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
-      </aside>
+      <div class="relative mx-auto hidden h-[26rem] w-full max-w-md lg:block" aria-hidden="true">
+        <!-- cincin orbit -->
+        <div class="absolute left-1/2 top-1/2 h-[23rem] w-[23rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15"></div>
+        <div class="pk-pulse absolute left-1/2 top-1/2 h-[12rem] w-[12rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-secondary-300/40 blur-2xl"></div>
+        <div class="absolute left-1/2 top-1/2 h-[16rem] w-[16rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/35 pk-orbit"></div>
+        <div class="absolute left-1/2 top-1/2 h-[10rem] w-[10rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-white/25 to-white/5 ring-1 ring-white/30 backdrop-blur-sm"></div>
+        <!-- pusat -->
+        <div class="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-2xl shadow-primary-950/40 ring-8 ring-white/20"><img src="../../assets/logo/karirlink-mark.svg" alt="" class="h-14 w-14" /></div>
+        <!-- titik penghias -->
+        <span class="absolute left-[18%] top-[48%] h-2.5 w-2.5 rounded-full bg-secondary-300"></span><span class="absolute right-[16%] top-[56%] h-2 w-2 rounded-full bg-white/70"></span><span class="absolute left-[46%] top-[6%] h-2 w-2 rounded-full bg-white/60"></span><span class="absolute bottom-[8%] right-[40%] h-2.5 w-2.5 rounded-full bg-secondary-300"></span>
+        <div style="animation-delay:0s" class="pk-float absolute left-0 top-8 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-briefcase h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Lowongan</span></div>
+        <div style="animation-delay:-1.5s" class="pk-float absolute right-0 top-20 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-calendar-check h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Event</span></div>
+        <div style="animation-delay:-3s" class="pk-float absolute bottom-20 left-2 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-graduation-cap h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Course</span></div>
+        <div style="animation-delay:-4.5s" class="pk-float absolute bottom-6 right-6 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-palette h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Portofolio</span></div>
+      </div>
     </div>
   </section>
 
   <div class="mx-auto w-full max-w-7xl space-y-14 px-4 py-10 sm:px-6 sm:py-12">
 
-    <!-- Ajakan melengkapi profil (hanya jika data profil belum lengkap) -->
-    <div id="onboardNudge" class="callout-info flex flex-col gap-3 sm:flex-row sm:items-center" hidden>
-      <div class="flex items-start gap-3">
-        <i class="kk kk-sparkle mt-0.5 h-4 w-4 shrink-0 text-info-600" aria-hidden="true"></i>
-        <p class="text-sm text-slate-600"><span class="font-semibold text-slate-800">Profilmu belum lengkap.</span> Lengkapi data profilmu agar lowongan yang tampil lebih pas untukmu.</p>
+    <!-- ============================= LAYANAN ============================= -->
+    <section aria-labelledby="svcTitle">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h2 id="svcTitle" class="font-display text-2xl font-bold text-fg">Layanan pusat karier</h2><p class="card-text mt-1">Semua yang kamu butuhkan untuk berkembang, dikelola langsung oleh kampus.</p></div>
       </div>
-      <a href="#profil" class="btn-primary btn-sm shrink-0 sm:ml-auto">Lengkapi Profil</a>
-    </div>
-
-    <!-- ============================= LOWONGAN UNTUK KAMU ============================= -->
-    <section aria-labelledby="jobsTitle">
-      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 id="jobsTitle" class="font-display text-xl font-bold text-slate-900 sm:text-2xl">Lowongan untuk kamu</h2>
-          <p id="jobsNote" class="mt-1 text-sm text-slate-500"></p>
-        </div>
-        <a href="lowongan.html" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700">Lihat semua lowongan<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
-      </div>
-
-      <div class="-mx-4 mt-5 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-        <div id="jobTabs" class="tabs tabs-pills w-max flex-nowrap text-sm" role="tablist" aria-label="Filter jenis pekerjaan">
-          <button type="button" role="tab" class="tabs-item whitespace-nowrap py-2!" data-jenis="all" aria-selected="true">Semua</button>
-          <button type="button" role="tab" class="tabs-item whitespace-nowrap py-2!" data-jenis="Magang" aria-selected="false">Magang</button>
-          <button type="button" role="tab" class="tabs-item whitespace-nowrap py-2!" data-jenis="Penuh waktu" aria-selected="false">Penuh waktu</button>
-          <button type="button" role="tab" class="tabs-item whitespace-nowrap py-2!" data-jenis="Kontrak" aria-selected="false">Kontrak</button>
-          <button type="button" role="tab" class="tabs-item whitespace-nowrap py-2!" data-jenis="Paruh waktu" aria-selected="false">Paruh waktu</button>
-          <button type="button" role="tab" class="tabs-item whitespace-nowrap py-2!" data-jenis="Freelance" aria-selected="false">Freelance</button>
-        </div>
-      </div>
-
-      <div id="jobGrid" class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
-    </section>
-
-    <!-- ============================= LAMARAN AKTIF + PROFIL ============================= -->
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
-      <section class="min-w-0 lg:col-span-2" aria-labelledby="appsTitle">
-        <div class="flex items-end justify-between gap-3">
-          <div>
-            <h2 id="appsTitle" class="font-display text-xl font-bold text-slate-900 sm:text-2xl">Lamaran aktif</h2>
-            <p id="appsNote" class="mt-1 text-sm text-slate-500"></p>
-          </div>
-          <a href="lamaran.html" class="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700">Lihat semua<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
-        </div>
-        <div id="appList" class="mt-5 space-y-3"></div>
-      </section>
-
-      <section id="profil" class="scroll-mt-24" aria-labelledby="profilTitle">
-        <h2 id="profilTitle" class="font-display text-xl font-bold text-slate-900 sm:text-2xl">Profil karier</h2>
-        <div class="card mt-5 p-5">
-          <div class="flex items-center gap-3">
-            <span class="avatar h-12 w-12 text-base" data-user-initials>U</span>
-            <div class="min-w-0">
-              <p class="truncate text-sm font-semibold text-slate-900" data-user-name>Pengguna</p>
-              <p class="text-xs text-slate-500">Alumni</p>
-            </div>
-            <span id="profilePct" class="badge-primary ml-auto shrink-0">25%</span>
-          </div>
-          <div class="progress-track mt-4 h-2"><div id="profileBar" class="progress-bar transition-all duration-500" style="width: 25%"></div></div>
-          <ul id="profileSteps" class="mt-4 space-y-2.5 text-sm"></ul>
-          <div class="mt-5 border-t border-border pt-4">
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Keahlianmu</p>
-            <div id="mySkills" class="mt-3 flex flex-wrap gap-1.5"></div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ============================= JELAJAHI BIDANG ============================= -->
-    <section aria-labelledby="fieldsTitle">
-      <h2 id="fieldsTitle" class="font-display text-xl font-bold text-slate-900 sm:text-2xl">Jelajahi bidang</h2>
-      <p class="mt-1 text-sm text-slate-500">Pilih bidang yang kamu minati untuk melihat lowongan yang tersedia.</p>
-      <div id="fieldGrid" class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"></div>
+      <div id="services" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
     </section>
 
     <!-- ============================= EVENT ============================= -->
-    <section id="event" class="scroll-mt-24" aria-labelledby="eventTitle">
-      <h2 id="eventTitle" class="font-display text-xl font-bold text-slate-900 sm:text-2xl">Event karier mendatang</h2>
-      <p class="mt-1 text-sm text-slate-500">Daftar sebelum kuota penuh.</p>
-      <div class="mt-5 grid grid-cols-1 gap-5 md:grid-cols-3">
-        <article class="card flex flex-col p-5">
-          <div class="flex items-start gap-4">
-            <span class="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-primary-50 text-primary-700"><span class="text-lg font-bold leading-none">14</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">Okt</span></span>
-            <div class="min-w-0">
-              <span class="badge-primary">Job Fair</span>
-              <h3 class="mt-2 text-base font-semibold text-slate-900">Job Fair Teknologi 2026</h3>
-            </div>
-          </div>
-          <p class="mt-4 flex items-center gap-2 text-sm text-slate-500"><i class="kk kk-map-pin h-4 w-4 shrink-0" aria-hidden="true"></i>Jakarta Convention Hall</p>
-          <p class="mt-1.5 flex items-center gap-2 text-sm text-slate-500"><i class="kk kk-clock h-4 w-4 shrink-0" aria-hidden="true"></i>09.00 WIB</p>
-          <button type="button" class="btn-outline btn-md mt-5 w-full" data-event="Job Fair Teknologi 2026">Daftar</button>
-        </article>
-        <article class="card flex flex-col p-5">
-          <div class="flex items-start gap-4">
-            <span class="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-secondary-50 text-secondary-700"><span class="text-lg font-bold leading-none">21</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">Okt</span></span>
-            <div class="min-w-0">
-              <span class="badge-secondary">Workshop</span>
-              <h3 class="mt-2 text-base font-semibold text-slate-900">Workshop Wawancara</h3>
-            </div>
-          </div>
-          <p class="mt-4 flex items-center gap-2 text-sm text-slate-500"><i class="kk kk-video-camera h-4 w-4 shrink-0" aria-hidden="true"></i>Online (Zoom)</p>
-          <p class="mt-1.5 flex items-center gap-2 text-sm text-slate-500"><i class="kk kk-clock h-4 w-4 shrink-0" aria-hidden="true"></i>13.00 WIB</p>
-          <button type="button" class="btn-outline btn-md mt-5 w-full" data-event="Workshop Wawancara">Daftar</button>
-        </article>
-        <article class="card flex flex-col p-5">
-          <div class="flex items-start gap-4">
-            <span class="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-success-50 text-success-700"><span class="text-lg font-bold leading-none">28</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">Okt</span></span>
-            <div class="min-w-0">
-              <span class="badge-success">Webinar</span>
-              <h3 class="mt-2 text-base font-semibold text-slate-900">Webinar Karier Kreatif</h3>
-            </div>
-          </div>
-          <p class="mt-4 flex items-center gap-2 text-sm text-slate-500"><i class="kk kk-video-camera h-4 w-4 shrink-0" aria-hidden="true"></i>Online (YouTube)</p>
-          <p class="mt-1.5 flex items-center gap-2 text-sm text-slate-500"><i class="kk kk-clock h-4 w-4 shrink-0" aria-hidden="true"></i>19.30 WIB</p>
-          <button type="button" class="btn-outline btn-md mt-5 w-full" data-event="Webinar Karier Kreatif">Daftar</button>
-        </article>
+    <section aria-labelledby="eventTitle">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h2 id="eventTitle" class="font-display text-2xl font-bold text-fg">Event dan kegiatan</h2><p class="card-text mt-1">Job fair, workshop, webinar, dan kegiatan kampus terdekat.</p></div><a href="event.html" class="btn-outline btn-md">Lihat semua event<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
       </div>
+      <div id="eventGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
     </section>
+
+    <!-- ============================= COURSE ============================= -->
+    <section id="course" class="scroll-mt-24" aria-labelledby="courseTitle">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h2 id="courseTitle" class="font-display text-2xl font-bold text-fg">Course dan pelatihan</h2><p class="card-text mt-1">Pelatihan gratis bersertifikat untuk mengembangkan keahlianmu.</p></div>
+        <a href="course.html" class="btn-outline btn-md">Lihat semua course<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+      </div>
+      <div id="courseGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+
+    <!-- ============================= PENGEMBANGAN DIRI ============================= -->
+    <section aria-labelledby="growTitle">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h2 id="growTitle" class="font-display text-2xl font-bold text-fg">Kembangkan minat dan bakatmu</h2><p class="card-text mt-1">Bangun portofolio, kenali arah kariermu, dan dapatkan pendampingan dari kampus.</p></div>
+      </div>
+      <div id="grow" class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3"></div>
+    </section>
+
+    <!-- ============================= LOWONGAN PILIHAN ============================= -->
+    <section aria-labelledby="jobsTitle">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h2 id="jobsTitle" class="font-display text-2xl font-bold text-fg">Lowongan pilihan</h2></div><a href="lowongan.html" class="btn-outline btn-md">Lihat semua lowongan<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+      </div>
+      <p id="jobsNote" class="card-text mt-1"></p>
+      <div id="jobGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+    </section>
+
   </div>
 </main>
 
-<footer class="footer footer-bar">
-  <p>&copy; 2005-<span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
-  <p>KarirLink</p>
+<footer class="footer border-t border-border">
+  <div class="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6">
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+      <div class="col-span-2 md:col-span-1">
+        <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-fg-muted">Portal karier dan alumni <span class="js-campus"></span>, dikelola oleh pusat karier kampus.</p>
+      </div>
+      <div><h3 class="footer-heading">Layanan</h3><ul class="footer-list text-sm"><li><a href="lowongan.html" class="footer-link">Lowongan</a></li><li><a href="event.html" class="footer-link">Event dan kegiatan</a></li><li><a href="course.html" class="footer-link">Course</a></li><li><a href="profil.html" class="footer-link">Profil dan portofolio</a></li></ul></div>
+      <div><h3 class="footer-heading">Akun</h3><ul class="footer-list text-sm"><li><a href="profil.html" class="footer-link">Profil saya</a></li><li><a href="lamaran.html" class="footer-link">Lamaran saya</a></li><li><a href="lowongan.html?simpan=1" class="footer-link">Lowongan tersimpan</a></li></ul></div>
+      <div><h3 class="footer-heading">Kontak</h3><ul class="footer-list text-sm"><li class="flex items-start gap-2"><i class="kk kk-map-pin mt-0.5 h-4 w-4 shrink-0" aria-hidden="true"></i>Pusat Karier, Gedung Rektorat Lt. 2</li><li class="flex items-center gap-2"><i class="kk kk-clock h-4 w-4 shrink-0" aria-hidden="true"></i>Senin sampai Jumat, 08.00 sampai 16.00</li></ul></div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="flex flex-col items-center justify-between gap-2 text-xs text-fg-subtle sm:flex-row"><p>&copy; 2005-<span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p><p>KarirLink</p></div>
+  </div>
 </footer>
 
 <script src="../../assets/js/ui.js"></script>
 <script src="../../assets/js/toast.js"></script>
 <script src="portal.js"></script>
 <script>
-  // Beranda hanya meminta potongan kecil dari server: 6 lowongan, 3 lamaran aktif, dan hitungan bidang.
-  // Tiap bagian dimuat sendiri-sendiri dengan skeleton, jadi halaman langsung terlihat dan tidak menunggu semuanya.
+  // Beranda = pintu masuk pusat karier kampus (CDC). Komponen KarirKit: card, stat-card, badge, list-group, button. Data event lewat PK.api.
   (function () {
-    var PK = window.PK;
-    var api = PK.api;
-    var esc = PK.esc;
+    var PK = window.PK, api = PK.api, esc = PK.esc;
     function $(id) { return document.getElementById(id); }
     PK.initShell();
 
-    // ---- sapaan
-    var h = new Date().getHours();
-    var part = h < 11 ? 'pagi' : h < 15 ? 'siang' : h < 18 ? 'sore' : 'malam';
-    var first = PK.user.name ? PK.user.name.split(' ')[0] : '';
-    $('heroGreeting').lastElementChild.textContent = 'Selamat ' + part + (first ? ', ' + first : '');
-    $('onboardNudge').hidden = PK.profile().pct >= 100;
-    $('jobsNote').textContent = PK.hasPrefs ? 'Diurutkan berdasarkan kecocokan dengan minat dan keahlianmu.' : 'Lowongan yang sedang ramai dilamar saat ini.';
+    $('heroUnit').textContent = PK.CAMPUS.unit;
+    $('heroCampus').textContent = PK.CAMPUS.name;
+    // ukuran judul mengikuti panjang nama kampus supaya nama panjang tidak memenuhi hero
+    var nl = PK.CAMPUS.name.length;
+    $('heroCampus').className += nl <= 22 ? ' text-4xl sm:text-5xl lg:text-6xl' : nl <= 34 ? ' text-3xl sm:text-4xl lg:text-5xl' : ' text-2xl sm:text-3xl lg:text-4xl';
+    document.querySelectorAll('.js-campus').forEach(function (el) { el.textContent = PK.CAMPUS.name; });
 
-    // ---- pilihan kota di pencarian hero (komponen Combo KarirKit)
-    $('heroKotaHost').innerHTML = PK.comboHtml({ id: 'heroKotaCombo', all: 'Semua kota', label: 'Kota', triggerClass: 'border-0 bg-transparent! shadow-none focus-visible:ring-0', options: ['Bandung', 'Denpasar', 'Jakarta', 'Medan', 'Semarang', 'Surabaya', 'Yogyakarta'].map(function (k) { return [k, k]; }) });
+    // pencarian terpadu: pilih jenis, lalu menuju halaman yang sesuai
+    $('heroTypeHost').innerHTML = PK.comboHtml({ id: 'heroType', all: 'Lowongan', label: 'Cari di', triggerClass: 'border-0 shadow-none focus-visible:ring-0', options: [['event', 'Event'], ['course', 'Course']] });
     PK.initCombos($('heroSearch'));
-    $('heroKotaCombo').addEventListener('combo:change', function (e) { $('heroKota').value = e.detail.value; });
+    $('heroSearch').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var type = $('heroType').dataset.value || 'lowongan', q = $('heroQ').value.trim();
+      location.href = type + '.html' + (q ? '?q=' + encodeURIComponent(q) : '');
+    });
 
-    // ---- lowongan untuk kamu
-    var jenis = 'all';
+    var CAT_TONE = { 'Job Fair': 'badge-primary', 'Workshop': 'badge-secondary', 'Webinar': 'badge-info', 'Pelatihan': 'badge-success', 'Kegiatan Kampus': 'badge-warning' };
+    function dateBox(e) { return '<span class="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-control bg-primary-50 text-primary-700"><span class="text-base font-bold leading-none">' + PK.evDay(e) + '</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">' + PK.evMonth(e) + '</span></span>'; }
+
+    // ---- agenda di hero + kartu event (3 terdekat)
+    var next = PK.EVENTS.filter(function (e) { return e.in >= 0; }).sort(function (a, b) { return a.in - b.in; }).slice(0, 3);
+    $('eventGrid').innerHTML = next.length ? next.map(PK.eventCard).join('') : '<div class="col-span-full">' + PK.emptyBox('calendar', 'Belum ada event dalam waktu dekat', 'Event dan kegiatan baru akan muncul di sini saat dijadwalkan.', '') + '</div>';
+
+    // ---- layanan
+    var SERVICES = [
+      ['briefcase', 'bg-primary-50 text-primary-600', 'Lowongan kerja', 'Posisi penuh waktu dan kontrak dari mitra kampus.', 'lowongan.html?jenis=Penuh%20waktu'],
+      ['graduation-cap', 'bg-secondary-50 text-secondary-600', 'Magang', 'Magang bersertifikat untuk mahasiswa dan fresh graduate.', 'lowongan.html?jenis=Magang'],
+      ['laptop', 'bg-success-50 text-success-600', 'Freelance', 'Proyek lepas yang fleksibel sesuai keahlianmu.', 'lowongan.html?jenis=Freelance'],
+      ['calendar-check', 'bg-info-50 text-info-600', 'Event dan job fair', 'Job fair, workshop, dan seminar karier.', 'event.html'],
+      ['lightbulb', 'bg-warning-50 text-warning-600', 'Course dan pelatihan', 'Pengembangan keahlian dengan sertifikat.', 'course.html'],
+      ['palette', 'bg-secondary-50 text-secondary-600', 'Portofolio', 'Tampilkan karya dan pengalamanmu di profil publik.', 'profil.html'],
+      ['target', 'bg-primary-50 text-primary-600', 'Minat dan bakat', 'Kenali arah kariermu dan dapatkan pendampingan.', 'profil.html'],
+      ['users', 'bg-danger-50 text-danger-600', 'Kegiatan kampus', 'Temu alumni, wisuda, dan kegiatan kampus lainnya.', 'event.html?kategori=Kegiatan%20Kampus']
+    ];
+    $('services').innerHTML = SERVICES.map(function (x) {
+      return '<a href="' + x[4] + '" class="card card-hover flex flex-col gap-3 p-5"><span class="flex h-11 w-11 items-center justify-center rounded-control ' + x[1] + '">' + PK.icon(x[0], 'h-5 w-5') + '</span><span><span class="card-title block !text-base">' + x[2] + '</span><span class="card-text mt-1 block">' + x[3] + '</span></span></a>';
+    }).join('');
+
+    // ---- course (3 terpopuler; yang sedang diikuti tampil dengan progresnya)
+    $('courseGrid').innerHTML = PK.COURSES.slice().sort(function (a, b) { return (PK.courseProgress(b).enrolled - PK.courseProgress(a).enrolled) || b.learners - a.learners; }).slice(0, 3).map(function (c) { return PK.courseCard({ course: c }); }).join('');
+
+    // ---- pengembangan diri
+    var GROW = [
+      ['palette', 'bg-secondary-50 text-secondary-600', 'Bangun portofolio', 'Tampilkan pengalaman, keahlian, dan karyamu di profil yang bisa dibagikan.', 'Buka profil', 'profil.html'],
+      ['target', 'bg-primary-50 text-primary-600', 'Kenali minat dan bakat', 'Lengkapi profil agar rekomendasi lowongan dan kegiatan lebih tepat.', 'Lengkapi profil', 'profil.html'],
+      ['handshake', 'bg-success-50 text-success-600', 'Konsultasi karier', 'Jadwalkan sesi bersama konselor pusat karier untuk arah dan strategi kariermu.', 'Jadwalkan sesi', '']
+    ];
+    $('grow').innerHTML = GROW.map(function (x) {
+      var cta = x[5] ? '<a href="' + x[5] + '" class="btn-outline btn-sm mt-5 self-start">' + x[4] + '</a>' : '<button type="button" class="btn-outline btn-sm mt-5 self-start" data-soon="Penjadwalan konsultasi">' + x[4] + '</button>';
+      return '<div class="card card-body flex flex-col"><span class="flex h-11 w-11 items-center justify-center rounded-control ' + x[1] + '">' + PK.icon(x[0], 'h-5 w-5') + '</span><h3 class="card-title mt-4 !text-base">' + x[2] + '</h3><p class="card-text mt-2 flex-1">' + x[3] + '</p>' + cta + '</div>';
+    }).join('');
+    document.addEventListener('click', function (e) { var s = e.target.closest('[data-soon]'); if (s) PK.toast('info', s.getAttribute('data-soon') + ' akan tersedia segera.'); });
+
+    // ---- lowongan pilihan (3)
+    $('jobsNote').textContent = PK.hasPrefs ? 'Dipilih berdasarkan minat dan keahlianmu.' : 'Lowongan yang sedang ramai dilamar.';
     var jobsToken = PK.latest();
     function loadJobs() {
-      var grid = $('jobGrid');
-      grid.setAttribute('aria-busy', 'true');
-      grid.innerHTML = PK.skeletonCards(6);
+      $('jobGrid').innerHTML = PK.skeletonCards(3);
       var ok = jobsToken();
-      api.listJobs({ jenis: jenis === 'all' ? '' : jenis, pageSize: 6 }).then(function (res) {
-        if (!ok()) return;
-        grid.innerHTML = res.items.length
-          ? res.items.map(PK.jobCard).join('')
-          : '<div class="col-span-full">' + PK.emptyBox('briefcase', 'Belum ada lowongan untuk jenis ini', 'Coba jenis lain atau lihat semua lowongan.', '<a href="lowongan.html" class="btn-outline btn-sm">Lihat semua lowongan</a>') + '</div>';
-        grid.removeAttribute('aria-busy');
-      }).catch(function (err) {
-        if (!ok()) return;
-        grid.innerHTML = '<div class="col-span-full">' + PK.errorBox(err.message) + '</div>';
-        grid.removeAttribute('aria-busy');
-      });
+      api.listJobs({ pageSize: 3 }).then(function (res) { if (ok()) $('jobGrid').innerHTML = res.items.map(function (r) { return PK.jobCard(r, true); }).join(''); })
+        .catch(function (err) { if (ok()) $('jobGrid').innerHTML = '<div class="col-span-full">' + PK.errorBox(err.message) + '</div>'; });
     }
-    PK.bindSave($('jobGrid'), function () { $('heroSaved').textContent = PK.savedCount(); });
-    $('jobGrid').addEventListener('click', function (e) { if (e.target.closest('[data-retry]')) loadJobs(); });
-    $('jobTabs').addEventListener('click', function (e) {
-      var tab = e.target.closest('[data-jenis]');
-      if (!tab || tab.getAttribute('data-jenis') === jenis) return;
-      jenis = tab.getAttribute('data-jenis');
-      $('jobTabs').querySelectorAll('[data-jenis]').forEach(function (t) { t.setAttribute('aria-selected', t === tab ? 'true' : 'false'); });
-      loadJobs();
+    PK.bindSave($('jobGrid'));
+    $('jobGrid').addEventListener('click', function (e) {
+      if (e.target.closest('[data-retry]')) { loadJobs(); return; }
+      var pick = e.target.closest('[data-pick]'); // kartu yang sama dengan halaman Lowongan: buka detailnya di sana
+      if (pick) location.href = 'lowongan.html?id=' + pick.getAttribute('data-pick');
     });
-
-    // ---- lamaran aktif + ringkasan hero
-    function appRow(a) {
-      var st = PK.statusOf(a.status);
-      return '<a href="lamaran.html?id=' + a.id + '" class="card card-hover block p-4 sm:p-5">' +
-        '<div class="flex items-start gap-3">' + PK.logo(a.job) +
-          '<div class="min-w-0 flex-1"><p class="truncate text-sm font-semibold text-slate-900">' + esc(a.job.title) + '</p><p class="truncate text-xs text-slate-500">' + esc(a.job.company) + ' &middot; ' + esc(a.job.city) + '</p></div>' +
-          '<span class="' + st.badge + ' shrink-0">' + esc(a.status) + '</span>' +
-        '</div>' +
-        '<div class="mt-4">' + PK.stageBar(a) + '<div class="mt-2 flex items-center justify-between text-xs text-slate-400"><span>' + PK.STEPS[st.step] + '</span><span>Diperbarui ' + PK.when(a.upd).toLowerCase() + '</span></div></div></a>';
-    }
-    function loadApps() {
-      var list = $('appList');
-      list.innerHTML = PK.skeletonRows(3);
-      api.listApplications({ active: true, pageSize: 3 }).then(function (res) {
-        var c = res.counts;
-        $('heroProses').textContent = c.Terkirim + c.Diproses;
-        $('heroWawancara').textContent = c.Wawancara;
-        if (res.items.length) return res;
-        return api.listApplications({ pageSize: 3 }); // tidak ada yang berjalan: tampilkan yang terakhir
-      }).then(function (res) {
-        $('appsNote').textContent = res.counts.active ? res.counts.active + ' lamaran sedang berjalan.' : 'Belum ada lamaran yang berjalan. Ini lamaran terakhirmu.';
-        list.innerHTML = res.items.length
-          ? res.items.map(appRow).join('')
-          : PK.emptyBox('file-text', 'Belum ada lamaran', 'Mulai dari lowongan di atas, lalu pantau prosesnya di sini.', '<a href="lowongan.html" class="btn-primary btn-sm">Cari lowongan</a>');
-      }).catch(function (err) {
-        list.innerHTML = PK.errorBox(err.message);
-      });
-      api.listApplications({ status: 'Wawancara', pageSize: 1 }).then(function (res) {
-        var iv = res.items[0];
-        $('heroNext').innerHTML = iv && iv.interviewIn != null
-          ? 'Wawancara <span class="font-semibold text-white">' + esc(iv.job.company) + '</span>, ' + new Date(Date.now() + iv.interviewIn * 86400000).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long' }) + '.'
-          : 'Belum ada jadwal wawancara.';
-      }).catch(function () { /* ringkasan opsional */ });
-    }
-    $('appList').addEventListener('click', function (e) { if (e.target.closest('[data-retry]')) loadApps(); });
-    $('heroSaved').textContent = PK.savedCount();
-
-    // ---- profil (dihitung dari jawaban onboarding, tidak perlu ke server)
-    var prof = PK.profile();
-    $('profilePct').textContent = prof.pct + '%';
-    $('profileBar').style.width = prof.pct + '%';
-    $('profileSteps').innerHTML = prof.steps.map(function (s) {
-      return s.done
-        ? '<li class="flex items-center gap-2.5 text-slate-700"><i class="kk kk-check-circle kk-fill h-[18px] w-[18px] shrink-0 text-success-600" aria-hidden="true"></i>' + esc(s.label) + '</li>'
-        : '<li class="flex items-center gap-2.5 text-slate-500"><span class="flex h-[18px] w-[18px] shrink-0 rounded-full border-2 border-dashed border-neutral-300"></span><span class="flex-1">' + esc(s.label) + '</span><span class="text-xs text-slate-400">Belum diisi</span></li>';
-    }).join('');
-    $('mySkills').innerHTML = PK.prefs.skills.length
-      ? PK.prefs.skills.slice(0, 8).map(function (s) { return PK.tag(s, 'rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-600'); }).join('')
-      : '<p class="text-sm text-slate-400">Belum ada keahlian yang tercatat.</p>';
-
-    // ---- jelajahi bidang (hitungan bidang di-cache server, jarang berubah)
-    var tiles = '';
-    for (var i = 0; i < 12; i++) tiles += '<div class="card flex flex-col gap-3 p-4" aria-hidden="true"><span class="block h-10 w-10 animate-pulse rounded-xl bg-neutral-200"></span><span class="block h-3.5 w-3/4 animate-pulse rounded bg-neutral-200"></span></div>';
-    $('fieldGrid').innerHTML = tiles;
-    api.facets().then(function (res) {
-      $('fieldGrid').innerHTML = Object.keys(PK.FIELDS).map(function (name) {
-        var t = PK.tintOf({ field: name });
-        return '<a href="lowongan.html?bidang=' + encodeURIComponent(name) + '" class="card card-hover flex flex-col gap-3 p-4">' +
-          '<span class="flex h-10 w-10 items-center justify-center rounded-xl ' + t.logo + '">' + PK.icon(PK.FIELDS[name].icon, 'h-5 w-5') + '</span>' +
-          '<span><span class="block text-sm font-semibold leading-snug text-slate-900">' + esc(name) + '</span><span class="mt-0.5 block text-xs text-slate-400">' + res.fields[name] + ' lowongan</span></span></a>';
-      }).join('');
-    }).catch(function () { $('fieldGrid').innerHTML = ''; });
-
-    // ---- event
-    document.addEventListener('click', function (e) {
-      var ev = e.target.closest('[data-event]');
-      if (!ev) return;
-      ev.disabled = true;
-      ev.textContent = 'Terdaftar';
-      PK.toast('success', 'Kamu terdaftar di ' + ev.getAttribute('data-event') + '.');
-    });
-
     loadJobs();
-    loadApps();
+
   })();
 </script>
 </body>

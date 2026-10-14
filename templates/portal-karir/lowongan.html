@@ -33,9 +33,9 @@
 
 <!-- ============================= NAVBAR ============================= -->
 <nav class="navbar navbar-sticky transition-[background-color,box-shadow] duration-300 data-[scrolled=true]:border-border/40 data-[scrolled=true]:bg-surface/70 data-[scrolled=true]:shadow-sm data-[scrolled=true]:backdrop-blur-xl" data-glass-nav aria-label="Navigasi utama">
-  <div class="navbar-inner">
+  <div class="navbar-inner py-3">
     <a href="index.html" class="navbar-brand md:order-1">
-      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+      <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
     </a>
 
     <div class="flex items-center gap-1.5 md:order-3">
@@ -69,7 +69,7 @@
 
       <!-- Akun -->
       <div class="dropdown">
-        <button type="button" class="flex items-center gap-2 rounded-xl py-1 pl-1 pr-2 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Menu akun">
+        <button type="button" class="flex items-center gap-2 rounded-xl py-0.5 pl-0.5 pr-2 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Menu akun">
           <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
           <span class="hidden max-w-[9rem] truncate text-sm font-semibold text-slate-800 sm:block" data-user-name>Pengguna</span>
           <i class="kk kk-caret-down hidden h-4 w-4 text-slate-400 sm:block" aria-hidden="true"></i>
@@ -82,7 +82,7 @@
               <p class="dropdown-header-desc" data-user-email>Email belum diisi</p>
             </div>
           </div>
-          <a href="index.html#profil" class="dropdown-item"><i class="kk kk-user-circle h-4 w-4" aria-hidden="true"></i>Profil Saya</a>
+          <a href="profil.html" class="dropdown-item"><i class="kk kk-user-circle h-4 w-4" aria-hidden="true"></i>Profil Saya</a>
           <a href="lamaran.html" class="dropdown-item"><i class="kk kk-file-text h-4 w-4" aria-hidden="true"></i>Lamaran Saya</a>
           <a href="lowongan.html?simpan=1" class="dropdown-item"><i class="kk kk-bookmark-simple h-4 w-4" aria-hidden="true"></i>Lowongan Tersimpan</a>
           <hr class="dropdown-divider" />
@@ -95,12 +95,13 @@
       </button>
     </div>
 
-    <div class="navbar-menu md:order-2 md:ml-10 md:mr-auto" id="pkMenu">
+    <div class="navbar-menu hidden md:order-2 md:ml-10 md:mr-auto md:block max-md:not-[.hidden]:block" id="pkMenu">
       <ul class="navbar-nav">
         <li><a href="index.html" class="navbar-link">Beranda</a></li>
-        <li><a href="lowongan.html" class="navbar-link" aria-current="page">Lowongan</a></li>
+        <li><a href="lowongan.html" class="navbar-link">Lowongan</a></li>
+        <li><a href="event.html" class="navbar-link">Event</a></li>
+        <li><a href="course.html" class="navbar-link">Course</a></li>
         <li><a href="lamaran.html" class="navbar-link">Lamaran Saya</a></li>
-        <li><a href="index.html#event" class="navbar-link">Event</a></li>
       </ul>
     </div>
   </div>
@@ -116,8 +117,13 @@
       <div class="absolute -bottom-32 -left-16 h-96 w-96 rounded-full bg-primary-300/30 blur-3xl"></div>
     </div>
     <div class="relative mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
-      <h1 class="font-display text-2xl font-bold sm:text-3xl">Cari lowongan</h1>
-      <p class="mt-1 text-sm text-white/80">Jelajahi lowongan, lalu pilih satu untuk melihat detail dan melamar.</p>
+      <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+        <div class="min-w-0">
+          <h1 id="pageTitle" class="font-display text-2xl font-bold sm:text-3xl">Cari lowongan</h1>
+          <p id="pageSub" class="mt-1 text-sm text-white/80">Jelajahi lowongan, lalu pilih satu untuk melihat detail dan melamar.</p>
+        </div>
+        <button type="button" id="savedBack" class="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/25" data-clear="saved" hidden><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i>Semua lowongan</button>
+      </div>
 
       <form id="filterForm" role="search" class="mt-5 rounded-2xl bg-white p-4 text-slate-800 shadow-xl shadow-primary-900/30" data-combo-boundary>
         <div class="grid grid-cols-1 gap-3 lg:grid-cols-[1.4fr_repeat(4,1fr)_auto] lg:items-end">
@@ -152,17 +158,13 @@
     <div id="resultBar" class="flex scroll-mt-20 flex-wrap items-center justify-between gap-3">
       <div class="flex flex-wrap items-center gap-3">
         <button type="button" id="browseBack" class="btn-outline btn-sm" data-browse hidden><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i>Semua lowongan</button>
-        <p id="resultText" class="text-sm text-slate-600" aria-live="polite">Memuat lowongan...</p>
-        <button type="button" id="onlySaved" class="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-neutral-50 aria-pressed:border-primary-300 aria-pressed:bg-primary-50 aria-pressed:text-primary-700" aria-pressed="false">
-          <i class="kk kk-bookmark-simple h-3.5 w-3.5" aria-hidden="true"></i>Tersimpan <span id="savedCount" class="font-semibold">0</span>
-        </button>
+        
       </div>
       <div id="sortWrap" class="flex items-center gap-2" data-combo-boundary>
         <span class="text-xs text-slate-500">Urutkan</span>
         <div class="w-48" id="hSort"></div>
       </div>
     </div>
-    <div id="chips" class="mt-3 flex flex-wrap items-center gap-2" hidden></div>
 
     <!-- Kartu lowongan (menjelajah) -->
     <div id="listWrap" class="mt-5 min-w-0">
@@ -289,21 +291,11 @@
       try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) { /* file:// */ }
     }
 
-    // ---- chip filter aktif
-    var CHIP_LABEL = { q: 'Kata kunci', bidang: 'Bidang', kota: 'Kota', jenis: 'Jenis', mode: 'Model' };
+    // jumlah filter aktif di tombol Filter (mobile); filter lain sudah terlihat di kolom pencarian
     function renderChips() {
-      var chips = ['q', 'bidang', 'kota', 'jenis', 'mode'].filter(function (k) { return state[k]; }).map(function (k) {
-        return '<button type="button" class="inline-flex items-center gap-1.5 rounded-full bg-primary-50 py-1 pl-3 pr-2 text-xs font-medium text-primary-700 transition-colors hover:bg-primary-100" data-clear="' + k + '" aria-label="Hapus filter ' + CHIP_LABEL[k] + '">' +
-          CHIP_LABEL[k] + ': ' + esc(state[k]) + PK.icon('x', 'h-3.5 w-3.5') + '</button>';
-      });
-      if (state.saved) chips.push('<button type="button" class="inline-flex items-center gap-1.5 rounded-full bg-primary-50 py-1 pl-3 pr-2 text-xs font-medium text-primary-700 transition-colors hover:bg-primary-100" data-clear="saved" aria-label="Hapus filter Tersimpan">Hanya tersimpan' + PK.icon('x', 'h-3.5 w-3.5') + '</button>');
-      $('chips').hidden = !chips.length;
-      $('chips').innerHTML = chips.join('') + (chips.length > 1 ? '<button type="button" class="px-2 text-xs font-semibold text-primary-600 hover:text-primary-700" data-reset>Hapus semua</button>' : '');
       var n = ['bidang', 'kota', 'jenis', 'mode'].filter(function (k) { return state[k]; }).length;
       $('filterBadge').hidden = !n;
       $('filterBadge').textContent = n;
-      $('onlySaved').setAttribute('aria-pressed', String(state.saved));
-      $('savedCount').textContent = PK.savedCount();
     }
 
     // ---- tata letak: tanpa lowongan terpilih = kartu; ada yang terpilih = halaman detail
@@ -313,10 +305,7 @@
       $('detailWrap').hidden = !detail;
       // kartu: jumlah, filter tersimpan, dan urutan; detail: hanya tombol kembali
       $('browseBack').hidden = !detail;
-      $('resultText').hidden = detail;
-      $('onlySaved').hidden = detail;
       $('sortWrap').hidden = detail;
-      if (detail) $('chips').hidden = true;
       if (!detail) { $('detailBar').hidden = true; $('detailSimilar').hidden = true; }
     }
     function cardGrid(inner) { return '<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">' + inner + '</div>'; }
@@ -327,9 +316,11 @@
       $('jobList').innerHTML = res.items.length
         ? cardGrid(res.items.map(function (r) { return PK.jobCard(r, true); }).join(''))
         : state.saved && !state.q && !state.bidang && !state.kota && !state.jenis && !state.mode
-          ? PK.emptyBox('bookmark-simple', 'Belum ada lowongan tersimpan', 'Ketuk ikon penanda pada lowongan untuk menyimpannya, lalu temukan lagi di sini.', '<button type="button" class="btn-outline btn-sm" data-clear="saved">Lihat semua lowongan</button>')
-          : PK.emptyBox('magnifying-glass', 'Tidak ada lowongan yang cocok', 'Coba ubah kata kunci atau hapus sebagian filter.', hasFilter() ? '<button type="button" class="btn-outline btn-sm" data-reset>Hapus semua filter</button>' : '');
-      $('resultText').innerHTML = '<span class="font-display text-lg font-bold text-slate-900">' + res.total + '</span> lowongan ditemukan';
+          ? PK.emptyBox('document', 'Belum ada lowongan tersimpan', 'Ketuk ikon penanda pada lowongan untuk menyimpannya, lalu temukan lagi di sini.', '<button type="button" class="btn-outline btn-sm" data-clear="saved">Lihat semua lowongan</button>')
+          : PK.emptyBox('default', 'Tidak ada lowongan yang cocok', 'Coba ubah kata kunci atau hapus sebagian filter.', hasFilter() ? '<button type="button" class="btn-outline btn-sm" data-reset>Hapus semua filter</button>' : '');
+      $('pageTitle').textContent = state.saved ? 'Lowongan tersimpan' : 'Cari lowongan';
+      $('pageSub').textContent = state.saved ? res.total + ' lowongan yang kamu simpan.' : 'Jelajahi lowongan, lalu pilih satu untuk melihat detail dan melamar.';
+      $('savedBack').hidden = !state.saved;
       PK.pager($('pager'), res, 'lowongan');
     }
 
@@ -340,7 +331,7 @@
       var list = $('jobList');
       list.setAttribute('aria-busy', 'true');
       if (lastRes) list.classList.add('opacity-50', 'pointer-events-none'); // jaga tinggi daftar, hindari kedip
-      else { list.innerHTML = cardGrid(PK.skeletonCards(6)); $('resultText').textContent = 'Memuat lowongan...'; }
+      else { list.innerHTML = cardGrid(PK.skeletonCards(6)); }
       var ok = listToken();
       api.listJobs({ q: state.q, bidang: state.bidang, kota: state.kota, jenis: state.jenis, mode: state.mode, saved: state.saved, sort: state.sort, page: state.page, pageSize: PAGE_SIZE }).then(function (res) {
         if (!ok()) return;
@@ -356,7 +347,6 @@
         list.removeAttribute('aria-busy');
         list.innerHTML = PK.errorBox(err.message);
         $('pager').innerHTML = '';
-        $('resultText').textContent = 'Gagal memuat lowongan';
       });
     }
 
@@ -395,7 +385,7 @@
 
           (PK.hasPrefs && r.score > 0
             ? '<div class="mt-5 rounded-xl bg-primary-50 p-4"><div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1"><p class="flex items-center gap-2 text-sm font-semibold text-primary-800">' + PK.icon('target', 'h-4 w-4') + r.score + '% cocok dengan profilmu</p><span class="text-xs text-primary-700">Cocok di ' + esc(r.why.join(', ')) + '</span></div><div class="progress-track mt-3 h-1.5 bg-white"><div class="progress-bar" style="width: ' + r.score + '%"></div></div></div>'
-            : '<div class="callout-info mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"><p class="text-sm text-slate-600">Lengkapi profilmu untuk melihat seberapa cocok lowongan ini.</p><a href="index.html#profil" class="btn-outline btn-sm shrink-0 sm:ml-auto">Lengkapi Profil</a></div>') +
+            : '<div class="callout-info mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"><p class="text-sm text-slate-600">Lengkapi profilmu untuk melihat seberapa cocok lowongan ini.</p><a href="profil.html" class="btn-outline btn-sm shrink-0 sm:ml-auto">Lengkapi Profil</a></div>') +
 
           '<h2 class="mt-8 text-base font-semibold text-slate-900">Tentang pekerjaan</h2>' +
           '<p class="mt-2 text-sm leading-relaxed text-slate-600">' + esc(j.about) + '</p>' +
@@ -542,7 +532,6 @@
       }
     });
     PK.bindSave(document, function (id, on) {
-      $('savedCount').textContent = PK.savedCount();
       if (state.saved && !on && !state.id) loadList(); // sedang melihat daftar tersimpan: lowongan ini harus hilang dari daftar
     });
     $('pager').addEventListener('pagination:change', function (e) {
@@ -559,7 +548,6 @@
     });
     $('fSort').addEventListener('combo:change', function (e) { state.sort = e.detail.value || 'cocok'; state.page = 1; state.id = null; loadList(); });
     $('filterForm').addEventListener('submit', function (e) { e.preventDefault(); state.q = $('fQ').value; state.page = 1; state.id = null; loadList(); });
-    $('onlySaved').addEventListener('click', function () { state.saved = !state.saved; state.page = 1; state.id = null; loadList(); });
 
     if (state.id) { renderChips(); layout(); loadDetail(); } else loadList();
   })();
