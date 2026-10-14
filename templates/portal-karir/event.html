@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Event | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Daftar event dan kegiatan pusat karier kampus: job fair, workshop, webinar, pelatihan, dan kegiatan kampus." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/event.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Event | Portal Karir KarirLink" />
+<meta property="og:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/event.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Event | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<nav class="navbar navbar-sticky transition-[background-color,box-shadow] duration-300 data-[scrolled=true]:border-border/40 data-[scrolled=true]:bg-surface/70 data-[scrolled=true]:shadow-sm data-[scrolled=true]:backdrop-blur-xl" data-glass-nav aria-label="Navigasi utama">
+  <div class="navbar-inner py-3">
+    <a href="index.html" class="navbar-brand md:order-1">
+      <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+    </a>
+
+    <div class="flex items-center gap-1.5 md:order-3">
+      <!-- Notifikasi -->
+      <div class="dropdown">
+        <button type="button" class="relative flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Notifikasi, 3 baru">
+          <i class="kk kk-bell h-5 w-5" aria-hidden="true"></i>
+          <span class="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-danger-500 ring-2 ring-white"></span>
+        </button>
+        <div class="dropdown-menu hidden w-80 max-w-[calc(100vw-2rem)]" data-placement="bottom-end">
+          <div class="flex items-center justify-between px-3 pb-2 pt-1">
+            <p class="text-sm font-semibold text-fg">Notifikasi</p>
+            <span class="badge-primary">3 baru</span>
+          </div>
+          <a href="lamaran.html?id=3" class="dropdown-item items-start gap-3">
+            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600"><i class="kk kk-calendar-check h-4 w-4" aria-hidden="true"></i></span>
+            <span class="min-w-0"><span class="dropdown-item-title">Jadwal wawancara</span><span class="dropdown-item-desc">Studio Kreatif Kita mengundangmu wawancara Kamis, 15 Oktober.</span><span class="mt-0.5 block text-xs text-fg-subtle">2 jam lalu</span></span>
+          </a>
+          <a href="lamaran.html?id=2" class="dropdown-item items-start gap-3">
+            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-4 w-4" aria-hidden="true"></i></span>
+            <span class="min-w-0"><span class="dropdown-item-title">Lamaran sedang ditinjau</span><span class="dropdown-item-desc">Data Analyst di Bank Sentra Mandiri mulai diperiksa tim rekrutmen.</span><span class="mt-0.5 block text-xs text-fg-subtle">Kemarin</span></span>
+          </a>
+          <a href="lowongan.html" class="dropdown-item items-start gap-3">
+            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600"><i class="kk kk-briefcase h-4 w-4" aria-hidden="true"></i></span>
+            <span class="min-w-0"><span class="dropdown-item-title">Lowongan baru untukmu</span><span class="dropdown-item-desc">5 lowongan baru cocok dengan minat dan keahlianmu.</span><span class="mt-0.5 block text-xs text-fg-subtle">2 hari lalu</span></span>
+          </a>
+          <hr class="dropdown-divider" />
+          <a href="lamaran.html" class="dropdown-item justify-center font-medium text-primary-600 hover:text-primary-700">Lihat semua lamaran</a>
+        </div>
+      </div>
+
+      <!-- Akun -->
+      <div class="dropdown">
+        <button type="button" class="flex items-center gap-2 rounded-xl py-0.5 pl-0.5 pr-2 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Menu akun">
+          <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
+          <span class="hidden max-w-[9rem] truncate text-sm font-semibold text-slate-800 sm:block" data-user-name>Pengguna</span>
+          <i class="kk kk-caret-down hidden h-4 w-4 text-slate-400 sm:block" aria-hidden="true"></i>
+        </button>
+        <div class="dropdown-menu hidden w-64" data-placement="bottom-end">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title" data-user-name>Pengguna</p>
+              <p class="dropdown-header-desc" data-user-email>Email belum diisi</p>
+            </div>
+          </div>
+          <a href="profil.html" class="dropdown-item"><i class="kk kk-user-circle h-4 w-4" aria-hidden="true"></i>Profil Saya</a>
+          <a href="lamaran.html" class="dropdown-item"><i class="kk kk-file-text h-4 w-4" aria-hidden="true"></i>Lamaran Saya</a>
+          <a href="lowongan.html?simpan=1" class="dropdown-item"><i class="kk kk-bookmark-simple h-4 w-4" aria-hidden="true"></i>Lowongan Tersimpan</a>
+          <hr class="dropdown-divider" />
+          <a href="login.html" class="dropdown-item dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4" aria-hidden="true"></i>Keluar</a>
+        </div>
+      </div>
+
+      <button type="button" class="navbar-toggle" data-ui-collapse data-ui-collapse-static aria-controls="pkMenu" aria-expanded="false" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="navbar-menu hidden md:order-2 md:ml-10 md:mr-auto md:block max-md:not-[.hidden]:block" id="pkMenu">
+      <ul class="navbar-nav">
+        <li><a href="index.html" class="navbar-link">Beranda</a></li>
+        <li><a href="lowongan.html" class="navbar-link">Lowongan</a></li>
+        <li><a href="event.html" class="navbar-link" aria-current="page">Event</a></li>
+        <li><a href="course.html" class="navbar-link">Course</a></li>
+        <li><a href="lamaran.html" class="navbar-link">Lamaran Saya</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="flex-1">
+
+  <!-- ============================= BAND JUDUL + PENCARIAN ============================= -->
+  <section id="listHead" class="relative bg-brand-gradient text-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
+      <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-secondary-400/30 blur-3xl"></div>
+    </div>
+    <div class="relative mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
+      <h1 class="font-display text-2xl font-bold sm:text-3xl">Event dan kegiatan</h1>
+      <p class="mt-1 text-sm text-white/80">Job fair, workshop, webinar, pelatihan, dan kegiatan kampus untuk mahasiswa dan alumni.</p>
+      <form id="filterForm" role="search" class="card mt-5 p-4" data-combo-boundary>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_14rem_auto] sm:items-end">
+          <div>
+            <label for="fQ" class="form-label">Kata kunci</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+              <input id="fQ" type="search" class="input pl-9" placeholder="Cari nama event, lokasi, atau penyelenggara" autocomplete="off" />
+            </div>
+          </div>
+          <div><p class="form-label">Format</p><div id="hFormat"></div></div>
+          <button type="submit" class="btn-primary btn-md">Cari</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================= DAFTAR EVENT ============================= -->
+  <div id="listView" class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+    <div class="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+      <div id="catTabs" class="tabs tabs-pills w-max flex-nowrap" role="tablist" aria-label="Kategori event"></div>
+    </div>
+    <div id="eventGrid" class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+    <div id="pager" class="mt-8"></div>
+  </div>
+
+  <!-- ============================= DETAIL EVENT ============================= -->
+  <div id="detailView" class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8" hidden>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <span class="breadcrumb-item"><a href="event.html" class="breadcrumb-link" data-browse><i class="kk kk-calendar-blank h-4 w-4" aria-hidden="true"></i>Event</a></span>
+      <span class="breadcrumb-separator"><i class="kk kk-caret-right h-3 w-3" aria-hidden="true"></i></span>
+      <span id="crumbTitle" class="breadcrumb-current min-w-0 truncate" aria-current="page"></span>
+    </nav>
+    <div class="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-3 lg:items-start">
+      <article id="detailMain" class="card min-w-0 overflow-hidden lg:col-span-2"></article>
+      <aside id="detailSide" class="min-w-0 lg:sticky lg:top-20" aria-label="Pendaftaran"></aside>
+    </div>
+    <section id="similar" class="mt-10" hidden>
+      <h2 class="font-display text-xl font-bold text-fg">Event serupa</h2>
+      <div id="similarGrid" class="mt-4 grid grid-cols-1 gap-5 md:grid-cols-3"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer footer-bar">
+  <p>&copy; 2005-<span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
+  <p>KarirLink</p>
+</footer>
+
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/pagination.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="portal.js"></script>
+<script>
+  /* Halaman Event: daftar (kategori, format, pencarian, paginasi) dan detail satu event. Data lewat PK.api (listEvents, getEvent, registerEvent);
+     semua pilihan tersimpan di URL. */
+  (function () {
+    var PK = window.PK;
+    var api = PK.api;
+    var esc = PK.esc;
+    var PAGE_SIZE = 6;
+    function $(id) { return document.getElementById(id); }
+    PK.initShell();
+
+    var params = new URLSearchParams(location.search);
+    var state = { kategori: params.get('kategori') || '', format: params.get('format') || '', q: params.get('q') || '', page: parseInt(params.get('page'), 10) || 1, id: parseInt(params.get('id'), 10) || null };
+    var counts = null, listToken = PK.latest(), detailToken = PK.latest();
+
+    $('hFormat').innerHTML = PK.comboHtml({ id: 'fFormat', all: 'Semua format', label: 'Format', value: state.format, options: [['Offline', 'Tatap muka'], ['Online', 'Online']] });
+    PK.initCombos(document);
+    $('fQ').value = state.q;
+
+    function syncUrl() {
+      var p = new URLSearchParams();
+      if (state.kategori) p.set('kategori', state.kategori);
+      if (state.format) p.set('format', state.format);
+      if (state.q) p.set('q', state.q);
+      if (state.page > 1) p.set('page', state.page);
+      if (state.id) p.set('id', state.id);
+      try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) { /* file:// */ }
+    }
+    function layout() { $('listHead').hidden = !!state.id; $('listView').hidden = !!state.id; $('detailView').hidden = !state.id; }
+
+    // ---- kartu event
+    var CAT_TONE = { 'Job Fair': 'badge-primary', 'Workshop': 'badge-secondary', 'Webinar': 'badge-info', 'Pelatihan': 'badge-success', 'Kegiatan Kampus': 'badge-warning' };
+    function seats(e) { return Math.max(e.quota - e.taken, 0); }
+    var eventCard = PK.eventCard; // kartu yang sama dengan Beranda
+    function paintTabs() {
+      var list = [['', 'Semua']].concat(PK.EVENT_CATS.map(function (c) { return [c, c]; }));
+      $('catTabs').innerHTML = list.map(function (t) {
+        var n = counts ? (t[0] ? counts[t[0]] : counts.all) : null;
+        return '<button type="button" role="tab" class="tabs-item whitespace-nowrap !py-2" data-cat="' + esc(t[0]) + '" aria-selected="' + (state.kategori === t[0]) + '">' + esc(t[1]) + (n != null ? ' <span class="badge-neutral">' + n + '</span>' : '') + '</button>';
+      }).join('');
+    }
+
+    function loadList() {
+      syncUrl(); layout(); paintTabs();
+      var grid = $('eventGrid');
+      grid.setAttribute('aria-busy', 'true');
+      grid.innerHTML = [1, 2, 3].map(function () { return '<div class="h-64 animate-pulse rounded-card bg-neutral-100"></div>'; }).join('');
+      var ok = listToken();
+      api.listEvents({ kategori: state.kategori, format: state.format, q: state.q, page: state.page, pageSize: PAGE_SIZE }).then(function (res) {
+        if (!ok()) return;
+        counts = res.counts; state.page = res.page; paintTabs(); syncUrl();
+        grid.innerHTML = res.items.length ? res.items.map(eventCard).join('') : '<div class="col-span-full">' + PK.emptyBox('calendar', 'Belum ada event yang cocok', 'Coba ubah kategori, format, atau kata kunci.', '<button type="button" class="btn-outline btn-sm" data-reset>Hapus filter</button>') + '</div>';
+        grid.removeAttribute('aria-busy');
+        PK.pager($('pager'), res, 'event');
+      }).catch(function (err) { if (!ok()) return; grid.innerHTML = '<div class="col-span-full">' + PK.errorBox(err.message) + '</div>'; grid.removeAttribute('aria-busy'); $('pager').innerHTML = ''; });
+    }
+
+    // ---- detail
+    function sideRow(ic, label, value) { return '<li class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-primary-50 text-primary-600">' + PK.icon(ic, 'h-[18px] w-[18px]') + '</span><span class="min-w-0"><span class="block text-xs text-fg-muted">' + label + '</span><span class="block text-sm font-medium text-fg">' + value + '</span></span></li>'; }
+    function regBtn(e, reg, cls) {
+      if (reg) return '<button type="button" class="btn-secondary ' + cls + '" disabled>' + PK.icon('check', 'h-4 w-4') + 'Kamu sudah terdaftar</button>';
+      if (!seats(e)) return '<button type="button" class="btn-outline ' + cls + '" disabled>Kuota penuh</button>';
+      return '<button type="button" class="btn-primary ' + cls + '" data-register="' + e.id + '">' + PK.icon('calendar-plus', 'h-4 w-4') + 'Daftar sekarang</button>';
+    }
+    function renderDetail(res) {
+      var e = res.event, left = seats(e), pct = Math.min(100, Math.round(e.taken / e.quota * 100));
+      $('crumbTitle').textContent = e.title;
+      document.title = e.title + ' | Event KarirLink';
+      $('detailMain').innerHTML =
+        '<div class="relative h-32 bg-brand-gradient sm:h-40"><div aria-hidden="true" class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div><div aria-hidden="true" class="absolute -right-10 -top-14 h-52 w-52 rounded-full bg-secondary-400/30 blur-3xl"></div></div>' +
+        '<div class="card-body">' +
+          '<div class="flex flex-wrap items-center gap-2"><span class="' + (CAT_TONE[e.cat] || 'badge-neutral') + '">' + esc(e.cat) + '</span><span class="badge-neutral">' + (e.mode === 'Online' ? 'Online' : 'Tatap muka') + '</span></div>' +
+          '<h1 class="mt-3 font-display text-2xl font-bold text-fg sm:text-3xl">' + esc(e.title) + '</h1>' +
+          '<p class="card-text mt-1">Diselenggarakan oleh ' + esc(e.org) + '</p>' +
+          '<h2 class="card-title mt-8">Tentang acara</h2><p class="card-text mt-2 leading-relaxed">' + esc(e.desc) + '</p>' +
+          '<h2 class="card-title mt-8">Rangkaian acara</h2><ol class="timeline mt-5 ms-3">' + e.agenda.map(function (a, i) { return '<li class="timeline-item"><span class="timeline-marker">' + PK.icon('check', 'h-3 w-3') + '</span><h3 class="timeline-title !my-0 !text-base">' + esc(a) + '</h3></li>'; }).join('') + '</ol>' +
+        '</div>';
+      $('detailSide').innerHTML =
+        '<div class="card card-body"><ul class="space-y-4">' + sideRow('calendar-blank', 'Tanggal', esc(PK.evFull(e))) + sideRow('clock', 'Waktu', esc(e.time)) + sideRow(e.mode === 'Online' ? 'video-camera' : 'map-pin', 'Lokasi', esc(e.place)) + '</ul>' +
+        '<div class="mt-5 border-t border-border pt-5"><div class="flex items-center justify-between text-sm"><span class="font-medium text-fg">' + (left ? left + ' kursi tersisa' : 'Kuota penuh') + '</span><span class="text-fg-muted">' + e.taken + ' dari ' + e.quota + '</span></div><div class="progress-track mt-2 h-2"><div class="progress-bar" style="width: ' + pct + '%"></div></div></div>' +
+        '<div class="mt-5 space-y-2">' + regBtn(e, res.registered, 'btn-lg w-full') + '<button type="button" class="btn-ghost btn-sm w-full" data-share>' + PK.icon('share-network', 'h-4 w-4') + 'Salin tautan event</button></div></div>';
+      $('similar').hidden = !res.similar.length;
+      $('similarGrid').innerHTML = res.similar.map(eventCard).join('');
+    }
+    function loadDetail() {
+      layout(); syncUrl(); window.scrollTo({ top: 0 });
+      $('detailMain').innerHTML = '<div class="h-96 animate-pulse bg-neutral-100"></div>'; $('detailSide').innerHTML = '<div class="h-72 animate-pulse rounded-card bg-neutral-100"></div>'; $('similar').hidden = true;
+      var ok = detailToken();
+      api.getEvent(state.id).then(function (res) { if (ok()) renderDetail(res); })
+        .catch(function (err) { if (!ok()) return; $('detailSide').innerHTML = ''; $('detailMain').innerHTML = '<div class="p-5">' + PK.errorBox(err.message).replace('data-retry', 'data-retry-detail') + '</div>'; });
+    }
+    function browse() { state.id = null; detailToken(); syncUrl(); layout(); if (!counts) loadList(); else { document.title = 'Event | Portal Karir KarirLink'; loadList(); } }
+
+    // ---- interaksi
+    document.addEventListener('click', function (e) {
+      var open = e.target.closest('[data-open]');
+      if (open) { e.preventDefault(); state.id = parseInt(open.getAttribute('data-open'), 10); loadDetail(); return; }
+      if (e.target.closest('[data-browse]')) { e.preventDefault(); browse(); return; }
+      var c = e.target.closest('[data-cat]');
+      if (c) { state.kategori = c.getAttribute('data-cat'); state.page = 1; loadList(); return; }
+      if (e.target.closest('[data-reset]')) { state.kategori = state.format = state.q = ''; state.page = 1; $('fQ').value = ''; PK.comboSet($('fFormat'), ''); loadList(); return; }
+      if (e.target.closest('[data-retry]')) { loadList(); return; }
+      if (e.target.closest('[data-retry-detail]')) { loadDetail(); return; }
+      var reg = e.target.closest('[data-register]');
+      if (reg) {
+        var id = parseInt(reg.getAttribute('data-register'), 10);
+        reg.disabled = true; reg.classList.add('btn-loading');
+        api.registerEvent(id).then(function () { PK.toast('success', 'Kamu terdaftar di event ini.'); loadDetail(); }).catch(function () { reg.disabled = false; reg.classList.remove('btn-loading'); PK.toast('danger', 'Pendaftaran belum berhasil. Coba lagi.'); });
+        return;
+      }
+      if (e.target.closest('[data-share]')) {
+        var url = location.href.split('?')[0] + '?id=' + state.id;
+        var done = function () { PK.toast('success', 'Tautan event disalin.'); };
+        try { navigator.clipboard.writeText(url).then(done, done); } catch (err) { done(); }
+      }
+    });
+    $('pager').addEventListener('pagination:change', function (e) { state.page = e.detail.page; loadList(); $('catTabs').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    $('filterForm').addEventListener('combo:change', function () { state.format = $('fFormat').dataset.value; state.page = 1; loadList(); });
+    $('filterForm').addEventListener('submit', function (e) { e.preventDefault(); state.q = $('fQ').value; state.page = 1; loadList(); });
+    $('fQ').addEventListener('input', PK.debounce(function () { state.q = $('fQ').value; state.page = 1; loadList(); }, 350));
+
+    if (state.id) loadDetail(); else loadList();
+  })();
+</script>
+</body>
+</html>

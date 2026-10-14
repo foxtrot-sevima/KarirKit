@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Course | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Course dan pelatihan gratis bersertifikat dari pusat karier kampus: soft skill, keahlian digital, persiapan karier, bahasa, dan kewirausahaan." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/course.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Course | Portal Karir KarirLink" />
+<meta property="og:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/course.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Course | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<nav class="navbar navbar-sticky transition-[background-color,box-shadow] duration-300 data-[scrolled=true]:border-border/40 data-[scrolled=true]:bg-surface/70 data-[scrolled=true]:shadow-sm data-[scrolled=true]:backdrop-blur-xl" data-glass-nav aria-label="Navigasi utama">
+  <div class="navbar-inner py-3">
+    <a href="index.html" class="navbar-brand md:order-1">
+      <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+    </a>
+
+    <div class="flex items-center gap-1.5 md:order-3">
+      <!-- Notifikasi -->
+      <div class="dropdown">
+        <button type="button" class="relative flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Notifikasi, 3 baru">
+          <i class="kk kk-bell h-5 w-5" aria-hidden="true"></i>
+          <span class="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-danger-500 ring-2 ring-white"></span>
+        </button>
+        <div class="dropdown-menu hidden w-80 max-w-[calc(100vw-2rem)]" data-placement="bottom-end">
+          <div class="flex items-center justify-between px-3 pb-2 pt-1">
+            <p class="text-sm font-semibold text-fg">Notifikasi</p>
+            <span class="badge-primary">3 baru</span>
+          </div>
+          <a href="lamaran.html?id=3" class="dropdown-item items-start gap-3">
+            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600"><i class="kk kk-calendar-check h-4 w-4" aria-hidden="true"></i></span>
+            <span class="min-w-0"><span class="dropdown-item-title">Jadwal wawancara</span><span class="dropdown-item-desc">Studio Kreatif Kita mengundangmu wawancara Kamis, 15 Oktober.</span><span class="mt-0.5 block text-xs text-fg-subtle">2 jam lalu</span></span>
+          </a>
+          <a href="lamaran.html?id=2" class="dropdown-item items-start gap-3">
+            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-4 w-4" aria-hidden="true"></i></span>
+            <span class="min-w-0"><span class="dropdown-item-title">Lamaran sedang ditinjau</span><span class="dropdown-item-desc">Data Analyst di Bank Sentra Mandiri mulai diperiksa tim rekrutmen.</span><span class="mt-0.5 block text-xs text-fg-subtle">Kemarin</span></span>
+          </a>
+          <a href="lowongan.html" class="dropdown-item items-start gap-3">
+            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600"><i class="kk kk-briefcase h-4 w-4" aria-hidden="true"></i></span>
+            <span class="min-w-0"><span class="dropdown-item-title">Lowongan baru untukmu</span><span class="dropdown-item-desc">5 lowongan baru cocok dengan minat dan keahlianmu.</span><span class="mt-0.5 block text-xs text-fg-subtle">2 hari lalu</span></span>
+          </a>
+          <hr class="dropdown-divider" />
+          <a href="lamaran.html" class="dropdown-item justify-center font-medium text-primary-600 hover:text-primary-700">Lihat semua lamaran</a>
+        </div>
+      </div>
+
+      <!-- Akun -->
+      <div class="dropdown">
+        <button type="button" class="flex items-center gap-2 rounded-xl py-0.5 pl-0.5 pr-2 transition-colors hover:bg-slate-100" data-ui-dropdown aria-expanded="false" aria-haspopup="true" aria-label="Menu akun">
+          <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
+          <span class="hidden max-w-[9rem] truncate text-sm font-semibold text-slate-800 sm:block" data-user-name>Pengguna</span>
+          <i class="kk kk-caret-down hidden h-4 w-4 text-slate-400 sm:block" aria-hidden="true"></i>
+        </button>
+        <div class="dropdown-menu hidden w-64" data-placement="bottom-end">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 text-sm" data-user-initials>U</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title" data-user-name>Pengguna</p>
+              <p class="dropdown-header-desc" data-user-email>Email belum diisi</p>
+            </div>
+          </div>
+          <a href="profil.html" class="dropdown-item"><i class="kk kk-user-circle h-4 w-4" aria-hidden="true"></i>Profil Saya</a>
+          <a href="lamaran.html" class="dropdown-item"><i class="kk kk-file-text h-4 w-4" aria-hidden="true"></i>Lamaran Saya</a>
+          <a href="lowongan.html?simpan=1" class="dropdown-item"><i class="kk kk-bookmark-simple h-4 w-4" aria-hidden="true"></i>Lowongan Tersimpan</a>
+          <hr class="dropdown-divider" />
+          <a href="login.html" class="dropdown-item dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4" aria-hidden="true"></i>Keluar</a>
+        </div>
+      </div>
+
+      <button type="button" class="navbar-toggle" data-ui-collapse data-ui-collapse-static aria-controls="pkMenu" aria-expanded="false" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="navbar-menu hidden md:order-2 md:ml-10 md:mr-auto md:block max-md:not-[.hidden]:block" id="pkMenu">
+      <ul class="navbar-nav">
+        <li><a href="index.html" class="navbar-link">Beranda</a></li>
+        <li><a href="lowongan.html" class="navbar-link">Lowongan</a></li>
+        <li><a href="event.html" class="navbar-link">Event</a></li>
+        <li><a href="course.html" class="navbar-link" aria-current="page">Course</a></li>
+        <li><a href="lamaran.html" class="navbar-link">Lamaran Saya</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="flex-1">
+
+  <section id="listHead" class="relative bg-brand-gradient text-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
+      <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-secondary-400/30 blur-3xl"></div>
+    </div>
+    <div class="relative mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
+      <h1 class="font-display text-2xl font-bold sm:text-3xl">Course dan pelatihan</h1>
+      <p class="mt-1 text-sm text-white/80">Pelatihan singkat dari kampus dan mitra industri, gratis dan bersertifikat.</p>
+      <form id="filterForm" role="search" class="card mt-5 p-4" data-combo-boundary>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_14rem_auto] sm:items-end">
+          <div>
+            <label for="fQ" class="form-label">Kata kunci</label>
+            <div class="relative"><span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span><input id="fQ" type="search" class="input pl-9" placeholder="Cari course, topik, atau pengajar" autocomplete="off" /></div>
+          </div>
+          <div><p class="form-label">Level</p><div id="hLevel"></div></div>
+          <button type="submit" class="btn-primary btn-md">Cari</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================= KATALOG ============================= -->
+  <div id="listView" class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+    <div class="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0"><div id="catTabs" class="tabs tabs-pills w-max flex-nowrap" role="tablist" aria-label="Kategori course"></div></div>
+    <div id="courseGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+    <div id="pager" class="mt-8"></div>
+  </div>
+
+  <!-- ============================= DETAIL / BELAJAR ============================= -->
+  <div id="detailView" class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8" hidden>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <span class="breadcrumb-item"><a href="course.html" class="breadcrumb-link" data-browse><i class="kk kk-graduation-cap h-4 w-4" aria-hidden="true"></i>Course</a></span>
+      <span class="breadcrumb-separator"><i class="kk kk-caret-right h-3 w-3" aria-hidden="true"></i></span>
+      <span id="crumbTitle" class="breadcrumb-current min-w-0 truncate" aria-current="page"></span>
+    </nav>
+    <div class="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-3 lg:items-start">
+      <div id="detailMain" class="min-w-0 space-y-6 lg:col-span-2"></div>
+      <aside id="detailSide" class="min-w-0 space-y-6 lg:sticky lg:top-20" aria-label="Ringkasan course"></aside>
+    </div>
+    <section id="similar" class="mt-10" hidden>
+      <h2 class="font-display text-xl font-bold text-fg">Course lainnya</h2>
+      <div id="similarGrid" class="mt-4 grid grid-cols-1 gap-5 md:grid-cols-3"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer footer-bar">
+  <p>&copy; 2005-<span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
+  <p>KarirLink</p>
+</footer>
+
+<!-- ============================= SERTIFIKAT ============================= -->
+<div class="modal-backdrop z-[60]" id="certModal">
+  <div class="modal-panel modal-xl">
+    <div class="modal-header">
+      <div><h3 class="modal-title">Sertifikat penyelesaian</h3><p class="modal-description">Tampil di profilmu setelah ditambahkan.</p></div>
+      <button type="button" class="modal-close" data-modal-hide="certModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+    </div>
+    <div class="modal-body"><div id="certBody"></div></div>
+    <div class="modal-footer"><div class="flex w-full justify-end gap-2"><button type="button" class="btn-outline btn-md" data-toast="Sertifikat diunduh sebagai PDF.">Unduh PDF</button><button type="button" class="btn-primary btn-md" data-toast="Sertifikat ditambahkan ke profilmu.">Tambahkan ke profil</button></div></div>
+  </div>
+</div>
+
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/pagination.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="portal.js"></script>
+<script>
+  /* Course: katalog (kategori, level, pencarian, "Course saya", paginasi), detail kurikulum, belajar per materi dengan progres, dan sertifikat.
+     Data lewat PK.api (listCourses, getCourse, enrollCourse, setLesson); pilihan tersimpan di URL. */
+  (function () {
+    var PK = window.PK, api = PK.api, esc = PK.esc, PAGE_SIZE = 6;
+    function $(id) { return document.getElementById(id); }
+    PK.initShell();
+
+    var params = new URLSearchParams(location.search);
+    var state = { kategori: params.get('kategori') || '', level: params.get('level') || '', q: params.get('q') || '', mine: params.get('saya') === '1', page: parseInt(params.get('page'), 10) || 1, id: parseInt(params.get('id'), 10) || null };
+    var counts = null, cur = null, lessonIdx = 0, listToken = PK.latest(), detailToken = PK.latest();
+
+    $('hLevel').innerHTML = PK.comboHtml({ id: 'fLevel', all: 'Semua level', label: 'Level', value: state.level, options: [['Pemula', 'Pemula'], ['Menengah', 'Menengah'], ['Lanjut', 'Lanjut']] });
+    PK.initCombos(document);
+    $('fQ').value = state.q;
+
+    function syncUrl() {
+      var p = new URLSearchParams();
+      if (state.mine) p.set('saya', '1');
+      if (state.kategori) p.set('kategori', state.kategori);
+      if (state.level) p.set('level', state.level);
+      if (state.q) p.set('q', state.q);
+      if (state.page > 1) p.set('page', state.page);
+      if (state.id) p.set('id', state.id);
+      try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) { /* file:// */ }
+    }
+    function layout() { $('listHead').hidden = !!state.id; $('listView').hidden = !!state.id; $('detailView').hidden = !state.id; }
+
+    // ---- katalog
+    function paintTabs() {
+      var list = [['', 'Semua', false], ['saya', 'Course saya', true]].concat(PK.COURSE_CATS.map(function (c) { return [c, c, false]; }));
+      $('catTabs').innerHTML = list.map(function (t) {
+        var on = t[1] === 'Course saya' ? state.mine : (!state.mine && state.kategori === t[0]);
+        var n = counts ? (t[0] === '' ? counts.all : t[0] === 'saya' ? counts.mine : counts[t[0]]) : null;
+        return '<button type="button" role="tab" class="tabs-item whitespace-nowrap !py-2" data-cat="' + esc(t[0]) + '" aria-selected="' + on + '">' + (t[2] ? PK.icon('bookmark-simple', 'h-4 w-4') : '') + esc(t[1]) + (n != null ? ' <span class="badge-neutral">' + n + '</span>' : '') + '</button>';
+      }).join('');
+    }
+    function loadList() {
+      syncUrl(); layout(); paintTabs();
+      var grid = $('courseGrid');
+      grid.setAttribute('aria-busy', 'true');
+      grid.innerHTML = [1, 2, 3].map(function () { return '<div class="h-64 animate-pulse rounded-card bg-neutral-100"></div>'; }).join('');
+      var ok = listToken();
+      api.listCourses({ kategori: state.kategori, level: state.level, q: state.q, mine: state.mine, page: state.page, pageSize: PAGE_SIZE }).then(function (res) {
+        if (!ok()) return;
+        counts = res.counts; state.page = res.page; paintTabs(); syncUrl();
+        grid.innerHTML = res.items.length ? res.items.map(PK.courseCard).join('')
+          : '<div class="col-span-full">' + (state.mine && !state.q && !state.kategori && !state.level ? PK.emptyBox('document', 'Kamu belum mengikuti course', 'Pilih course di katalog dan mulai belajar. Progresmu tersimpan otomatis.', '<button type="button" class="btn-primary btn-sm" data-cat="">Lihat katalog</button>') : PK.emptyBox('default', 'Tidak ada course yang cocok', 'Coba ubah kategori, level, atau kata kunci.', '<button type="button" class="btn-outline btn-sm" data-reset>Hapus filter</button>')) + '</div>';
+        grid.removeAttribute('aria-busy');
+        PK.pager($('pager'), res, 'course');
+      }).catch(function (err) { if (!ok()) return; grid.innerHTML = '<div class="col-span-full">' + PK.errorBox(err.message) + '</div>'; grid.removeAttribute('aria-busy'); $('pager').innerHTML = ''; });
+    }
+
+    // ---- detail
+    function flat() { return PK.lessonsOf(cur.course); }
+    function curriculum(c, p, interactive) {
+      var n = -1;
+      return c.modules.map(function (m, mi) {
+        return '<div class="border-t border-border first:border-t-0"><p class="bg-neutral-50 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-fg-muted">Modul ' + (mi + 1) + ': ' + esc(m.title) + '</p><ul class="list-group list-group-flush !border-0">' +
+          m.lessons.map(function (l) {
+            n++;
+            var done = p.done.indexOf(n) !== -1, on = interactive && n === lessonIdx;
+            var inner = '<span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full ' + (done ? 'bg-success-600 text-white' : on ? 'bg-primary-100 text-primary-700' : 'bg-neutral-100 text-neutral-400') + '">' + PK.icon(done ? 'check' : on ? 'caret-right' : 'dots-three', 'h-3 w-3') + '</span><span class="min-w-0 flex-1 truncate">' + esc(l.t) + '</span><span class="text-xs font-normal text-fg-muted">' + l.min + ' mnt</span>';
+            return interactive ? '<li><button type="button" class="list-group-item list-group-item-action ' + (on ? 'is-active' : '') + ' !px-5 !py-3 font-normal" data-lesson="' + n + '">' + inner + '</button></li>' : '<li class="list-group-item !px-5 !py-3 font-normal">' + inner + '</li>';
+          }).join('') + '</ul></div>';
+      }).join('');
+    }
+    function cardSection(title, body, extra) { return '<section class="card overflow-hidden"><div class="flex items-center justify-between gap-3 p-6 pb-3"><h2 class="card-title">' + title + '</h2>' + (extra || '') + '</div>' + body + '</section>'; }
+
+    function renderDetail() {
+      var c = cur.course, p = cur.progress, t = PK.TINT_OF(c.cat), lessons = flat(), n = lessons.length;
+      $('crumbTitle').textContent = c.title; document.title = c.title + ' | Course KarirLink';
+      if (!p.enrolled) {
+        $('detailMain').innerHTML =
+          '<section class="card overflow-hidden"><div class="p-2"><div class="rounded-xl p-6 sm:p-8 ' + t.soft + '"><div class="flex flex-wrap gap-2"><span class="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold ' + t.text + '">' + esc(c.cat) + '</span><span class="inline-flex rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700">' + esc(c.level) + '</span></div>' +
+          '<h1 class="mt-4 font-display text-2xl font-bold text-fg sm:text-3xl">' + esc(c.title) + '</h1><p class="card-text mt-3 leading-relaxed">' + esc(c.desc) + '</p>' +
+          '<div class="mt-5 flex items-center gap-3"><span class="avatar h-10 w-10 text-sm">' + esc(PK.initials(c.instructor)) + '</span><span><span class="block text-sm font-semibold text-fg">' + esc(c.instructor) + '</span><span class="block text-xs text-fg-muted">' + esc(c.role) + '</span></span></div></div></div></section>' +
+          cardSection('Yang akan kamu pelajari', '<ul class="grid gap-3 px-6 pb-6 sm:grid-cols-2">' + c.learn.map(function (x) { return '<li class="flex items-start gap-2.5 text-sm text-fg-muted">' + PK.icon('check-circle', 'kk-fill mt-0.5 h-4 w-4 shrink-0 text-primary-500') + '<span>' + esc(x) + '</span></li>'; }).join('') + '</ul>') +
+          cardSection('Kurikulum', curriculum(c, p, false), '<span class="badge-neutral">' + n + ' materi</span>');
+        $('detailSide').innerHTML = '<section class="card card-body"><p class="font-display text-2xl font-bold text-fg">Gratis</p><ul class="mt-4 space-y-3 text-sm text-fg-muted"><li class="flex items-center gap-2.5">' + PK.icon('clock', 'h-4 w-4') + PK.courseDuration(c) + ' total</li><li class="flex items-center gap-2.5">' + PK.icon('list-checks', 'h-4 w-4') + n + ' materi dalam ' + c.modules.length + ' modul</li><li class="flex items-center gap-2.5">' + PK.icon('seal-check', 'h-4 w-4') + 'Sertifikat penyelesaian</li><li class="flex items-center gap-2.5">' + PK.icon('users', 'h-4 w-4') + c.learners.toLocaleString('id-ID') + ' peserta</li></ul><button type="button" class="btn-primary btn-lg mt-5 w-full" data-enroll="' + c.id + '">' + PK.icon('graduation-cap', 'h-4 w-4') + 'Daftar dan mulai belajar</button><button type="button" class="btn-ghost btn-sm mt-2 w-full" data-share>' + PK.icon('share-network', 'h-4 w-4') + 'Salin tautan course</button></section>';
+      } else {
+        if (lessonIdx >= n) lessonIdx = n - 1;
+        var l = lessons[lessonIdx], done = p.done.indexOf(lessonIdx) !== -1;
+        $('detailMain').innerHTML =
+          '<section class="card overflow-hidden"><div class="relative flex aspect-video items-center justify-center bg-gradient-to-br from-primary-900 via-primary-800 to-primary-600"><div aria-hidden="true" class="absolute inset-0 opacity-30" style="background-image: radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 22px 22px;"></div><span class="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-primary-700 shadow-xl">' + PK.icon('play', 'kk-fill h-7 w-7') + '</span><span class="absolute bottom-3 left-4 rounded-full bg-black/40 px-3 py-1 text-xs text-white backdrop-blur">Materi ' + (lessonIdx + 1) + ' dari ' + n + ' &middot; ' + l.min + ' menit</span></div>' +
+          '<div class="card-body"><p class="text-xs font-semibold uppercase tracking-wider text-primary-600">Modul ' + (l.mi + 1) + ': ' + esc(c.modules[l.mi].title) + '</p><h1 class="mt-1 font-display text-xl font-bold text-fg sm:text-2xl">' + esc(l.t) + '</h1><p class="card-text mt-3 leading-relaxed">Pemutar video dan bahan bacaan materi ini akan tampil di sini. Setelah selesai mempelajarinya, tandai materi sebagai selesai agar progresmu tersimpan.</p>' +
+          '<div class="mt-6 flex flex-wrap items-center justify-between gap-3"><div class="flex gap-2"><button type="button" class="btn-outline btn-md" data-step="-1"' + (lessonIdx === 0 ? ' disabled' : '') + '>' + PK.icon('arrow-left', 'h-4 w-4') + 'Sebelumnya</button><button type="button" class="btn-outline btn-md" data-step="1"' + (lessonIdx === n - 1 ? ' disabled' : '') + '>Berikutnya' + PK.icon('arrow-right', 'h-4 w-4') + '</button></div>' +
+          '<button type="button" class="btn-' + (done ? 'secondary' : 'primary') + ' btn-md" data-toggle="' + lessonIdx + '">' + PK.icon('check', 'h-4 w-4') + (done ? 'Selesai, batalkan' : 'Tandai selesai') + '</button></div></div></section>' +
+          cardSection('Tentang course', '<p class="card-text px-6 pb-6 leading-relaxed">' + esc(c.desc) + '</p>');
+        $('detailSide').innerHTML =
+          '<section class="card card-body"><div class="flex items-center justify-between"><h2 class="card-title !text-base">Progres belajar</h2><span class="badge-' + (p.complete ? 'success' : 'primary') + '">' + p.pct + '%</span></div><div class="progress-track mt-3 h-2"><div class="progress-bar" style="width: ' + p.pct + '%"></div></div><p class="card-text mt-2 text-xs">' + p.done.length + ' dari ' + n + ' materi selesai</p>' +
+          (p.complete ? '<div class="callout-success mt-4"><p class="flex items-center gap-2 text-sm font-semibold text-fg">' + PK.icon('seal-check', 'kk-fill h-4 w-4 text-success-600') + 'Selamat, course selesai</p><button type="button" class="btn-primary btn-sm mt-3 w-full" data-cert>Lihat sertifikat</button></div>' : '') + '</section>' +
+          cardSection('Daftar materi', curriculum(c, p, true));
+      }
+      $('similar').hidden = !cur.similar.length;
+      $('similarGrid').innerHTML = cur.similar.map(function (x) { return PK.courseCard({ course: x }); }).join('');
+    }
+    function loadDetail(keepIdx) {
+      layout(); syncUrl();
+      $('detailMain').innerHTML = '<div class="h-96 animate-pulse rounded-card bg-neutral-100"></div>'; $('detailSide').innerHTML = '<div class="h-72 animate-pulse rounded-card bg-neutral-100"></div>'; $('similar').hidden = true;
+      var ok = detailToken();
+      api.getCourse(state.id).then(function (res) {
+        if (!ok()) return;
+        cur = res;
+        if (!keepIdx) { var f = res.progress.done.length; lessonIdx = res.progress.enrolled ? Math.min(Math.max(0, flat().findIndex(function (_, i) { return res.progress.done.indexOf(i) === -1; })), flat().length - 1) : 0; if (res.progress.complete) lessonIdx = 0; }
+        renderDetail(); if (!keepIdx) window.scrollTo({ top: 0 });
+      }).catch(function (err) { if (!ok()) return; $('detailSide').innerHTML = ''; $('detailMain').innerHTML = PK.errorBox(err.message).replace('data-retry', 'data-retry-detail'); });
+    }
+    function browse() { state.id = null; detailToken(); document.title = 'Course | Portal Karir KarirLink'; loadList(); }
+
+    // ---- sertifikat
+    function showCert() {
+      var c = cur.course;
+      $('certBody').innerHTML = '<div class="rounded-card border-4 border-double border-primary-200 bg-gradient-to-br from-primary-50 via-white to-secondary-50 p-8 text-center sm:p-12"><img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="mx-auto h-9 w-auto" /><p class="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-primary-600">Sertifikat Penyelesaian</p><p class="mt-5 text-sm text-fg-muted">Diberikan kepada</p><p class="mt-1 font-display text-3xl font-bold text-fg">' + esc(PK.user.name || 'Peserta') + '</p><p class="mt-5 text-sm text-fg-muted">atas penyelesaian course</p><p class="mt-1 font-display text-xl font-semibold text-primary-700">' + esc(c.title) + '</p><p class="mt-6 text-xs text-fg-subtle">' + esc(PK.CAMPUS.name) + ' &middot; ' + new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + '</p></div>';
+      KKModal.open('certModal');
+    }
+
+    // ---- interaksi
+    document.addEventListener('click', function (e) {
+      var open = e.target.closest('[data-open]');
+      if (open) { e.preventDefault(); state.id = parseInt(open.getAttribute('data-open'), 10); loadDetail(); return; }
+      if (e.target.closest('[data-browse]')) { e.preventDefault(); browse(); return; }
+      var c = e.target.closest('[data-cat]');
+      if (c) { var v = c.getAttribute('data-cat'); state.mine = v === 'saya'; state.kategori = state.mine ? '' : v; state.page = 1; loadList(); return; }
+      if (e.target.closest('[data-reset]')) { state.kategori = state.level = state.q = ''; state.mine = false; state.page = 1; $('fQ').value = ''; PK.comboSet($('fLevel'), ''); loadList(); return; }
+      if (e.target.closest('[data-retry]')) { loadList(); return; }
+      if (e.target.closest('[data-retry-detail]')) { loadDetail(); return; }
+      var en = e.target.closest('[data-enroll]');
+      if (en) { en.disabled = true; en.classList.add('btn-loading'); api.enrollCourse(state.id).then(function () { PK.toast('success', 'Kamu terdaftar. Selamat belajar!'); loadDetail(); }); return; }
+      var ls = e.target.closest('[data-lesson]');
+      if (ls) { lessonIdx = parseInt(ls.getAttribute('data-lesson'), 10); renderDetail(); return; }
+      var st = e.target.closest('[data-step]');
+      if (st) { lessonIdx += parseInt(st.getAttribute('data-step'), 10); renderDetail(); return; }
+      var tg = e.target.closest('[data-toggle]');
+      if (tg) {
+        var i = parseInt(tg.getAttribute('data-toggle'), 10), was = cur.progress.done.indexOf(i) !== -1;
+        api.setLesson(state.id, i, !was).then(function (r) {
+          cur.progress = r.progress;
+          if (!was && !r.progress.complete && i < flat().length - 1) lessonIdx = i + 1;
+          renderDetail();
+          if (r.progress.complete && !was) PK.toast('success', 'Selamat, kamu menyelesaikan course ini.');
+        });
+        return;
+      }
+      if (e.target.closest('[data-cert]')) { showCert(); return; }
+      var tt = e.target.closest('[data-toast]');
+      if (tt) { PK.toast('success', tt.getAttribute('data-toast')); return; }
+      if (e.target.closest('[data-share]')) { var url = location.href.split('?')[0] + '?id=' + state.id, done = function () { PK.toast('success', 'Tautan course disalin.'); }; try { navigator.clipboard.writeText(url).then(done, done); } catch (err) { done(); } }
+    });
+    $('pager').addEventListener('pagination:change', function (e) { state.page = e.detail.page; loadList(); $('catTabs').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    $('filterForm').addEventListener('combo:change', function () { state.level = $('fLevel').dataset.value; state.page = 1; loadList(); });
+    $('filterForm').addEventListener('submit', function (e) { e.preventDefault(); state.q = $('fQ').value; state.page = 1; loadList(); });
+    $('fQ').addEventListener('input', PK.debounce(function () { state.q = $('fQ').value; state.page = 1; loadList(); }, 350));
+
+    if (state.id) loadDetail(); else loadList();
+  })();
+</script>
+</body>
+</html>
