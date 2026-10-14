@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lamaran Saya | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../../dist/output.css" />
+<meta name="description" content="Pantau semua lamaranmu di Portal Karir KarirLink: tahap proses, jadwal wawancara, dan hasil akhir dalam satu halaman." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/custom/portal-karir/lamaran.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Lamaran Saya | Portal Karir KarirLink" />
+<meta property="og:description" content="Pantau semua lamaranmu di Portal Karir KarirLink: tahap proses, jadwal wawancara, dan hasil akhir dalam satu halaman." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/custom/portal-karir/lamaran.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Lamaran Saya | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Pantau semua lamaranmu di Portal Karir KarirLink: tahap proses, jadwal wawancara, dan hasil akhir dalam satu halaman." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<div data-shell="nav" data-page="apps"></div>
+
+<main class="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6">
+
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <h1 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Lamaran saya</h1>
+      <p id="lead" class="mt-1 text-sm text-slate-500">Pantau tahap setiap lamaranmu di sini.</p>
+    </div>
+    <a href="lowongan.html" class="btn-primary btn-md shrink-0 self-start sm:self-auto"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i>Cari Lowongan</a>
+  </div>
+
+  <!-- Tab status + pencarian -->
+  <div class="mt-6 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between lg:border-b lg:border-border">
+    <div class="-mx-4 overflow-x-auto border-b border-border px-4 sm:mx-0 sm:px-0 lg:border-b-0">
+      <div id="statusTabs" class="tabs tabs-underline w-max min-w-full flex-nowrap border-b-0 text-sm" role="tablist" aria-label="Filter status lamaran"></div>
+    </div>
+    <div class="relative w-full lg:mb-2 lg:w-64">
+      <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+      <label for="fQ" class="sr-only">Cari lamaran</label>
+      <input id="fQ" type="search" class="input h-9 pl-9" placeholder="Cari posisi atau perusahaan" autocomplete="off" />
+    </div>
+  </div>
+
+  <div id="listTop" class="mt-6 grid scroll-mt-20 grid-cols-1 gap-6 lg:grid-cols-[minmax(20rem,25rem)_1fr] lg:items-start">
+    <div class="min-w-0">
+      <div id="appList" class="transition-opacity" aria-live="polite"></div>
+      <div id="pager" class="mt-5"></div>
+    </div>
+
+    <section id="detailPane" class="max-lg:fixed max-lg:inset-0 max-lg:z-40 max-lg:hidden max-lg:overflow-y-auto bg-surface lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:rounded-2xl lg:border lg:border-border/70 lg:shadow-card" aria-label="Detail lamaran">
+      <div class="sticky top-0 z-10 flex items-center gap-2 border-b border-border bg-surface/95 px-4 py-3 backdrop-blur lg:hidden">
+        <button type="button" class="btn-ghost btn-sm" data-close><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i>Kembali ke daftar</button>
+      </div>
+      <div id="detailBody"></div>
+    </section>
+  </div>
+</main>
+
+<div data-shell="footer"></div>
+
+<script src="../../../assets/js/ui.js"></script>
+<script src="../../../assets/js/drawer.js"></script>
+<script src="../../../assets/js/pagination.js"></script>
+<script src="../../../assets/js/toast.js"></script>
+<script src="../../portal-karir/shell.js"></script>
+<script src="campus.js"></script>
+<script src="../../portal-karir/portal.js"></script>
+<script>
+  /* Daftar lamaran diminta per halaman (6 lamaran) lengkap dengan status dan pencarian di sisi server; hitungan tiap
+     status ikut dalam respons yang sama. Detail diminta saat lamaran dipilih. Pilihan tersimpan di URL. */
+  (function () {
+    var PK = window.PK;
+    var api = PK.api;
+    var esc = PK.esc;
+    var PAGE_SIZE = 6;
+    function $(id) { return document.getElementById(id); }
+    PK.initShell();
+
+    var params = new URLSearchParams(location.search);
+    var state = {
+      status: params.get('status') || '', q: params.get('q') || '',
+      page: parseInt(params.get('page'), 10) || 1, id: parseInt(params.get('id'), 10) || null
+    };
+    var paneOpen = !!state.id;
+    var counts = null;
+    var lastRes = null;
+    var shownId = null;
+    var listToken = PK.latest();
+    var detailToken = PK.latest();
+    $('fQ').value = state.q;
+
+    function syncUrl() {
+      var p = new URLSearchParams();
+      if (state.status) p.set('status', state.status);
+      if (state.q) p.set('q', state.q);
+      if (state.page > 1) p.set('page', state.page);
+      if (state.id) p.set('id', state.id);
+      try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) { /* file:// */ }
+    }
+
+    // ---- tab status dengan jumlah (jumlah baru muncul setelah respons pertama)
+    function renderTabs() {
+      var keys = [{ key: '', label: 'Semua', n: counts && counts.all }].concat(PK.STATUSES.map(function (s) { return { key: s.key, label: s.key, n: counts && counts[s.key] }; }));
+      $('statusTabs').innerHTML = keys.map(function (k) {
+        return '<button type="button" role="tab" class="tabs-item whitespace-nowrap py-3!" data-tab="' + k.key + '" aria-selected="' + (state.status === k.key) + '">' + k.label +
+          (counts ? ' <span class="rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-semibold text-neutral-600">' + k.n + '</span>' : '') + '</button>';
+      }).join('');
+    }
+
+    function renderList() {
+      var res = lastRes;
+      $('appList').innerHTML = res.items.length ? '<div class="space-y-3">' + res.items.map(function (a) {
+        var st = PK.statusOf(a.status);
+        var on = a.id === state.id;
+        return '<article class="relative rounded-2xl border p-4 transition-colors ' + (on ? 'border-primary-500 bg-primary-50/40 ring-1 ring-primary-500' : 'border-border/70 bg-surface hover:border-primary-200 hover:bg-neutral-50') + '">' +
+          '<div class="flex items-start gap-3">' + PK.logo(a.job) +
+            '<div class="min-w-0 flex-1"><h3 class="text-sm font-semibold text-slate-900"><button type="button" class="block w-full truncate text-left after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500" data-pick="' + a.id + '" aria-current="' + on + '">' + esc(a.job.title) + '</button></h3>' +
+            '<p class="mt-0.5 truncate text-xs text-slate-500">' + esc(a.job.company) + ' &middot; ' + esc(a.job.city) + '</p></div>' +
+            '<span class="' + st.badge + ' shrink-0">' + esc(a.status) + '</span>' +
+          '</div>' +
+          '<div class="mt-4">' + PK.stageBar(a) + '<div class="mt-2 flex items-center justify-between text-xs text-slate-400"><span>Dikirim ' + PK.when(a.sent).toLowerCase() + '</span><span>' + PK.STEPS[st.step] + '</span></div></div></article>';
+      }).join('') + '</div>'
+        : PK.emptyBox('document', state.q || state.status ? 'Tidak ada lamaran yang cocok' : 'Belum ada lamaran', state.q || state.status ? 'Coba kata kunci lain atau pilih tab Semua.' : 'Lamaran yang kamu kirim akan muncul di sini.',
+            state.q || state.status ? '<button type="button" class="btn-outline btn-sm" data-reset>Hapus filter</button>' : '<a href="lowongan.html" class="btn-primary btn-sm">Cari lowongan</a>');
+      PK.pager($('pager'), res, 'lamaran');
+    }
+
+    function loadList() {
+      syncUrl();
+      renderTabs();
+      var list = $('appList');
+      list.setAttribute('aria-busy', 'true');
+      if (lastRes) list.classList.add('opacity-50', 'pointer-events-none');
+      else { list.innerHTML = PK.skeletonRows(4); $('detailBody').innerHTML = PK.skeletonDetail(); }
+      var ok = listToken();
+      api.listApplications({ status: state.status, q: state.q, page: state.page, pageSize: PAGE_SIZE }).then(function (res) {
+        if (!ok()) return;
+        lastRes = res; counts = res.counts; state.page = res.page;
+        $('detailPane').classList.remove('lg:invisible');
+        if (!res.items.some(function (a) { return a.id === state.id; })) {
+          state.id = res.items.length ? res.items[0].id : null;
+          if (!state.id) paneOpen = false;
+        }
+        list.classList.remove('opacity-50', 'pointer-events-none');
+        list.removeAttribute('aria-busy');
+        $('lead').textContent = counts.all + ' lamaran, ' + counts.active + ' sedang berjalan.';
+        renderTabs();
+        renderList();
+        syncUrl();
+        loadDetail();
+      }).catch(function (err) {
+        if (!ok()) return;
+        list.classList.remove('opacity-50', 'pointer-events-none');
+        list.removeAttribute('aria-busy');
+        list.innerHTML = PK.errorBox(err.message);
+        $('pager').innerHTML = '';
+        $('detailBody').innerHTML = '';
+        $('detailPane').classList.add('lg:invisible');
+      });
+    }
+
+    // ---- pelacak tahap (Timeline mendatar)
+    function stepper(app) {
+      var st = PK.statusOf(app.status);
+      var hist = PK.history(app);
+      var final = app.status === 'Diterima' || app.status === 'Ditolak';
+      var labels = PK.STEPS.slice();
+      if (final) labels[3] = app.status;
+      return '<ol class="timeline-steps">' + labels.map(function (label, i) {
+        var done = i < st.step || (i === st.step && final);
+        var current = i === st.step && !final;
+        var cls = 'bg-neutral-100 text-neutral-400';
+        var ic = 'dots-three';
+        if (done) { cls = 'bg-primary-600 text-white'; ic = 'check'; }
+        if (current) { cls = 'bg-primary-100 text-primary-700 ring-4 ring-primary-100'; ic = 'clock'; }
+        if (i === 3 && app.status === 'Diterima') { cls = 'bg-success-600 text-white'; ic = 'check'; }
+        if (i === 3 && app.status === 'Ditolak') { cls = 'bg-danger-500 text-white'; ic = 'x'; }
+        var h = hist.filter(function (x) { return x.step === i; })[0];
+        return '<li class="timeline-step">' +
+          '<div class="timeline-step-track"><span class="timeline-step-marker ' + cls + '">' + PK.icon(ic, 'h-3 w-3') + '</span><span class="timeline-step-line' + (i === 3 ? ' sm:invisible' : '') + (i < st.step ? ' bg-primary-600!' : '') + '"></span></div>' +
+          '<div class="mt-2 sm:pe-4"><p class="text-sm font-semibold ' + (done || current ? 'text-slate-900' : 'text-slate-400') + '">' + esc(label) + '</p>' +
+          '<p class="mt-0.5 text-xs text-slate-400">' + (h ? PK.dateOf(h.ago) : (current ? 'Sedang berlangsung' : 'Menunggu')) + '</p></div></li>';
+      }).join('') + '</ol>';
+    }
+
+    function nextStep(app) {
+      var j = app.job;
+      if (app.status === 'Wawancara') {
+        var when = new Date(Date.now() + (app.interviewIn || 3) * 86400000).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        return '<div class="callout-info"><p class="flex items-center gap-2 text-sm font-semibold text-slate-900">' + PK.icon('calendar-check', 'h-4 w-4 text-info-600') + 'Jadwal wawancara</p>' +
+          '<p class="mt-2 text-sm text-slate-700">' + when + ', 10.00 WIB</p><p class="mt-0.5 flex items-center gap-1.5 text-sm text-slate-500">' + PK.icon('video-camera', 'h-4 w-4') + 'Online via Zoom bersama tim ' + esc(j.company) + '</p>' +
+          '<div class="mt-3 flex flex-wrap gap-2"><button type="button" class="btn-primary btn-sm" data-toast="Jadwal wawancara ditambahkan ke kalender.">' + PK.icon('calendar-plus', 'h-4 w-4') + 'Tambah ke Kalender</button><a href="index.html#event" class="btn-outline btn-sm">Ikuti workshop wawancara</a></div></div>';
+      }
+      if (app.status === 'Diterima') {
+        return '<div class="callout-success"><p class="flex items-center gap-2 text-sm font-semibold text-slate-900">' + PK.icon('seal-check', 'kk-fill h-4 w-4 text-success-600') + 'Selamat, kamu diterima</p>' +
+          '<p class="mt-1.5 text-sm text-slate-600">' + esc(j.company) + ' akan menghubungimu untuk langkah administrasi dan tanggal mulai.</p>' +
+          '<button type="button" class="btn-primary btn-sm mt-3" data-toast="Penawaran dikonfirmasi. Tim ' + esc(j.company) + ' akan menghubungimu.">Konfirmasi Penawaran</button></div>';
+      }
+      if (app.status === 'Ditolak') {
+        return '<div class="callout-critical"><p class="text-sm font-semibold text-slate-900">Belum lolos kali ini</p>' +
+          '<p class="mt-1.5 text-sm text-slate-600">Jangan berhenti di sini. Ada lowongan lain di bidang yang sama yang mungkin cocok.</p>' +
+          '<a href="lowongan.html?bidang=' + encodeURIComponent(j.field) + '" class="btn-outline btn-sm mt-3">Lihat lowongan ' + esc(j.field) + '</a></div>';
+      }
+      if (app.status === 'Diproses') {
+        return '<div class="callout-warning"><p class="flex items-center gap-2 text-sm font-semibold text-slate-900">' + PK.icon('hourglass', 'h-4 w-4 text-warning-600') + 'Sedang ditinjau</p>' +
+          '<p class="mt-1.5 text-sm text-slate-600">Tim rekrutmen memeriksa profilmu. Pastikan minat dan keahlianmu sudah lengkap sambil menunggu kabar.</p>' +
+          '<a href="profil.html" class="btn-outline btn-sm mt-3">Lihat profil</a></div>';
+      }
+      return '<div class="callout-info"><p class="flex items-center gap-2 text-sm font-semibold text-slate-900">' + PK.icon('paper-plane-tilt', 'h-4 w-4 text-info-600') + 'Lamaran sudah terkirim</p>' +
+        '<p class="mt-1.5 text-sm text-slate-600">Perusahaan biasanya merespons dalam 3 sampai 7 hari kerja. Kami akan memberi tahu saat statusnya berubah.</p></div>';
+    }
+
+    function renderDetail(app) {
+      var j = app.job;
+      var st = PK.statusOf(app.status);
+      $('detailBody').innerHTML =
+        '<div class="p-5 sm:p-7">' +
+          '<div class="flex items-start gap-4">' + PK.logo(j, 'h-14 w-14 text-base') +
+            '<div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2"><h2 class="font-display text-xl font-bold leading-snug text-slate-900 sm:text-2xl">' + esc(j.title) + '</h2><span class="' + st.badge + '">' + esc(app.status) + '</span></div>' +
+            '<p class="mt-1 text-sm text-slate-500"><span class="font-medium text-primary-600">' + esc(j.company) + '</span> &middot; ' + esc(j.city) + ' &middot; Dikirim ' + PK.dateOf(app.sent) + '</p></div>' +
+          '</div>' +
+          '<div class="mt-7 rounded-2xl border border-border/70 p-5"><p class="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-400">Tahap lamaran</p>' + stepper(app) + '</div>' +
+          '<div class="mt-5">' + nextStep(app) + '</div>' +
+          '<h3 class="mt-8 text-base font-semibold text-slate-900">Riwayat</h3>' +
+          '<ol class="timeline mt-4 ms-3">' + PK.history(app).map(function (h) {
+            return '<li class="timeline-item"><span class="timeline-marker bg-primary-600! text-white">' + PK.icon('check', 'h-3 w-3') + '</span>' +
+              '<time class="timeline-time">' + PK.dateOf(h.ago) + '</time><h4 class="my-1 text-sm font-semibold text-slate-900">' + esc(h.title) + '</h4><p class="text-sm text-slate-500">' + esc(h.body) + '</p></li>';
+          }).join('') + '</ol>' +
+          '<div class="mt-8 flex flex-col gap-3 rounded-2xl bg-neutral-50 p-4 sm:flex-row sm:items-center">' +
+            '<div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">' + esc(j.title) + '</p><p class="mt-0.5 text-xs text-slate-500">' + esc(j.type) + ' &middot; ' + esc(j.mode) + ' &middot; ' + esc(j.pay) + '</p></div>' +
+            '<a href="lowongan.html?id=' + j.id + '" class="btn-outline btn-sm shrink-0 self-start sm:self-auto">Lihat Lowongan' + PK.icon('arrow-right', 'h-4 w-4') + '</a></div>' +
+        '</div>';
+    }
+
+    function loadDetail(force) {
+      var pane = $('detailPane');
+      pane.classList.toggle('max-lg:hidden', !(paneOpen && state.id));
+      if (!state.id) {
+        shownId = null;
+        $('detailBody').innerHTML = '<div class="flex min-h-[20rem] flex-col items-center justify-center p-10 text-center"><span class="flex h-14 w-14 items-center justify-center rounded-full bg-primary-50 text-primary-600">' + PK.icon('file-text', 'h-7 w-7') + '</span><p class="mt-4 text-base font-semibold text-slate-800">Pilih lamaran untuk melihat perkembangannya</p><p class="mt-1 max-w-xs text-sm text-slate-500">Tahap proses dan riwayatnya akan muncul di sini.</p></div>';
+        return;
+      }
+      if (shownId === state.id && !force) return;
+      shownId = state.id;
+      $('detailBody').innerHTML = PK.skeletonDetail();
+      pane.scrollTop = 0;
+      var ok = detailToken();
+      api.getApplication(state.id).then(function (res) {
+        if (!ok()) return;
+        renderDetail(res.app);
+      }).catch(function (err) {
+        if (!ok()) return;
+        shownId = null;
+        $('detailBody').innerHTML = '<div class="p-5">' + PK.errorBox(err.message).replace('data-retry', 'data-retry-detail') + '</div>';
+      });
+    }
+
+    function select(id) {
+      state.id = id; paneOpen = true;
+      syncUrl();
+      renderList();
+      loadDetail();
+    }
+
+    document.addEventListener('click', function (e) {
+      var pick = e.target.closest('[data-pick]');
+      if (pick) { select(parseInt(pick.getAttribute('data-pick'), 10)); return; }
+      var t = e.target.closest('[data-tab]');
+      if (t) { state.status = t.getAttribute('data-tab'); state.page = 1; paneOpen = false; loadList(); return; }
+      if (e.target.closest('[data-close]')) { paneOpen = false; loadDetail(); return; }
+      if (e.target.closest('[data-retry]')) { loadList(); return; }
+      if (e.target.closest('[data-retry-detail]')) { loadDetail(true); return; }
+      if (e.target.closest('[data-reset]')) { state.status = ''; state.q = ''; $('fQ').value = ''; state.page = 1; paneOpen = false; loadList(); return; }
+      var tt = e.target.closest('[data-toast]');
+      if (tt) PK.toast('success', tt.getAttribute('data-toast'));
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && paneOpen && window.innerWidth < 1024) { paneOpen = false; loadDetail(); }
+    });
+    $('pager').addEventListener('pagination:change', function (e) {
+      state.page = e.detail.page;
+      $('listTop').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      loadList();
+    });
+    var searchLater = PK.debounce(function () { state.page = 1; paneOpen = false; loadList(); }, 350);
+    $('fQ').addEventListener('input', function () { state.q = this.value; searchLater(); });
+
+    renderTabs();
+    loadList();
+  })();
+</script>
+</body>
+</html>
