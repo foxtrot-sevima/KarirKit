@@ -913,7 +913,7 @@
 
   // Identitas kampus pengelola portal (diganti per universitas).
   // logo kosong = logo KarirLink SEVIMA bawaan. Isi URL gambar (relatif terhadap halaman) untuk tampilan white-label seperti templates/custom:
-  // avatar logo kampus + "Karirlink" kecil di atas nama kampus.
+  // avatar logo kampus + "KarirLink" kecil di atas nama kampus.
   var CAMPUS = {
     name: 'Universitas Contoh', unit: 'Pusat Karier dan Alumni', logo: '',
     // Alamat aplikasi Tracer Study kampus (kuesioner diisi di sana).
