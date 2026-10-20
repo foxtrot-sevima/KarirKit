@@ -12,6 +12,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- **Toast bertumpuk** (`assets/js/toast.js`, `.toast-enter`, `.toast-leaving`): tumpukan dari `KKToast.show()` tetap di kanan bawah, toast terbaru di paling atas dan paling banyak 2 yang tampil bersamaan (`KKToast.max`; yang ketiga mengeluarkan yang paling lama). Tiap toast hilang sendiri sesuai durasinya dengan animasi masuk dan memudar halus.
 - Navbar, drawer, dan footer portal-karir memakai "Pengembangan" (Tes dan Course) menggantikan "Course"; skrip `gen-custom-portal.mjs` menerima nama halaman, dan Storybook memuat halaman baru.
 - **Menu "Dashboard" diganti "Overview"** di panel admin KarirLink (label sidebar, tooltip, drawer ponsel, breadcrumb, dan judul halaman) pada semua template `templates/karirlink` dan `templates/custom`.
 

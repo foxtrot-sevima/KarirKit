@@ -19144,7 +19144,11 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   }
   .toast-center > .toast-close { @apply self-center; }
   .toast-action { @apply cursor-pointer text-sm font-semibold text-primary-600 hover:text-primary-700 hover:underline; }
-  .toast-leaving { @apply opacity-0 transition-opacity duration-200; }
+  /* Toast baru masuk dari atas; yang hilang memudar perlahan di tempatnya (toast.js menggeser sisanya). */
+  .toast-enter { animation: toast-in .26s cubic-bezier(.2, .8, .2, 1); }
+  .toast-leaving { @apply pointer-events-none -translate-y-1 opacity-0 transition-[opacity,translate] duration-300; }
+  @keyframes toast-in { from { opacity: 0; transform: translateY(-12px) scale(.97); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .toast-enter { animation: none; } .toast-leaving { @apply translate-y-0 duration-150; } }
   .toast-region { @apply fixed z-[var(--z-toast)] flex flex-col gap-3 p-4; }
   .toast-region-contained { @apply absolute; }
   .toast-top-left { @apply top-0 left-0; }
