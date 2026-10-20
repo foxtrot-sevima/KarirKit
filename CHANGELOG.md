@@ -13,6 +13,7 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Navbar, drawer, dan footer portal-karir memakai "Pengembangan" (Tes dan Course) menggantikan "Course"; skrip `gen-custom-portal.mjs` menerima nama halaman, dan Storybook memuat halaman baru.
+- **Menu "Dashboard" diganti "Overview"** di panel admin KarirLink (label sidebar, tooltip, drawer ponsel, breadcrumb, dan judul halaman) pada semua template `templates/karirlink` dan `templates/custom`.
 
 ## [1.3.7] - 2026-10-13
 
