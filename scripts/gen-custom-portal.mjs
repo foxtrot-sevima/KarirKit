@@ -1,7 +1,7 @@
 // Membangkitkan templates/custom/portal-karir/ dari templates/portal-karir/ (white-label per kampus).
 // Halaman disalin dengan jalur aset disesuaikan; kode bersama (portal.js, shell.js) tetap dari templates/portal-karir/.
 // Identitas kampus ada di templates/custom/portal-karir/campus.js (tidak ditimpa skrip ini).
-// Jalankan: node scripts/gen-custom-portal.mjs
+// Jalankan: node scripts/gen-custom-portal.mjs [halaman ...]  (tanpa argumen = semua halaman)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = path.join(root, 'templates/portal-karir');
 const out = path.join(root, 'templates/custom/portal-karir');
-const PAGES = ['index', 'lowongan', 'event', 'course', 'lamaran', 'profil', 'tracer-study', 'tracer-study-mahasiswa'];
+const ALL = ['index', 'lowongan', 'event', 'pengembangan', 'course', 'riasec', 'riasec-tes', 'riasec-hasil', 'lamaran', 'profil', 'tracer-study', 'tracer-study-mahasiswa'];
+const PAGES = process.argv.length > 2 ? ALL.filter((n) => process.argv.slice(2).includes(n)) : ALL;
 const SHARED = ['login', 'register', 'onboarding']; // tetap dipakai dari portal-karir
 
 fs.mkdirSync(out, { recursive: true });

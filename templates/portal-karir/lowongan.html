@@ -81,6 +81,12 @@
 
   <div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
 
+    <!-- Ajakan tes RIASEC (hanya bila belum pernah mengerjakan) -->
+    <div id="riasecNudge" class="callout-info mb-4 flex flex-col gap-3 sm:flex-row sm:items-center" hidden>
+      <p class="flex items-start gap-2 text-sm text-slate-600"><i class="kk kk-compass mt-0.5 h-4 w-4 shrink-0 text-primary-600" aria-hidden="true"></i><span>Ikuti <span class="font-semibold text-fg">Tes Minat Karier RIASEC</span> (&plusmn;10 menit) agar lowongan diurutkan sesuai minatmu.</span></p>
+      <a href="riasec.html" class="btn-outline btn-sm shrink-0 sm:ml-auto">Mulai Tes</a>
+    </div>
+
     <!-- Bilah hasil -->
     <div id="resultBar" class="flex scroll-mt-20 flex-wrap items-center justify-between gap-3">
       <div class="flex flex-wrap items-center gap-3">
@@ -173,6 +179,7 @@
     var PAGE_SIZE = 9;
     function $(id) { return document.getElementById(id); }
     PK.initShell();
+    $('riasecNudge').hidden = !!PK.riasecCode();
 
     var BIDANG = Object.keys(PK.FIELDS);
     var KOTA = ['Bandung', 'Denpasar', 'Jakarta', 'Medan', 'Semarang', 'Surabaya', 'Yogyakarta'];

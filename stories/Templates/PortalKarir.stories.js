@@ -61,9 +61,29 @@ export const Event = {
   render: () => pageFrame("/templates/portal-karir/event.html", "Portal Karir Event"),
 };
 
+export const PengembanganDiri = {
+  name: "Pengembangan Diri",
+  render: () => pageFrame("/templates/portal-karir/pengembangan.html", "Portal Karir Pengembangan Diri"),
+};
+
 export const Course = {
   name: "Course",
-  render: () => pageFrame("/templates/portal-karir/course.html", "Portal Karir Course"),
+  render: () => pageFrame("/templates/portal-karir/course.html?id=1", "Portal Karir Course"),
+};
+
+export const TesRiasec = {
+  name: "Tes RIASEC",
+  render: () => pageFrame("/templates/portal-karir/riasec.html", "Portal Karir Tes RIASEC"),
+};
+
+export const PengerjaanTesRiasec = {
+  name: "Pengerjaan Tes RIASEC",
+  render: () => pageFrame("/templates/portal-karir/riasec-tes.html", "Portal Karir Pengerjaan Tes RIASEC"),
+};
+
+export const HasilTesRiasec = {
+  name: "Hasil Tes RIASEC",
+  render: () => pageFrame("/templates/portal-karir/riasec-hasil.html", "Portal Karir Hasil Tes RIASEC"),
 };
 
 export const CustomKampus = {

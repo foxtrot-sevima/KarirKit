@@ -185,7 +185,35 @@
     skills: (saved0 && saved0.skills) || []
   };
   var onboarded = !!(saved0 && saved0.completedAt);
-  var hasPrefs = !!(prefs.interests.length || prefs.jobTypes.length || prefs.workModes.length || prefs.locations.length || prefs.skills.length);
+  var hasOnb = !!(prefs.interests.length || prefs.jobTypes.length || prefs.workModes.length || prefs.locations.length || prefs.skills.length);
+
+  // ---- hasil tes minat (RIASEC) = jalur kedua rekomendasi lowongan, selain jawaban onboarding.
+  // Tersimpan di localStorage (kk_portal_tests): { riasec: { attempts:[{ id, at, answers, scores, code, minutes }], draft, active } }.
+  // Pengerjaan yang dipilih sebagai acuan (active, bawaan = terbaru) menentukan kode Holland 3 huruf yang dipakai untuk menilai tiap bidang.
+  var TESTS_KEY = 'kk_portal_tests';
+  var testStore = read(TESTS_KEY, {});
+  // Huruf RIASEC yang paling khas untuk tiap bidang, dari yang terkuat.
+  var RIASEC_FIELD = {
+    'Teknologi & IT': ['I', 'R', 'C'], 'Desain & Kreatif': ['A', 'E', 'I'], 'Keuangan & Akuntansi': ['C', 'E', 'I'],
+    'Pemasaran & Penjualan': ['E', 'A', 'S'], 'Kesehatan': ['S', 'I', 'R'], 'Pendidikan & Pelatihan': ['S', 'A', 'E'],
+    'Teknik & Manufaktur': ['R', 'I', 'C'], 'Hukum & Pemerintahan': ['E', 'S', 'C'], 'Hospitality & Pariwisata': ['S', 'E', 'C'],
+    'Logistik & Rantai Pasok': ['C', 'R', 'E'], 'Media & Komunikasi': ['A', 'S', 'E'], 'Riset & Sains': ['I', 'R', 'A']
+  };
+  function riasecState() { return testStore.riasec || (testStore.riasec = { attempts: [], draft: null, active: null }); }
+  function activeAttempt() {
+    var st = testStore.riasec;
+    if (!st || !st.attempts.length) return null;
+    return st.attempts.filter(function (a) { return a.id === st.active; })[0] || st.attempts[st.attempts.length - 1];
+  }
+  // Kecocokan 0..1 antara kode pengguna (mis. "IAS") dan bidang: huruf yang sama di posisi yang sama bernilai penuh, di posisi lain 0,6.
+  function riasecFit(field, code) {
+    var f = RIASEC_FIELD[field], w = [3, 2, 1], t = 0;
+    if (!f || !code) return 0;
+    for (var i = 0; i < 3; i++) { var at = f.indexOf(code.charAt(i)); if (at === i) t += w[i]; else if (at !== -1) t += w[i] * 0.6; }
+    return t / 6;
+  }
+  var riasecCode = (activeAttempt() || {}).code || '';
+  var hasPrefs = hasOnb || !!riasecCode;
   var savedIds = read(SAVED_KEY, []);
   var applied = read(APPLIED_KEY, []); // [{ id, at }]
 
@@ -198,9 +226,14 @@
     var mine = prefs.skills.map(function (x) { return x.toLowerCase(); });
     var overlap = job.skills.filter(function (k) { return mine.indexOf(k.toLowerCase()) !== -1; }).length;
     if (overlap) { s += Math.min(15, overlap * 5); why.push('keahlian'); }
-    return { job: job, score: hasPrefs ? s : 0, why: why };
+    // Dua jalur digabung: onboarding 70% + RIASEC 30%; bila hanya salah satu yang ada, jalur itu berdiri sendiri.
+    var fit = riasecCode ? riasecFit(job.field, riasecCode) : 0, total = hasOnb ? Math.min(100, s) : 0;
+    if (riasecCode) { total = hasOnb ? Math.round(total * 0.7 + fit * 30) : Math.round(fit * 100); if (fit >= 0.6) why.push('minat RIASEC'); }
+    return { job: job, score: hasPrefs ? total : 0, why: why };
   }
-  var ranked = JOBS.map(score).sort(function (a, b) { return b.score - a.score || b.job.pop - a.job.pop; });
+  var ranked;
+  function rerank() { ranked = JOBS.map(score).sort(function (a, b) { return b.score - a.score || b.job.pop - a.job.pop; }); }
+  rerank();
   function rankOf(id) { return ranked.filter(function (r) { return r.job.id === id; })[0]; }
 
   // ---- lamaran = contoh + yang dikirim dari portal, urut dari yang terbaru diperbarui
@@ -630,7 +663,7 @@
   }
 
   // ---- shell bersama: navbar, drawer, dan footer (markup di shell.js)
-  var PAGE_FILE = { home: 'index.html', jobs: 'lowongan.html', event: 'event.html', course: 'course.html', tracer: 'tracer-study.html' };
+  var PAGE_FILE = { home: 'index.html', jobs: 'lowongan.html', event: 'event.html', grow: 'pengembangan.html', tracer: 'tracer-study.html' };
   function mountShell() {
     var S = window.PK_SHELL; if (!S) return;
     document.querySelectorAll('[data-shell]').forEach(function (ph) {
@@ -870,7 +903,7 @@
       '<div class="flex flex-1 flex-col rounded-xl p-4 ' + t.soft + '">' +
         '<div class="flex items-start justify-between gap-2"><span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-semibold ' + t.text + '">' + esc(c.cat) + '</span><span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700">' + esc(c.level) + '</span></div>' +
         '<div class="mt-5 flex items-start justify-between gap-3"><div class="min-w-0"><p class="truncate text-xs text-slate-500">' + esc(c.instructor) + ', ' + esc(c.role) + '</p>' +
-        '<h3 class="mt-1 font-display text-lg font-semibold leading-snug text-slate-900"><a href="course.html?id=' + c.id + '" data-open="' + c.id + '" class="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500">' + esc(c.title) + '</a></h3></div>' +
+        '<h3 class="mt-1 font-display text-lg font-semibold leading-snug text-slate-900"><a href="course.html?id=' + c.id + '" class="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500">' + esc(c.title) + '</a></h3></div>' +
         '<span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white ' + t.text + '">' + icon('graduation-cap', 'h-6 w-6') + '</span></div>' +
         '<div class="mt-4 flex flex-wrap gap-1.5">' + tag(courseDuration(c)) + tag(n + ' materi') + tag('Sertifikat') + '</div>' +
       '</div>' +
@@ -882,6 +915,176 @@
   }
 
   function tintOfCat(cat) { return TINT[COURSE_TONE[cat] || 'primary']; }
+
+  /* ==========================================================================
+     Tes (contoh). Hanya Tes Minat Karier RIASEC yang bisa dikerjakan; tes lain tampil sebagai "Segera hadir".
+     Draf jawaban tersimpan otomatis, hasil tiap pengerjaan masuk riwayat, dan satu pengerjaan dipakai sebagai acuan rekomendasi lowongan.
+       GET  /api/tests?kategori&q                      -> { items:[{ test, state }], counts }
+       GET  /api/tests/:id                             -> { test, state, attempts }      (attempts: terbaru dulu)
+       PUT  /api/tests/:id/draft  { answers, page }    -> { ok }
+       POST /api/tests/:id/attempts { answers }        -> { attempt }                    (menghitung skor dan kode Holland)
+       GET  /api/attempts?page&pageSize                -> { items, total, page, pageSize, pages, drafts }
+       PUT  /api/tests/:id/active { attempt }          -> { ok }                         (pilih acuan rekomendasi)
+       GET  /api/tests/riasec/recommendations?kode     -> { jobs:[rank], fields:[{ field, fit }] }
+     ========================================================================== */
+  var TEST_CATS = ['Minat dan Bakat', 'Kepribadian', 'Kemampuan'];
+  var TEST_TONE = { 'Minat dan Bakat': 'primary', 'Kepribadian': 'secondary', 'Kemampuan': 'info' };
+  var RIASEC_ORDER = ['R', 'I', 'A', 'S', 'E', 'C'];
+  var RIASEC = {
+    R: { name: 'Realistis', en: 'Realistic', nick: 'Si Praktis', tone: 'warning', icon: 'wrench', desc: 'Suka bekerja dengan benda, alat, mesin, atau alam. Praktis, tangguh, dan puas saat melihat hasil kerja yang nyata.', strengths: ['Terampil secara teknis', 'Tahan banting di lapangan', 'Pemecah masalah yang praktis'], roles: ['Teknisi', 'Insinyur lapangan', 'Quality control', 'Operator produksi'] },
+    I: { name: 'Investigatif', en: 'Investigative', nick: 'Si Penyelidik', tone: 'info', icon: 'flask', desc: 'Suka menganalisis, meneliti, dan memahami cara kerja sesuatu. Rasa ingin tahu tinggi dan nyaman dengan masalah yang rumit.', strengths: ['Berpikir analitis', 'Teliti dan mendalam', 'Belajar mandiri'], roles: ['Data analyst', 'Peneliti', 'Software engineer', 'Ilmuwan'] },
+    A: { name: 'Artistik', en: 'Artistic', nick: 'Si Kreatif', tone: 'secondary', icon: 'palette', desc: 'Suka berekspresi lewat gagasan, visual, tulisan, atau karya. Imajinatif dan lebih nyaman dengan ruang yang bebas dan tidak kaku.', strengths: ['Imajinatif dan orisinal', 'Peka terhadap estetika', 'Bercerita dengan menarik'], roles: ['UI/UX designer', 'Content creator', 'Videografer', 'Penulis'] },
+    S: { name: 'Sosial', en: 'Social', nick: 'Si Penolong', tone: 'success', icon: 'hand-heart', desc: 'Suka membantu, mengajar, dan bekerja bersama orang lain. Empatik, komunikatif, dan senang melihat orang lain berkembang.', strengths: ['Empatik dan pendengar yang baik', 'Pandai membimbing', 'Kolaboratif'], roles: ['Guru dan instruktur', 'Konselor', 'Tenaga kesehatan', 'HR officer'] },
+    E: { name: 'Wirausaha', en: 'Enterprising', nick: 'Si Pemimpin', tone: 'danger', icon: 'rocket', desc: 'Suka memimpin, meyakinkan, dan mengejar target. Berani mengambil risiko, kompetitif, dan senang memulai hal baru.', strengths: ['Persuasif dan percaya diri', 'Berani mengambil keputusan', 'Berorientasi target'], roles: ['Sales dan marketing', 'Manajer produk', 'Pengusaha', 'Konsultan bisnis'] },
+    C: { name: 'Konvensional', en: 'Conventional', nick: 'Si Teliti', tone: 'primary', icon: 'list-checks', desc: 'Suka keteraturan, data, dan prosedur yang jelas. Rapi, andal, dan nyaman bekerja dengan angka serta dokumen.', strengths: ['Teliti dan terorganisir', 'Konsisten mengikuti prosedur', 'Andal dengan angka'], roles: ['Akuntan', 'Staf administrasi', 'Supply chain officer', 'Auditor'] }
+  };
+  // 30 pernyataan (5 per tipe), diurutkan bergantian antar tipe supaya jawaban tidak berpola. Jawaban 1 (sangat tidak suka) sampai 5 (sangat suka).
+  var RIASEC_ITEMS = {
+    R: ['Memperbaiki mesin, kendaraan, atau perangkat elektronik', 'Bekerja dengan alat dan perkakas di bengkel atau lapangan', 'Berkegiatan di luar ruangan, seperti berkebun, bertani, atau mendaki', 'Merakit atau membangun sesuatu dengan tangan', 'Mengoperasikan mesin atau peralatan berat'],
+    I: ['Memecahkan soal logika atau teka-teki yang rumit', 'Melakukan percobaan atau penelitian kecil', 'Membaca artikel ilmiah untuk memahami cara kerja sesuatu', 'Menganalisis data untuk menemukan pola', 'Mencari penyebab suatu masalah sampai tuntas'],
+    A: ['Menggambar, melukis, atau mendesain sesuatu', 'Menulis cerita, puisi, atau konten kreatif', 'Bermain musik, bernyanyi, atau tampil di panggung', 'Menciptakan ide baru yang berbeda dari kebanyakan orang', 'Memotret atau membuat video'],
+    S: ['Membantu orang yang sedang kesulitan', 'Mengajari teman sampai ia paham', 'Mendengarkan curhat dan memberi dukungan', 'Menjadi relawan di kegiatan sosial', 'Bekerja bersama tim untuk membantu banyak orang'],
+    E: ['Memimpin kelompok atau organisasi', 'Meyakinkan orang lain agar setuju dengan idemu', 'Memulai usaha atau proyek sendiri', 'Mengambil keputusan dan risiko demi mencapai target', 'Bernegosiasi atau menjual produk'],
+    C: ['Merapikan dokumen, data, atau arsip', 'Mengatur jadwal dan anggaran dengan teliti', 'Bekerja mengikuti prosedur yang jelas', 'Mencatat dan memeriksa angka agar akurat', 'Mengurus administrasi dan kelengkapan berkas']
+  };
+  var RIASEC_QS = [];
+  for (var qi = 0; qi < 5; qi++) RIASEC_ORDER.forEach(function (k) { RIASEC_QS.push({ type: k, text: RIASEC_ITEMS[k][qi] }); });
+  var SCALE = ['Sangat tidak suka', 'Tidak suka', 'Netral', 'Suka', 'Sangat suka'];
+
+  var TESTS = [
+    { id: 'riasec', ready: true, cat: 'Minat dan Bakat', icon: 'compass', title: 'Tes Minat Karier RIASEC', short: 'RIASEC', minutes: 10, count: RIASEC_QS.length,
+      desc: 'Kenali tipe minat kariermu berdasarkan model Holland. Hasilnya berupa kode tiga huruf, bidang karier yang cocok, dan dipakai untuk mengurutkan lowongan yang direkomendasikan untukmu.' },
+    { id: 'kepribadian', ready: false, cat: 'Kepribadian', icon: 'brain', title: 'Tes Kepribadian Big Five', short: 'Big Five', minutes: 15, count: 50, desc: 'Pahami lima dimensi kepribadianmu dan bagaimana gayamu bekerja bersama orang lain.' },
+    { id: 'logika', ready: false, cat: 'Kemampuan', icon: 'calculator', title: 'Tes Logika dan Numerik', short: 'Logika', minutes: 20, count: 30, desc: 'Latihan soal penalaran logika dan hitungan seperti yang sering muncul pada seleksi kerja.' },
+    { id: 'gaya-belajar', ready: false, cat: 'Kepribadian', icon: 'book-open', title: 'Tes Gaya Belajar', short: 'Gaya Belajar', minutes: 8, count: 20, desc: 'Temukan cara belajar yang paling efektif untukmu: visual, auditori, atau praktik langsung.' }
+  ];
+  function testById(id) { return TESTS.filter(function (t) { return t.id === id; })[0]; }
+
+  function riasecScores(answers) {
+    var sc = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+    answers.forEach(function (v, i) { if (v) sc[RIASEC_QS[i].type] += v; });
+    return sc;
+  }
+  function riasecCodeOf(sc) {
+    return RIASEC_ORDER.slice().sort(function (a, b) { return sc[b] - sc[a] || RIASEC_ORDER.indexOf(a) - RIASEC_ORDER.indexOf(b); }).slice(0, 3).join('');
+  }
+  function testState(t) {
+    var st = t.id === 'riasec' ? riasecState() : { attempts: [], draft: null, active: null };
+    var act = t.id === 'riasec' ? activeAttempt() : null;
+    var answered = st.draft ? st.draft.answers.filter(Boolean).length : 0;
+    return { attempts: st.attempts.length, last: st.attempts.length ? st.attempts[st.attempts.length - 1] : null, active: act, draft: st.draft, answered: answered };
+  }
+  function saveTests() { write(TESTS_KEY, testStore); }
+
+  var testApi = {
+    listTests: function (o) {
+      o = o || {};
+      return simulate(function () {
+        var q = (o.q || '').trim().toLowerCase();
+        var base = TESTS.filter(function (t) { return !q || (t.title + ' ' + t.short + ' ' + t.cat).toLowerCase().indexOf(q) !== -1; });
+        var counts = { all: base.length };
+        TEST_CATS.forEach(function (c) { counts[c] = base.filter(function (t) { return t.cat === c; }).length; });
+        var items = base.filter(function (t) { return !o.kategori || t.cat === o.kategori; }).map(function (t) { return { test: t, state: testState(t) }; });
+        return { items: items, counts: counts, riasec: testState(TESTS[0]) };
+      });
+    },
+    getTest: function (id) {
+      return simulate(function () {
+        var t = testById(id);
+        if (!t) throw new Error('Tes tidak ditemukan');
+        var st = testState(t);
+        return { test: t, state: st, attempts: (t.id === 'riasec' ? riasecState().attempts.slice().reverse() : []) };
+      });
+    },
+    saveDraft: function (id, draft) {
+      var st = riasecState();
+      st.draft = draft; saveTests();
+      return Promise.resolve({ ok: true });
+    },
+    discardDraft: function () { riasecState().draft = null; saveTests(); return Promise.resolve({ ok: true }); },
+    submitTest: function (id, answers, startedAt) {
+      return simulate(function () {
+        var st = riasecState(), sc = riasecScores(answers);
+        var at = Date.now(), a = { id: 'r' + at, test: 'riasec', at: at, answers: answers, scores: sc, code: riasecCodeOf(sc), minutes: Math.max(1, Math.round((at - (startedAt || at)) / 60000)) };
+        st.attempts.push(a); st.draft = null; st.active = a.id; saveTests();
+        riasecCode = a.code; hasPrefs = true; rerank();
+        return { attempt: a };
+      }, 900);
+    },
+    // Riwayat semua tes (terbaru dulu) + draf yang belum selesai.
+    listAttempts: function (o) {
+      o = o || {};
+      return simulate(function () {
+        var st = riasecState();
+        var rows = st.attempts.slice().reverse().map(function (a) { return Object.assign({}, a, { current: !!(activeAttempt() && activeAttempt().id === a.id) }); });
+        var res = paginate(rows, o.page, o.pageSize || 5);
+        res.draft = st.draft ? { test: 'riasec', answered: st.draft.answers.filter(Boolean).length, updated: st.draft.updatedAt } : null;
+        res.total_all = rows.length;
+        return res;
+      });
+    },
+    getAttempt: function (id) {
+      return simulate(function () {
+        var a = riasecState().attempts.filter(function (x) { return x.id === id; })[0];
+        if (!a) throw new Error('Hasil tes tidak ditemukan');
+        var cur = activeAttempt();
+        return { attempt: a, current: !!(cur && cur.id === a.id), count: riasecState().attempts.length };
+      });
+    },
+    setActiveAttempt: function (testId, attemptId) {
+      return simulate(function () {
+        var st = riasecState();
+        if (st.attempts.some(function (a) { return a.id === attemptId; })) { st.active = attemptId; saveTests(); riasecCode = (activeAttempt() || {}).code || ''; rerank(); }
+        return { ok: true };
+      }, 300);
+    },
+    // Lowongan dan bidang yang paling cocok dengan satu kode RIASEC (dipakai pada halaman hasil).
+    riasecRecommend: function (code) {
+      return simulate(function () {
+        var jobs = JOBS.map(function (j) { var f = riasecFit(j.field, code); return { job: j, score: Math.round(f * 100), why: f >= 0.6 ? ['minat RIASEC'] : [] }; })
+          .sort(function (a, b) { return b.score - a.score || b.job.pop - a.job.pop; }).slice(0, 6);
+        var fields = Object.keys(RIASEC_FIELD).map(function (f) { return { field: f, fit: Math.round(riasecFit(f, code) * 100), jobs: JOBS.filter(function (j) { return j.field === f; }).length }; })
+          .sort(function (a, b) { return b.fit - a.fit; }).slice(0, 5);
+        return { jobs: jobs, fields: fields };
+      }, 420);
+    }
+  };
+  Object.keys(testApi).forEach(function (k) { api[k] = testApi[k]; });
+
+  // Huruf kode Holland sebagai kotak kecil berwarna (dipakai di kartu, riwayat, dan hasil).
+  function codeChips(code, size) {
+    return '<span class="inline-flex gap-1" aria-label="Kode ' + esc(code) + '">' + code.split('').map(function (k) {
+      var t = TINT[RIASEC[k].tone];
+      return '<span class="flex ' + (size || 'h-7 w-7 text-xs') + ' items-center justify-center rounded-lg font-bold ' + t.logo + '" title="' + esc(RIASEC[k].name) + '">' + k + '</span>';
+    }).join('') + '</span>';
+  }
+
+  function fmtDate(ms) { return new Date(ms).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  // Kartu bagian dengan judul (halaman pengembangan dan tes).
+  function cardSection(title, body, extra) { return '<section class="card overflow-hidden"><div class="flex items-center justify-between gap-3 p-6 pb-3"><h2 class="card-title">' + title + '</h2>' + (extra || '') + '</div>' + body + '</section>'; }
+
+  // Kartu tes: gaya yang sama dengan kartu course, penanda "Tes" dan kaki kartu menurut status (baru, draf, selesai, segera hadir).
+  function testCard(x) {
+    var t = x.test, s = x.state, tn = TINT[TEST_TONE[t.cat] || 'primary'];
+    var head = '<div class="flex items-start justify-between gap-2"><span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-semibold ' + tn.text + '">' + esc(t.cat) + '</span><span class="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700">' + icon('clipboard-text', 'h-3.5 w-3.5') + 'Tes</span></div>';
+    var title = t.ready
+      ? '<a href="' + t.id + '.html" class="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500">' + esc(t.title) + '</a>'
+      : esc(t.title);
+    var foot;
+    if (!t.ready) foot = '<div class="min-w-0"><p class="text-sm font-semibold text-slate-900">Segera hadir</p><p class="mt-0.5 text-xs text-slate-400">Belum bisa dikerjakan</p></div><span class="btn-outline btn-sm shrink-0 pointer-events-none opacity-50" aria-hidden="true">Segera</span>';
+    else if (s.draft && s.answered) {
+      var pct = Math.round(s.answered / t.count * 100);
+      foot = '<div class="min-w-0 flex-1"><div class="flex items-center justify-between text-xs"><span class="font-semibold text-slate-900">Draf ' + pct + '%</span><span class="text-slate-400">' + s.answered + '/' + t.count + '</span></div><div class="progress-track mt-1.5 h-1.5"><div class="progress-bar" style="width: ' + pct + '%"></div></div></div><span class="btn-primary btn-sm shrink-0" aria-hidden="true">Lanjutkan</span>';
+    } else if (s.active) foot = '<div class="min-w-0"><p class="flex items-center gap-2 text-sm font-semibold text-slate-900">Hasilmu ' + codeChips(s.active.code, 'h-6 w-6 text-[11px]') + '</p><p class="mt-0.5 text-xs text-slate-400">' + s.attempts + 'x dikerjakan</p></div><span class="btn-secondary btn-sm shrink-0" aria-hidden="true">Lihat Hasil</span>';
+    else foot = '<div class="min-w-0"><p class="text-sm font-semibold text-slate-900">Gratis</p><p class="mt-0.5 text-xs text-slate-400">Draf tersimpan otomatis</p></div><span class="btn-primary btn-sm shrink-0" aria-hidden="true">Mulai Tes</span>';
+    return '<article class="relative flex flex-col rounded-2xl border border-border/70 bg-surface p-2 shadow-card transition-shadow ' + (t.ready ? 'hover:shadow-card-lg' : '') + '">' +
+      '<div class="flex flex-1 flex-col rounded-xl p-4 ' + tn.soft + '">' + head +
+        '<div class="mt-5 flex items-start justify-between gap-3"><div class="min-w-0"><p class="truncate text-xs text-slate-500">' + (t.id === 'riasec' ? 'Model Holland, dipakai untuk rekomendasi lowongan' : 'Asesmen pusat karier') + '</p>' +
+        '<h3 class="mt-1 font-display text-lg font-semibold leading-snug text-slate-900">' + title + '</h3></div>' +
+        '<span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white ' + tn.text + '">' + icon(t.icon, 'h-6 w-6') + '</span></div>' +
+        '<div class="mt-4 flex flex-wrap gap-1.5">' + tag('±' + t.minutes + ' menit') + tag(t.count + ' pernyataan') + tag(t.ready ? 'Hasil langsung' : 'Belum tersedia') + '</div>' +
+      '</div><div class="flex items-center justify-between gap-3 px-3 pb-2 pt-3.5">' + foot + '</div></article>';
+  }
 
   /* ==========================================================================
      Tracer Study: portal hanya menjadi pengingat. Kuesionernya sendiri diisi di aplikasi Tracer Study (CAMPUS.tracerUrl);
@@ -929,6 +1132,7 @@
   }
 
   window.PK = {
+    TINT: TINT, rootUrl: ROOT, fmtDate: fmtDate, cardSection: cardSection, TESTS: TESTS, TEST_CATS: TEST_CATS, RIASEC: RIASEC, RIASEC_ORDER: RIASEC_ORDER, RIASEC_QS: RIASEC_QS, RIASEC_SCALE: SCALE, testCard: testCard, codeChips: codeChips, riasecCode: function () { return riasecCode; },
     CAMPUS: CAMPUS, tracerLink: tracerLink, COURSES: COURSES, COURSE_CATS: COURSE_CATS, courseCard: courseCard, courseDuration: courseDuration, lessonsOf: lessonsOf, courseProgress: courseProgress, TINT_OF: tintOfCat, eventCard: eventCard, EVENTS: EVENTS, EVENT_CATS: EVENT_CATS, eventRegistered: eventRegistered, evDay: evDay, evMonth: evMonth, evWeekday: evWeekday, evFull: evFull,
     JOBS: JOBS, STATUSES: STATUSES, STEPS: STEPS, FIELDS: FIELDS, api: api,
     user: user, prefs: prefs, onboarded: onboarded, hasPrefs: hasPrefs,

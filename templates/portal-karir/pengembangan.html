@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pengembangan Diri | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Tes minat karier RIASEC dan course gratis bersertifikat dari pusat karier kampus. Kenali minatmu, dapatkan rekomendasi lowongan, dan asah keahlianmu." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/pengembangan.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Pengembangan Diri | Portal Karir KarirLink" />
+<meta property="og:description" content="Tes minat karier RIASEC dan course gratis bersertifikat. Hasil tes dipakai untuk merekomendasikan lowongan yang cocok untukmu." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/pengembangan.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Pengembangan Diri | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Tes minat karier RIASEC dan course gratis bersertifikat. Hasil tes dipakai untuk merekomendasikan lowongan yang cocok untukmu." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<div data-shell="nav" data-page="grow"></div>
+
+<main class="flex-1">
+
+  <section id="listHead" data-nav-hero class="relative bg-brand-gradient text-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
+      <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-secondary-400/30 blur-3xl"></div>
+    </div>
+    <div class="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-24 sm:px-6">
+      <h1 class="font-display text-2xl font-bold sm:text-3xl">Pengembangan diri</h1>
+      <p class="mt-1 text-sm text-white/80">Kenali minatmu lewat tes, lalu asah keahlianmu lewat course gratis bersertifikat.</p>
+      <form id="filterForm" role="search" class="card mt-5 p-4" data-combo-boundary>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_13rem_11rem_auto] lg:items-end">
+          <div>
+            <label for="fQ" class="form-label">Kata kunci</label>
+            <div class="relative"><span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span><input id="fQ" type="search" class="input pl-9" placeholder="Cari tes, course, topik, atau pengajar" autocomplete="off" /></div>
+          </div>
+          <div><p class="form-label">Kategori course</p><div id="hKat"></div></div>
+          <div><p class="form-label">Level course</p><div id="hLevel"></div></div>
+          <button type="submit" class="btn-primary btn-md sm:col-span-2 lg:col-span-1">Cari</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================= TES DAN COURSE ============================= -->
+  <div id="listView" class="mx-auto w-full max-w-7xl space-y-10 px-4 py-6 sm:px-6 sm:py-10">
+    <section id="resumeSection" aria-labelledby="resumeTitle" hidden>
+      <h2 id="resumeTitle" class="font-display text-xl font-bold text-fg">Lanjutkan</h2>
+      <div id="resumeGrid" class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+
+    <section id="testsSection" aria-labelledby="testsTitle">
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div><h2 id="testsTitle" class="font-display text-xl font-bold text-fg">Tes</h2><p id="testsDesc" class="card-text mt-1">Kenali minat dan kemampuanmu. Hasil Tes RIASEC dipakai untuk merekomendasikan lowongan.</p></div>
+      </div>
+      <div id="testGrid" class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+    </section>
+
+    <section id="coursesSection" aria-labelledby="coursesTitle">
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div><h2 id="coursesTitle" class="font-display text-xl font-bold text-fg">Course</h2><p class="card-text mt-1">Pelatihan singkat dari kampus dan mitra industri, gratis dan bersertifikat.</p></div>
+        <button type="button" id="mineBtn" class="btn-outline btn-sm" data-mine aria-pressed="false"><i class="kk kk-bookmark-simple h-4 w-4" aria-hidden="true"></i>Course saya <span id="mineCount" class="badge-neutral">0</span></button>
+      </div>
+      <div id="courseGrid" class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+      <div id="pager" class="mt-8"></div>
+    </section>
+
+    <div id="listEmpty" hidden></div>
+  </div>
+
+</main>
+
+<div data-shell="footer"></div>
+
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/pagination.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="shell.js"></script>
+<script src="portal.js"></script>
+<script>
+  /* Pengembangan diri: daftar tes dan course dalam satu halaman, plus detail dan belajar course.
+     Susunan: baris Lanjutkan (bila ada), tes, lalu course (filter kategori dan level, "Course saya").
+     Tes RIASEC (detail, pengerjaan, hasil, riwayat) ada di riasec.html; hasilnya menjadi salah satu jalur rekomendasi lowongan.
+     Data lewat PK.api; pilihan tersimpan di URL (?kategori, ?level, ?q, ?saya=1). Detail course ada di course.html. */
+  (function () {
+    // Alamat lama: ?id=course menjadi course.html, ?tes=riasec menjadi halaman tes sendiri.
+    var old = new URLSearchParams(location.search);
+    if (old.get('id')) { location.replace('course.html?id=' + encodeURIComponent(old.get('id'))); return; }
+    if (old.get('tes')) { location.replace(old.get('hasil') ? 'riasec-hasil.html?id=' + encodeURIComponent(old.get('hasil')) : old.get('mulai') ? 'riasec-tes.html' : 'riasec.html'); return; }
+    var PK = window.PK, api = PK.api, esc = PK.esc, ic = PK.icon, PAGE_SIZE = 6;
+    var QS = PK.RIASEC_QS, TINT = PK.TINT;
+    function $(id) { return document.getElementById(id); }
+    PK.initShell();
+
+    var params = new URLSearchParams(location.search);
+    var state = {
+      mine: params.get('saya') === '1' || params.get('tab') === 'saya',
+      kategori: params.get('kategori') || '', level: params.get('level') || '', q: params.get('q') || '',
+      page: parseInt(params.get('page'), 10) || 1
+    };
+    var listToken = PK.latest();
+
+    $('hKat').innerHTML = PK.comboHtml({ id: 'fKat', all: 'Semua kategori', label: 'Kategori course', value: state.kategori, options: PK.COURSE_CATS.map(function (c) { return [c, c]; }) });
+    $('hLevel').innerHTML = PK.comboHtml({ id: 'fLevel', all: 'Semua level', label: 'Level course', value: state.level, options: [['Pemula', 'Pemula'], ['Menengah', 'Menengah'], ['Lanjut', 'Lanjut']] });
+    PK.initCombos(document);
+    $('fQ').value = state.q;
+
+    function toTop() { window.scrollTo({ top: 0 }); }
+
+    function syncUrl() {
+      var p = new URLSearchParams();
+      if (state.mine) p.set('saya', '1');
+      if (state.kategori) p.set('kategori', state.kategori);
+      if (state.level) p.set('level', state.level);
+      if (state.q) p.set('q', state.q);
+      if (state.page > 1) p.set('page', state.page);
+      try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) { /* file:// */ }
+    }
+
+    /* ======================= DAFTAR: mulai dari sini, tes, course, riwayat ======================= */
+
+    // Baris "Lanjutkan": draf tes dan course yang sedang berjalan. Tidak tampil bila belum ada yang bisa dilanjutkan.
+    function resume(rs, mine) {
+      var items = [];
+      function card(iconName, tone, kind, title, p, label, action) {
+        return '<div class="flex items-center gap-3 rounded-card border border-border/70 bg-surface p-4 shadow-card"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ' + TINT[tone].logo + '">' + ic(iconName, 'h-5 w-5') + '</span><div class="min-w-0 flex-1"><p class="text-xs text-fg-muted">' + kind + '</p><p class="truncate text-sm font-semibold text-fg">' + title + '</p><div class="mt-1.5 flex items-center gap-2"><div class="progress-track h-1.5 flex-1"><div class="progress-bar" style="width: ' + p + '%"></div></div><span class="text-xs text-fg-muted">' + label + '</span></div></div>' + action + '</div>';
+      }
+      if (rs.draft && rs.answered) items.push(card('clipboard-text', 'primary', 'Tes belum selesai', esc(PK.TESTS[0].title), Math.round(rs.answered / QS.length * 100), rs.answered + '/' + QS.length, '<a href="riasec.html?mulai=1" class="btn-primary btn-sm shrink-0">Lanjutkan</a>'));
+      mine.filter(function (x) { return !x.progress.complete; }).slice(0, 2).forEach(function (x) {
+        items.push(card('graduation-cap', 'success', 'Course berjalan', esc(x.course.title), x.progress.pct, x.progress.pct + '%', '<a href="course.html?id=' + x.course.id + '" class="btn-primary btn-sm shrink-0">Lanjutkan</a>'));
+      });
+      return items.slice(0, 3).join('');
+    }
+
+    function loadList() {
+      syncUrl();
+      var filtered = !!(state.kategori || state.level || state.mine), searching = !!state.q;
+      var showResume = !searching && !filtered;
+      $('resumeSection').hidden = true; $('listEmpty').hidden = true;
+      $('testsSection').hidden = filtered; $('coursesSection').hidden = false;
+      $('testGrid').innerHTML = PK.skeletonCards(3);
+      $('courseGrid').innerHTML = PK.skeletonCards(3); $('courseGrid').setAttribute('aria-busy', 'true');
+      var ok = listToken();
+      Promise.all([
+        api.listTests({ q: state.q }),
+        api.listCourses({ kategori: state.kategori, level: state.level, q: state.q, mine: state.mine, page: state.page, pageSize: PAGE_SIZE }),
+        api.listCourses({ mine: true, pageSize: 12 })
+      ]).then(function (r) {
+        if (!ok()) return;
+        var tr = r[0], cr = r[1], mr = r[2];
+        state.page = cr.page; syncUrl();
+        var tests = tr.items, rh = showResume ? resume(tr.riasec, mr.items) : '';
+        if (rh) { $('resumeSection').hidden = false; $('resumeGrid').innerHTML = rh; }
+        if (!filtered) { if (tests.length) $('testGrid').innerHTML = tests.map(PK.testCard).join(''); else $('testsSection').hidden = true; }
+        // course
+        var grid = $('courseGrid');
+        $('mineBtn').setAttribute('aria-pressed', String(state.mine));
+        $('mineBtn').className = (state.mine ? 'btn-primary' : 'btn-outline') + ' btn-sm';
+        $('mineCount').textContent = mr.counts.mine;
+        $('coursesTitle').textContent = state.mine ? 'Course saya' : 'Course';
+        if (cr.items.length) grid.innerHTML = cr.items.map(PK.courseCard).join('');
+        else grid.innerHTML = '<div class="col-span-full">' + (state.mine && !state.q && !state.kategori && !state.level ? PK.emptyBox('document', 'Kamu belum mengikuti course', 'Pilih course dan mulai belajar. Progresmu tersimpan otomatis.', '<button type="button" class="btn-primary btn-sm" data-mine-off>Lihat semua course</button>') : PK.emptyBox('default', 'Tidak ada course yang cocok', 'Coba ubah kategori, level, atau kata kunci.', '<button type="button" class="btn-outline btn-sm" data-reset>Hapus filter</button>')) + '</div>';
+        grid.removeAttribute('aria-busy');
+        PK.pager($('pager'), cr, 'course'); if (!cr.items.length) $('pager').innerHTML = '';
+        if (searching && !tests.length && !cr.items.length) { $('listEmpty').hidden = false; $('testsSection').hidden = true; $('coursesSection').hidden = true; $('listEmpty').innerHTML = PK.emptyBox('default', 'Tidak ada tes atau course yang cocok', 'Coba ubah kata kunci pencarian.', '<button type="button" class="btn-outline btn-sm" data-reset>Hapus pencarian</button>'); }
+        PK.syncNav && PK.syncNav();
+      }).catch(function (err) {
+        if (!ok()) return;
+        $('listEmpty').hidden = false; $('listEmpty').innerHTML = PK.errorBox(err.message);
+        $('resumeSection').hidden = $('testsSection').hidden = $('coursesSection').hidden = true;
+      });
+    }
+
+    /* ======================= INTERAKSI ======================= */
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('[data-mine]')) { state.mine = !state.mine; state.page = 1; loadList(); return; }
+      if (e.target.closest('[data-mine-off]')) { state.mine = false; state.page = 1; loadList(); return; }
+      if (e.target.closest('[data-reset]')) { state.kategori = state.level = state.q = ''; state.mine = false; state.page = 1; $('fQ').value = ''; PK.comboSet($('fLevel'), ''); PK.comboSet($('fKat'), ''); loadList(); return; }
+      if (e.target.closest('[data-retry]')) loadList();
+    });
+    $('pager').addEventListener('pagination:change', function (e) { state.page = e.detail.page; loadList(); $('coursesSection').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    $('filterForm').addEventListener('combo:change', function () { state.level = $('fLevel').dataset.value; state.kategori = $('fKat').dataset.value; state.page = 1; loadList(); });
+    $('filterForm').addEventListener('submit', function (e) { e.preventDefault(); state.q = $('fQ').value; state.page = 1; loadList(); });
+    $('fQ').addEventListener('input', PK.debounce(function () { state.q = $('fQ').value; state.page = 1; loadList(); }, 350));
+
+    loadList();
+  })();
+</script>
+</body>
+</html>

@@ -110,7 +110,7 @@
     <section id="course" class="scroll-mt-24" aria-labelledby="courseTitle">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <div><h2 id="courseTitle" class="font-display text-2xl font-bold text-fg">Course dan pelatihan</h2><p class="card-text mt-1">Pelatihan gratis bersertifikat untuk mengembangkan keahlianmu.</p></div>
-        <a href="course.html" class="btn-outline btn-md">Lihat semua course<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+        <a href="pengembangan.html" class="btn-outline btn-md">Lihat semua course<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
       </div>
       <div id="courseGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
     </section>
@@ -158,7 +158,7 @@
     document.querySelectorAll('.js-campus').forEach(function (el) { el.textContent = PK.CAMPUS.name; });
 
     // pencarian terpadu: pilih jenis, lalu menuju halaman yang sesuai
-    $('heroTypeHost').innerHTML = PK.comboHtml({ id: 'heroType', all: 'Lowongan', label: 'Cari di', triggerClass: 'border-0 shadow-none focus-visible:ring-0', options: [['event', 'Event'], ['course', 'Course']] });
+    $('heroTypeHost').innerHTML = PK.comboHtml({ id: 'heroType', all: 'Lowongan', label: 'Cari di', triggerClass: 'border-0 shadow-none focus-visible:ring-0', options: [['event', 'Event'], ['pengembangan', 'Tes dan course']] });
     PK.initCombos($('heroSearch'));
     $('heroSearch').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -179,7 +179,7 @@
       ['graduation-cap', 'bg-secondary-50 text-secondary-600', 'Magang', 'Magang bersertifikat untuk mahasiswa dan fresh graduate.', 'lowongan.html?jenis=Magang'],
       ['laptop', 'bg-success-50 text-success-600', 'Freelance', 'Proyek lepas yang fleksibel sesuai keahlianmu.', 'lowongan.html?jenis=Freelance'],
       ['calendar-check', 'bg-info-50 text-info-600', 'Event dan job fair', 'Job fair, workshop, dan seminar karier.', 'event.html'],
-      ['lightbulb', 'bg-warning-50 text-warning-600', 'Course dan pelatihan', 'Pengembangan keahlian dengan sertifikat.', 'course.html'],
+      ['compass', 'bg-warning-50 text-warning-600', 'Pengembangan diri', 'Tes minat karier dan course bersertifikat.', 'pengembangan.html'],
       ['palette', 'bg-secondary-50 text-secondary-600', 'Portofolio', 'Tampilkan karya dan pengalamanmu di profil publik.', 'profil.html'],
       ['list-checks', 'bg-primary-50 text-primary-600', 'Tracer Study', 'Ceritakan perjalanan kariermu dan bantu kampus berkembang.', 'tracer-study.html'],
       ['users', 'bg-danger-50 text-danger-600', 'Kegiatan kampus', 'Temu alumni, wisuda, dan kegiatan kampus lainnya.', 'event.html?kategori=Kegiatan%20Kampus']
@@ -194,7 +194,7 @@
     // ---- pengembangan diri
     var GROW = [
       ['palette', 'bg-secondary-50 text-secondary-600', 'Bangun portofolio', 'Tampilkan pengalaman, keahlian, dan karyamu di profil yang bisa dibagikan.', 'Buka profil', 'profil.html'],
-      ['target', 'bg-primary-50 text-primary-600', 'Kenali minat dan bakat', 'Lengkapi profil agar rekomendasi lowongan dan kegiatan lebih tepat.', 'Lengkapi profil', 'profil.html'],
+      ['target', 'bg-primary-50 text-primary-600', 'Kenali minat dan bakat', 'Ikuti tes RIASEC agar rekomendasi lowongan lebih sesuai dengan minatmu.', 'Mulai tes', 'riasec.html'],
       ['handshake', 'bg-success-50 text-success-600', 'Konsultasi karier', 'Jadwalkan sesi bersama konselor pusat karier untuk arah dan strategi kariermu.', 'Jadwalkan sesi', '']
     ];
     // mobile: baris dalam satu kartu, seluruh baris bisa ditekan; md ke atas: tiga kartu terpisah dengan tombol
