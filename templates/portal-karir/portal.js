@@ -457,20 +457,20 @@
   }
 
   // Baris kompak untuk daftar lowongan (halaman lowongan).
-  function jobRow(r, selected) {
+  function jobRow(r, selected, noMatch, flat) {
     var j = r.job;
     var mutedTag = 'rounded-md bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600';
-    return '<article class="relative rounded-2xl border p-4 transition-colors ' + (selected ? 'border-primary-500 bg-primary-50/40 ring-1 ring-primary-500' : 'border-border/70 bg-surface hover:border-primary-200 hover:bg-neutral-50') + '">' +
+    return '<article class="relative rounded-2xl border p-4 ' + (flat ? '' : 'shadow-card ') + 'transition-shadow ' + (selected ? 'border-primary-500 bg-primary-50/40 shadow-none ring-1 ring-primary-500' : 'border-border bg-surface hover:border-primary-200 ' + (flat ? '' : ' hover:shadow-card-lg')) + '">' +
       '<div class="flex items-start gap-3">' + logo(j) +
         '<div class="min-w-0 flex-1"><h3 class="text-sm font-semibold text-slate-900"><button type="button" class="block w-full truncate text-left after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500" data-pick="' + j.id + '" aria-current="' + (selected ? 'true' : 'false') + '">' + esc(j.title) + '</button></h3>' +
         '<p class="mt-0.5 truncate text-xs text-slate-500">' + esc(j.company) + ' &middot; ' + esc(j.city) + '</p></div>' +
         saveButton(j.id, 'relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-primary-600') +
       '</div>' +
       '<div class="mt-3 flex flex-wrap items-center gap-1.5">' + tag(j.type, mutedTag) + tag(j.mode, mutedTag) +
-        (hasPrefs && r.score > 0 ? tag(r.score + '% cocok', 'rounded-md bg-primary-50 px-2 py-0.5 text-xs font-semibold text-primary-700') : '') +
-        (hasApplied(j.id) ? '<span class="inline-flex items-center gap-1 rounded-md bg-success-50 px-2 py-0.5 text-xs font-medium text-success-700">' + icon('check', 'h-3 w-3') + 'Sudah dilamar</span>' : '') + '</div>' +
+        (!noMatch && hasPrefs && r.score > 0 ? tag(r.score + '% cocok', 'rounded-md bg-primary-50 px-2 py-0.5 text-xs font-semibold text-primary-700') : '') +
+'</div>' +
       '<div class="mt-3 flex items-center justify-between gap-2 text-xs"><span class="font-semibold text-slate-800">' + esc(j.pay) + '</span>' +
-        '<span class="flex items-center gap-1.5 text-slate-400">' + (j.posted <= 2 ? '<span class="rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">Baru</span>' : '') + when(j.posted) + '</span></div></article>';
+        '<span class="flex items-center gap-1.5 text-slate-400">' + (hasApplied(j.id) ? '<span class="inline-flex items-center gap-1 rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">' + icon('check', 'h-3 w-3') + 'Sudah dilamar</span>' : j.posted <= 2 ? '<span class="rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">Baru</span>' : '') + when(j.posted) + '</span></div></article>';
   }
 
   // Penanda tahap lamaran: 4 segmen, terisi sampai tahap sekarang.
@@ -600,11 +600,16 @@
     root._kkCombo = true;
 
     function place() {
+      var list = menu.querySelector('[data-combo-list]');
+      if (list) list.style.maxHeight = '';
       var tr = trigger.getBoundingClientRect();
       var mr = menu.getBoundingClientRect();
       var vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
-      var below = vh - tr.bottom, above = tr.top;
+      var below = vh - tr.bottom, above = tr.top - 84; // 84 = tinggi navbar yang menempel di atas
       var vertical = below >= mr.height + 8 || below >= above ? 'bottom' : 'top';
+      // layar pendek: perkecil daftar agar menu selalu utuh terlihat (tidak terpotong tepi layar)
+      var room = (vertical === 'bottom' ? below : above) - 20;
+      if (list && room < mr.height) list.style.maxHeight = Math.max(96, room - 12) + 'px';
       var horizontal = vw - tr.left >= mr.width + 8 || vw - tr.left >= tr.right ? 'start' : 'end';
       menu.setAttribute('data-placement', vertical + '-' + horizontal);
     }
