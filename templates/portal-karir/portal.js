@@ -518,7 +518,7 @@
   }
   // Keadaan kosong memakai ilustrasi empty-state (assets/illustrations/empty-state); parameter pertama = nama berkas tanpa .svg.
   function emptyBox(art, title, text, actionHtml) {
-    return '<div class="rounded-2xl border border-dashed border-border bg-surface px-6 py-10 text-center"><img src="' + ROOT + 'assets/illustrations/empty-state/' + art + '.svg" alt="" class="mx-auto h-36 w-auto" />' +
+    return '<div class="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface px-6 py-10 text-center"><img src="' + ROOT + 'assets/illustrations/empty-state/' + art + '.svg" alt="" class="mx-auto h-36 w-auto" />' +
       '<p class="mt-4 text-base font-semibold text-slate-800">' + esc(title) + '</p><p class="mx-auto mt-1 max-w-sm text-sm text-slate-500">' + esc(text) + '</p>' + (actionHtml ? '<div class="mt-5">' + actionHtml + '</div>' : '') + '</div>';
   }
   function errorBox(message) {
@@ -575,11 +575,13 @@
     return '<div id="' + o.id + '" class="combo combo-full" data-combo data-value="' + esc(cur[0]) + '">' +
       '<button type="button" class="combo-trigger ' + (o.triggerClass || '') + '" data-combo-trigger aria-haspopup="listbox" aria-expanded="false" aria-label="' + esc(o.label || o.all) + '">' +
         '<span data-combo-label class="truncate">' + esc(cur[1]) + '</span>' + icon('caret-down', 'combo-chevron') + '</button>' +
-      '<div class="combo-menu ' + (o.menuClass || '') + '" data-combo-menu><div class="combo-list" data-combo-list role="listbox">' +
+      '<div class="combo-menu ' + (o.menuClass || '') + '" data-combo-menu>' +
+      (o.search ? '<div class="combo-search-wrap"><div class="combo-search-field"><span class="combo-search-icon">' + icon('magnifying-glass', 'h-4 w-4') + '</span><input type="text" class="combo-search" placeholder="' + esc(o.search) + '" aria-label="' + esc(o.search) + '" autocomplete="off" data-combo-search /></div></div>' : '') +
+      '<div class="combo-list" data-combo-list role="listbox">' +
         items.map(function (i) {
           return '<button type="button" role="option" class="combo-item' + (i[0] === cur[0] ? ' is-selected' : '') + '" data-combo-item data-value="' + esc(i[0]) + '" data-label="' + esc(i[1]) + '">' + esc(i[1]) + '</button>';
         }).join('') +
-      '</div></div></div>';
+      '</div>' + (o.search ? '<p class="combo-empty hidden" data-combo-empty>Tidak ada hasil yang cocok.</p>' : '') + '</div></div>';
   }
   function comboSet(root, value) {
     var found = null;
@@ -598,6 +600,17 @@
     var menu = root.querySelector('[data-combo-menu]');
     if (!trigger || !menu) return;
     root._kkCombo = true;
+    var search = menu.querySelector('[data-combo-search]');
+    var emptyEl = menu.querySelector('[data-combo-empty]');
+    function filterItems(q) {
+      var n = 0;
+      menu.querySelectorAll('[data-combo-item]').forEach(function (it) {
+        var hit = !q || it.getAttribute('data-label').toLowerCase().indexOf(q) !== -1;
+        it.classList.toggle('hidden', !hit);
+        if (hit) n++;
+      });
+      if (emptyEl) emptyEl.classList.toggle('hidden', n > 0);
+    }
 
     function place() {
       var list = menu.querySelector('[data-combo-list]');
@@ -624,12 +637,14 @@
     }
     function open() {
       document.querySelectorAll('.combo-menu.is-open').forEach(function (m) { if (m !== menu) { m.classList.remove('is-open'); m.parentNode.removeAttribute('data-open'); } });
+      if (search) { search.value = ''; filterItems(''); }
       place();
       menu.classList.add('is-open');
       root.setAttribute('data-open', 'true');
       trigger.setAttribute('aria-expanded', 'true');
       document.addEventListener('click', outside, true);
       document.addEventListener('keydown', onKey);
+      if (search) requestAnimationFrame(function () { search.focus(); });
     }
     function outside(e) { if (!root.contains(e.target)) close(); }
     function onKey(e) { if (e.key === 'Escape') { close(); trigger.focus(); } }
@@ -643,6 +658,10 @@
       close();
       root.dispatchEvent(new CustomEvent('combo:change', { bubbles: true, detail: { value: value } }));
     });
+    if (search) {
+      search.addEventListener('click', function (e) { e.stopPropagation(); });
+      search.addEventListener('input', function () { filterItems(search.value.trim().toLowerCase()); });
+    }
     place();
   }
   function initCombos(scope) { (scope || document).querySelectorAll('[data-combo]').forEach(initCombo); }

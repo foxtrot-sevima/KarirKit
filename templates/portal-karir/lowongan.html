@@ -205,9 +205,9 @@
     var detailToken = PK.latest();
 
     function opts(list) { return list.map(function (v) { return [v, v]; }); }
-    $('hBidang').innerHTML = PK.comboHtml({ id: 'fBidang', all: 'Semua bidang', label: 'Bidang', menuClass: '!min-w-0', value: state.bidang, options: opts(BIDANG) });
-    $('hKota').innerHTML = PK.comboHtml({ id: 'fKota', all: 'Semua kota', label: 'Kota', menuClass: '!min-w-0', value: state.kota, options: opts(KOTA) });
-    $('hJenis').innerHTML = PK.comboHtml({ id: 'fJenis', all: 'Semua jenis', label: 'Jenis pekerjaan', menuClass: '!min-w-0', value: state.jenis, options: opts(JENIS) });
+    $('hBidang').innerHTML = PK.comboHtml({ id: 'fBidang', all: 'Semua bidang', label: 'Bidang', menuClass: '!min-w-0', search: 'Cari bidang...', value: state.bidang, options: opts(BIDANG) });
+    $('hKota').innerHTML = PK.comboHtml({ id: 'fKota', all: 'Semua kota', label: 'Kota', menuClass: '!min-w-0', search: 'Cari kota...', value: state.kota, options: opts(KOTA) });
+    $('hJenis').innerHTML = PK.comboHtml({ id: 'fJenis', all: 'Semua jenis', label: 'Jenis pekerjaan', menuClass: '!min-w-0', search: 'Cari jenis pekerjaan...', value: state.jenis, options: opts(JENIS) });
     $('hMode').innerHTML = PK.comboHtml({ id: 'fMode', all: 'Semua model', label: 'Model kerja', menuClass: '!min-w-0', value: state.mode, options: opts(MODE) });
     $('hSort').innerHTML = PK.comboHtml({ id: 'fSort', all: 'Paling cocok', label: 'Urutkan', menuClass: '!min-w-0', value: state.sort === 'cocok' ? '' : state.sort, options: [['terbaru', 'Terbaru'], ['gaji', 'Gaji tertinggi']] });
     PK.initCombos(document);
@@ -239,8 +239,14 @@
     // ---- tata letak: desktop selalu daftar + detail; mobile bergantian (daftar atau detail satu layar)
     function layout() {
       var d = desk.matches, detail = !!state.id;
+      var none = !!lastRes && !lastRes.items.length; // tanpa hasil: satu empty state selebar daftar + detail
       $('listCol').hidden = !d && detail;
-      $('detailWrap').hidden = !d && !detail;
+      // empty state setinggi panel filter, supaya bagian bawahnya rata
+      ['lg:col-span-2', 'lg:self-stretch', 'lg:flex', 'lg:flex-col'].forEach(function (c) { $('listCol').classList.toggle(c, none); });
+      ['lg:flex-1', 'lg:flex', 'lg:flex-col'].forEach(function (c) { $('listWrap').classList.toggle(c, none); });
+      ['lg:flex-1', 'lg:*:h-full'].forEach(function (c) { $('jobList').classList.toggle(c, none); });
+      $('pager').hidden = none;
+      $('detailWrap').hidden = none || (!d && !detail);
       if (!d && !detail) $('detailBar').hidden = true;
     }
     function listSkeleton(n) {
@@ -261,12 +267,13 @@
       $('pageSub').textContent = state.saved ? res.total + ' lowongan yang kamu simpan.' : 'Jelajahi lowongan, lalu pilih satu untuk melihat detail dan melamar.';
       $('savedBack').hidden = !state.saved;
       PK.pager($('pager'), res, 'lowongan');
+      layout();
     }
     // desktop: panel kanan tidak boleh kosong, jadi pilih lowongan pertama bila belum ada yang dipilih
     function autoSelect() {
       if (!desk.matches || state.id || !lastRes) return;
       if (lastRes.items.length) { state.id = lastRes.items[0].job.id; syncUrl(); renderList(); loadDetail(); }
-      else { shownId = null; current = null; $('detailBar').hidden = true; $('detailMain').innerHTML = '<div class="p-6">' + PK.emptyBox('default', 'Belum ada lowongan dipilih', 'Ubah filter untuk menemukan lowongan lain.', '') + '</div>'; }
+      else { shownId = null; current = null; $('detailBar').hidden = true; }
     }
 
     function loadList() {
