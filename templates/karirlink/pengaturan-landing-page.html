@@ -689,7 +689,7 @@
       ],
       address: 'Gedung Rektorat Lt. 2, Jl. Contoh Raya No. 1, Surabaya, Jawa Timur',
       phone: '62815924009', email: 'info.tracer@campus.ac.id', instagram: '', facebook: '',
-      about: 'Portal alumni dan Pusat karir Universitas Contoh. Hubungkan kembali dengan sesama alumni, temukan peluang karir yang menarik, dan dapatkan sumber daya berharga untuk memajukan karir Anda.',
+      about: 'Portal alumni dan Pusat karir Universitas Foxtrot. Hubungkan kembali dengan sesama alumni, temukan peluang karir yang menarik, dan dapatkan sumber daya berharga untuk memajukan karir Anda.',
       footerLinks: [
         { id: 'l1', name: 'Jadwal Event', url: 'https://cdc-unfox.karirlink.id/event' },
         { id: 'l2', name: 'Konsultasi Karir', url: 'https://cdc-unfox.karirlink.id/konsultasi' },
@@ -759,10 +759,25 @@
         }
       }, 120);
     }
+    // Pratinjau hanya untuk melihat: tautan, menu, kartu lowongan, dan pencarian di dalamnya dinonaktifkan agar pratinjau
+    // tidak berpindah halaman. Pendengar dipasang pada tahap capture supaya mendahului penanganan klik milik portal.
+    let lastLockToast = 0;
+    function lockPreviewNavigation() {
+      try {
+        const doc = frame.contentDocument;
+        doc.addEventListener('click', (e) => {
+          if (!e.target.closest('a[href], [data-pick], [data-soon]')) return;
+          e.preventDefault(); e.stopPropagation();
+          if (Date.now() - lastLockToast > 4000) { lastLockToast = Date.now(); toast('info', 'Pratinjau hanya untuk dilihat. Menu dan tautan di dalamnya dinonaktifkan.'); }
+        }, true);
+        doc.addEventListener('submit', (e) => { e.preventDefault(); e.stopPropagation(); }, true);
+      } catch (x) {}
+    }
     frame.addEventListener('load', () => {
       if (frame.src === 'about:blank' || !/portal-karir/.test(frame.contentWindow.location.href)) return;
       frameReady = true;
       try { frame.contentDocument.documentElement.style.overflowAnchor = 'none'; } catch (e) {}
+      lockPreviewNavigation();
       // admin menggulir sendiri: batalkan pengembalian posisi yang masih menunggu
       try { ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((ev) => frame.contentWindow.addEventListener(ev, () => { clearInterval(settleTimer); frame.style.opacity = '1'; }, { passive: true, once: true })); } catch (e) {}
       if (pendingScroll) { restoreWhenSettled(pendingScroll); pendingScroll = 0; } else frame.style.opacity = '1';

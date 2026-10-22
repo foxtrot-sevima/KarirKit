@@ -679,7 +679,7 @@
       if (av) {
         av.textContent = CAMPUS.name.split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
         var img = new Image(); img.alt = '';
-        img.className = 'absolute inset-0 h-full w-full bg-white object-contain p-1';
+        img.className = 'absolute inset-0 h-full w-full bg-white object-contain p-0.5';
         img.addEventListener('load', function () { av.appendChild(img); });
         img.src = new URL(CAMPUS.logo, location.href).href;
       }
@@ -733,7 +733,7 @@
       def.hidden = true; cus.hidden = false;
       document.querySelector('[data-foot-name]').textContent = C.name;
       lg.textContent = C.name.split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
-      var im = new Image(); im.alt = ''; im.className = 'absolute inset-0 h-full w-full bg-white object-contain p-1';
+      var im = new Image(); im.alt = ''; im.className = 'absolute inset-0 h-full w-full bg-white object-contain p-0.5';
       im.addEventListener('load', function () { lg.appendChild(im); }); im.src = new URL(C.logo, location.href).href;
     }
     function row(i, body) { return '<li class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-primary-50 text-primary-600">' + icon(i) + '</span><span class="min-w-0 pt-1 text-sm text-fg-muted">' + body + '</span></li>'; }
@@ -1142,7 +1142,7 @@
   // logo kosong = logo KarirLink SEVIMA bawaan. Isi URL gambar (relatif terhadap halaman) untuk tampilan white-label seperti templates/custom:
   // avatar logo kampus + "KarirLink" kecil di atas nama kampus.
   var CAMPUS = {
-    name: 'Universitas Contoh', unit: 'Pusat Karier dan Alumni', logo: '',
+    name: 'Universitas Foxtrot', unit: 'Pusat Karier dan Alumni', logo: '',
     // Alamat aplikasi Tracer Study kampus (kuesioner diisi di sana).
     tracerUrl: '../karirlink/kuesioner-simulasi.html',
     // Kontak dan media sosial milik kampus (footer). Nilai kosong = barisnya tidak ditampilkan.

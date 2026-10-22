@@ -259,7 +259,7 @@
     // logo di tengah orbit hero = logo kampus (white-label) bila diisi; gagal dimuat = logo KarirLink bawaan
     if (PK.CAMPUS.logo) {
       var hl = $('heroLogo'), dflt = hl.getAttribute('src');
-      hl.className = 'h-16 w-16 rounded-full object-contain';
+      hl.className = 'h-[4.25rem] w-[4.25rem] rounded-md object-contain';
       hl.addEventListener('error', function () { hl.onerror = null; hl.src = dflt; hl.className = 'h-14 w-14'; });
       hl.src = new URL(PK.CAMPUS.logo, location.href).href;
     }
