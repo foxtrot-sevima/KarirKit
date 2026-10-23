@@ -457,20 +457,20 @@
   }
 
   // Baris kompak untuk daftar lowongan (halaman lowongan).
-  function jobRow(r, selected) {
+  function jobRow(r, selected, noMatch, flat) {
     var j = r.job;
     var mutedTag = 'rounded-md bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600';
-    return '<article class="relative rounded-2xl border p-4 transition-colors ' + (selected ? 'border-primary-500 bg-primary-50/40 ring-1 ring-primary-500' : 'border-border/70 bg-surface hover:border-primary-200 hover:bg-neutral-50') + '">' +
+    return '<article class="relative rounded-2xl border p-4 ' + (flat ? '' : 'shadow-card ') + 'transition-shadow ' + (selected ? 'border-primary-500 bg-primary-50/40 shadow-none ring-1 ring-primary-500' : 'border-border bg-surface hover:border-primary-200 ' + (flat ? '' : ' hover:shadow-card-lg')) + '">' +
       '<div class="flex items-start gap-3">' + logo(j) +
         '<div class="min-w-0 flex-1"><h3 class="text-sm font-semibold text-slate-900"><button type="button" class="block w-full truncate text-left after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500" data-pick="' + j.id + '" aria-current="' + (selected ? 'true' : 'false') + '">' + esc(j.title) + '</button></h3>' +
         '<p class="mt-0.5 truncate text-xs text-slate-500">' + esc(j.company) + ' &middot; ' + esc(j.city) + '</p></div>' +
         saveButton(j.id, 'relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-primary-600') +
       '</div>' +
       '<div class="mt-3 flex flex-wrap items-center gap-1.5">' + tag(j.type, mutedTag) + tag(j.mode, mutedTag) +
-        (hasPrefs && r.score > 0 ? tag(r.score + '% cocok', 'rounded-md bg-primary-50 px-2 py-0.5 text-xs font-semibold text-primary-700') : '') +
-        (hasApplied(j.id) ? '<span class="inline-flex items-center gap-1 rounded-md bg-success-50 px-2 py-0.5 text-xs font-medium text-success-700">' + icon('check', 'h-3 w-3') + 'Sudah dilamar</span>' : '') + '</div>' +
+        (!noMatch && hasPrefs && r.score > 0 ? tag(r.score + '% cocok', 'rounded-md bg-primary-50 px-2 py-0.5 text-xs font-semibold text-primary-700') : '') +
+'</div>' +
       '<div class="mt-3 flex items-center justify-between gap-2 text-xs"><span class="font-semibold text-slate-800">' + esc(j.pay) + '</span>' +
-        '<span class="flex items-center gap-1.5 text-slate-400">' + (j.posted <= 2 ? '<span class="rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">Baru</span>' : '') + when(j.posted) + '</span></div></article>';
+        '<span class="flex items-center gap-1.5 text-slate-400">' + (hasApplied(j.id) ? '<span class="inline-flex items-center gap-1 rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">' + icon('check', 'h-3 w-3') + 'Sudah dilamar</span>' : j.posted <= 2 ? '<span class="rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">Baru</span>' : '') + when(j.posted) + '</span></div></article>';
   }
 
   // Penanda tahap lamaran: 4 segmen, terisi sampai tahap sekarang.
@@ -518,7 +518,7 @@
   }
   // Keadaan kosong memakai ilustrasi empty-state (assets/illustrations/empty-state); parameter pertama = nama berkas tanpa .svg.
   function emptyBox(art, title, text, actionHtml) {
-    return '<div class="rounded-2xl border border-dashed border-border bg-surface px-6 py-10 text-center"><img src="' + ROOT + 'assets/illustrations/empty-state/' + art + '.svg" alt="" class="mx-auto h-36 w-auto" />' +
+    return '<div class="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface px-6 py-10 text-center"><img src="' + ROOT + 'assets/illustrations/empty-state/' + art + '.svg" alt="" class="mx-auto h-36 w-auto" />' +
       '<p class="mt-4 text-base font-semibold text-slate-800">' + esc(title) + '</p><p class="mx-auto mt-1 max-w-sm text-sm text-slate-500">' + esc(text) + '</p>' + (actionHtml ? '<div class="mt-5">' + actionHtml + '</div>' : '') + '</div>';
   }
   function errorBox(message) {
@@ -575,11 +575,13 @@
     return '<div id="' + o.id + '" class="combo combo-full" data-combo data-value="' + esc(cur[0]) + '">' +
       '<button type="button" class="combo-trigger ' + (o.triggerClass || '') + '" data-combo-trigger aria-haspopup="listbox" aria-expanded="false" aria-label="' + esc(o.label || o.all) + '">' +
         '<span data-combo-label class="truncate">' + esc(cur[1]) + '</span>' + icon('caret-down', 'combo-chevron') + '</button>' +
-      '<div class="combo-menu ' + (o.menuClass || '') + '" data-combo-menu><div class="combo-list" data-combo-list role="listbox">' +
+      '<div class="combo-menu ' + (o.menuClass || '') + '" data-combo-menu>' +
+      (o.search ? '<div class="combo-search-wrap"><div class="combo-search-field"><span class="combo-search-icon">' + icon('magnifying-glass', 'h-4 w-4') + '</span><input type="text" class="combo-search" placeholder="' + esc(o.search) + '" aria-label="' + esc(o.search) + '" autocomplete="off" data-combo-search /></div></div>' : '') +
+      '<div class="combo-list" data-combo-list role="listbox">' +
         items.map(function (i) {
           return '<button type="button" role="option" class="combo-item' + (i[0] === cur[0] ? ' is-selected' : '') + '" data-combo-item data-value="' + esc(i[0]) + '" data-label="' + esc(i[1]) + '">' + esc(i[1]) + '</button>';
         }).join('') +
-      '</div></div></div>';
+      '</div>' + (o.search ? '<p class="combo-empty hidden" data-combo-empty>Tidak ada hasil yang cocok.</p>' : '') + '</div></div>';
   }
   function comboSet(root, value) {
     var found = null;
@@ -598,13 +600,29 @@
     var menu = root.querySelector('[data-combo-menu]');
     if (!trigger || !menu) return;
     root._kkCombo = true;
+    var search = menu.querySelector('[data-combo-search]');
+    var emptyEl = menu.querySelector('[data-combo-empty]');
+    function filterItems(q) {
+      var n = 0;
+      menu.querySelectorAll('[data-combo-item]').forEach(function (it) {
+        var hit = !q || it.getAttribute('data-label').toLowerCase().indexOf(q) !== -1;
+        it.classList.toggle('hidden', !hit);
+        if (hit) n++;
+      });
+      if (emptyEl) emptyEl.classList.toggle('hidden', n > 0);
+    }
 
     function place() {
+      var list = menu.querySelector('[data-combo-list]');
+      if (list) list.style.maxHeight = '';
       var tr = trigger.getBoundingClientRect();
       var mr = menu.getBoundingClientRect();
       var vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
-      var below = vh - tr.bottom, above = tr.top;
+      var below = vh - tr.bottom, above = tr.top - 84; // 84 = tinggi navbar yang menempel di atas
       var vertical = below >= mr.height + 8 || below >= above ? 'bottom' : 'top';
+      // layar pendek: perkecil daftar agar menu selalu utuh terlihat (tidak terpotong tepi layar)
+      var room = (vertical === 'bottom' ? below : above) - 20;
+      if (list && room < mr.height) list.style.maxHeight = Math.max(96, room - 12) + 'px';
       var horizontal = vw - tr.left >= mr.width + 8 || vw - tr.left >= tr.right ? 'start' : 'end';
       menu.setAttribute('data-placement', vertical + '-' + horizontal);
     }
@@ -619,12 +637,14 @@
     }
     function open() {
       document.querySelectorAll('.combo-menu.is-open').forEach(function (m) { if (m !== menu) { m.classList.remove('is-open'); m.parentNode.removeAttribute('data-open'); } });
+      if (search) { search.value = ''; filterItems(''); }
       place();
       menu.classList.add('is-open');
       root.setAttribute('data-open', 'true');
       trigger.setAttribute('aria-expanded', 'true');
       document.addEventListener('click', outside, true);
       document.addEventListener('keydown', onKey);
+      if (search) requestAnimationFrame(function () { search.focus(); });
     }
     function outside(e) { if (!root.contains(e.target)) close(); }
     function onKey(e) { if (e.key === 'Escape') { close(); trigger.focus(); } }
@@ -638,6 +658,10 @@
       close();
       root.dispatchEvent(new CustomEvent('combo:change', { bubbles: true, detail: { value: value } }));
     });
+    if (search) {
+      search.addEventListener('click', function (e) { e.stopPropagation(); });
+      search.addEventListener('input', function () { filterItems(search.value.trim().toLowerCase()); });
+    }
     place();
   }
   function initCombos(scope) { (scope || document).querySelectorAll('[data-combo]').forEach(initCombo); }
@@ -655,7 +679,7 @@
       if (av) {
         av.textContent = CAMPUS.name.split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
         var img = new Image(); img.alt = '';
-        img.className = 'absolute inset-0 h-full w-full bg-white object-contain p-1';
+        img.className = 'absolute inset-0 h-full w-full bg-white object-contain p-0.5';
         img.addEventListener('load', function () { av.appendChild(img); });
         img.src = new URL(CAMPUS.logo, location.href).href;
       }
@@ -709,7 +733,7 @@
       def.hidden = true; cus.hidden = false;
       document.querySelector('[data-foot-name]').textContent = C.name;
       lg.textContent = C.name.split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
-      var im = new Image(); im.alt = ''; im.className = 'absolute inset-0 h-full w-full bg-white object-contain p-1';
+      var im = new Image(); im.alt = ''; im.className = 'absolute inset-0 h-full w-full bg-white object-contain p-0.5';
       im.addEventListener('load', function () { lg.appendChild(im); }); im.src = new URL(C.logo, location.href).href;
     }
     function row(i, body) { return '<li class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-primary-50 text-primary-600">' + icon(i) + '</span><span class="min-w-0 pt-1 text-sm text-fg-muted">' + body + '</span></li>'; }
@@ -1118,7 +1142,7 @@
   // logo kosong = logo KarirLink SEVIMA bawaan. Isi URL gambar (relatif terhadap halaman) untuk tampilan white-label seperti templates/custom:
   // avatar logo kampus + "KarirLink" kecil di atas nama kampus.
   var CAMPUS = {
-    name: 'Universitas Contoh', unit: 'Pusat Karier dan Alumni', logo: '',
+    name: 'Universitas Foxtrot', unit: 'Pusat Karier dan Alumni', logo: '',
     // Alamat aplikasi Tracer Study kampus (kuesioner diisi di sana).
     tracerUrl: '../karirlink/kuesioner-simulasi.html',
     // Kontak dan media sosial milik kampus (footer). Nilai kosong = barisnya tidak ditampilkan.
