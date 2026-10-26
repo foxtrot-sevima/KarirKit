@@ -5,7 +5,7 @@ export default {
     docs: {
       description: {
         component:
-          "Halaman pengguna KarirLink (mahasiswa, alumni, dan pengunjung diperlakukan sama) dari `templates/portal-karir/*.html`, ditampilkan lewat `<iframe>` supaya sama persis dengan file aslinya. Alurnya: Register → Onboarding (3 langkah) → Dashboard; Login langsung ke Dashboard jika onboarding sudah selesai. Login dan Register memakai tombol SiAkadCloud dan Google. Dashboard menghitung kecocokan lowongan di browser dari jawaban onboarding (data contoh, disimpan di `localStorage`). Edit langsung file `templates/portal-karir/*.html`, bukan story ini.",
+          "Halaman pengguna KarirLink (mahasiswa, alumni, dan pengunjung diperlakukan sama) dari `templates/portal-karir/*.html`, ditampilkan lewat `<iframe>` supaya sama persis dengan file aslinya. Alurnya: Register → Onboarding (3 langkah) → Beranda; Login langsung ke Beranda jika onboarding sudah selesai. Setelah masuk, pengguna memakai tiga halaman dengan navbar atas (bukan sidebar): Beranda (hero pencarian + feed lowongan), Lowongan (daftar dan detail berdampingan), dan Lamaran Saya (pelacak tahap). Login dan Register memakai tombol SiAkadCloud dan Google. Halaman portal menghitung kecocokan lowongan di browser dari jawaban onboarding (data contoh, disimpan di `localStorage`). Data contoh bersama ada di `templates/portal-karir/portal.js`. Edit langsung file di `templates/portal-karir/`, bukan story ini.",
       },
     },
   },
@@ -30,7 +30,68 @@ export const Onboarding = {
   render: () => pageFrame("/templates/portal-karir/onboarding.html", "Portal Karir Onboarding"),
 };
 
-export const Dashboard = {
-  name: "Dashboard",
-  render: () => pageFrame("/templates/portal-karir/index.html", "Portal Karir Dashboard"),
+export const Beranda = {
+  name: "Beranda",
+  render: () => pageFrame("/templates/portal-karir/index.html", "Portal Karir Beranda"),
+};
+
+export const Lowongan = {
+  name: "Lowongan",
+  render: () => pageFrame("/templates/portal-karir/lowongan.html", "Portal Karir Lowongan"),
+};
+
+export const Lamaran = {
+  name: "Lamaran Saya",
+  render: () => pageFrame("/templates/portal-karir/lamaran.html", "Portal Karir Lamaran Saya"),
+};
+
+
+export const Profil = {
+  name: "Profil",
+  render: () => pageFrame("/templates/portal-karir/profil.html", "Portal Karir Profil"),
+};
+
+export const ProfilPublik = {
+  name: "Profil (tampilan publik)",
+  render: () => pageFrame("/templates/portal-karir/profil.html?publik=1", "Portal Karir Profil Publik"),
+};
+
+export const Event = {
+  name: "Event",
+  render: () => pageFrame("/templates/portal-karir/event.html", "Portal Karir Event"),
+};
+
+export const PengembanganDiri = {
+  name: "Pengembangan Diri",
+  render: () => pageFrame("/templates/portal-karir/pengembangan.html", "Portal Karir Pengembangan Diri"),
+};
+
+export const Course = {
+  name: "Course",
+  render: () => pageFrame("/templates/portal-karir/course.html?id=1", "Portal Karir Course"),
+};
+
+export const SegeraHadir = {
+  name: "Segera Hadir",
+  render: () => pageFrame("/templates/portal-karir/segera-hadir.html", "Portal Karir Segera Hadir"),
+};
+
+export const TesRiasec = {
+  name: "Tes RIASEC",
+  render: () => pageFrame("/templates/portal-karir/riasec.html", "Portal Karir Tes RIASEC"),
+};
+
+export const PengerjaanTesRiasec = {
+  name: "Pengerjaan Tes RIASEC",
+  render: () => pageFrame("/templates/portal-karir/riasec-tes.html", "Portal Karir Pengerjaan Tes RIASEC"),
+};
+
+export const HasilTesRiasec = {
+  name: "Hasil Tes RIASEC",
+  render: () => pageFrame("/templates/portal-karir/riasec-hasil.html", "Portal Karir Hasil Tes RIASEC"),
+};
+
+export const CustomKampus = {
+  name: "Custom Kampus (white-label)",
+  render: () => pageFrame("/templates/custom/portal-karir/index.html", "Portal Karir Custom Kampus"),
 };

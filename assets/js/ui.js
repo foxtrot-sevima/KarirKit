@@ -8,8 +8,12 @@
               data-ui-dropdown-trigger="hover" · data-ui-dropdown-delay="300"   open on hover, close after delay (ms)
               A trigger inside another .dropdown-menu opens a submenu and keeps its parent open.
    Collapse:  <button data-ui-collapse aria-controls="id" aria-expanded="false"> toggles #id via `hidden`
+              (add data-ui-collapse-static to keep the button's icon from rotating, e.g. a navbar menu button)
    Close:     <button data-ui-dropdown-close>            closes every open dropdown
-   Tabs:      <div data-ui-tabs>
+   Tabs:      <div data-ui-tabs data-ui-tabs-active-classes="…" data-ui-tabs-inactive-classes="…">   (class lists are optional)
+              Arrow keys, Home and End move between tabs; <select data-ui-tab-select>
+              (option value = a tab's data-ui-tab id) mirrors the tabs on small screens.
+              <div data-ui-tabs>
                 <button role="tab" data-ui-tab="id" aria-selected="true|false">
                 <div role="tabpanel" id="id" class="hidden?">  */
 (function () {
@@ -72,12 +76,55 @@
       var on = t === tab;
       t.setAttribute('aria-selected', on ? 'true' : 'false');
       if (t.classList.contains('tab')) t.classList.toggle('tab-active', on);
+      t.tabIndex = on ? 0 : -1;
+      var act = (root.getAttribute('data-ui-tabs-active-classes') || '').split(/\s+/).filter(Boolean);
+      var inact = (root.getAttribute('data-ui-tabs-inactive-classes') || '').split(/\s+/).filter(Boolean);
+      act.forEach(function (c) { t.classList.toggle(c, on); });
+      inact.forEach(function (c) { t.classList.toggle(c, !on); });
       var panel = document.getElementById(t.getAttribute('data-ui-tab'));
       if (panel) panel.classList.toggle('hidden', !on);
     });
   }
 
+  // initial state for custom class lists
+  function initTabs() {
+    document.querySelectorAll('[data-ui-tabs]').forEach(function (root) {
+      var sel = root.querySelector('[data-ui-tab][aria-selected="true"]') || root.querySelector('[data-ui-tab]');
+      if (sel && (root.hasAttribute('data-ui-tabs-active-classes') || root.hasAttribute('data-ui-tabs-inactive-classes'))) selectTab(sel);
+    });
+  }
+  initTabs();
+  document.addEventListener('DOMContentLoaded', initTabs);
+
+  document.addEventListener('change', function (e) {
+    var sel = e.target.closest && e.target.closest('[data-ui-tab-select]');
+    if (!sel) return;
+    var root = document.querySelector('[data-ui-tabs]');
+    var scope = sel.closest('[data-ui-tabs]') || (sel.getAttribute('data-ui-tab-select') && document.querySelector(sel.getAttribute('data-ui-tab-select'))) || root;
+    var tabs = scope ? scope.querySelectorAll('[data-ui-tab]') : [];
+    for (var i = 0; i < tabs.length; i++) {
+      if (tabs[i].getAttribute('data-ui-tab') === sel.value) return selectTab(tabs[i]);
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    var t = e.target.closest && e.target.closest('[role="tab"][data-ui-tab]');
+    if (!t || ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].indexOf(e.key) < 0) return;
+    var list = Array.prototype.filter.call(t.closest('[role="tablist"]') ? t.closest('[role="tablist"]').querySelectorAll('[role="tab"][data-ui-tab]') : [], function (x) { return !x.disabled && x.getAttribute('aria-disabled') !== 'true'; });
+    var i = list.indexOf(t);
+    var vertical = t.closest('[role="tablist"]').getAttribute('aria-orientation') === 'vertical';
+    var next = e.key === 'Home' ? 0 : e.key === 'End' ? list.length - 1
+      : (e.key === (vertical ? 'ArrowDown' : 'ArrowRight') || e.key === 'ArrowRight' && !vertical) ? (i + 1) % list.length
+      : (e.key === (vertical ? 'ArrowUp' : 'ArrowLeft') || e.key === 'ArrowLeft' && !vertical) ? (i - 1 + list.length) % list.length : -1;
+    if (next < 0) return;
+    e.preventDefault();
+    list[next].focus();
+    selectTab(list[next]);
+  });
+
   document.addEventListener('click', function (e) {
+    var jump = e.target.closest('.tabs-item[href="#"]');
+    if (jump) e.preventDefault();
     var d = e.target.closest('[data-ui-dismiss]');
     if (d) return dismiss(d);
 
@@ -89,7 +136,7 @@
       var show = col.getAttribute('aria-expanded') !== 'true';
       col.setAttribute('aria-expanded', show ? 'true' : 'false');
       if (panel) panel.classList.toggle('hidden', !show);
-      var chev = col.querySelector('i:last-child');
+      var chev = col.hasAttribute('data-ui-collapse-static') ? null : col.querySelector('i:last-child');
       if (chev) chev.classList.toggle('rotate-180', show);
       return;
     }

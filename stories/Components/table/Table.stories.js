@@ -204,6 +204,54 @@ export const TableWithUsers = {
     </div>`),
 };
 
+/* Pola daftar admin (dipakai di templates/karirlink): kolom pendamping, badge status, tombol aksi ikon -> ikon + label. */
+export const AdminList = {
+  name: "Admin list (filter, status, aksi)",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Pola tabel daftar admin. `.table-filters` menumpuk dropdown di ponsel dan sejajar mulai `sm`; untuk **4 filter atau lebih** tambahkan `.table-toolbar-many` di `.table-toolbar` (pencarian satu baris sendiri, filter jadi grid 1/2/4 kolom (4 kolom dari `xl`), satu baris penuh baru dari `2xl`). `.table-col-aside` = kolom pendamping (tampil di `md`, hilang di `lg` karena sidebar menyempitkan konten, kembali di `xl`). `.table-action` + `.table-action-label` = tombol aksi baris: ikon saja di bawah `xl`, ikon + label dari `xl`. `.badge-wrap` membuat label status panjang membungkus di ponsel agar tidak melebarkan kolom. Sel nama: nama di atas, `NIM · Tipe` di bawahnya (tanpa avatar). `.card-heading` + `.card-heading-icon` = judul kartu dengan ikon (halaman detail).",
+      },
+    },
+  },
+  render: () => {
+    const statuses = ["Online", "Offline"];
+    return exBlock(`<div class="table-wrap overflow-visible" data-table data-page-size="5" data-item-label="pelamar">
+      <div class="table-toolbar">
+        <div class="table-search">
+          <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle">${ic("magnifying-glass")}</span>
+          <label for="ts-al" class="sr-only">Cari nama atau email</label>
+          <input id="ts-al" type="search" class="input h-9 pl-9" placeholder="Cari nama atau email..." data-table-search />
+        </div>
+        <div class="table-filters">
+          <div class="relative w-full sm:w-48">
+            <button type="button" class="btn-outline btn-md w-full justify-between" data-ui-dropdown aria-expanded="false" aria-haspopup="true"><span data-table-filter-label data-default="Semua Status">Semua Status</span>${ic("caret-down", "h-3 w-3")}</button>
+            <div class="dropdown-menu hidden w-full">
+              <button type="button" class="dropdown-item" data-filter-col="4" data-filter-value="">Semua Status</button>
+              ${statuses.map((st) => `<button type="button" class="dropdown-item" data-filter-col="4" data-filter-value="${st}">${st}</button>`).join("")}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="table table-lg table-fit table-head-soft">
+          <thead><tr>${noTh}${sortHead("Nama", "text")}<th scope="col" class="table-col-aside">Email</th>${sortHead("Posisi", "text")}${sortHead("Status", "text")}<th scope="col" class="table-col-actions">Aksi</th></tr></thead>
+          <tbody>${USERS.map((u, i) => `<tr>
+            ${noTd(i)}
+            <td><span class="block font-medium text-fg">${u[0]}</span><p class="mt-0.5 text-xs text-fg-subtle">ID 2011${i}00${i + 1}<span class="hidden sm:inline"> &middot; Pelamar</span></p></td>
+            <td class="table-col-aside">${u[1]}</td>
+            <td>${u[2]}</td>
+            <td data-value="${u[3]}"><span class="${u[3] === "Online" ? "badge-success" : "badge-neutral"} badge-wrap"><span class="badge-dot ${u[3] === "Online" ? "bg-success-600" : "bg-neutral-500"}"></span>${u[3]}</span></td>
+            <td class="table-col-actions"><div class="flex items-center justify-end"><a href="#" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail">${ic("eye")}<span class="table-action-label">Lihat Detail</span></a></div></td></tr>`).join("")}</tbody>
+        </table>
+      </div>
+      <div data-table-empty hidden class="table-empty">Pelamar tidak ditemukan.</div>
+      ${pagination}
+    </div>`);
+  },
+};
+
 const CART = [
   ["Kelas Persiapan Interview", 149000, 1, 0],
   ["Workshop Portofolio Kreatif", 99000, 2, 1],
