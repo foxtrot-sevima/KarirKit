@@ -10,7 +10,7 @@ Aturan singkat:
 
 ## 2026-10-26
 
-Dasar KarirKit: v1.4.0 (belum dirilis)
+Dasar KarirKit: v1.4.0
 
 ### Added
 
@@ -28,7 +28,7 @@ Dasar KarirKit: v1.4.0 (belum dirilis)
 
 ## 2026-10-20
 
-Dasar KarirKit: v1.4.0 (belum dirilis)
+Dasar KarirKit: v1.4.0
 
 ### Added
 
@@ -43,7 +43,7 @@ Dasar KarirKit: v1.4.0 (belum dirilis)
 
 ## 2026-10-13
 
-Dasar KarirKit: v1.4.0 (belum dirilis)
+Dasar KarirKit: v1.4.0
 
 ### Changed
 
