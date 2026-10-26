@@ -23,7 +23,7 @@ const delta = (v, up = true) =>
 
 // Footer kartu: pilihan periode di kiri, tautan laporan di kanan
 const footer = (link = "Laporan lengkap") => `<div class="mt-4 flex items-center justify-between border-t border-border pt-4">
-  <select class="select h-9 w-auto py-0 text-sm" aria-label="Periode"><option>7 hari terakhir</option><option>30 hari terakhir</option><option>90 hari terakhir</option></select>
+  <select class="input h-9 w-auto py-0 text-sm" aria-label="Periode"><option>7 hari terakhir</option><option>30 hari terakhir</option><option>90 hari terakhir</option></select>
   <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600 hover:underline">${link}${ic("caret-right", "h-3.5 w-3.5")}</a>
 </div>`;
 

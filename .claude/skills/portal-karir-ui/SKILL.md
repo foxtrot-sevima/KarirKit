@@ -5,7 +5,7 @@ description: Aturan UI Portal Karir KarirLink (templates/portal-karir) - merek, 
 
 # Portal Karir (`templates/portal-karir/*`)
 
-> **Lingkup template** (sejak v1.3.7): halaman di sini hanya memakai komponen KarirKit terbaru dan versinya berupa tanggal (`templates/CHANGELOG.md`), bukan semver. Butuh komponen baru? Minta dan buat di design system dulu (commit `feat(ds)`), baru dipakai di sini (commit `feat(...)` area template). Detail: skill `karirkit-conventions` bagian 0.
+> **Lingkup template** (sejak v1.4.0): halaman di sini hanya memakai komponen KarirKit terbaru dan versinya berupa tanggal (`templates/CHANGELOG.md`), bukan semver. Butuh komponen baru? Minta dan buat di design system dulu (commit `feat(ds)`), baru dipakai di sini (commit `feat(...)` area template). Detail: skill `karirkit-conventions` bagian 0.
 
 Portal ini untuk pelamar (mahasiswa/alumni), bukan dashboard: navbar atas, tanpa sidebar.
 

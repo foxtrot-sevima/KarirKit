@@ -5,7 +5,7 @@ description: Pola halaman admin KarirLink di templates/karirlink - tabel (toolba
 
 # Halaman admin KarirLink (`templates/karirlink/*.html`)
 
-> **Lingkup template** (sejak v1.3.7): halaman di sini hanya memakai komponen KarirKit terbaru dan versinya berupa tanggal (`templates/CHANGELOG.md`), bukan semver. Butuh komponen baru? Minta dan buat di design system dulu (commit `feat(ds)`), baru dipakai di sini (commit `feat(...)` area template). Detail: skill `karirkit-conventions` bagian 0.
+> **Lingkup template** (sejak v1.4.0): halaman di sini hanya memakai komponen KarirKit terbaru dan versinya berupa tanggal (`templates/CHANGELOG.md`), bukan semver. Butuh komponen baru? Minta dan buat di design system dulu (commit `feat(ds)`), baru dipakai di sini (commit `feat(...)` area template). Detail: skill `karirkit-conventions` bagian 0.
 
 Referensi terbaik: `mahasiswa-alumni.html` (tabel + KPI + combo), `yudisium.html`, `yudisium-detail.html`, `aktivitas-lamaran.html` (KPI, pita status, grafik, laci detail), `pengaturan-landing-page.html` (editor + pratinjau). Bangun halaman baru dengan menyalin kerangka (head, sidebar, drawer menu, topbar) dari salah satunya, lalu ganti judul/meta/breadcrumb dan penanda menu aktif (`nav-item-active` di sidebar **dan** drawer menu).
 

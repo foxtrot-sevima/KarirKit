@@ -19,7 +19,7 @@ Sumber lengkap (status, ID node, riwayat) ada di `karirkit-figma-versioning.md` 
 - **MINOR (1.4.0)**: tambah komponen, variant, token, atau perubahan visual yang tidak merusak.
 - **PATCH (1.3.5)**: perbaikan bug, alignment, spacing, binding variabel salah, dokumentasi.
 - Versi **hanya milik design system** (selaras dengan `karirkit-conventions` bagian 0). Mockup template tidak punya semver.
-- **Keputusan terbuka (owner rilis):** repo memakai seri 1.3.x untuk rilis yang menambah komponen (mis. 1.3.5 memuat Stat Card), padahal aturan di atas menghitungnya MINOR. Pilih (a) tetap seri 1.3.x dan tulis "penambahan komponen = patch selama seri 1.3.x", atau (b) SemVer ketat dengan menaikkan ke 1.4.0 (repo ikut diberi tag baru). Sampai diputuskan, versi Figma mengikuti tag repo.
+- **Keputusan (2026-10-26): SemVer ketat.** Penambahan komponen = MINOR. Rilis 1.4.0 memuat lima komponen baru (Drawer, Navbar, Footer, Tabs, Timeline), jadi MINOR (belum bertag, belum terbit). Seri patch hanya untuk perbaikan. Versi Figma mengikuti tag repo.
 
 ## 3. Token harus sama dengan kode
 - Variabel Figma = `@theme` di `src/input.css`: **nama dan nilai** sama. Koleksi: Primitive, Colors (mode Light/Dark: `semantic/*`, `color/<palet>/<50..950>`), Utilities (spacing, radius, border, container, screen, z, motion), Typography, `.Component` (disembunyikan dari publish). Style: teks (`text/<ukuran>/<weight>`, `heading/h1..h6`, `label/eyebrow`, `code/*`), efek (`shadow/*`, `glow/*`, `ring/*`), paint (`brand/gradient*`, `gradient/*`).

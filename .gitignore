@@ -5,3 +5,6 @@ storybook-static/
 .env*.local
 .vercel/
 shots/
+
+# CSS hasil build (npm run build); dibangun saat publish dan deploy, tidak di-commit
+dist/
