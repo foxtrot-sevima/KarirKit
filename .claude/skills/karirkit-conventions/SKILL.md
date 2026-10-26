@@ -18,7 +18,7 @@ Perbaikan dan peningkatan dibagi dua lingkup, masing-masing dengan commit dan ca
 
 - **Satu commit satu lingkup.** Pekerjaan yang menyentuh keduanya dipecah: commit design system dulu, lalu commit template yang memakainya. Stage per path, jangan `git add -A`.
 - **Template selalu memakai komponen KarirKit terbaru** (`dist/output.css` dan `assets/js/*` yang dibangun dari repo yang sama). Template tidak boleh punya komponen atau gaya komponen baru sendiri: tidak ada blok `<style>` untuk komponen, kelas komponen buatan sendiri, atau logika komponen di `portal.js`/`admin-*.js`. Logika khusus halaman (data lewat `PK.api`, alur halaman) tetap boleh di template.
-- **Template butuh komponen atau varian baru?** Diminta dan dibuat di KarirKit lebih dulu: kelas di `src/input.css`, story, JS di `assets/js`, entri `CHANGELOG.md`, build `dist`. Baru setelah itu template memakainya (commit template menyusul). Yang disesuaikan adalah komponennya, bukan logika di template.
+- **Template butuh komponen atau varian baru?** Diminta dan dibuat di KarirKit lebih dulu: kelas di `src/input.css`, story, JS di `assets/js`, entri `CHANGELOG.md`, build. Baru setelah itu template memakainya (commit template menyusul). Mockup baru boleh masuk produksi setelah komponennya rilis; sebelum itu hanya untuk staging (lihat `karirkit-release`). Yang disesuaikan adalah komponennya, bukan logika di template.
 - Versi design system juga menjadi versi library Figma (versi Figma = tag repo); aturan penomoran dan sinkron token ada di skill `karirkit-figma-sync`. Token baru di `@theme` wajib masuk Figma di rilis yang sama.
 - Tiap tanggal di `templates/CHANGELOG.md` menulis "Dasar KarirKit: vX.Y.Z" supaya terlihat komponen versi mana yang dipakai.
 
