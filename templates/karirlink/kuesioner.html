@@ -400,281 +400,254 @@
       </div>
     </div>
 
-    <!-- Tracer Lama (arsip migrasi) — tiap kuesioner dari sistem lama ditampilkan per section -->
-    <div>
-      <div class="flex flex-wrap items-center gap-2.5">
-        <h3 class="text-base font-semibold text-slate-800">Arsip Kuesioner Tracer Study</h3>
-        <span class="badge-neutral">Arsip</span>
-      </div>
-      <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Kuesioner yang pernah dikirim sebelum migrasi ke KarirLink. Hanya dapat dilihat.</span><span class="hidden sm:inline">Kuesioner yang pernah difinalisasi dan dikirim sebelum migrasi ke KarirLink. Data ini bersifat arsip: buka Lihat Detail untuk melihat alumni yang sudah atau belum dikirimi kuesioner, status pengisian, dan jawaban masing-masing alumni. Tidak dapat dikirim ulang.</span></p>
-
-      <!-- Single pagination: maksimal 5 arsip per halaman (assets/js/pagination.js); jumlah halaman dihitung dari kartu [data-arsip] -->
-      <div id="arsipPager" data-pagination data-pagination-total="1" data-pagination-page="1" data-pagination-size="5" data-pagination-label="arsip" class="mt-4">
-        <div class="space-y-3">
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2025</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 27 Agustus 2026, 16:25</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=1" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
-              <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Kemdikbud 2026</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 31 Juli 2026, 14:42</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=2" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap 2026</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 21 Juli 2026, 09:25</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=3" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Pengguna Lulusan 2026</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 21 Juli 2026, 09:24</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=4" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Pengguna Lulusan 2025</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 14 Juni 2026, 10:12</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=5" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap 2025</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 14 Juni 2026, 10:05</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=6" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Kemdikbud 2025</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 2 Mei 2026, 13:30</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=7" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2024</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 19 Desember 2025, 15:20</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=8" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
-              <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Kemdikbud 2024</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 5 September 2025, 09:45</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=9" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap 2024</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 28 Agustus 2025, 10:03</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=10" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Pengguna Lulusan 2024</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 28 Agustus 2025, 09:58</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=11" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
-            </div>
-          </div>
-
-          <div class="card overflow-hidden" data-arsip>
-            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
-              <div class="flex min-w-0 items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                  <i class="kk kk-file-text h-5 w-5"></i>
-                </span>
-                <div class="min-w-0">
-                  <p class="truncate font-medium text-slate-800">Kuesioner Tracer Study Lengkap 2023</p>
-                  <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 12 Mei 2025, 11:40</p>
-                </div>
-              </div>
-              <a href="kuesioner-arsip-detail.html?id=12" class="btn-outline btn-sm shrink-0">
-                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                  Lihat Detail
-                </a>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
-              <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
-            </div>
+    <!-- Kuesioner Kosong Anda: daftar kuesioner kustom buatan admin kampus (Edit / Hapus) -->
+    <div id="kosongList" data-list data-list-label="kuesioner">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h3 class="text-base font-semibold text-neutral-800">Kuesioner Kosong Anda</h3>
+          <p class="mt-1 text-sm text-fg-muted">Kuesioner yang disusun dari awal oleh admin kampus.</p>
+        </div>
+        <div class="w-full sm:w-64 sm:shrink-0">
+          <div class="relative">
+            <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+            <input type="text" id="kosongSearch" class="input h-9 pl-9" placeholder="Cari judul kuesioner..." aria-label="Cari judul kuesioner" maxlength="100" data-list-search />
           </div>
         </div>
-
-        <div class="mt-4 flex flex-col items-center justify-between gap-3 sm:flex-row">
-          <p class="pagination-info" data-pagination-text="info" aria-live="polite"></p>
-          <nav aria-label="Halaman arsip kuesioner">
-            <div class="pagination" role="group">
-              <button type="button" class="pagination-link" data-pagination-prev><i class="kk kk-arrow-left h-4 w-4"></i>Sebelumnya</button>
-              <span class="pagination-static" aria-live="polite"><b data-pagination-text="page" class="font-semibold text-fg"></b>&nbsp;dari&nbsp;<b data-pagination-text="total" class="font-semibold text-fg"></b></span>
-              <button type="button" class="pagination-link" data-pagination-next>Berikutnya<i class="kk kk-arrow-right h-4 w-4"></i></button>
+      </div>
+      <div class="card mt-4 overflow-hidden">
+        <ul class="divide-y divide-border-subtle">
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="evaluasi job fair oktober ">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-pencil-simple h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Evaluasi Job Fair Oktober</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">0 pertanyaan · Diubah 5 Okt 2026, 20:15</p>
+              </div>
             </div>
-          </nav>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-builder.html?tpl=kosong&amp;id=kosong-2" class="btn-outline btn-icon-sm sm:hidden" aria-label="Edit Evaluasi Job Fair Oktober" title="Edit"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-builder.html?tpl=kosong&amp;id=kosong-2" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Edit Evaluasi Job Fair Oktober"><i class="kk kk-pencil-simple h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Edit</a>
+              <button type="button" class="btn-outline btn-icon-sm sm:hidden" data-delete-row="Evaluasi Job Fair Oktober" aria-label="Hapus Evaluasi Job Fair Oktober" title="Hapus"><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i></button>
+              <button type="button" class="btn-outline btn-sm hidden sm:inline-flex" data-delete-row="Evaluasi Job Fair Oktober" aria-label="Hapus Evaluasi Job Fair Oktober"><i class="kk kk-trash h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Hapus</button>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="survei kepuasan layanan karir 2026 menilai layanan pusat karir selama satu tahun terakhir.">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-pencil-simple h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Survei Kepuasan Layanan Karir 2026</h4>
+                <p class="truncate text-sm text-fg-muted">Menilai layanan pusat karir selama satu tahun terakhir.</p>
+                <p class="mt-0.5 text-xs text-fg-subtle">2 pertanyaan · Diubah 28 Sep 2026, 17:30</p>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-builder.html?tpl=kosong&amp;id=kosong-1" class="btn-outline btn-icon-sm sm:hidden" aria-label="Edit Survei Kepuasan Layanan Karir 2026" title="Edit"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-builder.html?tpl=kosong&amp;id=kosong-1" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Edit Survei Kepuasan Layanan Karir 2026"><i class="kk kk-pencil-simple h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Edit</a>
+              <button type="button" class="btn-outline btn-icon-sm sm:hidden" data-delete-row="Survei Kepuasan Layanan Karir 2026" aria-label="Hapus Survei Kepuasan Layanan Karir 2026" title="Hapus"><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i></button>
+              <button type="button" class="btn-outline btn-sm hidden sm:inline-flex" data-delete-row="Survei Kepuasan Layanan Karir 2026" aria-label="Hapus Survei Kepuasan Layanan Karir 2026"><i class="kk kk-trash h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Hapus</button>
+            </div>
+          </li>
+          <li hidden class="p-8 text-center text-sm text-fg-muted" data-list-empty>Kuesioner tidak ditemukan.</li>
+        </ul>
+        <div class="table-footer" data-list-footer>
+          <span data-list-info aria-live="polite"></span>
+          <nav data-list-pages class="flex items-center gap-1" aria-label="Halaman kuesioner kosong"></nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arsip migrasi: kuesioner dari sistem lama, hanya dapat dilihat. Layout sama dengan daftar Kuesioner Kosong Anda -->
+    <div id="arsipList" data-list data-list-label="arsip">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div class="min-w-0 sm:flex-1">
+          <div class="flex flex-wrap items-center gap-2.5">
+            <h3 class="text-base font-semibold text-neutral-800">Arsip Kuesioner Tracer Study</h3>
+            <span class="badge-neutral">Arsip</span>
+          </div>
+          <p class="mt-1 text-sm text-fg-muted">Kuesioner yang pernah dikirim sebelum migrasi ke KarirLink. Hanya dapat dilihat.</p>
+        </div>
+        <div class="w-full sm:w-64 sm:shrink-0">
+          <div class="relative">
+            <span class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+            <input type="text" id="arsipSearch" class="input h-9 pl-9" placeholder="Cari judul arsip..." aria-label="Cari judul arsip" maxlength="100" data-list-search />
+          </div>
+        </div>
+      </div>
+      <div class="card mt-4 overflow-hidden">
+        <ul class="divide-y divide-border-subtle">
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study lengkap & pengguna lulusan 2025 dikirim pada 27 agustus 2026, 16:25 template lengkap template pengguna lulusan">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2025</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 27 Agustus 2026, 16:25</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span><span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=1" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2025" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=1" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2025"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study kemdikbud 2026 dikirim pada 31 juli 2026, 14:42 template kemdikbud">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Kemdikbud 2026</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 31 Juli 2026, 14:42</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=2" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Kemdikbud 2026" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=2" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Kemdikbud 2026"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study lengkap 2026 dikirim pada 21 juli 2026, 09:25 template lengkap">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Lengkap 2026</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 21 Juli 2026, 09:25</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=3" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Lengkap 2026" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=3" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Lengkap 2026"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study pengguna lulusan 2026 dikirim pada 21 juli 2026, 09:24 template pengguna lulusan">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Pengguna Lulusan 2026</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 21 Juli 2026, 09:24</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=4" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Pengguna Lulusan 2026" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=4" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Pengguna Lulusan 2026"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study pengguna lulusan 2025 dikirim pada 14 juni 2026, 10:12 template pengguna lulusan">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Pengguna Lulusan 2025</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 14 Juni 2026, 10:12</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=5" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Pengguna Lulusan 2025" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=5" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Pengguna Lulusan 2025"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study lengkap 2025 dikirim pada 14 juni 2026, 10:05 template lengkap">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Lengkap 2025</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 14 Juni 2026, 10:05</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=6" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Lengkap 2025" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=6" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Lengkap 2025"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study kemdikbud 2025 dikirim pada 2 mei 2026, 13:30 template kemdikbud">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Kemdikbud 2025</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 2 Mei 2026, 13:30</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=7" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Kemdikbud 2025" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=7" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Kemdikbud 2025"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study lengkap & pengguna lulusan 2024 dikirim pada 19 desember 2025, 15:20 template lengkap template pengguna lulusan">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2024</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 19 Desember 2025, 15:20</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span><span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=8" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2024" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=8" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Lengkap &amp; Pengguna Lulusan 2024"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study kemdikbud 2024 dikirim pada 5 september 2025, 09:45 template kemdikbud">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Kemdikbud 2024</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 5 September 2025, 09:45</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=9" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Kemdikbud 2024" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=9" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Kemdikbud 2024"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study lengkap 2024 dikirim pada 28 agustus 2025, 10:03 template lengkap">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Lengkap 2024</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 28 Agustus 2025, 10:03</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=10" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Lengkap 2024" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=10" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Lengkap 2024"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study pengguna lulusan 2024 dikirim pada 28 agustus 2025, 09:58 template pengguna lulusan">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Pengguna Lulusan 2024</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 28 Agustus 2025, 09:58</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=11" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Pengguna Lulusan 2024" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=11" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Pengguna Lulusan 2024"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li class="flex items-center justify-between gap-3 p-4 transition-colors hover:bg-neutral-50/70" data-row data-search="kuesioner tracer study lengkap 2023 dikirim pada 12 mei 2025, 11:40 template lengkap">
+            <div class="flex min-w-0 items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-500"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i></span>
+              <div class="min-w-0 sm:flex-1">
+                <h4 class="font-medium text-neutral-800 sm:truncate">Kuesioner Tracer Study Lengkap 2023</h4>
+                <p class="mt-0.5 text-xs text-fg-subtle">Dikirim pada 12 Mei 2025, 11:40</p>
+                <div class="mt-2 flex flex-wrap gap-1.5"><span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span></div>
+              </div>
+            </div>
+            <div class="flex shrink-0 gap-2">
+              <a href="kuesioner-arsip-detail.html?id=12" class="btn-outline btn-icon-sm sm:hidden" aria-label="Lihat detail Kuesioner Tracer Study Lengkap 2023" title="Lihat Detail"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-arsip-detail.html?id=12" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Lihat detail Kuesioner Tracer Study Lengkap 2023"><i class="kk kk-eye h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Lihat Detail</a>
+            </div>
+          </li>
+          <li hidden class="p-8 text-center text-sm text-fg-muted" data-list-empty>Arsip tidak ditemukan.</li>
+        </ul>
+        <div class="table-footer" data-list-footer>
+          <span data-list-info aria-live="polite"></span>
+          <nav data-list-pages class="flex items-center gap-1" aria-label="Halaman arsip kuesioner"></nav>
         </div>
       </div>
     </div>
@@ -722,6 +695,23 @@
      Template Laporan (Kemendikti / Lengkap), Tahun Lulus (format v2 untuk lulusan 2025 ke atas, v1 sebelumnya), Program Studi,
      "Menampilkan data terbaru", lalu progres unduhan dan nama berkas. Pengguna Lulusan diunduh langsung tanpa pilihan template.
      Pengunduhan di mockup hanya simulasi (tidak ada berkas). z-[60]: sidebar karirlink z-50. -->
+<!-- Hapus Kuesioner Kosong: konfirmasi sebelum kuesioner dihapus dari daftar (simulasi). z-[60]: sidebar karirlink z-50. -->
+<div class="modal-backdrop z-[60]" id="deleteModal" aria-labelledby="deleteTitle">
+  <div class="modal-panel modal-sm">
+    <div class="modal-header">
+      <h3 id="deleteTitle" class="modal-title">Hapus kuesioner?</h3>
+      <button type="button" class="modal-close" data-modal-hide="deleteModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+    </div>
+    <div class="modal-body">
+      <p class="text-sm text-fg">Kuesioner <span class="font-semibold" id="deleteName"></span> akan dihapus dari daftar dan tidak bisa dikembalikan.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn-outline btn-md" data-modal-hide="deleteModal">Batal</button>
+      <button type="button" class="btn-danger btn-md" id="deleteConfirm"><i class="kk kk-trash h-4 w-4"></i>Hapus</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-backdrop z-[60]" id="exportModal" aria-labelledby="exportTitle">
   <div class="modal-panel modal-xl">
     <div class="modal-header">
@@ -1194,28 +1184,80 @@
     });
   })();
 
-  // Arsip Kuesioner Tracer Study: Single pagination, maksimal 5 arsip per halaman. Jumlah halaman
-  // dihitung dari kartu [data-arsip]; assets/js/pagination.js mengurus tombol dan teks info,
-  // di sini hanya menampilkan kartu milik halaman aktif.
+  // Daftar Kuesioner Kosong dan Arsip: cari judul, maksimal 5 baris per halaman, footer dan tombol halaman
+  // bergaya sama dengan tabel (lihat mahasiswa-alumni.html). Di sini hanya menyaring dan menampilkan baris halaman aktif.
   (function () {
     const PER_PAGE = 5;
-    const pager = document.getElementById("arsipPager");
-    if (!pager || !window.KKPagination) return;
-    const items = Array.from(pager.querySelectorAll("[data-arsip]"));
-    pager.dataset.paginationSize = PER_PAGE;
-    pager.dataset.paginationCount = items.length;
-    pager.dataset.paginationTotal = Math.max(1, Math.ceil(items.length / PER_PAGE));
-    window.KKPagination.init(pager);
-
-    function show(page) {
-      items.forEach((el, i) => el.classList.toggle("hidden", Math.floor(i / PER_PAGE) + 1 !== page));
+    const lists = [];
+    function pageButtons(cur, pages) {
+      const out = [];
+      const add = (label, page, o) => out.push('<button type="button" class="pagination-btn' + (o.active ? ' pagination-btn-active' : '') + '" data-page="' + page + '"' +
+        (o.disabled ? ' disabled' : '') + (o.active ? ' aria-current="page"' : '') + (o.label ? ' aria-label="' + o.label + '"' : '') + '>' + label + '</button>');
+      add('<i class="kk kk-caret-left h-4 w-4"></i>', cur - 1, { disabled: cur <= 1, label: 'Sebelumnya' });
+      const shown = {};
+      [1, pages, cur - 1, cur, cur + 1].forEach((p) => { if (p >= 1 && p <= pages) shown[p] = 1; });
+      let prev = 0;
+      Object.keys(shown).map(Number).sort((x, y) => x - y).forEach((p) => {
+        if (p - prev > 1) out.push('<span class="px-1 text-fg-subtle" aria-hidden="true">…</span>');
+        add(p, p, { active: p === cur }); prev = p;
+      });
+      add('<i class="kk kk-caret-right h-4 w-4"></i>', cur + 1, { disabled: cur >= pages, label: 'Berikutnya' });
+      return out.join('');
     }
-    show(1);
-    pager.addEventListener("pagination:change", (e) => {
-      show(e.detail.page);
-      // Header halaman menempel di atas (sticky), jadi beri ruang saat daftar digulung ke atas.
-      const top = pager.parentElement.getBoundingClientRect().top;
-      if (top < 72) window.scrollTo({ top: window.scrollY + top - 80, behavior: "smooth" });
+    document.querySelectorAll('[data-list]').forEach((root) => {
+      const search = root.querySelector('[data-list-search]');
+      const info = root.querySelector('[data-list-info]');
+      const pagesNav = root.querySelector('[data-list-pages]');
+      const empty = root.querySelector('[data-list-empty]');
+      const label = root.dataset.listLabel || 'data';
+      const api = { root, page: 1 };
+      lists.push(api);
+
+      api.update = (resetPage) => {
+        if (resetPage) api.page = 1;
+        const q = (search.value || '').trim().toLowerCase();
+        const rows = Array.from(root.querySelectorAll('[data-row]'));
+        const hit = rows.filter((r) => !q || (r.dataset.search || '').includes(q));
+        const pages = Math.max(1, Math.ceil(hit.length / PER_PAGE));
+        if (api.page > pages) api.page = pages;
+        const start = (api.page - 1) * PER_PAGE, end = Math.min(start + PER_PAGE, hit.length);
+        rows.forEach((r) => { r.hidden = true; });
+        hit.slice(start, end).forEach((r) => { r.hidden = false; });
+        empty.hidden = hit.length > 0;
+        info.innerHTML = hit.length
+          ? 'Menampilkan <b>' + (start + 1) + '–' + end + '</b> dari <b>' + hit.length + '</b> ' + label
+          : 'Tidak ada data';
+        pagesNav.innerHTML = pages > 1 ? pageButtons(api.page, pages) : '';
+      };
+      search.addEventListener('input', () => api.update(true));
+      pagesNav.addEventListener('click', (e) => {
+        const b = e.target.closest('[data-page]');
+        if (!b || b.disabled) return;
+        api.page = parseInt(b.dataset.page, 10);
+        api.update(false);
+        // Header halaman menempel di atas (sticky), jadi beri ruang saat daftar digulung ke atas.
+        const top = root.getBoundingClientRect().top;
+        if (top < 72) window.scrollTo({ top: window.scrollY + top - 80, behavior: 'smooth' });
+      });
+      api.update(true);
+    });
+
+    // Hapus Kuesioner Kosong (simulasi): konfirmasi di modal, baris hilang dari daftar, toast.
+    let target = null;
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-delete-row]');
+      if (!b) return;
+      target = b.closest('[data-row]');
+      document.getElementById('deleteName').textContent = b.dataset.deleteRow;
+      if (window.KKModal) KKModal.open('deleteModal');
+    });
+    document.getElementById('deleteConfirm').addEventListener('click', () => {
+      if (!target) return;
+      const list = lists.find((l) => l.root.contains(target));
+      target.remove(); target = null;
+      if (window.KKModal) KKModal.close('deleteModal');
+      if (list) list.update(false);
+      if (window.KKToast) KKToast.show({ type: 'success', message: 'Kuesioner dihapus (simulasi).' });
     });
   })();
 
