@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Profil | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Profil karier di KarirLink: pengalaman, pendidikan, keahlian, dan minat. Bisa dibagikan sebagai profil publik." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/profil.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Profil | Portal Karir KarirLink" />
+<meta property="og:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/profil.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Profil | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<div data-shell="nav" data-page="profile"></div>
+
+<main class="flex-1">
+  <div id="publicBanner" class="border-b border-info-200 bg-info-50" hidden>
+    <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-2.5 text-sm text-info-800 sm:px-6">
+      <p class="flex items-center gap-2"><i class="kk kk-globe-hemisphere-west h-4 w-4" aria-hidden="true"></i>Kamu melihat profil ini seperti yang dilihat publik.</p>
+      <a href="profil.html" class="font-semibold underline-offset-2 hover:underline">Kembali ke profilku</a>
+    </div>
+  </div>
+
+  <div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- ============================= BANNER + IDENTITAS ============================= -->
+    <section class="card overflow-hidden" aria-labelledby="profName">
+      <div id="profBanner" class="relative aspect-[6/1] w-full overflow-hidden bg-gradient-to-r from-primary-800 via-primary-600 to-primary-500">
+        <img id="bannerImg" alt="" class="absolute inset-0 h-full w-full object-cover object-center" hidden />
+        <div aria-hidden="true" class="absolute inset-0 opacity-30" style="background-image: radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 22px 22px;"></div>
+      </div>
+
+      <div class="px-5 pb-7 sm:px-8">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <span class="avatar-wrap -mt-10 sm:-mt-16 lg:-mt-20">
+            <span id="profAvatar" class="avatar h-24 w-24 text-3xl ring-4 ring-surface sm:h-32 sm:w-32 sm:text-4xl lg:h-40 lg:w-40 lg:text-5xl">U</span>
+            <span id="onlineDot" class="avatar-dot avatar-dot-br avatar-dot-success !bottom-2 !right-2 !h-5 !w-5 !border-4" title="Terbuka untuk peluang"></span>
+          </span>
+          <div class="flex flex-wrap gap-2 pt-4" id="profActions"></div>
+        </div>
+
+        <div class="mt-4 min-w-0">
+          <h1 id="profName" class="font-display text-2xl font-bold text-fg sm:text-3xl">Pengguna</h1>
+          <p id="profHeadline" class="mt-1 max-w-3xl text-base text-fg"></p>
+          <p class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-fg-muted">
+            <span class="inline-flex items-center gap-1.5"><i class="kk kk-map-pin h-4 w-4" aria-hidden="true"></i><span id="profLocation"></span></span>
+            <span class="inline-flex items-center gap-1.5"><i class="kk kk-graduation-cap h-4 w-4" aria-hidden="true"></i><span id="profCampus"></span></span>
+          </p>
+          <div id="profStats" class="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm sm:gap-x-0 sm:divide-x sm:divide-border"></div>
+          <span id="profBadge" class="badge-success mt-4"><span class="badge-dot bg-success-500"></span>Terbuka untuk peluang kerja dan magang</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div class="min-w-0 space-y-6 lg:col-span-2">
+        <section class="card card-body" aria-labelledby="aboutTitle">
+          <div class="flex items-center justify-between gap-3"><h2 id="aboutTitle" class="card-title flex items-center gap-2">Tentang</h2><button type="button" class="owner-only btn-ghost btn-sm" data-edit="profile"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i>Ubah</button></div>
+          <p id="profAbout" class="card-text mt-3 whitespace-pre-line leading-relaxed"></p>
+        </section>
+
+        <section class="card card-body" aria-labelledby="expTitle">
+          <div class="flex items-center justify-between gap-3"><h2 id="expTitle" class="card-title flex items-center gap-2">Pengalaman <span id="nExp" class="badge-neutral"></span></h2><button type="button" class="owner-only btn-outline btn-sm" data-soon="Menambah pengalaman"><i class="kk kk-calendar-plus h-4 w-4" aria-hidden="true"></i>Tambah</button></div>
+          <ol id="profExp" class="timeline mt-6 ms-3"></ol>
+        </section>
+
+        <section class="card card-body" aria-labelledby="eduTitle">
+          <div class="flex items-center justify-between gap-3"><h2 id="eduTitle" class="card-title flex items-center gap-2">Pendidikan <span id="nEdu" class="badge-neutral"></span></h2><button type="button" class="owner-only btn-outline btn-sm" data-soon="Menambah pendidikan"><i class="kk kk-calendar-plus h-4 w-4" aria-hidden="true"></i>Tambah</button></div>
+          <ol id="profEdu" class="timeline mt-6 ms-3"></ol>
+        </section>
+
+        <section class="card card-body" aria-labelledby="skillTitle">
+          <div class="flex items-center justify-between gap-3"><h2 id="skillTitle" class="card-title flex items-center gap-2">Keahlian <span id="nSkill" class="badge-neutral"></span></h2><button type="button" class="owner-only btn-ghost btn-sm" data-edit="skills"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i>Ubah</button></div>
+          <div id="profSkills" class="mt-4 flex flex-wrap gap-2"></div>
+        </section>
+
+        <section class="card card-body" aria-labelledby="interestTitle">
+          <div class="flex items-center justify-between gap-3"><h2 id="interestTitle" class="card-title flex items-center gap-2">Minat karier</h2></div>
+          <div id="profInterests" class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2"></div>
+        </section>
+
+        <section id="activityCard" class="card owner-only overflow-hidden" aria-labelledby="actTitle">
+          <div class="flex items-center justify-between gap-3 p-6 pb-3"><h2 id="actTitle" class="card-title">Aktivitas terbaru</h2><a href="lamaran.html" class="card-link">Semua lamaran</a></div>
+          <ul id="profActivity" class="list-group list-group-flush"></ul>
+        </section>
+      </div>
+
+      <aside class="min-w-0 space-y-6" aria-label="Informasi tambahan">
+        <section class="card overflow-hidden" aria-labelledby="infoTitle">
+          <div class="flex items-center justify-between gap-3 p-6 pb-3"><h2 id="infoTitle" class="card-title">Informasi pribadi</h2><button type="button" class="owner-only btn-ghost btn-sm w-8 px-0" data-edit="profile" aria-label="Ubah informasi pribadi"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i></button></div>
+          <ul id="profInfo" class="list-group list-group-flush"></ul>
+        </section>
+
+        <section class="card owner-only card-body" aria-labelledby="visTitle">
+          <h2 id="visTitle" class="card-title">Visibilitas profil</h2>
+          <div class="mt-4 flex items-start justify-between gap-4">
+            <label for="publicToggle" class="min-w-0 cursor-pointer"><span class="block text-sm font-medium text-fg">Profil publik</span><span class="card-text mt-0.5 block text-xs">Siapa pun dengan tautan bisa melihat profilmu.</span></label>
+            <span class="toggle"><input id="publicToggle" type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></span>
+          </div>
+          <div class="mt-4 flex items-center gap-2 rounded-control bg-neutral-50 p-2.5 text-xs text-fg-muted"><i class="kk kk-link-simple h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span id="profUrl" class="min-w-0 flex-1 truncate"></span></div>
+          <div class="mt-3 grid grid-cols-2 gap-2"><button type="button" class="btn-outline btn-sm" id="copyUrl"><i class="kk kk-copy h-4 w-4" aria-hidden="true"></i>Salin</button><a href="profil.html?publik=1" class="btn-outline btn-sm"><i class="kk kk-globe-hemisphere-west h-4 w-4" aria-hidden="true"></i>Lihat publik</a></div>
+        </section>
+
+        <section class="card owner-only card-body" aria-labelledby="completeTitle">
+          <div class="flex items-center justify-between"><h2 id="completeTitle" class="card-title">Kelengkapan profil</h2><span id="pPct" class="badge-primary">0%</span></div>
+          <div class="progress-track mt-3 h-1.5"><div id="pBar" class="progress-bar" style="width: 0%"></div></div>
+          <ul id="pSteps" class="mt-4 space-y-2.5 text-sm"></ul>
+        </section>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<div data-shell="footer"></div>
+
+<!-- ============================= UBAH PROFIL ============================= -->
+<div class="modal-backdrop z-[60]" id="editModal">
+  <div class="modal-panel modal-lg">
+    <div class="modal-header">
+      <div><h3 class="modal-title" id="editTitle">Ubah profil</h3><p class="modal-description" id="editDesc"></p></div>
+      <button type="button" class="modal-close" data-modal-hide="editModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+    </div>
+    <form id="editForm" class="flex min-h-0 flex-1 flex-col" novalidate>
+      <div class="modal-body space-y-4" id="editBody"></div>
+      <div class="modal-footer">
+        <div class="flex w-full justify-end gap-2">
+          <button type="button" class="btn-outline btn-md" data-modal-hide="editModal">Batal</button>
+          <button type="submit" class="btn-primary btn-md">Simpan</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="shell.js"></script>
+<script src="portal.js"></script>
+<script>
+  /* Profil pribadi: tampilan pemilik (dengan kontrol ubah, statistik lamaran, aktivitas) dan tampilan publik (?publik=1).
+     Data profil di localStorage (kk_portal_profile); minat dan keahlian berasal dari onboarding. Statistik pemilik lewat PK.api. */
+  (function () {
+    var PK = window.PK;
+    var api = PK.api;
+    var esc = PK.esc;
+    function $(id) { return document.getElementById(id); }
+    PK.initShell();
+
+    var KEY = 'kk_portal_profile';
+    var isPublic = /[?&]publik=1/.test(location.search);
+    function read() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+    function write(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) { /* tanpa penyimpanan */ } }
+
+    var name = PK.user.name || 'Pengguna';
+    var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'pengguna';
+    var DEFAULTS = {
+      headline: 'Mahasiswa tingkat akhir yang mencari peluang magang dan posisi junior',
+      location: 'Bandung, Jawa Barat', campus: 'Universitas Foxtrot, Sistem Informasi', phone: '+62 812-3456-7890',
+      about: 'Mahasiswa tingkat akhir dengan minat pada pengembangan produk digital. Terbiasa bekerja dalam tim, belajar cepat, dan senang membangun hal yang berguna bagi pengguna.\nSedang mencari kesempatan magang atau posisi junior untuk menerapkan ilmu sekaligus bertumbuh bersama tim yang suportif.',
+      open: true, banner: '', skills: [],
+      exp: [
+        { role: 'Magang Pengembangan Web', org: 'PT Nusantara Digital', period: 'Jun 2025 sampai Agu 2025', desc: 'Membangun komponen antarmuka dan memperbaiki bug pada aplikasi internal. Berkolaborasi dengan desainer dan engineer senior.' },
+        { role: 'Asisten Laboratorium Basis Data', org: 'Program Studi Sistem Informasi', period: 'Sep 2024 sampai Jan 2025', desc: 'Membimbing 40 mahasiswa dalam praktikum SQL dan perancangan basis data.' }
+      ],
+      edu: [
+        { school: 'Universitas Foxtrot', degree: 'S1 Sistem Informasi', period: '2022 sampai sekarang', desc: 'IPK 3,62. Aktif di himpunan mahasiswa bidang teknologi.' },
+        { school: 'SMA Negeri 1 Bandung', degree: 'IPA', period: '2019 sampai 2022', desc: '' }
+      ]
+    };
+    var d = Object.assign({}, DEFAULTS, read());
+    if (!d.skills || !d.skills.length) d.skills = PK.prefs.skills.length ? PK.prefs.skills.slice() : ['JavaScript', 'SQL', 'Figma'];
+
+    if (isPublic && d.public === false) {
+      document.querySelector('main').innerHTML = '<div class="mx-auto max-w-lg px-4 py-24 text-center">' + PK.emptyBox('default', 'Profil ini tidak dipublikasikan', 'Pemilik profil memilih untuk tidak menampilkannya ke publik.', '<a href="index.html" class="btn-primary btn-sm">Ke beranda</a>') + '</div>';
+      return;
+    }
+    document.querySelectorAll('.owner-only').forEach(function (el) { el.hidden = isPublic; });
+    $('publicBanner').hidden = !isPublic;
+
+    var INFO_ICON = { Lokasi: 'map-pin', Kampus: 'graduation-cap', Email: 'link-simple', Telepon: 'phone', LinkedIn: 'linkedin-logo' };
+    function infoRow(label, value) {
+      return '<li class="list-group-item gap-3 !px-6 !py-3.5 font-normal"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">' + PK.icon(INFO_ICON[label] || 'user-circle', 'h-[18px] w-[18px]') + '</span><span class="min-w-0"><span class="block text-xs text-fg-muted">' + label + '</span><span class="block truncate font-medium text-fg">' + value + '</span></span></li>';
+    }
+    function timelineItem(ic, a, b, c, desc) {
+      return '<li class="timeline-item"><span class="timeline-marker">' + PK.icon(ic, 'h-3 w-3') + '</span><time class="timeline-time">' + esc(c) + '</time><h3 class="timeline-title !text-base">' + esc(a) + '</h3><p class="text-sm font-medium text-fg">' + esc(b) + '</p>' + (desc ? '<p class="timeline-body mt-1 !text-sm">' + esc(desc) + '</p>' : '') + '</li>';
+    }
+    function stat(ic, value, label) {
+      return '<span class="sm:px-4 sm:first:pl-0"><span class="font-semibold text-fg">' + value + '</span> <span class="text-fg-muted">' + label + '</span></span>';
+    }
+    var counts = null;
+    function render() {
+      $('profAvatar').textContent = PK.initials(name);
+      $('bannerImg').hidden = !d.banner; if (d.banner) $('bannerImg').src = d.banner;
+      $('profName').textContent = name;
+      document.title = name + ' | Profil KarirLink';
+      $('profHeadline').textContent = d.headline;
+      $('profLocation').textContent = d.location;
+      $('profCampus').textContent = d.campus;
+      $('profAbout').textContent = d.about;
+      $('profBadge').hidden = d.open === false; $('onlineDot').hidden = d.open === false;
+      $('nExp').textContent = d.exp.length; $('nEdu').textContent = d.edu.length; $('nSkill').textContent = d.skills.length;
+      $('publicToggle').checked = d.public !== false;
+      $('profUrl').textContent = (location.host || 'karirlink.id') + '/profil/' + slug;
+      $('profActions').innerHTML = isPublic
+        ? '<button type="button" class="btn-primary btn-md" data-soon="Menghubungi"><i class="kk kk-paper-plane-tilt h-4 w-4" aria-hidden="true"></i>Hubungi</button><button type="button" class="btn-outline btn-md" data-share><i class="kk kk-share-network h-4 w-4" aria-hidden="true"></i>Bagikan</button>'
+        : '<button type="button" class="btn-primary btn-md" data-edit="profile"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i>Ubah profil</button><button type="button" class="btn-outline btn-md" data-share><i class="kk kk-share-network h-4 w-4" aria-hidden="true"></i>Bagikan</button>';
+      $('profStats').innerHTML = isPublic
+        ? stat('briefcase', d.exp.length, 'Pengalaman') + stat('lightbulb', d.skills.length, 'Keahlian') + stat('graduation-cap', d.edu.length, 'Pendidikan')
+        : stat('file-text', counts ? counts.all : '-', 'Lamaran') + stat('calendar-check', counts ? counts.Wawancara : '-', 'Wawancara') + stat('bookmark-simple', PK.savedCount(), 'Tersimpan');
+      $('profInfo').innerHTML = infoRow('Lokasi', esc(d.location)) + infoRow('Kampus', esc(d.campus)) +
+        (isPublic ? '' : infoRow('Email', esc(PK.user.email || 'Belum diisi')) + infoRow('Telepon', esc(d.phone))) +
+        infoRow('LinkedIn', 'linkedin.com/in/' + slug);
+      $('profExp').innerHTML = d.exp.map(function (x) { return timelineItem('briefcase', x.role, x.org, x.period, x.desc); }).join('');
+      $('profEdu').innerHTML = d.edu.map(function (x) { return timelineItem('graduation-cap', x.school, x.degree, x.period, x.desc); }).join('');
+      $('profSkills').innerHTML = d.skills.map(function (s, i) { return '<span class="badge-primary !px-3 !py-1.5 !text-sm">' + esc(s) + '</span>'; }).join('');
+      var ints = PK.prefs.interests, modes = PK.prefs.jobTypes.concat(PK.prefs.workModes);
+      $('profInterests').innerHTML = (ints.length ? ints : ['Teknologi & IT']).map(function (f) {
+        var t = PK.tintOf({ field: f }), meta = PK.FIELDS[f] || { icon: 'briefcase' };
+        return '<div class="flex items-center gap-3 rounded-2xl p-4 ' + t.soft + '"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white ' + t.text + '">' + PK.icon(meta.icon, 'h-5 w-5') + '</span><span class="text-sm font-semibold text-slate-900">' + esc(f) + '</span></div>';
+      }).join('') + (modes.length ? '<div class="flex flex-wrap gap-2 pt-1 sm:col-span-2">' + modes.map(function (m) { return '<span class="badge-neutral">' + esc(m) + '</span>'; }).join('') + '</div>' : '');
+      var steps = [['Foto dan nama', true], ['Ringkasan tentang', !!d.about], ['Pengalaman', d.exp.length > 0], ['Pendidikan', d.edu.length > 0], ['Keahlian', d.skills.length > 0], ['Minat karier', PK.prefs.interests.length > 0]];
+      var pct = Math.round(steps.filter(function (s) { return s[1]; }).length / steps.length * 100);
+      $('pPct').textContent = pct + '%'; $('pBar').style.width = pct + '%';
+      $('pSteps').innerHTML = steps.map(function (s) {
+        return s[1] ? '<li class="flex items-center gap-2.5 text-slate-700">' + PK.icon('check-circle', 'kk-fill h-[18px] w-[18px] shrink-0 text-success-600') + esc(s[0]) + '</li>'
+          : '<li class="flex items-center gap-2.5 text-slate-500"><span class="flex h-[18px] w-[18px] shrink-0 rounded-full border-2 border-dashed border-neutral-300"></span>' + esc(s[0]) + '</li>';
+      }).join('');
+    }
+    render();
+
+    // ---- statistik dan aktivitas pemilik (lewat API)
+    if (!isPublic) {
+      $('profActivity').innerHTML = '<li class="list-group-item"><span class="block h-4 w-2/3 animate-pulse rounded bg-neutral-200"></span></li>';
+      api.listApplications({ pageSize: 5 }).then(function (res) {
+        counts = res.counts; render();
+        $('profActivity').innerHTML = res.items.length ? res.items.map(function (a) {
+          var st = PK.statusOf(a.status);
+          return '<li><a href="lamaran.html?id=' + a.id + '" class="list-group-item list-group-item-action !px-6 !py-3.5 font-normal"><span class="min-w-0 flex-1 truncate text-fg-muted">' + (a.status === 'Terkirim' ? 'Melamar' : 'Status ' + esc(a.status.toLowerCase()) + ':') + ' <span class="font-medium text-fg">' + esc(a.job.title) + '</span> di ' + esc(a.job.company) + '</span><span class="badge-neutral shrink-0">' + PK.when(a.upd) + '</span></a></li>';
+        }).join('') : '<li class="list-group-item justify-center !py-6 text-fg-muted">Belum ada aktivitas.</li>';
+      }).catch(function () { $('profActivity').innerHTML = '<li class="list-group-item text-fg-muted">Aktivitas belum bisa dimuat.</li>'; });
+    }
+
+    // ---- ubah lewat modal
+    var editing = null;
+    var FORMS = {
+      profile: { title: 'Ubah profil', desc: 'Informasi dasar yang tampil di bagian atas profilmu.', html: function () {
+        return '<div><label class="form-label" for="eBanner">Gambar banner (URL)</label><input id="eBanner" class="input" placeholder="https://..." value="' + esc(d.banner || '') + '" /><p class="form-hint">Ukuran ideal 1800 x 300 px (rasio 6:1). Gambar mengisi banner penuh dan dipusatkan, jadi pastikan elemen penting ada di tengah.</p></div>' +
+          '<div><label class="form-label" for="eHead">Headline</label><input id="eHead" class="input" maxlength="120" value="' + esc(d.headline) + '" /></div>' +
+          '<div class="grid gap-4 sm:grid-cols-2"><div><label class="form-label" for="eLoc">Lokasi</label><input id="eLoc" class="input" value="' + esc(d.location) + '" /></div><div><label class="form-label" for="eCampus">Kampus dan program studi</label><input id="eCampus" class="input" value="' + esc(d.campus) + '" /></div></div>' +
+          '<div><label class="form-label" for="ePhone">Telepon</label><input id="ePhone" class="input" value="' + esc(d.phone) + '" /></div>' +
+          '<div><label class="form-label" for="eAbout">Tentang</label><textarea id="eAbout" class="input h-auto min-h-32 py-2.5" rows="6" maxlength="1000">' + esc(d.about) + '</textarea></div>' +
+          '<label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="checkbox" id="eOpen" class="form-check" ' + (d.open !== false ? 'checked' : '') + ' />Tampilkan "Terbuka untuk peluang"</label>'; },
+        save: function () { d.banner = $('eBanner').value.trim(); d.headline = $('eHead').value.trim() || d.headline; d.location = $('eLoc').value.trim() || d.location; d.campus = $('eCampus').value.trim() || d.campus; d.phone = $('ePhone').value.trim(); d.about = $('eAbout').value.trim(); d.open = $('eOpen').checked; } },
+      skills: { title: 'Ubah keahlian', desc: 'Pisahkan dengan koma. Keahlian ini ikut dipakai untuk rekomendasi lowongan.', html: function () {
+        return '<div><label class="form-label" for="eSkills">Keahlian</label><input id="eSkills" class="input" value="' + esc(d.skills.join(', ')) + '" /></div>'; },
+        save: function () { d.skills = $('eSkills').value.split(',').map(function (x) { return x.trim(); }).filter(Boolean); } }
+    };
+    document.addEventListener('click', function (e) {
+      var ed = e.target.closest('[data-edit]');
+      if (ed) {
+        editing = FORMS[ed.getAttribute('data-edit')];
+        $('editTitle').textContent = editing.title; $('editDesc').textContent = editing.desc; $('editBody').innerHTML = editing.html();
+        KKModal.open('editModal');
+        return;
+      }
+      var soon = e.target.closest('[data-soon]');
+      if (soon) { PK.toast('info', soon.getAttribute('data-soon') + ' akan tersedia segera.'); return; }
+      if (e.target.closest('[data-share]') || e.target.closest('#copyUrl')) {
+        var url = location.href.split('?')[0].split('#')[0] + '?publik=1';
+        var done = function () { PK.toast('success', 'Tautan profil disalin.'); };
+        try { navigator.clipboard.writeText(url).then(done, done); } catch (err) { done(); }
+      }
+    });
+    $('editForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (editing) editing.save();
+      write(d); render(); KKModal.close('editModal');
+      PK.toast('success', 'Profil diperbarui.');
+    });
+    $('publicToggle').addEventListener('change', function () {
+      d.public = this.checked; write(d); render();
+      PK.toast('success', this.checked ? 'Profilmu bisa dilihat publik.' : 'Profilmu disembunyikan dari publik.');
+    });
+  })();
+</script>
+</body>
+</html>
