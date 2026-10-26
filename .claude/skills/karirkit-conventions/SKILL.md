@@ -24,7 +24,7 @@ Perbaikan dan peningkatan dibagi dua lingkup, masing-masing dengan commit dan ca
 
 ## 1. Nama branch
 Dua keluarga branch, dipisah menurut lingkup (bagian 0). Keduanya bermuara ke cabang utama yang sama (`staging`/`master`/`release`), tetapi hanya `karirkit/<versi>` yang menjadi komponen/npm.
-- **Design System:** `karirkit/<versi>` untuk rilis (contoh `karirkit/1.3.7`); topik lain `karirkit/<topik>` (contoh `karirkit/storybook`). Hanya berisi commit `(ds)`.
+- **Design System:** `karirkit/<versi>` untuk rilis (contoh `karirkit/1.4.0`); topik lain `karirkit/<topik>` (contoh `karirkit/storybook`). Hanya berisi commit `(ds)`.
 - **Mockup template:** `mockup/<YYYY-MM-DD>` (contoh `mockup/2026-10-26`), satu branch per tanggal; bila perlu batch kedua di hari yang sama, akhiran `-2`. Hanya berisi commit template (`feat(karirlink)`, `feat(portal-karir)`, `fix(...)`).
 - Branch yang sudah ada (`karirkit/vercel`, `karirkit/staging-vercel`, `staging`, `master`, `release`) adalah cabang utama/deploy, bukan keluarga di atas.
 - Jangan pakai `fix/`, `chore/`, `feat/`, jangan menambah akhiran seperti `-components`, dan jangan memasukkan nama UI kit pihak ketiga.

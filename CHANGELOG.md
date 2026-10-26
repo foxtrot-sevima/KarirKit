@@ -2,7 +2,7 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perubahan mockup template KarirLink dan Portal Karir dicatat di `templates/CHANGELOG.md` dengan versi berupa tanggal; pemisahan ini dimulai dari v1.3.7.
+File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perubahan mockup template KarirLink dan Portal Karir dicatat di `templates/CHANGELOG.md` dengan versi berupa tanggal; pemisahan ini dimulai dari v1.4.0 (sebelumnya disiapkan sebagai 1.3.7; dinaikkan ke MINOR karena menambah lima komponen).
 
 ## [Unreleased]
 
@@ -15,7 +15,7 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 - **`dist/` tidak lagi di-commit** (masuk `.gitignore`): `dist/output.css` dibangun lewat `npm run build` di lokal setelah clone, di workflow publish, dan di Vercel. Mengurangi konflik merge pada file satu baris berukuran besar; aplikasi FE yang memakai `@foxtrot-sevima/karirkit/theme` tidak terpengaruh.
 - **Toast bertumpuk** (`assets/js/toast.js`, `.toast-enter`, `.toast-leaving`): tumpukan dari `KKToast.show()` tetap di kanan bawah, toast terbaru di paling atas dan paling banyak 2 yang tampil bersamaan (`KKToast.max`; yang ketiga mengeluarkan yang paling lama). Tiap toast hilang sendiri sesuai durasinya dengan animasi masuk dan memudar halus.
 
-## [1.3.7] - 2026-10-13
+## [1.4.0] - 2026-10-13
 
 ### Added
 
