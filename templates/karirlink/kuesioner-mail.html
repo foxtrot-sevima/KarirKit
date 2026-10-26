@@ -174,8 +174,6 @@
   // Tombol di email membuka kuesioner (tampilan responden). ?exit= (jika ada) hanya diteruskan untuk Pasca-Lulus 1 Tahun.
   const ctaQuery = new URLSearchParams({ tracer: current });
   if (current === 'pasca-1th' && exit) ctaQuery.set('exit', exit);
-  // ?format=2025|lampau: versi instrumen Pasca-Lulus (default 2025), diteruskan untuk Pasca-Lulus 1 & 4 Tahun.
-  if ((current === 'pasca-1th' || current === 'pasca-4th') && params.get('format') === 'lampau') ctaQuery.set('format', 'lampau');
 
   const t = TRACERS[current];
   const m = t.email;

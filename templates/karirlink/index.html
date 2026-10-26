@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <base href="/templates/karirlink/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Overview Admin | KarirLink</title>
+<title>Dashboard Admin | KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
 <meta name="description" content="Panel admin KarirLink: kelola tracer study, lowongan mitra, kerjasama industri, dan aktivitas lamaran kampus dalam satu dashboard." />
@@ -16,7 +16,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="KarirKit" />
-<meta property="og:title" content="Overview Admin | KarirLink" />
+<meta property="og:title" content="Dashboard Admin | KarirLink" />
 <meta property="og:description" content="Panel admin KarirLink: kelola tracer study, lowongan mitra, kerjasama industri, dan aktivitas lamaran kampus dalam satu dashboard." />
 <meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/index.html" />
 <meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
@@ -26,14 +26,17 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Overview Admin | KarirLink" />
+<meta name="twitter:title" content="Dashboard Admin | KarirLink" />
 <meta name="twitter:description" content="Panel admin KarirLink: kelola tracer study, lowongan mitra, kerjasama industri, dan aktivitas lamaran kampus dalam satu dashboard." />
 <meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
+<!-- Mobile overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
+
 <!-- ============================= SIDEBAR ============================= -->
-<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out lg:translate-x-0">
   <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
     <a href="../../index.html" class="sidebar-logo-full flex items-center">
       <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
@@ -41,14 +44,17 @@
     <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
       <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
     </a>
+    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
+      <i class="kk kk-x h-5 w-5"></i>
+    </button>
   </div>
 
   <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
     <div>
       <div class="space-y-1">
-        <a href="index.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+        <a href="index.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Dashboard" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
-          <span class="sidebar-label">Overview</span>
+          <span class="sidebar-label">Dashboard</span>
         </a>
       </div>
     </div>
@@ -100,7 +106,7 @@
           <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Report</span>
         </a>
-        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Pengaturan Landing Page</span>
         </a>
@@ -120,123 +126,23 @@
   </div>
 </aside>
 
-<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
-<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
-  <div class="drawer-header">
-    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
-    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
-  </div>
-  <div class="drawer-body !p-3">
-    <nav class="space-y-6" aria-label="Menu admin">
-      <div>
-        <div class="space-y-1">
-          <a href="index.html" class="nav-item nav-item-active">
-            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Overview</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <p class="nav-eyebrow mb-2">Tracer</p>
-        <div class="space-y-1">
-          <a href="kuesioner.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Kuesioner</span>
-          </a>
-          <a href="yudisium.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Daftar Yudisium</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <p class="nav-eyebrow mb-2">Portal Karir</p>
-        <div class="space-y-1">
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Kerjasama</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Lowongan</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Event</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <p class="nav-eyebrow mb-2">General</p>
-        <div class="space-y-1">
-          <a href="mahasiswa-alumni.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Mahasiswa/Alumni</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Aktivitas Lamaran</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Report</span>
-          </a>
-          <a href="pengaturan-landing-page.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Pengaturan Landing Page</span>
-          </a>
-        </div>
-      </div>
-  
-    </nav>
-  </div>
-  <div class="drawer-footer">
-    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
-      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
-      <span class="sidebar-label">Panduan Pengguna</span>
-    </a>
-  </div>
-</div>
-
-<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
-<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
-  <div class="drawer-header">
-    <div class="flex min-w-0 items-center gap-3">
-      <span class="avatar h-11 w-11 text-sm">RK</span>
-      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
-    </div>
-    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
-  </div>
-  <div class="drawer-body !p-2">
-    <div class="space-y-0.5">
-      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
-      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
-      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
-    </div>
-  </div>
-</div>
-
 <!-- ============================= MAIN COLUMN ============================= -->
 <div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
   <!-- Topbar -->
-  <header class="navbar navbar-sticky navbar-app">
+  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
     <div class="flex min-w-0 flex-1 items-center gap-3">
-      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+      <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
         <i class="kk kk-list h-5 w-5"></i>
       </button>
       <nav class="breadcrumb min-w-0" aria-label="Breadcrumb">
         <span class="breadcrumb-current min-w-0" aria-current="page">
           <i class="kk kk-house h-4 w-4 shrink-0"></i>
-          <span class="min-w-0 truncate">Overview</span>
+          <span class="min-w-0 truncate">Dashboard</span>
         </span>
       </nav>
     </div>
     <div class="flex shrink-0 items-center gap-2 sm:gap-3">
-      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
-      <div class="relative hidden lg:block">
+      <div class="relative">
         <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
           <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
           <span class="hidden min-w-0 sm:block">
@@ -928,20 +834,35 @@
     </div>
   </main>
 
-  <footer class="footer footer-bar">
-    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
-    <p>KarirLink</p>
+  <footer>
+    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
   </footer>
 </div>
 
-<script src="../../assets/js/drawer.js"></script>
 <script src="../../assets/js/vendor/apexcharts.min.js"></script>
 <script src="../../assets/js/chart.js"></script>
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
 <script>
   const sidebar = document.getElementById('sidebar');
-  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+  const overlay = document.getElementById('sidebarOverlay');
+  const openBtn = document.getElementById('openSidebarBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  openBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
 
   // Desktop sidebar collapse — narrows the sidebar to an icon-only rail
   // (GitLab-style) instead of fully hiding it, so navigation stays
@@ -1139,7 +1060,7 @@
     document.querySelectorAll('[data-combo]').forEach(setupCombo);
   })();
 
-  // Overview segmented tabs: Portal Karir / Tracer Study.
+  // Dashboard segmented tabs: Portal Karir / Tracer Study.
   (function () {
     const tabs = document.querySelectorAll('#dashboardTabs [data-tab]');
     const panels = document.querySelectorAll('[data-tab-panel]');
