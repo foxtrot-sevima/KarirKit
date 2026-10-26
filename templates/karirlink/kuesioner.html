@@ -125,15 +125,15 @@
     <div>
       <p class="nav-eyebrow mb-2">Portal Karir</p>
       <div class="space-y-1">
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Kerjasama" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Kerjasama</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Lowongan" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Lowongan</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Event" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Event</span>
         </a>
@@ -151,7 +151,7 @@
           <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Aktivitas Lamaran</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Report</span>
         </a>
@@ -209,15 +209,15 @@
       <div>
         <p class="nav-eyebrow mb-2">Portal Karir</p>
         <div class="space-y-1">
-          <a class="nav-item">
+          <a href="segera-hadir.html?menu=Kerjasama" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Kerjasama</span>
           </a>
-          <a class="nav-item">
+          <a href="segera-hadir.html?menu=Lowongan" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Lowongan</span>
           </a>
-          <a class="nav-item">
+          <a href="segera-hadir.html?menu=Event" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Event</span>
           </a>
@@ -235,7 +235,7 @@
             <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Aktivitas Lamaran</span>
           </a>
-          <a class="nav-item">
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Report</span>
           </a>
@@ -348,6 +348,10 @@
           <i class="kk kk-qr-code h-4 w-4 shrink-0"></i>
           QR Tracer
         </button>
+        <button type="button" class="btn-outline btn-md w-full sm:w-auto" data-export-open="lulusan" title="Ekspor hasil kuesioner ke Excel">
+          <i class="kk kk-download-simple h-4 w-4 shrink-0"></i>
+          Ekspor Hasil
+        </button>
         <button type="button" class="btn-primary btn-md w-full sm:w-auto" data-modal-toggle="simulasiPilihModal">
           <i class="kk kk-eye h-4 w-4 shrink-0"></i>
           Simulasi Tracer
@@ -364,7 +368,10 @@
         </span>
         <h3 class="mt-4 text-base font-semibold text-slate-800">Kuesioner Lulusan</h3>
         <p class="mt-1 text-sm text-slate-500">Ditujukan ke mahasiswa yang baru diyudisium — inti dari Tracer Study.</p>
-        <a href="kuesioner-builder.html?tpl=lulusan" class="btn-outline btn-md mt-5 w-full">Kelola</a>
+        <div class="mt-5 flex gap-2">
+          <a href="kuesioner-builder.html?tpl=lulusan" class="btn-outline btn-md flex-1">Kelola</a>
+          <button type="button" class="btn-outline btn-icon-md shrink-0" data-export-open="lulusan" aria-label="Ekspor hasil Kuesioner Lulusan" title="Ekspor hasil"><i class="kk kk-download-simple h-4 w-4"></i></button>
+        </div>
       </div>
 
       <!-- Pengguna Lulusan -->
@@ -374,7 +381,10 @@
         </span>
         <h3 class="mt-4 text-base font-semibold text-slate-800">Kuesioner Pengguna Lulusan</h3>
         <p class="mt-1 text-sm text-slate-500">Diisi oleh atasan/perusahaan tempat lulusan bekerja untuk menilai kinerja.</p>
-        <a href="kuesioner-builder.html?tpl=pengguna-lulusan" class="btn-outline btn-md mt-5 w-full">Kelola</a>
+        <div class="mt-5 flex gap-2">
+          <a href="kuesioner-builder.html?tpl=pengguna-lulusan" class="btn-outline btn-md flex-1">Kelola</a>
+          <button type="button" class="btn-outline btn-icon-md shrink-0" data-export-open="pengguna" aria-label="Ekspor hasil Kuesioner Pengguna Lulusan" title="Ekspor hasil"><i class="kk kk-download-simple h-4 w-4"></i></button>
+        </div>
       </div>
 
       <!-- Kosong -->
@@ -384,7 +394,10 @@
         </span>
         <h3 class="mt-4 text-base font-semibold text-slate-800">Kuesioner Kosong</h3>
         <p class="mt-1 text-sm text-slate-500">Template kosong untuk kebutuhan survei kustom di luar dua jenis di atas.</p>
-        <a href="kuesioner-builder.html?tpl=kosong" class="btn-outline btn-md mt-5 w-full">Buat</a>
+        <div class="mt-5 flex gap-2">
+          <a href="kuesioner-builder.html?tpl=kosong" class="btn-outline btn-md flex-1">Buat</a>
+          <button type="button" class="btn-outline btn-icon-md shrink-0" data-export-open="kosong" aria-label="Ekspor hasil Kuesioner Kosong" title="Ekspor hasil"><i class="kk kk-download-simple h-4 w-4"></i></button>
+        </div>
       </div>
     </div>
 
@@ -410,10 +423,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 27 Agustus 2026, 16:25</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=1" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=1" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -432,10 +448,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 31 Juli 2026, 14:42</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=2" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=2" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
@@ -453,10 +472,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 21 Juli 2026, 09:25</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=3" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=3" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -474,10 +496,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 21 Juli 2026, 09:24</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=4" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=4" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
@@ -495,10 +520,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 14 Juni 2026, 10:12</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=5" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=5" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
@@ -516,10 +544,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 14 Juni 2026, 10:05</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=6" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=6" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -537,10 +568,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 2 Mei 2026, 13:30</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=7" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=7" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
@@ -558,10 +592,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 19 Desember 2025, 15:20</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=8" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=8" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -580,10 +617,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 5 September 2025, 09:45</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=9" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=9" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
@@ -601,10 +641,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 28 Agustus 2025, 10:03</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=10" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=10" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -622,10 +665,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 28 Agustus 2025, 09:58</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=11" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=11" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
@@ -643,10 +689,13 @@
                   <p class="mt-0.5 text-xs text-slate-400">Dikirim pada 12 Mei 2025, 11:40</p>
                 </div>
               </div>
-              <a href="kuesioner-arsip-detail.html?id=12" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+              <div class="flex shrink-0 items-center gap-2">
+                <button type="button" class="btn-outline btn-sm" data-export-arsip title="Ekspor hasil arsip"><i class="kk kk-download-simple h-3.5 w-3.5 shrink-0"></i><span class="hidden sm:inline">Ekspor</span></button>
+                <a href="kuesioner-arsip-detail.html?id=12" class="btn-outline btn-sm">
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
+              </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -702,6 +751,97 @@
           <p class="mt-1 text-sm text-slate-500">Klik <span class="font-medium text-slate-700">Simulasi Tracer</span>, lalu pilih <span class="font-medium text-slate-700">Pra-Lulus</span>, <span class="font-medium text-slate-700">Pasca-Lulus 1 Tahun</span>, <span class="font-medium text-slate-700">Pasca-Lulus 4 Tahun</span>, atau <span class="font-medium text-slate-700">Pengguna Lulusan</span> dan tekan <span class="font-medium text-slate-700">Lihat Email Undangan</span>. Simulasi dimulai dari email undangan yang diterima responden; klik tombol di dalam email untuk membuka kuesionernya dari sudut pandang alumni (atau atasan, untuk Pengguna Lulusan).</p>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ekspor Hasil: unduh jawaban alumni sebagai Excel. Mengikuti fitur "Download Hasil" di Tracer Study live: pilih kuesioner,
+     Template Laporan (Kemendikti / Lengkap), Tahun Lulus (format v2 untuk lulusan 2025 ke atas, v1 sebelumnya), Program Studi,
+     "Menampilkan data terbaru", lalu progres unduhan dan nama berkas. Pengguna Lulusan diunduh langsung tanpa pilihan template.
+     Pengunduhan di mockup hanya simulasi (tidak ada berkas). z-[60]: sidebar karirlink z-50. -->
+<div class="modal-backdrop z-[60]" id="exportModal" aria-labelledby="exportTitle">
+  <div class="modal-panel modal-lg">
+    <div class="modal-header">
+      <div class="flex min-w-0 items-start gap-3">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-file-xls h-5 w-5"></i></span>
+        <div class="min-w-0">
+          <h3 id="exportTitle" class="modal-title">Ekspor Hasil Kuesioner</h3>
+          <p id="exportSub" class="modal-description">Unduh jawaban alumni sebagai berkas Excel (.xlsx).</p>
+        </div>
+      </div>
+      <button type="button" class="modal-close" data-modal-hide="exportModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+    </div>
+
+    <div class="modal-body space-y-5">
+      <fieldset id="expGrpSource">
+        <legend class="form-label">Kuesioner</legend>
+        <div class="mt-1 grid gap-2.5">
+          <label class="choice group/c"><input type="radio" name="expSource" value="lulusan" checked /><span class="choice-body flex-row items-center gap-3 py-3 pr-10"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-colors group-has-checked/c:bg-primary-600 group-has-checked/c:text-white"><i class="kk kk-graduation-cap h-5 w-5"></i></span><span class="min-w-0"><span class="choice-title block">Kuesioner Lulusan</span><span class="block text-xs font-normal text-fg-muted">Pra-Lulus, Pasca-Lulus 1 dan 4 Tahun</span></span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+          <label class="choice group/c"><input type="radio" name="expSource" value="pengguna" /><span class="choice-body flex-row items-center gap-3 py-3 pr-10"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600 transition-colors group-has-checked/c:bg-info-600 group-has-checked/c:text-white"><i class="kk kk-briefcase h-5 w-5"></i></span><span class="min-w-0"><span class="choice-title block">Kuesioner Pengguna Lulusan</span><span class="block text-xs font-normal text-fg-muted">Penilaian atasan atas kinerja alumni</span></span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+          <label class="choice group/c"><input type="radio" name="expSource" value="kosong" /><span class="choice-body flex-row items-center gap-3 py-3 pr-10"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600 transition-colors group-has-checked/c:bg-secondary-600 group-has-checked/c:text-white"><i class="kk kk-pencil-simple h-5 w-5"></i></span><span class="min-w-0"><span class="choice-title block">Kuesioner Kosong</span><span class="block text-xs font-normal text-fg-muted">Template buatan kampus</span></span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+        </div>
+      </fieldset>
+
+      <div id="expArsip" class="callout-info" hidden>
+        <p class="text-sm text-fg"><span class="font-semibold">Arsip:</span> <span id="expArsipName"></span></p>
+      </div>
+
+      <fieldset id="expGrpTpl">
+        <legend class="form-label after:ml-0.5 after:text-danger-500 after:content-['*']">Template Laporan</legend>
+        <div class="mt-1 grid gap-2.5 sm:grid-cols-2">
+          <label class="choice group/c"><input type="radio" name="expTpl" value="pddikti" /><span class="choice-body gap-1 pr-10"><span class="flex items-center gap-2"><i class="kk kk-seal-check h-4 w-4 text-primary-600" aria-hidden="true"></i><span class="choice-title">Kemendikti</span></span><span class="text-xs font-normal text-fg-muted">Format pelaporan PDDikti, dipisah per tahun lulus</span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+          <label class="choice group/c"><input type="radio" name="expTpl" value="all" /><span class="choice-body gap-1 pr-10"><span class="flex items-center gap-2"><i class="kk kk-table h-4 w-4 text-primary-600" aria-hidden="true"></i><span class="choice-title">Lengkap</span></span><span class="text-xs font-normal text-fg-muted">Semua pertanyaan dan jawaban alumni</span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+        </div>
+      </fieldset>
+
+      <fieldset id="expGrpYear" hidden>
+        <legend class="form-label after:ml-0.5 after:text-danger-500 after:content-['*']">Tahun Lulus</legend>
+        <div class="mt-1 flex flex-wrap gap-2">
+          <label class="choice choice-slot"><input type="radio" name="expYear" value="2025" data-fmt="v2" /><span class="choice-body flex-row gap-2 rounded-full px-4">2025<span class="badge-primary">v2</span></span></label><label class="choice choice-slot"><input type="radio" name="expYear" value="2024" data-fmt="v1" /><span class="choice-body flex-row gap-2 rounded-full px-4">2024<span class="badge-neutral">v1</span></span></label><label class="choice choice-slot"><input type="radio" name="expYear" value="2023" data-fmt="v1" /><span class="choice-body flex-row gap-2 rounded-full px-4">2023<span class="badge-neutral">v1</span></span></label><label class="choice choice-slot"><input type="radio" name="expYear" value="2022" data-fmt="v1" /><span class="choice-body flex-row gap-2 rounded-full px-4">2022<span class="badge-neutral">v1</span></span></label>
+        </div>
+        <p class="form-hint mt-2"><span class="badge-primary">v2</span> format baru Kemendikti untuk lulusan 2025 ke atas, <span class="badge-neutral">v1</span> format lama untuk lulusan sebelumnya.</p>
+      </fieldset>
+
+      <div id="expGrpProdi">
+        <label for="expProdi" class="form-label">Program Studi</label>
+        <select id="expProdi" class="input">
+          <option value="">Semua Program Studi</option>
+          <option>Teknik Informatika</option>
+          <option>Sistem Informasi</option>
+          <option>Manajemen</option>
+          <option>Akuntansi</option>
+          <option>Ilmu Hukum</option>
+        </select>
+        <p class="form-hint mt-1.5">Hanya program studi yang sudah dikirimi kuesioner.</p>
+      </div>
+
+      <div id="expDirect" class="callout-info flex items-start gap-2.5" hidden>
+        <i class="kk kk-info mt-0.5 h-4 w-4 shrink-0 text-info-600"></i>
+        <p class="text-sm text-fg">Kuesioner Pengguna Lulusan diunduh langsung dalam satu berkas untuk semua program studi, tanpa pilihan template.</p>
+      </div>
+
+      <div id="expGrpFresh" class="flex items-start justify-between gap-4 rounded-control border border-border px-4 py-3">
+        <label for="expFresh" class="min-w-0 cursor-pointer">
+          <span class="block text-sm font-medium text-fg">Menampilkan data terbaru</span>
+          <span class="mt-0.5 block text-xs text-fg-muted">Memakai isian terakhir tiap alumni. Matikan untuk menyertakan semua isian.</span>
+        </label>
+        <span class="toggle shrink-0"><input id="expFresh" type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></span>
+      </div>
+
+      <div class="flex items-center gap-2 rounded-control bg-neutral-50 px-3 py-2 text-xs text-fg-muted">
+        <i class="kk kk-file-xls h-4 w-4 shrink-0 text-success-600"></i>
+        <span class="min-w-0 truncate" id="expFile" title="">Kuesioner Lulusan.xlsx</span>
+      </div>
+
+      <div id="expProgress" hidden role="status" aria-live="polite">
+        <div class="flex items-center justify-between text-sm"><span id="expLabel" class="font-medium text-primary-700">Memproses...</span><span id="expPct" class="text-fg-muted"></span></div>
+        <div class="progress-track mt-1.5 h-2"><div id="expBar" class="progress-bar animate-pulse" style="width: 100%"></div></div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-outline btn-md" data-modal-hide="exportModal" id="expCancel">Batal</button>
+      <button type="button" class="btn-primary btn-md" id="expGo" disabled><i class="kk kk-download-simple h-4 w-4"></i>Unduh Excel</button>
     </div>
   </div>
 </div>
@@ -1235,6 +1375,91 @@
     document.addEventListener('fullscreenchange', () => {
       const label = modal.querySelector('[data-fs-label]');
       if (label) label.textContent = document.fullscreenElement === modal ? 'Keluar layar penuh' : 'Tampilkan layar penuh';
+    });
+  })();
+</script>
+<script>
+  // Ekspor Hasil (simulasi): pilihan mengikuti "Download Hasil" Tracer Study live; berkas tidak benar-benar dibuat.
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    var modal = $('exportModal');
+    if (!modal) return;
+    var NAMES = { lulusan: 'Kuesioner Lulusan', pengguna: 'Kuesioner Pengguna Lulusan', kosong: 'Kuesioner Kosong' };
+    var busy = false, arsip = '';
+    function val(name) { var r = modal.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+    function show(id, on) { $(id).hidden = !on; }
+
+    function render() {
+      var src = val('expSource'), tpl = val('expTpl'), yr = val('expYear'), prodi = $('expProdi').value;
+      var lulusan = src === 'lulusan', pengguna = src === 'pengguna';
+      show('expGrpTpl', lulusan);
+      show('expGrpYear', lulusan && tpl === 'pddikti');
+      show('expGrpProdi', !pengguna);
+      show('expGrpFresh', !pengguna);
+      show('expDirect', pengguna);
+      // nama berkas seperti di live: <nama> - Template PDDIKTI <tahun> / Template Lengkap, lalu (Program Studi X)
+      var name = NAMES[src];
+      if (lulusan && tpl === 'pddikti') name += ' - Template PDDIKTI' + (yr ? ' ' + yr : '');
+      else if (lulusan && tpl === 'all') name += ' - Template Lengkap';
+      if (!pengguna && prodi) name += ' (Program Studi ' + prodi + ')';
+      $('expFile').textContent = name + '.xlsx'; $('expFile').title = name + '.xlsx';
+      // tombol aktif: Lulusan wajib memilih template, dan tahun lulus bila Kemendikti
+      var ready = !lulusan || (tpl && (tpl !== 'pddikti' || yr));
+      $('expGo').disabled = busy || !ready;
+    }
+
+    function open(src, title) {
+      arsip = title || '';
+      modal.querySelector('input[name="expSource"][value="' + src + '"]').checked = true;
+      modal.querySelectorAll('input[name="expTpl"], input[name="expYear"]').forEach(function (i) { i.checked = false; });
+      $('expProdi').value = ''; $('expFresh').checked = true;
+      show('expGrpSource', !arsip); show('expArsip', !!arsip);
+      $('expArsipName').textContent = arsip;
+      $('exportSub').textContent = arsip ? 'Unduh jawaban alumni dari arsip sebagai berkas Excel (.xlsx).' : 'Unduh jawaban alumni sebagai berkas Excel (.xlsx).';
+      show('expProgress', false);
+      render();
+      if (window.KKModal) KKModal.open('exportModal');
+    }
+
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-export-open]');
+      if (b) { open(b.getAttribute('data-export-open') || 'lulusan', ''); return; }
+      var a = e.target.closest('[data-export-arsip]');
+      if (a) {
+        var row = a.closest('[data-arsip]');
+        var title = row.querySelector('p.font-medium').textContent.trim();
+        open(/Template Lengkap/.test(row.textContent) ? 'lulusan' : 'pengguna', title);
+      }
+    });
+    modal.addEventListener('change', render);
+
+    $('expGo').addEventListener('click', function () {
+      if (busy) return;
+      busy = true;
+      var file = $('expFile').textContent;
+      modal.querySelectorAll('input, select').forEach(function (i) { i.disabled = true; });
+      $('expGo').disabled = true; $('expGo').classList.add('btn-loading'); $('expCancel').disabled = true;
+      show('expProgress', true);
+      $('expLabel').textContent = 'Memproses...'; $('expPct').textContent = '';
+      var bar = $('expBar'); bar.classList.add('animate-pulse'); bar.style.width = '100%';
+      var p = 0;
+      setTimeout(function () {
+        bar.classList.remove('animate-pulse'); bar.style.width = '0%'; $('expLabel').textContent = 'Mengunduh...';
+        var t = setInterval(function () {
+          p = Math.min(100, p + 8 + Math.round(Math.random() * 10));
+          bar.style.width = p + '%'; $('expPct').textContent = p + '%';
+          if (p >= 100) {
+            clearInterval(t);
+            setTimeout(function () {
+              if (window.KKModal) KKModal.close('exportModal');
+              if (window.KKToast) KKToast.show({ type: 'success', message: 'Ekspor selesai: ' + file + ' (simulasi, tidak ada berkas).' });
+              busy = false;
+              modal.querySelectorAll('input, select').forEach(function (i) { i.disabled = false; });
+              $('expGo').classList.remove('btn-loading'); $('expCancel').disabled = false; show('expProgress', false); render();
+            }, 450);
+          }
+        }, 180);
+      }, 900);
     });
   })();
 </script>
