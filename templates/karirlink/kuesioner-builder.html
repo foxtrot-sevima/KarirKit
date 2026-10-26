@@ -525,6 +525,18 @@
         </div>
       </div>
 
+      <!-- Format pertanyaan Pasca-Lulus: satu pilihan untuk gelombang 1 dan 4 Tahun (menggerakkan tab format di tiap gelombang) -->
+      <div class="flex flex-col gap-3 rounded-xl border border-slate-100 bg-white p-4 sm:flex-row sm:items-center sm:justify-between" data-format-global>
+        <div class="min-w-0">
+          <p class="text-sm font-semibold text-slate-800">Format kuesioner Pasca-Lulus</p>
+          <p class="mt-0.5 text-xs text-slate-500">Pilih Format 2025 untuk lulusan 2025 ke atas, atau Format Lampau untuk lulusan 2024 ke bawah. Berlaku untuk Pasca-Lulus 1 dan 4 Tahun.</p>
+        </div>
+        <div class="tabs tabs-pills w-max flex-nowrap gap-1" role="tablist" aria-label="Format kuesioner Pasca-Lulus">
+          <button type="button" role="tab" class="tabs-item whitespace-nowrap !py-2" data-format-global-tab="2025" aria-selected="true">Format 2025 <span class="badge-info">Baru</span></button>
+          <button type="button" role="tab" class="tabs-item whitespace-nowrap !py-2" data-format-global-tab="lampau" aria-selected="false">Format Lampau</button>
+        </div>
+      </div>
+
       <!-- Pra-Lulus (default terbuka) -->
       <div id="gelombang-pra-lulus" class="card scroll-mt-24 overflow-hidden">
         <button type="button" class="flex w-full flex-wrap items-center justify-between gap-3 p-5 text-left" data-gelombang-toggle>
@@ -3678,9 +3690,20 @@
         tab.addEventListener('click', () => {
           tabs.querySelectorAll('[data-format-tab]').forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
           panes.forEach((pane) => pane.classList.toggle('hidden', pane.dataset.formatPane !== tab.dataset.formatTab));
+          syncGlobal();
         });
       });
     });
+    // Pilihan format di atas gelombang: menggerakkan tab tiap gelombang, dan ikut berubah bila tab gelombang diganti.
+    const globalTabs = document.querySelectorAll('[data-format-global-tab]');
+    function syncGlobal() {
+      const picked = document.querySelector('[data-format-tab][aria-selected="true"]');
+      const fmt = picked ? picked.dataset.formatTab : '2025';
+      globalTabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.formatGlobalTab === fmt)));
+    }
+    globalTabs.forEach((g) => g.addEventListener('click', () => {
+      document.querySelectorAll('[data-format-tab="' + g.dataset.formatGlobalTab + '"]').forEach((t) => t.click());
+    }));
   })();
 
   // Quick-nav: lompat ke satu versi/gelombang tertentu (otomatis membuka
