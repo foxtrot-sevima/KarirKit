@@ -51,13 +51,12 @@
   <section data-nav-hero class="relative overflow-hidden bg-brand-gradient text-white">
     <div aria-hidden="true" class="pointer-events-none absolute inset-0">
       <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
-      <div class="absolute -right-24 -top-28 h-96 w-96 rounded-full bg-secondary-400/30 blur-3xl"></div>
     </div>
     <div id="heroGrid" class="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:grid-cols-[1.3fr_0.7fr]">
       <div class="min-w-0">
         <p id="heroUnit" class="text-sm font-semibold uppercase tracking-wider text-white/80"></p>
         <h1 id="heroCampus" class="mt-3 text-balance font-display font-bold leading-tight tracking-tight"></h1>
-        <p class="mt-4 max-w-xl text-base text-white/85 sm:text-lg">Lowongan, event, course, dan portofolio dalam satu tempat, dari masa kuliah sampai setelah lulus.</p>
+        <p id="heroDesc" class="mt-4 max-w-xl text-base text-white/85 sm:text-lg">Lowongan, event, course, dan portofolio dalam satu tempat, dari masa kuliah sampai setelah lulus.</p>
 
         <form id="heroSearch" role="search" class="card mt-8 max-w-2xl p-2 text-fg sm:flex sm:items-center sm:gap-2" data-combo-boundary>
           <label class="relative min-w-0 flex-1">
@@ -77,7 +76,7 @@
         <div class="absolute left-1/2 top-1/2 h-[16rem] w-[16rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/35 pk-orbit"></div>
         <div class="absolute left-1/2 top-1/2 h-[10rem] w-[10rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-white/25 to-white/5 ring-1 ring-white/30 backdrop-blur-sm"></div>
         <!-- pusat -->
-        <div class="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-2xl shadow-primary-950/40 ring-8 ring-white/20"><img src="../../../assets/logo/karirlink-mark.svg" alt="" class="h-14 w-14" /></div>
+        <div class="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-2xl shadow-primary-950/40 ring-8 ring-white/20"><img id="heroLogo" src="../../../assets/logo/karirlink-mark.svg" alt="" class="h-14 w-14" /></div>
         <!-- titik penghias -->
         <span class="absolute left-[18%] top-[48%] h-2.5 w-2.5 rounded-full bg-secondary-300"></span><span class="absolute right-[16%] top-[56%] h-2 w-2 rounded-full bg-white/70"></span><span class="absolute left-[46%] top-[6%] h-2 w-2 rounded-full bg-white/60"></span><span class="absolute bottom-[8%] right-[40%] h-2.5 w-2.5 rounded-full bg-secondary-300"></span>
         <div style="animation-delay:0s" class="pk-float absolute left-0 top-8 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-briefcase h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Lowongan</span></div>
@@ -98,6 +97,90 @@
       <div id="services" class="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4"></div>
     </section>
 
+    <!-- ============================= TES POTENSI ============================= -->
+    <section id="tes-potensi" class="scroll-mt-28" aria-labelledby="potTitle">
+      <div class="rounded-3xl border border-border/70 bg-surface p-2 shadow-card">
+      <div class="overflow-hidden rounded-[1.25rem] p-6 sm:p-10" style="background-image: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-100) 58%, var(--color-secondary-50) 100%);">
+        <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
+
+          <div class="min-w-0">
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-primary-200 bg-white/80 px-3 py-1 text-xs font-semibold text-primary-700"><i class="kk kk-compass h-3.5 w-3.5" aria-hidden="true"></i>Tes Potensi</span>
+            <h2 id="potTitle" class="mt-4 font-display text-3xl font-bold leading-tight text-fg sm:text-4xl">Kenali potensi dirimu, temukan karier yang paling cocok</h2>
+            <p class="mt-3 max-w-lg text-sm text-slate-600 sm:text-base">Tes minat karier RIASEC membantu memetakan kecenderunganmu, lalu menyusun rekomendasi lowongan, course, dan event yang relevan dengan hasilnya.</p>
+
+            <ul class="mt-6 space-y-4">
+              <li class="flex items-center gap-3"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-primary-600"><i class="kk kk-lightning h-5 w-5" aria-hidden="true"></i></span><p class="text-sm text-slate-700"><span class="font-semibold text-fg">Cepat dan ringkas.</span> Hanya butuh beberapa menit untuk menjawab.</p></li>
+              <li class="flex items-center gap-3"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-primary-600"><i class="kk kk-target h-5 w-5" aria-hidden="true"></i></span><p class="text-sm text-slate-700"><span class="font-semibold text-fg">Hasil yang jelas.</span> Tipe dominanmu beserta bidang karier yang sesuai.</p></li>
+              <li class="flex items-center gap-3"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-primary-600"><i class="kk kk-sparkle h-5 w-5" aria-hidden="true"></i></span><p class="text-sm text-slate-700"><span class="font-semibold text-fg">Rekomendasi personal.</span> Lowongan, course, dan event sesuai minatmu.</p></li>
+            </ul>
+
+            <div class="mt-7 flex flex-wrap items-center gap-3">
+              <a href="riasec.html" class="btn-primary btn-lg border-transparent bg-brand-gradient hover:brightness-110">Mulai Tes Potensi<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+              <span class="text-xs text-slate-500">Gratis &middot; &plusmn;10 menit</span>
+            </div>
+          </div>
+
+          <!-- Pratinjau hasil (dekoratif): baris tipe RIASEC, satu kartu menonjol, sisanya memudar -->
+          <div class="relative mx-auto w-full max-w-md" aria-hidden="true">
+            <div class="rounded-[2rem] border border-white/70 bg-white/50 p-3 sm:p-4">
+              <div class="space-y-2.5">
+            <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 ">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-hand-heart h-5 w-5"></i></span>
+              <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Sosial</p><p class="text-xs text-slate-500">Si Penolong</p></div>
+              <span class="rounded-full bg-success-50 px-2.5 py-1 text-xs font-semibold text-success-700">86%</span>
+            </div>
+            <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 ">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-palette h-5 w-5"></i></span>
+              <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Artistik</p><p class="text-xs text-slate-500">Si Kreatif</p></div>
+              <span class="rounded-full bg-success-50 px-2.5 py-1 text-xs font-semibold text-success-700">74%</span>
+            </div>
+                <div class="relative z-10 -mx-5 flex items-center gap-3 rounded-2xl border border-primary-100 bg-white p-4 shadow-card-lg sm:-mx-8">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-flask h-5 w-5"></i></span>
+                  <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Investigatif</p><p class="text-xs text-slate-500">Si Penyelidik &middot; tipe dominanmu</p></div>
+                  <span class="rounded-full border border-primary-200 bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-700">Lihat hasil</span>
+                </div>
+            <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-60 blur-[1.5px]">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-list-checks h-5 w-5"></i></span>
+              <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Konvensional</p><p class="text-xs text-slate-500">Si Teliti</p></div>
+              <span class="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-semibold text-neutral-500">61%</span>
+            </div>
+            <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-40 blur-[2.5px]">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-danger-50 text-danger-600"><i class="kk kk-rocket h-5 w-5"></i></span>
+              <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Wirausaha</p><p class="text-xs text-slate-500">Si Pemimpin</p></div>
+              <span class="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-semibold text-neutral-500">48%</span>
+            </div>
+            <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-25 blur-[3.5px]">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-warning-50 text-warning-600"><i class="kk kk-wrench h-5 w-5"></i></span>
+              <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Realistis</p><p class="text-xs text-slate-500">Si Praktis</p></div>
+              <span class="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-semibold text-neutral-500">35%</span>
+            </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ============================= LOWONGAN PILIHAN ============================= -->
+    <section aria-labelledby="jobsTitle">
+      <div class="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
+        <div><h2 id="jobsTitle" class="font-display text-2xl font-bold text-fg">Lowongan pilihan</h2><p id="jobsNote" class="card-text mt-1"></p></div>
+        <a id="jobsMore" href="lowongan.html" class="btn-outline btn-md w-full sm:w-auto">Lihat semua lowongan<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+      </div>
+      <!-- ponsel: kartu digeser ke samping (snap); sm ke atas: grid -->
+      <div id="jobGrid" class="-mx-4 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3" aria-live="polite"></div>
+    </section>
+
+    <!-- ============================= PENGEMBANGAN DIRI ============================= -->
+    <section id="pengembangan" class="scroll-mt-28" aria-labelledby="growTitle">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><h2 id="growTitle" class="font-display text-2xl font-bold text-fg">Kembangkan minat dan bakatmu</h2><p class="card-text mt-1">Bangun portofolio, kenali arah kariermu, dan dapatkan pendampingan dari kampus.</p></div>
+      </div>
+      <div id="grow" class="card mt-6 divide-y divide-border overflow-hidden md:grid md:grid-cols-3 md:gap-5 md:divide-y-0 md:overflow-visible md:rounded-none md:border-0 md:bg-transparent md:shadow-none"></div>
+    </section>
+
     <!-- ============================= EVENT ============================= -->
     <section aria-labelledby="eventTitle">
       <div class="flex flex-wrap items-end justify-between gap-4">
@@ -115,21 +198,45 @@
       <div id="courseGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
     </section>
 
-    <!-- ============================= PENGEMBANGAN DIRI ============================= -->
-    <section id="pengembangan" class="scroll-mt-28" aria-labelledby="growTitle">
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <div><h2 id="growTitle" class="font-display text-2xl font-bold text-fg">Kembangkan minat dan bakatmu</h2><p class="card-text mt-1">Bangun portofolio, kenali arah kariermu, dan dapatkan pendampingan dari kampus.</p></div>
+    <!-- ============================= BIMBINGAN KARIER =============================
+         Diatur admin di Pengaturan Landing Page (landing.js): tampil hanya bila URL video YouTube diisi. -->
+    <section id="lpBimbingan" hidden class="scroll-mt-28" aria-labelledby="lpGuideTitle">
+      <div>
+        <h2 id="lpGuideTitle" class="font-display text-2xl font-bold text-fg">Bimbingan karier</h2>
+        <p class="card-text mt-1">Panduan dari pusat karier <span class="js-campus"></span> untuk menyiapkan langkah kariermu.</p>
       </div>
-      <div id="grow" class="card mt-6 divide-y divide-border overflow-hidden md:grid md:grid-cols-3 md:gap-5 md:divide-y-0 md:overflow-visible md:rounded-none md:border-0 md:bg-transparent md:shadow-none"></div>
+      <div class="card mt-6 grid gap-6 p-4 sm:p-6 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-10 lg:p-8">
+        <!-- video: poster dulu, pemutar YouTube baru dimuat saat ditekan -->
+        <div id="lpGuideBox" class="relative aspect-video overflow-hidden rounded-card bg-brand-gradient shadow-card ring-1 ring-black/5">
+          <button type="button" id="lpGuidePlay" class="group absolute inset-0 block w-full text-left" aria-label="Putar video bimbingan karier">
+            <img id="lpGuidePoster" alt="" class="absolute inset-0 h-full w-full object-cover" referrerpolicy="no-referrer" />
+            <span aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-primary-950/60 via-primary-950/10 to-transparent"></span>
+            <span class="absolute inset-0 flex items-center justify-center"><span class="flex h-16 w-16 items-center justify-center rounded-full bg-white text-primary-600 shadow-xl shadow-primary-950/30 ring-8 ring-white/25 transition-transform duration-200 group-hover:scale-110 group-focus-visible:scale-110 sm:h-20 sm:w-20"><i class="kk kk-play h-7 w-7 sm:h-8 sm:w-8" aria-hidden="true"></i></span></span>
+            <span class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm sm:bottom-4 sm:left-4"><i class="kk kk-youtube-logo h-3.5 w-3.5" aria-hidden="true"></i>Tonton video</span>
+          </button>
+        </div>
+        <div class="min-w-0">
+          <span class="badge-primary">Bimbingan karier</span>
+          <h3 class="mt-3 font-display text-2xl font-bold leading-tight text-fg sm:text-3xl">Siapkan dirimu menghadapi dunia kerja</h3>
+          <p class="card-text mt-3">Pelajari langkah praktis dari konselor pusat karier, dari menyusun CV sampai melewati wawancara.</p>
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-start gap-3 text-sm text-fg-muted"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success-50 text-success-600"><i class="kk kk-check h-3.5 w-3.5" aria-hidden="true"></i></span>Menyusun CV dan profil yang menarik perhatian rekruter</li>
+            <li class="flex items-start gap-3 text-sm text-fg-muted"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success-50 text-success-600"><i class="kk kk-check h-3.5 w-3.5" aria-hidden="true"></i></span>Tips menghadapi tes dan wawancara kerja</li>
+            <li class="flex items-start gap-3 text-sm text-fg-muted"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success-50 text-success-600"><i class="kk kk-check h-3.5 w-3.5" aria-hidden="true"></i></span>Merencanakan langkah karier setelah lulus</li>
+          </ul>
+          <a href="pengembangan.html" class="btn-outline btn-md mt-6">Kembangkan dirimu<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+        </div>
+      </div>
     </section>
 
-    <!-- ============================= LOWONGAN PILIHAN ============================= -->
-    <section aria-labelledby="jobsTitle">
-      <div class="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
-        <div><h2 id="jobsTitle" class="font-display text-2xl font-bold text-fg">Lowongan pilihan</h2><p id="jobsNote" class="card-text mt-1"></p></div>
-        <a href="lowongan.html" class="btn-outline btn-md w-full sm:w-auto">Lihat semua lowongan<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+    <!-- ============================= TESTIMONI ALUMNI =============================
+         Diatur admin di Pengaturan Landing Page (landing.js): tampil hanya bila ada testimoni. Maksimal 8. -->
+    <section id="lpTestimoni" hidden class="scroll-mt-28" aria-labelledby="lpTestiTitle">
+      <div>
+        <h2 id="lpTestiTitle" class="font-display text-2xl font-bold text-fg">Cerita alumni</h2>
+        <p class="card-text mt-1">Pengalaman lulusan yang sudah meniti karier setelah dari <span class="js-campus"></span>.</p>
       </div>
-      <div id="jobGrid" class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+      <div id="lpTestimoniGrid" class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"></div>
     </section>
 
   </div>
@@ -141,6 +248,7 @@
 <script src="../../../assets/js/drawer.js"></script>
 <script src="../../../assets/js/toast.js"></script>
 <script src="../../portal-karir/shell.js"></script>
+<script src="landing.js" data-lp-apply></script>
 <script src="campus.js"></script>
 <script src="../../portal-karir/portal.js"></script>
 <script>
@@ -151,6 +259,13 @@
     PK.initShell();
 
     $('heroUnit').textContent = PK.CAMPUS.unit;
+    // logo di tengah orbit hero = logo kampus (white-label) bila diisi; gagal dimuat = logo KarirLink bawaan
+    if (PK.CAMPUS.logo) {
+      var hl = $('heroLogo'), dflt = hl.getAttribute('src');
+      hl.className = 'h-[4.25rem] w-[4.25rem] rounded-md object-contain';
+      hl.addEventListener('error', function () { hl.onerror = null; hl.src = dflt; hl.className = 'h-14 w-14'; });
+      hl.src = new URL(PK.CAMPUS.logo, location.href).href;
+    }
     $('heroCampus').textContent = PK.CAMPUS.name;
     // ukuran judul mengikuti panjang nama kampus supaya nama panjang tidak memenuhi hero
     var nl = PK.CAMPUS.name.length;
@@ -195,7 +310,7 @@
     var GROW = [
       ['palette', 'bg-secondary-50 text-secondary-600', 'Bangun portofolio', 'Tampilkan pengalaman, keahlian, dan karyamu di profil yang bisa dibagikan.', 'Buka profil', 'profil.html'],
       ['target', 'bg-primary-50 text-primary-600', 'Kenali minat dan bakat', 'Ikuti tes RIASEC agar rekomendasi lowongan lebih sesuai dengan minatmu.', 'Mulai tes', 'riasec.html'],
-      ['handshake', 'bg-success-50 text-success-600', 'Konsultasi karier', 'Jadwalkan sesi bersama konselor pusat karier untuk arah dan strategi kariermu.', 'Jadwalkan sesi', '']
+      ['handshake', 'bg-success-50 text-success-600', 'Konsultasi karier', 'Jadwalkan sesi bersama konselor pusat karier untuk arah dan strategi kariermu.', 'Jadwalkan sesi', 'segera-hadir.html']
     ];
     // mobile: baris dalam satu kartu, seluruh baris bisa ditekan; md ke atas: tiga kartu terpisah dengan tombol
     $('grow').innerHTML = GROW.map(function (x) {
@@ -207,12 +322,45 @@
 
     // ---- lowongan pilihan (3)
     $('jobsNote').textContent = PK.hasPrefs ? 'Dipilih berdasarkan minat dan keahlianmu.' : 'Lowongan yang sedang ramai dilamar.';
+    // tiap kartu dibungkus supaya di ponsel lebarnya tetap (geser samping) dan di sm ke atas mengikuti grid
     var jobsToken = PK.latest();
+    // Kartu lowongan khusus beranda: satu keluarga dengan kartu di halaman Lowongan (logo inisial, judul, chip, gaji), ditambah header
+    // hijau lembut, keahlian utama, jumlah pelamar, dan ajakan "Lihat detail" yang bergerak saat disorot.
+    function homeJobCard(r) {
+      var j = r.job;
+      var applied = PK.hasApplied(j.id);
+      var chip = 'rounded-md bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600';
+      var skills = (j.skills || []).slice(0, 3).map(esc).join(' <span aria-hidden="true" class="text-slate-300">&middot;</span> ');
+      var meta = (j.applicants != null ? j.applicants + ' pelamar &middot; ' : '') + PK.when(j.posted);
+      return '<article class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-surface shadow-card transition-all duration-200 hover:-translate-y-1 hover:border-primary-200 hover:shadow-card-lg" data-job="' + j.id + '">' +
+        '<div class="flex items-start gap-3 bg-success-50 p-4">' +
+          '<span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-sm font-bold text-success-700" aria-hidden="true">' + esc(PK.initials(j.company)) + '</span>' +
+          '<div class="min-w-0 flex-1"><h3 class="font-display text-base font-semibold leading-snug text-slate-900"><button type="button" class="text-left after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500" data-pick="' + j.id + '">' + esc(j.title) + '</button></h3>' +
+          '<p class="mt-0.5 truncate text-xs text-slate-600">' + esc(j.company) + ' &middot; ' + esc(j.city) + '</p></div>' +
+          PK.saveButton(j.id, 'relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-slate-500 transition-colors hover:text-primary-600') +
+        '</div>' +
+        '<div class="flex flex-1 flex-col gap-3 p-4">' +
+          '<div class="flex flex-wrap items-center gap-1.5"><span class="' + chip + '">' + esc(j.type) + '</span><span class="' + chip + '">' + esc(j.mode) + '</span>' + (j.posted <= 2 && !applied ? '<span class="rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">Baru</span>' : '') + '</div>' +
+          (skills ? '<p class="text-xs leading-relaxed text-slate-500">' + skills + '</p>' : '') +
+          '<div class="mt-auto flex items-end justify-between gap-3 border-t border-border pt-3">' +
+            '<div class="min-w-0"><p class="truncate text-sm font-semibold text-slate-900">' + esc(j.pay) + '</p><p class="mt-0.5 truncate text-xs text-slate-400">' + meta + '</p></div>' +
+            (applied
+              ? '<span class="inline-flex shrink-0 items-center gap-1 rounded-full bg-success-50 px-2.5 py-1 text-xs font-semibold text-success-700">' + PK.icon('check', 'h-3 w-3') + 'Sudah dilamar</span>'
+              : '<span class="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-primary-600" aria-hidden="true">Lihat detail<span class="transition-transform duration-200 group-hover:translate-x-1">' + PK.icon('arrow-right', 'h-4 w-4') + '</span></span>') +
+          '</div>' +
+        '</div>' +
+      '</article>';
+    }
+    function jobCell(html) { return '<div class="w-[85%] shrink-0 snap-start sm:w-auto">' + html + '</div>'; }
     function loadJobs() {
-      $('jobGrid').innerHTML = PK.skeletonCards(3);
+      $('jobGrid').innerHTML = [1, 2, 3].map(function () { return jobCell(PK.skeletonRows(1)); }).join('');
       var ok = jobsToken();
-      api.listJobs({ pageSize: 3 }).then(function (res) { if (ok()) $('jobGrid').innerHTML = res.items.map(function (r) { return PK.jobCard(r, true); }).join(''); })
-        .catch(function (err) { if (ok()) $('jobGrid').innerHTML = '<div class="col-span-full">' + PK.errorBox(err.message) + '</div>'; });
+      api.listJobs({ pageSize: 6 }).then(function (res) {
+        if (!ok()) return;
+        $('jobGrid').innerHTML = res.items.length
+          ? res.items.map(function (r) { return jobCell(homeJobCard(r)); }).join('') 
+          : '<div class="w-full">' + PK.emptyBox('briefcase', 'Belum ada lowongan', 'Lowongan baru akan muncul di sini saat dipublikasikan.', '') + '</div>';
+      }).catch(function (err) { if (ok()) $('jobGrid').innerHTML = '<div class="w-full">' + PK.errorBox(err.message) + '</div>'; });
     }
     PK.bindSave($('jobGrid'));
     $('jobGrid').addEventListener('click', function (e) {

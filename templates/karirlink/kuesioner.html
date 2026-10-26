@@ -125,15 +125,15 @@
     <div>
       <p class="nav-eyebrow mb-2">Portal Karir</p>
       <div class="space-y-1">
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Kerjasama" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Kerjasama</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Lowongan" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Lowongan</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Event" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Event</span>
         </a>
@@ -151,7 +151,7 @@
           <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Aktivitas Lamaran</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Report</span>
         </a>
@@ -209,15 +209,15 @@
       <div>
         <p class="nav-eyebrow mb-2">Portal Karir</p>
         <div class="space-y-1">
-          <a class="nav-item">
+          <a href="segera-hadir.html?menu=Kerjasama" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Kerjasama</span>
           </a>
-          <a class="nav-item">
+          <a href="segera-hadir.html?menu=Lowongan" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Lowongan</span>
           </a>
-          <a class="nav-item">
+          <a href="segera-hadir.html?menu=Event" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Event</span>
           </a>
@@ -235,7 +235,7 @@
             <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Aktivitas Lamaran</span>
           </a>
-          <a class="nav-item">
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Report</span>
           </a>
@@ -340,14 +340,26 @@
         <p class="mt-1 text-sm text-slate-500">Kelola template pertanyaan untuk tiga sasaran responden.<span class="hidden sm:inline"> Hanya template <span class="font-medium text-slate-700">Kosong</span> yang mendukung banyak versi.</span></p>
       </div>
       <div class="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap xl:shrink-0 xl:flex-nowrap">
-        <button type="button" id="openPanduanBtn" class="btn-outline btn-md w-full sm:w-auto">
-          <i class="kk kk-question h-4 w-4 shrink-0"></i>
-          Lihat Panduan
-        </button>
-        <button type="button" class="btn-outline btn-md w-full sm:w-auto" data-modal-toggle="qrPresentModal" title="QR code Tracer Study">
-          <i class="kk kk-qr-code h-4 w-4 shrink-0"></i>
-          QR Tracer
-        </button>
+        <div class="dropdown w-full sm:w-auto">
+          <button type="button" class="btn-outline btn-md w-full sm:w-auto" data-ui-dropdown aria-haspopup="menu">
+            Lainnya
+            <i class="kk kk-caret-down h-4 w-4 shrink-0"></i>
+          </button>
+          <div class="dropdown-menu hidden w-full sm:w-52">
+            <button type="button" class="dropdown-item" data-export-open data-ui-dropdown-close>
+              <i class="kk kk-download-simple h-4 w-4 shrink-0"></i>
+              Ekspor Hasil
+            </button>
+            <button type="button" class="dropdown-item" data-modal-toggle="qrPresentModal" data-ui-dropdown-close>
+              <i class="kk kk-qr-code h-4 w-4 shrink-0"></i>
+              QR Tracer
+            </button>
+            <button type="button" id="openPanduanBtn" class="dropdown-item" data-ui-dropdown-close>
+              <i class="kk kk-question h-4 w-4 shrink-0"></i>
+              Lihat Panduan
+            </button>
+          </div>
+        </div>
         <button type="button" class="btn-primary btn-md w-full sm:w-auto" data-modal-toggle="simulasiPilihModal">
           <i class="kk kk-eye h-4 w-4 shrink-0"></i>
           Simulasi Tracer
@@ -411,9 +423,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=1" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -433,9 +445,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=2" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
@@ -454,9 +466,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=3" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -475,9 +487,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=4" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
@@ -496,9 +508,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=5" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
@@ -517,9 +529,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=6" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -538,9 +550,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=7" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
@@ -559,9 +571,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=8" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -581,9 +593,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=9" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-graduation-cap h-3.5 w-3.5"></i>Template Kemdikbud</span>
@@ -602,9 +614,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=10" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -623,9 +635,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=11" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-briefcase h-3.5 w-3.5"></i>Template Pengguna Lulusan</span>
@@ -644,9 +656,9 @@
                 </div>
               </div>
               <a href="kuesioner-arsip-detail.html?id=12" class="btn-outline btn-sm shrink-0">
-                <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
-                Lihat Detail
-              </a>
+                  <i class="kk kk-eye h-3.5 w-3.5 shrink-0"></i>
+                  Lihat Detail
+                </a>
             </div>
             <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 px-4 py-3">
               <span class="badge-neutral"><i class="kk kk-file-text h-3.5 w-3.5"></i>Template Lengkap</span>
@@ -702,6 +714,101 @@
           <p class="mt-1 text-sm text-slate-500">Klik <span class="font-medium text-slate-700">Simulasi Tracer</span>, lalu pilih <span class="font-medium text-slate-700">Pra-Lulus</span>, <span class="font-medium text-slate-700">Pasca-Lulus 1 Tahun</span>, <span class="font-medium text-slate-700">Pasca-Lulus 4 Tahun</span>, atau <span class="font-medium text-slate-700">Pengguna Lulusan</span> dan tekan <span class="font-medium text-slate-700">Lihat Email Undangan</span>. Simulasi dimulai dari email undangan yang diterima responden; klik tombol di dalam email untuk membuka kuesionernya dari sudut pandang alumni (atau atasan, untuk Pengguna Lulusan).</p>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ekspor Hasil: unduh jawaban alumni sebagai Excel. Mengikuti fitur "Download Hasil" di Tracer Study live: pilih kuesioner,
+     Template Laporan (Kemendikti / Lengkap), Tahun Lulus (format v2 untuk lulusan 2025 ke atas, v1 sebelumnya), Program Studi,
+     "Menampilkan data terbaru", lalu progres unduhan dan nama berkas. Pengguna Lulusan diunduh langsung tanpa pilihan template.
+     Pengunduhan di mockup hanya simulasi (tidak ada berkas). z-[60]: sidebar karirlink z-50. -->
+<div class="modal-backdrop z-[60]" id="exportModal" aria-labelledby="exportTitle">
+  <div class="modal-panel modal-xl">
+    <div class="modal-header">
+      <h3 id="exportTitle" class="modal-title">Ekspor Hasil Kuesioner</h3>
+      <button type="button" class="modal-close" data-modal-hide="exportModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+    </div>
+
+    <div class="modal-body space-y-5 overflow-x-hidden" data-combo-boundary>
+      <fieldset>
+        <legend class="form-label">Kuesioner</legend>
+        <div class="mt-1 grid gap-2.5">
+          <label class="choice group/c"><input type="radio" name="expSource" value="lulusan" checked /><span class="choice-body flex-row items-center gap-3 py-3 pr-10"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-colors group-has-checked/c:bg-primary-600 group-has-checked/c:text-white"><i class="kk kk-graduation-cap h-5 w-5"></i></span><span class="min-w-0"><span class="choice-title block">Lulusan</span><span class="block text-xs font-normal text-fg-muted">Pra-Lulus, Pasca-Lulus 1 dan 4 Tahun</span></span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+          <label class="choice group/c"><input type="radio" name="expSource" value="pengguna" /><span class="choice-body flex-row items-center gap-3 py-3 pr-10"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600 transition-colors group-has-checked/c:bg-info-600 group-has-checked/c:text-white"><i class="kk kk-briefcase h-5 w-5"></i></span><span class="min-w-0"><span class="choice-title block">Pengguna Lulusan</span><span class="block text-xs font-normal text-fg-muted">Penilaian atasan atas kinerja alumni</span></span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+          <label class="choice group/c"><input type="radio" name="expSource" value="kosong" /><span class="choice-body flex-row items-center gap-3 py-3 pr-10"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600 transition-colors group-has-checked/c:bg-secondary-600 group-has-checked/c:text-white"><i class="kk kk-pencil-simple h-5 w-5"></i></span><span class="min-w-0"><span class="choice-title block">Kosong</span><span class="block text-xs font-normal text-fg-muted">Template buatan kampus</span></span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+        </div>
+      </fieldset>
+
+      <fieldset id="expGrpTpl">
+        <legend class="form-label after:ml-0.5 after:text-danger-500 after:content-['*']">Template Laporan</legend>
+        <div class="mt-1 grid gap-2.5 sm:grid-cols-2">
+          <label class="choice group/c"><input type="radio" name="expTpl" value="pddikti" /><span class="choice-body gap-1 pr-10"><span class="flex items-center gap-2"><i class="kk kk-seal-check h-4 w-4 text-primary-600" aria-hidden="true"></i><span class="choice-title">Kemendikti</span></span><span class="text-xs font-normal text-fg-muted">Format pelaporan PDDikti, dipisah per tahun lulus</span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+          <label class="choice group/c"><input type="radio" name="expTpl" value="all" /><span class="choice-body gap-1 pr-10"><span class="flex items-center gap-2"><i class="kk kk-table h-4 w-4 text-primary-600" aria-hidden="true"></i><span class="choice-title">Lengkap</span></span><span class="text-xs font-normal text-fg-muted">Semua pertanyaan dan jawaban alumni</span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+        </div>
+      </fieldset>
+
+      <div class="space-y-5">
+        <div id="expGrpYear" hidden>
+          <label class="form-label after:ml-0.5 after:text-danger-500 after:content-['*']">Tahun Lulus</label>
+          <div id="expYear" class="combo combo-full" data-combo data-value="">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label class="combo-placeholder">Pilih tahun lulus</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item" data-combo-item data-value="2025" data-label="2025 (format v2)">2025 (format v2)</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2024" data-label="2024 (format v1)">2024 (format v1)</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2023" data-label="2023 (format v1)">2023 (format v1)</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2022" data-label="2022 (format v1)">2022 (format v1)</button>
+              </div>
+            </div>
+          </div>
+          <p class="form-hint mt-1.5">Format v2 untuk lulusan 2025 ke atas, v1 untuk sebelumnya.</p>
+        </div>
+        <div id="expGrpProdi">
+          <label class="form-label">Program Studi</label>
+          <div id="expProdi" class="combo combo-full" data-combo data-value="">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Program Studi</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="" data-label="Semua Program Studi">Semua Program Studi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="Teknik Informatika" data-label="Teknik Informatika">Teknik Informatika</button>
+                <button type="button" class="combo-item" data-combo-item data-value="Sistem Informasi" data-label="Sistem Informasi">Sistem Informasi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="Manajemen" data-label="Manajemen">Manajemen</button>
+                <button type="button" class="combo-item" data-combo-item data-value="Akuntansi" data-label="Akuntansi">Akuntansi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="Ilmu Hukum" data-label="Ilmu Hukum">Ilmu Hukum</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="expDirect" class="callout-info flex items-start gap-2.5" hidden>
+        <i class="kk kk-info mt-0.5 h-4 w-4 shrink-0 text-info-600"></i>
+        <p class="text-sm text-fg">Kuesioner Pengguna Lulusan diunduh langsung dalam satu berkas untuk semua program studi, tanpa pilihan template.</p>
+      </div>
+
+      <div id="expGrpFresh" class="flex items-start justify-between gap-4 rounded-control border border-border px-4 py-3">
+        <label for="expFresh" class="min-w-0 cursor-pointer">
+          <span class="block text-sm font-medium text-fg">Menampilkan data terbaru</span>
+          <span class="mt-0.5 block text-xs text-fg-muted">Memakai isian terakhir tiap alumni. Matikan untuk menyertakan semua isian.</span>
+        </label>
+        <span class="toggle shrink-0"><input id="expFresh" type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></span>
+      </div>
+
+      <div id="expProgress" hidden role="status" aria-live="polite">
+        <div class="flex items-center justify-between text-sm"><span id="expLabel" class="font-medium text-primary-700">Memproses...</span><span id="expPct" class="text-fg-muted"></span></div>
+        <div class="progress-track mt-1.5 h-2"><div id="expBar" class="progress-bar animate-pulse" style="width: 100%"></div></div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-outline btn-md" data-modal-hide="exportModal" id="expCancel">Batal</button>
+      <button type="button" class="btn-primary btn-md" id="expGo" disabled><i class="kk kk-download-simple h-4 w-4"></i>Unduh Excel</button>
     </div>
   </div>
 </div>
@@ -829,10 +936,10 @@
                 <fieldset class="rounded-xl border border-primary-100 bg-primary-50/40 p-3.5">
                   <legend class="sr-only">Format kuesioner sesuai tahun lulus alumni</legend>
                   <p class="text-xs font-semibold text-slate-700">Format kuesioner</p>
-                  <p class="mt-0.5 text-[11px] leading-relaxed text-slate-500">Lulusan 2025 ke atas memakai instrumen Kemendikti terbaru; lulusan 2024 ke bawah memakai format lampau.</p>
+                  <p class="mt-0.5 text-[11px] leading-relaxed text-slate-500">Format Baru memakai instrumen Kemendikti terbaru untuk angkatan lulusan baru; Format Lampau untuk angkatan lulusan lama.</p>
                   <div class="mt-2.5 grid gap-1.5 sm:grid-cols-2">
-                    <label class="exit-pill"><input type="radio" name="format" value="2025" class="sr-only" checked disabled /><span>Format 2025 (lulusan ≥ 2025)</span></label>
-                    <label class="exit-pill"><input type="radio" name="format" value="lampau" class="sr-only" disabled /><span>Format lampau (lulusan ≤ 2024)</span></label>
+                    <label class="exit-pill"><input type="radio" name="format" value="2025" class="sr-only" checked disabled /><span>Format Baru</span></label>
+                    <label class="exit-pill"><input type="radio" name="format" value="lampau" class="sr-only" disabled /><span>Format Lampau</span></label>
                   </div>
                 </fieldset>
               </div>
@@ -950,6 +1057,7 @@
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
 <script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/ui.js"></script>
 <script src="../../assets/js/toast.js"></script>
 <script src="../../assets/js/modal.js"></script>
 <script src="../../assets/js/pagination.js"></script>
@@ -1235,6 +1343,200 @@
     document.addEventListener('fullscreenchange', () => {
       const label = modal.querySelector('[data-fs-label]');
       if (label) label.textContent = document.fullscreenElement === modal ? 'Keluar layar penuh' : 'Tampilkan layar penuh';
+    });
+  })();
+</script>
+<script>
+  // KarirKit combo dropdown (self-positioning select replacement).
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front, otherwise
+      // its default static position can inflate the page's scroll width before first open.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Ekspor Hasil (simulasi): pilihan mengikuti "Download Hasil" Tracer Study live; berkas tidak benar-benar dibuat.
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    var modal = $('exportModal');
+    if (!modal) return;
+    var busy = false;
+    function val(name) { var r = modal.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+    function combo(id) { var i = $(id).querySelector('.combo-item.is-selected'); return i ? i.getAttribute('data-value') : ''; }
+    function resetCombo(id, label) {
+      var c = $(id), items = c.querySelectorAll('[data-combo-item]');
+      items.forEach(function (i) { i.classList.remove('is-selected'); });
+      if (id === 'expProdi') items[0].classList.add('is-selected');
+      var l = c.querySelector('[data-combo-label]');
+      l.textContent = label; l.classList.toggle('combo-placeholder', id !== 'expProdi');
+    }
+    function show(id, on) { $(id).hidden = !on; }
+
+    function render() {
+      var src = val('expSource'), tpl = val('expTpl'), yr = combo('expYear');
+      var lulusan = src === 'lulusan', pengguna = src === 'pengguna';
+      show('expGrpTpl', lulusan);
+      show('expGrpYear', lulusan && tpl === 'pddikti');
+      show('expGrpProdi', !pengguna);
+      show('expGrpFresh', !pengguna);
+      show('expDirect', pengguna);
+      // tombol aktif: Lulusan wajib memilih template, dan tahun lulus bila Kemendikti
+      var ready = !lulusan || (tpl && (tpl !== 'pddikti' || yr));
+      $('expGo').disabled = busy || !ready;
+    }
+
+    function open() {
+      modal.querySelector('input[name="expSource"][value="lulusan"]').checked = true;
+      modal.querySelectorAll('input[name="expTpl"]').forEach(function (i) { i.checked = false; });
+      resetCombo('expYear', 'Pilih tahun lulus'); resetCombo('expProdi', 'Semua Program Studi');
+      // posisi menu dihitung saat modal masih tersembunyi (ukuran 0); setel ulang agar tidak melebarkan isi modal
+      modal.querySelectorAll('.combo-menu').forEach(function (m) { m.style.left = '0px'; });
+      $('expFresh').checked = true;
+      show('expProgress', false);
+      render();
+      if (window.KKModal) KKModal.open('exportModal');
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('[data-export-open]')) open();
+    });
+    modal.addEventListener('change', render);
+    modal.addEventListener('click', function (e) { if (e.target.closest('[data-combo-item]')) render(); });
+
+    $('expGo').addEventListener('click', function () {
+      if (busy) return;
+      busy = true;
+      modal.querySelectorAll('input, [data-combo-trigger]').forEach(function (i) { i.disabled = true; });
+      $('expGo').disabled = true; $('expGo').classList.add('btn-loading'); $('expCancel').disabled = true;
+      show('expProgress', true);
+      $('expLabel').textContent = 'Memproses...'; $('expPct').textContent = '';
+      var bar = $('expBar'); bar.classList.add('animate-pulse'); bar.style.width = '100%';
+      var p = 0;
+      setTimeout(function () {
+        bar.classList.remove('animate-pulse'); bar.style.width = '0%'; $('expLabel').textContent = 'Mengunduh...';
+        var t = setInterval(function () {
+          p = Math.min(100, p + 8 + Math.round(Math.random() * 10));
+          bar.style.width = p + '%'; $('expPct').textContent = p + '%';
+          if (p >= 100) {
+            clearInterval(t);
+            setTimeout(function () {
+              if (window.KKModal) KKModal.close('exportModal');
+              if (window.KKToast) KKToast.show({ type: 'success', message: 'Ekspor selesai (simulasi, tidak ada berkas).' });
+              busy = false;
+              modal.querySelectorAll('input, [data-combo-trigger]').forEach(function (i) { i.disabled = false; });
+              $('expGo').classList.remove('btn-loading'); $('expCancel').disabled = false; show('expProgress', false); render();
+            }, 450);
+          }
+        }, 180);
+      }, 900);
     });
   })();
 </script>
