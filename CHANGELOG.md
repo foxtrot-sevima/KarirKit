@@ -2,19 +2,13 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perubahan mockup template KarirLink dan Portal Karir dicatat di `templates/CHANGELOG.md` dengan versi berupa tanggal; pemisahan ini dimulai dari v1.3.7.
+
 ## [Unreleased]
-
-### Added
-
-- **Portal Karir: Pengembangan Diri (Tes dan Course)**: halaman Course digabung dengan tes menjadi `pengembangan.html` (daftar tes dan course, baris "Lanjutkan", filter kategori dan level, "Course saya"). Detail dan belajar course dipisah ke `course.html?id=`.
-- **Tes Minat Karier RIASEC** (30 pernyataan, 6 tipe, kode Holland) sebagai tiga halaman terpisah: `riasec.html` (detail dan riwayat pengerjaan), `riasec-tes.html` (pengerjaan layar penuh dengan komponen Choice, draf tersimpan otomatis, jawaban lanjut otomatis, pintasan keyboard) dan `riasec-hasil.html` (kode karier, diagram radar, skor per tipe, bidang, lowongan dan course yang cocok).
-- **Jalur rekomendasi lowongan dari RIASEC**: hasil tes yang dijadikan acuan dipadukan dengan jawaban onboarding (70:30) untuk persentase cocok di halaman Lowongan, dengan ajakan mengerjakan tes bila belum pernah.
 
 ### Changed
 
 - **Toast bertumpuk** (`assets/js/toast.js`, `.toast-enter`, `.toast-leaving`): tumpukan dari `KKToast.show()` tetap di kanan bawah, toast terbaru di paling atas dan paling banyak 2 yang tampil bersamaan (`KKToast.max`; yang ketiga mengeluarkan yang paling lama). Tiap toast hilang sendiri sesuai durasinya dengan animasi masuk dan memudar halus.
-- Navbar, drawer, dan footer portal-karir memakai "Pengembangan" (Tes dan Course) menggantikan "Course"; skrip `gen-custom-portal.mjs` menerima nama halaman, dan Storybook memuat halaman baru.
-- **Menu "Dashboard" diganti "Overview"** di panel admin KarirLink (label sidebar, tooltip, drawer ponsel, breadcrumb, dan judul halaman) pada semua template `templates/karirlink` dan `templates/custom`.
 
 ## [1.3.7] - 2026-10-13
 
@@ -35,13 +29,9 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
-- **Navbar dan footer di template memakai komponen baru**: bilah atas aplikasi (`.navbar.navbar-sticky.navbar-app`, 16 halaman), header logo halaman error (`.navbar.navbar-plain`, 8 halaman), footer aplikasi (`.footer.footer-bar`, 14 halaman) dan footer tengah login/error (`.footer.footer-center`, 10 halaman). Tampilan tidak berubah.
 - **Badge hero `index.html`** kini berbunyi "Dibangun dengan Tailwind CSS v4" tanpa nomor versi, supaya tidak perlu diubah setiap rilis.
-- **Mahasiswa/Alumni dirombak penuh** (daftar dan detail di panel admin KarirLink): daftar memakai tabel standar (No, urut, cari nama/NIM/email, filter Program Studi, Angkatan, Tipe, Status Karier, paginasi, KPI mengikuti filter) dan tanpa avatar; detail berisi profil, progres Tracer Study per gelombang, riwayat karier (Timeline), preferensi karier, dan tabel aktivitas lamaran, tanpa data yang diulang.
-- **Yudisium, detail Yudisium, dan detail Arsip Kuesioner** memakai kelas pola tabel baru, sehingga toolbar, tombol aksi, dan badge statusnya seragam.
 - **Footer tabel (`.table-footer`) rata tengah di ponsel**: teks info di atas, nomor halaman di bawahnya; dari `sm` kembali ke satu baris.
 - **Label dropdown `.combo`** tidak lagi membungkus ke baris kedua (dipotong dengan elipsis bila terlalu panjang).
-- **Template Portal Karir didesain ulang** sebagai halaman dengan navbar atas: kartu lowongan, detail satu gulir, dan pelacak lamaran.
 
 ## [1.3.6] - 2026-10-12
 
@@ -146,7 +136,6 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   (`kk-brand-google`, `kk-app-siakadcloud`) sebagai pengganti SVG inline.
 - **Storybook**: halaman **Foundations → Theming** digabung ke **Foundations → Colors** (satu halaman "Colors & Theming": palet warna, lalu panduan mode terang/gelap; `Theming.mdx` menjadi `Colors.mdx`).
   Ikon tab Storybook diganti menjadi ikon KarirKit (`.storybook/public/favicon.svg`, salinan `assets/logo/karirkit-mark.svg`).
-
 
 ## [1.3.4] - 2026-10-06
 
