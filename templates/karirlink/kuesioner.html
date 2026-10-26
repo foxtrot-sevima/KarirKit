@@ -721,7 +721,7 @@
       <button type="button" class="modal-close" data-modal-hide="exportModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
     </div>
 
-    <div class="modal-body space-y-5" data-combo-boundary>
+    <div class="modal-body space-y-5 overflow-x-hidden" data-combo-boundary>
       <fieldset>
         <legend class="form-label">Kuesioner</legend>
         <div class="mt-1 grid gap-2.5">
@@ -1488,6 +1488,8 @@
       modal.querySelector('input[name="expSource"][value="lulusan"]').checked = true;
       modal.querySelectorAll('input[name="expTpl"]').forEach(function (i) { i.checked = false; });
       resetCombo('expYear', 'Pilih tahun lulus'); resetCombo('expProdi', 'Semua Program Studi');
+      // posisi menu dihitung saat modal masih tersembunyi (ukuran 0); setel ulang agar tidak melebarkan isi modal
+      modal.querySelectorAll('.combo-menu').forEach(function (m) { m.style.left = '0px'; });
       $('expFresh').checked = true;
       show('expProgress', false);
       render();
