@@ -351,12 +351,12 @@
           <div class="space-y-5 p-5">
             <div data-lp-image="logo" data-lp-max="512">
               <label class="form-label">Logo Career Center</label>
-              <p class="form-hint">Gunakan gambar rasio 1:1, disarankan minimal 720×720 piksel. Tampil di navbar dan footer.</p>
+              <p class="form-hint">Gunakan gambar rasio 1:1, disarankan minimal 720×720 piksel. Tampil di navbar dan footer portal, serta di panel admin setelah dipublikasikan.</p>
               <label class="lp-drop"><input type="file" accept=".jpg,.jpeg,.png" class="sr-only" data-lp-file />
                 <span class="lp-thumb" data-lp-thumb><i class="kk kk-image h-5 w-5 text-slate-300"></i></span>
                 <span class="min-w-0 flex-1 text-sm"><span class="block truncate font-medium text-slate-700" data-lp-filename>Klik untuk pilih file</span><span class="block text-xs text-slate-400">JPG, JPEG, atau PNG (maks. 2 MB)</span></span>
               </label>
-              <button type="button" class="mt-2 text-xs font-medium text-danger-600 hover:underline" data-lp-clear hidden>Hapus gambar (pakai logo bawaan)</button>
+              <button type="button" class="mt-2 text-xs font-medium text-danger-600 hover:underline" data-lp-clear hidden>Hapus logo</button>
               <p class="form-error mt-1.5" data-lp-error hidden></p>
             </div>
           </div>
@@ -374,7 +374,7 @@
                 <span class="lp-thumb" data-lp-thumb><i class="kk kk-image h-5 w-5 text-slate-300"></i></span>
                 <span class="min-w-0 flex-1 text-sm"><span class="block truncate font-medium text-slate-700" data-lp-filename>Klik untuk pilih file</span><span class="block text-xs text-slate-400">JPG, JPEG, atau PNG (maks. 2 MB)</span></span>
               </label>
-              <button type="button" class="mt-2 text-xs font-medium text-danger-600 hover:underline" data-lp-clear hidden>Hapus gambar (pakai gradien bawaan)</button>
+              <button type="button" class="mt-2 text-xs font-medium text-danger-600 hover:underline" data-lp-clear hidden>Hapus background</button>
               <p class="form-error mt-1.5" data-lp-error hidden></p>
             </div>
             <div>
@@ -1093,10 +1093,12 @@
       }
       if (!LP.publish(state)) { toast('danger', 'Gagal publish: penyimpanan penuh. Perkecil atau hapus beberapa gambar.'); return; }
       updateStatus(); refreshPreview(true);
+      if (window.KarirAdminBrand) KarirAdminBrand.apply(); // logo Career Center terbit juga menggantikan logo di panel admin
       toast('success', 'Halaman landing page berhasil dipublish.');
     });
     $('#lpResetOk').addEventListener('click', () => {
       LP.reset(); state = clone(DEFAULTS); syncToggles(); KKModal.close('lpResetModal');
+      if (window.KarirAdminBrand) KarirAdminBrand.apply(); // kembali ke logo KarirLink bawaan
       show('list'); refreshPreview(true);
       toast('success', 'Landing page dikembalikan ke isian awal.');
     });
@@ -1141,5 +1143,6 @@
     refreshPreview(true);
   })();
 </script>
+<script src="admin-brand.js"></script>
 </body>
 </html>

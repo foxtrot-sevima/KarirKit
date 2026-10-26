@@ -106,14 +106,22 @@
     if (T.length && $('lpTestimoni')) {
       $('lpTestimoniGrid').innerHTML = T.map(function (t) {
         var photo = t.photo ? '<img src="' + esc(t.photo) + '" alt="" class="absolute inset-0 h-full w-full object-cover" />' : '';
-        var logo = t.companyLogo ? '<img src="' + esc(t.companyLogo) + '" alt="' + esc(t.company) + '" class="h-6 w-auto max-w-[6rem] object-contain" />' : '<span class="text-xs font-semibold text-fg-muted">' + esc(t.company) + '</span>';
+        // logo perusahaan seperti logo di kartu lowongan: kotak persegi ukuran tetap (h-11 w-11), gambar dimuat utuh di dalamnya;
+        // tanpa logo, inisial perusahaan
+        var logoBox = '<span class="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-border bg-white text-sm font-bold text-primary-700" aria-hidden="true">' +
+          (t.companyLogo ? '<img src="' + esc(t.companyLogo) + '" alt="" class="absolute inset-0 h-full w-full object-contain p-1.5" />' : esc(initials(t.company))) + '</span>';
         return '<figure class="card flex h-full flex-col p-5 sm:p-6">' +
-          '<blockquote class="flex-1 text-sm leading-relaxed text-fg-muted">&ldquo;' + esc(t.comment) + '&rdquo;</blockquote>' +
-          '<figcaption class="mt-5 flex items-center gap-3 border-t border-border pt-4">' +
-            '<span class="avatar avatar-square relative h-11 w-11 shrink-0 overflow-hidden bg-primary-50 text-sm font-bold text-primary-700">' + esc(initials(t.name)) + photo + '</span>' +
-            '<span class="min-w-0 flex-1"><span class="block truncate text-sm font-semibold text-fg">' + esc(t.name) + '</span>' +
-            '<span class="block truncate text-xs text-fg-muted">' + esc(t.position) + ' di ' + esc(t.company) + '</span>' +
-            '<span class="block truncate text-xs text-fg-subtle">' + esc(t.program) + ' · Lulus ' + esc(t.year) + '</span></span>' + logo +
+          '<div class="flex items-center justify-between gap-3">' +
+            '<div class="flex min-w-0 items-center gap-3">' + logoBox + '<span class="min-w-0 truncate text-sm font-semibold text-fg">' + esc(t.company) + '</span></div>' +
+            '<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600"><i class="kk kk-quotes h-4 w-4" aria-hidden="true"></i></span>' +
+          '</div>' +
+          '<blockquote class="mt-4 flex-1 text-sm leading-relaxed text-fg">&ldquo;' + esc(t.comment) + '&rdquo;</blockquote>' +
+          '<figcaption class="mt-5 border-t border-border pt-4">' +
+            '<div class="flex items-center gap-3">' +
+              '<span class="avatar avatar-lg relative shrink-0 overflow-hidden bg-primary-50 font-bold text-primary-700">' + esc(initials(t.name)) + photo + '</span>' +
+              '<span class="min-w-0"><span class="block text-sm font-semibold text-fg">' + esc(t.name) + '</span><span class="block text-xs leading-snug text-fg-muted">' + esc(t.position) + '</span></span>' +
+            '</div>' +
+            '<div class="mt-3 flex flex-wrap gap-1.5"><span class="badge-neutral">' + esc(t.program) + '</span><span class="badge-neutral">Lulus ' + esc(t.year) + '</span></div>' +
           '</figcaption></figure>';
       }).join('');
       $('lpTestimoni').hidden = false;
