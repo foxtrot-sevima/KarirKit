@@ -340,18 +340,26 @@
         <p class="mt-1 text-sm text-slate-500">Kelola template pertanyaan untuk tiga sasaran responden.<span class="hidden sm:inline"> Hanya template <span class="font-medium text-slate-700">Kosong</span> yang mendukung banyak versi.</span></p>
       </div>
       <div class="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap xl:shrink-0 xl:flex-nowrap">
-        <button type="button" id="openPanduanBtn" class="btn-outline btn-md w-full sm:w-auto">
-          <i class="kk kk-question h-4 w-4 shrink-0"></i>
-          Lihat Panduan
-        </button>
-        <button type="button" class="btn-outline btn-md w-full sm:w-auto" data-modal-toggle="qrPresentModal" title="QR code Tracer Study">
-          <i class="kk kk-qr-code h-4 w-4 shrink-0"></i>
-          QR Tracer
-        </button>
-        <button type="button" class="btn-outline btn-md w-full sm:w-auto" data-export-open>
-          <i class="kk kk-download-simple h-4 w-4 shrink-0"></i>
-          Ekspor Hasil
-        </button>
+        <div class="dropdown w-full sm:w-auto">
+          <button type="button" class="btn-outline btn-md w-full sm:w-auto" data-ui-dropdown aria-haspopup="menu">
+            Lainnya
+            <i class="kk kk-caret-down h-4 w-4 shrink-0"></i>
+          </button>
+          <div class="dropdown-menu hidden w-52">
+            <button type="button" id="openPanduanBtn" class="dropdown-item" data-ui-dropdown-close>
+              <i class="kk kk-question h-4 w-4 shrink-0"></i>
+              Lihat Panduan
+            </button>
+            <button type="button" class="dropdown-item" data-modal-toggle="qrPresentModal" data-ui-dropdown-close>
+              <i class="kk kk-qr-code h-4 w-4 shrink-0"></i>
+              QR Tracer
+            </button>
+            <button type="button" class="dropdown-item" data-export-open data-ui-dropdown-close>
+              <i class="kk kk-download-simple h-4 w-4 shrink-0"></i>
+              Ekspor Hasil
+            </button>
+          </div>
+        </div>
         <button type="button" class="btn-primary btn-md w-full sm:w-auto" data-modal-toggle="simulasiPilihModal">
           <i class="kk kk-eye h-4 w-4 shrink-0"></i>
           Simulasi Tracer
@@ -1049,6 +1057,7 @@
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
 <script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/ui.js"></script>
 <script src="../../assets/js/toast.js"></script>
 <script src="../../assets/js/modal.js"></script>
 <script src="../../assets/js/pagination.js"></script>
