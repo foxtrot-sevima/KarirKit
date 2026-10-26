@@ -8,7 +8,7 @@ export default {
     docs: {
       description: {
         component:
-          "Notifikasi sementara, mencakup seluruh layout contoh. Anatomi: `.toast` > `.toast-icon` + isi + `.toast-close`. Varian ikon: `.toast-icon-success|danger|warning|info`; varian latar penuh: `.toast-danger` / `.toast-warning`. Letakkan di `.toast-region` + modifier posisi (`.toast-top-left|top-right|bottom-left|bottom-right`). Tombol `[data-toast-dismiss]` menutup toast terdekat (handler di `assets/js/toast.js`); `[data-toast-show]` menampilkan toast contoh.",
+          "Notifikasi sementara, mencakup seluruh layout contoh. Anatomi: `.toast` > `.toast-icon` + isi + `.toast-close`. Varian ikon: `.toast-icon-success|danger|warning|info`; varian latar penuh: `.toast-danger` / `.toast-warning`. Letakkan di `.toast-region` + modifier posisi (`.toast-top-left|top-right|bottom-left|bottom-right`). Tombol `[data-toast-dismiss]` menutup toast terdekat (handler di `assets/js/toast.js`); `[data-toast-show]` menampilkan toast contoh. Lewat `KKToast.show()` toast terbaru tampil di paling atas tumpukan dan paling banyak 2 yang tampil bersamaan (`KKToast.max`); yang ketiga mengeluarkan yang paling lama.",
       },
     },
   },

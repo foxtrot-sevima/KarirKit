@@ -2,7 +2,35 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perubahan mockup template KarirLink dan Portal Karir dicatat di `templates/CHANGELOG.md` dengan versi berupa tanggal; pemisahan ini dimulai dari v1.4.0.
+
 ## [Unreleased]
+
+## [1.4.0] - 2026-10-26
+
+### Added
+
+- **Komponen Drawer** (`.drawer` + `.drawer-left|right|top|bottom`, `.drawer-header`, `.drawer-title`, `.drawer-close`, `.drawer-body`, `.drawer-footer`, `.drawer-edge`, `.drawer-handle`; `assets/js/drawer.js`): panel yang meluncur dari tepi layar dengan latar gelap otomatis, kunci gulir halaman, Escape, jebakan fokus, dan pengembalian fokus. Atribut `data-drawer-toggle|show|hide`, `-placement`, `-backdrop="false|static"`, `-body-scrolling`, `-keyboard`; event `drawer:show|hide`; API `KKDrawer`. Delapan contoh: default, posisi, bottom sheet berpegangan, penguncian halaman, opsi latar, navigasi, formulir kontak, dan filter.
+- **Logo lockup SEVIMA** (`assets/logo/karirlink-sevima.svg`, `karirlink-sevima-white.svg`): lockup KarirLink dengan penanda SEVIMA untuk portal-karir, varian warna dan putih. Ditambahkan ke bagian Logo `index.html`, README, dan halaman Foundations -> Colors.
+- **Komponen Navbar** (`.navbar`, `.navbar-inner`, `.navbar-brand`, `.navbar-toggle`, `.navbar-menu`, `.navbar-nav`, `.navbar-link`, `.navbar-actions`; varian `.navbar-sticky`, `-fixed`, `-solid`, `-plain`, `-app`): 11 contoh - dasar, dropdown, dropdown bertingkat, tombol ajakan, dua baris, pencarian, pemilih bahasa, menu pengguna, mega menu, latar solid, dan menu hamburger. Menu ponsel lewat `data-ui-collapse` (atribut baru `data-ui-collapse-static` agar ikon tombol tidak berputar).
+- **Komponen Footer** (`.footer`, `.footer-card`, `.footer-inner`, `.footer-row`, `.footer-copy`, `.footer-links`, `.footer-heading`, `.footer-list`, `.footer-divider`, `.footer-social`, `.footer-fixed`, `.footer-bar`, `.footer-center`): enam contoh - dasar, dengan logo, ikon sosial, peta situs, menempel di bawah, dan varian ringkas halaman aplikasi.
+- **Komponen Tabs** (`.tabs` + `.tabs-default`, `.tabs-underline`, `.tabs-pills`, `.tabs-vertical`, `.tabs-full` > `.tabs-item`): tab berlatar, bergaris bawah (dengan ikon), pil, vertikal, selebar kontainer dengan `select` di ponsel, serta tab interaktif dengan panel dan warna aktif/nonaktif yang dapat diganti (`data-ui-tabs-active-classes`, `-inactive-classes`). `ui.js` kini mendukung navigasi panah/Home/End, `select` pendamping (`data-ui-tab-select`), dan tidak melompat ke atas untuk tab bertautan `#`. Sembilan contoh di Storybook dan `index.html`; tab bersegmen `.tab` tidak berubah.
+- **Komponen Timeline** (`.timeline`, `.timeline-item`, `.timeline-marker`, `.timeline-dot`, `.timeline-time`, `.timeline-title`, `.timeline-body`, `.timeline-steps`): urutan peristiwa vertikal (titik polos dan penanda berikon), stepper mendatar yang menumpuk di ponsel, log aktivitas dengan avatar, dan linimasa berkelompok per tanggal. Hanya CSS. Lima contoh di Storybook dan `index.html`.
+- **Pola tabel daftar admin** (`.table-search`, `.table-filters`, `.table-toolbar-many`, `.table-col-aside`, `.table-action` + `.table-action-label`, `.badge-wrap`, `.card-heading` + `.card-heading-icon`): toolbar dengan pencarian di kiri dan filter di kanan (4 filter atau lebih jadi grid 1/2/4 kolom), kolom pendamping yang menyingkir di lebar sempit, tombol aksi baris ikon saja di bawah `xl`, badge status yang membungkus di ponsel, dan judul kartu berikon. Satu contoh baru di Storybook: "Admin list (filter, status, aksi)".
+- **Pemeriksa template** (`npm run check:templates`, `scripts/check-templates.mjs`): mendaftar halaman mockup yang membawa blok `<style>` atau stylesheet sendiri, dan memeriksa bahwa "Dasar KarirKit" di `templates/CHANGELOG.md` sudah bertag. `--strict` keluar dengan kode non-nol sebagai gerbang sebelum merge.
+
+### Fixed
+
+- **Pilihan periode pada layout kartu Chart** kini memakai kelas `input` (sebelumnya kelas `select` yang tidak ada, sehingga tampil tanpa gaya).
+- **Contoh Dropdown navbar** tidak lagi membuat halaman `index.html` bergeser ke samping di layar ponsel (tautan navbar kini membungkus ke baris berikutnya).
+
+### Changed
+
+- **Halaman dokumentasi `index.html` memakai kerangka aplikasi dokumentasi**: sidebar bergrup (Foundation, Components, Forms, Plugins) dengan pencarian dan pintasan Ctrl/Cmd + K, topbar dengan breadcrumb dan pilihan tema, satu bagian tampil per halaman lewat hash (`#colors`). Di bawah `lg` sidebar menjadi Drawer. Hero dan navigasi pill dihapus; KarirIcon dan Template tetap tertaut dari sidebar.
+- **`dist/` tidak lagi di-commit** (masuk `.gitignore`): `dist/output.css` dibangun lewat `npm run build` di lokal setelah clone, di workflow publish, dan di Vercel. Mengurangi konflik merge pada file satu baris berukuran besar; aplikasi FE yang memakai `@foxtrot-sevima/karirkit/theme` tidak terpengaruh.
+- **Toast bertumpuk** (`assets/js/toast.js`, `.toast-enter`, `.toast-leaving`): tumpukan dari `KKToast.show()` tetap di kanan bawah, toast terbaru di paling atas dan paling banyak 2 yang tampil bersamaan (`KKToast.max`; yang ketiga mengeluarkan yang paling lama). Tiap toast hilang sendiri sesuai durasinya dengan animasi masuk dan memudar halus.
+- **Footer tabel (`.table-footer`) rata tengah di ponsel**: teks info di atas, nomor halaman di bawahnya; dari `sm` kembali ke satu baris.
+- **Label dropdown `.combo`** tidak lagi membungkus ke baris kedua (dipotong dengan elipsis bila terlalu panjang).
 
 ## [1.3.6] - 2026-10-12
 
@@ -107,7 +135,6 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   (`kk-brand-google`, `kk-app-siakadcloud`) sebagai pengganti SVG inline.
 - **Storybook**: halaman **Foundations → Theming** digabung ke **Foundations → Colors** (satu halaman "Colors & Theming": palet warna, lalu panduan mode terang/gelap; `Theming.mdx` menjadi `Colors.mdx`).
   Ikon tab Storybook diganti menjadi ikon KarirKit (`.storybook/public/favicon.svg`, salinan `assets/logo/karirkit-mark.svg`).
-
 
 ## [1.3.4] - 2026-10-06
 
@@ -630,10 +657,10 @@ Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   yang sama seperti komponen lain.
 - Section **"Table — Katalog Produk"** baru di `index.html` (setelah
   DataTable) - tabel konten "kaya" (thumbnail ikon, rating bintang, harga,
-  badge status) yang mengikuti fitur tabel produk Metronic
-  (`ecommerce/catalog/products.html`) sebagai referensi struktur/fitur saja -
+  badge status) untuk tabel produk dengan toolbar dan filter
+  (`ecommerce/catalog/products.html`), struktur dan fiturnya sebagai acuan saja -
   dibangun 100% dari komponen & token KarirKit sendiri (`.table`, `.combo`,
-  `.badge-*`, `.dropdown-menu`), bukan markup/kelas Bootstrap-nya. Termasuk
+  `.badge-*`, `.dropdown-menu`). Termasuk
   toolbar pencarian + filter status (`.combo`) + tombol "Tambah Produk" yang
   live-filtered lewat JS (nama produk + status, dengan pesan kosong "Tidak
   ada produk yang cocok." mengikuti pola DataTable), checkbox pilih-baris +

@@ -18770,6 +18770,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
            focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/10 focus-visible:border-primary-400;
   }
   .combo[data-open="true"] .combo-trigger { @apply ring-4 ring-primary-500/10 border-primary-400; }
+  .combo-trigger [data-combo-label] { @apply min-w-0 flex-1 truncate whitespace-nowrap; }
   .combo-tags { @apply flex flex-1 flex-wrap items-center gap-1.5; }
   .combo-placeholder { @apply text-fg-subtle; }
   .combo-chevron { @apply h-4 w-4 shrink-0 text-fg-subtle transition-transform; transition-duration: var(--duration-fast); }
@@ -19143,7 +19144,11 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   }
   .toast-center > .toast-close { @apply self-center; }
   .toast-action { @apply cursor-pointer text-sm font-semibold text-primary-600 hover:text-primary-700 hover:underline; }
-  .toast-leaving { @apply opacity-0 transition-opacity duration-200; }
+  /* Toast baru masuk dari atas; yang hilang memudar perlahan di tempatnya (toast.js menggeser sisanya). */
+  .toast-enter { animation: toast-in .26s cubic-bezier(.2, .8, .2, 1); }
+  .toast-leaving { @apply pointer-events-none -translate-y-1 opacity-0 transition-[opacity,translate] duration-300; }
+  @keyframes toast-in { from { opacity: 0; transform: translateY(-12px) scale(.97); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .toast-enter { animation: none; } .toast-leaving { @apply translate-y-0 duration-150; } }
   .toast-region { @apply fixed z-[var(--z-toast)] flex flex-col gap-3 p-4; }
   .toast-region-contained { @apply absolute; }
   .toast-top-left { @apply top-0 left-0; }
@@ -19527,6 +19532,103 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
     @apply inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 border border-primary-600 bg-primary-600 px-4 text-sm font-semibold text-white
            transition-colors hover:bg-primary-700 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/40;
   }
+  /* ==== Drawer — .drawer[.drawer-left|right|top|bottom] > .drawer-header + .drawer-body + .drawer-footer ====
+     Behaviour: assets/js/drawer.js (data-drawer-*). Closed = off-screen + invisible; .is-open slides it in. */
+  .drawer {
+    @apply invisible fixed z-40 flex flex-col overflow-hidden bg-surface shadow-card-lg outline-none;
+    transition: translate 0.3s ease-out, visibility 0s linear 0.3s;
+  }
+  .drawer-left { @apply inset-y-0 left-0 w-80 max-w-full -translate-x-full border-r border-border; }
+  .drawer-right { @apply inset-y-0 right-0 w-80 max-w-full translate-x-full border-l border-border; }
+  .drawer-top { @apply inset-x-0 top-0 max-h-[85vh] -translate-y-full border-b border-border; }
+  .drawer-bottom { @apply inset-x-0 bottom-0 max-h-[85vh] translate-y-full rounded-t-card border-t border-border; }
+  .drawer-contained { @apply absolute; }
+  .drawer-edge { @apply visible translate-y-[calc(100%-3.75rem)]; transition: translate 0.3s ease-out; }
+  .drawer.is-open { @apply visible translate-x-0 translate-y-0; transition: translate 0.3s ease-out, visibility 0s; }
+  .drawer-header { @apply flex shrink-0 items-center justify-between gap-4 border-b border-border-subtle px-5 py-4; }
+  .drawer-title { @apply text-base font-semibold text-fg; }
+  .drawer-close { @apply inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-control text-fg-muted transition-colors hover:bg-neutral-100 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500; }
+  .drawer-body { @apply flex-1 overflow-y-auto p-5 text-sm text-fg-muted; }
+  .drawer-footer { @apply flex shrink-0 items-center gap-3 border-t border-border-subtle p-4; }
+  .drawer-handle { @apply relative block h-[3.75rem] w-full cursor-pointer text-center transition-colors hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500; }
+  .drawer-grab { @apply absolute left-1/2 top-3 h-1 w-8 -translate-x-1/2 rounded-full bg-neutral-300; }
+  .drawer-backdrop { @apply fixed inset-0 z-30 bg-black/50 opacity-0 transition-opacity duration-300; }
+  .drawer-backdrop.is-open { @apply opacity-100; }
+
+  /* ==== Navbar — nav.navbar > .navbar-inner > .navbar-brand + .navbar-toggle + .navbar-menu > ul.navbar-nav > li > .navbar-link ====
+     Mobile menu: data-ui-collapse (assets/js/ui.js). Active link: aria-current="page" | .is-active. */
+  .navbar { @apply relative z-20 w-full border-b border-border bg-surface; }
+  .navbar-solid { @apply bg-neutral-50; }
+  .navbar-plain { @apply border-0 bg-transparent; }
+  .navbar-sticky { @apply sticky top-0 z-30; }
+  .navbar-fixed { @apply fixed inset-x-0 top-0 z-30; }
+  .navbar-app { @apply flex h-16 items-center justify-between border-border/70 bg-surface/80 px-4 backdrop-blur-md sm:px-6; }
+  .navbar-inner { @apply mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-y-2 p-4; }
+  .navbar-brand { @apply flex items-center gap-3 whitespace-nowrap text-xl font-semibold text-fg; }
+  .navbar-toggle { @apply inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-control text-fg-muted transition-colors hover:bg-neutral-100 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 md:hidden; }
+  .navbar-toggle-always { @apply md:inline-flex; }
+  .navbar-menu { @apply hidden w-full md:block md:w-auto; }
+  .navbar-nav { @apply mt-4 flex flex-col rounded-control border border-border bg-neutral-50 p-4 font-medium md:mt-0 md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0; }
+  .navbar-link { @apply block cursor-pointer rounded-lg px-3 py-2 text-fg transition-colors hover:bg-neutral-100 md:p-0 md:hover:bg-transparent md:hover:text-primary-600; }
+  .navbar-link[aria-current="page"], .navbar-link.is-active { @apply bg-primary-600 text-white hover:bg-primary-600 md:bg-transparent md:text-primary-600 md:hover:bg-transparent; }
+  .navbar-actions { @apply flex items-center gap-3 md:order-2; }
+
+  /* ==== Footer — footer.footer[.footer-card|.footer-bar|.footer-center|.footer-fixed] > .footer-inner ==== */
+  .footer { @apply bg-surface; }
+  .footer-card { @apply rounded-card border border-border shadow-card; }
+  .footer-inner { @apply mx-auto w-full max-w-7xl p-4; }
+  .footer-row { @apply md:flex md:items-center md:justify-between; }
+  .footer-copy { @apply text-sm text-fg-muted sm:text-center; }
+  .footer-copy a { @apply hover:underline; }
+  .footer-links { @apply flex flex-wrap items-center gap-x-4 text-sm font-medium text-fg-muted md:gap-x-6; }
+  .footer-link { @apply hover:underline; }
+  .footer-heading { @apply mb-6 text-sm font-semibold uppercase text-fg; }
+  .footer-list { @apply space-y-4 font-medium text-fg-muted; }
+  .footer-divider { @apply my-6 border-border sm:mx-auto lg:my-8; }
+  .footer-social { @apply flex gap-5 text-fg-muted sm:justify-center; }
+  .footer-social a { @apply transition-colors hover:text-fg; }
+  .footer-fixed { @apply fixed bottom-0 left-0 z-20 w-full border-t border-border p-4 shadow-sm md:flex md:items-center md:justify-between md:p-6; }
+  .footer-bar { @apply flex flex-col items-center justify-between gap-3 border-t border-border px-4 py-4 text-xs text-fg-subtle sm:flex-row sm:px-6; }
+  .footer-center { @apply bg-transparent pb-6 text-center text-xs text-fg-subtle; }
+
+  /* ==== Tabs — .tabs[.tabs-default|-underline|-pills|-vertical|-full] > .tabs-item (a | button) ====
+     Active: aria-current="page" | aria-selected="true" | .is-active. Disabled: aria-disabled="true" | :disabled. Behaviour: assets/js/ui.js (data-ui-tabs). */
+  .tabs { @apply flex flex-wrap text-center text-sm font-medium text-fg-muted; }
+  .tabs-item { @apply inline-flex cursor-pointer items-center justify-center gap-2 p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500; }
+  .tabs-item[aria-disabled="true"], .tabs-item:disabled { @apply pointer-events-none cursor-not-allowed text-fg-subtle; }
+  .tabs-default { @apply border-b border-border; }
+  .tabs-default .tabs-item { @apply rounded-t-control hover:bg-neutral-100 hover:text-fg; }
+  .tabs-default .tabs-item[aria-current="page"], .tabs-default .tabs-item[aria-selected="true"], .tabs-default .tabs-item.is-active { @apply bg-neutral-100 text-primary-600; }
+  .tabs-underline { @apply border-b border-border; }
+  .tabs-underline .tabs-item { @apply -mb-px rounded-t-control border-b-2 border-transparent hover:border-primary-300 hover:text-primary-600; }
+  .tabs-underline .tabs-item[aria-current="page"], .tabs-underline .tabs-item[aria-selected="true"], .tabs-underline .tabs-item.is-active { @apply border-primary-600 text-primary-600; }
+  .tabs-pills { @apply gap-1; }
+  .tabs-pills .tabs-item, .tabs-vertical .tabs-item { @apply rounded-control px-4 py-2.5 hover:bg-neutral-100 hover:text-fg; }
+  .tabs-pills .tabs-item[aria-current="page"], .tabs-pills .tabs-item[aria-selected="true"], .tabs-pills .tabs-item.is-active,
+  .tabs-vertical .tabs-item[aria-current="page"], .tabs-vertical .tabs-item[aria-selected="true"], .tabs-vertical .tabs-item.is-active { @apply bg-primary-600 text-white hover:bg-primary-600 hover:text-white; }
+  .tabs-vertical { @apply flex-col flex-nowrap gap-1; }
+  .tabs-vertical .tabs-item { @apply w-full justify-start; }
+  .tabs-full { @apply flex-nowrap -space-x-px; }
+  .tabs-full .tabs-item { @apply flex-1 border border-border bg-surface px-4 py-2.5 hover:bg-neutral-50 hover:text-fg focus-visible:z-10; }
+  .tabs-full .tabs-item:first-child { @apply rounded-l-control; }
+  .tabs-full .tabs-item:last-child { @apply rounded-r-control; }
+  .tabs-full .tabs-item[aria-current="page"], .tabs-full .tabs-item[aria-selected="true"], .tabs-full .tabs-item.is-active { @apply z-10 border-primary-300 bg-primary-50 text-primary-700; }
+
+  /* ==== Timeline — vertical: ol.timeline > li.timeline-item; horizontal: ol.timeline-steps > li.timeline-step ==== */
+  .timeline { @apply relative border-s-2 border-neutral-200; }
+  .timeline-item { @apply mb-10 ms-6 last:mb-0; }
+  .timeline-item-dot { @apply ms-4; }
+  .timeline-marker { @apply absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 text-primary-700 ring-8 ring-surface; }
+  .timeline-dot { @apply absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-surface bg-neutral-300; }
+  .timeline-time { @apply text-sm font-normal leading-none text-fg-muted; }
+  .timeline-title { @apply my-2 text-lg font-semibold text-fg; }
+  .timeline-body { @apply mb-4 text-base font-normal text-fg-muted; }
+  .timeline-steps { @apply items-center sm:flex; }
+  .timeline-step { @apply relative mb-6 sm:mb-0 sm:flex-1; }
+  .timeline-step-track { @apply flex items-center; }
+  .timeline-step-marker { @apply z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-100 text-primary-700 sm:ring-8 sm:ring-surface; }
+  .timeline-step-line { @apply hidden h-0.5 w-full bg-neutral-200 sm:flex; }
+
   /* ==== List group — .list-group > .list-group-item (li | a | button) ==== */
   .list-group { @apply w-full overflow-hidden rounded-control border border-border bg-surface text-sm font-medium text-fg; }
   .list-group-flush { @apply rounded-none border-0; }
@@ -19589,10 +19691,30 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   th[aria-sort="ascending"] .sort-icon,
   th[aria-sort="descending"] .sort-icon { @apply text-primary-600 opacity-100; }
   .table-toolbar { @apply flex flex-wrap items-center justify-between gap-3 border-b border-border-subtle p-4; }
-  .table-footer { @apply flex flex-wrap items-center justify-between gap-3 border-t border-border-subtle px-4 py-3 text-sm text-fg-muted; }
+  .table-footer { @apply flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left border-t border-border-subtle px-4 py-3 text-sm text-fg-muted; }
   .table-footer b { @apply font-semibold text-fg; }
   .table-bulk { @apply flex items-center gap-3 border-b border-primary-100 bg-primary-50 px-4 py-2.5 text-sm text-primary-700; }
   .table-empty { @apply px-4 py-12 text-center text-sm text-fg-muted; }
+  /* Admin list patterns (karirlink): toolbar filters, responsive columns, row action, status badge.
+     .table-filters       -> filter dropdowns (.combo) stack on phones, sit in a row from sm.
+     .table-toolbar-many  -> add to .table-toolbar when there are 4+ filters: search takes its own row and
+                            filters become a 1/2/4-column grid, one inline row only from 2xl.
+     .table-col-aside     -> secondary column: shown md, hidden lg (sidebar narrows the content), back at xl.
+     .table-action        -> row action button: icon only below xl, icon + .table-action-label from xl.
+     .badge-wrap          -> long status label wraps on phones instead of stretching its column. */
+  .table-filters { @apply flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center; }
+  .table-filters > .combo { @apply w-full sm:w-48; }
+  .table-toolbar-many .table-search { @apply w-full 2xl:w-56; }
+  .table-toolbar-many .table-filters { @apply grid w-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 2xl:flex 2xl:w-auto 2xl:items-center; }
+  .table-toolbar-many .table-filters > .combo { @apply w-full 2xl:w-52; }
+  .table-search { @apply relative w-full sm:w-64; }
+  .table-col-aside { @apply hidden md:table-cell lg:hidden xl:table-cell; }
+  .table-action { @apply whitespace-nowrap max-xl:w-8 max-xl:px-0; }
+  .table-action-label { @apply hidden xl:inline; }
+  .badge-wrap { @apply max-w-[112px] whitespace-normal text-left sm:max-w-none sm:whitespace-nowrap; }
+  .badge-wrap > .badge-dot { @apply hidden sm:inline-block; }
+  .card-heading { @apply flex items-center gap-2.5 text-base font-semibold text-fg; }
+  .card-heading-icon { @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-lg; }
   .counter { @apply inline-flex items-center rounded-lg border border-border bg-surface; }
   .counter-btn {
     @apply inline-flex h-8 w-8 cursor-pointer items-center justify-center text-fg-muted transition-colors first:rounded-l-lg last:rounded-r-lg hover:bg-neutral-100

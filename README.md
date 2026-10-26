@@ -19,7 +19,7 @@ tetap konsisten. Proyek internal SEVIMA (Foxtrot).
 - **Dashboard contoh** (`templates/dashboard.html`) — implementasi nyata: AI Career
   Coach, ringkasan lamaran kerja, grafik performa, tabel lamaran, dan
   aktivitas terbaru — semua memakai komponen dari design system yang sama.
-- **Sepenuhnya offline** — CSS sudah di-build (`dist/output.css`) dan font
+- **Sepenuhnya offline** — CSS di-build ke `dist/output.css` (tidak di-commit; lihat Pengembangan) dan font
   di-hosting lokal, tidak bergantung pada CDN atau koneksi internet.
 - **Light / Dark / System** — opt-in per halaman lewat `<html data-theme>`;
   saat ini `templates/dashboard.html`, `index.html`, dan `icons.html` (pilihan tersimpan di `localStorage` key `kk-theme`, skrip `assets/js/theme.js`). Lihat story **Foundations → Theming**.
@@ -85,7 +85,7 @@ echo 'export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"' >> ~/.bashrc
 ### 3. Install
 
 ```
-npm install @foxtrot-sevima/karirkit@1.3.6
+npm install @foxtrot-sevima/karirkit@1.4.0
 ```
 
 Tanpa versi (`npm install @foxtrot-sevima/karirkit`) akan mengambil versi
@@ -124,13 +124,13 @@ npm publish
 ```
 
 `prepublishOnly` akan menjalankan `npm run build` otomatis sebelum publish,
-jadi `dist/output.css` selalu ikut versi terbaru.
+jadi `dist/output.css` selalu ikut versi terbaru. `dist/` tidak ada di git: workflow publish dan deploy yang membangunnya.
 
 ## Struktur
 
 ```
 src/input.css              Design tokens (@theme) + komponen (@layer components)
-dist/output.css            CSS hasil build — inilah yang dipakai lewat npm package
+dist/output.css            CSS hasil build (tidak di-commit) — dipakai lewat npm package
 assets/fonts/InstrumentSans/  Font self-hosted (lihat bagian Font di bawah)
 assets/logo/                  Logo KarirLink dipakai di kedua halaman (lihat Brand & Logo)
 index.html                 Style guide lokal: warna, tipografi, ikon, dan semua komponen
@@ -154,7 +154,7 @@ tanpa server, dan **tidak** ikut ter-publish di npm package.
 
 ## Brand & Logo
 
-Logo resmi **KarirLink** dari tim brand SEVIMA, tersedia dalam 4 varian di
+Logo resmi **KarirLink** dari tim brand SEVIMA, tersedia dalam 6 varian di
 `assets/logo/` — lihat bagian Logo di `index.html` untuk contoh visual &
 kapan memakai masing-masing:
 
@@ -164,6 +164,8 @@ kapan memakai masing-masing:
 | `karirlink-mark-white.svg` | Mark, putih | Mark di atas latar gelap/gradasi |
 | `karirlink-logo.svg` | Lockup, warna | Header & sidebar (penempatan utama) |
 | `karirlink-logo-white.svg` | Lockup, putih | Lockup di atas latar gelap |
+| `karirlink-sevima.svg` | Lockup SEVIMA, warna | Lockup dengan penanda SEVIMA (portal-karir) |
+| `karirlink-sevima-white.svg` | Lockup SEVIMA, putih | Lockup SEVIMA di atas latar biru/gelap |
 
 `karirlink-mark.svg` dipakai sebagai favicon kedua halaman; `karirlink-logo.svg`
 dipakai di header `index.html` dan sidebar `templates/dashboard.html`.
@@ -219,6 +221,7 @@ Butuh Node.js (disarankan v18+).
 
 ```bash
 npm install       # sekali saja
+npm run build     # wajib setelah clone: dist/ tidak ada di git (dibutuhkan index.html dan template)
 npm run watch     # build ulang otomatis saat src/input.css berubah
 npm run build     # build sekali, hasil di-minify
 ```

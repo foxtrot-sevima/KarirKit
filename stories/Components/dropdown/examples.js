@@ -233,9 +233,9 @@ export const examples = [
     name: "Dropdown navbar",
     note: "Tautan menu dengan submenu di dalam navbar; item aktif memakai warna primer.",
     wide: true,
-    demo: stage(15, `<nav class="flex items-center justify-between rounded-control border border-border bg-surface px-4 py-3">
+    demo: stage(15, `<nav class="flex flex-wrap items-center justify-between gap-2 rounded-control border border-border bg-surface px-4 py-3">
   <span class="font-display text-base font-bold text-fg">KarirKit</span>
-  <ul class="flex items-center gap-1 text-sm font-medium">
+  <ul class="flex flex-wrap items-center gap-1 text-sm font-medium">
     <li><a href="#" class="rounded-lg px-3 py-2 text-primary-600">Home</a></li>
     <li>${dropdown(trigger("Dropdown", "", "inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-fg-muted hover:bg-neutral-50 hover:text-fg", "caret-down"),
       menu(["Dashboard", "Settings", "Earnings"].map((l) => link(l)).join("\n      "), "w-44", 'data-placement="bottom-start"'))}</li>
