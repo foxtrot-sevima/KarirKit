@@ -71,7 +71,8 @@
 
   /* Kondisi alumni (hanya Pasca-Lulus 1 Tahun): membuka/menutup dengan transisi tinggi */
   #simulasiPilihModal .tracer-extra { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 250ms ease, opacity 200ms ease; }
-  #simulasiPilihModal .tracer-extra[data-open="true"] { grid-template-rows: 1fr; opacity: 1; }  #simulasiPilihModal .exit-pill { display: flex; cursor: pointer; align-items: center; justify-content: center; border-radius: 0.625rem; border: 1px solid var(--color-slate-200); background-color: #fff; padding: 0.5rem 0.5rem; text-align: center; font-size: 0.75rem; font-weight: 500; color: var(--color-slate-600); transition: background-color 150ms, border-color 150ms, color 150ms; }
+  #simulasiPilihModal .tracer-extra[data-open="true"] { grid-template-rows: 1fr; opacity: 1; }
+  #simulasiPilihModal .exit-pill { display: flex; cursor: pointer; align-items: center; justify-content: center; border-radius: 0.625rem; border: 1px solid var(--color-slate-200); background-color: #fff; padding: 0.5rem 0.5rem; text-align: center; font-size: 0.75rem; font-weight: 500; color: var(--color-slate-600); transition: background-color 150ms, border-color 150ms, color 150ms; }
   #simulasiPilihModal .exit-pill:hover { background-color: var(--color-slate-50); }
   #simulasiPilihModal .exit-pill:has(input:checked) { border-color: var(--color-primary-500); background-color: var(--color-primary-600); color: #fff; }
   #simulasiPilihModal .exit-pill:has(input:focus-visible) { outline: 2px solid var(--color-primary-400); outline-offset: 2px; }
@@ -87,8 +88,11 @@
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
+<!-- Mobile overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
+
 <!-- ============================= SIDEBAR ============================= -->
-<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out lg:translate-x-0">
   <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
     <a href="../../index.html" class="sidebar-logo-full flex items-center">
       <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
@@ -96,14 +100,17 @@
     <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
       <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
     </a>
+    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
+      <i class="kk kk-x h-5 w-5"></i>
+    </button>
   </div>
 
   <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
     <div>
       <div class="space-y-1">
-        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Dashboard" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
-          <span class="sidebar-label">Overview</span>
+          <span class="sidebar-label">Dashboard</span>
         </a>
       </div>
     </div>
@@ -155,7 +162,7 @@
           <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Report</span>
         </a>
-        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Pengaturan Landing Page</span>
         </a>
@@ -175,117 +182,18 @@
   </div>
 </aside>
 
-<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
-<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
-  <div class="drawer-header">
-    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
-    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
-  </div>
-  <div class="drawer-body !p-3">
-    <nav class="space-y-6" aria-label="Menu admin">
-      <div>
-        <div class="space-y-1">
-          <a href="index.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Overview</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <p class="nav-eyebrow mb-2">Tracer</p>
-        <div class="space-y-1">
-          <a href="kuesioner.html" class="nav-item nav-item-active">
-            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Kuesioner</span>
-          </a>
-          <a href="yudisium.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Daftar Yudisium</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <p class="nav-eyebrow mb-2">Portal Karir</p>
-        <div class="space-y-1">
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Kerjasama</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Lowongan</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Event</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <p class="nav-eyebrow mb-2">General</p>
-        <div class="space-y-1">
-          <a href="mahasiswa-alumni.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Mahasiswa/Alumni</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Aktivitas Lamaran</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Report</span>
-          </a>
-          <a href="pengaturan-landing-page.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Pengaturan Landing Page</span>
-          </a>
-        </div>
-      </div>
-  
-    </nav>
-  </div>
-  <div class="drawer-footer">
-    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
-      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
-      <span class="sidebar-label">Panduan Pengguna</span>
-    </a>
-  </div>
-</div>
-
-<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
-<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
-  <div class="drawer-header">
-    <div class="flex min-w-0 items-center gap-3">
-      <span class="avatar h-11 w-11 text-sm">RK</span>
-      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
-    </div>
-    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
-  </div>
-  <div class="drawer-body !p-2">
-    <div class="space-y-0.5">
-      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
-      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
-      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
-    </div>
-  </div>
-</div>
-
 <!-- ============================= MAIN COLUMN ============================= -->
 <div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
   <!-- Topbar -->
-  <header class="navbar navbar-sticky navbar-app">
+  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
     <div class="flex min-w-0 flex-1 items-center gap-3">
-      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+      <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
         <i class="kk kk-list h-5 w-5"></i>
       </button>
       <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
         <a href="index.html" class="breadcrumb-link shrink-0">
           <i class="kk kk-house h-4 w-4"></i>
-          <span class="hidden sm:inline">Overview</span>
+          <span class="hidden sm:inline">Dashboard</span>
         </a>
         <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
         <span class="breadcrumb-current min-w-0" aria-current="page">
@@ -294,8 +202,7 @@
       </nav>
     </div>
     <div class="flex shrink-0 items-center gap-2 sm:gap-3">
-      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
-      <div class="relative hidden lg:block">
+      <div class="relative">
         <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
           <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
           <span class="hidden min-w-0 sm:block">
@@ -668,9 +575,11 @@
     </div>
   </main>
 
-  <footer class="footer footer-bar">
-    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
-    <p>KarirLink</p>
+  <footer>
+    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
   </footer>
 </div>
 
@@ -822,21 +731,6 @@
               </span>
               <span class="tracer-check" aria-hidden="true"><i class="kk kk-check h-3.5 w-3.5"></i></span>
             </label>
-
-            <!-- Pasca-Lulus 1 & 4 Tahun: versi instrumen Kemendikti mengikuti tahun lulus alumni (dibawa lewat ?format=) -->
-            <div class="tracer-extra" data-extra-for="pasca-format" inert>
-              <div class="min-h-0 overflow-hidden">
-                <fieldset class="rounded-xl border border-primary-100 bg-primary-50/40 p-3.5">
-                  <legend class="sr-only">Format kuesioner sesuai tahun lulus alumni</legend>
-                  <p class="text-xs font-semibold text-slate-700">Format kuesioner</p>
-                  <p class="mt-0.5 text-[11px] leading-relaxed text-slate-500">Lulusan 2025 ke atas memakai instrumen Kemendikti terbaru; lulusan 2024 ke bawah memakai format lampau.</p>
-                  <div class="mt-2.5 grid gap-1.5 sm:grid-cols-2">
-                    <label class="exit-pill"><input type="radio" name="format" value="2025" class="sr-only" checked disabled /><span>Format 2025 (lulusan ≥ 2025)</span></label>
-                    <label class="exit-pill"><input type="radio" name="format" value="lampau" class="sr-only" disabled /><span>Format lampau (lulusan ≤ 2024)</span></label>
-                  </div>
-                </fieldset>
-              </div>
-            </div>
           </div>
         </fieldset>
 
@@ -949,7 +843,6 @@
 
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
-<script src="../../assets/js/drawer.js"></script>
 <script src="../../assets/js/toast.js"></script>
 <script src="../../assets/js/modal.js"></script>
 <script src="../../assets/js/pagination.js"></script>
@@ -974,8 +867,6 @@
     const preview = modal.querySelector('[data-sim-preview]');
     const extra = form.querySelector('[data-extra-for="pasca-1th"]');
     const exitInputs = extra.querySelectorAll('input[name="exit"]');
-    const formatExtra = form.querySelector('[data-extra-for="pasca-format"]');
-    const formatInputs = formatExtra.querySelectorAll('input[name="format"]');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let shown = null;
 
@@ -999,11 +890,6 @@
       extra.dataset.open = String(open);
       extra.toggleAttribute('inert', !open);
       exitInputs.forEach((input) => { input.disabled = !open; });
-
-      const pasca = id === 'pasca-1th' || id === 'pasca-4th';
-      formatExtra.dataset.open = String(pasca);
-      formatExtra.toggleAttribute('inert', !pasca);
-      formatInputs.forEach((input) => { input.disabled = !pasca; });
     }
 
     form.addEventListener('change', sync);
@@ -1016,7 +902,21 @@
 </script>
 <script>
   const sidebar = document.getElementById('sidebar');
-  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+  const overlay = document.getElementById('sidebarOverlay');
+  const openBtn = document.getElementById('openSidebarBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  openBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
 
   (function () {
     const mainColumn = document.getElementById('mainColumn');
@@ -1238,6 +1138,5 @@
     });
   })();
 </script>
-<script src="admin-brand.js"></script>
 </body>
 </html>

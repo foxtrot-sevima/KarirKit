@@ -32,8 +32,11 @@
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
+<!-- Mobile overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
+
 <!-- ============================= SIDEBAR ============================= -->
-<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out lg:translate-x-0">
   <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
     <a href="../../index.html" class="sidebar-logo-full flex items-center">
       <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
@@ -41,14 +44,17 @@
     <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
       <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
     </a>
+    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
+      <i class="kk kk-x h-5 w-5"></i>
+    </button>
   </div>
 
   <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
     <div>
       <div class="space-y-1">
-        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Dashboard" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
-          <span class="sidebar-label">Overview</span>
+          <span class="sidebar-label">Dashboard</span>
         </a>
       </div>
     </div>
@@ -100,7 +106,7 @@
           <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Report</span>
         </a>
-        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Pengaturan Landing Page</span>
         </a>
@@ -120,117 +126,18 @@
   </div>
 </aside>
 
-<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
-<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
-  <div class="drawer-header">
-    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
-    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
-  </div>
-  <div class="drawer-body !p-3">
-    <nav class="space-y-6" aria-label="Menu admin">
-      <div>
-        <div class="space-y-1">
-          <a href="index.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Overview</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <p class="nav-eyebrow mb-2">Tracer</p>
-        <div class="space-y-1">
-          <a href="kuesioner.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Kuesioner</span>
-          </a>
-          <a href="yudisium.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Daftar Yudisium</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <p class="nav-eyebrow mb-2">Portal Karir</p>
-        <div class="space-y-1">
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Kerjasama</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Lowongan</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Event</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <p class="nav-eyebrow mb-2">General</p>
-        <div class="space-y-1">
-          <a href="mahasiswa-alumni.html" class="nav-item nav-item-active">
-            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Mahasiswa/Alumni</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Aktivitas Lamaran</span>
-          </a>
-          <a class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Report</span>
-          </a>
-          <a href="pengaturan-landing-page.html" class="nav-item">
-            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Pengaturan Landing Page</span>
-          </a>
-        </div>
-      </div>
-  
-    </nav>
-  </div>
-  <div class="drawer-footer">
-    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
-      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
-      <span class="sidebar-label">Panduan Pengguna</span>
-    </a>
-  </div>
-</div>
-
-<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
-<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
-  <div class="drawer-header">
-    <div class="flex min-w-0 items-center gap-3">
-      <span class="avatar h-11 w-11 text-sm">RK</span>
-      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
-    </div>
-    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
-  </div>
-  <div class="drawer-body !p-2">
-    <div class="space-y-0.5">
-      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
-      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
-      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
-    </div>
-  </div>
-</div>
-
 <!-- ============================= MAIN COLUMN ============================= -->
 <div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
   <!-- Topbar -->
-  <header class="navbar navbar-sticky navbar-app">
+  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
     <div class="flex min-w-0 flex-1 items-center gap-3">
-      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+      <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
         <i class="kk kk-list h-5 w-5"></i>
       </button>
       <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
         <a href="index.html" class="breadcrumb-link shrink-0">
           <i class="kk kk-house h-4 w-4"></i>
-          <span class="hidden sm:inline">Overview</span>
+          <span class="hidden sm:inline">Dashboard</span>
         </a>
         <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
         <span class="breadcrumb-current min-w-0" aria-current="page">
@@ -239,8 +146,7 @@
       </nav>
     </div>
     <div class="flex shrink-0 items-center gap-2 sm:gap-3">
-      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
-      <div class="relative hidden lg:block">
+      <div class="relative">
         <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
           <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
           <span class="hidden min-w-0 sm:block">
@@ -280,18 +186,14 @@
 
     <!-- Greeting -->
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <div class="min-w-0">
+      <div>
         <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Mahasiswa/Alumni</h2>
         <p class="mt-1 text-sm text-slate-500">Data induk mahasiswa dan alumni lintas periode - status karier, program studi, dan progres pengisian Tracer Study.</p>
-        <p class="mt-2 flex items-center gap-2 text-xs text-slate-500">
-          <i class="kk kk-clock h-3.5 w-3.5 shrink-0 text-slate-400"></i>
-          <span>Sinkron SiAkadCloud · <span class="font-medium text-slate-700">22 Sep 2026, 06:00</span></span>
-        </p>
       </div>
-      <button type="button" class="btn-outline btn-md w-full shrink-0 sm:w-auto">
-        <i class="kk kk-download-simple h-4 w-4"></i>
-        Ekspor Data
-      </button>
+      <div class="flex items-center gap-2 text-sm text-slate-500">
+        <i class="kk kk-clock h-4 w-4 shrink-0 text-slate-400"></i>
+        <span>Sinkron SIAKAD · <span class="font-medium text-slate-700">22 Sep 2026, 06:00</span></span>
+      </div>
     </div>
 
     <!-- KPI row -->
@@ -333,19 +235,32 @@
       </div>
     </div>
 
-    <!-- Mahasiswa/Alumni list: Design System table (table-wrap + table.js) -->
-    <div class="table-wrap overflow-visible" id="mhsTableRoot" data-table data-page-size="10" data-item-label="mahasiswa/alumni" data-combo-boundary>
+    <!-- Mahasiswa/Alumni list -->
+    <div class="card overflow-hidden">
       <!-- Toolbar -->
-      <div class="table-toolbar table-toolbar-many">
-        <div class="table-search">
+      <div class="flex flex-col gap-3 border-b border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between" data-combo-boundary>
+        <div class="relative w-full sm:w-64">
           <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
             <i class="kk kk-magnifying-glass h-4 w-4"></i>
           </span>
-          <label for="mhsSearch" class="sr-only">Cari nama, NIM, atau email</label>
-          <input id="mhsSearch" type="search" class="input h-9 pl-9" placeholder="Cari nama, NIM, atau email..." data-table-search />
+          <input id="mhsSearch" class="input h-9 pl-9" placeholder="Cari nama, NIM, atau email..." />
         </div>
-        <div class="table-filters">
-          <div id="filterProdi" class="combo" data-combo data-value="all">
+        <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
+          <div id="filterJenjang" class="combo w-full sm:w-36" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua Jenjang</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Jenjang">Semua Jenjang</button>
+                <button type="button" class="combo-item" data-combo-item data-value="d3" data-label="D3">D3</button>
+                <button type="button" class="combo-item" data-combo-item data-value="s1" data-label="S1">S1</button>
+                <button type="button" class="combo-item" data-combo-item data-value="s2" data-label="S2">S2</button>
+              </div>
+            </div>
+          </div>
+          <div id="filterProdi" class="combo w-full sm:w-52" data-combo data-value="all">
             <button type="button" class="combo-trigger" data-combo-trigger>
               <span data-combo-label>Semua Program Studi</span>
               <i class="kk kk-caret-down combo-chevron"></i>
@@ -362,7 +277,7 @@
               </div>
             </div>
           </div>
-          <div id="filterAngkatan" class="combo" data-combo data-value="all">
+          <div id="filterAngkatan" class="combo w-full sm:w-44" data-combo data-value="all">
             <button type="button" class="combo-trigger" data-combo-trigger>
               <span data-combo-label>Semua Angkatan</span>
               <i class="kk kk-caret-down combo-chevron"></i>
@@ -378,7 +293,7 @@
               </div>
             </div>
           </div>
-          <div id="filterTipe" class="combo" data-combo data-value="all">
+          <div id="filterTipe" class="combo w-full sm:w-36" data-combo data-value="all">
             <button type="button" class="combo-trigger" data-combo-trigger>
               <span data-combo-label>Semua Tipe</span>
               <i class="kk kk-caret-down combo-chevron"></i>
@@ -391,7 +306,7 @@
               </div>
             </div>
           </div>
-          <div id="filterStatus" class="combo" data-combo data-value="all">
+          <div id="filterStatus" class="combo w-full sm:w-52" data-combo data-value="all">
             <button type="button" class="combo-trigger" data-combo-trigger>
               <span data-combo-label>Semua Status Karier</span>
               <i class="kk kk-caret-down combo-chevron"></i>
@@ -408,510 +323,292 @@
               </div>
             </div>
           </div>
+          <button type="button" class="btn-outline btn-md shrink-0">
+            <i class="kk kk-download-simple h-4 w-4"></i>
+            Ekspor Data
+          </button>
         </div>
       </div>
 
       <div class="overflow-x-auto">
-        <table class="table table-lg table-fit table-head-soft" id="mhsTable">
+        <table class="table table-lg table-fixed w-auto sm:w-full" id="mhsTable" data-item-label="mahasiswa/alumni">
           <thead>
             <tr>
-              <th scope="col" class="table-col-num">No</th>
-              <th scope="col" data-sort="text"><button type="button" class="th-sort">Nama<i class="kk kk-caret-up-down sort-icon"></i></button></th>
-              <th scope="col" class="table-col-aside">Kontak</th>
-              <th scope="col" class="hidden lg:table-cell" data-sort="text"><button type="button" class="th-sort">Program Studi<i class="kk kk-caret-up-down sort-icon"></i></button></th>
-              <th scope="col" data-sort="text"><button type="button" class="th-sort">Status Karier<i class="kk kk-caret-up-down sort-icon"></i></button></th>
-              <th scope="col" class="table-col-actions">Aksi</th>
+              <th class="table-col-num hidden xl:table-cell">No</th>
+              <th class="w-52 sm:w-64 lg:w-72">Alumni/Mahasiswa</th>
+              <th class="hidden sm:w-80 sm:table-cell">Kontak</th>
+              <th class="hidden lg:table-cell">Program Studi</th>
+              <th class="w-56">Status Karier</th>
+              <th class="table-col-actions w-16 text-left">Aksi</th>
             </tr>
           </thead>
-          <tbody id="mhsBody">
-            <tr data-prodi="ti" data-jenjang="s1" data-angkatan="2019" data-status="bekerja" data-type="alumni">
-              <td class="table-col-num" data-num>1</td>
+          <tbody id="mhsBody"><tr data-name="Sarah Amelia Putri" data-prodi="ti" data-jenjang="s1" data-angkatan="2019" data-status="bekerja" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
-                <span class="block font-medium text-slate-800">Sarah Amelia Putri</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 1934210045<span class="hidden sm:inline"> &middot; Alumni</span></p>
+                    <p class="truncate font-medium text-slate-800">Sarah Amelia Putri</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 1934210045</p>
+                    <span class="badge-neutral">Alumni</span>
               </td>
-              <td class="table-col-aside max-w-[240px]">
+              <td class="hidden sm:table-cell">
                 <p class="truncate text-slate-600">sarah.amelia@alumni.univ.ac.id</p>
                 <p class="mt-0.5 text-xs text-slate-400">0812-3456-7890</p>
               </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Teknik Informatika">
+              <td class="hidden lg:table-cell">
                 <p class="font-medium text-slate-700">S1 - Teknik Informatika</p>
                 <p class="mt-0.5 text-xs text-slate-400">Lulusan 2023</p>
               </td>
-              <td data-value="Bekerja"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Bekerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
+              <td><span class="badge-success">Bekerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
               </td>
             </tr>
-            <tr data-prodi="manajemen" data-jenjang="s1" data-angkatan="2020" data-status="wiraswasta" data-type="alumni">
-              <td class="table-col-num" data-num>2</td>
+            <tr data-name="Bagus Nugroho Wibowo" data-prodi="manajemen" data-jenjang="s1" data-angkatan="2020" data-status="wiraswasta" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
-                <span class="block font-medium text-slate-800">Bagus Nugroho Wibowo</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2034310112<span class="hidden sm:inline"> &middot; Alumni</span></p>
+                    <p class="truncate font-medium text-slate-800">Bagus Nugroho Wibowo</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2034310112</p>
+                    <span class="badge-neutral">Alumni</span>
               </td>
-              <td class="table-col-aside max-w-[240px]">
+              <td class="hidden sm:table-cell">
                 <p class="truncate text-slate-600">bagus.nugroho@alumni.univ.ac.id</p>
                 <p class="mt-0.5 text-xs text-slate-400">0813-2345-6789</p>
               </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Manajemen">
+              <td class="hidden lg:table-cell">
                 <p class="font-medium text-slate-700">S1 - Manajemen</p>
                 <p class="mt-0.5 text-xs text-slate-400">Lulusan 2024</p>
               </td>
-              <td data-value="Wiraswasta"><span class="badge-secondary badge-wrap"><span class="badge-dot bg-secondary-600"></span>Wiraswasta</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
+              <td><span class="badge-secondary">Wiraswasta</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
               </td>
             </tr>
-            <tr data-prodi="akuntansi" data-jenjang="s1" data-angkatan="2018" data-status="bekerja" data-type="alumni">
-              <td class="table-col-num" data-num>3</td>
+            <tr data-name="Citra Dewanti Lestari" data-prodi="akuntansi" data-jenjang="s1" data-angkatan="2018" data-status="bekerja" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
-                <span class="block font-medium text-slate-800">Citra Dewanti Lestari</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 1834410078<span class="hidden sm:inline"> &middot; Alumni</span></p>
+                    <p class="truncate font-medium text-slate-800">Citra Dewanti Lestari</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 1834410078</p>
+                    <span class="badge-neutral">Alumni</span>
               </td>
-              <td class="table-col-aside max-w-[240px]">
+              <td class="hidden sm:table-cell">
                 <p class="truncate text-slate-600">citra.dewanti@alumni.univ.ac.id</p>
                 <p class="mt-0.5 text-xs text-slate-400">0814-5678-1234</p>
               </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Akuntansi">
+              <td class="hidden lg:table-cell">
                 <p class="font-medium text-slate-700">S1 - Akuntansi</p>
                 <p class="mt-0.5 text-xs text-slate-400">Lulusan 2022</p>
               </td>
-              <td data-value="Bekerja"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Bekerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
+              <td><span class="badge-success">Bekerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
               </td>
             </tr>
-            <tr data-prodi="si" data-jenjang="s1" data-angkatan="2021" data-status="studi" data-type="alumni">
-              <td class="table-col-num" data-num>4</td>
+            <tr data-name="Dimas Prasetyo Anggara" data-prodi="si" data-jenjang="s1" data-angkatan="2021" data-status="studi" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
-                <span class="block font-medium text-slate-800">Dimas Prasetyo Anggara</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2134210033<span class="hidden sm:inline"> &middot; Alumni</span></p>
+                    <p class="truncate font-medium text-slate-800">Dimas Prasetyo Anggara</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2134210033</p>
+                    <span class="badge-neutral">Alumni</span>
               </td>
-              <td class="table-col-aside max-w-[240px]">
+              <td class="hidden sm:table-cell">
                 <p class="truncate text-slate-600">dimas.prasetyo@alumni.univ.ac.id</p>
                 <p class="mt-0.5 text-xs text-slate-400">0815-6789-2345</p>
               </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Sistem Informasi">
+              <td class="hidden lg:table-cell">
                 <p class="font-medium text-slate-700">S1 - Sistem Informasi</p>
                 <p class="mt-0.5 text-xs text-slate-400">Lulusan 2025</p>
               </td>
-              <td data-value="Melanjutkan Studi"><span class="badge-info badge-wrap"><span class="badge-dot bg-info-600"></span>Melanjutkan Studi</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
+              <td><span class="badge-info">Melanjutkan Studi</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
               </td>
             </tr>
-            <tr data-prodi="mi" data-jenjang="d3" data-angkatan="2019" data-status="mencari" data-type="alumni">
-              <td class="table-col-num" data-num>5</td>
+            <tr data-name="Erika Wulandari" data-prodi="mi" data-jenjang="d3" data-angkatan="2019" data-status="mencari" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
-                <span class="block font-medium text-slate-800">Erika Wulandari</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 1934510091<span class="hidden sm:inline"> &middot; Alumni</span></p>
+                <p class="truncate font-medium text-slate-800">Erika Wulandari</p>
+                <p class="mt-0.5 truncate text-xs text-slate-400">NIM 1934510091</p>
+                <span class="badge-neutral">Alumni</span>
               </td>
-              <td class="table-col-aside max-w-[240px]">
+              <td class="hidden sm:table-cell">
                 <p class="truncate text-slate-600">erika.wulandari@alumni.univ.ac.id</p>
                 <p class="mt-0.5 text-xs text-slate-400">0816-7890-3456</p>
               </td>
-              <td class="hidden lg:table-cell" data-value="D3 - Manajemen Informatika">
+              <td class="hidden lg:table-cell">
                 <p class="font-medium text-slate-700">D3 - Manajemen Informatika</p>
                 <p class="mt-0.5 text-xs text-slate-400">Lulusan 2023</p>
               </td>
-              <td data-value="Mencari Kerja"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Mencari Kerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
+              <td><span class="badge-warning">Mencari Kerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
               </td>
             </tr>
-            <tr data-prodi="elektro" data-jenjang="s1" data-angkatan="2020" data-status="bekerja" data-type="alumni">
-              <td class="table-col-num" data-num>6</td>
+            <tr data-name="Farhan Ramadhan" data-prodi="elektro" data-jenjang="s1" data-angkatan="2020" data-status="bekerja" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
-                <span class="block font-medium text-slate-800">Farhan Ramadhan</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2034610057<span class="hidden sm:inline"> &middot; Alumni</span></p>
+                    <p class="truncate font-medium text-slate-800">Farhan Ramadhan</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2034610057</p>
+                    <span class="badge-neutral">Alumni</span>
               </td>
-              <td class="table-col-aside max-w-[240px]">
+              <td class="hidden sm:table-cell">
                 <p class="truncate text-slate-600">farhan.ramadhan@alumni.univ.ac.id</p>
                 <p class="mt-0.5 text-xs text-slate-400">0817-8901-4567</p>
               </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Teknik Elektro">
+              <td class="hidden lg:table-cell">
                 <p class="font-medium text-slate-700">S1 - Teknik Elektro</p>
                 <p class="mt-0.5 text-xs text-slate-400">Lulusan 2024</p>
               </td>
-              <td data-value="Bekerja"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Bekerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
+              <td><span class="badge-success">Bekerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
               </td>
             </tr>
-            <tr data-prodi="si" data-jenjang="s1" data-angkatan="2018" data-status="belum" data-type="alumni">
-              <td class="table-col-num" data-num>7</td>
+            <tr data-name="Gita Puspitasari" data-prodi="si" data-jenjang="s1" data-angkatan="2018" data-status="belum" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
-                <span class="block font-medium text-slate-800">Gita Puspitasari</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 1834210064<span class="hidden sm:inline"> &middot; Alumni</span></p>
+                    <p class="truncate font-medium text-slate-800">Gita Puspitasari</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 1834210064</p>
+                    <span class="badge-neutral">Alumni</span>
               </td>
-              <td class="table-col-aside max-w-[240px]">
+              <td class="hidden sm:table-cell">
                 <p class="truncate text-slate-600">gita.puspitasari@alumni.univ.ac.id</p>
                 <p class="mt-0.5 text-xs text-slate-400">0818-9012-5678</p>
               </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Sistem Informasi">
+              <td class="hidden lg:table-cell">
                 <p class="font-medium text-slate-700">S1 - Sistem Informasi</p>
                 <p class="mt-0.5 text-xs text-slate-400">Lulusan 2022</p>
               </td>
-              <td data-value="Belum Memungkinkan Bekerja"><span class="badge-neutral badge-wrap"><span class="badge-dot bg-neutral-500"></span>Belum Memungkinkan</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
+              <td><span class="badge-neutral whitespace-nowrap">Belum Memungkinkan Bekerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
               </td>
             </tr>
-            <tr data-prodi="ti" data-jenjang="s1" data-angkatan="2022" data-status="aktif-kuliah" data-type="mahasiswa">
-              <td class="table-col-num" data-num>8</td>
+            <tr data-name="Hendra Saputra" data-prodi="ti" data-jenjang="s1" data-angkatan="2022" data-status="aktif-kuliah" data-type="mahasiswa">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
-                <span class="block font-medium text-slate-800">Hendra Saputra</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2234210019<span class="hidden sm:inline"> &middot; Mahasiswa</span></p>
+                <p class="truncate font-medium text-slate-800">Hendra Saputra</p>
+                <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2234210019</p>
+                <span class="badge-info">Mahasiswa</span>
               </td>
-              <td class="table-col-aside max-w-[240px]">
+              <td class="hidden sm:table-cell">
                 <p class="truncate text-slate-600">hendra.saputra@student.univ.ac.id</p>
                 <p class="mt-0.5 text-xs text-slate-400">0819-0123-6789</p>
               </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Teknik Informatika">
+              <td class="hidden lg:table-cell">
                 <p class="font-medium text-slate-700">S1 - Teknik Informatika</p>
                 <p class="mt-0.5 text-xs text-slate-400">Angkatan 2022 &middot; Aktif</p>
               </td>
-              <td data-value="Sedang Kuliah"><span class="badge-primary badge-wrap"><span class="badge-dot bg-primary-600"></span>Sedang Kuliah</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
+              <td><span class="badge-primary">Sedang Kuliah</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
               </td>
             </tr>
-            <tr data-prodi="akuntansi" data-jenjang="s1" data-angkatan="2021" data-status="bekerja" data-type="alumni">
-              <td class="table-col-num" data-num>9</td>
+            <tr data-name="Intan Maharani" data-prodi="akuntansi" data-jenjang="s1" data-angkatan="2021" data-status="bekerja" data-type="alumni">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
-                <span class="block font-medium text-slate-800">Intan Maharani</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2134410082<span class="hidden sm:inline"> &middot; Alumni</span></p>
+                    <p class="truncate font-medium text-slate-800">Intan Maharani</p>
+                    <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2134410082</p>
+                    <span class="badge-neutral">Alumni</span>
               </td>
-              <td class="table-col-aside max-w-[240px]">
+              <td class="hidden sm:table-cell">
                 <p class="truncate text-slate-600">intan.maharani@alumni.univ.ac.id</p>
                 <p class="mt-0.5 text-xs text-slate-400">0820-1234-7890</p>
               </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Akuntansi">
+              <td class="hidden lg:table-cell">
                 <p class="font-medium text-slate-700">S1 - Akuntansi</p>
                 <p class="mt-0.5 text-xs text-slate-400">Lulusan 2025</p>
               </td>
-              <td data-value="Bekerja"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Bekerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
+              <td><span class="badge-success">Bekerja</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
               </td>
             </tr>
-            <tr data-prodi="manajemen" data-jenjang="s1" data-angkatan="2023" data-status="aktif-kuliah" data-type="mahasiswa">
-              <td class="table-col-num" data-num>10</td>
+            <tr data-name="Joko Setiawan" data-prodi="manajemen" data-jenjang="s1" data-angkatan="2023" data-status="aktif-kuliah" data-type="mahasiswa">
+              <td class="table-col-num hidden xl:table-cell" data-num></td>
               <td>
-                <span class="block font-medium text-slate-800">Joko Setiawan</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2334310027<span class="hidden sm:inline"> &middot; Mahasiswa</span></p>
+                <p class="truncate font-medium text-slate-800">Joko Setiawan</p>
+                <p class="mt-0.5 truncate text-xs text-slate-400">NIM 2334310027</p>
+                <span class="badge-info">Mahasiswa</span>
               </td>
-              <td class="table-col-aside max-w-[240px]">
+              <td class="hidden sm:table-cell">
                 <p class="truncate text-slate-600">joko.setiawan@student.univ.ac.id</p>
                 <p class="mt-0.5 text-xs text-slate-400">0821-2345-8901</p>
               </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Manajemen">
+              <td class="hidden lg:table-cell">
                 <p class="font-medium text-slate-700">S1 - Manajemen</p>
                 <p class="mt-0.5 text-xs text-slate-400">Angkatan 2023 &middot; Aktif</p>
               </td>
-              <td data-value="Sedang Kuliah"><span class="badge-primary badge-wrap"><span class="badge-dot bg-primary-600"></span>Sedang Kuliah</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="si" data-jenjang="s1" data-angkatan="2019" data-status="bekerja" data-type="alumni">
-              <td class="table-col-num" data-num>11</td>
-              <td>
-                <span class="block font-medium text-slate-800">Kartika Sari Dewi</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 1934210102<span class="hidden sm:inline"> &middot; Alumni</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">kartika.sari@alumni.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0822-3456-8901</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Sistem Informasi">
-                <p class="font-medium text-slate-700">S1 - Sistem Informasi</p>
-                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2023</p>
-              </td>
-              <td data-value="Bekerja"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Bekerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="elektro" data-jenjang="s1" data-angkatan="2020" data-status="mencari" data-type="alumni">
-              <td class="table-col-num" data-num>12</td>
-              <td>
-                <span class="block font-medium text-slate-800">Lukman Hakim Pratama</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2034610073<span class="hidden sm:inline"> &middot; Alumni</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">lukman.hakim@alumni.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0823-4567-9012</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Teknik Elektro">
-                <p class="font-medium text-slate-700">S1 - Teknik Elektro</p>
-                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2024</p>
-              </td>
-              <td data-value="Mencari Kerja"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Mencari Kerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="manajemen" data-jenjang="s1" data-angkatan="2021" data-status="bekerja" data-type="alumni">
-              <td class="table-col-num" data-num>13</td>
-              <td>
-                <span class="block font-medium text-slate-800">Maya Anggraini</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2134310058<span class="hidden sm:inline"> &middot; Alumni</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">maya.anggraini@alumni.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0824-5678-0123</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Manajemen">
-                <p class="font-medium text-slate-700">S1 - Manajemen</p>
-                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2025</p>
-              </td>
-              <td data-value="Bekerja"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Bekerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="ti" data-jenjang="s1" data-angkatan="2018" data-status="wiraswasta" data-type="alumni">
-              <td class="table-col-num" data-num>14</td>
-              <td>
-                <span class="block font-medium text-slate-800">Nanda Putra Kusuma</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 1834210091<span class="hidden sm:inline"> &middot; Alumni</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">nanda.putra@alumni.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0825-6789-1234</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Teknik Informatika">
-                <p class="font-medium text-slate-700">S1 - Teknik Informatika</p>
-                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2022</p>
-              </td>
-              <td data-value="Wiraswasta"><span class="badge-secondary badge-wrap"><span class="badge-dot bg-secondary-600"></span>Wiraswasta</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="akuntansi" data-jenjang="s1" data-angkatan="2022" data-status="aktif-kuliah" data-type="mahasiswa">
-              <td class="table-col-num" data-num>15</td>
-              <td>
-                <span class="block font-medium text-slate-800">Olivia Rahmawati</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2234410036<span class="hidden sm:inline"> &middot; Mahasiswa</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">olivia.rahmawati@student.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0826-7890-2345</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Akuntansi">
-                <p class="font-medium text-slate-700">S1 - Akuntansi</p>
-                <p class="mt-0.5 text-xs text-slate-400">Angkatan 2022 &middot; Aktif</p>
-              </td>
-              <td data-value="Sedang Kuliah"><span class="badge-primary badge-wrap"><span class="badge-dot bg-primary-600"></span>Sedang Kuliah</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="mi" data-jenjang="d3" data-angkatan="2019" data-status="bekerja" data-type="alumni">
-              <td class="table-col-num" data-num>16</td>
-              <td>
-                <span class="block font-medium text-slate-800">Putu Gede Wirawan</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 1934510118<span class="hidden sm:inline"> &middot; Alumni</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">putu.gede@alumni.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0827-8901-3456</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="D3 - Manajemen Informatika">
-                <p class="font-medium text-slate-700">D3 - Manajemen Informatika</p>
-                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2023</p>
-              </td>
-              <td data-value="Bekerja"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Bekerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="ti" data-jenjang="s1" data-angkatan="2021" data-status="studi" data-type="alumni">
-              <td class="table-col-num" data-num>17</td>
-              <td>
-                <span class="block font-medium text-slate-800">Qonita Azzahra</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2134210077<span class="hidden sm:inline"> &middot; Alumni</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">qonita.azzahra@alumni.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0828-9012-4567</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Teknik Informatika">
-                <p class="font-medium text-slate-700">S1 - Teknik Informatika</p>
-                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2025</p>
-              </td>
-              <td data-value="Melanjutkan Studi"><span class="badge-info badge-wrap"><span class="badge-dot bg-info-600"></span>Melanjutkan Studi</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="si" data-jenjang="s1" data-angkatan="2023" data-status="aktif-kuliah" data-type="mahasiswa">
-              <td class="table-col-num" data-num>18</td>
-              <td>
-                <span class="block font-medium text-slate-800">Reza Maulana Yusuf</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2334210014<span class="hidden sm:inline"> &middot; Mahasiswa</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">reza.maulana@student.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0829-0123-5678</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Sistem Informasi">
-                <p class="font-medium text-slate-700">S1 - Sistem Informasi</p>
-                <p class="mt-0.5 text-xs text-slate-400">Angkatan 2023 &middot; Aktif</p>
-              </td>
-              <td data-value="Sedang Kuliah"><span class="badge-primary badge-wrap"><span class="badge-dot bg-primary-600"></span>Sedang Kuliah</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="akuntansi" data-jenjang="s1" data-angkatan="2020" data-status="bekerja" data-type="alumni">
-              <td class="table-col-num" data-num>19</td>
-              <td>
-                <span class="block font-medium text-slate-800">Siti Nurhaliza</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2034410095<span class="hidden sm:inline"> &middot; Alumni</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">siti.nurhaliza@alumni.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0830-1234-6789</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Akuntansi">
-                <p class="font-medium text-slate-700">S1 - Akuntansi</p>
-                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2024</p>
-              </td>
-              <td data-value="Bekerja"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Bekerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="elektro" data-jenjang="s1" data-angkatan="2018" data-status="belum" data-type="alumni">
-              <td class="table-col-num" data-num>20</td>
-              <td>
-                <span class="block font-medium text-slate-800">Teguh Budi Santoso</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 1834610042<span class="hidden sm:inline"> &middot; Alumni</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">teguh.budi@alumni.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0831-2345-7890</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Teknik Elektro">
-                <p class="font-medium text-slate-700">S1 - Teknik Elektro</p>
-                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2022</p>
-              </td>
-              <td data-value="Belum Memungkinkan Bekerja"><span class="badge-neutral badge-wrap"><span class="badge-dot bg-neutral-500"></span>Belum Memungkinkan</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="manajemen" data-jenjang="s1" data-angkatan="2021" data-status="mencari" data-type="alumni">
-              <td class="table-col-num" data-num>21</td>
-              <td>
-                <span class="block font-medium text-slate-800">Umi Kalsum Fadilah</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2134310083<span class="hidden sm:inline"> &middot; Alumni</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">umi.kalsum@alumni.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0832-3456-8901</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Manajemen">
-                <p class="font-medium text-slate-700">S1 - Manajemen</p>
-                <p class="mt-0.5 text-xs text-slate-400">Lulusan 2025</p>
-              </td>
-              <td data-value="Mencari Kerja"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Mencari Kerja</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
-              </td>
-            </tr>
-            <tr data-prodi="ti" data-jenjang="s1" data-angkatan="2022" data-status="aktif-kuliah" data-type="mahasiswa">
-              <td class="table-col-num" data-num>22</td>
-              <td>
-                <span class="block font-medium text-slate-800">Vino Arya Pradana</span>
-                <p class="mt-0.5 text-xs text-slate-400">NIM 2234210051<span class="hidden sm:inline"> &middot; Mahasiswa</span></p>
-              </td>
-              <td class="table-col-aside max-w-[240px]">
-                <p class="truncate text-slate-600">vino.arya@student.univ.ac.id</p>
-                <p class="mt-0.5 text-xs text-slate-400">0833-4567-9012</p>
-              </td>
-              <td class="hidden lg:table-cell" data-value="S1 - Teknik Informatika">
-                <p class="font-medium text-slate-700">S1 - Teknik Informatika</p>
-                <p class="mt-0.5 text-xs text-slate-400">Angkatan 2022 &middot; Aktif</p>
-              </td>
-              <td data-value="Sedang Kuliah"><span class="badge-primary badge-wrap"><span class="badge-dot bg-primary-600"></span>Sedang Kuliah</span></td>
-              <td class="table-col-actions">
-                <div class="flex items-center justify-end">
-                  <a href="mahasiswa-alumni-detail.html" class="btn-outline btn-sm table-action" title="Lihat Detail" aria-label="Lihat Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></a>
-                </div>
+              <td><span class="badge-primary">Sedang Kuliah</span></td>
+              <td class="table-col-actions text-left">
+                <a href="mahasiswa-alumni-detail.html" class="flex h-9 w-9 items-center justify-center rounded-control border border-border bg-surface text-slate-500 transition-colors hover:bg-neutral-50 hover:text-slate-700">
+                  <i class="kk kk-eye h-4 w-4"></i>
+                </a>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div data-table-empty hidden class="table-empty"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada mahasiswa/alumni yang cocok.</div>
 
       <!-- Pagination footer -->
-      <div class="table-footer" data-table-pagination>
-        <span data-table-info></span>
-        <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+      <div class="flex flex-col gap-3 border-t border-slate-100 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span>Baris per halaman</span>
+          <select id="mhsPageSize" class="input h-8 w-auto py-0 text-xs">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+          </select>
+        </div>
+        <p class="text-xs text-slate-500" id="mhsRangeText">Menampilkan 1-10 dari 10 mahasiswa/alumni</p>
+        <div class="flex items-center gap-1" id="mhsPagination"></div>
       </div>
     </div>
   </main>
 
-  <footer class="footer footer-bar">
-    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
-    <p>KarirLink</p>
+  <footer>
+    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
+      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+      <p>KarirLink</p>
+    </div>
   </footer>
 </div>
 
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
-<script src="../../assets/js/drawer.js"></script>
-<script src="../../assets/js/table.js"></script>
 <script>
   const sidebar = document.getElementById('sidebar');
-  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+  const overlay = document.getElementById('sidebarOverlay');
+  const openBtn = document.getElementById('openSidebarBtn');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  openBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
 
   (function () {
     const mainColumn = document.getElementById('mainColumn');
@@ -941,59 +638,151 @@
     });
   })();
 
-  // Mahasiswa/Alumni table - Design System table.js handles search (name, NIM,
-  // email), sort, paging and numbering ("No"). This page only adds its combo
-  // filters (as one row predicate) and recomputes the KPI cards from whatever
-  // rows pass the filters ('table:render').
+  // Search + filter (Program Studi, Angkatan, Status Karier) + pagination.
+  // Filtering recomputes both the KPI cards above and which rows the table
+  // paginates over, so the KPI row always reflects the current filter.
   (function () {
-    const root = document.getElementById('mhsTableRoot');
-    if (!root || !window.KKTable) return;
-    const table = window.KKTable.get(root) || (window.KKTable.init(root), window.KKTable.get(root));
-    if (!table) return;
+    const table = document.getElementById('mhsTable');
+    const tbody = document.getElementById('mhsBody');
+    const allRows = Array.from(document.querySelectorAll('#mhsBody tr'));
+    const search = document.getElementById('mhsSearch');
+    const filterJenjang = document.getElementById('filterJenjang');
+    const filterProdi = document.getElementById('filterProdi');
+    const filterAngkatan = document.getElementById('filterAngkatan');
+    const filterTipe = document.getElementById('filterTipe');
+    const filterStatus = document.getElementById('filterStatus');
+    const pageSizeSelect = document.getElementById('mhsPageSize');
+    const rangeText = document.getElementById('mhsRangeText');
+    const paginationEl = document.getElementById('mhsPagination');
 
-    const filters = {
-      prodi: document.getElementById('filterProdi'),
-      angkatan: document.getElementById('filterAngkatan'),
-      type: document.getElementById('filterTipe'),
-      status: document.getElementById('filterStatus'),
-    };
     const kpiTotal = document.getElementById('kpiTotal');
     const kpiBekerja = document.getElementById('kpiBekerja');
     const kpiBekerjaPct = document.getElementById('kpiBekerjaPct');
     const kpiWiraswasta = document.getElementById('kpiWiraswasta');
     const kpiStudi = document.getElementById('kpiStudi');
     const kpiMencari = document.getElementById('kpiMencari');
-    const fmt = (n) => n.toLocaleString('id-ID');
 
-    table.addFilter((row) =>
-      Object.keys(filters).every((key) => {
-        const v = filters[key].dataset.value;
-        return v === 'all' || row.dataset[key] === v;
-      })
-    );
+    // Read once from `data-item-label` on the <table> so a new table just
+    // sets one attribute instead of hand-editing "mahasiswa/alumni" strings
+    // in JS for its range-state messages.
+    const itemLabel = table?.dataset.itemLabel || 'item';
 
-    root.addEventListener('table:render', (e) => {
-      const rows = e.detail.visible;
-      const count = (s) => rows.filter((r) => r.dataset.status === s).length;
-      const bekerja = count('bekerja');
-      kpiTotal.textContent = fmt(rows.length);
+    let pageSize = Number(pageSizeSelect.value);
+    let currentPage = 1;
+    let visibleRows = allRows;
+
+    function fmt(n) {
+      return n.toLocaleString('id-ID');
+    }
+
+    function applyFilter() {
+      const term = search.value.trim().toLowerCase();
+      const jenjang = filterJenjang.dataset.value;
+      const prodi = filterProdi.dataset.value;
+      const angkatan = filterAngkatan.dataset.value;
+      const tipe = filterTipe.dataset.value;
+      const status = filterStatus.dataset.value;
+      visibleRows = allRows.filter((row) => {
+        const matchTerm = !term || (row.dataset.name || '').toLowerCase().includes(term);
+        const matchJenjang = jenjang === 'all' || row.dataset.jenjang === jenjang;
+        const matchProdi = prodi === 'all' || row.dataset.prodi === prodi;
+        const matchAngkatan = angkatan === 'all' || row.dataset.angkatan === angkatan;
+        const matchTipe = tipe === 'all' || row.dataset.type === tipe;
+        const matchStatus = status === 'all' || row.dataset.status === status;
+        return matchTerm && matchJenjang && matchProdi && matchAngkatan && matchTipe && matchStatus;
+      });
+      currentPage = 1;
+    }
+
+    function updateKpis() {
+      const total = visibleRows.length;
+      const countByStatus = (s) => visibleRows.filter((r) => r.dataset.status === s).length;
+      const bekerja = countByStatus('bekerja');
+
+      kpiTotal.textContent = fmt(total);
       kpiBekerja.textContent = fmt(bekerja);
-      kpiBekerjaPct.textContent = `(${rows.length ? Math.round((bekerja / rows.length) * 100) : 0}%)`;
-      kpiWiraswasta.textContent = fmt(count('wiraswasta'));
-      kpiStudi.textContent = fmt(count('studi'));
-      kpiMencari.textContent = fmt(count('mencari'));
+      kpiBekerjaPct.textContent = `(${total > 0 ? Math.round((bekerja / total) * 100) : 0}%)`;
+      kpiWiraswasta.textContent = fmt(countByStatus('wiraswasta'));
+      kpiStudi.textContent = fmt(countByStatus('studi'));
+      kpiMencari.textContent = fmt(countByStatus('mencari'));
+    }
+
+    function renderPaginationButtons(totalPages) {
+      paginationEl.innerHTML = '';
+
+      function makeButton(label, page, opts = {}) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = label;
+        b.disabled = !!opts.disabled;
+        b.className = 'pagination-btn' + (opts.active ? ' pagination-btn-active' : '');
+        b.addEventListener('click', () => {
+          currentPage = page;
+          renderTable();
+        });
+        return b;
+      }
+
+      paginationEl.appendChild(makeButton('‹', currentPage - 1, { disabled: currentPage <= 1 }));
+      for (let i = 1; i <= totalPages; i++) {
+        paginationEl.appendChild(makeButton(String(i), i, { active: i === currentPage }));
+      }
+      paginationEl.appendChild(makeButton('›', currentPage + 1, { disabled: currentPage >= totalPages }));
+    }
+
+    function renderTable() {
+      const totalPages = Math.max(1, Math.ceil(visibleRows.length / pageSize));
+      currentPage = Math.min(currentPage, totalPages);
+
+      const start = (currentPage - 1) * pageSize;
+      const end = start + pageSize;
+
+      allRows.forEach((row) => row.classList.add('hidden'));
+      visibleRows.forEach((row, i) => {
+        const isPageRow = i >= start && i < end;
+        row.classList.toggle('hidden', !isPageRow);
+        if (isPageRow) {
+          const numEl = row.querySelector('[data-num]');
+          if (numEl) numEl.textContent = String(i + 1);
+        }
+      });
+
+      tbody.querySelectorAll('.mhs-empty-row').forEach((r) => r.remove());
+      if (visibleRows.length === 0) {
+        const tr = document.createElement('tr');
+        tr.className = 'mhs-empty-row';
+        tr.innerHTML = `<td colspan="6" class="px-4 py-10 text-center text-sm text-slate-400">Tidak ada ${itemLabel} yang cocok.</td>`;
+        tbody.appendChild(tr);
+      }
+
+      renderPaginationButtons(totalPages);
+      rangeText.textContent = `Menampilkan ${visibleRows.length ? start + 1 : 0}-${Math.min(end, visibleRows.length)} dari ${visibleRows.length} ${itemLabel}`;
+    }
+
+    function render() {
+      applyFilter();
+      updateKpis();
+      renderTable();
+    }
+
+    pageSizeSelect.addEventListener('change', () => {
+      pageSize = Number(pageSizeSelect.value);
+      currentPage = 1;
+      renderTable();
     });
 
-    Object.values(filters).forEach((combo) => {
+    search.addEventListener('input', render);
+
+    [filterJenjang, filterProdi, filterAngkatan, filterTipe, filterStatus].forEach((combo) => {
       combo.querySelectorAll('[data-combo-item]').forEach((item) => {
         item.addEventListener('click', () => {
           combo.dataset.value = item.dataset.value;
-          table.refresh();
+          render();
         });
       });
     });
 
-    table.refresh();
+    render();
   })();
 
   // KarirKit combo dropdown (self-positioning select replacement) — same
@@ -1188,6 +977,5 @@
       trigger.addEventListener('blur', hide);
     });
   })();</script>
-<script src="admin-brand.js"></script>
 </body>
 </html>
