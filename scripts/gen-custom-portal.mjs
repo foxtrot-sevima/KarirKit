@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = path.join(root, 'templates/portal-karir');
 const out = path.join(root, 'templates/custom/portal-karir');
-const ALL = ['index', 'lowongan', 'event', 'pengembangan', 'course', 'riasec', 'riasec-tes', 'riasec-hasil', 'lamaran', 'profil', 'tracer-study', 'tracer-study-mahasiswa'];
+const ALL = ['index', 'lowongan', 'event', 'pengembangan', 'course', 'segera-hadir', 'riasec', 'riasec-tes', 'riasec-hasil', 'lamaran', 'profil', 'tracer-study', 'tracer-study-mahasiswa'];
 const PAGES = process.argv.length > 2 ? ALL.filter((n) => process.argv.slice(2).includes(n)) : ALL;
 const SHARED = ['login', 'register', 'onboarding']; // tetap dipakai dari portal-karir
 

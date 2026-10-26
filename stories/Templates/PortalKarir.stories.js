@@ -71,6 +71,11 @@ export const Course = {
   render: () => pageFrame("/templates/portal-karir/course.html?id=1", "Portal Karir Course"),
 };
 
+export const SegeraHadir = {
+  name: "Segera Hadir",
+  render: () => pageFrame("/templates/portal-karir/segera-hadir.html", "Portal Karir Segera Hadir"),
+};
+
 export const TesRiasec = {
   name: "Tes RIASEC",
   render: () => pageFrame("/templates/portal-karir/riasec.html", "Portal Karir Tes RIASEC"),
