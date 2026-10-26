@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aktivitas Lamaran | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Pantau alumni yang melamar ke perusahaan mitra KarirLink: jumlah lamaran, status, tren bulanan, dan perusahaan tujuan di panel admin KarirLink." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/aktivitas-lamaran.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Aktivitas Lamaran | KarirLink" />
+<meta property="og:description" content="Pantau alumni yang melamar ke perusahaan mitra KarirLink: jumlah lamaran, status, tren bulanan, dan perusahaan tujuan di panel admin KarirLink." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/aktivitas-lamaran.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Aktivitas Lamaran | KarirLink" />
+<meta name="twitter:description" content="Pantau alumni yang melamar ke perusahaan mitra KarirLink: jumlah lamaran, status, tren bulanan, dan perusahaan tujuan di panel admin KarirLink." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Overview</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
+        </a>
+        <a href="yudisium.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a href="mahasiswa-alumni.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
+        </a>
+        <a href="aktivitas-lamaran.html" class="nav-item nav-item-active" aria-current="page" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
+        </a>
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
+        </a>
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pengaturan Landing Page</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu admin">
+      <div>
+        <div class="space-y-1">
+          <a href="index.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Tracer</p>
+        <div class="space-y-1">
+          <a href="kuesioner.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kuesioner</span>
+          </a>
+          <a href="yudisium.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Daftar Yudisium</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Portal Karir</p>
+        <div class="space-y-1">
+          <a class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kerjasama</span>
+          </a>
+          <a class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Event</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">General</p>
+        <div class="space-y-1">
+          <a href="mahasiswa-alumni.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Mahasiswa/Alumni</span>
+          </a>
+          <a href="aktivitas-lamaran.html" class="nav-item nav-item-active" aria-current="page">
+            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Aktivitas Lamaran</span>
+          </a>
+          <a class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Report</span>
+          </a>
+          <a href="pengaturan-landing-page.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Pengaturan Landing Page</span>
+          </a>
+        </div>
+      </div>
+  
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">RK</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="navbar navbar-sticky navbar-app">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+        <a href="index.html" class="breadcrumb-link shrink-0">
+          <i class="kk kk-house h-4 w-4"></i>
+          <span class="hidden sm:inline">Overview</span>
+        </a>
+        <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
+        <span class="breadcrumb-current min-w-0" aria-current="page">
+          <span class="min-w-0 truncate">Aktivitas Lamaran</span>
+        </span>
+      </nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
+      <div class="relative hidden lg:block">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title">Rina Kartika</p>
+              <p class="dropdown-header-desc">rina.kartika@kampus.ac.id</p>
+            </div>
+          </div>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <style>
+    /* Sidebar karirlink ber-z-50, di atas backdrop laci bawaan (z-30): saat laci detail terbuka, naikkan backdrop dan laci
+       supaya sidebar dan topbar ikut gelap (sama seperti aturan z-[60] untuk modal di halaman karirlink). Menu mobile tidak terpengaruh. */
+    body.al-drawer-open .drawer-backdrop { z-index: 59; }
+    body.al-drawer-open #alDrawer { z-index: 60; }
+  </style>
+
+  <!-- ============================= CONTENT =============================
+       Aktivitas Lamaran Alumni (revamp). Alur data mengikuti KarirLink produksi (UniversityController@getAlumniActivity), UX disusun
+       untuk pekerjaan admin Pusat Karier: (1) lihat denyut lamaran, (2) temukan yang perlu ditindaklanjuti, (3) telusuri per status /
+       perusahaan, (4) buka riwayat satu lamaran tanpa pindah halaman.
+         - Periode + Program Studi menggerakkan KPI, status, tren, Top 5, dan tabel.
+         - Status (pita status), Perusahaan (Top 5), dan pencarian hanya menyaring tabel; chip filter aktif tampil di atas tabel.
+         - "Perlu tindak lanjut" = lamaran Menunggu lebih dari 14 hari.
+       Data di bawah hanyalah contoh yang dibangkitkan di skrip (relatif terhadap hari ini). -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Header -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="min-w-0">
+        <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Aktivitas Lamaran Alumni</h2>
+        <p class="mt-1 text-sm text-slate-500">Pantau alumni yang melamar ke perusahaan mitra KarirLink, dari lamaran terkirim sampai diterima.</p>
+      </div>
+      <button type="button" id="alExport" class="btn-outline btn-md w-full shrink-0 sm:w-auto">
+        <i class="kk kk-download-simple h-4 w-4"></i>
+        Ekspor Data
+      </button>
+    </div>
+
+    <!-- Filter global: Periode + Program Studi -->
+    <div class="card p-4 sm:p-5" data-combo-boundary>
+      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+        <div class="min-w-0 sm:w-56">
+          <p class="form-label">Periode</p>
+          <div id="filterPeriode" class="combo combo-full" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Semua Periode</span><i class="kk kk-caret-down combo-chevron"></i></button>
+            <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list></div></div>
+          </div>
+        </div>
+        <div class="min-w-0 sm:w-72">
+          <p class="form-label">Program Studi</p>
+          <div id="filterProdi" class="combo combo-full" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Semua Program Studi</span><i class="kk kk-caret-down combo-chevron"></i></button>
+            <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list></div></div>
+          </div>
+        </div>
+        <button type="button" id="alReset" class="btn-ghost btn-md hidden self-end sm:ml-auto" hidden><i class="kk kk-arrow-counter-clockwise h-4 w-4"></i>Atur ulang</button>
+      </div>
+    </div>
+
+    <!-- Perlu tindak lanjut -->
+    <div id="alAttention" class="callout-warning hidden items-start gap-3" hidden>
+      <i class="kk kk-warning-circle mt-0.5 h-5 w-5 shrink-0 text-warning-600"></i>
+      <div class="min-w-0 flex-1">
+        <p class="text-sm font-semibold text-slate-800"><span id="alAttentionN">0</span> lamaran menunggu lebih dari 14 hari</p>
+        <p class="mt-0.5 text-sm text-slate-600">Belum ada respons dari perusahaan. Pertimbangkan menghubungi perusahaan atau mengingatkan alumni untuk menindaklanjuti.</p>
+      </div>
+      <button type="button" id="alAttentionBtn" class="btn-outline btn-sm shrink-0 bg-white">Tampilkan</button>
+    </div>
+
+    <!-- KPI -->
+    <div class="stat-grid" style="--stat-cols: 4; --stat-lg: 2">
+      <div class="stat-card">
+        <span class="stat-icon"><i class="kk kk-briefcase h-[18px] w-[18px]"></i></span>
+        <div><p id="kpiTotal" class="stat-value">0</p><p class="stat-label">Total Lamaran <span id="kpiTotalDelta" class="stat-note"></span></p></div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon bg-info-50 text-info-600"><i class="kk kk-users h-[18px] w-[18px]"></i></span>
+        <div><p id="kpiAlumni" class="stat-value">0</p><p class="stat-label">Alumni Melamar <span id="kpiAlumniNote" class="stat-note"></span></p></div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon bg-success-50 text-success-600"><i class="kk kk-check-circle h-[18px] w-[18px]"></i></span>
+        <div><p id="kpiRate" class="stat-value">0%</p><p class="stat-label">Tingkat Diterima <span id="kpiRateNote" class="stat-note"></span></p></div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-[18px] w-[18px]"></i></span>
+        <div><p id="kpiWait" class="stat-value">0</p><p class="stat-label">Perlu Tindak Lanjut</p></div>
+      </div>
+    </div>
+
+    <!-- Status lamaran: pita proporsi; tiap bagian menyaring tabel -->
+    <section class="card p-5 sm:p-6" aria-labelledby="stTitle">
+      <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <h3 id="stTitle" class="text-base font-semibold text-slate-800">Status Lamaran</h3>
+        <p class="text-xs text-slate-400">Klik satu status untuk menyaring tabel di bawah</p>
+      </div>
+      <div id="stBar" class="mt-4 flex h-3 w-full overflow-hidden rounded-full bg-slate-100" role="img" aria-label="Proporsi status lamaran"></div>
+      <div id="stLegend" class="mt-4 grid grid-cols-2 gap-2 lg:grid-cols-4"></div>
+    </section>
+
+    <!-- Grafik: tren 6 bulan + Top 5 perusahaan -->
+    <div class="grid gap-6 lg:grid-cols-5">
+      <section class="card p-5 sm:p-6 lg:col-span-3" aria-labelledby="trenTitle">
+        <h3 id="trenTitle" class="text-base font-semibold text-slate-800">Tren Lamaran per Bulan</h3>
+        <p class="mt-0.5 text-xs text-slate-400">6 bulan terakhir, per status lamaran</p>
+        <div id="trendChart" class="mt-4" aria-label="Grafik tren lamaran per bulan"></div>
+      </section>
+
+      <section class="card p-5 sm:p-6 lg:col-span-2" aria-labelledby="topTitle">
+        <h3 id="topTitle" class="text-base font-semibold text-slate-800">Top 5 Perusahaan Tujuan</h3>
+        <p class="mt-0.5 text-xs text-slate-400">Klik perusahaan untuk melihat lamarannya di tabel</p>
+        <ol id="topList" class="mt-4 space-y-1"></ol>
+        <div id="topEmpty" hidden class="py-8 text-center text-sm text-slate-400"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-24 w-auto" />Belum ada data lamaran.</div>
+      </section>
+    </div>
+
+    <!-- Tabel -->
+    <div class="table-wrap overflow-visible" id="alTableRoot" data-table data-page-size="10" data-item-label="lamaran" data-combo-boundary>
+      <div class="px-4 pt-4 sm:px-5 sm:pt-5">
+        <h3 class="text-base font-semibold text-slate-800">Daftar Lamaran Alumni</h3>
+        <!-- chip filter aktif (dari pita status / Top 5 / dropdown) -->
+        <div id="alChips" class="mt-3 hidden flex-wrap items-center gap-2" hidden></div>
+      </div>
+      <div class="table-toolbar table-toolbar-many">
+        <div class="table-search">
+          <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+            <i class="kk kk-magnifying-glass h-4 w-4"></i>
+          </span>
+          <label for="alSearch" class="sr-only">Cari nama, NIM, atau perusahaan</label>
+          <input id="alSearch" type="search" class="input h-9 pl-9" placeholder="Cari nama, NIM, atau perusahaan..." data-table-search />
+        </div>
+        <div class="table-filters">
+          <div id="filterStatus" class="combo" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Semua Status</span><i class="kk kk-caret-down combo-chevron"></i></button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Status">Semua Status</button>
+                <button type="button" class="combo-item" data-combo-item data-value="menunggu" data-label="Menunggu">Menunggu</button>
+                <button type="button" class="combo-item" data-combo-item data-value="proses" data-label="Dalam Proses">Dalam Proses</button>
+                <button type="button" class="combo-item" data-combo-item data-value="diterima" data-label="Diterima">Diterima</button>
+                <button type="button" class="combo-item" data-combo-item data-value="ditolak" data-label="Ditolak">Ditolak</button>
+              </div>
+            </div>
+          </div>
+          <div id="filterPerusahaan" class="combo" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Semua Perusahaan</span><i class="kk kk-caret-down combo-chevron"></i></button>
+            <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="table table-lg table-fit table-head-soft" id="alTable">
+          <thead>
+            <tr>
+              <th scope="col" class="table-col-num">No</th>
+              <th scope="col" data-sort="text"><button type="button" class="th-sort">Nama Alumni<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" class="hidden lg:table-cell" data-sort="text"><button type="button" class="th-sort">Program Studi<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" class="hidden sm:table-cell" data-sort="text"><button type="button" class="th-sort">Lowongan Dilamar<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" class="hidden md:table-cell" data-sort="date"><button type="button" class="th-sort">Tanggal Melamar<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" data-sort="text"><button type="button" class="th-sort">Status<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+              <th scope="col" class="table-col-actions">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="alBody"></tbody>
+        </table>
+      </div>
+      <div data-table-empty hidden class="table-empty"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada lamaran yang cocok dengan filter ini.</div>
+
+      <div class="table-footer" data-table-pagination>
+        <span data-table-info></span>
+        <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+      </div>
+    </div>
+  </main>
+
+  <!-- Detail lamaran: laci kanan di desktop, lembar bawah di ponsel -->
+  <div class="drawer drawer-right w-full sm:max-w-md" id="alDrawer" aria-label="Detail lamaran">
+    <div class="drawer-header">
+      <div class="min-w-0">
+        <h3 class="drawer-title truncate" id="alDrName">Nama Alumni</h3>
+        <p class="mt-0.5 truncate text-xs text-slate-500" id="alDrSub"></p>
+      </div>
+      <button type="button" class="drawer-close" data-drawer-hide="alDrawer" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+    </div>
+    <div class="drawer-body">
+      <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
+        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Lowongan dilamar</p>
+        <p class="mt-1 text-base font-semibold text-slate-900" id="alDrPos"></p>
+        <p class="mt-0.5 text-sm text-slate-600" id="alDrComp"></p>
+        <div class="mt-3 flex flex-wrap items-center gap-2"><span id="alDrBadge"></span><span class="text-xs text-slate-500" id="alDrDate"></span></div>
+        <p id="alDrWait" class="mt-3 hidden items-start gap-2 rounded-lg bg-warning-50 px-3 py-2 text-xs text-warning-700" hidden><i class="kk kk-warning-circle mt-px h-4 w-4 shrink-0"></i><span></span></p>
+      </div>
+      <h4 class="mt-6 text-sm font-semibold text-slate-800">Riwayat Status</h4>
+      <ol class="timeline mt-4" id="alDrTimeline"></ol>
+    </div>
+    <div class="drawer-footer">
+      <button type="button" class="btn-outline btn-md" data-drawer-hide="alDrawer">Tutup</button>
+      <a href="mahasiswa-alumni-detail.html" class="btn-primary btn-md"><i class="kk kk-user-circle h-4 w-4"></i>Buka Profil Alumni</a>
+    </div>
+  </div>
+
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/vendor/apexcharts.min.js"></script>
+<script src="../../assets/js/chart.js"></script>
+<script src="../../assets/js/table.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+
+  // ---- Data contoh Aktivitas Lamaran Alumni -------------------------------------------------------------------------
+  // Dibangkitkan dengan pengacak berbenih (hasil sama setiap dibuka), relatif terhadap hari ini. Tiap lamaran punya riwayat
+  // langkah (terkirim -> diproses -> wawancara -> diterima/ditolak); langkah yang tanggalnya belum tiba dibuang, dan status
+  // = langkah terakhir. Lamaran yang "mandek" tidak pernah bergerak, jadi yang lama tampil sebagai perlu tindak lanjut.
+  // Di produksi: GET /alumni-activity?period&study_program&status&company_id&search
+  //   -> { stats, applicants[], topCompanies[], trend[] } (lihat GetUniversityService); riwayat dari applicant_statuses.
+  const AL = (function () {
+    function rng(seed) {
+      return function () {
+        seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+        let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+    const R = rng(2026);
+    const rint = (a, b) => a + Math.floor(R() * (b - a + 1));
+    const PRODI = [['ti', 'S1 Teknik Informatika'], ['si', 'S1 Sistem Informasi'], ['manajemen', 'S1 Manajemen'], ['akuntansi', 'S1 Akuntansi'], ['elektro', 'S1 Teknik Elektro'], ['mi', 'D3 Manajemen Informatika']];
+    const COMPANIES = [
+      ['c01', 'PT Nusantara Digital', ['Frontend Developer Intern', 'Backend Developer', 'QA Engineer']],
+      ['c02', 'Bank Sentra Mandiri', ['Data Analyst', 'Management Trainee', 'Credit Analyst']],
+      ['c03', 'Studio Kreatif Kita', ['UI/UX Designer', 'Motion Graphic Intern']],
+      ['c04', 'Inovasi Teknologi Nusa', ['Backend Developer Intern', 'DevOps Engineer']],
+      ['c05', 'Dompet Digital Kita', ['Product Designer', 'Product Analyst']],
+      ['c06', 'Laboratorium Data Nusantara', ['Data Science Intern', 'Data Engineer']],
+      ['c07', 'Logistik Garuda', ['Staff Operasional', 'Supply Chain Analyst']],
+      ['c08', 'Agensi Citra', ['Brand Strategist', 'Content Specialist']],
+      ['c09', 'Kantor Hukum Adil Makmur', ['Paralegal', 'Legal Admin']],
+      ['c10', 'Media Kampus Id', ['Reporter', 'Social Media Specialist']],
+      ['c11', 'Hotel Samudra', ['Front Office Staff', 'Guest Relation']],
+      ['c12', 'PT Mekatronika Prima', ['Electrical Engineer', 'Maintenance Technician']],
+    ];
+    const NAMES = ['Sarah Amelia Putri', 'Bagus Nugroho Wibowo', 'Rina Wulandari', 'Dimas Prasetyo', 'Nadia Kusuma Dewi', 'Fajar Ramadhan', 'Citra Lestari', 'Eko Saputra', 'Intan Permata Sari', 'Rizky Maulana', 'Putri Anggraini', 'Yoga Pratama', 'Salsabila Nur Aini', 'Andi Firmansyah', 'Maya Safitri', 'Hendra Gunawan', 'Larasati Dewanti', 'Taufik Hidayat', 'Anisa Rahmawati', 'Galih Wicaksono', 'Dewi Kartika', 'Bima Sakti', 'Nabila Zahra', 'Rendra Mahendra', 'Wulan Purnama', 'Irfan Hakim', 'Tiara Maharani', 'Agus Setiawan'];
+    const ALUMNI = NAMES.map((name, i) => ({ id: i, name, nim: String(1834200000 + Math.floor(R() * 2200000) + i * 137), prodi: PRODI[Math.floor(R() * PRODI.length)][0] }));
+    const today = new Date(); today.setHours(12, 0, 0, 0);
+    const DAY = 86400000;
+    const STEP = {
+      kirim: { label: 'Lamaran terkirim', icon: 'paper-plane-tilt', tone: 'bg-neutral-100 text-neutral-600' },
+      proses: { label: 'Diproses perusahaan', icon: 'clock', tone: 'bg-warning-100 text-warning-700' },
+      wawancara: { label: 'Wawancara', icon: 'chats-circle', tone: 'bg-info-100 text-info-700' },
+      diterima: { label: 'Diterima', icon: 'check-circle', tone: 'bg-success-100 text-success-700' },
+      ditolak: { label: 'Ditolak', icon: 'x-circle', tone: 'bg-danger-100 text-danger-700' },
+    };
+    const apps = [];
+    for (let i = 0; i < 130; i++) {
+      const a = ALUMNI[Math.floor(R() * ALUMNI.length)];
+      const c = COMPANIES[Math.floor(Math.pow(R(), 1.5) * COMPANIES.length)]; // beberapa perusahaan jauh lebih diminati
+      const start = new Date(today.getTime() - Math.floor(Math.pow(R(), 1.35) * 190) * DAY);
+      const fate = R(), planned = [['kirim', 0]];
+      if (fate >= 0.22) { // 22% mandek: tidak pernah ada respons
+        planned.push(['proses', rint(2, 5)]);
+        const f2 = R();
+        if (f2 < 0.20) planned.push(['ditolak', rint(6, 10)]);                                       // ditolak setelah diproses
+        else if (f2 < 0.70) {
+          planned.push(['wawancara', rint(8, 12)]);
+          const f3 = R();
+          if (f3 < 0.42) planned.push(['diterima', rint(15, 21)]);
+          else if (f3 < 0.78) planned.push(['ditolak', rint(15, 21)]);                               // sisanya masih berjalan
+        }
+      }
+      const steps = planned.map(([key, off]) => ({ key, date: new Date(start.getTime() + off * DAY) })).filter((s) => s.date <= today);
+      const last = steps[steps.length - 1].key;
+      apps.push({
+        id: i + 1, alumni: a, company: { id: c[0], name: c[1] }, position: c[2][Math.floor(R() * c[2].length)], date: start, steps,
+        period: start.getFullYear() + '-' + String(start.getMonth() + 1).padStart(2, '0'),
+        status: last === 'kirim' ? 'menunggu' : last === 'diterima' ? 'diterima' : last === 'ditolak' ? 'ditolak' : 'proses',
+        waitDays: last === 'kirim' ? Math.floor((today - start) / DAY) : 0,
+      });
+    }
+    apps.sort((x, y) => y.date - x.date);
+    return { apps, PRODI, COMPANIES, STEP, today, DAY, WAIT_LIMIT: 14 };
+  })();
+
+  (function renderData() {
+    const monthLabel = (ym) => { const [y, m] = ym.split('-'); return new Date(+y, +m - 1, 1).toLocaleDateString('id-ID', { month: 'long', year: 'numeric' }); };
+    const item = (value, label, selected) => `<button type="button" class="combo-item${selected ? ' is-selected' : ''}" data-combo-item data-value="${value}" data-label="${label}">${label}</button>`;
+    const periods = [...new Set(AL.apps.map((a) => a.period))].sort().reverse();
+    document.querySelector('#filterPeriode [data-combo-list]').innerHTML = item('all', 'Semua Periode', true) + item('last30', '30 hari terakhir') + periods.map((p) => item(p, monthLabel(p))).join('');
+    const prodiUsed = AL.PRODI.filter(([k]) => AL.apps.some((a) => a.alumni.prodi === k));
+    document.querySelector('#filterProdi [data-combo-list]').innerHTML = item('all', 'Semua Program Studi', true) + prodiUsed.map(([k, n]) => item(k, n)).join('');
+    const comps = AL.COMPANIES.filter(([id]) => AL.apps.some((a) => a.company.id === id)).sort((a, b) => a[1].localeCompare(b[1]));
+    document.querySelector('#filterPerusahaan [data-combo-list]').innerHTML = item('all', 'Semua Perusahaan', true) + comps.map(([id, n]) => item(id, n)).join('');
+
+    const prodiName = Object.fromEntries(AL.PRODI);
+    const BADGE = {
+      menunggu: ['badge-neutral', 'bg-neutral-500', 'Menunggu'],
+      proses: ['badge-warning', 'bg-warning-600', 'Dalam Proses'],
+      diterima: ['badge-success', 'bg-success-600', 'Diterima'],
+      ditolak: ['badge-danger', 'bg-danger-600', 'Ditolak'],
+    };
+    AL.BADGE = BADGE; AL.prodiName = prodiName;
+    const fmtDate = (d) => d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+    AL.fmtDate = fmtDate;
+    document.getElementById('alBody').innerHTML = AL.apps.map((a, i) => {
+      const b = BADGE[a.status];
+      const late = a.status === 'menunggu' && a.waitDays > AL.WAIT_LIMIT;
+      return `<tr data-id="${a.id}" data-period="${a.period}" data-prodi="${a.alumni.prodi}" data-status="${a.status}" data-company="${a.company.id}" class="cursor-pointer">
+        <td class="table-col-num" data-num>${i + 1}</td>
+        <td data-value="${a.alumni.name}"><span class="block font-medium text-slate-800">${a.alumni.name}</span><p class="mt-0.5 text-xs text-slate-400">NIM ${a.alumni.nim}</p><p class="mt-1 text-xs font-medium text-slate-600 sm:hidden">${a.position}</p></td>
+        <td class="hidden lg:table-cell" data-value="${prodiName[a.alumni.prodi]}"><p class="text-slate-700">${prodiName[a.alumni.prodi]}</p></td>
+        <td class="hidden sm:table-cell" data-value="${a.company.name}"><span class="block font-medium text-slate-800">${a.position}</span><p class="mt-0.5 text-xs text-slate-400">${a.company.name}<span class="md:hidden"> &middot; ${fmtDate(a.date)}</span></p></td>
+        <td class="hidden whitespace-nowrap text-slate-600 md:table-cell" data-value="${a.date.toISOString().slice(0, 10)}">${fmtDate(a.date)}</td>
+        <td data-value="${b[2]}"><span class="${b[0]} badge-wrap"><span class="badge-dot ${b[1]}"></span>${b[2]}</span>${late ? `<p class="mt-1 flex items-center gap-1 text-xs text-warning-700"><i class="kk kk-warning-circle h-3.5 w-3.5"></i>${a.waitDays} hari</p>` : ''}</td>
+        <td class="table-col-actions"><div class="flex items-center justify-end"><button type="button" class="btn-outline btn-sm table-action" data-open-detail title="Lihat Detail" aria-label="Lihat Detail ${a.alumni.name}"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Lihat Detail</span></button></div></td>
+      </tr>`;
+    }).join('');
+  })();
+
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // ---- Logika halaman ------------------------------------------------------------------------------------------------
+  // Filter global (Periode, Program Studi) -> KPI, status, tren, Top 5, tabel. Filter tabel (Status, Perusahaan, pencarian) -> tabel saja.
+  (function () {
+    const root = document.getElementById('alTableRoot');
+    if (!root || !window.KKTable) return;
+    const table = window.KKTable.get(root) || (window.KKTable.init(root), window.KKTable.get(root));
+    if (!table) return;
+
+    const el = (id) => document.getElementById(id);
+    const combos = { periode: el('filterPeriode'), prodi: el('filterProdi'), status: el('filterStatus'), perusahaan: el('filterPerusahaan') };
+    const fmt = (n) => n.toLocaleString('id-ID');
+    const val = (k) => combos[k].dataset.value;
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const STATUSES = [['menunggu', 'Menunggu', 'bg-neutral-400', 'text-neutral-600'], ['proses', 'Dalam Proses', 'bg-warning-500', 'text-warning-700'], ['diterima', 'Diterima', 'bg-success-500', 'text-success-700'], ['ditolak', 'Ditolak', 'bg-danger-500', 'text-danger-700']];
+    const STATUS_LABEL = Object.fromEntries(STATUSES.map((s) => [s[0], s[1]]));
+    const compName = Object.fromEntries(AL.COMPANIES.map((c) => [c[0], c[1]]));
+    let lastVisible = [];
+    let lateOnly = false; // tampilan "Menunggu lebih dari 14 hari" dari peringatan tindak lanjut
+    const byId = Object.fromEntries(AL.apps.map((a) => [a.id, a]));
+
+    // ---- himpunan lamaran menurut filter global
+    function inPeriod(a, periode, ref) {
+      if (periode === 'all') return true;
+      if (periode === 'last30') return a.date >= new Date(ref - 30 * AL.DAY) && a.date <= ref;
+      return a.period === periode;
+    }
+    const byProdi = (a) => val('prodi') === 'all' || a.alumni.prodi === val('prodi');
+    const globalApps = () => AL.apps.filter((a) => inPeriod(a, val('periode'), AL.today) && byProdi(a));
+    const count = (rows, s) => rows.filter((a) => a.status === s).length;
+
+    // periode pembanding untuk delta: 30 hari sebelumnya, atau bulan sebelumnya
+    function previousApps() {
+      const p = val('periode');
+      if (p === 'all') return null;
+      if (p === 'last30') return AL.apps.filter((a) => a.date >= new Date(AL.today - 60 * AL.DAY) && a.date < new Date(AL.today - 30 * AL.DAY) && byProdi(a));
+      const [y, m] = p.split('-').map(Number), prev = new Date(y, m - 2, 1);
+      const key = prev.getFullYear() + '-' + String(prev.getMonth() + 1).padStart(2, '0');
+      return AL.apps.filter((a) => a.period === key && byProdi(a));
+    }
+
+    function updateKpi(rows) {
+      const ok = count(rows, 'diterima'), alumni = new Set(rows.map((a) => a.alumni.id)).size;
+      const late = rows.filter((a) => a.status === 'menunggu' && a.waitDays > AL.WAIT_LIMIT).length;
+      el('kpiTotal').textContent = fmt(rows.length);
+      el('kpiAlumni').textContent = fmt(alumni);
+      el('kpiAlumniNote').textContent = alumni ? '(' + (rows.length / alumni).toFixed(1).replace('.', ',') + '/alumni)' : '';
+      el('kpiRate').textContent = rows.length ? Math.round((ok / rows.length) * 100) + '%' : '0%';
+      el('kpiRateNote').textContent = '(' + fmt(ok) + ' diterima)';
+      el('kpiWait').textContent = fmt(late);
+      const prev = previousApps(), d = el('kpiTotalDelta');
+      if (prev && prev.length) {
+        const pct = Math.round(((rows.length - prev.length) / prev.length) * 100);
+        d.textContent = (pct > 0 ? '+' : '') + pct + '% vs periode lalu';
+        d.className = 'stat-note ' + (pct > 0 ? '!text-success-600' : pct < 0 ? '!text-danger-600' : '');
+      } else { d.textContent = ''; d.className = 'stat-note'; }
+      // peringatan tindak lanjut
+      const box = el('alAttention');
+      el('alAttentionN').textContent = fmt(late);
+      box.hidden = late === 0; box.classList.toggle('hidden', late === 0); box.classList.toggle('flex', late > 0);
+    }
+
+    function updateStatus(rows) {
+      const total = rows.length;
+      const stage = (k) => rows.filter((a) => a.status === 'proses' && a.steps[a.steps.length - 1].key === k).length;
+      el('stBar').innerHTML = total ? STATUSES.map(([k, label, bg]) => {
+        const n = count(rows, k); if (!n) return '';
+        return `<button type="button" class="${bg} h-full transition-[filter,opacity] hover:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary-600" style="width:${(n / total) * 100}%" data-status-pick="${k}" aria-label="${label}: ${n} lamaran" title="${label}: ${n}"></button>`;
+      }).join('') : '';
+      el('stLegend').innerHTML = STATUSES.map(([k, label, bg, tx]) => {
+        const n = count(rows, k), pct = total ? Math.round((n / total) * 100) : 0;
+        const sub = k === 'proses' ? `<span class="mt-0.5 block text-[11px] text-slate-400">Diproses ${fmt(stage('proses'))} &middot; Wawancara ${fmt(stage('wawancara'))}</span>` : '';
+        return `<button type="button" class="status-pick group rounded-xl border border-slate-200 p-3 text-left transition-colors hover:border-primary-300 hover:bg-primary-50/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600" data-status-pick="${k}" aria-pressed="false">
+          <span class="flex items-center gap-2 text-xs font-medium text-slate-500"><span class="h-2.5 w-2.5 shrink-0 rounded-full ${bg}"></span>${label}</span>
+          <span class="mt-1.5 flex items-baseline gap-1.5"><span class="font-display text-xl font-bold text-slate-900">${fmt(n)}</span><span class="text-xs font-medium ${tx}">${pct}%</span></span>${sub}
+        </button>`;
+      }).join('');
+      syncActive();
+    }
+
+    function updateTop(rows) {
+      const by = {};
+      rows.forEach((a) => { const c = (by[a.company.id] = by[a.company.id] || { id: a.company.id, name: a.company.name, n: 0, ok: 0 }); c.n++; if (a.status === 'diterima') c.ok++; });
+      const top = Object.values(by).sort((x, y) => y.n - x.n || x.name.localeCompare(y.name)).slice(0, 5);
+      const max = top.length ? top[0].n : 1;
+      el('topEmpty').hidden = top.length > 0;
+      el('topList').innerHTML = top.map((c, i) => `<li>
+        <button type="button" class="top-pick group block w-full rounded-lg p-2 text-left transition-colors hover:bg-primary-50/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600" data-company-pick="${c.id}" aria-pressed="false">
+          <span class="flex items-center justify-between gap-3">
+            <span class="flex min-w-0 items-center gap-2.5"><span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-600 text-xs font-semibold text-white">${i + 1}</span><span class="truncate text-sm font-medium text-slate-700 group-hover:text-primary-700">${esc(c.name)}</span></span>
+            <span class="shrink-0 text-sm font-bold text-primary-600">${c.n}</span>
+          </span>
+          <span class="mt-1.5 block h-1.5 w-full rounded-full bg-slate-100"><span class="block h-1.5 rounded-full bg-primary-500 transition-[width] duration-500" style="width:${Math.round((c.n / max) * 100)}%"></span></span>
+          ${c.ok ? `<span class="mt-1 block text-[11px] text-success-700">${c.ok} alumni diterima</span>` : ''}
+        </button></li>`).join('');
+      syncActive();
+    }
+
+    // tren 6 bulan terakhir (mengikuti Program Studi, tidak mengikuti Periode)
+    function updateTrend() {
+      const months = [];
+      for (let i = 5; i >= 0; i--) { const d = new Date(AL.today.getFullYear(), AL.today.getMonth() - i, 1); months.push({ key: d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'), label: d.toLocaleDateString('id-ID', { month: 'short' }) }); }
+      const rows = AL.apps.filter(byProdi);
+      const series = [['Diterima', 'diterima'], ['Dalam Proses', 'proses'], ['Ditolak', 'ditolak'], ['Menunggu', 'menunggu']].map(([name, s]) => ({ name, data: months.map((m) => rows.filter((a) => a.period === m.key && a.status === s).length) }));
+      if (window.KKChart) window.KKChart.render(el('trendChart'), 'column', { series, categories: months.map((m) => m.label), stacked: true, colors: ['success', 'warning', 'danger', 'neutral'], height: 300 });
+    }
+
+    // ---- filter tabel (status + perusahaan) yang bisa diatur dari pita status, Top 5, dropdown, atau chip
+    function setCombo(key, value) {
+      const c = combos[key];
+      c.dataset.value = value;
+      c.querySelectorAll('[data-combo-item]').forEach((i) => i.classList.toggle('is-selected', i.dataset.value === value));
+      const it = c.querySelector(`[data-value="${value}"]`);
+      if (it) c.querySelector('[data-combo-label]').textContent = it.dataset.label;
+    }
+    function syncActive() {
+      document.querySelectorAll('[data-status-pick].status-pick').forEach((b) => {
+        const on = val('status') === b.dataset.statusPick;
+        b.setAttribute('aria-pressed', String(on));
+        b.classList.toggle('!border-primary-500', on); b.classList.toggle('bg-primary-50', on);
+      });
+      document.querySelectorAll('#stBar [data-status-pick]').forEach((b) => b.classList.toggle('opacity-40', val('status') !== 'all' && val('status') !== b.dataset.statusPick));
+      document.querySelectorAll('[data-company-pick]').forEach((b) => {
+        const on = val('perusahaan') === b.dataset.companyPick;
+        b.setAttribute('aria-pressed', String(on)); b.classList.toggle('bg-primary-50', on);
+      });
+    }
+    function renderChips() {
+      const chips = [];
+      if (lateOnly) chips.push(['late', 'Menunggu lebih dari ' + AL.WAIT_LIMIT + ' hari']);
+      else if (val('status') !== 'all') chips.push(['status', 'Status: ' + STATUS_LABEL[val('status')]]);
+      if (val('perusahaan') !== 'all') chips.push(['perusahaan', 'Perusahaan: ' + compName[val('perusahaan')]]);
+      const box = el('alChips');
+      box.hidden = !chips.length; box.classList.toggle('hidden', !chips.length); box.classList.toggle('flex', !!chips.length);
+      box.innerHTML = chips.map(([k, t]) => `<span class="badge-primary badge-wrap gap-1.5">${esc(t)}<button type="button" class="-mr-1 flex h-4 w-4 items-center justify-center rounded-full hover:bg-primary-200/60" data-chip-clear="${k}" aria-label="Hapus filter ${esc(t)}"><i class="kk kk-x h-3 w-3"></i></button></span>`).join('')
+        + (chips.length > 1 ? '<button type="button" class="text-xs font-medium text-primary-600 hover:underline" data-chip-clear="all">Hapus semua</button>' : '');
+    }
+    function tableFilterChanged() { renderChips(); syncActive(); table.refresh(); }
+    function pick(key, value) { if (key === 'status') lateOnly = false; setCombo(key, val(key) === value ? 'all' : value); tableFilterChanged(); }
+
+    function onGlobalChange() {
+      const rows = globalApps();
+      updateKpi(rows); updateStatus(rows); updateTop(rows); updateTrend();
+      const dirty = val('periode') !== 'all' || val('prodi') !== 'all';
+      el('alReset').hidden = !dirty; el('alReset').classList.toggle('hidden', !dirty);
+      table.refresh();
+    }
+
+    table.addFilter((row) => {
+      const id = +row.dataset.id;
+      return globalApps().some((a) => a.id === id)
+        && (val('status') === 'all' || row.dataset.status === val('status'))
+        && (!lateOnly || byId[id].waitDays > AL.WAIT_LIMIT)
+        && (val('perusahaan') === 'all' || row.dataset.company === val('perusahaan'));
+    });
+    root.addEventListener('table:render', (e) => { lastVisible = e.detail.visible; });
+
+    ['periode', 'prodi'].forEach((k) => combos[k].querySelectorAll('[data-combo-item]').forEach((i) => i.addEventListener('click', () => { combos[k].dataset.value = i.dataset.value; onGlobalChange(); })));
+    ['status', 'perusahaan'].forEach((k) => combos[k].querySelectorAll('[data-combo-item]').forEach((i) => i.addEventListener('click', () => { if (k === 'status') lateOnly = false; combos[k].dataset.value = i.dataset.value; tableFilterChanged(); })));
+
+    document.addEventListener('click', (e) => {
+      const s = e.target.closest('[data-status-pick]'); if (s) { pick('status', s.dataset.statusPick); return; }
+      const c = e.target.closest('[data-company-pick]'); if (c) { pick('perusahaan', c.dataset.companyPick); return; }
+      const x = e.target.closest('[data-chip-clear]');
+      if (x) { if (x.dataset.chipClear === 'late') { lateOnly = false; setCombo('status', 'all'); } else if (x.dataset.chipClear === 'all') { lateOnly = false; setCombo('status', 'all'); setCombo('perusahaan', 'all'); } else setCombo(x.dataset.chipClear, 'all'); tableFilterChanged(); }
+    });
+
+    el('alReset').addEventListener('click', () => { setCombo('periode', 'all'); setCombo('prodi', 'all'); onGlobalChange(); });
+
+    // peringatan: tampilkan hanya yang Menunggu, terlama di atas
+    el('alAttentionBtn').addEventListener('click', () => {
+      setCombo('perusahaan', 'all'); setCombo('status', 'menunggu'); lateOnly = true; tableFilterChanged();
+      const th = root.querySelector('th[data-sort="date"] .th-sort');
+      if (th && th.closest('th').getAttribute('aria-sort') !== 'ascending') th.click(); // urut tanggal naik: terlama di atas
+      root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ---- detail lamaran (laci)
+    const drawer = el('alDrawer');
+    drawer.addEventListener('drawer:show', () => document.body.classList.add('al-drawer-open'));
+    drawer.addEventListener('drawer:hide', () => document.body.classList.remove('al-drawer-open'));
+    function openDetail(id) {
+      const a = AL.apps.find((x) => x.id === id); if (!a) return;
+      const b = AL.BADGE[a.status];
+      el('alDrName').textContent = a.alumni.name;
+      el('alDrSub').textContent = 'NIM ' + a.alumni.nim + ' · ' + AL.prodiName[a.alumni.prodi];
+      el('alDrPos').textContent = a.position;
+      el('alDrComp').textContent = a.company.name;
+      el('alDrBadge').innerHTML = `<span class="${b[0]} badge-wrap"><span class="badge-dot ${b[1]}"></span>${b[2]}</span>`;
+      el('alDrDate').textContent = 'Melamar ' + AL.fmtDate(a.date);
+      const w = el('alDrWait'), late = a.status === 'menunggu' && a.waitDays > AL.WAIT_LIMIT;
+      w.hidden = !late; w.classList.toggle('hidden', !late); w.classList.toggle('flex', late);
+      if (late) w.querySelector('span').textContent = 'Sudah ' + a.waitDays + ' hari tanpa respons dari perusahaan.';
+      el('alDrTimeline').innerHTML = a.steps.map((s, i) => {
+        const st = AL.STEP[s.key], last = i === a.steps.length - 1;
+        return `<li class="timeline-item"><span class="timeline-marker ${st.tone}"><i class="kk kk-${st.icon} h-3 w-3"></i></span><time class="timeline-time">${AL.fmtDate(s.date)}</time><h5 class="timeline-title text-sm">${st.label}${last ? ' <span class="badge-neutral ml-1.5">Terkini</span>' : ''}</h5></li>`;
+      }).join('');
+      // laci kanan di layar lebar, lembar bawah di ponsel
+      drawer.dataset.drawerPlacement = matchMedia('(min-width: 640px)').matches ? 'right' : 'bottom';
+      if (window.KKDrawer) window.KKDrawer.open(drawer);
+    }
+    el('alBody').addEventListener('click', (e) => {
+      const tr = e.target.closest('tr[data-id]'); if (!tr) return;
+      openDetail(+tr.dataset.id);
+    });
+
+    // ---- ekspor: CSV dari baris yang tampil (semua halaman, mengikuti filter + pencarian). Produksi: PDF (exportAlumniActivity).
+    el('alExport').addEventListener('click', () => {
+      const q = (s) => '"' + String(s).replace(/"/g, '""') + '"';
+      const lines = [['No', 'Nama Alumni', 'NIM', 'Program Studi', 'Perusahaan', 'Posisi', 'Tanggal Melamar', 'Status'].map(q).join(',')];
+      lastVisible.forEach((row, i) => {
+        const a = byId[+row.dataset.id];
+        lines.push([i + 1, a.alumni.name, a.alumni.nim, AL.prodiName[a.alumni.prodi], a.company.name, a.position, a.date.toISOString().slice(0, 10), STATUS_LABEL[a.status]].map(q).join(','));
+      });
+      const blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'aktivitas-lamaran-' + new Date().toISOString().slice(0, 10) + '.csv';
+      document.body.appendChild(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      if (window.KKToast) KKToast.show({ type: 'success', message: 'Ekspor dimulai: ' + lastVisible.length + ' lamaran.' });
+    });
+
+    onGlobalChange();
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();</script>
+<script src="admin-brand.js"></script>
+</body>
+</html>
