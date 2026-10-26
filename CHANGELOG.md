@@ -2,7 +2,7 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perubahan mockup template KarirLink dan Portal Karir dicatat di `templates/CHANGELOG.md` dengan versi berupa tanggal; pemisahan ini dimulai dari v1.4.0 (sebelumnya disiapkan sebagai 1.3.7; dinaikkan ke MINOR karena menambah lima komponen).
+File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perubahan mockup template KarirLink dan Portal Karir dicatat di `templates/CHANGELOG.md` dengan versi berupa tanggal; pemisahan ini dimulai dari v1.4.0.
 
 ## [Unreleased]
 
