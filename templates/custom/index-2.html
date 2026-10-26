@@ -5,7 +5,7 @@
 <!-- Halaman ini ada di /templates/custom/. base tetap /templates/karirlink/ supaya menu ke halaman KarirLink lain dan aset (../../assets, ../../dist) tetap menunjuk ke tempat yang benar. -->
 <base href="/templates/karirlink/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Dashboard Admin | KarirLink</title>
+<title>Overview Admin | KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
 <meta name="description" content="Panel admin KarirLink: kelola tracer study, lowongan mitra, kerjasama industri, dan aktivitas lamaran kampus dalam satu dashboard." />
@@ -17,7 +17,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="KarirKit" />
-<meta property="og:title" content="Dashboard Admin | KarirLink" />
+<meta property="og:title" content="Overview Admin | KarirLink" />
 <meta property="og:description" content="Panel admin KarirLink: kelola tracer study, lowongan mitra, kerjasama industri, dan aktivitas lamaran kampus dalam satu dashboard." />
 <meta property="og:url" content="https://karirkit.vercel.app/templates/custom/index.html" />
 <meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
@@ -27,7 +27,7 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Dashboard Admin | KarirLink" />
+<meta name="twitter:title" content="Overview Admin | KarirLink" />
 <meta name="twitter:description" content="Panel admin KarirLink: kelola tracer study, lowongan mitra, kerjasama industri, dan aktivitas lamaran kampus dalam satu dashboard." />
 <meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
 </head>
@@ -74,9 +74,9 @@
   <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
     <div>
       <div class="space-y-1">
-        <a href="/templates/custom/index.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Dashboard" data-tooltip-side="right">
+        <a href="/templates/custom/index.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
-          <span class="sidebar-label">Dashboard</span>
+          <span class="sidebar-label">Overview</span>
         </a>
       </div>
     </div>
@@ -151,7 +151,7 @@
 <!-- ============================= MAIN COLUMN ============================= -->
 <div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
   <!-- Topbar -->
-  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+  <header class="navbar navbar-sticky navbar-app">
     <div class="flex min-w-0 flex-1 items-center gap-3">
       <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
         <i class="kk kk-list h-5 w-5"></i>
@@ -159,7 +159,7 @@
       <nav class="breadcrumb min-w-0" aria-label="Breadcrumb">
         <span class="breadcrumb-current min-w-0" aria-current="page">
           <i class="kk kk-house h-4 w-4 shrink-0"></i>
-          <span class="min-w-0 truncate">Dashboard</span>
+          <span class="min-w-0 truncate">Overview</span>
         </span>
       </nav>
     </div>
@@ -856,11 +856,9 @@
     </div>
   </main>
 
-  <footer>
-    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
-      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
-      <p>KarirLink</p>
-    </div>
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
   </footer>
 </div>
 
@@ -1319,7 +1317,7 @@
     document.querySelectorAll('[data-combo]').forEach(setupCombo);
   })();
 
-  // Dashboard segmented tabs: Portal Karir / Tracer Study.
+  // Overview segmented tabs: Portal Karir / Tracer Study.
   (function () {
     const tabs = document.querySelectorAll('#dashboardTabs [data-tab]');
     const panels = document.querySelectorAll('[data-tab-panel]');

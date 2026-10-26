@@ -32,11 +32,8 @@
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
-<!-- Mobile overlay -->
-<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
-
 <!-- ============================= SIDEBAR ============================= -->
-<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out lg:translate-x-0">
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
   <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
     <a href="../../index.html" class="sidebar-logo-full flex items-center">
       <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
@@ -44,17 +41,14 @@
     <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
       <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
     </a>
-    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
-      <i class="kk kk-x h-5 w-5"></i>
-    </button>
   </div>
 
   <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
     <div>
       <div class="space-y-1">
-        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Dashboard" data-tooltip-side="right">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
-          <span class="sidebar-label">Dashboard</span>
+          <span class="sidebar-label">Overview</span>
         </a>
       </div>
     </div>
@@ -76,15 +70,15 @@
     <div>
       <p class="nav-eyebrow mb-2">Portal Karir</p>
       <div class="space-y-1">
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Kerjasama" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Kerjasama</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Lowongan" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Lowongan</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Event" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Event</span>
         </a>
@@ -98,15 +92,15 @@
           <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Mahasiswa/Alumni</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+        <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Aktivitas Lamaran</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Report</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Pengaturan Landing Page</span>
         </a>
@@ -126,18 +120,117 @@
   </div>
 </aside>
 
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu admin">
+      <div>
+        <div class="space-y-1">
+          <a href="index.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Tracer</p>
+        <div class="space-y-1">
+          <a href="kuesioner.html" class="nav-item nav-item-active">
+            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kuesioner</span>
+          </a>
+          <a href="yudisium.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Daftar Yudisium</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Portal Karir</p>
+        <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Kerjasama" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kerjasama</span>
+          </a>
+          <a href="segera-hadir.html?menu=Lowongan" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="segera-hadir.html?menu=Event" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Event</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">General</p>
+        <div class="space-y-1">
+          <a href="mahasiswa-alumni.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Mahasiswa/Alumni</span>
+          </a>
+          <a href="aktivitas-lamaran.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Aktivitas Lamaran</span>
+          </a>
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Report</span>
+          </a>
+          <a href="pengaturan-landing-page.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Pengaturan Landing Page</span>
+          </a>
+        </div>
+      </div>
+  
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">RK</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
 <!-- ============================= MAIN COLUMN ============================= -->
 <div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
   <!-- Topbar -->
-  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+  <header class="navbar navbar-sticky navbar-app">
     <div class="flex min-w-0 flex-1 items-center gap-3">
-      <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
         <i class="kk kk-list h-5 w-5"></i>
       </button>
       <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
         <a href="index.html" class="breadcrumb-link shrink-0">
           <i class="kk kk-house h-4 w-4"></i>
-          <span class="hidden sm:inline">Dashboard</span>
+          <span class="hidden sm:inline">Overview</span>
         </a>
         <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
         <span class="relative hidden min-w-[4.5rem] shrink sm:block">
@@ -154,7 +247,8 @@
       </nav>
     </div>
     <div class="flex shrink-0 items-center gap-2 sm:gap-3">
-      <div class="relative">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
+      <div class="relative hidden lg:block">
         <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
           <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
           <span class="hidden min-w-0 sm:block">
@@ -193,8 +287,8 @@
   <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
 
     <div id="ansMissing" class="card p-8 text-center" hidden>
-      <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-500"><i class="kk kk-archive h-6 w-6"></i></span>
-      <h2 class="mt-4 font-display text-xl font-bold text-slate-900">Jawaban tidak ditemukan</h2>
+      <img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto h-32 w-auto" />
+      <h2 class="mt-3 font-display text-xl font-bold text-slate-900">Jawaban tidak ditemukan</h2>
       <p class="mt-1 text-sm text-slate-500">Alumni atau arsip yang kamu buka tidak ada.</p>
       <a href="kuesioner.html" class="btn-primary btn-md mt-5"><i class="kk kk-arrow-left h-4 w-4 shrink-0"></i>Kembali ke Kuesioner</a>
     </div>
@@ -255,16 +349,15 @@
     </div>
   </main>
 
-  <footer>
-    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
-      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
-      <p>KarirLink</p>
-    </div>
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
   </footer>
 </div>
 
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
+<script src="../../assets/js/drawer.js"></script>
 <script src="kuesioner-arsip-data.js"></script>
 <script src="../../assets/js/ui.js"></script>
 <script>
@@ -348,7 +441,7 @@
       }).join('');
     } else {
       var why = !me.sent ? 'Kuesioner belum pernah dikirim ke alumni ini' : multi ? 'Alumni ini belum mengisi ' + esc(cur.name.replace('Template ', 'Kuesioner ')) : 'Alumni ini belum mengisi kuesioner';
-      $('ansList').outerHTML = '<div class="mt-4 rounded-xl border border-dashed border-slate-200 px-4 py-10 text-center"><span class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-500"><i class="kk kk-file-text h-5 w-5"></i></span><p class="mt-3 text-sm font-medium text-slate-700">' + why + '</p><p class="mt-1 text-xs text-slate-400">Tidak ada jawaban yang dapat ditampilkan.</p></div>';
+      $('ansList').outerHTML = '<div class="mt-4 rounded-xl border border-dashed border-slate-200 px-4 py-10 text-center"><img src="../../assets/illustrations/empty-state/report.svg" alt="" class="mx-auto h-28 w-auto" /><p class="mt-3 text-sm font-semibold text-slate-700">' + why + '</p><p class="mt-1 text-xs text-slate-400">Tidak ada jawaban yang dapat ditampilkan.</p></div>';
     }
 
     // previous / next alumni that has answers
@@ -363,21 +456,7 @@
   })();
 
   const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  const openBtn = document.getElementById('openSidebarBtn');
-  const closeBtn = document.getElementById('closeSidebarBtn');
-
-  function openSidebar() {
-    sidebar.classList.remove('-translate-x-full');
-    overlay.classList.remove('hidden');
-  }
-  function closeSidebar() {
-    sidebar.classList.add('-translate-x-full');
-    overlay.classList.add('hidden');
-  }
-  openBtn?.addEventListener('click', openSidebar);
-  closeBtn?.addEventListener('click', closeSidebar);
-  overlay?.addEventListener('click', closeSidebar);
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
 
   (function () {
     const mainColumn = document.getElementById('mainColumn');
@@ -482,5 +561,6 @@
       trigger.addEventListener('blur', hide);
     });
   })();</script>
+<script src="admin-brand.js"></script>
 </body>
 </html>

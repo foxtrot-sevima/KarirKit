@@ -32,11 +32,8 @@
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
-<!-- Mobile overlay -->
-<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/30 lg:hidden"></div>
-
 <!-- ============================= SIDEBAR ============================= -->
-<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[264px] -translate-x-full flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out lg:translate-x-0">
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
   <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
     <a href="../../index.html" class="sidebar-logo-full flex items-center">
       <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
@@ -44,17 +41,14 @@
     <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
       <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
     </a>
-    <button id="closeSidebarBtn" class="text-slate-400 hover:text-slate-600 lg:hidden">
-      <i class="kk kk-x h-5 w-5"></i>
-    </button>
   </div>
 
   <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
     <div>
       <div class="space-y-1">
-        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Dashboard" data-tooltip-side="right">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
-          <span class="sidebar-label">Dashboard</span>
+          <span class="sidebar-label">Overview</span>
         </a>
       </div>
     </div>
@@ -76,15 +70,15 @@
     <div>
       <p class="nav-eyebrow mb-2">Portal Karir</p>
       <div class="space-y-1">
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Kerjasama" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Kerjasama</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Lowongan" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Lowongan</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Event" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Event</span>
         </a>
@@ -98,15 +92,15 @@
           <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Mahasiswa/Alumni</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+        <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Aktivitas Lamaran</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Report</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Pengaturan Landing Page</span>
         </a>
@@ -126,18 +120,117 @@
   </div>
 </aside>
 
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu admin">
+      <div>
+        <div class="space-y-1">
+          <a href="index.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Tracer</p>
+        <div class="space-y-1">
+          <a href="kuesioner.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kuesioner</span>
+          </a>
+          <a href="yudisium.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Daftar Yudisium</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Portal Karir</p>
+        <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Kerjasama" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kerjasama</span>
+          </a>
+          <a href="segera-hadir.html?menu=Lowongan" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="segera-hadir.html?menu=Event" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Event</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">General</p>
+        <div class="space-y-1">
+          <a href="mahasiswa-alumni.html" class="nav-item nav-item-active">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Mahasiswa/Alumni</span>
+          </a>
+          <a href="aktivitas-lamaran.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Aktivitas Lamaran</span>
+          </a>
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Report</span>
+          </a>
+          <a href="pengaturan-landing-page.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Pengaturan Landing Page</span>
+          </a>
+        </div>
+      </div>
+  
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">RK</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
 <!-- ============================= MAIN COLUMN ============================= -->
 <div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
   <!-- Topbar -->
-  <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6">
+  <header class="navbar navbar-sticky navbar-app">
     <div class="flex min-w-0 flex-1 items-center gap-3">
-      <button id="openSidebarBtn" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
         <i class="kk kk-list h-5 w-5"></i>
       </button>
       <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
         <a href="index.html" class="breadcrumb-link shrink-0">
           <i class="kk kk-house h-4 w-4"></i>
-          <span class="hidden sm:inline">Dashboard</span>
+          <span class="hidden sm:inline">Overview</span>
         </a>
         <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
         <a href="mahasiswa-alumni.html" class="breadcrumb-link hidden min-w-[4rem] shrink sm:flex"><span class="truncate">Mahasiswa/Alumni</span></a>
@@ -148,7 +241,8 @@
       </nav>
     </div>
     <div class="flex shrink-0 items-center gap-2 sm:gap-3">
-      <div class="relative">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
+      <div class="relative hidden lg:block">
         <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
           <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
           <span class="hidden min-w-0 sm:block">
@@ -186,311 +280,282 @@
   <!-- ============================= CONTENT ============================= -->
   <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
 
-    <!-- Profile header -->
+    <!-- Profil: identitas + kontak -->
     <div class="card p-5 sm:p-6">
       <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
-          <span class="avatar h-16 w-16 shrink-0 bg-primary-50 text-lg text-primary-600">RD</span>
-          <div>
+        <div class="flex min-w-0 items-center gap-4">
+          <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-primary-600 font-display text-xl font-bold text-white">RD</span>
+          <div class="min-w-0">
             <div class="flex flex-wrap items-center gap-2">
-              <h2 class="font-display text-xl font-bold text-slate-900">Raden Dimas</h2>
+              <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Raden Dimas</h2>
               <span class="badge-neutral">Alumni</span>
+              <span class="badge-success"><span class="badge-dot bg-success-600"></span>Bekerja</span>
             </div>
-            <p class="mt-1 text-sm text-slate-500">NIM 120202 &middot; S1 - Bimbingan dan Konseling &middot; Lulusan 2022</p>
+            <p class="mt-1 text-sm text-slate-500">NIM 120202 &middot; S1 - Bimbingan dan Konseling &middot; Angkatan 2018, lulus 2022</p>
           </div>
         </div>
-        <span class="badge-success shrink-0">Bekerja</span>
+        <a href="mahasiswa-alumni.html" class="btn-outline btn-md w-full shrink-0 sm:w-auto">
+          <i class="kk kk-arrow-left h-4 w-4"></i>
+          Kembali ke Daftar
+        </a>
+      </div>
+      <div class="mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-slate-100 pt-4 text-sm">
+        <a href="mailto:raden.dimas@email.com" class="inline-flex items-center gap-2 text-slate-600 hover:text-primary-600"><i class="kk kk-envelope-simple h-4 w-4 text-slate-400"></i>raden.dimas@email.com</a>
+        <a href="tel:081234567788" class="inline-flex items-center gap-2 text-slate-600 hover:text-primary-600"><i class="kk kk-phone h-4 w-4 text-slate-400"></i>0812-3456-7788</a>
       </div>
     </div>
 
-    <!-- Data Pribadi & Akademik -->
+    <!-- Progres Tracer Study per gelombang -->
     <div class="card p-5 sm:p-6">
-      <h3 class="text-base font-semibold text-slate-800">Data Pribadi &amp; Akademik</h3>
-      <div class="mt-4 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p class="text-xs text-slate-400">Jenis Kelamin</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">Laki-laki</p>
+          <h3 class="card-heading"><span class="card-heading-icon bg-primary-50 text-primary-600"><i class="kk kk-clipboard-text h-4 w-4"></i></span>Progres Tracer Study</h3>
+          <p class="mt-1 text-sm text-slate-500">Status pengisian kuesioner per gelombang sejak Yudisium Genap 2021/2022.</p>
         </div>
-        <div>
-          <p class="text-xs text-slate-400">Angkatan</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">2018</p>
+        <div class="flex shrink-0 items-center gap-3 sm:w-56">
+          <div class="h-2 flex-1 overflow-hidden rounded-full bg-slate-100"><div class="h-full rounded-full bg-success-600" style="width: 67%"></div></div>
+          <span class="text-sm font-semibold text-success-700">2 dari 3</span>
         </div>
-        <div>
-          <p class="text-xs text-slate-400">Tahun Lulus</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">2022</p>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">IPK</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">4.00</p>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Kode PT</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">041001</p>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Kode Prodi</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">86201</p>
-        </div>
-        <div class="col-span-2">
-          <p class="text-xs text-slate-400">Tanggal &amp; Tempat Lahir</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">14 Februari 2000, Malang</p>
-        </div>
-        <div class="col-span-2 sm:col-span-3 lg:col-span-4">
-          <p class="text-xs text-slate-400">Alamat</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">Jl. Soekarno Hatta No. 45, Malang, Jawa Timur</p>
-        </div>
+      </div>
+      <div class="mt-5 grid gap-4 md:grid-cols-3">
+          <div class="relative overflow-hidden rounded-xl border p-4 border-success-200 bg-success-50/60">
+            <div class="flex items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-success-600 text-white shadow-sm"><i class="kk kk-check h-5 w-5"></i></span>
+              <div class="min-w-0">
+                <p class="text-sm font-semibold text-slate-800">Pra-Lulus</p>
+                <p class="text-xs text-slate-500">Diisi 12 Agu 2022</p>
+              </div>
+            </div>
+            <div class="mt-3 flex items-center justify-between gap-2">
+              <span class="badge-success">Sudah Mengisi</span>
+              <a href="yudisium-jawaban.html" class="card-link inline-flex items-center gap-1 text-xs">Lihat Jawaban<i class="kk kk-arrow-right h-3 w-3"></i></a>
+            </div>
+          </div>
+          <div class="relative overflow-hidden rounded-xl border p-4 border-success-200 bg-success-50/60">
+            <div class="flex items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-success-600 text-white shadow-sm"><i class="kk kk-check h-5 w-5"></i></span>
+              <div class="min-w-0">
+                <p class="text-sm font-semibold text-slate-800">Pasca-Lulus 1 Tahun</p>
+                <p class="text-xs text-slate-500">Diisi 18 Sep 2023</p>
+              </div>
+            </div>
+            <div class="mt-3 flex items-center justify-between gap-2">
+              <span class="badge-success">Sudah Mengisi</span>
+              <a href="yudisium-jawaban.html" class="card-link inline-flex items-center gap-1 text-xs">Lihat Jawaban<i class="kk kk-arrow-right h-3 w-3"></i></a>
+            </div>
+          </div>
+          <div class="relative overflow-hidden rounded-xl border p-4 border-dashed border-warning-300 bg-warning-50/60">
+            <div class="flex items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-warning-100 text-warning-700"><i class="kk kk-hourglass h-5 w-5"></i></span>
+              <div class="min-w-0">
+                <p class="text-sm font-semibold text-slate-800">Pasca-Lulus 4 Tahun</p>
+                <p class="text-xs text-slate-500">Dikirim 28 Agu 2026</p>
+              </div>
+            </div>
+            <div class="mt-3 flex items-center justify-between gap-2">
+              <span class="badge-warning">Menunggu Mengisi</span>
+              
+            </div>
+          </div>
       </div>
     </div>
 
-    <!-- Kontak & Akun -->
-    <div class="card p-5 sm:p-6">
-      <h3 class="text-base font-semibold text-slate-800">Kontak &amp; Akun</h3>
-      <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div class="flex items-start gap-3">
-          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
-            <i class="kk kk-envelope-simple h-4 w-4"></i>
-          </span>
-          <div class="min-w-0">
-            <p class="text-xs text-slate-400">Email</p>
-            <p class="truncate text-sm font-medium text-slate-700">raden.dimas@email.com</p>
-          </div>
+    <div class="grid items-start gap-6 lg:grid-cols-3">
+      <!-- Kolom utama: karier -->
+      <div class="space-y-6 lg:col-span-2">
+        <div class="card p-5 sm:p-6">
+          <h3 class="card-heading"><span class="card-heading-icon bg-success-50 text-success-600"><i class="kk kk-briefcase h-4 w-4"></i></span>Riwayat Karier</h3>
+          <p class="mt-1 text-sm text-slate-500">Tercatat dari jawaban Tracer Study tiap gelombang.</p>
+          <ol class="timeline mt-6">
+        <li class="timeline-item">
+          <span class="timeline-marker bg-success-100 text-success-700"><i class="kk kk-briefcase h-3 w-3"></i></span>
+          <time class="timeline-time">Jan 2023 &ndash; Sekarang</time>
+          <h3 class="timeline-title flex flex-wrap items-center gap-2">Konselor Karier<span class="badge-success">Saat Ini</span></h3>
+          <p class="timeline-body mb-0 text-sm">PT Karirlink Indonesia &middot; Malang &middot; Gaji Rp 6.500.000 &middot; Sumber: Tracer Pasca-Lulus 1 Tahun</p>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker bg-info-100 text-info-700"><i class="kk kk-briefcase h-3 w-3"></i></span>
+          <time class="timeline-time">Agu 2022 &ndash; Des 2022</time>
+          <h3 class="timeline-title flex flex-wrap items-center gap-2">Konselor Pendidikan (Magang)</h3>
+          <p class="timeline-body mb-0 text-sm">SMA Negeri 3 Malang &middot; Malang &middot; Sumber: Tracer Pra-Lulus</p>
+        </li>
+          </ol>
         </div>
-        <div class="flex items-start gap-3">
-          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600">
-            <i class="kk kk-phone h-4 w-4"></i>
-          </span>
-          <div class="min-w-0">
-            <p class="text-xs text-slate-400">No. HP</p>
-            <p class="truncate text-sm font-medium text-slate-700">0812-3456-7788</p>
-          </div>
-        </div>
-        <div class="flex items-start gap-3">
-          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600">
-            <i class="kk kk-at h-4 w-4"></i>
-          </span>
-          <div class="min-w-0">
-            <p class="text-xs text-slate-400">Username</p>
-            <p class="truncate text-sm font-medium text-slate-700">raden.dimas</p>
-          </div>
-        </div>
-      </div>
-      <div class="mt-5 grid grid-cols-2 gap-4 border-t border-slate-100 pt-5 sm:grid-cols-4">
-        <div>
-          <p class="text-xs text-slate-400">Login Terakhir</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">21 Jul 2026, 14:32</p>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Rekomendasi Kerja</p>
-          <p class="mt-1"><span class="badge-success">Diaktifkan</span></p>
-        </div>
-      </div>
-    </div>
 
-    <!-- Bio & Media Sosial -->
-    <div class="card p-5 sm:p-6">
-      <h3 class="text-base font-semibold text-slate-800">Bio &amp; Media Sosial</h3>
-      <div class="mt-4 space-y-4">
-        <div class="callout-info flex items-start gap-3">
-          <i class="kk kk-quotes h-4 w-4 shrink-0 text-info-600"></i>
-          <p class="text-sm italic text-slate-600">&ldquo;Membantu orang lain menemukan jalannya.&rdquo;</p>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Tentang Saya</p>
-          <p class="mt-1 text-sm text-slate-600">Fresh graduate Bimbingan dan Konseling dengan minat di bidang human resources dan pengembangan karier.</p>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Media Sosial</p>
-          <div class="mt-1.5 flex flex-wrap gap-2">
-            <a href="#" class="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-neutral-50">
-              <i class="kk kk-link-simple h-3.5 w-3.5"></i>
-              radendimas-portfolio.id
-            </a>
-            <a href="#" class="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-neutral-50">
-              <i class="kk kk-linkedin-logo h-3.5 w-3.5"></i>
-              linkedin.com/in/radendimas
-            </a>
-            <a href="#" class="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-neutral-50">
-              <i class="kk kk-instagram-logo h-3.5 w-3.5"></i>
-              @raden.dimas
-            </a>
+        <div class="card p-5 sm:p-6">
+          <h3 class="card-heading"><span class="card-heading-icon bg-secondary-50 text-secondary-600"><i class="kk kk-target h-4 w-4"></i></span>Preferensi Karier</h3>
+          <p class="mt-1 text-sm text-slate-500">Diisi mandiri oleh alumni melalui profil Portal Karir.</p>
+          <div class="mt-4 grid gap-5 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+              <p class="text-xs text-slate-400">Posisi Diminati</p>
+              <div class="mt-1.5 flex flex-wrap gap-2"><span class="badge-primary">HR Business Partner</span>
+              <span class="badge-primary">Konselor Karier</span>
+              <span class="badge-primary">Training &amp; Development</span></div>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400">Bidang Industri</p>
+              <div class="mt-1.5 flex flex-wrap gap-2"><span class="badge-neutral">Human Resources</span>
+              <span class="badge-neutral">Pendidikan</span></div>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400">Skema Kerja</p>
+              <div class="mt-1.5 flex flex-wrap gap-2"><span class="badge-neutral">Penuh Waktu</span>
+              <span class="badge-neutral">Hybrid</span></div>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400">Lokasi Diminati</p>
+              <div class="mt-1.5 flex flex-wrap gap-2"><span class="badge-neutral">Malang</span>
+              <span class="badge-neutral">Surabaya</span>
+              <span class="badge-neutral">Jakarta</span></div>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400">Ekspektasi Gaji</p>
+              <p class="mt-0.5 text-sm font-medium text-slate-700">Rp 7.000.000 - Rp 9.000.000</p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap items-center gap-2 border-t border-slate-100 pt-4">
+            <span class="badge-success">Siap Bekerja Segera</span>
+            <span class="badge-success">Bersedia Relokasi</span>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Preferensi Karier -->
-    <div class="card p-5 sm:p-6">
-      <h3 class="text-base font-semibold text-slate-800">Preferensi Karier</h3>
-      <p class="mt-1 text-sm text-slate-500">Diisi mandiri oleh alumni melalui profil Portal Karir.</p>
-      <div class="mt-4 space-y-4">
         <div>
-          <p class="text-xs text-slate-400">Posisi Diminati</p>
-          <div class="mt-1.5 flex flex-wrap gap-2">
-            <span class="badge-primary">HR Business Partner</span>
-            <span class="badge-primary">Konselor Karier</span>
-            <span class="badge-primary">Training &amp; Development</span>
+          <div class="table-wrap overflow-visible" id="lamaranTableRoot" data-table data-page-size="10" data-item-label="lamaran">
+            <div class="table-toolbar">
+            <div class="flex min-w-0 items-start gap-3">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600"><i class="kk kk-file-text h-4 w-4"></i></span>
+              <div class="min-w-0">
+                <h3 class="text-base font-semibold text-slate-800">Aktivitas Lamaran</h3>
+                <p class="mt-0.5 text-sm text-slate-500">Lowongan yang pernah dilamar melalui Portal Karir KarirLink.</p>
+              </div>
+            </div>
+            <div class="table-search">
+              <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>
+              <label for="lamaranSearch" class="sr-only">Cari lamaran</label>
+              <input id="lamaranSearch" type="search" class="input h-9 pl-9" placeholder="Cari lamaran..." data-table-search />
+            </div>
           </div>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Skema Kerja</p>
-          <div class="mt-1.5 flex flex-wrap gap-2">
-            <span class="badge-neutral">Penuh Waktu</span>
-            <span class="badge-neutral">Hybrid</span>
-          </div>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Lokasi Diminati</p>
-          <div class="mt-1.5 flex flex-wrap gap-2">
-            <span class="badge-neutral">Malang</span>
-            <span class="badge-neutral">Surabaya</span>
-            <span class="badge-neutral">Jakarta</span>
-          </div>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Bidang Industri</p>
-          <div class="mt-1.5 flex flex-wrap gap-2">
-            <span class="badge-neutral">Human Resources</span>
-            <span class="badge-neutral">Pendidikan</span>
-          </div>
-        </div>
-      </div>
-      <div class="mt-5 grid grid-cols-2 gap-4 border-t border-slate-100 pt-5 sm:grid-cols-4">
-        <div>
-          <p class="text-xs text-slate-400">Ekspektasi Gaji</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">Rp 7.000.000 - Rp 9.000.000</p>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Gaji Saat Ini</p>
-          <p class="mt-0.5 text-sm font-medium text-slate-700">Rp 6.500.000</p>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Kesiapan Kerja</p>
-          <p class="mt-1"><span class="badge-success">Siap Bekerja Segera</span></p>
-        </div>
-        <div>
-          <p class="text-xs text-slate-400">Bersedia Relokasi</p>
-          <p class="mt-1"><span class="badge-success">Ya</span></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Riwayat Karier -->
-    <div class="card p-5 sm:p-6">
-      <h3 class="text-base font-semibold text-slate-800">Riwayat Karier</h3>
-      <p class="mt-1 text-sm text-slate-500">Riwayat perjalanan karier sejak kelulusan, tercatat dari jawaban Tracer Study tiap gelombang.</p>
-
-      <div class="mt-5 space-y-5">
-        <div class="flex gap-4">
-          <div class="flex flex-col items-center">
-            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-success-50 text-success-600">
-              <i class="kk kk-briefcase h-4 w-4"></i>
-            </span>
-            <span class="mt-1 w-px flex-1 bg-slate-100"></span>
-          </div>
-          <div class="pb-1">
-            <p class="text-sm font-semibold text-slate-800">Konselor Karier</p>
-            <p class="text-sm text-slate-500">PT Karirlink Indonesia &middot; Malang</p>
-            <p class="mt-0.5 text-xs text-slate-400">Jan 2023 &ndash; Sekarang &middot; Sumber: Tracer Pasca-Lulus 1 Tahun</p>
-          </div>
-        </div>
-        <div class="flex gap-4">
-          <div class="flex flex-col items-center">
-            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-info-50 text-info-600">
-              <i class="kk kk-briefcase h-4 w-4"></i>
-            </span>
-            <span class="mt-1 w-px flex-1 bg-slate-100"></span>
-          </div>
-          <div class="pb-1">
-            <p class="text-sm font-semibold text-slate-800">Konselor Pendidikan (Magang)</p>
-            <p class="text-sm text-slate-500">SMA Negeri 3 Malang &middot; Malang</p>
-            <p class="mt-0.5 text-xs text-slate-400">Agu 2022 &ndash; Des 2022 &middot; Sumber: Tracer Pra-Lulus</p>
-          </div>
-        </div>
-        <div class="flex gap-4">
-          <div class="flex flex-col items-center">
-            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500">
-              <i class="kk kk-graduation-cap h-4 w-4"></i>
-            </span>
-          </div>
-          <div class="pb-1">
-            <p class="text-sm font-semibold text-slate-800">Lulus S1 Bimbingan dan Konseling</p>
-            <p class="text-sm text-slate-500">Yudisium Genap 2021/2022</p>
-            <p class="mt-0.5 text-xs text-slate-400">28 Agu 2022</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Aktivitas Lamaran -->
-    <div class="card overflow-hidden">
-      <div class="flex items-center justify-between border-b border-slate-100 p-4 sm:p-5">
-        <div>
-          <h3 class="text-base font-semibold text-slate-800">Aktivitas Lamaran</h3>
-          <p class="mt-1 text-sm text-slate-500">Lowongan yang pernah dilamar melalui Portal Karir KarirLink.</p>
-        </div>
-      </div>
-      <div class="overflow-x-auto">
-        <table class="table">
-          <thead>
+            <div class="overflow-x-auto">
+              <table class="table table-lg table-fit table-head-soft">
+                <thead>
+                  <tr>
+                    <th scope="col" class="table-col-num">No</th>
+                    <th scope="col" data-sort="text"><button type="button" class="th-sort">Perusahaan<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                    <th scope="col" class="table-col-aside" data-sort="text"><button type="button" class="th-sort">Posisi<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                    <th scope="col" class="table-col-aside" data-sort="date"><button type="button" class="th-sort">Tanggal Lamar<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                    <th scope="col" data-sort="text"><button type="button" class="th-sort">Status<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+                  </tr>
+                </thead>
+                <tbody>
             <tr>
-              <th>Perusahaan</th>
-              <th>Posisi</th>
-              <th class="hidden sm:table-cell">Tanggal Lamar</th>
-              <th class="text-right">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="font-medium text-slate-700">PT Karirlink Indonesia</td>
-              <td>Konselor Karier</td>
-              <td class="hidden sm:table-cell">15 Des 2022</td>
-              <td class="text-right"><span class="badge-success">Diterima</span></td>
+              <td class="table-col-num" data-num>1</td>
+              <td><span class="font-medium text-slate-800">PT Karirlink Indonesia</span><p class="mt-0.5 text-xs text-slate-400 md:hidden lg:block xl:hidden">Konselor Karier &middot; 15 Des 2022</p></td>
+              <td class="table-col-aside">Konselor Karier</td>
+              <td class="table-col-aside" data-value="2022-12-15">15 Des 2022</td>
+              <td data-value="Diterima"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Diterima</span></td>
             </tr>
             <tr>
-              <td class="font-medium text-slate-700">PT Edukasi Nusantara</td>
-              <td>Career Counselor</td>
-              <td class="hidden sm:table-cell">2 Des 2022</td>
-              <td class="text-right"><span class="badge-danger">Ditolak</span></td>
+              <td class="table-col-num" data-num>2</td>
+              <td><span class="font-medium text-slate-800">PT Edukasi Nusantara</span><p class="mt-0.5 text-xs text-slate-400 md:hidden lg:block xl:hidden">Career Counselor &middot; 2 Des 2022</p></td>
+              <td class="table-col-aside">Career Counselor</td>
+              <td class="table-col-aside" data-value="2022-12-02">2 Des 2022</td>
+              <td data-value="Ditolak"><span class="badge-danger badge-wrap"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
             </tr>
             <tr>
-              <td class="font-medium text-slate-700">SMA Negeri 3 Malang</td>
-              <td>Konselor Pendidikan (Magang)</td>
-              <td class="hidden sm:table-cell">10 Jul 2022</td>
-              <td class="text-right"><span class="badge-success">Diterima</span></td>
+              <td class="table-col-num" data-num>3</td>
+              <td><span class="font-medium text-slate-800">SMA Negeri 3 Malang</span><p class="mt-0.5 text-xs text-slate-400 md:hidden lg:block xl:hidden">Konselor Pendidikan (Magang) &middot; 10 Jul 2022</p></td>
+              <td class="table-col-aside">Konselor Pendidikan (Magang)</td>
+              <td class="table-col-aside" data-value="2022-07-10">10 Jul 2022</td>
+              <td data-value="Diterima"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Diterima</span></td>
             </tr>
-          </tbody>
-        </table>
+                </tbody>
+              </table>
+            </div>
+            <div data-table-empty hidden class="table-empty"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada lamaran yang cocok.</div>
+            <div class="table-footer" data-table-pagination>
+              <span data-table-info></span>
+              <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar: kontak, akademik, bio -->
+      <div class="space-y-6">
+        <div class="card p-5 sm:p-6">
+          <h3 class="card-heading"><span class="card-heading-icon bg-secondary-50 text-secondary-600"><i class="kk kk-user-circle h-4 w-4"></i></span>Akun Portal Karir</h3>
+          <div class="mt-4 grid grid-cols-2 gap-5">
+            <div>
+              <p class="text-xs text-slate-400">Username</p>
+              <p class="mt-0.5 text-sm font-medium text-slate-700">raden.dimas</p>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400">Login Terakhir</p>
+              <p class="mt-0.5 text-sm font-medium text-slate-700">21 Jul 2026</p>
+            </div>
+            <div class="col-span-2">
+              <p class="text-xs text-slate-400">Rekomendasi Kerja</p>
+              <p class="mt-1"><span class="badge-success">Diaktifkan</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-5 sm:p-6">
+          <h3 class="card-heading"><span class="card-heading-icon bg-info-50 text-info-600"><i class="kk kk-graduation-cap h-4 w-4"></i></span>Data Pribadi &amp; Akademik</h3>
+          <div class="mt-4 grid grid-cols-2 gap-5">
+            <div>
+              <p class="text-xs text-slate-400">IPK</p>
+              <p class="mt-0.5 text-sm font-medium text-slate-700">4,00</p>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400">Jenis Kelamin</p>
+              <p class="mt-0.5 text-sm font-medium text-slate-700">Laki-laki</p>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400">Kode PT</p>
+              <p class="mt-0.5 text-sm font-medium text-slate-700">041001</p>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400">Kode Prodi</p>
+              <p class="mt-0.5 text-sm font-medium text-slate-700">86201</p>
+            </div>
+            <div class="col-span-2">
+              <p class="text-xs text-slate-400">Tanggal &amp; Tempat Lahir</p>
+              <p class="mt-0.5 text-sm font-medium text-slate-700">14 Februari 2000, Malang</p>
+            </div>
+            <div class="col-span-2">
+              <p class="text-xs text-slate-400">Alamat</p>
+              <p class="mt-0.5 text-sm font-medium text-slate-700">Jl. Soekarno Hatta No. 45, Malang, Jawa Timur</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-5 sm:p-6">
+          <h3 class="card-heading"><span class="card-heading-icon bg-warning-50 text-warning-600"><i class="kk kk-quotes h-4 w-4"></i></span>Bio &amp; Media Sosial</h3>
+          <p class="mt-3 text-sm text-slate-600">Fresh graduate Bimbingan dan Konseling dengan minat di bidang human resources dan pengembangan karier.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+              <a href="#" class="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-neutral-50"><i class="kk kk-link-simple h-3.5 w-3.5"></i>radendimas-portfolio.id</a>
+              <a href="#" class="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-neutral-50"><i class="kk kk-linkedin-logo h-3.5 w-3.5"></i>linkedin.com/in/radendimas</a>
+              <a href="#" class="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-neutral-50"><i class="kk kk-instagram-logo h-3.5 w-3.5"></i>@raden.dimas</a>
+          </div>
+        </div>
       </div>
     </div>
   </main>
 
-  <footer>
-    <div class="mx-auto flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 bg-white px-4 py-4 text-xs text-slate-400 sm:flex-row sm:px-6">
-      <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
-      <p>KarirLink</p>
-    </div>
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
   </footer>
 </div>
 
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
 
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/table.js"></script>
 <script>
   const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  const openBtn = document.getElementById('openSidebarBtn');
-  const closeBtn = document.getElementById('closeSidebarBtn');
-
-  function openSidebar() {
-    sidebar.classList.remove('-translate-x-full');
-    overlay.classList.remove('hidden');
-  }
-  function closeSidebar() {
-    sidebar.classList.add('-translate-x-full');
-    overlay.classList.add('hidden');
-  }
-  openBtn?.addEventListener('click', openSidebar);
-  closeBtn?.addEventListener('click', closeSidebar);
-  overlay?.addEventListener('click', closeSidebar);
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
 
   (function () {
     const mainColumn = document.getElementById('mainColumn');
@@ -594,5 +659,6 @@
       trigger.addEventListener('blur', hide);
     });
   })();</script>
+<script src="admin-brand.js"></script>
 </body>
 </html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lowongan | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../../dist/output.css" />
+<meta name="description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/custom/portal-karir/lowongan.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Lowongan | Portal Karir KarirLink" />
+<meta property="og:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/custom/portal-karir/lowongan.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Lowongan | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<div data-shell="nav" data-page="jobs"></div>
+
+<main class="flex-1">
+
+  <!-- ============================= PENCARIAN ============================= -->
+  <section data-nav-hero class="relative bg-brand-gradient text-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
+      <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-secondary-400/30 blur-3xl"></div>
+      <div class="absolute -bottom-32 -left-16 h-96 w-96 rounded-full bg-primary-300/30 blur-3xl"></div>
+    </div>
+    <div class="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-24 sm:px-6">
+      <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+        <div class="min-w-0">
+          <h1 id="pageTitle" class="font-display text-2xl font-bold sm:text-3xl">Cari lowongan</h1>
+          <p id="pageSub" class="mt-1 text-sm text-white/80">Jelajahi lowongan, lalu pilih satu untuk melihat detail dan melamar.</p>
+        </div>
+        <button type="button" id="savedBack" class="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/25" data-clear="saved" hidden><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i>Semua lowongan</button>
+      </div>
+
+      <form id="filterForm" role="search" class="mt-5 rounded-2xl bg-white p-4 text-slate-800 shadow-xl shadow-primary-900/30" data-combo-boundary>
+        <div class="grid grid-cols-1 gap-3 lg:grid-cols-[1.4fr_repeat(4,1fr)_auto] lg:items-end">
+          <div class="flex items-end gap-2 lg:contents">
+            <div class="min-w-0 flex-1">
+              <label for="fQ" class="form-label">Kata kunci</label>
+              <div class="relative">
+                <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+                <input id="fQ" type="search" class="input pl-9" placeholder="Cari posisi atau perusahaan" autocomplete="off" />
+              </div>
+            </div>
+            <button type="button" class="btn-outline btn-md shrink-0 sm:hidden" data-ui-collapse data-ui-collapse-static aria-controls="fMore" aria-expanded="false">
+              <i class="kk kk-sliders h-4 w-4" aria-hidden="true"></i>Filter
+              <span id="filterBadge" class="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary-600 px-1 text-xs font-semibold text-white" hidden>0</span>
+            </button>
+          </div>
+          <div id="fMore" class="hidden space-y-3 sm:grid sm:grid-cols-4 sm:gap-3 sm:space-y-0 lg:contents">
+            <div><p class="form-label">Bidang</p><div id="hBidang"></div></div>
+            <div><p class="form-label">Kota</p><div id="hKota"></div></div>
+            <div><p class="form-label">Jenis Pekerjaan</p><div id="hJenis"></div></div>
+            <div><p class="form-label">Model Kerja</p><div id="hMode"></div></div>
+          </div>
+          <button type="submit" class="btn-primary btn-md px-6">Cari</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Ajakan tes RIASEC (hanya bila belum pernah mengerjakan) -->
+    <div id="riasecNudge" class="callout-info mb-4 flex flex-col gap-3 sm:flex-row sm:items-center" hidden>
+      <p class="flex items-start gap-2 text-sm text-slate-600"><i class="kk kk-compass mt-0.5 h-4 w-4 shrink-0 text-primary-600" aria-hidden="true"></i><span>Ikuti <span class="font-semibold text-fg">Tes Minat Karier RIASEC</span> (&plusmn;10 menit) agar lowongan diurutkan sesuai minatmu.</span></p>
+      <a href="riasec.html" class="btn-outline btn-sm shrink-0 sm:ml-auto">Mulai Tes</a>
+    </div>
+
+    <!-- Bilah hasil -->
+    <div id="resultBar" class="flex scroll-mt-20 flex-wrap items-center justify-between gap-3">
+      <div class="flex flex-wrap items-center gap-3">
+        <button type="button" id="browseBack" class="btn-outline btn-sm" data-browse hidden><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i>Semua lowongan</button>
+        
+      </div>
+      <div id="sortWrap" class="flex items-center gap-2" data-combo-boundary>
+        <span class="text-xs text-slate-500">Urutkan</span>
+        <div class="w-48" id="hSort"></div>
+      </div>
+    </div>
+
+    <!-- Kartu lowongan (menjelajah) -->
+    <div id="listWrap" class="mt-5 min-w-0">
+      <div id="jobList" class="transition-opacity" aria-live="polite"></div>
+      <div id="pager" class="mt-6"></div>
+    </div>
+
+    <!-- Halaman detail satu lowongan: satu scroll saja, panel lamar menempel di samping -->
+    <div id="detailWrap" class="mt-5 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start" hidden>
+      <section id="detailMain" class="card min-w-0" aria-label="Detail lowongan"></section>
+      <aside id="detailSide" class="min-w-0 lg:sticky lg:top-20" aria-label="Ringkasan dan lamar"></aside>
+    </div>
+    <section id="detailSimilar" class="mt-10 min-w-0 rounded-3xl bg-surface/80 p-5 ring-1 ring-border/60 max-lg:mb-24 sm:p-8" aria-label="Lowongan serupa" hidden></section>
+    <div id="detailBar" class="fixed inset-x-0 bottom-0 z-30 flex items-center gap-2 border-t border-border bg-surface/95 p-4 backdrop-blur lg:hidden" hidden></div>
+  </div>
+</main>
+
+<div data-shell="footer"></div>
+
+<!-- ============================= KONFIRMASI LAMARAN ============================= -->
+<div class="modal-backdrop z-[60]" id="applyModal">
+  <div class="modal-panel modal-md">
+    <div class="modal-header">
+      <div>
+        <h3 class="modal-title">Kirim lamaran</h3>
+        <p class="modal-description" id="applyDesc"></p>
+      </div>
+      <button type="button" class="modal-close" data-modal-hide="applyModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+    </div>
+    <form id="applyForm" class="flex min-h-0 flex-1 flex-col" novalidate>
+      <div class="modal-body space-y-4">
+        <div class="flex items-center gap-3 rounded-xl bg-neutral-50 p-3">
+          <span class="avatar h-10 w-10 text-sm" data-user-initials>U</span>
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-semibold text-slate-900" data-user-name>Pengguna</p>
+            <p class="truncate text-xs text-slate-500" data-user-email>Email belum diisi</p>
+          </div>
+          <span id="applyPct" class="badge-primary shrink-0">0%</span>
+        </div>
+        <div id="applyHint" class="callout-warning text-sm text-slate-600" hidden>
+          Profilmu belum lengkap, jadi kecocokanmu bisa tampak lebih rendah di mata perusahaan. Lengkapi data di halaman profil.
+        </div>
+        <div>
+          <label class="form-label" for="applyNote">Catatan untuk perusahaan <span class="font-normal text-slate-400">(opsional)</span></label>
+          <textarea id="applyNote" class="input h-auto min-h-24 py-2.5" rows="4" maxlength="300" placeholder="Ceritakan singkat kenapa kamu cocok untuk posisi ini."></textarea>
+          <p class="form-hint text-right"><span id="noteCount">0</span>/300</p>
+        </div>
+        <div>
+          <label class="flex items-start gap-2.5 text-sm text-slate-600"><input type="checkbox" id="applyAgree" class="form-check mt-0.5" />Saya setuju profil dan keahlianku dibagikan kepada perusahaan ini.</label>
+          <p class="form-error mt-1.5 hidden" id="applyAgreeErr">Centang persetujuan untuk melanjutkan.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="flex w-full justify-end gap-2">
+          <button type="button" class="btn-outline btn-md" data-modal-hide="applyModal">Batal</button>
+          <button type="submit" class="btn-primary btn-md" id="applySubmit"><i class="kk kk-paper-plane-tilt h-4 w-4" aria-hidden="true"></i>Kirim Lamaran</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../../../assets/js/ui.js"></script>
+<script src="../../../assets/js/drawer.js"></script>
+<script src="../../../assets/js/modal.js"></script>
+<script src="../../../assets/js/pagination.js"></script>
+<script src="../../../assets/js/toast.js"></script>
+<script src="../../portal-karir/shell.js"></script>
+<script src="campus.js"></script>
+<script src="../../portal-karir/portal.js"></script>
+<script>
+  /* Tampilan awal berupa kartu lowongan; memilih satu kartu membuka halaman detail (satu scroll, panel lamar menempel di samping).
+     Halaman ini bicara dengan server lewat PK.api (lihat portal.js): daftar diminta per halaman (9 lowongan) beserta filternya,
+     detail baru diminta saat lowongan dipilih, dan pengetikan di kolom cari ditunda 350 ms. Respons yang kalah cepat
+     dari permintaan yang lebih baru dibuang. Semua pilihan tersimpan di URL, jadi tombol kembali dan tautan berbagi bekerja. */
+  (function () {
+    var PK = window.PK;
+    var api = PK.api;
+    var esc = PK.esc;
+    var PAGE_SIZE = 9;
+    function $(id) { return document.getElementById(id); }
+    PK.initShell();
+    $('riasecNudge').hidden = !!PK.riasecCode();
+
+    var BIDANG = Object.keys(PK.FIELDS);
+    var KOTA = ['Bandung', 'Denpasar', 'Jakarta', 'Medan', 'Semarang', 'Surabaya', 'Yogyakarta'];
+    var JENIS = ['Magang', 'Penuh waktu', 'Paruh waktu', 'Kontrak', 'Freelance'];
+    var MODE = ['Di kantor', 'Hybrid', 'Remote'];
+
+    var params = new URLSearchParams(location.search);
+    var state = {
+      q: params.get('q') || '', bidang: params.get('bidang') || '', kota: params.get('kota') || '',
+      jenis: params.get('jenis') || '', mode: params.get('mode') || '', sort: params.get('urut') || 'cocok',
+      saved: params.get('simpan') === '1', page: parseInt(params.get('page'), 10) || 1,
+      id: parseInt(params.get('id'), 10) || null
+    };
+    var lastRes = null;        // respons daftar terakhir (dipakai untuk menggambar ulang tanpa meminta lagi)
+    var shownId = null;        // id lowongan yang sedang tampil di halaman detail
+    var current = null;        // data detail yang sedang tampil
+    var listToken = PK.latest();
+    var detailToken = PK.latest();
+
+    function opts(list) { return list.map(function (v) { return [v, v]; }); }
+    $('hBidang').innerHTML = PK.comboHtml({ id: 'fBidang', all: 'Semua bidang', label: 'Bidang', value: state.bidang, options: opts(BIDANG) });
+    $('hKota').innerHTML = PK.comboHtml({ id: 'fKota', all: 'Semua kota', label: 'Kota', value: state.kota, options: opts(KOTA) });
+    $('hJenis').innerHTML = PK.comboHtml({ id: 'fJenis', all: 'Semua jenis', label: 'Jenis pekerjaan', value: state.jenis, options: opts(JENIS) });
+    $('hMode').innerHTML = PK.comboHtml({ id: 'fMode', all: 'Semua model', label: 'Model kerja', value: state.mode, options: opts(MODE) });
+    $('hSort').innerHTML = PK.comboHtml({ id: 'fSort', all: 'Paling cocok', label: 'Urutkan', value: state.sort === 'cocok' ? '' : state.sort, options: [['terbaru', 'Terbaru'], ['gaji', 'Gaji tertinggi']] });
+    PK.initCombos(document);
+    $('fQ').value = state.q;
+
+    function hasFilter() { return !!(state.q || state.bidang || state.kota || state.jenis || state.mode || state.saved); }
+
+    function syncUrl() {
+      var p = new URLSearchParams();
+      if (state.q) p.set('q', state.q);
+      if (state.bidang) p.set('bidang', state.bidang);
+      if (state.kota) p.set('kota', state.kota);
+      if (state.jenis) p.set('jenis', state.jenis);
+      if (state.mode) p.set('mode', state.mode);
+      if (state.sort !== 'cocok') p.set('urut', state.sort);
+      if (state.saved) p.set('simpan', '1');
+      if (state.page > 1) p.set('page', state.page);
+      if (state.id) p.set('id', state.id);
+      try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) { /* file:// */ }
+    }
+
+    // jumlah filter aktif di tombol Filter (mobile); filter lain sudah terlihat di kolom pencarian
+    function renderChips() {
+      var n = ['bidang', 'kota', 'jenis', 'mode'].filter(function (k) { return state[k]; }).length;
+      $('filterBadge').hidden = !n;
+      $('filterBadge').textContent = n;
+    }
+
+    // ---- tata letak: tanpa lowongan terpilih = kartu; ada yang terpilih = halaman detail
+    function layout() {
+      var detail = !!state.id;
+      $('listWrap').hidden = detail;
+      $('detailWrap').hidden = !detail;
+      // kartu: jumlah, filter tersimpan, dan urutan; detail: hanya tombol kembali
+      $('browseBack').hidden = !detail;
+      $('sortWrap').hidden = detail;
+      if (!detail) { $('detailBar').hidden = true; $('detailSimilar').hidden = true; }
+    }
+    function cardGrid(inner) { return '<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">' + inner + '</div>'; }
+
+    // ---- kartu lowongan
+    function renderList() {
+      var res = lastRes;
+      $('jobList').innerHTML = res.items.length
+        ? cardGrid(res.items.map(function (r) { return PK.jobCard(r, true); }).join(''))
+        : state.saved && !state.q && !state.bidang && !state.kota && !state.jenis && !state.mode
+          ? PK.emptyBox('document', 'Belum ada lowongan tersimpan', 'Ketuk ikon penanda pada lowongan untuk menyimpannya, lalu temukan lagi di sini.', '<button type="button" class="btn-outline btn-sm" data-clear="saved">Lihat semua lowongan</button>')
+          : PK.emptyBox('default', 'Tidak ada lowongan yang cocok', 'Coba ubah kata kunci atau hapus sebagian filter.', hasFilter() ? '<button type="button" class="btn-outline btn-sm" data-reset>Hapus semua filter</button>' : '');
+      $('pageTitle').textContent = state.saved ? 'Lowongan tersimpan' : 'Cari lowongan';
+      $('pageSub').textContent = state.saved ? res.total + ' lowongan yang kamu simpan.' : 'Jelajahi lowongan, lalu pilih satu untuk melihat detail dan melamar.';
+      $('savedBack').hidden = !state.saved;
+      PK.pager($('pager'), res, 'lowongan');
+    }
+
+    function loadList() {
+      syncUrl();
+      renderChips();
+      layout();
+      var list = $('jobList');
+      list.setAttribute('aria-busy', 'true');
+      if (lastRes) list.classList.add('opacity-50', 'pointer-events-none'); // jaga tinggi daftar, hindari kedip
+      else { list.innerHTML = cardGrid(PK.skeletonCards(6)); }
+      var ok = listToken();
+      api.listJobs({ q: state.q, bidang: state.bidang, kota: state.kota, jenis: state.jenis, mode: state.mode, saved: state.saved, sort: state.sort, page: state.page, pageSize: PAGE_SIZE }).then(function (res) {
+        if (!ok()) return;
+        lastRes = res;
+        state.page = res.page;
+        list.classList.remove('opacity-50', 'pointer-events-none');
+        list.removeAttribute('aria-busy');
+        renderList();
+        syncUrl();
+      }).catch(function (err) {
+        if (!ok()) return;
+        list.classList.remove('opacity-50', 'pointer-events-none');
+        list.removeAttribute('aria-busy');
+        list.innerHTML = PK.errorBox(err.message);
+        $('pager').innerHTML = '';
+      });
+    }
+
+    // ---- detail
+    function list3(items) {
+      return '<ul class="mt-3 space-y-2.5 text-sm text-slate-600">' + items.map(function (t) {
+        return '<li class="flex items-start gap-2.5">' + PK.icon('check-circle', 'kk-fill mt-0.5 h-4 w-4 shrink-0 text-primary-500') + '<span>' + esc(t) + '</span></li>';
+      }).join('') + '</ul>';
+    }
+    function sideRow(ic, label, value) {
+      return '<div class="flex items-center justify-between gap-3"><dt class="flex items-center gap-2 text-slate-500">' + PK.icon(ic, 'h-4 w-4') + label + '</dt><dd class="text-right font-medium text-slate-900">' + esc(value) + '</dd></div>';
+    }
+    function applyBtn(j, applied, cls) {
+      return applied
+        ? '<a href="lamaran.html?id=' + j.id + '" class="btn-secondary ' + cls + '">' + PK.icon('check', 'h-4 w-4') + '<span class="truncate">Lamaran terkirim<span class="hidden sm:inline">, lihat status</span></span></a>'
+        : '<button type="button" class="btn-primary ' + cls + '" data-apply>' + PK.icon('paper-plane-tilt', 'h-4 w-4') + 'Lamar Sekarang</button>';
+    }
+    function saveBtn(j, cls) {
+      var on = PK.isSaved(j.id);
+      return '<button type="button" class="btn-outline ' + cls + '" data-save="' + j.id + '" aria-pressed="' + on + '">' + PK.icon('bookmark-simple', 'h-4 w-4 ' + (on ? 'kk-fill text-primary-600' : '')) + '<span data-save-label>' + (on ? 'Tersimpan' : 'Simpan') + '</span></button>';
+    }
+    function skeletonSide() {
+      var b = function (c) { return '<span class="block animate-pulse rounded-md bg-neutral-200 ' + c + '"></span>'; };
+      return '<div class="card space-y-3 p-5" aria-hidden="true">' + b('h-3 w-20') + b('h-7 w-40') + b('mt-4 h-4 w-full') + b('h-4 w-full') + b('h-4 w-full') + b('mt-4 h-12 w-full rounded-xl') + b('h-12 w-full rounded-xl') + '</div>';
+    }
+    function renderDetail(res) {
+      var r = res.rank, j = r.job, d = res.detail;
+      var mine = PK.prefs.skills.map(function (s) { return s.toLowerCase(); });
+      $('detailMain').innerHTML =
+        '<div class="p-5 sm:p-7">' +
+          '<div class="flex items-start gap-4">' + PK.logo(j, 'h-14 w-14 text-base') +
+            '<div class="min-w-0 flex-1"><h1 class="font-display text-xl font-bold leading-snug text-slate-900 sm:text-2xl">' + esc(j.title) + '</h1>' +
+            '<p class="mt-1 flex flex-wrap items-center gap-x-2 text-sm text-slate-500"><span class="font-medium text-primary-600">' + esc(j.company) + '</span><span aria-hidden="true">&middot;</span>' + PK.icon('map-pin', 'h-3.5 w-3.5') + esc(j.city) + '</p>' +
+            '<div class="mt-3 flex flex-wrap gap-1.5">' + PK.tag(j.type, 'badge-neutral') + PK.tag(j.mode, 'badge-neutral') + PK.tag(j.field, 'badge-primary') + '</div></div>' +
+          '</div>' +
+
+          (PK.hasPrefs && r.score > 0
+            ? '<div class="mt-5 rounded-xl bg-primary-50 p-4"><div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1"><p class="flex items-center gap-2 text-sm font-semibold text-primary-800">' + PK.icon('target', 'h-4 w-4') + r.score + '% cocok dengan profilmu</p><span class="text-xs text-primary-700">Cocok di ' + esc(r.why.join(', ')) + '</span></div><div class="progress-track mt-3 h-1.5 bg-white"><div class="progress-bar" style="width: ' + r.score + '%"></div></div></div>'
+            : '<div class="callout-info mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"><p class="text-sm text-slate-600">Lengkapi profilmu untuk melihat seberapa cocok lowongan ini.</p><a href="profil.html" class="btn-outline btn-sm shrink-0 sm:ml-auto">Lengkapi Profil</a></div>') +
+
+          '<h2 class="mt-8 text-base font-semibold text-slate-900">Tentang pekerjaan</h2>' +
+          '<p class="mt-2 text-sm leading-relaxed text-slate-600">' + esc(j.about) + '</p>' +
+          '<h2 class="mt-7 text-base font-semibold text-slate-900">Tanggung jawab</h2>' + list3(d.tasks) +
+          '<h2 class="mt-7 text-base font-semibold text-slate-900">Kualifikasi</h2>' + list3(d.reqs) +
+          '<h2 class="mt-7 text-base font-semibold text-slate-900">Keahlian yang dibutuhkan</h2>' +
+          '<div class="mt-3 flex flex-wrap gap-2">' + j.skills.map(function (s) {
+            return mine.indexOf(s.toLowerCase()) !== -1
+              ? '<span class="inline-flex items-center gap-1 rounded-full bg-success-50 px-3 py-1 text-xs font-medium text-success-700">' + PK.icon('check', 'h-3 w-3') + esc(s) + '</span>'
+              : '<span class="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-600">' + esc(s) + '</span>';
+          }).join('') + '</div>' +
+          (PK.hasPrefs ? '<p class="mt-2 text-xs text-slate-400">Tanda centang berarti keahlian itu sudah ada di profilmu.</p>' : '') +
+          '<h2 class="mt-7 text-base font-semibold text-slate-900">Yang kamu dapatkan</h2>' + list3(d.perks) +
+
+          '<div class="mt-8 flex items-center gap-4 rounded-2xl border border-border/70 p-4">' + PK.logo(j, 'h-12 w-12 text-sm') +
+            '<div class="min-w-0 flex-1"><p class="flex items-center gap-1.5 text-sm font-semibold text-slate-900">' + esc(j.company) + PK.icon('seal-check', 'kk-fill h-4 w-4 text-primary-600') + '</p>' +
+            '<p class="mt-0.5 text-xs text-slate-500">' + esc(j.field) + ' &middot; ' + d.size + ' &middot; Berdiri ' + d.founded + '</p></div></div>' +
+
+        '</div>';
+
+      $('detailSide').innerHTML =
+        '<div class="card p-5">' +
+          '<p class="text-xs text-slate-500">Kisaran gaji</p>' +
+          '<p class="mt-0.5 font-display text-2xl font-bold text-slate-900">' + esc(j.pay) + '</p>' +
+          '<dl class="mt-5 space-y-3 border-t border-border pt-5 text-sm">' +
+            sideRow('briefcase', 'Jenis', j.type) + sideRow('laptop', 'Model kerja', j.mode) + sideRow('map-pin', 'Lokasi', j.city) +
+            sideRow('users', 'Pelamar', j.applicants + ' orang') + sideRow('clock-countdown', 'Batas lamar', d.deadline + ' hari lagi') +
+          '</dl>' +
+          '<div class="mt-5 space-y-2">' + applyBtn(j, res.applied, 'btn-lg w-full') + saveBtn(j, 'btn-lg w-full') + '</div>' +
+          '<button type="button" class="btn-ghost btn-sm mt-2 w-full" data-share>' + PK.icon('share-network', 'h-4 w-4') + 'Salin tautan lowongan</button>' +
+        '</div>';
+
+      $('detailSimilar').innerHTML = res.similar.length
+        ? '<div class="flex flex-wrap items-end justify-between gap-x-4 gap-y-2"><div><h2 class="font-display text-lg font-bold text-slate-900 sm:text-xl">Lowongan serupa</h2><p class="mt-1 text-sm text-slate-600">Pilihan lain di bidang ' + esc(j.field) + ' yang mungkin cocok untukmu.</p></div>' +
+          '<a href="lowongan.html?bidang=' + encodeURIComponent(j.field) + '" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700">Lihat semua di bidang ini' + PK.icon('arrow-right', 'h-4 w-4') + '</a></div>' +
+          cardGrid(res.similar.map(function (x) { return PK.jobCard(x, true); }).join('')).replace('grid grid-cols-1 gap-5', 'mt-5 grid grid-cols-1 gap-5')
+        : '';
+      $('detailSimilar').hidden = !res.similar.length;
+      $('detailBar').innerHTML = saveBtn(j, 'btn-lg shrink-0') + applyBtn(j, res.applied, 'btn-lg min-w-0 flex-1');
+      $('detailBar').hidden = false;
+    }
+
+    function loadDetail(force) {
+      if (!state.id) { shownId = null; current = null; $('detailBar').hidden = true; return; }
+      if (shownId === state.id && !force) return;
+      shownId = state.id;
+      $('detailBar').hidden = true;
+      $('detailMain').innerHTML = PK.skeletonDetail();
+      $('detailSide').innerHTML = skeletonSide();
+      $('detailSimilar').innerHTML = '';
+      $('detailSimilar').hidden = true;
+      var ok = detailToken();
+      api.getJob(state.id).then(function (res) {
+        if (!ok()) return;
+        current = res;
+        renderDetail(res);
+      }).catch(function (err) {
+        if (!ok()) return;
+        shownId = null;
+        $('detailSide').innerHTML = '';
+        $('detailSimilar').innerHTML = '';
+        $('detailMain').innerHTML = '<div class="p-5">' + PK.errorBox(err.message).replace('data-retry', 'data-retry-detail') + '</div>';
+      });
+    }
+
+    function toTop() { $('resultBar').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
+    // kembali ke kartu (tanpa lowongan terpilih)
+    function browse() {
+      state.id = null; shownId = null; current = null;
+      detailToken();
+      renderChips();
+      syncUrl();
+      layout();
+      if (lastRes) renderList(); else loadList();
+      toTop();
+    }
+
+    function select(id) {
+      state.id = id;
+      syncUrl();
+      layout();
+      loadDetail();
+      toTop();
+    }
+
+    // ---- lamar: konfirmasi di modal lalu kirim lewat API
+    function openApply() {
+      if (!current) return;
+      var j = current.rank.job;
+      var p = PK.profile();
+      $('applyDesc').textContent = j.title + ' di ' + j.company;
+      $('applyPct').textContent = 'Profil ' + p.pct + '%';
+      $('applyHint').hidden = p.pct >= 100;
+      $('applyNote').value = ''; $('noteCount').textContent = '0';
+      $('applyAgree').checked = false; $('applyAgreeErr').classList.add('hidden');
+      KKModal.open('applyModal');
+    }
+    $('applyNote').addEventListener('input', function () { $('noteCount').textContent = this.value.length; });
+    $('applyAgree').addEventListener('change', function () { if (this.checked) $('applyAgreeErr').classList.add('hidden'); });
+    $('applyForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!$('applyAgree').checked) { $('applyAgreeErr').classList.remove('hidden'); $('applyAgree').focus(); return; }
+      var j = current.rank.job;
+      var btn = $('applySubmit');
+      btn.disabled = true; btn.classList.add('btn-loading');
+      api.applyJob(j.id, $('applyNote').value).then(function () {
+        KKModal.close('applyModal');
+        btn.disabled = false; btn.classList.remove('btn-loading');
+        PK.toast('success', 'Lamaran untuk ' + j.title + ' di ' + j.company + ' terkirim.');
+        loadDetail(true);
+      }).catch(function () {
+        btn.disabled = false; btn.classList.remove('btn-loading');
+        PK.toast('danger', 'Lamaran belum terkirim. Periksa koneksimu lalu coba lagi.');
+      });
+    });
+
+    // ---- interaksi
+    document.addEventListener('click', function (e) {
+      var pick = e.target.closest('[data-pick]');
+      if (pick) { select(parseInt(pick.getAttribute('data-pick'), 10)); return; }
+      if (e.target.closest('[data-browse]')) { browse(); return; }
+      if (e.target.closest('[data-apply]')) { openApply(); return; }
+      if (e.target.closest('[data-retry]')) { loadList(); return; }
+      if (e.target.closest('[data-retry-detail]')) { loadDetail(true); return; }
+      var clr = e.target.closest('[data-clear]');
+      if (clr) {
+        var k = clr.getAttribute('data-clear');
+        if (k === 'saved') state.saved = false; else { state[k] = ''; if (k === 'q') $('fQ').value = ''; else PK.comboSet($({ bidang: 'fBidang', kota: 'fKota', jenis: 'fJenis', mode: 'fMode' }[k]), ''); }
+        state.page = 1; state.id = null; loadList();
+        return;
+      }
+      if (e.target.closest('[data-reset]')) {
+        state.q = state.bidang = state.kota = state.jenis = state.mode = ''; state.saved = false; state.page = 1; state.id = null;
+        $('fQ').value = '';
+        ['fBidang', 'fKota', 'fJenis', 'fMode'].forEach(function (id) { PK.comboSet($(id), ''); });
+        loadList();
+        return;
+      }
+      if (e.target.closest('[data-share]')) {
+        var url = location.href.split('?')[0] + '?id=' + state.id;
+        var done = function () { PK.toast('success', 'Tautan lowongan disalin.'); };
+        try { navigator.clipboard.writeText(url).then(done, done); } catch (err) { done(); }
+      }
+    });
+    PK.bindSave(document, function (id, on) {
+      if (state.saved && !on && !state.id) loadList(); // sedang melihat daftar tersimpan: lowongan ini harus hilang dari daftar
+    });
+    $('pager').addEventListener('pagination:change', function (e) {
+      state.page = e.detail.page;
+      toTop();
+      loadList();
+    });
+
+    var searchLater = PK.debounce(function () { state.page = 1; state.id = null; loadList(); }, 350);
+    $('fQ').addEventListener('input', function () { state.q = this.value; searchLater(); });
+    $('filterForm').addEventListener('combo:change', function () {
+      state.bidang = $('fBidang').dataset.value; state.kota = $('fKota').dataset.value; state.jenis = $('fJenis').dataset.value; state.mode = $('fMode').dataset.value;
+      state.page = 1; state.id = null; loadList();
+    });
+    $('fSort').addEventListener('combo:change', function (e) { state.sort = e.detail.value || 'cocok'; state.page = 1; state.id = null; loadList(); });
+    $('filterForm').addEventListener('submit', function (e) { e.preventDefault(); state.q = $('fQ').value; state.page = 1; state.id = null; loadList(); });
+
+    if (state.id) { renderChips(); layout(); loadDetail(); } else loadList();
+  })();
+</script>
+</body>
+</html>
