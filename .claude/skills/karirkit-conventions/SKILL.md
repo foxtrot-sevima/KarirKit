@@ -18,13 +18,13 @@ Perbaikan dan peningkatan dibagi dua lingkup, masing-masing dengan commit dan ca
 
 - **Satu commit satu lingkup.** Pekerjaan yang menyentuh keduanya dipecah: commit design system dulu, lalu commit template yang memakainya. Stage per path, jangan `git add -A`.
 - **Template selalu memakai komponen KarirKit terbaru** (`dist/output.css` dan `assets/js/*` yang dibangun dari repo yang sama). Template tidak boleh punya komponen atau gaya komponen baru sendiri: tidak ada blok `<style>` untuk komponen, kelas komponen buatan sendiri, atau logika komponen di `portal.js`/`admin-*.js`. Logika khusus halaman (data lewat `PK.api`, alur halaman) tetap boleh di template.
-- **Template butuh komponen atau varian baru?** Diminta dan dibuat di KarirKit lebih dulu: kelas di `src/input.css`, story, JS di `assets/js`, entri `CHANGELOG.md`, build `dist`. Baru setelah itu template memakainya (commit template menyusul). Yang disesuaikan adalah komponennya, bukan logika di template.
+- **Template butuh komponen atau varian baru?** Diminta dan dibuat di KarirKit lebih dulu: kelas di `src/input.css`, story, JS di `assets/js`, entri `CHANGELOG.md`, build. Baru setelah itu template memakainya (commit template menyusul). Mockup baru boleh masuk produksi setelah komponennya rilis; sebelum itu hanya untuk staging (lihat `karirkit-release`). Yang disesuaikan adalah komponennya, bukan logika di template.
 - Versi design system juga menjadi versi library Figma (versi Figma = tag repo); aturan penomoran dan sinkron token ada di skill `karirkit-figma-sync`. Token baru di `@theme` wajib masuk Figma di rilis yang sama.
 - Tiap tanggal di `templates/CHANGELOG.md` menulis "Dasar KarirKit: vX.Y.Z" supaya terlihat komponen versi mana yang dipakai.
 
 ## 1. Nama branch
 Dua keluarga branch, dipisah menurut lingkup (bagian 0). Keduanya bermuara ke cabang utama yang sama (`staging`/`master`/`release`), tetapi hanya `karirkit/<versi>` yang menjadi komponen/npm.
-- **Design System:** `karirkit/<versi>` untuk rilis (contoh `karirkit/1.3.7`); topik lain `karirkit/<topik>` (contoh `karirkit/storybook`). Hanya berisi commit `(ds)`.
+- **Design System:** `karirkit/<versi>` untuk rilis (contoh `karirkit/1.4.0`); topik lain `karirkit/<topik>` (contoh `karirkit/storybook`). Hanya berisi commit `(ds)`.
 - **Mockup template:** `mockup/<YYYY-MM-DD>` (contoh `mockup/2026-10-26`), satu branch per tanggal; bila perlu batch kedua di hari yang sama, akhiran `-2`. Hanya berisi commit template (`feat(karirlink)`, `feat(portal-karir)`, `fix(...)`).
 - Branch yang sudah ada (`karirkit/vercel`, `karirkit/staging-vercel`, `staging`, `master`, `release`) adalah cabang utama/deploy, bukan keluarga di atas.
 - Jangan pakai `fix/`, `chore/`, `feat/`, jangan menambah akhiran seperti `-components`, dan jangan memasukkan nama UI kit pihak ketiga.

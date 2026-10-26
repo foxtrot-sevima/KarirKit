@@ -5,7 +5,7 @@ description: Cara memverifikasi halaman template KarirKit/KarirLink di browser -
 
 # Verifikasi halaman di browser
 
-1. **Build CSS dulu bila menambah kelas utilitas baru:** `npm run build` (menulis `dist/output.css`, file ini ikut di-commit). Kelas Tailwind yang belum pernah dipakai tidak ada di CSS sampai di-build.
+1. **Build CSS dulu bila menambah kelas utilitas baru:** `npm run build` (menulis `dist/output.css`; file ini tidak di-commit, jalankan juga setelah clone atau ganti branch). Kelas Tailwind yang belum pernah dipakai tidak ada di CSS sampai di-build.
 2. **Sajikan repo lewat HTTP dari akar repo** (`npx http-server .` atau server statis apa pun). Beberapa halaman memakai `<base href="/templates/karirlink/" />` sehingga tidak berfungsi dibuka lewat `file://`. Buka mis. `http://localhost:<port>/templates/karirlink/aktivitas-lamaran.html`.
 3. **Periksa dua ukuran:** 1440 px dan 390 px. Pastikan tidak ada scroll horizontal (`document.documentElement.scrollWidth <= clientWidth`), overlay tidak terpotong, dan pola interaksi berganti untuk ponsel (lihat skill `karirkit-conventions`).
 4. **Konsol bersih:** tidak ada error JS saat memuat dan saat berinteraksi (klik filter, buka modal/laci, ganti format).
