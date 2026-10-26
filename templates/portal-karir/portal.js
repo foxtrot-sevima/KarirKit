@@ -980,7 +980,9 @@
       desc: 'Kenali tipe minat kariermu berdasarkan model Holland. Hasilnya berupa kode tiga huruf, bidang karier yang cocok, dan dipakai untuk mengurutkan lowongan yang direkomendasikan untukmu.' },
     { id: 'kepribadian', ready: false, cat: 'Kepribadian', icon: 'brain', title: 'Tes Kepribadian Big Five', short: 'Big Five', minutes: 15, count: 50, desc: 'Pahami lima dimensi kepribadianmu dan bagaimana gayamu bekerja bersama orang lain.' },
     { id: 'logika', ready: false, cat: 'Kemampuan', icon: 'calculator', title: 'Tes Logika dan Numerik', short: 'Logika', minutes: 20, count: 30, desc: 'Latihan soal penalaran logika dan hitungan seperti yang sering muncul pada seleksi kerja.' },
-    { id: 'gaya-belajar', ready: false, cat: 'Kepribadian', icon: 'book-open', title: 'Tes Gaya Belajar', short: 'Gaya Belajar', minutes: 8, count: 20, desc: 'Temukan cara belajar yang paling efektif untukmu: visual, auditori, atau praktik langsung.' }
+    { id: 'gaya-belajar', ready: false, cat: 'Kepribadian', icon: 'book-open', title: 'Tes Gaya Belajar', short: 'Gaya Belajar', minutes: 8, count: 20, desc: 'Temukan cara belajar yang paling efektif untukmu: visual, auditori, atau praktik langsung.' },
+    { id: 'komunikasi', ready: false, cat: 'Kemampuan', icon: 'chats-circle', title: 'Tes Komunikasi dan Kerja Sama', short: 'Komunikasi', minutes: 12, count: 25, desc: 'Ukur kemampuanmu menyampaikan ide, mendengarkan, dan bekerja dalam tim, keterampilan yang dicari hampir semua perusahaan.' },
+    { id: 'nilai-kerja', ready: false, cat: 'Minat dan Bakat', icon: 'lightbulb', title: 'Tes Nilai dan Motivasi Kerja', short: 'Nilai Kerja', minutes: 10, count: 24, desc: 'Kenali hal yang paling kamu hargai dalam bekerja, seperti stabilitas, kreativitas, atau dampak sosial, agar pilihan kariermu terasa pas.' }
   ];
   function testById(id) { return TESTS.filter(function (t) { return t.id === id; })[0]; }
 
