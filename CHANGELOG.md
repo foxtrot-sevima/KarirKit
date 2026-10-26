@@ -6,8 +6,13 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+### Added
+
+- **Pemeriksa template** (`npm run check:templates`, `scripts/check-templates.mjs`): mendaftar halaman mockup yang membawa blok `<style>` atau stylesheet sendiri, dan memeriksa bahwa "Dasar KarirKit" di `templates/CHANGELOG.md` sudah bertag. `--strict` keluar dengan kode non-nol sebagai gerbang sebelum merge.
+
 ### Changed
 
+- **`dist/` tidak lagi di-commit** (masuk `.gitignore`): `dist/output.css` dibangun lewat `npm run build` di lokal setelah clone, di workflow publish, dan di Vercel. Mengurangi konflik merge pada file satu baris berukuran besar; aplikasi FE yang memakai `@foxtrot-sevima/karirkit/theme` tidak terpengaruh.
 - **Toast bertumpuk** (`assets/js/toast.js`, `.toast-enter`, `.toast-leaving`): tumpukan dari `KKToast.show()` tetap di kanan bawah, toast terbaru di paling atas dan paling banyak 2 yang tampil bersamaan (`KKToast.max`; yang ketiga mengeluarkan yang paling lama). Tiap toast hilang sendiri sesuai durasinya dengan animasi masuk dan memudar halus.
 
 ## [1.3.7] - 2026-10-13
