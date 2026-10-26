@@ -794,13 +794,17 @@
         </div>
       </fieldset>
 
-      <fieldset id="expGrpYear" hidden>
-        <legend class="form-label after:ml-0.5 after:text-danger-500 after:content-['*']">Tahun Lulus</legend>
-        <div class="mt-1 flex flex-wrap gap-2">
-          <label class="choice choice-slot"><input type="radio" name="expYear" value="2025" data-fmt="v2" /><span class="choice-body flex-row gap-2 rounded-full px-4">2025<span class="badge-primary">v2</span></span></label><label class="choice choice-slot"><input type="radio" name="expYear" value="2024" data-fmt="v1" /><span class="choice-body flex-row gap-2 rounded-full px-4">2024<span class="badge-neutral">v1</span></span></label><label class="choice choice-slot"><input type="radio" name="expYear" value="2023" data-fmt="v1" /><span class="choice-body flex-row gap-2 rounded-full px-4">2023<span class="badge-neutral">v1</span></span></label><label class="choice choice-slot"><input type="radio" name="expYear" value="2022" data-fmt="v1" /><span class="choice-body flex-row gap-2 rounded-full px-4">2022<span class="badge-neutral">v1</span></span></label>
-        </div>
-        <p class="form-hint mt-2"><span class="badge-primary">v2</span> format baru Kemendikti untuk lulusan 2025 ke atas, <span class="badge-neutral">v1</span> format lama untuk lulusan sebelumnya.</p>
-      </fieldset>
+      <div id="expGrpYear" hidden>
+        <label for="expYear" class="form-label after:ml-0.5 after:text-danger-500 after:content-['*']">Tahun Lulus</label>
+        <select id="expYear" class="input">
+          <option value="">Pilih tahun lulus</option>
+          <option value="2025">2025 (format v2)</option>
+          <option value="2024">2024 (format v1)</option>
+          <option value="2023">2023 (format v1)</option>
+          <option value="2022">2022 (format v1)</option>
+        </select>
+        <p class="form-hint mt-1.5">Format v2 adalah format baru Kemendikti untuk lulusan 2025 ke atas, v1 untuk lulusan sebelumnya.</p>
+      </div>
 
       <div id="expGrpProdi">
         <label for="expProdi" class="form-label">Program Studi</label>
@@ -828,10 +832,6 @@
         <span class="toggle shrink-0"><input id="expFresh" type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></span>
       </div>
 
-      <div class="flex items-center gap-2 rounded-control bg-neutral-50 px-3 py-2 text-xs text-fg-muted">
-        <i class="kk kk-file-xls h-4 w-4 shrink-0 text-success-600"></i>
-        <span class="min-w-0 truncate" id="expFile" title="">Kuesioner Lulusan.xlsx</span>
-      </div>
 
       <div id="expProgress" hidden role="status" aria-live="polite">
         <div class="flex items-center justify-between text-sm"><span id="expLabel" class="font-medium text-primary-700">Memproses...</span><span id="expPct" class="text-fg-muted"></span></div>
@@ -1385,12 +1385,12 @@
     var modal = $('exportModal');
     if (!modal) return;
     var NAMES = { lulusan: 'Kuesioner Lulusan', pengguna: 'Kuesioner Pengguna Lulusan', kosong: 'Kuesioner Kosong' };
-    var busy = false, arsip = '';
+    var busy = false, arsip = '', fileName = '';
     function val(name) { var r = modal.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
     function show(id, on) { $(id).hidden = !on; }
 
     function render() {
-      var src = val('expSource'), tpl = val('expTpl'), yr = val('expYear'), prodi = $('expProdi').value;
+      var src = val('expSource'), tpl = val('expTpl'), yr = $('expYear').value, prodi = $('expProdi').value;
       var lulusan = src === 'lulusan', pengguna = src === 'pengguna';
       show('expGrpTpl', lulusan);
       show('expGrpYear', lulusan && tpl === 'pddikti');
@@ -1402,7 +1402,7 @@
       if (lulusan && tpl === 'pddikti') name += ' - Template PDDIKTI' + (yr ? ' ' + yr : '');
       else if (lulusan && tpl === 'all') name += ' - Template Lengkap';
       if (!pengguna && prodi) name += ' (Program Studi ' + prodi + ')';
-      $('expFile').textContent = name + '.xlsx'; $('expFile').title = name + '.xlsx';
+      fileName = name + '.xlsx';
       // tombol aktif: Lulusan wajib memilih template, dan tahun lulus bila Kemendikti
       var ready = !lulusan || (tpl && (tpl !== 'pddikti' || yr));
       $('expGo').disabled = busy || !ready;
@@ -1411,7 +1411,8 @@
     function open(src, title) {
       arsip = title || '';
       modal.querySelector('input[name="expSource"][value="' + src + '"]').checked = true;
-      modal.querySelectorAll('input[name="expTpl"], input[name="expYear"]').forEach(function (i) { i.checked = false; });
+      modal.querySelectorAll('input[name="expTpl"]').forEach(function (i) { i.checked = false; });
+      $('expYear').value = '';
       $('expProdi').value = ''; $('expFresh').checked = true;
       show('expGrpSource', !arsip); show('expArsip', !!arsip);
       $('expArsipName').textContent = arsip;
@@ -1436,7 +1437,6 @@
     $('expGo').addEventListener('click', function () {
       if (busy) return;
       busy = true;
-      var file = $('expFile').textContent;
       modal.querySelectorAll('input, select').forEach(function (i) { i.disabled = true; });
       $('expGo').disabled = true; $('expGo').classList.add('btn-loading'); $('expCancel').disabled = true;
       show('expProgress', true);
@@ -1452,7 +1452,7 @@
             clearInterval(t);
             setTimeout(function () {
               if (window.KKModal) KKModal.close('exportModal');
-              if (window.KKToast) KKToast.show({ type: 'success', message: 'Ekspor selesai: ' + file + ' (simulasi, tidak ada berkas).' });
+              if (window.KKToast) KKToast.show({ type: 'success', message: 'Ekspor selesai (simulasi, tidak ada berkas).' });
               busy = false;
               modal.querySelectorAll('input, select').forEach(function (i) { i.disabled = false; });
               $('expGo').classList.remove('btn-loading'); $('expCancel').disabled = false; show('expProgress', false); render();
