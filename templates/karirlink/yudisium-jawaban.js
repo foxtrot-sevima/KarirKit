@@ -1,5 +1,5 @@
 /* Halaman jawaban lulusan pada detail yudisium:
-     yudisium-jawaban.html         data-mode="terisi"  jawaban Pra-Lulus, Pasca-Lulus 1 dan 4 Tahun, dan Pengguna Lulusan
+     yudisium-jawaban.html         data-mode="terisi"  jawaban Lulus, Pasca-Lulus 1, dan Pasca-Lulus 2, dan Pengguna Lulusan
      yudisium-jawaban-kosong.html  data-mode="kosong"  semua gelombang belum terisi (menunggu mengisi atau belum dikirim)
    Data di bawah adalah contoh; di produksi datang dari API jawaban responden. Hanya-baca: tidak ada aksi kirim atau ubah. */
 (function () {
@@ -8,10 +8,10 @@
   var MODE = document.body.getAttribute('data-mode') === 'kosong' ? 'kosong' : 'terisi';
   var PERIOD = { name: 'Yudisium Genap 2025/2026', date: '28 Agu 2026', praSent: '14 Agu 2026' };
   var GELS = [
-    { key: 'pra', label: 'Pra-Lulus', sent: '14 Agu 2026', schedule: '14 Agu 2026 sampai 27 Agu 2026' },
-    { key: 'pasca-1', label: 'Pasca-Lulus 1 Tahun', sent: '28 Agu 2027', schedule: '28 Agu 2027 sampai 11 Sep 2027' },
-    { key: 'pasca-4', label: 'Pasca-Lulus 4 Tahun', sent: '28 Agu 2030', schedule: '28 Agu 2030 sampai 11 Sep 2030' },
-    { key: 'pengguna', label: 'Pengguna Lulusan', sent: '9 Sep 2027', schedule: 'Setelah Pasca-Lulus selesai' }
+    { key: 'pra', label: 'Lulus', sent: '14 Agu 2026', schedule: '14 Agu 2026 sampai 27 Agu 2026' },
+    { key: 'pasca-1', label: 'Pasca-Lulus 1', sent: '28 Agu 2027', schedule: '28 Agu 2027 sampai 11 Sep 2027' },
+    { key: 'pasca-4', label: 'Pasca-Lulus 2', sent: '28 Agu 2030', schedule: '28 Agu 2030 sampai 11 Sep 2030' },
+    { key: 'pengguna', label: 'Pengguna Lulusan', sent: '9 Sep 2027', schedule: 'Setelah Pasca-Lulus 1 selesai' }
   ];
 
   // ---------------------------------------------------------------- pertanyaan (sumber: kuesioner-builder.html)
@@ -70,7 +70,7 @@
     ];
   }
 
-  // jawaban Pasca-Lulus; hasil: { kind: 'work|biz|study|none', sections: { umum:[], <kind>:[], komp:[] } }
+  // jawaban Pasca-Lulus 1; hasil: { kind: 'work|biz|study|none', sections: { umum:[], <kind>:[], komp:[] } }
   function pascaWork(c) {
     return { kind: 'work', sections: {
       umum: ['Ya', 'Bekerja penuh waktu', 'Tidak', c.dana, c.lama],
@@ -260,9 +260,9 @@
     $('ansCalloutIcon').className = 'kk kk-sparkle mt-0.5 h-4 w-4 shrink-0 text-info-600';
     if (cur.key === 'pra') {
       var p = s.pra;
-      $('ansCallout').innerHTML = dual('Dikirim sebelum yudisium untuk memetakan status kerja dan rencana.', 'Pra-Lulus dikirim sebelum yudisium untuk memetakan status kerja dan rencana setelah lulus. Jawabannya dipakai kampus untuk menyiapkan layanan karier bagi lulusan baru.');
+      $('ansCallout').innerHTML = dual('Dikirim sebelum yudisium untuk memetakan status kerja dan rencana.', 'Lulus dikirim sebelum yudisium untuk memetakan status kerja dan rencana setelah lulus. Jawabannya dipakai kampus untuk menyiapkan layanan karier bagi lulusan baru.');
       $('ansSummary').innerHTML =
-        cell('Kuesioner', 'Kuesioner Lulusan', 'col-span-2 sm:col-span-1') + cell('Gelombang', 'Pra-Lulus') +
+        cell('Kuesioner', 'Kuesioner Lulusan', 'col-span-2 sm:col-span-1') + cell('Gelombang', 'Lulus') +
         cell('Periode Yudisium', esc(PERIOD.name), 'col-span-2 sm:col-span-1') + cell('Tanggal Yudisium', PERIOD.date) +
         cell('Dikirim Pada', PERIOD.praSent) + cell('Diisi Pada', esc(p.filledAt)) + cell('Status', 'Sudah mengisi');
       var secs = [{ title: 'Data Diri & Status', items: [
@@ -274,7 +274,7 @@
       $('ansSections').innerHTML = answersHtml(secs);
     } else if (cur.key === 'pengguna') {
       var u = s.pengguna;
-      $('ansCallout').innerHTML = dual('Diisi atasan lulusan untuk menilai kinerja di tempat kerja.', 'Survei Pengguna Lulusan diisi atasan lulusan untuk menilai kinerja di tempat kerja. Dikirim setelah lulusan menyelesaikan Pasca-Lulus, dan hasilnya melengkapi laporan tracer study.');
+      $('ansCallout').innerHTML = dual('Diisi atasan lulusan untuk menilai kinerja di tempat kerja.', 'Survei Pengguna Lulusan diisi atasan lulusan untuk menilai kinerja di tempat kerja. Dikirim setelah lulusan menyelesaikan Pasca-Lulus 1, dan hasilnya melengkapi laporan tracer study.');
       $('ansSummaryTitle').textContent = 'Ringkasan Pengisian';
       $('ansSummary').innerHTML =
         cell('Kuesioner', 'Kuesioner Pengguna Lulusan', 'col-span-2 sm:col-span-1') + cell('Responden', 'Atasan lulusan') +
@@ -306,20 +306,20 @@
     if (cur.key === 'pra') {
       $('ansCalloutIcon').className = INFO_ICON;
       $('ansCallout').innerHTML = waiting
-        ? dual('Dikirim ' + PERIOD.praSent + ', belum diisi.', '<span class="font-medium text-slate-800">Pra-Lulus</span> sudah dikirim ' + PERIOD.praSent + ' tetapi ' + first + ' belum mengisi, jadi belum ada jawaban.')
-        : dual('Belum pernah dikirim.', '<span class="font-medium text-slate-800">Pra-Lulus</span> belum pernah dikirim ke ' + first + ', jadi belum ada jawaban.');
+        ? dual('Dikirim ' + PERIOD.praSent + ', belum diisi.', '<span class="font-medium text-slate-800">Lulus</span> sudah dikirim ' + PERIOD.praSent + ' tetapi ' + first + ' belum mengisi, jadi belum ada jawaban.')
+        : dual('Belum pernah dikirim.', '<span class="font-medium text-slate-800">Lulus</span> belum pernah dikirim ke ' + first + ', jadi belum ada jawaban.');
       $('ansSummary').innerHTML =
-        cell('Kuesioner', 'Kuesioner Lulusan', 'col-span-2 sm:col-span-1') + cell('Gelombang', 'Pra-Lulus') +
+        cell('Kuesioner', 'Kuesioner Lulusan', 'col-span-2 sm:col-span-1') + cell('Gelombang', 'Lulus') +
         cell('Periode Yudisium', esc(PERIOD.name), 'col-span-2 sm:col-span-1') + cell('Tanggal Yudisium', PERIOD.date) +
         cell('Dikirim Pada', waiting ? PERIOD.praSent : '-') + cell('Diisi Pada', '-') + cell('Status', waiting ? 'Menunggu mengisi' : 'Belum dikirim');
       $('ansSections').innerHTML = '<div><h3 class="text-base font-semibold text-slate-800">Pratinjau Pertanyaan</h3><p class="mt-1 text-sm text-slate-500">' + countQ(PRA_Q) + ' pertanyaan dalam ' + PRA_Q.length + ' bagian.</p></div>' + previewHtml(PRA_Q);
     } else if (cur.key === 'pengguna') {
       $('ansSummaryTitle').textContent = 'Ringkasan Pengiriman';
       $('ansCalloutIcon').className = INFO_ICON;
-      $('ansCallout').innerHTML = dual('Dikirim ke atasan setelah Pasca-Lulus selesai.', '<span class="font-medium text-slate-800">Survei Pengguna Lulusan</span> belum dikirim. Survei ini dikirim ke atasan ' + first + ' lewat CTA setelah lulusan menyelesaikan kuesioner Pasca-Lulus, jadi belum ada jawaban.');
+      $('ansCallout').innerHTML = dual('Dikirim ke atasan setelah Pasca-Lulus 1 selesai.', '<span class="font-medium text-slate-800">Survei Pengguna Lulusan</span> belum dikirim. Survei ini dikirim ke atasan ' + first + ' lewat CTA setelah lulusan menyelesaikan kuesioner Pasca-Lulus 1, jadi belum ada jawaban.');
       $('ansSummary').innerHTML =
         cell('Kuesioner', 'Kuesioner Pengguna Lulusan', 'col-span-2 sm:col-span-1') + cell('Responden', 'Atasan lulusan') +
-        cell('Waktu Pengiriman', 'Setelah Pasca-Lulus selesai', 'col-span-2 sm:col-span-1') + cell('Periode Yudisium', esc(PERIOD.name)) +
+        cell('Waktu Pengiriman', 'Setelah Pasca-Lulus 1 selesai', 'col-span-2 sm:col-span-1') + cell('Periode Yudisium', esc(PERIOD.name)) +
         cell('Tanggal Yudisium', PERIOD.date) + cell('Status', 'Belum dikirim');
       $('ansSections').innerHTML = '<div><h3 class="text-base font-semibold text-slate-800">Pratinjau Pertanyaan</h3><p class="mt-1 text-sm text-slate-500">' + countQ(PENGGUNA) + ' pertanyaan dalam ' + PENGGUNA.length + ' tingkatan.<span class="hidden sm:inline"> Data atasan (nama, jabatan, kontak) tidak dikumpulkan di sini.</span></p></div>' + previewHtml(PENGGUNA);
     } else {
@@ -330,7 +330,7 @@
         cell('Kuesioner', 'Kuesioner Lulusan', 'col-span-2 sm:col-span-1') + cell('Gelombang', cur.label) +
         cell('Jadwal Pengiriman', cur.schedule, 'col-span-2 sm:col-span-1') + cell('Periode Yudisium', esc(PERIOD.name)) +
         cell('Tanggal Yudisium', PERIOD.date) + cell('Status', 'Belum dikirim');
-      $('ansSections').innerHTML = '<div><h3 class="text-base font-semibold text-slate-800">Pratinjau Pertanyaan</h3><p class="mt-1 text-sm text-slate-500">' + countQ(PASCA) + ' pertanyaan dalam ' + PASCA.length + ' bagian.<span class="hidden sm:inline"> Pasca-Lulus 1 dan 4 Tahun memakai struktur yang sama; bagian status tampil sesuai jawaban lulusan.</span></p></div>' + previewHtml(PASCA);
+      $('ansSections').innerHTML = '<div><h3 class="text-base font-semibold text-slate-800">Pratinjau Pertanyaan</h3><p class="mt-1 text-sm text-slate-500">' + countQ(PASCA) + ' pertanyaan dalam ' + PASCA.length + ' bagian.<span class="hidden sm:inline"> Pasca-Lulus 1 dan 2 memakai struktur yang sama; bagian status tampil sesuai jawaban lulusan.</span></p></div>' + previewHtml(PASCA);
     }
   }
 
