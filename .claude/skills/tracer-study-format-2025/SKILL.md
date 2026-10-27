@@ -5,7 +5,7 @@ description: Format kuesioner Tracer Study Pasca-Lulus 1 & 4 Tahun di mockup Kar
 
 # Tracer Study: Format 2025 vs Lampau
 
-Berlaku untuk gelombang **Pasca-Lulus 1 Tahun** dan **4 Tahun** di `templates/karirlink/kuesioner-builder.html` (panel admin) dan `kuesioner-simulasi.html` (tampilan responden). Pra-Lulus dan Pengguna Lulusan tidak terpengaruh. File `kuesioner-builder-2..6` dan `kuesioner-simulasi-2` adalah iterasi lama, bukan sumber.
+Berlaku untuk gelombang **Pasca-Lulus 1 dan 2** (dulu Pasca-Lulus 1 dan 4 Tahun; nama diganti netral karena waktu kirimnya diatur kampus per periode, dan Lulus bisa dinonaktifkan) di `templates/karirlink/kuesioner-builder.html` (panel admin) dan `kuesioner-simulasi.html` (tampilan responden). Lulus dan Pengguna Lulusan tidak terpengaruh. File `kuesioner-builder-2..6` dan `kuesioner-simulasi-2` adalah iterasi lama, bukan sumber.
 
 ## Sumber spesifikasi
 Repo kode JARVIS `karirlink-tracer-fe`: `src/constant/form/template-pddikti-2025.json` (struktur, redaksi, nilai) dan devplan FOX-1206 / FOX-1208 (Template Kemendikti / Lengkap 2025); sisi BE di `karirlink-tracer-be` (`docs/development-plan/FOX-1206..1208`). Lulusan >= 2025 memakai instrumen 2025, <= 2024 memakai format lampau.
