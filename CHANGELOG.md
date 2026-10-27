@@ -6,6 +6,11 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+### Fixed
+
+- **Build Storybook gagal di Vercel** karena `dist/output.css` tidak ada (`dist/` tidak di-commit, sedangkan `staticDirs` Storybook menyalin `dist`). Skrip `build-storybook` kini membangun CSS lebih dulu (`npm run build && storybook build`), jadi berhasil tanpa Build Command khusus di project Vercel storybook.
+
+
 ## [1.4.0] - 2026-10-26
 
 ### Added
