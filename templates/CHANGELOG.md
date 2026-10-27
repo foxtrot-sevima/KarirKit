@@ -16,6 +16,8 @@ Dasar KarirKit: v1.4.0
 
 - **Toggle on/off Lulus** di Pengaturan Gelombang Pengiriman (`templates/karirlink/yudisium-detail.html`): kampus yang ingin lulusan langsung mengisi gelombang berikutnya saat lulus bisa menonaktifkan Lulus. Saat nonaktif, kartu meredup, rentang tanggal dikunci, dan muncul keterangan bahwa gelombang tidak dikirim serta tidak tampil di Portal Karir.
 - **Portal Karir menyembunyikan gelombang nonaktif** (`templates/portal-karir/portal.js`, `tracer-study.html`, `tracer-study-mahasiswa.html`, dan versi white-label): `PK.api.listTracer` hanya mengembalikan gelombang aktif (`enabled !== false`), dan grid kartu menyesuaikan jumlahnya (2 atau 3 kolom).
+- **Pertanyaan Format Lampau dilengkapi di simulasi** (`templates/karirlink/kuesioner-simulasi.html`), mengikuti dokumen arsitektur pertanyaan: f301 + f302/f303 di cabang Bekerja dan Wiraswasta ("merencanakan"), f16 di Bekerja dan Wiraswasta, f6/f7/f7a di Bekerja, serta gerbang f502 Ya/Tidak sebelum isian bulan. Cabang Mencari Kerja: f301 dan f4 bertanda wajib.
+- **Builder kuesioner menampilkan opsi pilihan** (`templates/karirlink/kuesioner-builder.html`): untuk pertanyaan Pilihan Ganda dan Kotak Centang, seluruh opsinya tampil sebagai daftar di bawah deskripsi baris. Format Lampau juga mendapat baris gerbang f502 dan baris f302/f303 sendiri di cabang Mencari Kerja.
 
 ### Changed
 
