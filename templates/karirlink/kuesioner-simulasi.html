@@ -362,13 +362,20 @@
 
         <!-- f502: kondisional (Bekerja/Wiraswasta/Melanjutkan Pendidikan), auto-fill dari g1_verif_pralulus -->
         <div id="masaTungguBlock" class="hidden">
-          <label class="form-label">Masa tunggu mendapatkan pekerjaan/usaha (dalam bulan) <span class="text-danger-600">*</span></label>
-          <div class="relative">
-            <input id="masaTungguInput" type="number" min="0" class="input pr-14" value="0" placeholder="mis. 3" />
-            <span class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">bulan</span>
+          <p class="q-prompt">Apakah Anda mendapatkan pekerjaan pertama sebelum lulus? <span class="text-danger-600">*</span></p>
+          <div class="mt-2.5 grid grid-cols-1 gap-2.5">
+            <label class="radio-card"><input type="radio" name="f502Lampau" class="form-radio" value="ya" /><span>Ya</span></label>
+            <label class="radio-card"><input type="radio" name="f502Lampau" class="form-radio" value="tidak" checked data-reveals="#masaTungguWrap" /><span>Tidak</span></label>
           </div>
+          <div id="masaTungguWrap" class="mt-3">
+            <label class="form-label">Dalam berapa bulan Anda mendapatkan pekerjaan pertama? <span class="text-danger-600">*</span></label>
+            <div class="relative">
+              <input id="masaTungguInput" type="number" min="0" class="input pr-14" value="3" placeholder="mis. 3" />
+              <span class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">bulan</span>
+            </div>
           <p id="masaTungguNote" class="mt-1.5 hidden text-xs text-slate-400">Otomatis terisi <span class="font-medium">0 bulan</span> — mengikuti jawaban verifikasi pra-lulus di atas. Isi <span class="font-medium">0</span> jika Anda sudah mendapatkannya sebelum lulus.</p>
           <p id="masaTungguError" class="mt-1.5 hidden text-xs font-medium text-danger-600">Wajib diisi.</p>
+          </div>
         </div>
         </div>
       </div>
@@ -515,6 +522,24 @@
           </div>
         </div>
         <div>
+          <p class="q-prompt">Kapan Anda mulai mencari pekerjaan yang Anda jalani saat ini? <span class="text-danger-600">*</span></p>
+          <div class="mt-2.5 grid grid-cols-1 gap-2.5">
+            <label class="radio-card"><input type="radio" name="f301BekerjaL" class="form-radio" value="sebelum" checked data-reveals="#f302BekerjaLWrap" /><span>Sebelum lulus</span></label>
+            <label class="radio-card"><input type="radio" name="f301BekerjaL" class="form-radio" value="sesudah" data-reveals="#f303BekerjaLWrap" /><span>Sesudah lulus</span></label>
+            <label class="radio-card"><input type="radio" name="f301BekerjaL" class="form-radio" value="tidak" /><span>Saya tidak mencari kerja</span></label>
+          </div>
+          <div id="f302BekerjaLWrap" class="reveal-wrap mt-2.5">
+            <label class="form-label">Jika Anda mulai mencari pekerjaan sejak sebelum lulus, dalam berapa bulan sebelum lulus Anda memulai mencari pekerjaan? <span class="text-danger-600">*</span></label>
+            <input type="number" min="0" class="input" placeholder="mis. 2" />
+            <p class="form-hint">Tanggal lulus = tanggal yudisium.</p>
+          </div>
+          <div id="f303BekerjaLWrap" class="reveal-wrap mt-2.5 hidden">
+            <label class="form-label">Jika Anda mulai mencari pekerjaan sesudah lulus, dalam berapa bulan sesudah lulus Anda memulai mencari pekerjaan? <span class="text-danger-600">*</span></label>
+            <input type="number" min="0" class="input" placeholder="mis. 2" />
+            <p class="form-hint">Tanggal lulus = tanggal yudisium.</p>
+          </div>
+        </div>
+        <div>
           <p class="q-prompt">Cara mencari pekerjaan <span class="text-danger-600">*</span> <span class="font-normal text-slate-400">(boleh pilih lebih dari satu)</span></p>
           <div class="mt-2.5 grid grid-cols-1 gap-2.5">
             <label class="radio-card"><input type="checkbox" class="form-check" /><span>Melalui iklan di koran / majalah, brosur</span></label>
@@ -535,6 +560,39 @@
           </div>
           <div id="f4BekerjaLainnyaWrap" class="reveal-wrap mt-2.5 hidden">
             <input class="input" placeholder="Sebutkan cara lainnya" />
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Berapa perusahaan / instansi / institusi yang sudah Anda lamar sampai saat ini?</label>
+          <input type="number" min="0" class="input" placeholder="mis. 15" />
+        </div>
+        <div>
+          <label class="form-label">Berapa banyak perusahaan / instansi / institusi yang merespon lamaran Anda sampai saat ini?</label>
+          <input type="number" min="0" class="input" placeholder="mis. 5" />
+        </div>
+        <div>
+          <label class="form-label">Berapa banyak perusahaan / instansi / institusi yang mengundang Anda untuk wawancara sampai saat ini?</label>
+          <input type="number" min="0" class="input" placeholder="mis. 2" />
+        </div>
+        <div>
+          <p class="q-prompt">Jika Anda merasa pekerjaan saat ini tidak sesuai dengan pendidikan, mengapa mengambil pekerjaan tersebut? <span class="text-danger-600">*</span> <span class="font-normal text-slate-400">(boleh pilih lebih dari satu)</span></p>
+          <div class="mt-2.5 grid grid-cols-1 gap-2.5">
+            <label class="radio-card"><input type="checkbox" class="form-check" checked /><span>Pertanyaan tidak sesuai, pekerjaan saya sekarang sudah sesuai dengan pendidikan saya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Saya belum mendapatkan pekerjaan yang lebih sesuai</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Di pekerjaan ini, saya memperoleh prospek karir yang baik</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Saya lebih suka bekerja di area pekerjaan yang tidak ada hubungannya dengan pendidikan saya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Saya dipromosikan ke posisi yang kurang berhubungan dengan pendidikan saya dibanding posisi sebelumnya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Saya dapat memperoleh pendapatan yang lebih tinggi di pekerjaan ini</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pekerjaan saya saat ini lebih aman / terjamin / secure</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pekerjaan saya saat ini lebih menarik</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pekerjaan saya saat ini, lebih memungkinkan saya mengambil pekerjaan tambahan / jadwal yang fleksibel, dll</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pekerjaan saya saat ini lokasinya lebih dekat dari rumah saya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pekerjaan saya saat ini dapat lebih menjamin kebutuhan keluarga saya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pada awal meniti karir ini, saya harus menerima pekerjaan yang tidak berhubungan dengan pendidikan saya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" data-reveals="#f16BekerjaLLainnyaWrap" /><span>Lainnya</span></label>
+          </div>
+          <div id="f16BekerjaLLainnyaWrap" class="reveal-wrap mt-2.5 hidden">
+            <input class="input" placeholder="Sebutkan alasan lainnya" />
           </div>
         </div>
       </div>
@@ -647,6 +705,46 @@
             <label class="radio-card"><input type="radio" name="f15Wiraswasta" class="form-radio" /><span>Tidak Perlu Pendidikan Tinggi</span></label>
           </div>
         </div>
+        <div>
+          <p class="q-prompt">Kapan Anda mulai merencanakan berwiraswasta? <span class="text-danger-600">*</span></p>
+          <p class="form-hint">Wiraswasta = wirausaha.</p>
+          <div class="mt-2.5 grid grid-cols-1 gap-2.5">
+            <label class="radio-card"><input type="radio" name="f301WiraL" class="form-radio" value="sebelum" checked data-reveals="#f302WiraLWrap" /><span>Sebelum lulus</span></label>
+            <label class="radio-card"><input type="radio" name="f301WiraL" class="form-radio" value="sesudah" data-reveals="#f303WiraLWrap" /><span>Sesudah lulus</span></label>
+            <label class="radio-card"><input type="radio" name="f301WiraL" class="form-radio" value="tidak" /><span>Saya tidak merencanakan berwiraswasta</span></label>
+          </div>
+          <div id="f302WiraLWrap" class="reveal-wrap mt-2.5">
+            <label class="form-label">Jika Anda mulai merencanakan berwiraswasta sejak sebelum lulus, dalam berapa bulan sebelum lulus Anda memulai merencanakannya? <span class="text-danger-600">*</span></label>
+            <input type="number" min="0" class="input" placeholder="mis. 2" />
+            <p class="form-hint">Tanggal lulus = tanggal yudisium.</p>
+          </div>
+          <div id="f303WiraLWrap" class="reveal-wrap mt-2.5 hidden">
+            <label class="form-label">Jika Anda mulai merencanakan berwiraswasta sesudah lulus, dalam berapa bulan sesudah lulus Anda memulai merencanakannya? <span class="text-danger-600">*</span></label>
+            <input type="number" min="0" class="input" placeholder="mis. 2" />
+            <p class="form-hint">Tanggal lulus = tanggal yudisium.</p>
+          </div>
+        </div>
+        <div>
+          <p class="q-prompt">Jika Anda merasa pekerjaan saat ini tidak sesuai dengan pendidikan, mengapa mengambil pekerjaan tersebut? <span class="text-danger-600">*</span> <span class="font-normal text-slate-400">(boleh pilih lebih dari satu)</span></p>
+          <div class="mt-2.5 grid grid-cols-1 gap-2.5">
+            <label class="radio-card"><input type="checkbox" class="form-check" checked /><span>Pertanyaan tidak sesuai, pekerjaan saya sekarang sudah sesuai dengan pendidikan saya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Saya belum mendapatkan pekerjaan yang lebih sesuai</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Di pekerjaan ini, saya memperoleh prospek karir yang baik</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Saya lebih suka bekerja di area pekerjaan yang tidak ada hubungannya dengan pendidikan saya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Saya dipromosikan ke posisi yang kurang berhubungan dengan pendidikan saya dibanding posisi sebelumnya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Saya dapat memperoleh pendapatan yang lebih tinggi di pekerjaan ini</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pekerjaan saya saat ini lebih aman / terjamin / secure</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pekerjaan saya saat ini lebih menarik</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pekerjaan saya saat ini, lebih memungkinkan saya mengambil pekerjaan tambahan / jadwal yang fleksibel, dll</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pekerjaan saya saat ini lokasinya lebih dekat dari rumah saya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pekerjaan saya saat ini dapat lebih menjamin kebutuhan keluarga saya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" /><span>Pada awal meniti karir ini, saya harus menerima pekerjaan yang tidak berhubungan dengan pendidikan saya</span></label>
+            <label class="radio-card"><input type="checkbox" class="form-check" data-reveals="#f16WiraLLainnyaWrap" /><span>Lainnya</span></label>
+          </div>
+          <div id="f16WiraLLainnyaWrap" class="reveal-wrap mt-2.5 hidden">
+            <input class="input" placeholder="Sebutkan alasan lainnya" />
+          </div>
+        </div>
         <p class="text-xs text-slate-400">Pertanyaan Data Atasan tidak ditampilkan di cabang ini — tidak relevan karena Anda adalah pemilik/pendiri usaha, bukan karyawan dengan atasan.</p>
       </div>
 
@@ -688,25 +786,25 @@
 
       <!-- Cabang: Tidak Kerja Tapi Mencari (dok bagian 6, #31-#35) - semua tidak wajib -->
       <div data-branch="cari-kerja" data-fmt="lampau" class="mt-5 hidden grid grid-cols-1 gap-4">
-        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Seluruh pertanyaan di bawah tidak wajib</p>
+        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Pertanyaan bertanda * wajib diisi; jumlah lamaran tidak wajib</p>
         <div>
-          <p class="q-prompt">Kapan mulai mencari pekerjaan</p>
+          <p class="q-prompt">Kapan Anda mulai mencari pekerjaan? <span class="text-danger-600">*</span></p>
           <div class="mt-2.5 grid grid-cols-1 gap-2.5">
             <label class="radio-card"><input type="radio" name="f301" class="form-radio" value="sebelum" checked data-reveals="#f302Wrap" /><span>Sebelum lulus</span></label>
             <label class="radio-card"><input type="radio" name="f301" class="form-radio" value="sesudah" data-reveals="#f303Wrap" /><span>Sesudah lulus</span></label>
-            <label class="radio-card"><input type="radio" name="f301" class="form-radio" value="tidak" /><span>Tidak mencari</span></label>
+            <label class="radio-card"><input type="radio" name="f301" class="form-radio" value="tidak" /><span>Saya tidak mencari kerja</span></label>
           </div>
           <div id="f302Wrap" class="reveal-wrap mt-2.5">
-            <label class="form-label">Berapa bulan sebelum lulus</label>
+            <label class="form-label">Jika Anda mulai mencari pekerjaan sejak sebelum lulus, dalam berapa bulan sebelum lulus Anda memulai mencari pekerjaan? <span class="text-danger-600">*</span></label>
             <input type="number" min="0" class="input" placeholder="mis. 2" />
           </div>
           <div id="f303Wrap" class="reveal-wrap mt-2.5 hidden">
-            <label class="form-label">Berapa bulan sesudah lulus</label>
+            <label class="form-label">Jika Anda mulai mencari pekerjaan sesudah lulus, dalam berapa bulan sesudah lulus Anda memulai mencari pekerjaan? <span class="text-danger-600">*</span></label>
             <input type="number" min="0" class="input" placeholder="mis. 2" />
           </div>
         </div>
         <div>
-          <p class="q-prompt">Cara mencari pekerjaan <span class="font-normal text-slate-400">(boleh pilih lebih dari satu)</span></p>
+          <p class="q-prompt">Cara mencari pekerjaan <span class="text-danger-600">*</span> <span class="font-normal text-slate-400">(boleh pilih lebih dari satu)</span></p>
           <div class="mt-2.5 grid grid-cols-1 gap-2.5">
             <label class="radio-card"><input type="checkbox" class="form-check" checked /><span>Mencari lewat internet / iklan online / milis</span></label>
             <label class="radio-card"><input type="checkbox" class="form-check" /><span>Melalui iklan di koran / majalah, brosur</span></label>
@@ -2110,6 +2208,12 @@
     const masaTungguNote = document.getElementById('masaTungguNote');
     masaTungguInput.disabled = isAutoFill;
     masaTungguNote.classList.toggle('hidden', !isAutoFill);
+    // Format lampau: gerbang f502 ikut terisi "Ya" (0 bulan) dari verifikasi pra-lulus.
+    document.querySelectorAll('input[name="f502Lampau"]').forEach((r) => {
+      r.disabled = isAutoFill;
+      if (isAutoFill) r.checked = r.value === 'ya';
+    });
+    document.querySelectorAll('input[name="f502Lampau"][data-reveals]').forEach(syncReveal);
     if (isAutoFill) {
       masaTungguInput.value = '0';
       document.querySelectorAll('[data-branch]').forEach((b) => b.classList.toggle('hidden', b.dataset.branch !== exitVal));
@@ -2310,8 +2414,10 @@
     });
 
     document.querySelectorAll('input[name="verifPralulus"]').forEach((r) => (r.checked = false));
-    document.getElementById('masaTungguInput').value = '0';
+    document.getElementById('masaTungguInput').value = '3';
     document.getElementById('masaTungguInput').disabled = false;
+    document.querySelectorAll('input[name="f502Lampau"]').forEach((r) => { r.disabled = false; r.checked = r.value === 'tidak'; });
+    document.querySelectorAll('input[name="f502Lampau"][data-reveals]').forEach(syncReveal);
     document.getElementById('masaTungguNote').classList.add('hidden');
     document.getElementById('provinsiKerjaWrap').classList.remove('hidden');
     document.getElementById('kabupatenKerjaWrap').classList.remove('hidden');
@@ -2389,7 +2495,7 @@
       }
       checkRadioGroup('f8', 'f8Error');
 
-      if (!document.getElementById('masaTungguBlock').classList.contains('hidden')) {
+      if (!document.getElementById('masaTungguBlock').classList.contains('hidden') && !document.getElementById('masaTungguWrap').classList.contains('hidden')) {
         checkText('masaTungguInput');
       }
     }
