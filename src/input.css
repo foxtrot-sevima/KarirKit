@@ -19745,7 +19745,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .input-file { @apply h-auto cursor-pointer overflow-hidden p-0 text-fg-muted leading-10 file:mr-3 file:h-10 file:cursor-pointer file:border-0 file:border-r file:border-border file:bg-neutral-50 file:px-3.5 file:text-sm file:font-medium file:text-neutral-700 hover:file:bg-neutral-100; }
   .upload { @apply w-full; }
   .upload-drop {
-    @apply flex min-h-[11rem] w-full cursor-pointer flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-neutral-300 bg-neutral-50 px-4 py-8 text-center transition-colors
+    @apply flex min-h-[var(--upload-h,11rem)] w-full cursor-pointer flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-neutral-300 bg-neutral-50 px-4 py-8 text-center transition-colors
            hover:border-primary-400 hover:bg-primary-50/60 focus-within:border-primary-400 focus-within:bg-primary-50/60 focus-within:ring-4 focus-within:ring-primary-500/10;
   }
   .upload-drop-active { @apply border-primary-500 bg-primary-50; }
@@ -19756,6 +19756,9 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .upload-hint { @apply text-xs text-fg-subtle; }
   .upload[aria-invalid="true"] .upload-drop { @apply border-danger-400 bg-danger-50/50 hover:border-danger-500 focus-within:border-danger-500 focus-within:ring-danger-500/10; }
   .upload[aria-disabled="true"] .upload-drop { @apply pointer-events-none cursor-not-allowed border-border-subtle bg-neutral-50 opacity-60; }
+  .upload-sm { --upload-h: 7rem; }
+  .upload-lg { --upload-h: 16rem; }
+  .upload-sm .upload-drop { @apply py-5; }
   .upload-compact .upload-drop { @apply min-h-0 flex-row justify-start gap-3 px-3 py-3 text-left; }
   .upload-compact .upload-icon { @apply mb-0 h-10 w-10 shrink-0; }
   .upload-compact .upload-text { @apply flex min-w-0 flex-1 flex-col; }
@@ -19770,5 +19773,5 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .upload-item .progress-track { @apply mt-1.5 h-1.5; }
   .upload-item[data-state="done"] .progress-bar { @apply bg-success-600; }
   .upload-remove { @apply inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-danger-600 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/10 sm:h-8 sm:w-8; }
-  @media (max-width: 639.98px) { .upload-or { display: none; } .upload-drop { min-height: 8.5rem; } }
+  @media (max-width: 639.98px) { .upload-or { display: none; } .upload-drop { min-height: min(var(--upload-h, 11rem), 8.5rem); } }
 }

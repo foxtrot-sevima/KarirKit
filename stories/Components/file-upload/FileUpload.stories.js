@@ -18,6 +18,8 @@ Unggah file lewat klik atau seret. Bungkus dengan \`.upload\` + \`data-file-uplo
 | \`data-upload-preview="image"\` | Miniatur untuk file gambar |
 | \`data-upload-simulate="true"\` | Progres palsu untuk mockup |
 
+**Ukuran:** lebar mengikuti wadah; tinggi lewat `.upload-sm` / `.upload-lg` atau `--upload-h`.
+
 **Responsif:** di ponsel area menjadi tombol ketuk (tanpa teks "seret"), dan tombol hapus berukuran 44px.
 
 Event \`upload:add\`, \`upload:remove\`, \`upload:error\` (\`detail.reason\`: \`type\` · \`size\` · \`count\`). API: \`KKUpload.files(el)\`, \`KKUpload.clear(el)\`, \`KKUpload.progress(el, file, persen)\`, \`KKUpload.init(root)\`.
@@ -37,5 +39,6 @@ export const Dropzone = story("dropzone");
 export const MultipleFiles = story("multiple");
 export const ImagePreview = story("image");
 export const Compact = story("compact");
+export const Sizes = story("sizes");
 export const ErrorState = story("error");
 export const Disabled = story("disabled");
