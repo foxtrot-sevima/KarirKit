@@ -40,7 +40,6 @@
   <section data-nav-hero class="relative bg-brand-gradient text-white">
     <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
       <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
-      <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-secondary-400/30 blur-3xl"></div>
     </div>
     <div class="relative mx-auto w-full max-w-7xl px-4 pb-10 pt-24 sm:px-6">
       <h1 class="font-display text-2xl font-bold sm:text-3xl">Tracer Study</h1>
@@ -53,8 +52,8 @@
     <!-- Perjalanan: tiga kuesioner -->
     <section aria-labelledby="journeyTitle">
       <h2 id="journeyTitle" class="font-display text-xl font-bold text-fg">Kuesionermu</h2>
-      <p class="card-text mt-1">Tracer study dilakukan pada tiga titik perjalanan karier setelah kamu lulus.</p>
-      <div id="tracerLocked" class="mt-5 hidden items-start gap-3 rounded-card border border-warning-200 bg-warning-50 p-4" role="note"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-white text-warning-600"><i class="kk kk-lock h-5 w-5" aria-hidden="true"></i></span><div class="min-w-0"><p class="text-sm font-semibold text-fg">Kuesioner belum bisa diisi</p><p class="mt-0.5 text-sm text-fg-muted">Tracer study diisi setelah kamu berstatus alumni. Kuesioner pra-lulus terbuka menjelang kelulusan, lalu kamu akan diingatkan lagi satu dan empat tahun setelah lulus.</p></div></div>
+      <p class="card-text mt-1">Tracer study dilakukan pada beberapa titik perjalanan kariermu, sesuai jadwal yang ditetapkan kampus.</p>
+      <div id="tracerLocked" class="mt-5 hidden items-start gap-3 rounded-card border border-warning-200 bg-warning-50 p-4" role="note"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-white text-warning-600"><i class="kk kk-lock h-5 w-5" aria-hidden="true"></i></span><div class="min-w-0"><p class="text-sm font-semibold text-fg">Kuesioner belum bisa diisi</p><p class="mt-0.5 text-sm text-fg-muted">Tracer study diisi setelah kamu berstatus alumni. Kamu akan diingatkan setiap kali satu gelombang kuesioner dibuka, sesuai jadwal kampus.</p></div></div>
       <div id="tracerGrid" class="mt-6 grid grid-cols-1 gap-5 xl:grid-cols-3" aria-live="polite"></div>
     </section>
 
@@ -129,6 +128,9 @@
         var std = res.items.filter(function (i) { return !i.custom; });
         var cus = res.items.filter(function (i) { return i.custom; });
         g.innerHTML = std.map(card).join('');
+        // Jumlah gelombang aktif beda per kampus (Lulus opsional): kolom grid mengikuti jumlahnya.
+        g.classList.toggle('xl:grid-cols-3', std.length !== 2);
+        g.classList.toggle('xl:grid-cols-2', std.length === 2);
         // Kuesioner tambahan = kuesioner custom buatan admin kampus (item API dengan custom: true).
         // Jika tidak ada data atau datanya kosong, seluruh section (judul, deskripsi, daftar) TIDAK ditampilkan.
         $('customSection').classList.toggle('hidden', !cus.length);
