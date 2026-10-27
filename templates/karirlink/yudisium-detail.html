@@ -591,24 +591,28 @@
         <p class="text-sm text-slate-600"><span class="sm:hidden">Dikirim otomatis pukul <span class="font-medium text-slate-800">09.00 WIB</span> selama rentang tiap gelombang.</span><span class="hidden sm:inline">Pengiriman otomatis dijalankan setiap pukul <span class="font-medium text-slate-800">09.00 WIB</span> selama rentang tanggal tiap gelombang di bawah ini.</span></p>
       </div>
       <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="rounded-xl border border-slate-100 p-4">
+        <div class="rounded-xl border border-slate-100 p-4" data-wave="1">
           <div class="flex items-start gap-3">
-            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-opacity" data-wave-dim>
               <i class="kk kk-clock h-4 w-4"></i>
             </span>
-            <div>
-              <p class="text-sm font-semibold text-slate-800">Gelombang Pra-Lulus</p>
+            <div class="min-w-0 flex-1">
+              <p class="flex items-center gap-2 text-sm font-semibold text-slate-800">Lulus <span class="badge-neutral hidden" data-wave-badge>Nonaktif</span></p>
               <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim menjelang yudisium.</span><span class="hidden sm:inline">Dikirim menjelang tanggal yudisium, sebelum mahasiswa resmi dinyatakan lulus.</span></p>
             </div>
+            <label class="toggle" title="Aktifkan Lulus">
+              <input type="checkbox" class="toggle-input" id="waveToggle1" aria-label="Aktifkan Lulus" checked />
+              <span class="toggle-track"></span>
+            </label>
           </div>
-          <div class="mt-4 grid grid-cols-2 gap-3">
+          <div class="mt-4 grid grid-cols-2 gap-3 transition-opacity" data-wave-dim>
             <div>
               <label class="form-label">Tanggal Mulai</label>
-              <input class="input" type="date" value="2026-08-14" />
+              <input class="input" type="date" value="2026-08-14" data-wave-input />
             </div>
             <div>
               <label class="form-label">Tanggal Akhir</label>
-              <input class="input" type="date" value="2026-08-27" />
+              <input class="input" type="date" value="2026-08-27" data-wave-input />
             </div>
           </div>
         </div>
@@ -619,8 +623,8 @@
               <i class="kk kk-clock h-4 w-4"></i>
             </span>
             <div>
-              <p class="text-sm font-semibold text-slate-800">Gelombang Pasca-Lulus 1 Tahun</p>
-              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim 1 tahun setelah yudisium.</span><span class="hidden sm:inline">Dikirim 1 tahun setelah tanggal yudisium untuk memantau status karier lulusan.</span></p>
+              <p class="text-sm font-semibold text-slate-800">Pasca-Lulus 1</p>
+              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim sesuai rentang tanggalnya.</span><span class="hidden sm:inline">Dikirim pada rentang tanggal yang ditentukan kampus untuk memantau status karier lulusan, misalnya saat lulus atau 1 tahun setelahnya.</span></p>
             </div>
           </div>
           <div class="mt-4 grid grid-cols-2 gap-3">
@@ -641,8 +645,8 @@
               <i class="kk kk-clock h-4 w-4"></i>
             </span>
             <div>
-              <p class="text-sm font-semibold text-slate-800">Gelombang Pasca-Lulus 4 Tahun</p>
-              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim 4 tahun setelah yudisium.</span><span class="hidden sm:inline">Dikirim 4 tahun setelah tanggal yudisium untuk memantau perkembangan karier jangka panjang.</span></p>
+              <p class="text-sm font-semibold text-slate-800">Pasca-Lulus 2</p>
+              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim sesuai rentang tanggalnya.</span><span class="hidden sm:inline">Dikirim pada rentang tanggal yang ditentukan kampus untuk memantau perkembangan karier jangka panjang.</span></p>
             </div>
           </div>
           <div class="mt-4 grid grid-cols-2 gap-3">
@@ -659,6 +663,38 @@
       </div>
       <button class="btn-primary btn-md mt-5">Simpan Pengaturan Gelombang</button>
     </div>
+    <script>
+      /* CATATAN DEV - toggle gelombang Lulus
+         Gelombang Lulus opsional; Pasca-Lulus 1 dan 2 selalu aktif. Alasannya: sebagian kampus ingin lulusan langsung mengisi Pasca-Lulus 1 saat lulus
+         (tidak menunggu 1 tahun), sebagian lain tetap memakai urutan Lulus lalu Pasca-Lulus 1.
+         Data: satu flag per periode yudisium (bukan global), mis. periode.lulus_enabled boolean, default true. Disimpan bersama tombol
+         "Simpan Pengaturan Gelombang" di aplikasi sungguhan (di mockup ini tersimpan saat toggle digeser).
+         Bila enabled = false:
+           1. Penjadwal pengiriman (09.00 WIB) TIDAK mengirim Kuesioner Lulus ke lulusan periode ini, apa pun isi Tanggal Mulai/Akhir.
+              Tanggal tidak divalidasi dan tidak dipakai (input di UI dikunci).
+           2. Portal Karir: GET /api/tracer tidak menyertakan item 'lulus' (id 'pra-lulus'), jadi kartunya tidak tampil di halaman alumni
+              maupun mahasiswa. Penyaringan dilakukan server, bukan FE.
+           3. Jawaban yang sudah masuk sebelum dimatikan tidak dihapus; hanya pengiriman dan tampilan di portal yang berhenti.
+         Bila enabled = true kembali: jadwal lama dipakai lagi (tanggal yang tersimpan tidak dikosongkan).
+         Perlu dikonfirmasi produk: pertanyaan verifikasi dan auto-fill di Pasca-Lulus 1 (bergantung pada jawaban Lulus, ?exit= di mockup)
+         tidak punya sumber jawaban saat gelombang ini nonaktif. Usulan: lewati verifikasi dan tanyakan status secara normal. */
+      (function () {
+        var t = document.getElementById('waveToggle1'), card = document.querySelector('[data-wave="1"]');
+        if (!t || !card) return;
+        function sync() {
+          card.querySelectorAll('[data-wave-dim]').forEach(function (e) { e.classList.toggle('opacity-50', !t.checked); });
+          card.querySelector('[data-wave-badge]').classList.toggle('hidden', t.checked);
+          card.querySelectorAll('[data-wave-input]').forEach(function (i) { i.disabled = !t.checked; });
+        }
+        // Prototipe: status disimpan di localStorage (kk_tracer_wave_pra) agar Portal Karir ikut menyembunyikan gelombang ini. Aslinya disimpan ke server per periode yudisium.
+        try { if (localStorage.getItem('kk_tracer_wave_pra') === 'false') t.checked = false; } catch (e) {}
+        t.addEventListener('change', function () {
+          try { localStorage.setItem('kk_tracer_wave_pra', JSON.stringify(t.checked)); } catch (e) {}
+          sync();
+        });
+        sync();
+      })();
+    </script>
   </main>
 
   <footer class="footer footer-bar">

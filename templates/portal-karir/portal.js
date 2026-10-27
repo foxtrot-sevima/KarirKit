@@ -1116,14 +1116,16 @@
      Tracer Study: portal hanya menjadi pengingat. Kuesionernya sendiri diisi di aplikasi Tracer Study (CAMPUS.tracerUrl);
      tiap kuesioner punya tautan langsung ke kuesionernya. Status diterima dari aplikasi Tracer Study.
        GET /api/tracer -> { locked, items:[{ id, custom?, title, when, status:'selesai'|'perlu'|'belum', closes?, opensIn?, doneAgo? }] }
+       Hanya gelombang yang aktif yang dikirim server. Lulus bisa dinonaktifkan kampus (Yudisium Detail > Pengaturan Gelombang): bila nonaktif ia tidak ada di items dan kartunya tidak tampil.
+       Di prototipe, enabled:false pada item TRACER meniru kondisi itu.
      ========================================================================== */
   var TRACER = [
-    { id: 'pra-lulus', title: 'Pra-lulus', when: 'Saat menjelang kelulusan', minutes: 5, status: 'selesai', doneAgo: 420,
+    { id: 'pra-lulus', title: 'Lulus', when: 'Menjelang kelulusan', minutes: 5, status: 'selesai', doneAgo: 420, enabled: true,
       desc: 'Pengalaman kuliah dan rencana setelah lulus. Diisi sebelum wisuda.' },
-    { id: 'pasca-1', title: 'Pasca-lulus 1 tahun', when: 'Satu tahun setelah lulus', minutes: 10, status: 'perlu', closes: 21,
-      desc: 'Status pekerjaan atau studi lanjutanmu setahun setelah lulus, dipakai untuk akreditasi dan pelaporan.' },
-    { id: 'pasca-4', title: 'Pasca-lulus 4 tahun', when: 'Empat tahun setelah lulus', minutes: 10, status: 'belum', opensIn: 1095,
-      desc: 'Perkembangan kariermu setelah empat tahun, termasuk kesesuaian pekerjaan dan kompetensi.' },
+    { id: 'pasca-1', title: 'Pasca-Lulus 1', when: 'Sesuai jadwal kampus', minutes: 10, status: 'perlu', closes: 21, enabled: true,
+      desc: 'Status pekerjaan atau studi lanjutanmu setelah lulus, dipakai untuk akreditasi dan pelaporan.' },
+    { id: 'pasca-4', title: 'Pasca-Lulus 2', when: 'Sesuai jadwal kampus', minutes: 10, status: 'belum', opensIn: 1095, enabled: true,
+      desc: 'Perkembangan kariermu dalam jangka panjang, termasuk kesesuaian pekerjaan dan kompetensi.' },
     // Kuesioner custom yang dibuat admin kampus untuk alumni (custom: true). Nama, deskripsi, batas waktu, dan estimasi waktu diisi admin;
     // semuanya boleh kosong, halaman memakai teks bawaan. Hanya tampil di halaman alumni.
     { id: 'kampus-14', custom: true, title: 'Survei kepuasan layanan alumni', status: 'perlu', closes: 45, minutes: 3,
@@ -1135,7 +1137,13 @@
   api.listTracer = function (audience) {
     return simulate(function () {
       var alumni = audience === 'alumni';
-      return { locked: !alumni, items: TRACER.filter(function (t) { return alumni || !t.custom; }).map(function (t) { return alumni ? t : Object.assign({}, t, { status: 'terkunci' }); }) };
+      /* CATATAN DEV: gelombang Lulus (id 'pra-lulus') opsional per periode yudisium. Admin mematikannya lewat toggle di
+         karirlink/yudisium-detail.html (Pengaturan Gelombang Pengiriman). Bila mati, item itu TIDAK ada di respons /api/tracer, jadi kartu
+         dan hitungannya hilang di tracer-study.html dan tracer-study-mahasiswa.html (grid menyesuaikan 2 atau 3 kolom).
+         Di aplikasi sungguhan penyaringan ada di server. Di mockup flag dibaca dari localStorage (kk_tracer_wave_pra, default aktif)
+         karena admin dan portal adalah halaman statis terpisah. Hapus pembacaan ini bila API sungguhan sudah ada. */
+      var praOn = read('kk_tracer_wave_pra', true) !== false;
+      return { locked: !alumni, items: TRACER.filter(function (t) { return t.enabled !== false && (t.id !== 'pra-lulus' || praOn) && (alumni || !t.custom); }).map(function (t) { return alumni ? t : Object.assign({}, t, { status: 'terkunci' }); }) };
     }, 220);
   };
   function tracerLink(item) { return (CAMPUS.tracerUrl || 'https://tracer.karirlink.id/kuesioner') + '?kuesioner=' + encodeURIComponent(item.id); }

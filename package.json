@@ -55,7 +55,7 @@
     "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "npm run build && storybook build",
     "icons:names": "node scripts/gen-icon-names.mjs",
     "assets:classes": "node scripts/gen-asset-classes.mjs",
     "check:templates": "node scripts/check-templates.mjs"
