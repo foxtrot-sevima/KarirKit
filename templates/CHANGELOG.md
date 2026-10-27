@@ -8,6 +8,21 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-10-27
+
+Dasar KarirKit: v1.4.0
+
+### Added
+
+- **Toggle on/off Lulus** di Pengaturan Gelombang Pengiriman (`templates/karirlink/yudisium-detail.html`): kampus yang ingin lulusan langsung mengisi gelombang berikutnya saat lulus bisa menonaktifkan Lulus. Saat nonaktif, kartu meredup, rentang tanggal dikunci, dan muncul keterangan bahwa gelombang tidak dikirim serta tidak tampil di Portal Karir.
+- **Portal Karir menyembunyikan gelombang nonaktif** (`templates/portal-karir/portal.js`, `tracer-study.html`, `tracer-study-mahasiswa.html`, dan versi white-label): `PK.api.listTracer` hanya mengembalikan gelombang aktif (`enabled !== false`), dan grid kartu menyesuaikan jumlahnya (2 atau 3 kolom).
+
+### Changed
+
+- **Nama gelombang mengikuti istilah kuesioner Kemdikti**, bukan lagi berdasar waktu: Pra-Lulus menjadi **Lulus**, Pasca-Lulus 1 Tahun menjadi **Pasca-Lulus 1**, Pasca-Lulus 4 Tahun menjadi **Pasca-Lulus 2**. Waktu kirim ditentukan kampus per periode (Pasca-Lulus 1 bisa dikirim saat lulus), jadi nama tidak lagi memuat "1 tahun" atau "4 tahun". Berlaku di Yudisium (daftar, detail, jawaban), detail alumni, Kuesioner (builder, simulasi, email undangan), badge periode di Overview, dan Portal Karir.
+- **Tautan Tracer Study mengikuti domain kampus** (`kuesioner.html`, `kuesioner-mail.html`, `kuesioner-simulasi.html`): tautan kuesioner, QR, email undangan, dan tautan survei atasan memakai domain tempat panel dibuka, bukan `karirlink.id` tetap.
+- **Email undangan Tracer Study** (`templates/karirlink/kuesioner-mail.html`): salam memakai nama lengkap (alumni "Halo Ahmad Dimas,"; atasan "Yth. Bapak/Ibu/Saudara ..."), sapaan atasan diganti netral "Bapak/Ibu/Saudara" agar satu template cukup, kartu info (durasi, jumlah langkah, batas waktu) dihapus, nama universitas ditebalkan, dan logo KarirLink menautkan ke https://karirlink.id.
+
 ## 2026-10-26
 
 Dasar KarirKit: v1.4.0

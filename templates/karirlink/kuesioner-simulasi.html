@@ -36,14 +36,14 @@
      Halaman ini murni TAMPILAN RESPONDEN (alumni, atau atasan untuk Pengguna Lulusan): tanpa topbar, tab
      tracer, maupun kontrol admin, karena responden membukanya dari tombol di email. Admin masuk lewat
      kuesioner.html (popup Simulasi Tracer) -> kuesioner-mail.html?tracer=... (isi email) -> halaman ini
-     (?tracer=...; Pasca-Lulus 1 Tahun juga membawa ?exit=belum|bekerja|wiraswasta, kondisi jawaban
-     Pra-Lulus alumni).
+     (?tracer=...; Pasca-Lulus 1 juga membawa ?exit=belum|bekerja|wiraswasta, kondisi jawaban
+     Lulus alumni).
      Alur & isi pertanyaan di file ini mengikuti
      templates/karirlink/docs/about-tracer/arsitektur-pertanyaan.md apa
      adanya. Tiga flow terpisah karena strukturnya memang beda di dokumen:
      - data-flow="exit"  → Wave Exit (gelombang Pra-Lulus), dok bagian 1.
      - data-flow="g1"    → Wave G1 (dok bagian 2-8), dipakai untuk gelombang
-       Pasca-Lulus 1 Tahun & Pasca-Lulus 4 Tahun - dokumen tidak
+       Pasca-Lulus 1 & Pasca-Lulus 2 - dokumen tidak
        mendefinisikan skema terpisah untuk Wave G2/pasca-4-tahun, jadi
        keduanya memakai struktur pertanyaan G1 yang sama (cuma redaksi
        intro/label yang menyesuaikan), bukan diarang beda.
@@ -65,7 +65,7 @@
         <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-white/20 text-xs font-bold text-white" aria-hidden="true">US</span>
         Universitas Sentra Vidya Utama
       </p>
-      <h1 class="mt-4 font-display text-2xl font-bold leading-tight sm:text-3xl" data-w="heroTitle">Tracer Study Pra-Lulus</h1>
+      <h1 class="mt-4 font-display text-2xl font-bold leading-tight sm:text-3xl" data-w="heroTitle">Tracer Study Lulus</h1>
       <p class="mt-2 max-w-2xl text-sm leading-relaxed text-white/85 sm:text-base" data-w="heroIntro"></p>
       <ul class="mt-5 flex flex-wrap gap-2 text-xs font-medium">
         <li class="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5"><i class="kk kk-clock h-3.5 w-3.5"></i><span data-w="heroMinutes">Sekitar 3 menit</span></li>
@@ -232,13 +232,13 @@
     </div>
 
     <!-- ================= WAVE G1 FLOW (dok bagian 2-8) =================
-         Dipakai untuk Pasca-Lulus 1 Tahun & Pasca-Lulus 4 Tahun. -->
+         Dipakai untuk Pasca-Lulus 1 & Pasca-Lulus 2. -->
 
     <!-- ===== G1 STEP 2: Informasi Umum (dok bagian 2) ===== -->
     <div data-flow="g1" data-step-panel="2" class="card hidden p-6 sm:p-8">
       <h2 class="font-display text-xl font-bold text-slate-900" data-w="g1Title">Status Satu Tahun Setelah Lulus</h2>
 
-      <!-- g1_verif_pralulus: hanya muncul di Pasca-Lulus 1 Tahun, dan hanya jika
+      <!-- g1_verif_pralulus: hanya muncul di Pasca-Lulus 1, dan hanya jika
            Wave Exit dijawab sudah bekerja/berwirausaha (lihat simulator di atas). -->
       <div id="verifPralulusBlock" class="mt-5 hidden rounded-xl border border-slate-200 bg-slate-50 p-4">
         <p class="q-prompt">Apakah pekerjaan/usaha berikut masih Anda jalankan? <span class="text-danger-600">*</span></p>
@@ -1579,7 +1579,7 @@
         <div id="dataAtasanLinkResult" class="mt-4 hidden">
           <div class="flex items-start gap-3 rounded-xl bg-success-50 p-3.5 text-sm text-slate-700">
             <i class="kk kk-check-circle mt-0.5 h-4 w-4 shrink-0 text-success-600"></i>
-            <p>Link berhasil dibuat: <span class="break-all font-medium text-primary-600">karirlink.id/survei/pgl-8f2a91</span></p>
+            <p>Link berhasil dibuat: <span id="dataAtasanLinkText" class="break-all font-medium text-primary-600">karirlink.id/survei/pgl-8f2a91</span></p>
           </div>
         </div>
       </div>
@@ -1676,7 +1676,7 @@
     color: var(--color-slate-800);
   }
 
-  /* Versi instrumen Pasca-Lulus (?format=2025|lampau, default 2025): elemen data-fmt milik versi lain disembunyikan */
+  /* Versi instrumen Pasca-Lulus 1 & 2 (?format=2025|lampau, default 2025): elemen data-fmt milik versi lain disembunyikan */
   body[data-fmt="2025"] [data-fmt="lampau"],
   body[data-fmt="lampau"] [data-fmt="2025"] { display: none !important; }
 
@@ -1722,32 +1722,32 @@
   // judul step G1, serta layar sukses (judul, teks, dan langkah berikutnya).
   const WAVES = {
     'pra-lulus': {
-      label: 'Pra-Lulus',
-      heroTitle: 'Tracer Study Pra-Lulus',
+      label: 'Lulus',
+      heroTitle: 'Tracer Study Lulus',
       heroIntro: 'Bantu kampus memperbarui kontak Anda dan mengetahui rencana Anda setelah lulus.',
       heroMinutes: 'Sekitar 3 menit',
       successTitle: SUCCESS_TITLE,
-      successText: alumniSuccess('Pra-Lulus'),
+      successText: alumniSuccess('Lulus'),
       successNext: `Tracer Study berikutnya akan dikirim ke email Anda satu tahun setelah lulus. ${KEEP_CONTACT}`,
     },
     'pasca-1th': {
-      label: 'Pasca-Lulus 1 Tahun',
+      label: 'Pasca-Lulus 1',
       g1Title: 'Status Satu Tahun Setelah Lulus',
-      heroTitle: 'Tracer Study Pasca-Lulus 1 Tahun',
+      heroTitle: 'Tracer Study Pasca-Lulus 1',
       heroIntro: 'Ceritakan status dan perjalanan karier Anda satu tahun setelah lulus, serta seberapa siap bekal kuliah Anda menghadapi dunia kerja.',
       heroMinutes: 'Sekitar 8 menit',
       successTitle: SUCCESS_TITLE,
-      successText: alumniSuccess('Pasca-Lulus 1 Tahun'),
+      successText: alumniSuccess('Pasca-Lulus 1'),
       successNext: `Tracer Study berikutnya akan dikirim ke email Anda empat tahun setelah lulus. ${KEEP_CONTACT}`,
     },
     'pasca-4th': {
-      label: 'Pasca-Lulus 4 Tahun',
+      label: 'Pasca-Lulus 2',
       g1Title: 'Status Empat Tahun Setelah Lulus',
-      heroTitle: 'Tracer Study Pasca-Lulus 4 Tahun',
+      heroTitle: 'Tracer Study Pasca-Lulus 2',
       heroIntro: 'Bagikan perkembangan karier Anda empat tahun setelah lulus dan masukan Anda untuk adik-adik angkatan.',
       heroMinutes: 'Sekitar 8 menit',
       successTitle: SUCCESS_TITLE,
-      successText: alumniSuccess('Pasca-Lulus 4 Tahun'),
+      successText: alumniSuccess('Pasca-Lulus 2'),
       successNext: 'Ini adalah Tracer Study terakhir untuk angkatan Anda. Terima kasih sudah ikut membantu kampus.',
     },
     'pengguna-lulusan': {
@@ -1762,7 +1762,7 @@
   };
 
   // Jawaban Wave Exit (Pra-Lulus) alumni ini, dibawa dari kuesioner-mail.html lewat ?exit=. Menentukan apakah
-  // pertanyaan verifikasi g1_verif_pralulus & auto-fill status/masa tunggu muncul di Pasca-Lulus 1 Tahun.
+  // pertanyaan verifikasi g1_verif_pralulus & auto-fill status/masa tunggu muncul di Pasca-Lulus 1.
   const EXIT_ANSWERS = ['belum', 'bekerja', 'wiraswasta'];
   let exitAnswer = 'bekerja';
 
@@ -1965,7 +1965,7 @@
   // ---- f17 (kompetensi A/B, 7 aspek) & f2 (metode pembelajaran, 7 aspek)
   // matrices - dibangun dari JS supaya 21 baris skala tidak ditulis manual,
   // memakai .scale-pill yang sama seperti pertanyaan kepuasan admin-custom. ----
-  // Versi instrumen Pasca-Lulus: ?format=lampau (lulusan ≤ 2024); selain itu 2025 (lulusan ≥ 2025, instrumen Kemendikti terbaru).
+  // Versi instrumen Pasca-Lulus 1 & 2: ?format=lampau (lulusan ≤ 2024); selain itu 2025 (lulusan ≥ 2025, instrumen Kemendikti terbaru).
   // Mempengaruhi daftar aspek f17/f2 di bawah, cabang status, dan langkah 2 (lihat atribut data-fmt).
   const FMT = new URLSearchParams(location.search).get('format') === 'lampau' ? 'lampau' : '2025';
   document.body.dataset.fmt = FMT;
@@ -2080,7 +2080,7 @@
     updateMasaTungguVisibility();
   }
 
-  // ---- g1_verif_pralulus (Wave G1, hanya Pasca-Lulus 1 Tahun) + auto-fill f8 & f502 ----
+  // ---- g1_verif_pralulus (Wave G1, hanya Pasca-Lulus 1) + auto-fill f8 & f502 ----
   const EXIT_SIM_INFO = {
     bekerja: 'Sesuai jawaban Anda sebelumnya: <span class="font-medium text-slate-800">PT Sinergi Digital Nusantara</span>',
     wiraswasta: 'Sesuai jawaban Anda sebelumnya: <span class="font-medium text-slate-800">Kopi Setapak (usaha sendiri)</span>',
@@ -2492,6 +2492,8 @@
   });
 
   document.getElementById('buatLinkBtn').addEventListener('click', () => {
+    // Tautan mengikuti domain tempat halaman dibuka (subdomain kampus).
+    if (location.host) document.getElementById('dataAtasanLinkText').textContent = 'karirlink.id/survei/pgl-8f2a91'.replace('karirlink.id', location.host);
     document.getElementById('dataAtasanLinkResult').classList.remove('hidden');
   });
 
@@ -2509,8 +2511,8 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // ---- Titik awal: tracer dari ?tracer= (tautan lama ?gelombang= tetap terbaca) dan, untuk Pasca-Lulus 1 Tahun,
-  // kondisi jawaban Pra-Lulus dari ?exit=. Keduanya dikirim oleh tombol di kuesioner-mail.html. ----
+  // ---- Titik awal: tracer dari ?tracer= (tautan lama ?gelombang= tetap terbaca) dan, untuk Pasca-Lulus 1,
+  // kondisi jawaban Lulus dari ?exit=. Keduanya dikirim oleh tombol di kuesioner-mail.html. ----
   const startParams = new URLSearchParams(location.search);
   if (EXIT_ANSWERS.includes(startParams.get('exit'))) exitAnswer = startParams.get('exit');
   applyWave(startParams.get('tracer') || startParams.get('gelombang'));
