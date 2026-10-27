@@ -6,6 +6,10 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+### Added
+
+- **Komponen File Upload** (`.upload` + `.upload-drop`, `.upload-icon`, `.upload-title`, `.upload-hint`, `.upload-list`, `.upload-item`, `.upload-thumb`, `.upload-remove`, `.upload-compact`; `.input-file` untuk input file standar; `assets/js/file-upload.js`): unggah file lewat klik atau seret. Memvalidasi format (`accept`) dan ukuran (`data-upload-max-size`, MB) serta jumlah file (`data-upload-max-files`), menampilkan daftar file dengan miniatur gambar (`data-upload-preview="image"`), tombol hapus, dan progres (`data-upload-simulate` untuk mockup, `KKUpload.progress()` untuk aplikasi). File yang lolos disinkronkan ke `<input type="file">` sehingga pengiriman `<form>` biasa tetap bekerja. Event `upload:add|remove|error`; API `KKUpload`. Di ponsel teks "seret" disembunyikan dan tombol hapus 44px. Tujuh contoh: file input, dropzone, banyak file dengan progres, pratinjau gambar, ringkas, error, disabled.
+
 ## [1.4.0] - 2026-10-26
 
 ### Added

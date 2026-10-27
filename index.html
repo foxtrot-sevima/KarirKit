@@ -5673,6 +5673,102 @@
     </div>
   </section>
 
+  <section id="file-upload" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">File Upload</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Unggah file lewat klik atau seret - input file standar, dropzone, banyak file dengan progres, pratinjau gambar, varian ringkas, error, dan disabled. Bungkus dengan <code class="kbd">.upload</code> + <code class="kbd">data-file-upload</code>; <code class="kbd">assets/js/file-upload.js</code> memvalidasi format (<code class="kbd">accept</code>) dan ukuran (<code class="kbd">data-upload-max-size</code>, MB), menampilkan daftar file, dan menyinkronkan file ke <code class="kbd">&lt;input type="file"&gt;</code>. Event <code class="kbd">upload:add</code>, <code class="kbd">upload:remove</code>, <code class="kbd">upload:error</code>; API <code class="kbd">KKUpload</code>.</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">File input</h3>
+      <p class="mb-3 text-sm text-slate-500">Input file standar dengan gaya <code>.input-file</code>: tombol "Choose file" bawaan browser dipakai ulang tanpa JS. Cocok untuk satu berkas di formulir yang padat.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="w-full max-w-sm">
+  <label class="form-label" for="fu-input">Unggah proposal</label>
+  <input id="fu-input" type="file" class="input input-file" accept=".pdf,.doc,.docx" />
+  <p class="form-hint">PDF, DOC, atau DOCX, maksimal 5 MB.</p>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropzone</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>.upload</code> + <code>.upload-drop</code>: klik atau seret file. Format dibaca dari <code>accept</code>, batas ukuran dari <code>data-upload-max-size</code> (MB); file yang ditolak menampilkan pesan di <code>.form-error</code>. Di ponsel teks "atau seret" disembunyikan dan area lebih ringkas.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full max-w-md" data-file-upload data-upload-max-size="5">
+  <label class="form-label">Proposal Kegiatan</label>
+  <label class="upload-drop" for="fu-drop">
+    <input id="fu-drop" type="file" class="sr-only" accept=".pdf,.doc,.docx" />
+    <span class="upload-icon"><i class="kk kk-file-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF, DOC, atau DOCX (maks. 5 MB)</span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Multiple files with progress</h3>
+      <p class="mb-3 text-sm text-slate-500">Atribut <code>multiple</code> pada input dan <code>data-upload-max-files</code> membatasi jumlah. <code>data-upload-simulate="true"</code> menampilkan progres palsu untuk mockup; di aplikasi, isi progres lewat <code>KKUpload.progress(el, file, persen)</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full max-w-md" data-file-upload data-upload-max-size="10" data-upload-max-files="4" data-upload-simulate="true">
+  <label class="form-label">Berkas Pendukung</label>
+  <label class="upload-drop" for="fu-multi">
+    <input id="fu-multi" type="file" class="sr-only" accept=".pdf,.jpg,.jpeg,.png" multiple />
+    <span class="upload-icon"><i class="kk kk-cloud-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF, JPG, atau PNG, maksimal 4 file (maks. 10 MB per file)</span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Image preview</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>data-upload-preview="image"</code> menampilkan miniatur gambar yang dipilih (poster, logo, foto). File non-gambar memakai ikon berkas.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full max-w-md" data-file-upload data-upload-max-size="2" data-upload-preview="image">
+  <label class="form-label">Poster</label>
+  <label class="upload-drop" for="fu-image">
+    <input id="fu-image" type="file" class="sr-only" accept=".jpg,.jpeg,.png" />
+    <span class="upload-icon"><i class="kk kk-image " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">JPG atau PNG (maks. 2 MB)</span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Compact</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>.upload-compact</code>: satu baris dengan ikon di kiri, untuk formulir yang tidak butuh area besar (pengaturan, modal).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload upload-compact w-full max-w-md" data-file-upload data-upload-max-size="2" data-upload-preview="image">
+  <label class="form-label">Logo Kampus</label>
+  <label class="upload-drop" for="fu-compact">
+    <input id="fu-compact" type="file" class="sr-only" accept=".jpg,.jpeg,.png" />
+    <span class="upload-icon"><i class="kk kk-image " aria-hidden="true"></i></span>
+    <span class="upload-text"><span class="upload-title"><b>Klik untuk pilih file</b></span><span class="upload-hint">JPG, JPEG, atau PNG (maks. 2 MB)</span></span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Error</h3>
+      <p class="mb-3 text-sm text-slate-500">Tambahkan <code>aria-invalid="true"</code> pada <code>.upload</code> dan <code>.form-error</code> di bawahnya. Pesan ini juga diisi otomatis saat format atau ukuran file ditolak (event <code>upload:error</code>).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full max-w-md" data-file-upload aria-invalid="true">
+  <label class="form-label">Proposal Kegiatan</label>
+  <label class="upload-drop" for="fu-error">
+    <input id="fu-error" type="file" class="sr-only" accept=".pdf,.doc,.docx" />
+    <span class="upload-icon"><i class="kk kk-file-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF, DOC, atau DOCX (maks. 5 MB)</span>
+  </label>
+  <p class="form-error" data-upload-error>Proposal wajib diunggah untuk kegiatan kerja sama.</p>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Disabled</h3>
+      <p class="mb-3 text-sm text-slate-500">Atribut <code>disabled</code> pada input menonaktifkan klik dan seret.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full max-w-md" data-file-upload>
+  <label class="form-label">Berkas</label>
+  <label class="upload-drop" for="fu-disabled">
+    <input id="fu-disabled" type="file" class="sr-only" accept=".pdf" disabled />
+    <span class="upload-icon"><i class="kk kk-cloud-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">Unggah dinonaktifkan</span>
+  </label>
+</div></div>
+    </div>
+    </div>
+  </section>
+
   <section id="list-group" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">List Group</h2>
@@ -7152,6 +7248,7 @@
 <script src="assets/js/pagination.js"></script>
 <script src="assets/js/clipboard.js"></script>
 <script src="assets/js/drawer.js"></script>
+<script src="assets/js/file-upload.js"></script>
 <script src="assets/js/vendor/apexcharts.min.js"></script>
 <script src="assets/js/chart.js"></script>
 <script src="assets/js/theme.js"></script>
@@ -7162,7 +7259,7 @@
     var GROUPS = [
       { name: 'Foundation', ids: ['logo', 'colors', 'typography', 'icons'] },
       { name: 'Components', ids: ['buttons', 'button-group', 'badges', 'avatars', 'cards', 'alerts', 'toasts', 'modals', 'drawer', 'dropdowns', 'tabs', 'navigation', 'navbar', 'footer', 'pagination', 'tables', 'list-group', 'timeline', 'progress'] },
-      { name: 'Forms', ids: ['forms', 'datepicker', 'timepicker'] },
+      { name: 'Forms', ids: ['forms', 'file-upload', 'datepicker', 'timepicker'] },
       { name: 'Plugins', ids: ['wysiwyg', 'chart', 'qr-code', 'clipboard'] }
     ];
     var sections = Array.prototype.slice.call(document.querySelectorAll('[data-ds-section]'));
