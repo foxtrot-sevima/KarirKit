@@ -36,8 +36,8 @@
      Halaman ini hanya berisi emailnya (tanpa topbar, tab, indikator progres, atau catatan), sama seperti yang
      dilihat penerima. Dibuka dari popup "Simulasi Tracer" di kuesioner.html (?tracer=pra-lulus|pasca-1th|
      pasca-4th|pengguna-lulusan); tombol di dalam email membuka kuesioner-simulasi.html (tampilan responden).
-     Opsional untuk menguji Pasca-Lulus 1 Tahun: tambahkan ?exit=belum|bekerja|wiraswasta (kondisi jawaban
-     Pra-Lulus alumni), diteruskan ke kuesioner lewat tombol di email. -->
+     Opsional untuk menguji Pasca-Lulus 1: tambahkan ?exit=belum|bekerja|wiraswasta (kondisi jawaban
+     Lulus alumni), diteruskan ke kuesioner lewat tombol di email. -->
 <main class="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-10">
   <article class="card overflow-hidden" aria-label="Email undangan">
 
@@ -91,7 +91,7 @@
 
   const TRACERS = {
     'pra-lulus': {
-      label: 'Pra-Lulus',
+      label: 'Lulus',
       email: {
         subject: 'Tracer Study: lengkapi data Anda sebelum wisuda',
         from: MAIL_FROM,
@@ -109,15 +109,15 @@
       },
     },
     'pasca-1th': {
-      label: 'Pasca-Lulus 1 Tahun',
+      label: 'Pasca-Lulus 1',
       email: {
-        subject: 'Satu tahun setelah lulus: ceritakan perjalanan karier Anda',
+        subject: 'Ceritakan perjalanan karier Anda setelah lulus',
         from: MAIL_FROM,
         to: MAIL_ALUMNI,
         date: 'Kamis, 12 Agustus 2027 · 09.00',
         greeting: 'Halo Ahmad,',
         paras: [
-          `Sudah setahun sejak Anda lulus dari ${CAMPUS}. Kami ingin tahu kabar Anda: apakah sudah bekerja, berwirausaha, atau melanjutkan studi, dan seberapa siap bekal kuliah Anda menghadapi dunia kerja.`,
+          `Kami ingin tahu kabar Anda setelah lulus dari ${CAMPUS}: apakah sudah bekerja, berwirausaha, atau melanjutkan studi, dan seberapa siap bekal kuliah Anda menghadapi dunia kerja.`,
           'Isian ini juga menjadi bagian dari pelaporan Tracer Study ke Dikti, sehingga jawaban Anda sangat berarti bagi program studi Anda.',
         ],
         facts: [['clock', 'Sekitar 8 menit'], ['clipboard-text', '4 langkah'], ['calendar-check', 'Sampai 26 Agu 2027']],
@@ -127,15 +127,15 @@
       },
     },
     'pasca-4th': {
-      label: 'Pasca-Lulus 4 Tahun',
+      label: 'Pasca-Lulus 2',
       email: {
-        subject: 'Empat tahun setelah lulus: bagikan perkembangan karier Anda',
+        subject: 'Bagikan perkembangan karier Anda',
         from: MAIL_FROM,
         to: MAIL_ALUMNI,
         date: 'Senin, 12 Agustus 2030 · 09.00',
         greeting: 'Halo Ahmad,',
         paras: [
-          `Empat tahun telah berlalu sejak Anda lulus dari ${CAMPUS}. Kami ingin melihat perkembangan karier Anda dan mendengar masukan Anda untuk pengembangan program studi serta layanan karir bagi adik-adik angkatan.`,
+          `Kami ingin melihat perkembangan karier Anda dan mendengar masukan Anda untuk pengembangan program studi serta layanan karir bagi adik-adik angkatan.`,
           'Mengisinya hanya butuh beberapa menit, dan jawaban Anda sangat berarti.',
         ],
         facts: [['clock', 'Sekitar 8 menit'], ['clipboard-text', '4 langkah'], ['calendar-check', 'Sampai 26 Agu 2030']],
@@ -171,10 +171,10 @@
   const current = TRACERS[params.get('tracer')] ? params.get('tracer') : 'pra-lulus';
   const exit = ['belum', 'bekerja', 'wiraswasta'].includes(params.get('exit')) ? params.get('exit') : null;
 
-  // Tombol di email membuka kuesioner (tampilan responden). ?exit= (jika ada) hanya diteruskan untuk Pasca-Lulus 1 Tahun.
+  // Tombol di email membuka kuesioner (tampilan responden). ?exit= (jika ada) hanya diteruskan untuk Pasca-Lulus 1.
   const ctaQuery = new URLSearchParams({ tracer: current });
   if (current === 'pasca-1th' && exit) ctaQuery.set('exit', exit);
-  // ?format=2025|lampau: versi instrumen Pasca-Lulus (default 2025), diteruskan untuk Pasca-Lulus 1 & 4 Tahun.
+  // ?format=2025|lampau: versi instrumen Pasca-Lulus 1 (default 2025), diteruskan untuk Pasca-Lulus 1 & 2.
   if ((current === 'pasca-1th' || current === 'pasca-4th') && params.get('format') === 'lampau') ctaQuery.set('format', 'lampau');
 
   const t = TRACERS[current];
@@ -193,7 +193,8 @@
   byId('emailFacts').innerHTML = m.facts.map(([icon, text]) => `<li class="flex items-center gap-2 text-xs text-slate-600"><i class="kk kk-${icon} h-4 w-4 shrink-0 text-primary-600"></i><span>${text}</span></li>`).join('');
   byId('emailCta').textContent = m.cta;
   byId('emailCta').href = `kuesioner-simulasi.html?${ctaQuery}`;
-  byId('emailLink').textContent = m.link;
+  // Tautan mengikuti domain tempat panel dibuka (subdomain kampus), bukan karirlink.id tetap; alamat pengirim tetap noreply@karirlink.id.
+  byId('emailLink').textContent = location.host ? m.link.replace('karirlink.id', location.host) : m.link;
   byId('emailNote').textContent = m.note;
   byId('emailSignoff').textContent = SIGNOFF;
   document.title = `${m.subject} | KarirLink`;

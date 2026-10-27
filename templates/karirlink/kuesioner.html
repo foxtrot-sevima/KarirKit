@@ -69,7 +69,7 @@
   #simulasiPilihModal .tracer-option:has(input:checked) .tracer-check { border-color: var(--color-primary-600); background-color: var(--color-primary-600); color: #fff; }
   #simulasiPilihModal .tracer-option[data-tone="secondary"]:has(input:checked) .tracer-check { border-color: var(--color-secondary-600); background-color: var(--color-secondary-600); }
 
-  /* Kondisi alumni (hanya Pasca-Lulus 1 Tahun): membuka/menutup dengan transisi tinggi */
+  /* Kondisi alumni (hanya Pasca-Lulus 1): membuka/menutup dengan transisi tinggi */
   #simulasiPilihModal .tracer-extra { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 250ms ease, opacity 200ms ease; }
   #simulasiPilihModal .tracer-extra[data-open="true"] { grid-template-rows: 1fr; opacity: 1; }  #simulasiPilihModal .exit-pill { display: flex; cursor: pointer; align-items: center; justify-content: center; border-radius: 0.625rem; border: 1px solid var(--color-slate-200); background-color: #fff; padding: 0.5rem 0.5rem; text-align: center; font-size: 0.75rem; font-weight: 500; color: var(--color-slate-600); transition: background-color 150ms, border-color 150ms, color 150ms; }
   #simulasiPilihModal .exit-pill:hover { background-color: var(--color-slate-50); }
@@ -680,11 +680,11 @@
         </div>
         <div>
           <h4 class="text-sm font-semibold text-slate-800">3. Gelombang Pengiriman</h4>
-          <p class="mt-1 text-sm text-slate-500">Khusus template Lulusan, pertanyaan dikelompokkan menjadi tiga gelombang sesuai waktu pengiriman ke alumni: <span class="font-medium text-slate-700">Pra-Lulus</span>, <span class="font-medium text-slate-700">Pasca-Lulus 1 Tahun</span>, dan <span class="font-medium text-slate-700">Pasca-Lulus 4 Tahun</span>.</p>
+          <p class="mt-1 text-sm text-slate-500">Khusus template Lulusan, pertanyaan dikelompokkan menjadi tiga gelombang sesuai waktu pengiriman ke alumni (Lulus bisa dinonaktifkan per periode yudisium): <span class="font-medium text-slate-700">Lulus</span>, <span class="font-medium text-slate-700">Pasca-Lulus 1</span>, dan <span class="font-medium text-slate-700">Pasca-Lulus 2</span>.</p>
         </div>
         <div>
           <h4 class="text-sm font-semibold text-slate-800">4. Simulasi Pengisian Alumni</h4>
-          <p class="mt-1 text-sm text-slate-500">Klik <span class="font-medium text-slate-700">Simulasi Tracer</span>, lalu pilih <span class="font-medium text-slate-700">Pra-Lulus</span>, <span class="font-medium text-slate-700">Pasca-Lulus 1 Tahun</span>, <span class="font-medium text-slate-700">Pasca-Lulus 4 Tahun</span>, atau <span class="font-medium text-slate-700">Pengguna Lulusan</span> dan tekan <span class="font-medium text-slate-700">Lihat Email Undangan</span>. Simulasi dimulai dari email undangan yang diterima responden; klik tombol di dalam email untuk membuka kuesionernya dari sudut pandang alumni (atau atasan, untuk Pengguna Lulusan).</p>
+          <p class="mt-1 text-sm text-slate-500">Klik <span class="font-medium text-slate-700">Simulasi Tracer</span>, lalu pilih <span class="font-medium text-slate-700">Lulus</span>, <span class="font-medium text-slate-700">Pasca-Lulus 1</span>, <span class="font-medium text-slate-700">Pasca-Lulus 2</span>, atau <span class="font-medium text-slate-700">Pengguna Lulusan</span> dan tekan <span class="font-medium text-slate-700">Lihat Email Undangan</span>. Simulasi dimulai dari email undangan yang diterima responden; klik tombol di dalam email untuk membuka kuesionernya dari sudut pandang alumni (atau atasan, untuk Pengguna Lulusan).</p>
         </div>
       </div>
     </div>
@@ -723,7 +723,7 @@
       <fieldset>
         <legend class="form-label">Kuesioner</legend>
         <div class="mt-1 grid gap-2.5">
-          <label class="choice group/c"><input type="radio" name="expSource" value="lulusan" checked /><span class="choice-body flex-row items-center gap-3 py-3 pr-10"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-colors group-has-checked/c:bg-primary-600 group-has-checked/c:text-white"><i class="kk kk-graduation-cap h-5 w-5"></i></span><span class="min-w-0"><span class="choice-title block">Lulusan</span><span class="block text-xs font-normal text-fg-muted">Pra-Lulus, Pasca-Lulus 1 dan 4 Tahun</span></span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
+          <label class="choice group/c"><input type="radio" name="expSource" value="lulusan" checked /><span class="choice-body flex-row items-center gap-3 py-3 pr-10"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-colors group-has-checked/c:bg-primary-600 group-has-checked/c:text-white"><i class="kk kk-graduation-cap h-5 w-5"></i></span><span class="min-w-0"><span class="choice-title block">Lulusan</span><span class="block text-xs font-normal text-fg-muted">Lulus, Pasca-Lulus 1, dan Pasca-Lulus 2</span></span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
           <label class="choice group/c"><input type="radio" name="expSource" value="pengguna" /><span class="choice-body flex-row items-center gap-3 py-3 pr-10"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600 transition-colors group-has-checked/c:bg-info-600 group-has-checked/c:text-white"><i class="kk kk-briefcase h-5 w-5"></i></span><span class="min-w-0"><span class="choice-title block">Pengguna Lulusan</span><span class="block text-xs font-normal text-fg-muted">Penilaian atasan atas kinerja alumni</span></span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
           <label class="choice group/c"><input type="radio" name="expSource" value="kosong" /><span class="choice-body flex-row items-center gap-3 py-3 pr-10"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600 transition-colors group-has-checked/c:bg-secondary-600 group-has-checked/c:text-white"><i class="kk kk-pencil-simple h-5 w-5"></i></span><span class="min-w-0"><span class="choice-title block">Kosong</span><span class="block text-xs font-normal text-fg-muted">Template buatan kampus</span></span></span><span class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-primary-600 text-white opacity-0 transition-opacity group-has-checked/c:opacity-100" aria-hidden="true"><i class="kk kk-check h-3 w-3"></i></span></label>
         </div>
@@ -804,7 +804,7 @@
 </div>
 
 <!-- Simulasi Tracer: pilih tracer yang disimulasikan, lihat pratinjau emailnya di panggung, lalu "Lihat Email Undangan".
-     Formulir GET membuka kuesioner-mail.html?tracer=...; &exit=... hanya terkirim untuk Pasca-Lulus 1 Tahun (pilihan
+     Formulir GET membuka kuesioner-mail.html?tracer=...; &exit=... hanya terkirim untuk Pasca-Lulus 1 (pilihan
      kondisi alumni di-disable saat tracer lain terpilih). Gaya mengikuti modal QR Tracer: panggung merek di kiri,
      pilihan di kanan. z-[60]: sidebar karirlink z-50 -->
 <div class="modal-backdrop z-[60]" id="simulasiPilihModal" aria-labelledby="simulasiPilihTitle">
@@ -874,8 +874,8 @@
               <input type="radio" name="tracer" value="pra-lulus" class="sr-only" checked />
               <span class="tracer-icon"><i class="kk kk-graduation-cap h-5 w-5"></i></span>
               <span class="min-w-0 flex-1">
-                <span class="block text-sm font-semibold text-slate-800">Pra-Lulus</span>
-                <span class="mt-0.5 block text-xs text-slate-500">Saat yudisium · kontak aktif dan rencana setelah lulus</span>
+                <span class="block text-sm font-semibold text-slate-800">Lulus</span>
+                <span class="mt-0.5 block text-xs text-slate-500">Menjelang yudisium · kontak aktif dan rencana setelah lulus</span>
                 <span class="mt-1.5 flex items-center gap-3 text-[11px] text-slate-400"><span class="flex items-center gap-1"><i class="kk kk-clock h-3 w-3"></i>±3 menit</span><span class="flex items-center gap-1"><i class="kk kk-clipboard-text h-3 w-3"></i>3 langkah</span></span>
               </span>
               <span class="tracer-check" aria-hidden="true"><i class="kk kk-check h-3.5 w-3.5"></i></span>
@@ -886,19 +886,19 @@
                 <input type="radio" name="tracer" value="pasca-1th" class="sr-only" />
                 <span class="tracer-icon"><i class="kk kk-calendar-check h-5 w-5"></i></span>
                 <span class="min-w-0 flex-1">
-                  <span class="block text-sm font-semibold text-slate-800">Pasca-Lulus 1 Tahun</span>
-                  <span class="mt-0.5 block text-xs text-slate-500">Satu tahun setelah lulus · status, masa tunggu, kompetensi</span>
+                  <span class="block text-sm font-semibold text-slate-800">Pasca-Lulus 1</span>
+                  <span class="mt-0.5 block text-xs text-slate-500">Status karier · masa tunggu, kompetensi</span>
                   <span class="mt-1.5 flex items-center gap-3 text-[11px] text-slate-400"><span class="flex items-center gap-1"><i class="kk kk-clock h-3 w-3"></i>±6 menit</span><span class="flex items-center gap-1"><i class="kk kk-clipboard-text h-3 w-3"></i>4 langkah</span></span>
                 </span>
                 <span class="tracer-check" aria-hidden="true"><i class="kk kk-check h-3.5 w-3.5"></i></span>
               </label>
-              <!-- Hanya Pasca-Lulus 1 Tahun: jawaban Pra-Lulus alumni ini menentukan pertanyaan verifikasi & auto-fill di kuesioner (dibawa lewat ?exit=) -->
+              <!-- Hanya Pasca-Lulus 1: jawaban Lulus alumni ini menentukan pertanyaan verifikasi & auto-fill di kuesioner (dibawa lewat ?exit=) -->
               <div class="tracer-extra" data-extra-for="pasca-1th" inert>
                 <div class="min-h-0 overflow-hidden">
                   <fieldset class="mt-2 rounded-xl border border-primary-100 bg-primary-50/40 p-3.5">
                     <legend class="sr-only">Kondisi alumni sebelum membuka kuesioner</legend>
                     <p class="text-xs font-semibold text-slate-700">Kondisi alumni sebelum membuka kuesioner</p>
-                    <p class="mt-0.5 text-[11px] leading-relaxed text-slate-500">Jawaban Pra-Lulus alumni ini menentukan apakah pertanyaan verifikasi dan auto-fill status muncul.</p>
+                    <p class="mt-0.5 text-[11px] leading-relaxed text-slate-500">Jawaban Lulus alumni ini menentukan apakah pertanyaan verifikasi dan auto-fill status muncul.</p>
                     <div class="mt-2.5 grid gap-1.5 sm:grid-cols-3">
                       <label class="exit-pill"><input type="radio" name="exit" value="belum" class="sr-only" disabled /><span>Belum bekerja</span></label>
                       <label class="exit-pill"><input type="radio" name="exit" value="bekerja" class="sr-only" checked disabled /><span>Sudah bekerja</span></label>
@@ -913,14 +913,14 @@
               <input type="radio" name="tracer" value="pasca-4th" class="sr-only" />
               <span class="tracer-icon"><i class="kk kk-chart-bar h-5 w-5"></i></span>
               <span class="min-w-0 flex-1">
-                <span class="block text-sm font-semibold text-slate-800">Pasca-Lulus 4 Tahun</span>
-                <span class="mt-0.5 block text-xs text-slate-500">Empat tahun setelah lulus · perkembangan karier</span>
+                <span class="block text-sm font-semibold text-slate-800">Pasca-Lulus 2</span>
+                <span class="mt-0.5 block text-xs text-slate-500">Jangka panjang · perkembangan karier</span>
                 <span class="mt-1.5 flex items-center gap-3 text-[11px] text-slate-400"><span class="flex items-center gap-1"><i class="kk kk-clock h-3 w-3"></i>±6 menit</span><span class="flex items-center gap-1"><i class="kk kk-clipboard-text h-3 w-3"></i>4 langkah</span></span>
               </span>
               <span class="tracer-check" aria-hidden="true"><i class="kk kk-check h-3.5 w-3.5"></i></span>
             </label>
 
-            <!-- Pasca-Lulus 1 & 4 Tahun: versi instrumen Kemendikti mengikuti tahun lulus alumni (dibawa lewat ?format=) -->
+            <!-- Pasca-Lulus 1 & 2: versi instrumen Kemendikti mengikuti tahun lulus alumni (dibawa lewat ?format=) -->
             <div class="tracer-extra" data-extra-for="pasca-format" inert>
               <div class="min-h-0 overflow-hidden">
                 <fieldset class="rounded-xl border border-primary-100 bg-primary-50/40 p-3.5">
@@ -980,10 +980,10 @@
           <h3 id="qrStageTitle" class="qr-stage-title mt-1 font-display text-lg font-bold text-white sm:text-xl">Tracer Study</h3>
         </div>
         <div class="qr-code qr-present-qr relative border-white/60 p-3 shadow-card-lg">
-          <div id="traceQr" data-qr data-qr-text="https://karirlink.id/tracer-study" data-qr-brand class="h-full w-full"></div>
+          <div id="traceQr" data-own-domain data-qr data-qr-text="https://karirlink.id/tracer-study" data-qr-brand class="h-full w-full"></div>
         </div>
         <p class="qr-stage-hint relative flex items-center gap-2 text-sm font-medium text-white sm:text-base"><i class="kk kk-scan h-5 w-5"></i>Pindai dengan kamera ponsel</p>
-        <p class="qr-stage-link relative max-w-full break-all font-mono text-xs text-white/75 sm:text-sm">https://karirlink.id/tracer-study</p>
+        <p data-own-domain class="qr-stage-link relative max-w-full break-all font-mono text-xs text-white/75 sm:text-sm">https://karirlink.id/tracer-study</p>
         <p class="relative text-sm text-white/70" data-qr-fs-only>Tekan Esc untuk keluar dari layar penuh</p>
       </div>
 
@@ -1005,7 +1005,7 @@
         <div>
           <label class="form-label" for="traceLink">Tautan kuesioner</label>
           <div class="input-group">
-            <input id="traceLink" type="text" class="input" value="https://karirlink.id/tracer-study" readonly />
+            <input id="traceLink" data-own-domain type="text" class="input" value="https://karirlink.id/tracer-study" readonly />
             <button type="button" class="input-group-btn" data-clipboard-target="#traceLink" data-clipboard-toast="Tautan kuesioner disalin.">
               <span data-clipboard-default class="inline-flex items-center gap-2"><i class="kk kk-copy h-4 w-4"></i>Salin</span>
               <span data-clipboard-success class="hidden items-center gap-2"><i class="kk kk-check h-4 w-4"></i>Tersalin</span>
@@ -1034,12 +1034,12 @@
     <h1 class="mt-2 font-display text-4xl font-bold text-slate-900">Tracer Study</h1>
   </div>
   <div class="qr-code h-[105mm] w-[105mm] shadow-none!">
-    <div data-qr data-qr-text="https://karirlink.id/tracer-study" data-qr-brand class="h-full w-full"></div>
+    <div data-own-domain data-qr data-qr-text="https://karirlink.id/tracer-study" data-qr-brand class="h-full w-full"></div>
   </div>
   <p class="text-2xl font-semibold text-slate-800">Pindai QR code ini untuk mengisi kuesioner</p>
   <div>
     <p class="text-base text-slate-500">Atau buka tautan berikut:</p>
-    <p class="mt-1 break-all font-mono text-lg text-slate-800">https://karirlink.id/tracer-study</p>
+    <p data-own-domain class="mt-1 break-all font-mono text-lg text-slate-800">https://karirlink.id/tracer-study</p>
   </div>
   <p class="text-sm text-slate-400">KarirLink &middot; SEVIMA</p>
 </div>
@@ -1051,12 +1051,25 @@
 <script src="../../assets/js/toast.js"></script>
 <script src="../../assets/js/modal.js"></script>
 <script src="../../assets/js/pagination.js"></script>
+<script>
+  // Tautan Tracer Study mengikuti domain tempat panel dibuka (tiap kampus punya subdomain sendiri, mis. cdc-unfox.karirlink.id), bukan karirlink.id tetap.
+  // Dijalankan sebelum qr-code.js agar QR langsung memuat domain yang benar. Di aplikasi sungguhan: base URL dari server (domain kampus).
+  (function () {
+    var host = location.host;
+    if (!host) return;
+    document.querySelectorAll('[data-own-domain]').forEach(function (el) {
+      if (el.dataset.qrText) el.dataset.qrText = el.dataset.qrText.replace('karirlink.id', host);
+      else if ('value' in el) el.value = el.value.replace('karirlink.id', host);
+      else el.textContent = el.textContent.replace('karirlink.id', host);
+    });
+  })();
+</script>
 <script src="../../assets/js/vendor/qrcode.js"></script>
 <script src="../../assets/js/qr-code.js"></script>
 <script src="../../assets/js/clipboard.js"></script>
 <script>
   // Popup Simulasi Tracer: pratinjau email di panggung mengikuti pilihan, dan pilihan "kondisi alumni"
-  // hanya aktif untuk Pasca-Lulus 1 Tahun (input yang di-disable tidak ikut terkirim sebagai ?exit=).
+  // hanya aktif untuk Pasca-Lulus 1 (input yang di-disable tidak ikut terkirim sebagai ?exit=).
   // Data PREVIEW menyalin subjek/penerima/salam/tombol dari kuesioner-mail.html; ubah keduanya bersama.
   (function () {
     const form = document.getElementById('simulasiPilihForm');
