@@ -8,14 +8,9 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ### Added
 
-- **Pemeriksa template** (`npm run check:templates`, `scripts/check-templates.mjs`): mendaftar halaman mockup yang membawa blok `<style>` atau stylesheet sendiri, dan memeriksa bahwa "Dasar KarirKit" di `templates/CHANGELOG.md` sudah bertag. `--strict` keluar dengan kode non-nol sebagai gerbang sebelum merge.
+- **Komponen File Upload** (`.upload` + `.upload-drop`, `.upload-icon`, `.upload-title`, `.upload-hint`, `.upload-list`, `.upload-item`, `.upload-thumb`, `.upload-remove`, `.upload-compact`; `.input-file` untuk input file standar; `assets/js/file-upload.js`): unggah file lewat klik atau seret. Memvalidasi format (`accept`) dan ukuran (`data-upload-max-size`, MB) serta jumlah file (`data-upload-max-files`), menampilkan daftar file dengan miniatur gambar (`data-upload-preview="image"`), tombol hapus, dan progres (`data-upload-simulate` untuk mockup, `KKUpload.progress()` untuk aplikasi). File yang lolos disinkronkan ke `<input type="file">` sehingga pengiriman `<form>` biasa tetap bekerja. Event `upload:add|remove|error`; API `KKUpload`. Di ponsel teks "seret" disembunyikan dan tombol hapus 44px. Tujuh contoh: file input, dropzone, banyak file dengan progres, pratinjau gambar, ringkas, error, disabled.
 
-### Changed
-
-- **`dist/` tidak lagi di-commit** (masuk `.gitignore`): `dist/output.css` dibangun lewat `npm run build` di lokal setelah clone, di workflow publish, dan di Vercel. Mengurangi konflik merge pada file satu baris berukuran besar; aplikasi FE yang memakai `@foxtrot-sevima/karirkit/theme` tidak terpengaruh.
-- **Toast bertumpuk** (`assets/js/toast.js`, `.toast-enter`, `.toast-leaving`): tumpukan dari `KKToast.show()` tetap di kanan bawah, toast terbaru di paling atas dan paling banyak 2 yang tampil bersamaan (`KKToast.max`; yang ketiga mengeluarkan yang paling lama). Tiap toast hilang sendiri sesuai durasinya dengan animasi masuk dan memudar halus.
-
-## [1.4.0] - 2026-10-13
+## [1.4.0] - 2026-10-26
 
 ### Added
 
@@ -26,6 +21,7 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 - **Komponen Tabs** (`.tabs` + `.tabs-default`, `.tabs-underline`, `.tabs-pills`, `.tabs-vertical`, `.tabs-full` > `.tabs-item`): tab berlatar, bergaris bawah (dengan ikon), pil, vertikal, selebar kontainer dengan `select` di ponsel, serta tab interaktif dengan panel dan warna aktif/nonaktif yang dapat diganti (`data-ui-tabs-active-classes`, `-inactive-classes`). `ui.js` kini mendukung navigasi panah/Home/End, `select` pendamping (`data-ui-tab-select`), dan tidak melompat ke atas untuk tab bertautan `#`. Sembilan contoh di Storybook dan `index.html`; tab bersegmen `.tab` tidak berubah.
 - **Komponen Timeline** (`.timeline`, `.timeline-item`, `.timeline-marker`, `.timeline-dot`, `.timeline-time`, `.timeline-title`, `.timeline-body`, `.timeline-steps`): urutan peristiwa vertikal (titik polos dan penanda berikon), stepper mendatar yang menumpuk di ponsel, log aktivitas dengan avatar, dan linimasa berkelompok per tanggal. Hanya CSS. Lima contoh di Storybook dan `index.html`.
 - **Pola tabel daftar admin** (`.table-search`, `.table-filters`, `.table-toolbar-many`, `.table-col-aside`, `.table-action` + `.table-action-label`, `.badge-wrap`, `.card-heading` + `.card-heading-icon`): toolbar dengan pencarian di kiri dan filter di kanan (4 filter atau lebih jadi grid 1/2/4 kolom), kolom pendamping yang menyingkir di lebar sempit, tombol aksi baris ikon saja di bawah `xl`, badge status yang membungkus di ponsel, dan judul kartu berikon. Satu contoh baru di Storybook: "Admin list (filter, status, aksi)".
+- **Pemeriksa template** (`npm run check:templates`, `scripts/check-templates.mjs`): mendaftar halaman mockup yang membawa blok `<style>` atau stylesheet sendiri, dan memeriksa bahwa "Dasar KarirKit" di `templates/CHANGELOG.md` sudah bertag. `--strict` keluar dengan kode non-nol sebagai gerbang sebelum merge.
 
 ### Fixed
 
@@ -34,7 +30,9 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ### Changed
 
-- **Badge hero `index.html`** kini berbunyi "Dibangun dengan Tailwind CSS v4" tanpa nomor versi, supaya tidak perlu diubah setiap rilis.
+- **Halaman dokumentasi `index.html` memakai kerangka aplikasi dokumentasi**: sidebar bergrup (Foundation, Components, Forms, Plugins) dengan pencarian dan pintasan Ctrl/Cmd + K, topbar dengan breadcrumb dan pilihan tema, satu bagian tampil per halaman lewat hash (`#colors`). Di bawah `lg` sidebar menjadi Drawer. Hero dan navigasi pill dihapus; KarirIcon dan Template tetap tertaut dari sidebar.
+- **`dist/` tidak lagi di-commit** (masuk `.gitignore`): `dist/output.css` dibangun lewat `npm run build` di lokal setelah clone, di workflow publish, dan di Vercel. Mengurangi konflik merge pada file satu baris berukuran besar; aplikasi FE yang memakai `@foxtrot-sevima/karirkit/theme` tidak terpengaruh.
+- **Toast bertumpuk** (`assets/js/toast.js`, `.toast-enter`, `.toast-leaving`): tumpukan dari `KKToast.show()` tetap di kanan bawah, toast terbaru di paling atas dan paling banyak 2 yang tampil bersamaan (`KKToast.max`; yang ketiga mengeluarkan yang paling lama). Tiap toast hilang sendiri sesuai durasinya dengan animasi masuk dan memudar halus.
 - **Footer tabel (`.table-footer`) rata tengah di ponsel**: teks info di atas, nomor halaman di bawahnya; dari `sm` kembali ke satu baris.
 - **Label dropdown `.combo`** tidak lagi membungkus ke baris kedua (dipotong dengan elipsis bila terlalu panjang).
 
@@ -663,10 +661,10 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
   yang sama seperti komponen lain.
 - Section **"Table — Katalog Produk"** baru di `index.html` (setelah
   DataTable) - tabel konten "kaya" (thumbnail ikon, rating bintang, harga,
-  badge status) yang mengikuti fitur tabel produk Metronic
-  (`ecommerce/catalog/products.html`) sebagai referensi struktur/fitur saja -
+  badge status) untuk tabel produk dengan toolbar dan filter
+  (`ecommerce/catalog/products.html`), struktur dan fiturnya sebagai acuan saja -
   dibangun 100% dari komponen & token KarirKit sendiri (`.table`, `.combo`,
-  `.badge-*`, `.dropdown-menu`), bukan markup/kelas Bootstrap-nya. Termasuk
+  `.badge-*`, `.dropdown-menu`). Termasuk
   toolbar pencarian + filter status (`.combo`) + tombol "Tambah Produk" yang
   live-filtered lewat JS (nama produk + status, dengan pesan kosong "Tidak
   ada produk yang cocok." mengikuti pola DataTable), checkbox pilih-baris +

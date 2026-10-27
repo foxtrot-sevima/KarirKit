@@ -82,114 +82,71 @@
 </head>
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
-<!-- ============================= HEADER ============================= -->
-<header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
-  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
-    <a href="index.html" class="flex shrink-0 items-center gap-3">
-      <img src="assets/logo/karirkit-logo.svg" alt="KarirKit" class="h-6 w-auto sm:h-7" />
+<!-- ============================= SIDEBAR (lg ke atas) ============================= -->
+<aside class="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md lg:flex" aria-label="Navigasi dokumentasi">
+  <div class="flex h-16 shrink-0 items-center border-b border-slate-200/70 px-5">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="assets/logo/karirlink-mark.svg" alt="" class="h-9 w-9" />
+      <span class="leading-tight">
+        <span class="block font-display text-base font-bold text-slate-900"><span class="text-primary-600">Karir</span><span class="text-secondary-600">Kit</span></span>
+        <span class="block text-xs text-slate-500">Design System · v1.4.0</span>
+      </span>
     </a>
-    <div class="flex items-center gap-2">
-      <div role="radiogroup" aria-label="Tema tampilan" class="hidden items-center gap-0.5 rounded-xl bg-slate-100/80 p-1 sm:flex">
+  </div>
+  <div class="flex min-h-0 flex-1 flex-col" data-ds-panel></div>
+  <div class="shrink-0 space-y-0.5 border-t border-slate-200/70 px-3 py-3">
+    <a href="icons.html" class="nav-item"><i class="kk kk-squares-four h-4 w-4 shrink-0"></i>KarirIcon<i class="kk kk-arrow-up-right ml-auto h-3.5 w-3.5 text-fg-subtle"></i></a>
+    <a href="templates/dashboard.html" class="nav-item"><i class="kk kk-trend-up h-4 w-4 shrink-0"></i>Template<i class="kk kk-arrow-up-right ml-auto h-3.5 w-3.5 text-fg-subtle"></i></a>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="dsMenu" aria-label="Navigasi dokumentasi">
+  <div class="drawer-header">
+    <a href="index.html" class="drawer-title flex items-center gap-2.5">
+      <img src="assets/logo/karirlink-mark.svg" alt="" class="h-8 w-8" />
+      <span class="font-display text-base font-bold"><span class="text-primary-600">Karir</span><span class="text-secondary-600">Kit</span></span>
+    </a>
+    <button type="button" class="drawer-close" data-drawer-hide="dsMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body flex min-h-0 flex-col !p-0">
+    <div class="flex min-h-0 flex-1 flex-col" data-ds-panel></div>
+    <div class="shrink-0 space-y-0.5 border-t border-slate-200/70 px-3 py-3">
+      <a href="icons.html" class="nav-item"><i class="kk kk-squares-four h-4 w-4 shrink-0"></i>KarirIcon</a>
+      <a href="templates/dashboard.html" class="nav-item"><i class="kk kk-trend-up h-4 w-4 shrink-0"></i>Template</a>
+    </div>
+  </div>
+</div>
+
+<div class="lg:pl-64">
+
+<!-- ============================= TOPBAR ============================= -->
+<header class="sticky top-0 z-20 flex h-16 items-center justify-between gap-3 border-b border-slate-200/70 bg-white/80 px-4 backdrop-blur-md sm:px-6 lg:px-10">
+  <div class="flex min-w-0 items-center gap-3">
+    <button type="button" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-slate-600 hover:bg-slate-100 lg:hidden" data-drawer-toggle="dsMenu" aria-controls="dsMenu" aria-label="Buka menu"><i class="kk kk-list h-5 w-5"></i></button>
+    <nav class="flex min-w-0 items-center gap-1.5 text-sm" aria-label="Breadcrumb">
+      <span class="truncate text-slate-500" data-ds-crumb-group></span>
+      <i class="kk kk-caret-right h-3.5 w-3.5 shrink-0 text-slate-400" aria-hidden="true"></i>
+      <span class="truncate font-semibold text-slate-900" data-ds-crumb-page aria-current="page"></span>
+    </nav>
+  </div>
+  <div class="flex shrink-0 items-center gap-2">
+    <div role="radiogroup" aria-label="Tema tampilan" class="hidden items-center gap-0.5 rounded-xl bg-slate-100/80 p-1 sm:flex">
         <button type="button" role="radio" aria-checked="false" data-theme-option="light" title="Terang" aria-label="Terang" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-sun h-4 w-4"></i></button>
         <button type="button" role="radio" aria-checked="false" data-theme-option="dark" title="Gelap" aria-label="Gelap" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-moon h-4 w-4"></i></button>
         <button type="button" role="radio" aria-checked="false" data-theme-option="system" title="Ikuti sistem" aria-label="Ikuti sistem" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-800"><i class="kk kk-desktop h-4 w-4"></i></button>
       </div>
       <button type="button" data-theme-cycle class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100/80 text-slate-600 transition-colors hover:text-slate-900 sm:hidden" aria-label="Ganti tema"><i data-theme-icon class="kk kk-desktop h-5 w-5"></i></button>
-      <nav class="flex items-center gap-1 rounded-xl bg-slate-100/80 p-1">
-        <a href="index.html" class="tab tab-active px-2.5 sm:px-3.5">Kit</a>
-        <a href="icons.html" class="tab px-2.5 sm:px-3.5">Icon</a>
-        <a href="templates/dashboard.html" class="tab px-2.5 sm:px-3.5">Template</a>
-      </nav>
-    </div>
   </div>
 </header>
 
-<!-- ============================= HERO ============================= -->
-<section class="mx-auto max-w-7xl px-4 pt-14 pb-8 sm:px-6 lg:px-10">
-  <div class="flex max-w-3xl flex-col gap-4">
-    <span class="badge-primary w-fit"><span class="badge-dot bg-primary-600"></span>Dibangun dengan Tailwind CSS v4</span>
-    <h1 class="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-      <span class="text-primary-600">Karir</span><span class="text-secondary-600">Kit</span> Design System
-    </h1>
-    <p class="text-base leading-relaxed text-slate-500">
-      Bahasa desain untuk platform KarirLink - token warna, tipografi, ikon, dan pustaka
-      komponen yang konsisten. Semua elemen di halaman ini dipakai langsung pada
-      <a href="templates/dashboard.html" class="font-medium text-primary-600 hover:underline">halaman Template</a>.
-    </p>
-    <div class="flex flex-wrap items-center gap-3 pt-2">
-      <a href="templates/dashboard.html" class="btn-primary btn-md">
-        Lihat Template
-        <i class="kk kk-trend-up h-4 w-4"></i>
-      </a>
-      <a href="#colors" class="btn-outline btn-md">Jelajahi Komponen</a>
-      <a href="icons.html" class="btn-outline btn-md"><i class="kk kk-squares-four h-4 w-4"></i>Lihat KarirIcon</a>
-    </div>
-  </div>
+<main class="w-full px-4 sm:px-6 lg:px-10">
 
-  <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
-    <div class="card p-4">
-      <p class="font-display text-2xl font-bold text-slate-900">6</p>
-      <p class="text-sm text-slate-500">Palet warna</p>
-    </div>
-    <div class="card p-4">
-      <p class="font-display text-2xl font-bold text-slate-900">1</p>
-      <p class="text-sm text-slate-500">Font family (self-hosted)</p>
-    </div>
-    <div class="card p-4">
-      <p class="font-display text-2xl font-bold text-slate-900">12+</p>
-      <p class="text-sm text-slate-500">Komponen UI</p>
-    </div>
-    <div class="card p-4">
-      <p class="font-display text-2xl font-bold text-slate-900">100%</p>
-      <p class="text-sm text-slate-500">Tailwind utility</p>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= SECTION ANCHOR NAV ======================= -->
-<div class="sticky top-16 z-30 border-b border-slate-200/70 bg-shell/90 backdrop-blur-md">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-    <div class="flex gap-1 overflow-x-auto scrollbar-none py-2.5">
-      <a href="#logo" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Logo</a>
-      <a href="#colors" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Colors</a>
-      <a href="#typography" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Typography</a>
-      <a href="#icons" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Icons</a>
-      <a href="#buttons" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Button</a>
-      <a href="#button-group" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Button Group</a>
-      <a href="#badges" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Badge</a>
-      <a href="#avatars" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Avatar</a>
-      <a href="#cards" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Card</a>
-      <a href="#forms" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Forms</a>
-      <a href="#datepicker" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Datepicker</a>
-      <a href="#timepicker" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Timepicker</a>
-      <a href="#dropdowns" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Dropdown</a>
-      <a href="#modals" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Modal</a>
-      <a href="#navigation" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Navigation</a>
-      <a href="#pagination" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Pagination</a>
-      <a href="#tables" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Table</a>
-      <a href="#alerts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Alert</a>
-      <a href="#toasts" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Toast</a>
-      <a href="#qr-code" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">QR Code</a>
-      <a href="#wysiwyg" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">WYSIWYG</a>
-      <a href="#chart" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Chart</a>
-      <a href="#clipboard" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Clipboard</a>
-      <a href="#list-group" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">List Group</a>
-      <a href="#timeline" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Timeline</a>
-      <a href="#tabs" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Tabs</a>
-      <a href="#navbar" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Navbar</a>
-      <a href="#footer" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Footer</a>
-      <a href="#drawer" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Drawer</a>
-      <a href="#progress" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-surface hover:text-slate-900 hover:shadow-sm">Misc</a>
-    </div>
-  </div>
-</div>
-
-<main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
 
   <!-- ============================= LOGO ============================= -->
-  <section id="logo" class="scroll-mt-32 py-12">
+  <section id="logo" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Logo</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Logo</h2>
       <p class="mt-1 text-sm text-slate-500">Logo resmi KarirLink - mark &amp; lockup, versi warna dan putih. Palet primary &amp; secondary di bawah diturunkan langsung dari warna logo ini.</p>
     </div>
     <div class="card p-6 sm:p-8">
@@ -250,9 +207,9 @@
   </section>
 
   <!-- ============================= COLORS ============================= -->
-  <section id="colors" class="scroll-mt-32 py-12">
+  <section id="colors" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Colors</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Colors</h2>
       <p class="mt-1 text-sm text-slate-500">Primary &amp; secondary diturunkan langsung dari logo KarirLink, plus warna semantik. Tersedia sebagai utility <code class="kbd">bg-*</code>, <code class="kbd">text-*</code>, <code class="kbd">border-*</code>.</p>
     </div>
 
@@ -389,9 +346,9 @@
   </section>
 
   <!-- ============================= TYPOGRAPHY ============================= -->
-  <section id="typography" class="scroll-mt-32 py-12">
+  <section id="typography" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Typography</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Typography</h2>
       <p class="mt-1 text-sm text-slate-500">Instrument Sans - satu keluarga font untuk judul, branding, dan teks antarmuka.</p>
     </div>
     <div class="card p-6 sm:p-8">
@@ -447,9 +404,9 @@
   </section>
 
   <!-- ============================= ICONS ============================= -->
-  <section id="icons" class="scroll-mt-32 py-12">
+  <section id="icons" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Icons</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Icons</h2>
       <p class="mt-1 text-sm text-slate-500">Ikon KarirKit — token berbasis class, pakai seperti icon font: <code class="kbd">&lt;i class="kk kk-home"&gt;&lt;/i&gt;</code>. Mewarisi <code class="kbd">currentColor</code>, ukuran diatur lewat utility <code class="kbd">h-*</code>/<code class="kbd">w-*</code>. <a href="icons.html" class="card-link">Buka KarirIcon, katalog 1.512 ikon &rarr;</a></p>
     </div>
     <div class="card p-6 sm:p-8">
@@ -492,9 +449,9 @@
   </section>
 
   <!-- ============================= BUTTONS ============================= -->
-  <section id="buttons" class="scroll-mt-32 py-12">
+  <section id="buttons" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Button</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Button</h2>
       <p class="mt-1 text-sm text-slate-500">Tujuh varian (+ ghost-inverse), tiga ukuran, ikon, disabled, dan loading.</p>
     </div>
     <div class="card space-y-8 p-6 sm:p-8">
@@ -654,7 +611,7 @@
   </section>
 
   <!-- ============================= BUTTON GROUP ============================= -->
-  <section id="button-group" class="scroll-mt-32 py-12">
+  <section id="button-group" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Button Group</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Kumpulan tombol yang menyatu - horizontal, vertikal, dengan ikon, dropdown, badge, dan pagination. Anatomi: <code class="kbd">.btn-group</code> &gt; <code class="kbd">.btn-group-item</code>; item aktif memakai <code class="kbd">aria-current="true"</code>.</p>
@@ -763,9 +720,9 @@
   </section>
 
   <!-- ============================= BADGES ============================= -->
-  <section id="badges" class="scroll-mt-32 py-12">
+  <section id="badges" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Badge</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Badge</h2>
       <p class="mt-1 text-sm text-slate-500">Status pill untuk lamaran, prioritas, dan tag AI.</p>
     </div>
     <div class="card space-y-8 p-6 sm:p-8">
@@ -928,9 +885,9 @@
   </section>
 
   <!-- ============================= AVATARS ============================= -->
-  <section id="avatars" class="scroll-mt-32 py-12">
+  <section id="avatars" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Avatar</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Avatar</h2>
       <p class="mt-1 text-sm text-slate-500">Inisial sebagai fallback, status dot, dan grup bertumpuk.</p>
     </div>
     <div class="card space-y-8 p-6 sm:p-8">
@@ -1100,9 +1057,9 @@
   </section>
 
   <!-- ============================= CARDS ============================= -->
-  <section id="cards" class="scroll-mt-32 py-12">
+  <section id="cards" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Card</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Card</h2>
       <p class="mt-1 text-sm text-slate-500">Kartu dasar, kartu statistik, dan kartu hero bergradasi.</p>
     </div>
     <div class="grid gap-6 md:grid-cols-3">
@@ -1401,9 +1358,9 @@
   </section>
 
   <!-- ============================= FORMS ============================= -->
-  <section id="forms" class="scroll-mt-32 py-12">
+  <section id="forms" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Forms</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Forms</h2>
       <p class="mt-1 text-sm text-slate-500">Input (error/disabled), select, textarea, checkbox, radio, toggle, dan search.</p>
     </div>
     <div class="card grid gap-8 p-6 sm:p-8 md:grid-cols-2">
@@ -2199,7 +2156,7 @@
   </section>
 
   <!-- ============================= DATEPICKER ============================= -->
-  <section id="datepicker" class="scroll-mt-32 py-12">
+  <section id="datepicker" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Datepicker</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Pemilih tanggal dengan kalender popup, inline, dan rentang tanggal - format, judul, tombol Hari ini/Hapus, autohide, batas min/max, tanggal dinonaktifkan, awal pekan, bahasa, dan arah buka. Semua contoh interaktif: klik input, atau ketik langsung. Kalender dibuat oleh <code class="kbd">assets/js/datepicker.js</code> (<code class="kbd">data-datepicker</code>, <code class="kbd">data-datepicker-inline</code>, <code class="kbd">data-daterangepicker</code>, <code class="kbd">KKDatepicker.get()</code>); gaya lewat <code class="kbd">.datepicker</code> dan <code class="kbd">.datepicker-panel</code>.</p>
@@ -2474,7 +2431,7 @@
   </section>
 
   <!-- ============================= TIMEPICKER ============================= -->
-  <section id="timepicker" class="scroll-mt-32 py-12">
+  <section id="timepicker" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Timepicker</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Pemilih waktu berbasis <code class="kbd">&lt;input type="time"&gt;</code> bawaan browser dengan ikon jam (<code class="kbd">.timepicker</code>), plus slot waktu (<code class="kbd">.choice-slot</code>), rentang jam, dropdown durasi/zona, modal, dan drawer.</p>
@@ -2733,7 +2690,7 @@
   </section>
 
   <!-- ============================= DROPDOWN ============================= -->
-  <section id="dropdowns" class="scroll-mt-32 py-12">
+  <section id="dropdowns" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Dropdown</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Menu yang terbuka dari sebuah tombol - dasar, hover, pembatas, kepala menu, submenu, checkbox, radio, toggle, daftar yang menggulir, pencarian, ikon, notifikasi, avatar, navbar, kalender, ukuran, posisi, dan jarak. Anatomi: <code class="kbd">.dropdown</code> &gt; tombol <code class="kbd">data-ui-dropdown</code> + <code class="kbd">.dropdown-menu</code> &gt; <code class="kbd">.dropdown-item</code>; perilaku di <code class="kbd">assets/js/ui.js</code>. Contoh dropdown pencarian dan tag untuk formulir ada di bagian Formulir.</p>
@@ -3226,7 +3183,7 @@
   </section>
 
   <!-- ============================= MODAL ============================= -->
-  <section id="modals" class="scroll-mt-32 py-12">
+  <section id="modals" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Modal</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Dialog di atas backdrop gelap - default, pop-up konfirmasi, form, ukuran, posisi, static, isi panjang yang menggulir, linimasa, daftar pilihan, dan form besar. Semua contoh interaktif: tutup lewat tombol X, tombol di footer, klik area gelap, atau Escape. Gaya lewat <code class="kbd">.modal-backdrop</code> &gt; <code class="kbd">.modal-panel</code>; perilaku lewat <code class="kbd">assets/js/modal.js</code> (<code class="kbd">data-modal-toggle</code>, <code class="kbd">data-modal-show</code>, <code class="kbd">data-modal-hide</code>, <code class="kbd">data-modal-placement</code>, <code class="kbd">KKModal.open()</code>).</p>
@@ -3612,9 +3569,9 @@
   </section>
 
   <!-- ============================= NAVIGATION ============================= -->
-  <section id="navigation" class="scroll-mt-32 py-12">
+  <section id="navigation" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Navigation</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Navigation</h2>
       <p class="mt-1 text-sm text-slate-500">Item sidebar, label grup, tab bersegmen, dan breadcrumb.</p>
     </div>
     <div class="grid gap-6 md:grid-cols-2">
@@ -3766,7 +3723,7 @@
   </section>
 
   <!-- ============================= PAGINATION ============================= -->
-  <section id="pagination" class="scroll-mt-32 py-12">
+  <section id="pagination" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Pagination</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Navigasi antarhalaman - daftar bernomor, ikon, Sebelumnya/Berikutnya, ringkasan data di bawah tabel, dropdown jumlah per halaman, lompat ke halaman, pilih halaman, grup tunggal, tombol terpisah, dan elipsis untuk halaman yang banyak. Contoh pertama sampai keenam hanya markup dan CSS; sisanya interaktif lewat <code class="kbd">assets/js/pagination.js</code> (<code class="kbd">data-pagination</code>, <code class="kbd">KKPagination.get()</code>, event <code class="kbd">pagination:change</code>). Gaya lewat <code class="kbd">.pagination</code> dan <code class="kbd">.pagination-link</code>.</p>
@@ -4032,7 +3989,7 @@
   </section>
 
   <!-- ============================= TABLES ============================= -->
-  <section id="tables" class="scroll-mt-32 py-12">
+  <section id="tables" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Table</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Tabel data lengkap - baris belang, kolom belang, hover, kepala yang bisa diurutkan, footer, caption, tanpa border, bayangan, scroll horizontal, pencarian, filter, pagination, pilih baris, tabel pengguna, produk (counter jumlah), dan modal edit. Gaya lewat <code class="kbd">.table</code> di dalam <code class="kbd">.table-wrap</code>; fungsi lewat <code class="kbd">assets/js/table.js</code> (<code class="kbd">data-table</code>, <code class="kbd">data-sort</code>, <code class="kbd">data-table-search</code>, <code class="kbd">data-page-size</code>).</p>
@@ -4264,7 +4221,7 @@
           </tr><tr>
             <td class="table-col-num" data-num>8</td><td class="font-medium text-fg">Finance Analyst</td><td>Bank Mandiri</td><td>Keuangan</td><td data-value="12000000">Rp12.000.000</td><td data-value="7">7</td>
           </tr></tbody></table>
-          <div data-table-empty hidden class="table-empty">Tidak ada lowongan yang cocok dengan pencarianmu.</div>
+          <div data-table-empty hidden class="table-empty"><img src="assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada lowongan yang cocok dengan pencarianmu.</div>
         </div>
       </div>
     </div>
@@ -4312,7 +4269,7 @@
           </tr><tr>
             <td class="table-col-num" data-num>12</td><td class="font-medium text-fg">Recruiter</td><td>Astra</td><td>SDM</td><td data-value="10000000">Rp10.000.000</td><td data-value="4">4</td>
           </tr></tbody></table>
-          <div data-table-empty hidden class="table-empty">Tidak ada lowongan yang cocok.</div>
+          <div data-table-empty hidden class="table-empty"><img src="assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada lowongan yang cocok.</div>
         </div>
       </div>
     </div>
@@ -4412,7 +4369,7 @@
               <td class="table-col-num" data-num>7</td><td><div class="flex items-center gap-3"><span class="avatar avatar-lg"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232361e7%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2398b6f6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2225%22%20r%3D%2211%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.92%22%2F%3E%3Cpath%20d%3D%22M10%2064c2-15%2012-22%2022-22s20%207%2022%2022z%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.92%22%2F%3E%3C%2Fsvg%3E" alt="Lana Byrd"></span><div class="min-w-0"><div class="font-medium text-fg" data-cell="name">Lana Byrd</div><div class="text-xs text-fg-muted">lana@email.com</div></div></div></td><td>Recruiter</td><td><div class="flex items-center gap-2"><span class="badge-dot bg-danger-500"></span><span data-cell="status">Offline</span></div></td>
               <td><div class="flex items-center justify-end gap-4"><a href="#" class="card-link">Edit</a><a href="#" class="inline-flex items-center text-sm font-semibold text-danger-600 hover:text-danger-700 hover:underline">Hapus</a></div></td></tr></tbody>
           </table>
-          <div data-table-empty hidden class="table-empty">Pelamar tidak ditemukan.</div>
+          <div data-table-empty hidden class="table-empty"><img src="assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Pelamar tidak ditemukan.</div>
           <div class="table-footer" data-table-pagination><span data-table-info></span><nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav></div>
         </div>
       </div>
@@ -4453,7 +4410,7 @@
               <td class="text-right"><a href="#" class="text-sm font-medium text-danger-600 hover:underline" data-row-remove>Hapus</a></td></tr></tbody>
             <tfoot><tr><th scope="row" colspan="4" class="text-right">Total</th><td colspan="2" data-cart-total>Rp596.000</td></tr></tfoot>
           </table>
-          <div data-table-empty hidden class="table-empty">Keranjang kosong.</div>
+          <div data-table-empty hidden class="table-empty"><img src="assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Keranjang kosong.</div>
         </div>
       </div>
     </div>
@@ -4508,9 +4465,9 @@
   </section>
 
   <!-- ============================= ALERTS ============================= -->
-  <section id="alerts" class="scroll-mt-32 py-12">
+  <section id="alerts" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Alert</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Alert</h2>
       <p class="mt-1 text-sm text-slate-500">Aksen border kiri untuk tingkat urgensi, plus kotak rekomendasi AI.</p>
     </div>
     <div class="grid gap-4 sm:grid-cols-2">
@@ -4835,7 +4792,7 @@
   </section>
 
   <!-- ============================= TOASTS ============================= -->
-  <section id="toasts" class="scroll-mt-32 py-12">
+  <section id="toasts" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Toast</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Notifikasi sementara dengan seluruh layout contoh - ikon, warna, aksi, avatar, progress, alert, dan posisi. Tutup lewat <code class="kbd">[data-toast-dismiss]</code>; <code class="kbd">assets/js/toast.js</code> opsional untuk dismiss &amp; <code class="kbd">KKToast.show()</code>.</p>
@@ -5134,7 +5091,7 @@
   </section>
 
   <!-- ============================= QR-CODE ============================= -->
-  <section id="qr-code" class="scroll-mt-32 py-12">
+  <section id="qr-code" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">QR Code</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">QR code sebagai SVG inline, dirender offline oleh <code class="kbd">assets/js/qr-code.js</code> (library <code class="kbd">qrcode-generator</code> di-vendor, tanpa CDN). Selalu hitam-di-atas-putih agar terbaca scanner, juga di dark mode. Tambahkan <code class="kbd">data-qr-brand</code> untuk versi personalisasi: modul membulat, warna solid brand, dan logo mark KarirLink di tengah.</p>
@@ -5327,7 +5284,7 @@
   </section>
 
   <!-- ============================= WYSIWYG ============================= -->
-  <section id="wysiwyg" class="scroll-mt-32 py-12">
+  <section id="wysiwyg" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">WYSIWYG</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Rich text editor tanpa dependensi (contenteditable), jalan offline - tanpa dependensi eksternal/CDN. Aktifkan dengan <code class="kbd">data-wysiwyg</code> + <code class="kbd">assets/js/wysiwyg.js</code>; ambil isi lewat <code class="kbd">KKWysiwyg.get(root).getHTML()</code>. Pintasan <code class="kbd">Ctrl/Cmd+Alt+0..6</code> untuk paragraf &amp; heading.</p>
@@ -5432,7 +5389,7 @@
   </section>
 
   <!-- ============================= PROGRESS / MISC ============================= -->
-  <section id="chart" class="scroll-mt-32 py-12">
+  <section id="chart" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Chart</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Grafik line, area, column, bar, donut, pie, radial, dan sparkline yang mengikuti token warna dan mode gelap, plus layout kartu dengan ringkasan, periode, dan tautan laporan. Cukup tulis <code class="kbd">data-chart="line"</code> dengan <code class="kbd">data-chart-series</code>, <code class="kbd">-categories</code>, <code class="kbd">-colors</code>, <code class="kbd">-height</code>, <code class="kbd">-legend</code>, <code class="kbd">-format</code>; dirender oleh <code class="kbd">assets/js/chart.js</code> (API <code class="kbd">KKChart.init|render|get|destroy</code>).</p>
@@ -5588,7 +5545,7 @@
     </div>
   </section>
 
-  <section id="clipboard" class="scroll-mt-32 py-12">
+  <section id="clipboard" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Clipboard</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Tombol untuk menyalin teks - input, input dengan ikon, tombol berlabel, grup input, blok kode, kartu kredensial, detail kontak, dan dialog bagikan. Pasang <code class="kbd">data-clipboard-target</code> pada tombol; <code class="kbd">assets/js/clipboard.js</code> menyalin isi elemen tujuan dan menukar <code class="kbd">[data-clipboard-default]</code> dengan <code class="kbd">[data-clipboard-success]</code> selama 2 detik (opsi <code class="kbd">data-clipboard-type</code>, <code class="kbd">-text</code>, <code class="kbd">-duration</code>, <code class="kbd">-toast</code>; API <code class="kbd">KKClipboard.copy()</code>).</p>
@@ -5716,7 +5673,121 @@
     </div>
   </section>
 
-  <section id="list-group" class="scroll-mt-32 py-12">
+  <section id="file-upload" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">File Upload</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Unggah file lewat klik atau seret - input file standar, dropzone, banyak file dengan progres, pratinjau gambar, varian ringkas, error, dan disabled. Bungkus dengan <code class="kbd">.upload</code> + <code class="kbd">data-file-upload</code>; <code class="kbd">assets/js/file-upload.js</code> memvalidasi format (<code class="kbd">accept</code>) dan ukuran (<code class="kbd">data-upload-max-size</code>, MB), menampilkan daftar file, dan menyinkronkan file ke <code class="kbd">&lt;input type="file"&gt;</code>. Event <code class="kbd">upload:add</code>, <code class="kbd">upload:remove</code>, <code class="kbd">upload:error</code>; API <code class="kbd">KKUpload</code>.</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">File input</h3>
+      <p class="mb-3 text-sm text-slate-500">Input file standar dengan gaya <code>.input-file</code>: tombol "Choose file" bawaan browser dipakai ulang tanpa JS. Cocok untuk satu berkas di formulir yang padat.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="w-full">
+  <label class="form-label" for="fu-input">Unggah proposal</label>
+  <input id="fu-input" type="file" class="input input-file" accept=".pdf,.doc,.docx" />
+  <p class="form-hint">PDF, DOC, atau DOCX, maksimal 5 MB.</p>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropzone</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>.upload</code> + <code>.upload-drop</code>: klik atau seret file. Format dibaca dari <code>accept</code>, batas ukuran dari <code>data-upload-max-size</code> (MB); file yang ditolak menampilkan pesan di <code>.form-error</code>. Di ponsel teks "atau seret" disembunyikan dan area lebih ringkas.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full" data-file-upload data-upload-max-size="5">
+  <label class="form-label">Proposal Kegiatan</label>
+  <label class="upload-drop" for="fu-drop">
+    <input id="fu-drop" type="file" class="sr-only" accept=".pdf,.doc,.docx" />
+    <span class="upload-icon"><i class="kk kk-file-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF, DOC, atau DOCX (maks. 5 MB)</span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Multiple files with progress</h3>
+      <p class="mb-3 text-sm text-slate-500">Atribut <code>multiple</code> pada input dan <code>data-upload-max-files</code> membatasi jumlah. <code>data-upload-simulate="true"</code> menampilkan progres palsu untuk mockup; di aplikasi, isi progres lewat <code>KKUpload.progress(el, file, persen)</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full" data-file-upload data-upload-max-size="10" data-upload-max-files="4" data-upload-simulate="true">
+  <label class="form-label">Berkas Pendukung</label>
+  <label class="upload-drop" for="fu-multi">
+    <input id="fu-multi" type="file" class="sr-only" accept=".pdf,.jpg,.jpeg,.png" multiple />
+    <span class="upload-icon"><i class="kk kk-cloud-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF, JPG, atau PNG, maksimal 4 file (maks. 10 MB per file)</span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Image preview</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>data-upload-preview="image"</code> menampilkan miniatur gambar yang dipilih (poster, logo, foto). File non-gambar memakai ikon berkas.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full" data-file-upload data-upload-max-size="2" data-upload-preview="image">
+  <label class="form-label">Poster</label>
+  <label class="upload-drop" for="fu-image">
+    <input id="fu-image" type="file" class="sr-only" accept=".jpg,.jpeg,.png" />
+    <span class="upload-icon"><i class="kk kk-image " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">JPG atau PNG (maks. 2 MB)</span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Compact</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>.upload-compact</code>: satu baris dengan ikon di kiri, untuk formulir yang tidak butuh area besar (pengaturan, modal).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload upload-compact w-full" data-file-upload data-upload-max-size="2" data-upload-preview="image">
+  <label class="form-label">Logo Kampus</label>
+  <label class="upload-drop" for="fu-compact">
+    <input id="fu-compact" type="file" class="sr-only" accept=".jpg,.jpeg,.png" />
+    <span class="upload-icon"><i class="kk kk-image " aria-hidden="true"></i></span>
+    <span class="upload-text"><span class="upload-title"><b>Klik untuk pilih file</b></span><span class="upload-hint">JPG, JPEG, atau PNG (maks. 2 MB)</span></span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Sizes</h3>
+      <p class="mb-3 text-sm text-slate-500">Lebar selalu mengikuti wadah. Tinggi area diatur lewat <code>.upload-sm</code> (7rem), bawaan (11rem), atau <code>.upload-lg</code> (16rem); nilai bebas lewat <code>style="--upload-h: 12rem"</code>. Di ponsel tinggi dibatasi 8,5rem.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+  <div class="upload upload-sm" data-file-upload><label class="form-label">Kecil</label><label class="upload-drop" for="fu-sm">
+    <input id="fu-sm" type="file" class="sr-only" accept=".pdf" />
+    <span class="upload-icon"><i class="kk kk-cloud-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF (maks. 5 MB)</span>
+  </label></div>
+  <div class="upload upload-lg" data-file-upload><label class="form-label">Besar</label><label class="upload-drop" for="fu-lg">
+    <input id="fu-lg" type="file" class="sr-only" accept=".pdf" />
+    <span class="upload-icon"><i class="kk kk-cloud-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF (maks. 5 MB)</span>
+  </label></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Error</h3>
+      <p class="mb-3 text-sm text-slate-500">Tambahkan <code>aria-invalid="true"</code> pada <code>.upload</code> dan <code>.form-error</code> di bawahnya. Pesan ini juga diisi otomatis saat format atau ukuran file ditolak (event <code>upload:error</code>).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full" data-file-upload aria-invalid="true">
+  <label class="form-label">Proposal Kegiatan</label>
+  <label class="upload-drop" for="fu-error">
+    <input id="fu-error" type="file" class="sr-only" accept=".pdf,.doc,.docx" />
+    <span class="upload-icon"><i class="kk kk-file-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF, DOC, atau DOCX (maks. 5 MB)</span>
+  </label>
+  <p class="form-error" data-upload-error>Proposal wajib diunggah untuk kegiatan kerja sama.</p>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Disabled</h3>
+      <p class="mb-3 text-sm text-slate-500">Atribut <code>disabled</code> pada input menonaktifkan klik dan seret.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full" data-file-upload>
+  <label class="form-label">Berkas</label>
+  <label class="upload-drop" for="fu-disabled">
+    <input id="fu-disabled" type="file" class="sr-only" accept=".pdf" disabled />
+    <span class="upload-icon"><i class="kk kk-cloud-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">Unggah dinonaktifkan</span>
+  </label>
+</div></div>
+    </div>
+    </div>
+  </section>
+
+  <section id="list-group" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">List Group</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Daftar baris dalam satu bingkai - teks, tautan, tombol, ikon, daftar fitur, statistik dengan pemisah, dan daftar pengguna dengan aksi. Anatomi: <code class="kbd">.list-group</code> &gt; <code class="kbd">.list-group-item</code> (<code class="kbd">li</code>, <code class="kbd">a</code>, atau <code class="kbd">button</code>); tambahkan <code class="kbd">.list-group-item-action</code> untuk hover dan fokus, <code class="kbd">aria-current="true"</code> untuk baris aktif, <code class="kbd">disabled</code> untuk baris nonaktif. Hanya CSS.</p>
@@ -5858,7 +5929,7 @@
     </div>
   </section>
 
-  <section id="timeline" class="scroll-mt-32 py-12">
+  <section id="timeline" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Timeline</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Urutan peristiwa berdasarkan waktu - titik polos, penanda berikon, stepper mendatar, log aktivitas dengan avatar, dan linimasa berkelompok per tanggal. Vertikal: <code class="kbd">ol.timeline</code> &gt; <code class="kbd">li.timeline-item</code> dengan <code class="kbd">.timeline-marker</code> atau <code class="kbd">.timeline-dot</code>, <code class="kbd">.timeline-title</code>, <code class="kbd">.timeline-body</code>. Mendatar: <code class="kbd">.timeline-steps</code> &gt; <code class="kbd">.timeline-step</code>. Hanya CSS.</p>
@@ -6084,7 +6155,7 @@
     </div>
   </section>
 
-  <section id="tabs" class="scroll-mt-32 py-12">
+  <section id="tabs" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Tabs</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Tab berlatar, bergaris bawah, berikon, pil, vertikal, selebar kontainer (dengan <code class="kbd">select</code> di ponsel), serta tab interaktif dengan panel. Anatomi: <code class="kbd">.tabs</code> + varian <code class="kbd">.tabs-default</code>, <code class="kbd">-underline</code>, <code class="kbd">-pills</code>, <code class="kbd">-vertical</code>, <code class="kbd">-full</code> &gt; <code class="kbd">.tabs-item</code>. Aktif: <code class="kbd">aria-current="page"</code> atau <code class="kbd">aria-selected="true"</code>; nonaktif: <code class="kbd">aria-disabled="true"</code>. Interaktif lewat <code class="kbd">data-ui-tabs</code> (<code class="kbd">assets/js/ui.js</code>). Tab bersegmen <code class="kbd">.tab</code> ada di bagian Navigation.</p>
@@ -6230,7 +6301,7 @@
     </div>
   </section>
 
-  <section id="navbar" class="scroll-mt-32 py-12">
+  <section id="navbar" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Navbar</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Bilah navigasi atas - dasar, dropdown, dropdown bertingkat, tombol ajakan, dua baris, pencarian, pemilih bahasa, menu pengguna, mega menu, latar solid, dan menu hamburger. Anatomi: <code class="kbd">nav.navbar</code> &gt; <code class="kbd">.navbar-inner</code> &gt; <code class="kbd">.navbar-brand</code> + <code class="kbd">.navbar-toggle</code> + <code class="kbd">.navbar-menu</code> &gt; <code class="kbd">.navbar-nav</code> &gt; <code class="kbd">.navbar-link</code> (aktif: <code class="kbd">aria-current="page"</code>). Menu ponsel lewat <code class="kbd">data-ui-collapse</code>, dropdown lewat <code class="kbd">data-ui-dropdown</code> (<code class="kbd">assets/js/ui.js</code>). Varian: <code class="kbd">.navbar-sticky</code>, <code class="kbd">-fixed</code>, <code class="kbd">-solid</code>, <code class="kbd">-plain</code>, <code class="kbd">-app</code>.</p>
@@ -6523,7 +6594,7 @@
     </div>
   </section>
 
-  <section id="footer" class="scroll-mt-32 py-12">
+  <section id="footer" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Footer</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Kaki halaman - dasar, dengan logo, ikon sosial, peta situs, menempel di bawah, dan varian ringkas untuk halaman aplikasi. Anatomi: <code class="kbd">footer.footer</code> + <code class="kbd">.footer-card</code> / <code class="kbd">.footer-bar</code> / <code class="kbd">.footer-center</code> / <code class="kbd">.footer-fixed</code> &gt; <code class="kbd">.footer-inner</code>; bagian: <code class="kbd">.footer-copy</code>, <code class="kbd">.footer-links</code>, <code class="kbd">.footer-heading</code>, <code class="kbd">.footer-list</code>, <code class="kbd">.footer-divider</code>, <code class="kbd">.footer-social</code>. Hanya CSS.</p>
@@ -6692,7 +6763,7 @@
     </div>
   </section>
 
-  <section id="drawer" class="scroll-mt-32 py-12">
+  <section id="drawer" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">Drawer</h2>
       <p class="mt-1 max-w-3xl text-sm text-slate-500">Panel yang meluncur dari tepi layar - kiri, kanan, atas, bawah, bottom sheet dengan pegangan, pilihan penguncian halaman dan latar gelap, navigasi, formulir kontak, dan filter. Anatomi: <code class="kbd">.drawer</code> (+ <code class="kbd">-left</code>, <code class="kbd">-right</code>, <code class="kbd">-top</code>, <code class="kbd">-bottom</code>) &gt; <code class="kbd">.drawer-header</code> + <code class="kbd">.drawer-body</code> + <code class="kbd">.drawer-footer</code>; dibuka dengan <code class="kbd">data-drawer-toggle</code> (<code class="kbd">assets/js/drawer.js</code>, API <code class="kbd">KKDrawer</code>).</p>
@@ -6846,9 +6917,9 @@
     </div>
   </section>
 
-  <section id="progress" class="scroll-mt-32 py-12">
+  <section id="progress" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-6">
-      <h2 class="font-display text-2xl font-bold text-slate-900">Progress &amp; Misc</h2>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Progress &amp; Misc</h2>
       <p class="mt-1 text-sm text-slate-500">Progress bar, tooltip, dan divider.</p>
     </div>
     <div class="card space-y-8 p-6 sm:p-8">
@@ -6886,11 +6957,13 @@
 
 <!-- ============================= FOOTER ============================= -->
 <footer class="mt-10 border-t border-slate-200/70 py-8">
-  <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-xs text-slate-400 sm:flex-row">
+  <div class="flex flex-col items-center justify-between gap-3 px-6 text-xs text-slate-400 sm:flex-row lg:px-10">
     <p>© 2026 KarirKit. Dibangun dengan Tailwind CSS.</p>
-    <p>Design System v1.1</p>
+    <p>Design System v1.4.0</p>
   </div>
 </footer>
+
+</div>
 
 <script>
   (function () {
@@ -7193,8 +7266,110 @@
 <script src="assets/js/pagination.js"></script>
 <script src="assets/js/clipboard.js"></script>
 <script src="assets/js/drawer.js"></script>
+<script src="assets/js/file-upload.js"></script>
 <script src="assets/js/vendor/apexcharts.min.js"></script>
 <script src="assets/js/chart.js"></script>
 <script src="assets/js/theme.js"></script>
+<script>
+  // Dokumentasi satu halaman per bagian: sidebar (lg ke atas) atau Drawer (di bawah lg) dibangun dari judul tiap
+  // <section data-ds-section>; pilihan bagian lewat hash (#colors), ada pencarian dan pintasan Ctrl/Cmd + K.
+  (function () {
+    var GROUPS = [
+      { name: 'Foundation', ids: ['logo', 'colors', 'typography', 'icons'] },
+      { name: 'Components', ids: ['buttons', 'button-group', 'badges', 'avatars', 'cards', 'alerts', 'toasts', 'modals', 'drawer', 'dropdowns', 'tabs', 'navigation', 'navbar', 'footer', 'pagination', 'tables', 'list-group', 'timeline', 'progress'] },
+      { name: 'Forms', ids: ['forms', 'file-upload', 'datepicker', 'timepicker'] },
+      { name: 'Plugins', ids: ['wysiwyg', 'chart', 'qr-code', 'clipboard'] }
+    ];
+    var sections = Array.prototype.slice.call(document.querySelectorAll('[data-ds-section]'));
+    var byId = {}, titleOf = {}, groupOf = {};
+    sections.forEach(function (sec) {
+      byId[sec.id] = sec;
+      var h = sec.querySelector('h2');
+      titleOf[sec.id] = h ? h.textContent.trim() : sec.id;
+    });
+    var used = {};
+    GROUPS.forEach(function (g) { g.ids = g.ids.filter(function (id) { return byId[id]; }); g.ids.forEach(function (id) { used[id] = 1; groupOf[id] = g.name; }); });
+    var rest = sections.map(function (s) { return s.id; }).filter(function (id) { return !used[id]; });
+    if (rest.length) { GROUPS.push({ name: 'Lainnya', ids: rest }); rest.forEach(function (id) { groupOf[id] = 'Lainnya'; }); }
+
+    function panelHtml() {
+      var nav = GROUPS.map(function (g) {
+        return '<div data-ds-group><p class="nav-eyebrow mb-1.5">' + g.name + '</p><div class="space-y-0.5">' + g.ids.map(function (id) {
+          return '<a href="#' + id + '" class="nav-item !py-2" data-ds-link="' + id + '">' + titleOf[id] + '</a>';
+        }).join('') + '</div></div>';
+      }).join('');
+      return '<div class="shrink-0 px-3 pb-2 pt-3"><div class="relative">' +
+        '<span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>' +
+        '<input type="search" class="input h-9 pl-9 pr-12" placeholder="Cari halaman..." aria-label="Cari halaman" data-ds-search />' +
+        '<kbd class="kbd pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 lg:inline-flex">Ctrl K</kbd></div></div>' +
+        '<nav class="min-h-0 flex-1 space-y-5 overflow-y-auto px-3 py-3" aria-label="Bagian dokumentasi">' + nav +
+        '<p class="hidden px-3 text-sm text-fg-muted" data-ds-none>Tidak ada halaman.</p></nav>';
+    }
+    document.querySelectorAll('[data-ds-panel]').forEach(function (p) { p.innerHTML = panelHtml(); });
+
+    var links = Array.prototype.slice.call(document.querySelectorAll('[data-ds-link]'));
+    var crumbGroup = document.querySelector('[data-ds-crumb-group]');
+    var crumbPage = document.querySelector('[data-ds-crumb-page]');
+    var baseTitle = document.title;
+    var current = null;
+
+    function route() {
+      var id = decodeURIComponent((location.hash || '').slice(1));
+      if (!byId[id]) id = GROUPS[0].ids[0];
+      sections.forEach(function (s) { s.hidden = s.id !== id; });
+      links.forEach(function (a) {
+        var on = a.getAttribute('data-ds-link') === id;
+        a.classList.toggle('nav-item-active', on);
+        if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+      });
+      crumbGroup.textContent = groupOf[id]; crumbPage.textContent = titleOf[id];
+      document.title = titleOf[id] + ' · ' + baseTitle;
+      if (window.KKDrawer && KKDrawer.isOpen('dsMenu')) KKDrawer.close('dsMenu');
+      if (current !== id) {
+        window.scrollTo(0, 0);
+        // komponen yang mengukur lebar (grafik) dirender saat bagiannya baru tampil
+        setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 60);
+      }
+      var active = document.querySelector('aside [data-ds-link="' + id + '"]');
+      if (active && active.scrollIntoView && current === null) active.scrollIntoView({ block: 'center' });
+      current = id;
+    }
+    window.addEventListener('hashchange', route);
+    route();
+
+    // pencarian halaman
+    var inputs = Array.prototype.slice.call(document.querySelectorAll('[data-ds-search]'));
+    function filter(q) {
+      q = q.trim().toLowerCase();
+      document.querySelectorAll('[data-ds-panel]').forEach(function (panel) {
+        var any = false;
+        panel.querySelectorAll('[data-ds-group]').forEach(function (g) {
+          var vis = 0;
+          g.querySelectorAll('[data-ds-link]').forEach(function (a) {
+            var hit = !q || a.textContent.toLowerCase().indexOf(q) !== -1;
+            a.hidden = !hit; if (hit) vis++;
+          });
+          g.hidden = vis === 0; if (vis) any = true;
+        });
+        panel.querySelector('[data-ds-none]').classList.toggle('hidden', any);
+      });
+    }
+    inputs.forEach(function (inp) {
+      inp.addEventListener('input', function () { inputs.forEach(function (o) { if (o !== inp) o.value = inp.value; }); filter(inp.value); });
+      inp.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter') return;
+        var first = inp.closest('[data-ds-panel]').querySelector('[data-ds-link]:not([hidden])');
+        if (first) location.hash = first.getAttribute('data-ds-link');
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        var vis = inputs.filter(function (i) { return i.offsetParent !== null; })[0];
+        if (vis) { vis.focus(); vis.select(); }
+      }
+    });
+  })();
+</script>
 </body>
 </html>
