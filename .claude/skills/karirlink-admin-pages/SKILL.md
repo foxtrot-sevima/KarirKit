@@ -35,9 +35,9 @@ Sidebar karirlink ber-`z-50`, di atas lapisan overlay bawaan (z 40; backdrop dra
 - Responsif: laci kanan di >= 640px, lembar bawah di bawahnya (`data-drawer-placement` diatur sebelum `KKDrawer.open`).
 
 ## Merek kampus di admin (white-label)
-`admin-brand.js` (dimuat paling akhir di setiap halaman admin) mengganti logo di sidebar, sidebar terlipat, dan drawer menu dengan logo kampus + nama kampus bila "Logo Career Center" sudah dipublikasikan di Pengaturan Landing Page. Tata letaknya sama dengan `templates/custom/index.html`: avatar persegi 48px (40px saat dilipat), "Karirlink" kecil di atas nama kampus (maks. 2 baris, 13px bila membungkus), logo `object-contain` dengan inisial sebagai cadangan. Halaman admin baru harus memuat `<script src="admin-brand.js"></script>`. Panggil `KarirAdminBrand.apply()` setelah logo terbit/dihapus.
+`admin-brand.js` (dimuat paling akhir di setiap halaman admin) mengganti logo di sidebar, sidebar terlipat, dan drawer menu dengan logo kampus + nama kampus bila "Logo Career Center" sudah dipublikasikan di Personalisasi Portal. Tata letaknya sama dengan `templates/custom/index.html`: avatar persegi 48px (40px saat dilipat), "Karirlink" kecil di atas nama kampus (maks. 2 baris, 13px bila membungkus), logo `object-contain` dengan inisial sebagai cadangan. Halaman admin baru harus memuat `<script src="admin-brand.js"></script>`. Panggil `KarirAdminBrand.apply()` setelah logo terbit/dihapus.
 
-Warna kampus: setiap halaman admin memuat `<script src="../campus-theme.js"></script>` sinkron di `<head>`, tepat setelah `dist/output.css`. Skrip itu menimpa token `--color-primary-*` / `--color-secondary-*` dari warna yang dipublikasikan di Pengaturan Landing Page (kosong = bawaan KarirLink), jadi pakai token, bukan hex merek. Detail di skill `portal-karir-ui`.
+Warna kampus: setiap halaman admin memuat `<script src="../campus-theme.js"></script>` sinkron di `<head>`, tepat setelah `dist/output.css`. Skrip itu menimpa token `--color-primary-*` / `--color-secondary-*` dari warna yang dipublikasikan di Personalisasi Portal (kosong = bawaan KarirLink), jadi pakai token, bukan hex merek. Detail di skill `portal-karir-ui`.
 
 ## Menu sidebar
 Link menu ada di dua tempat per halaman (sidebar desktop dan drawer menu). Saat menambah halaman, ubah keduanya di semua halaman admin yang memuat menu.

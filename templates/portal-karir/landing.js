@@ -1,4 +1,4 @@
-/* Konfigurasi Landing Page portal: hasil "Pengaturan Landing Page" di admin KarirLink (templates/karirlink/pengaturan-landing-page.html).
+/* Konfigurasi Landing Page portal: hasil "Personalisasi Portal" di admin KarirLink (templates/karirlink/pengaturan-landing-page.html).
    Dimuat SEBELUM portal.js. Mockup ini menyimpan konfigurasi di localStorage; di produksi ganti window.PK_LANDING.read/write dengan
    endpoint (GET/PUT /api/landing-page) tanpa mengubah bagian lain.
 
@@ -11,7 +11,7 @@
      testimonials  [{ id, name, position, company, program, year, comment, photo, companyLogo }]  maksimal 8
      phone, email  Kontak Career Center (footer)                                         -> PK_CAMPUS.phone / email
      address       Alamat Career Center (footer); string kosong = baris alamat disembunyikan   -> PK_CAMPUS.address
-     instagram, facebook  username (tanpa @ atau URL)                                    -> PK_CAMPUS.social.*
+     instagram, facebook, youtube  username / handle (tanpa @ atau URL)                  -> PK_CAMPUS.social.*
      about         Deskripsi footer (50-250 karakter)                                    -> PK_CAMPUS.about
      primaryColor  Warna utama kampus, hex #rrggbb (kontras dengan teks putih minimal 4,5:1). Kosong = warna bawaan KarirLink.
                    Dari satu warna ini dibuat skala 50-950 yang menimpa token --color-primary-* di portal.
@@ -69,8 +69,11 @@
   if (cfg.email) ov.email = cfg.email;
   if (typeof cfg.address === 'string') ov.address = cfg.address;
   if (cfg.phone) ov.phone = '+' + String(cfg.phone).replace(/[^0-9]/g, '');
-  if (cfg.instagram) social.instagram = 'https://instagram.com/' + encodeURIComponent(cfg.instagram);
-  if (cfg.facebook) social.facebook = 'https://facebook.com/' + encodeURIComponent(cfg.facebook);
+  // Konfigurasi terpublikasi menggantikan tautan contoh bawaan portal: kolom kosong = ikon tidak tampil di footer.
+  social.instagram = cfg.instagram ? 'https://instagram.com/' + encodeURIComponent(cfg.instagram) : '';
+  social.facebook = cfg.facebook ? 'https://facebook.com/' + encodeURIComponent(cfg.facebook) : '';
+  social.youtube = cfg.youtube ? 'https://youtube.com/@' + encodeURIComponent(cfg.youtube) : '';
+  social.x = ''; // belum ada kolomnya di Personalisasi Portal
   var prev = window.PK_CAMPUS || {};
   window.PK_CAMPUS = Object.assign({}, prev, ov, { social: Object.assign({}, prev.social, social) });
 

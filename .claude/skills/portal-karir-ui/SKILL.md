@@ -1,6 +1,6 @@
 ---
 name: portal-karir-ui
-description: Aturan UI Portal Karir KarirLink (templates/portal-karir) - merek, komponen, satu halaman satu file, data lewat PK.api, white-label PK_CAMPUS, dan konfigurasi Landing Page (landing.js) yang diatur dari Pengaturan Landing Page. Pakai saat mengubah atau menambah halaman portal.
+description: Aturan UI Portal Karir KarirLink (templates/portal-karir) - merek, komponen, satu halaman satu file, data lewat PK.api, white-label PK_CAMPUS, dan konfigurasi Landing Page (landing.js) yang diatur dari Personalisasi Portal (`templates/karirlink/pengaturan-landing-page.html`; menu sidebar "Personalisasi"). Pakai saat mengubah atau menambah halaman portal.
 ---
 
 # Portal Karir (`templates/portal-karir/*`)

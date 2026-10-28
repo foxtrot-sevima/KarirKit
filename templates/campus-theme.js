@@ -1,7 +1,7 @@
 /* Tema warna kampus (white-label per universitas). Dimuat SINKRON di <head> semua halaman KarirLink (admin) dan Portal Karir, tepat setelah
    dist/output.css, supaya warna kampus terpasang sebelum halaman digambar.
 
-   Sumber: konfigurasi landing page yang sudah DIPUBLIKASIKAN di Pengaturan Landing Page (primaryColor, secondaryColor); pratinjau editor memakai
+   Sumber: konfigurasi landing page yang sudah DIPUBLIKASIKAN di Personalisasi Portal (primaryColor, secondaryColor); tombol "Lihat Landing Page" di editor memakai
    draf lewat ?landing=draft. Satu warna dasar dibuat menjadi skala 50-950 yang menimpa token --color-primary-* / --color-secondary-* pada <html>,
    jadi semua komponen KarirKit ikut berganti tanpa kelas atau gaya baru. Kosong = warna bawaan KarirLink.
 
