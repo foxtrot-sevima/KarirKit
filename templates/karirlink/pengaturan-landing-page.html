@@ -7,6 +7,7 @@
 <title>Pengaturan Landing Page | KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
 <meta name="description" content="Atur tampilan Portal Karir kampus (logo, hero, testimoni alumni, bimbingan karir, kontak, footer) dengan pratinjau langsung di panel admin KarirLink." />
 <meta name="author" content="SEVIMA" />
 <link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/pengaturan-landing-page.html" />
@@ -337,6 +338,7 @@
           </div>
           <div class="divide-y divide-slate-100">
             <button type="button" class="lp-item" data-lp-open="header" data-lp-scroll="top"><span>Header</span><i class="kk kk-caret-right h-4 w-4 text-slate-400"></i></button>
+            <button type="button" class="lp-item" data-lp-open="warna" data-lp-scroll="top"><span class="min-w-0"><span class="block">Warna</span><span class="block text-xs font-normal text-slate-500" id="lpColorNote">Bawaan KarirLink</span></span><i class="kk kk-caret-right h-4 w-4 text-slate-400"></i></button>
             <button type="button" class="lp-item" data-lp-open="main" data-lp-scroll="#heroGrid"><span>Main Section</span><i class="kk kk-caret-right h-4 w-4 text-slate-400"></i></button>
             <div class="lp-row" data-lp-row="showTestimonials"><button type="button" class="lp-item" data-lp-open="testimoni" data-lp-scroll="#lpTestimoni"><span class="min-w-0"><span class="block">Testimoni Alumni</span><span class="block text-xs font-normal text-slate-400" data-lp-offnote hidden>Disembunyikan dari landing page</span></span><i class="kk kk-caret-right h-4 w-4 text-slate-400"></i></button></div>
             <div class="lp-row" data-lp-row="showGuide"><button type="button" class="lp-item" data-lp-open="bimbingan" data-lp-scroll="#lpBimbingan"><span class="min-w-0"><span class="block">Bimbingan Karir</span><span class="block text-xs font-normal text-slate-400" data-lp-offnote hidden>Disembunyikan dari landing page</span></span><i class="kk kk-caret-right h-4 w-4 text-slate-400"></i></button></div>
@@ -358,6 +360,54 @@
               </label></div>
               <button type="button" class="mt-2 text-xs font-medium text-danger-600 hover:underline" data-lp-clear hidden>Hapus logo</button>
               <p class="form-error mt-1.5" data-lp-error hidden></p>
+            </div>
+          </div>
+          <div class="lp-foot"><button type="button" class="btn-outline btn-md" data-lp-cancel>Batal</button><button type="button" class="btn-primary btn-md" data-lp-save>Simpan</button></div>
+        </div>
+
+        <!-- Warna (palet) -->
+        <div data-lp-panel="warna" hidden>
+          <button type="button" class="lp-back" data-lp-back><i class="kk kk-arrow-left h-4 w-4"></i>Kembali<span class="ml-auto text-slate-800">Warna</span></button>
+          <div class="space-y-5 p-5">
+            <div>
+              <p class="form-label">Palet warna</p>
+              <p class="form-hint">Dipakai di tombol, tautan, dan aksen Portal Karir kampus. Tanpa pilihan, portal memakai warna bawaan KarirLink.</p>
+              <div class="mt-3 grid grid-cols-2 gap-2" id="lpPresets" role="radiogroup" aria-label="Palet warna"></div>
+            </div>
+
+            <div id="lpCustomColors" class="space-y-4" hidden>
+              <div>
+                <label class="form-label" for="lpPrimaryHex">Warna utama <span class="text-danger-600">*</span></label>
+                <div class="flex items-center gap-2">
+                  <input type="color" class="h-11 w-12 shrink-0 cursor-pointer rounded-control border border-border bg-surface p-1" aria-label="Pilih warna utama" data-lp-field="primaryColor" />
+                  <input id="lpPrimaryHex" type="text" class="input font-mono uppercase" maxlength="7" placeholder="#2361E7" autocomplete="off" spellcheck="false" data-lp-field="primaryColor" />
+                </div>
+                <p class="form-hint">Warna tombol dan tautan. Harus cukup gelap agar teks putih terbaca (kontras minimal 4,5:1).</p>
+                <p class="form-error mt-1.5" data-lp-error="primaryColor" hidden></p>
+              </div>
+              <div>
+                <label class="form-label" for="lpSecondaryHex">Warna aksen</label>
+                <div class="flex items-center gap-2">
+                  <input type="color" class="h-11 w-12 shrink-0 cursor-pointer rounded-control border border-border bg-surface p-1" aria-label="Pilih warna aksen" data-lp-field="secondaryColor" />
+                  <input id="lpSecondaryHex" type="text" class="input font-mono uppercase" maxlength="7" placeholder="#F67E28" autocomplete="off" spellcheck="false" data-lp-field="secondaryColor" />
+                </div>
+                <p class="form-hint">Untuk sorotan kecil seperti lencana dan ikon. Kosongkan untuk memakai jingga bawaan.</p>
+                <p class="form-error mt-1.5" data-lp-error="secondaryColor" hidden></p>
+              </div>
+            </div>
+
+            <div>
+              <p class="form-label">Contoh tampilan</p>
+              <div id="lpPaletteDemo" class="mt-2 rounded-xl border border-border bg-surface p-4">
+                <div class="grid grid-cols-11 gap-1" id="lpScale" aria-hidden="true"></div>
+                <div class="mt-4 flex flex-wrap items-center gap-2">
+                  <span class="btn-primary btn-sm pointer-events-none">Lamar Sekarang</span>
+                  <span class="btn-outline btn-sm pointer-events-none">Simpan</span>
+                  <span class="badge-primary">Magang</span>
+                  <span class="badge-secondary">Baru</span>
+                </div>
+                <p class="mt-3 text-sm text-slate-600">Lihat <span class="font-medium text-primary-600">semua lowongan</span> yang cocok denganmu.</p>
+              </div>
             </div>
           </div>
           <div class="lp-foot"><button type="button" class="btn-outline btn-md" data-lp-cancel>Batal</button><button type="button" class="btn-primary btn-md" data-lp-save>Simpan</button></div>
@@ -677,6 +727,7 @@
     // Isian awal (contoh dari KarirLink produksi) dipakai selama admin belum menyimpan apa pun.
     const DEFAULTS = {
       logo: '', heroImage: '', showTestimonials: true, showGuide: true,
+      primaryColor: '', secondaryColor: '', palettePreset: '',
       heroTitle: 'Dapatkan Pekerjaan Impianmu dalam Sekejap! Kesuksesan ada di Tangan Anda',
       heroDesc: 'Dapatkan peluang emas bagi para fresh graduate dan profesional muda. Temukan beragam kesempatan karir terbaik yang akan membawa kamu menuju masa depan yang gemilang.',
       guideUrl: 'https://www.youtube.com/watch?v=KV5BCRGUGeA',
@@ -823,6 +874,7 @@
       renderImages();
       if (name === 'testimoni') { snapshot = null; renderTesti(); } // testimoni langsung masuk draf, tanpa Batal per section
       if (name === 'footer') renderLinks();
+      if (name === 'warna') renderPalette();
       show(name);
       scrollPreview(scroll);
       $('#lpEditor').scrollIntoView({ block: 'nearest' });
@@ -834,7 +886,7 @@
     }));
     $$('[data-lp-cancel]').forEach((b) => b.addEventListener('click', revert));
     function revert() {
-      if (snapshot) { state = snapshot; snapshot = null; syncToggles(); refreshPreview(true); updateStatus(); }
+      if (snapshot) { state = snapshot; snapshot = null; syncToggles(); refreshPreview(true); updateStatus(); colorNote(); }
       show('list');
     }
 
@@ -923,6 +975,14 @@
     const validators = {
       header: () => ({}),
       main: () => ({ heroTitle: lenErr('Judul', state.heroTitle, L.title), heroDesc: lenErr('Deskripsi', state.heroDesc, L.desc) }),
+      warna: () => {
+        if (!state.primaryColor) return {};
+        const p = LP.hex6(state.primaryColor), c = LP.hex6(state.secondaryColor);
+        return {
+          primaryColor: !p ? 'Isi warna dengan format hex, mis. #2361E7' : LP.contrast(p) < LP.MIN_CONTRAST ? 'Warna terlalu terang (kontras ' + LP.contrast(p).toFixed(1).replace('.', ',') + ':1). Pilih warna lebih gelap agar teks putih di tombol terbaca (minimal 4,5:1).' : '',
+          secondaryColor: state.secondaryColor && !c ? 'Isi warna dengan format hex, mis. #F67E28' : ''
+        };
+      },
       testimoni: () => ({}),
       bimbingan: () => ({ guideUrl: !state.guideUrl.trim() ? 'URL YouTube wajib diisi' : LP.youtubeEmbed(state.guideUrl) ? '' : 'URL harus berasal dari YouTube' }),
       kontak: () => {
@@ -965,6 +1025,7 @@
     }
     const clean = (name) => {
       if (name === 'kontak') { state.phone = String(state.phone || '').replace(/\s/g, ''); state.instagram = (state.instagram || '').replace(/^@/, ''); state.facebook = (state.facebook || '').replace(/^@/, ''); state.address = (state.address || '').trim(); }
+      if (name === 'warna') { state.primaryColor = LP.hex6(state.primaryColor) || state.primaryColor.trim(); state.secondaryColor = LP.hex6(state.secondaryColor) || state.secondaryColor.trim(); }
       if (name === 'footer') state.footerLinks.forEach((l) => { l.name = l.name.trim(); l.url = l.url.trim(); if (l.url && !/^https?:\/\//i.test(l.url)) l.url = 'https://' + l.url; });
     };
     $$('[data-lp-save]').forEach((b) => b.addEventListener('click', () => {
@@ -974,6 +1035,52 @@
       toast('success', 'Section disimpan ke draf. Klik Publish agar tampil ke pengunjung.');
       show('list');
     }));
+
+    // ---------- warna (palet) ----------
+    // Satu warna dasar dibuat menjadi skala 50-950 oleh PK_LANDING.scale; portal menimpa token --color-primary-* / --color-secondary-*.
+    const presetsBox = $('#lpPresets');
+    const dot = (c) => '<i class="inline-block h-4 w-4 rounded-full border border-black/10" style="background:' + c + '"></i>';
+    const choices = [{ key: '', name: 'KarirLink', primary: '#2361e7', secondary: '#f67e28' }].concat(LP.PRESETS, [{ key: 'custom', name: 'Kustom', primary: '', secondary: '' }]);
+    presetsBox.innerHTML = choices.map((c) => '<label class="choice"><input type="radio" name="lpPreset" value="' + c.key + '" /><span class="choice-body flex-row items-center gap-2.5 !px-3 !py-2.5">' +
+      (c.key === 'custom' ? '<i class="kk kk-eyedropper h-4 w-4 text-slate-500"></i>' : '<span class="flex -space-x-1">' + dot(c.primary) + dot(c.secondary) + '</span>') +
+      '<span class="choice-title">' + c.name + '</span></span></label>').join('');
+    const colorNote = () => {
+      const n = state.palettePreset === 'custom' ? 'Kustom' : (choices.find((c) => c.key === state.palettePreset) || choices[0]).name;
+      $('#lpColorNote').textContent = state.primaryColor ? n + ' · ' + state.primaryColor.toUpperCase() : 'Bawaan KarirLink';
+    };
+    function paintPalette() {
+      const p = LP.hex6(state.primaryColor), c = LP.hex6(state.secondaryColor);
+      const demo = $('#lpPaletteDemo');
+      ['primary', 'secondary'].forEach((n) => [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].forEach((k) => demo.style.removeProperty('--color-' + n + '-' + k)));
+      demo.style.removeProperty('--color-brand-soft-mid');
+      if (p) LP.applyPalette(demo, p, c);
+      const sc = LP.scale(p || '#2361e7');
+      $('#lpScale').innerHTML = Object.keys(sc).map((k) => '<span class="block h-8 rounded" style="background:' + sc[k] + '" title="' + k + ' ' + sc[k] + '"></span>').join('');
+    }
+    function renderPalette() {
+      $$('input[name="lpPreset"]').forEach((r) => { r.checked = r.value === (state.palettePreset || ''); });
+      $('#lpCustomColors').hidden = state.palettePreset !== 'custom';
+      $$('input[type="color"][data-lp-field]').forEach((el) => { el.value = LP.hex6(state[el.dataset.lpField]) || (el.dataset.lpField === 'secondaryColor' ? '#f67e28' : '#2361e7'); });
+      paintPalette(); colorNote();
+    }
+    presetsBox.addEventListener('change', (e) => {
+      const r = e.target.closest('input[name="lpPreset"]'); if (!r) return;
+      const c = choices.find((x) => x.key === r.value);
+      state.palettePreset = r.value;
+      if (r.value === 'custom') { state.primaryColor = LP.hex6(state.primaryColor) || '#2361e7'; state.secondaryColor = LP.hex6(state.secondaryColor) || ''; }
+      else { state.primaryColor = c.key ? c.primary : ''; state.secondaryColor = c.key ? c.secondary : ''; }
+      clearErrors(); loadFields(); renderPalette(); refreshPreview();
+    });
+    // pemilih warna bawaan peramban dan kolom hex saling menyusul; kolom hex yang valid memperbarui contoh dan pratinjau
+    document.addEventListener('input', (e) => {
+      const el = e.target.closest('[data-lp-field="primaryColor"], [data-lp-field="secondaryColor"]');
+      if (!el) return;
+      const f = el.dataset.lpField, v = LP.hex6(el.value);
+      if (el.type === 'color') $$('input[type="text"][data-lp-field="' + f + '"]').forEach((t) => { t.value = el.value; });
+      else if (v) $$('input[type="color"][data-lp-field="' + f + '"]').forEach((t) => { t.value = v; });
+      if (el.type === 'color') state[f] = el.value;
+      paintPalette(); colorNote();
+    });
 
     // ---------- testimoni alumni ----------
     function renderTesti() {
@@ -1079,8 +1186,8 @@
 
     // ---------- publish / atur ulang ----------
     $('#lpPublishBtn').addEventListener('click', () => {
-      ['main', 'bimbingan', 'kontak', 'footer'].forEach(clean);
-      for (const name of ['main', 'bimbingan', 'kontak', 'footer']) {
+      ['warna', 'main', 'bimbingan', 'kontak', 'footer'].forEach(clean);
+      for (const name of ['warna', 'main', 'bimbingan', 'kontak', 'footer']) {
         if (name === 'bimbingan' && state.showGuide === false) continue; // section disembunyikan: URL tidak wajib
         const errs = validators[name]();
         if (Object.values(errs).some(Boolean)) {
@@ -1092,11 +1199,13 @@
       if (!LP.publish(state)) { toast('danger', 'Gagal publish: penyimpanan penuh. Perkecil atau hapus beberapa gambar.'); return; }
       updateStatus(); refreshPreview(true);
       if (window.KarirAdminBrand) KarirAdminBrand.apply(); // logo Career Center terbit juga menggantikan logo di panel admin
+      if (window.CampusTheme) CampusTheme.refresh(); // warna kampus terbit juga mengganti warna panel admin
       toast('success', 'Halaman landing page berhasil dipublish.');
     });
     $('#lpResetOk').addEventListener('click', () => {
       LP.reset(); state = clone(DEFAULTS); syncToggles(); KKModal.close('lpResetModal');
       if (window.KarirAdminBrand) KarirAdminBrand.apply(); // kembali ke logo KarirLink bawaan
+      if (window.CampusTheme) CampusTheme.refresh();
       show('list'); refreshPreview(true);
       toast('success', 'Landing page dikembalikan ke isian awal.');
     });

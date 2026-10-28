@@ -12,6 +12,10 @@ Aturan singkat:
 
 Dasar KarirKit: v1.4.0
 
+### Added
+
+- **Palet warna per kampus di Pengaturan Landing Page** (`templates/karirlink/pengaturan-landing-page.html`, `templates/campus-theme.js`, `templates/portal-karir/landing.js`): section baru **Warna** untuk memilih palet bawaan KarirLink, lima preset (Zamrud, Marun, Ungu, Teal, Navy), atau Kustom dengan warna utama dan aksen (pemilih warna + kolom hex). Warna utama divalidasi kontrasnya dengan teks putih (minimal 4,5:1); ada contoh tampilan langsung dan pratinjau portal mengikuti draf. Satu warna dasar dibuat menjadi skala 50-950 oleh skrip baru `templates/campus-theme.js`, dimuat di `<head>` **semua halaman panel admin KarirLink dan Portal Karir** (termasuk login, daftar, onboarding), dan menimpa token `--color-primary-*` / `--color-secondary-*`. Seluruh komponen KarirKit ikut berganti tanpa kelas baru dan tanpa kedipan warna bawaan. Berlaku hanya untuk kampus yang mengisinya: kosong = warna bawaan KarirLink, dan versi white-label `templates/custom` tidak memuat tema ini (`scripts/gen-custom-portal.mjs` membuangnya). Kunci konfigurasi baru: `primaryColor`, `secondaryColor`, `palettePreset`.
+
 ### Changed
 
 - **Onboarding Portal Karir layar penuh** (`templates/portal-karir/onboarding.html`): panel biru di kanan (logo, stepper vertikal, kartu "Kenapa kami menanyakan ini?") dihapus. Satu kolom di semua lebar layar (maks. 56rem) dengan logo, "Lewati semua", dan progres bersegmen di bagian atas seperti tampilan ponsel, ukuran elemen lebih ringkas, dan latar `bg-shell` seperti halaman portal lainnya. Bidang minat 3 kolom di layar lebar.
