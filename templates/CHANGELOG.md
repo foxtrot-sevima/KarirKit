@@ -8,6 +8,14 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-10-28
+
+Dasar KarirKit: v1.4.0
+
+### Changed
+
+- **Redaksi Tracer Study Format Lampau disamakan dengan builder dan yang dilihat lulusan** (`templates/karirlink/kuesioner-simulasi.html`, `kuesioner-builder.html`): "Penggunaan TI" menjadi "Penggunaan Teknologi Informasi"; pertanyaan kesesuaian pendidikan (f15, Bekerja dan Wiraswasta) memakai "Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan Anda saat ini?"; "Pengembangan Diri" menjadi "Pengembangan diri". Deskripsi di bawah pertanyaan yang berupa catatan internal atau penjelasan alur ("Dikirim ke Dikti", "data internal", "Data Atasan tidak ditampilkan", pemisah ribuan, provinsi/kab-kota hanya jika di Indonesia) dihapus dari simulasi agar sama persis dengan tampilan lulusan.
+
 ## 2026-10-27
 
 Dasar KarirKit: v1.4.0
