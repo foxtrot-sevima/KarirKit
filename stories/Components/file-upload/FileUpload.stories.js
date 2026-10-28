@@ -18,7 +18,7 @@ Unggah file lewat klik atau seret. Bungkus dengan \`.upload\` + \`data-file-uplo
 | \`data-upload-preview="image"\` | Miniatur untuk file gambar |
 | \`data-upload-simulate="true"\` | Progres palsu untuk mockup |
 
-**Ukuran:** lebar mengikuti wadah; tinggi lewat `.upload-sm` / `.upload-lg` atau `--upload-h`.
+**Ukuran:** lebar mengikuti wadah; tinggi lewat \`.upload-sm\` / \`.upload-lg\` atau \`--upload-h\`.
 
 **Responsif:** di ponsel area menjadi tombol ketuk (tanpa teks "seret"), dan tombol hapus berukuran 44px.
 
