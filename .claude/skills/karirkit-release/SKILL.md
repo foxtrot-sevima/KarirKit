@@ -39,7 +39,7 @@ Cabang utama dan deploy dipakai bersama oleh kedua keluarga branch (lihat skill 
 5. Grep nama UI kit pihak ketiga (lihat skill `karirkit-conventions`) di repo dan di catatan rilis yang dihasilkan.
 6. Alur: branch `karirkit/X.Y.Z` (atau `mockup/<tanggal>` untuk mockup, tanpa langkah versi/tag) -> PR ke `master` -> PR `master` -> `release` (push ke `release` memicu `publish.yml` -> GitHub Packages). GitHub Packages menolak publish ulang versi yang sama (E409): versi terbit tidak bisa ditimpa, naikkan versi.
 7. Setelah publish: tag + GitHub release `vX.Y.Z` (`gh release create --target <sha release>`, catatan dari section CHANGELOG) dan cek dist-tag `latest`.
-8. **Sinkron Figma** (skill `karirkit-figma-sync`): versi Figma = tag repo; tulis entri `[X.Y.Z]` di Changelog Figma, samakan token dengan `@theme` di `src/input.css`, buat Named Version `vX.Y.Z`, perbarui Index dan Known Issues. Hanya untuk rilis design system, bukan perubahan template.
+8. **Sinkron Figma** (skill `karirkit-figma-sync`): dikerjakan **setelah** rilis repo selesai dan tidak memblokirnya. Versi Figma = tag repo: entri `[x.y.z]` di Changelog Figma, token sama dengan `@theme` di `src/input.css`, Named Version `vx.y.z`, Index dan Known Issues. Bila Figma tertinggal beberapa versi, ikuti aturan catch-up di skill itu. Hanya untuk rilis design system; batch mockup memakai jalur tanggal (bagian 8 skill itu), tanpa Named Version.
 9. Deploy: Vercel hanya deploy dari `karirkit/vercel`; buka PR `master` -> `karirkit/vercel` lalu merge, dan cek `gh api repos/foxtrot-sevima/KarirKit/deployments`.
 
 Singkatan "merge X > master > vercel" = tepat dua PR (`karirkit/X` -> `master`, lalu `master` -> `karirkit/vercel`); tidak termasuk `master` -> `release`, publish npm, tag, atau GitHub release.
