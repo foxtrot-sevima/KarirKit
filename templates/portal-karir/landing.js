@@ -1,4 +1,4 @@
-/* Konfigurasi Landing Page portal: hasil "Pengaturan Landing Page" di admin KarirLink (templates/karirlink/pengaturan-landing-page.html).
+/* Konfigurasi Landing Page portal: hasil "Personalisasi Portal" di admin KarirLink (templates/karirlink/pengaturan-landing-page.html).
    Dimuat SEBELUM portal.js. Mockup ini menyimpan konfigurasi di localStorage; di produksi ganti window.PK_LANDING.read/write dengan
    endpoint (GET/PUT /api/landing-page) tanpa mengubah bagian lain.
 
@@ -11,8 +11,12 @@
      testimonials  [{ id, name, position, company, program, year, comment, photo, companyLogo }]  maksimal 8
      phone, email  Kontak Career Center (footer)                                         -> PK_CAMPUS.phone / email
      address       Alamat Career Center (footer); string kosong = baris alamat disembunyikan   -> PK_CAMPUS.address
-     instagram, facebook  username (tanpa @ atau URL)                                    -> PK_CAMPUS.social.*
+     instagram, facebook, youtube  username / handle (tanpa @ atau URL)                  -> PK_CAMPUS.social.*
      about         Deskripsi footer (50-250 karakter)                                    -> PK_CAMPUS.about
+     primaryColor  Warna utama kampus, hex #rrggbb (kontras dengan teks putih minimal 4,5:1). Kosong = warna bawaan KarirLink.
+                   Dari satu warna ini dibuat skala 50-950 yang menimpa token --color-primary-* di portal.
+     secondaryColor Warna aksen kampus, hex #rrggbb; kosong = aksen jingga bawaan (menimpa --color-secondary-*).
+     palettePreset '' (bawaan) | kunci dari PRESETS | 'custom'; hanya untuk mengingat pilihan di editor
      footerLinks   [{ id, name, url }] maksimal 4, menggantikan kolom "Bantuan" di footer
 
    Dua kunci: PUBLISHED dipakai pengunjung; DRAFT hanya dipakai pratinjau (?landing=draft) di editor admin. */
@@ -35,6 +39,9 @@
   }
   function safeUrl(u) { return /^https?:\/\//i.test(String(u || '').trim()) ? String(u).trim() : ''; }
 
+  // Palet warna: pustaka dan penerapannya ada di templates/campus-theme.js (dimuat di <head> semua halaman).
+  var CT = window.CampusTheme || {};
+
   window.PK_LANDING = {
     KEY_PUB: KEY_PUB, KEY_DRAFT: KEY_DRAFT, LIMITS: LIMITS,
     readPublished: function () { return read(KEY_PUB); },
@@ -42,7 +49,8 @@
     writeDraft: function (cfg) { return write(KEY_DRAFT, cfg); },
     publish: function (cfg) { return write(KEY_PUB, cfg) && write(KEY_DRAFT, cfg); },
     reset: function () { remove(KEY_PUB); remove(KEY_DRAFT); },
-    youtubeEmbed: youtubeEmbed, safeUrl: safeUrl
+    youtubeEmbed: youtubeEmbed, safeUrl: safeUrl,
+    PRESETS: CT.PRESETS, hex6: CT.hex6, scale: CT.scale, contrast: CT.contrast, applyPalette: CT.apply, MIN_CONTRAST: CT.MIN_CONTRAST
   };
 
   // Hanya portal yang menandai skrip ini dengan data-lp-apply; editor admin memuatnya sebagai pustaka saja.
@@ -52,6 +60,8 @@
   var cfg = read(new URLSearchParams(location.search).get('landing') === 'draft' ? KEY_DRAFT : KEY_PUB);
   if (!cfg) return;
 
+  var palette = !!CT.active; // warna kampus sudah dipasang campus-theme.js di <head>
+
   // 1) Sebelum portal.js: isi PK_CAMPUS supaya navbar dan footer bawaan portal memakai identitas Career Center.
   var ov = {}, social = {};
   if (cfg.logo) ov.logo = cfg.logo;
@@ -59,8 +69,11 @@
   if (cfg.email) ov.email = cfg.email;
   if (typeof cfg.address === 'string') ov.address = cfg.address;
   if (cfg.phone) ov.phone = '+' + String(cfg.phone).replace(/[^0-9]/g, '');
-  if (cfg.instagram) social.instagram = 'https://instagram.com/' + encodeURIComponent(cfg.instagram);
-  if (cfg.facebook) social.facebook = 'https://facebook.com/' + encodeURIComponent(cfg.facebook);
+  // Konfigurasi terpublikasi menggantikan tautan contoh bawaan portal: kolom kosong = ikon tidak tampil di footer.
+  social.instagram = cfg.instagram ? 'https://instagram.com/' + encodeURIComponent(cfg.instagram) : '';
+  social.facebook = cfg.facebook ? 'https://facebook.com/' + encodeURIComponent(cfg.facebook) : '';
+  social.youtube = cfg.youtube ? 'https://youtube.com/@' + encodeURIComponent(cfg.youtube) : '';
+  social.x = ''; // belum ada kolomnya di Personalisasi Portal
   var prev = window.PK_CAMPUS || {};
   window.PK_CAMPUS = Object.assign({}, prev, ov, { social: Object.assign({}, prev.social, social) });
 
@@ -81,7 +94,8 @@
     }
     if (cfg.heroDesc && $('heroDesc')) $('heroDesc').textContent = cfg.heroDesc;
     if (cfg.heroImage && hero) {
-      hero.style.backgroundImage = 'linear-gradient(135deg, rgba(14,42,118,.88), rgba(35,97,231,.72)), url("' + String(cfg.heroImage).replace(/"/g, '%22') + '")';
+      var shade = palette ? 'linear-gradient(135deg, color-mix(in srgb, var(--color-primary-900) 88%, transparent), color-mix(in srgb, var(--color-primary-600) 72%, transparent))' : 'linear-gradient(135deg, rgba(14,42,118,.88), rgba(35,97,231,.72))';
+      hero.style.backgroundImage = shade + ', url("' + String(cfg.heroImage).replace(/"/g, '%22') + '")';
       hero.style.backgroundSize = 'cover';
       hero.style.backgroundPosition = 'center';
     }

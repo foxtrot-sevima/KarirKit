@@ -17,6 +17,7 @@ fs.mkdirSync(out, { recursive: true });
 for (const name of PAGES) {
   let s = fs.readFileSync(path.join(src, name + '.html'), 'utf8');
   s = s.split('../../assets/').join('../../../assets/').split('../../dist/').join('../../../dist/');
+  s = s.replace(/\n?<script src="..\/campus-theme.js"><\/script>/, ''); // tema warna milik satu kampus; versi white-label memakai identitasnya sendiri
   s = s.replace('<script src="shell.js"></script>', '<script src="../../portal-karir/shell.js"></script>');
   s = s.replace('<script src="portal.js"></script>', '<script src="campus.js"></script>\n<script src="../../portal-karir/portal.js"></script>');
   for (const t of SHARED) s = s.split(`"${t}.html`).join(`"../../portal-karir/${t}.html`).split(`'${t}.html`).join(`'../../portal-karir/${t}.html`);
