@@ -66,7 +66,7 @@ Hanya dijalankan untuk rilis **design system** (perintah rilis eksplisit, lihat 
 2. Titik aman: Named Version `v<lama>` di Live (bisa dipulihkan lewat Version history). Backup Archive dibuat sekali saat rilis (langkah 5).
 3. Kerjakan langsung di Live (jangan Publish dulu); perbarui entri `[x.y.z] (Draft)` tiap perubahan.
 4. Review: checklist di bawah.
-5. Rilis: rename file ke `[x.y.z]`, Named Version `vx.y.z` (deskripsi = ringkasan changelog), publish library dengan catatan yang sama, Cover dan Changelog = Released (tanggal), tag repo, duplikat Live ke Archive `[x.y.z] — Backup <tanggal>` (matikan publish, view-only).
+5. Rilis, **urut**: (a) Cover dan Changelog = Released (tanggal) dan rename file ke `[x.y.z]` **sebelum** Named Version, supaya snapshot memuat status Released; (b) Named Version `vx.y.z` (deskripsi = ringkasan changelog); (c) Publish library dengan catatan yang sama; (d) duplikat Live ke Archive `[x.y.z] — Backup <tanggal>` **sesudah** Publish (matikan publish di salinan, view-only), agar backup berisi versi yang benar-benar terbit; (e) tag repo sudah ada (rilis repo lebih dulu). Ringkas: Draft, Cover/Changelog, Named Version, Publish, Archive.
 6. Pasca rilis: perbarui Index, bagikan changelog, lanjut ke versi berikutnya langsung di Live.
 
 **Urutan terhadap rilis repo.** Rilis repo (merge `master`/`release`, publish npm, tag `vX.Y.Z`) berjalan lebih dulu dan **tidak menunggu Figma**; Figma dikerjakan sesudahnya, dan tag repo menjadi acuan nomor Named Version. Named Version dan publish library dikerjakan manual di UI Figma (tidak ada tool MCP-nya); isinya disalin dari section `CHANGELOG.md` repo. Selisih antara repo dan Figma dicatat di Index ("Repo vX.Y.Z · Figma vA.B.C").
