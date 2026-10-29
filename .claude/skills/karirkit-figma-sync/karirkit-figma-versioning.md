@@ -82,7 +82,7 @@ Ubah bagian "Celah yang diketahui" di catatan 1.3.4 menjadi daftar ber-ID (`KK-0
 2. **Freeze versi sebelumnya** — Named Version `v<lama>`, duplikat ke Archive sebagai `— Backup <tanggal>`, matikan publish library di file backup, set view-only.
 3. **Kerjakan di Live** (bagian 19) — tanpa Publish sampai review selesai; update entri changelog setiap ada perubahan. Template yang berubah dikerjakan di file template `[x.y.z]` (bagian 14).
 4. **Review** — jalankan checklist (bagian 9).
-5. **Rilis** — terapkan ke Live, rename file ke `[x.y.z]`, Named Version `v<x.y.z>` dengan deskripsi = ringkasan changelog, publish library dengan catatan yang sama, ubah status Cover menjadi Released, buat tag repo, tambahkan backup rilis ke Archive. File template `[x.y.z]` yang berubah dipindah/ditautkan di project 04 dan didaftarkan di Index.
+5. **Rilis** — urutan: Cover dan Changelog = Released (tanggal) dan rename file ke `[x.y.z]`; Named Version `v<x.y.z>` (deskripsi = ringkasan changelog); Publish library dengan catatan yang sama; terakhir duplikat Live ke Archive (backup sesudah Publish agar berisi versi yang terbit). Tag repo sudah ada. File template `[x.y.z]` yang berubah dipindah/ditautkan di project 04 dan didaftarkan di Index.
 6. **Pasca rilis** — update Index, bagikan changelog ke tim, lanjut ke versi berikutnya langsung di Live.
 
 ## 9. Checklist Review Sebelum Rilis
