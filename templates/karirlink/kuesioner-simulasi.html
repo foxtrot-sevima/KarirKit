@@ -7,6 +7,7 @@
 <title>Kuesioner Tracer Study | KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
 <meta name="description" content="Tampilan kuesioner Tracer Study yang dilihat alumni setelah membuka email undangan, untuk pratinjau admin KarirLink." />
 <meta name="author" content="SEVIMA" />
 <link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/kuesioner-simulasi.html" />
@@ -54,6 +55,13 @@
      memang togglable oleh Admin CDC dan default nonaktif, jadi bukan
      bagian alur baku. -->
 <main class="mx-auto max-w-5xl space-y-5 px-4 pb-10 pt-6 sm:px-6 sm:pt-10 lg:px-8" data-combo-boundary>
+
+  <!-- Aksi simulasi (hanya admin yang membuka dari email simulasi, ?simulasi=1; responden dari portal tidak melihatnya): kembali ke halaman
+       Kuesioner. Di luar kartu kuesioner, jadi isi kuesioner tetap persis seperti yang dilihat responden. Kembali antarlangkah memakai
+       tombol Kembali di tiap langkah. -->
+  <div data-sim-only hidden>
+    <a href="kuesioner.html" class="btn-ghost btn-sm -ml-2.5"><i class="kk kk-arrow-left h-4 w-4"></i>Kembali ke Kuesioner</a>
+  </div>
 
   <!-- ============ HERO (hanya langkah 1): konteks tracer yang sedang diisi ============
        Isi diganti applyWave() lewat atribut data-w (heroTitle, heroIntro, heroMinutes). -->
@@ -1689,7 +1697,7 @@
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600"><i class="kk kk-envelope-simple h-4 w-4"></i></span>
         <p class="text-sm leading-relaxed text-slate-600" data-w="successNext"></p>
       </div>
-      <div class="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row">
+      <div class="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row" data-sim-only hidden>
         <button type="button" id="restartBtn" class="btn-outline btn-md">
           <i class="kk kk-x h-4 w-4 shrink-0"></i>
           Isi Ulang Simulasi
@@ -2263,6 +2271,10 @@
   }
 
   const byId = (id) => document.getElementById(id);
+  // Aksi khusus simulasi admin (Kembali ke Kuesioner, Isi Ulang Simulasi) hanya tampil bila dibuka dari email simulasi (?simulasi=1).
+  // Responden asli (mis. dari Tracer Study di portal-karir) tidak membawa tanda itu, jadi tidak melihat aksi ini.
+  const SIM_MODE = new URLSearchParams(location.search).has('simulasi');
+  document.querySelectorAll('[data-sim-only]').forEach((el) => { el.hidden = !SIM_MODE; });
 
   // Hero (konteks tracer) hanya tampil di langkah 1.
   function renderHero() {
@@ -2442,6 +2454,10 @@
     if (typeof el.focus === 'function') el.focus({ preventScroll: true });
   }
 
+  // Id kolom bulan (f502 dijawab "Tidak") dan id pesan galatnya: nilainya harus lebih dari 0.
+  const MONTH_ERROR_ID = { masaTungguInput: 'masaTungguError', bekerja25Masa: 'bekerja25MasaError', wira25Masa: 'wira25MasaError' };
+  const MONTH_FIELDS = Object.keys(MONTH_ERROR_ID);
+
   function validateStep() {
     let valid = true;
     let firstInvalidEl = null;
@@ -2454,6 +2470,15 @@
     function checkText(id) {
       const el = document.getElementById(id);
       if (!markFieldError(el, id + 'Error', el.value.trim() !== '')) noteInvalid(el);
+    }
+
+    // Bulan sampai pekerjaan/usaha pertama (f502 dijawab "Tidak"): wajib terisi dan lebih dari 0, karena 0 berarti sudah didapat sebelum lulus ("Ya").
+    function checkMonths(id) {
+      const el = document.getElementById(id);
+      const raw = el.value.trim();
+      const errorEl = document.getElementById(MONTH_ERROR_ID[id]);
+      if (errorEl) errorEl.textContent = raw === '' ? 'Wajib diisi.' : 'Isi lebih dari 0 bulan, karena Anda menjawab Tidak.';
+      if (!markFieldError(el, MONTH_ERROR_ID[id], raw !== '' && Number(raw) > 0)) noteInvalid(el);
     }
 
     function checkRadioGroup(name, errorId) {
@@ -2480,7 +2505,7 @@
       checkRadioGroup('f8', 'f8Error');
 
       if (!document.getElementById('masaTungguBlock').classList.contains('hidden') && !document.getElementById('masaTungguWrap').classList.contains('hidden')) {
-        checkText('masaTungguInput');
+        checkMonths('masaTungguInput');
       }
     }
 
@@ -2517,7 +2542,7 @@
       // Format 2025: bulan f502 hanya wajib saat jawaban "Tidak" (wrapper-nya tampil).
       const masaIdsByBranch = { bekerja: ['bekerja25Masa', 'masaBekerja25Wrap'], wiraswasta: ['wira25Masa', 'masaWira25Wrap'] };
       const masa = FMT === '2025' && masaIdsByBranch[branch ? branch.value : ''];
-      if (masa && !document.getElementById(masa[1]).classList.contains('hidden')) required.unshift(masa[0]);
+      if (masa && !document.getElementById(masa[1]).classList.contains('hidden')) checkMonths(masa[0]);
       required.forEach(checkText);
     }
 
@@ -2533,6 +2558,7 @@
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('input', () => {
+      if (MONTH_FIELDS.includes(id)) { if (Number(el.value) > 0) markFieldError(el, MONTH_ERROR_ID[id], true); return; }
       if (el.value.trim() !== '') markFieldError(el, id + 'Error', true);
     });
   });
