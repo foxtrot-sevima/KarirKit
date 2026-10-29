@@ -85,12 +85,10 @@
 <!-- ============================= SIDEBAR (lg ke atas) ============================= -->
 <aside class="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md lg:flex" aria-label="Navigasi dokumentasi">
   <div class="flex h-16 shrink-0 items-center border-b border-slate-200/70 px-5">
-    <a href="index.html" class="flex items-center gap-3">
-      <img src="assets/logo/karirlink-mark.svg" alt="" class="h-9 w-9" />
-      <span class="leading-tight">
-        <span class="block font-display text-base font-bold text-slate-900"><span class="text-primary-600">Karir</span><span class="text-secondary-600">Kit</span></span>
-        <span class="block text-xs text-slate-500">Design System · v1.4.0</span>
-      </span>
+    <a href="index.html" class="flex items-center gap-3" aria-label="KarirKit, Design System v1.5.0">
+      <img src="assets/logo/karirkit-logo.svg" alt="KarirKit" class="logo-on-light h-7 w-auto" />
+      <img src="assets/logo/karirkit-logo-white.svg" alt="KarirKit" class="logo-on-dark h-7 w-auto" />
+      <span class="border-l border-slate-200 pl-3 text-xs font-medium text-slate-500">v1.5.0</span>
     </a>
   </div>
   <div class="flex min-h-0 flex-1 flex-col" data-ds-panel></div>
@@ -103,9 +101,9 @@
 <!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
 <div class="drawer drawer-left lg:hidden" id="dsMenu" aria-label="Navigasi dokumentasi">
   <div class="drawer-header">
-    <a href="index.html" class="drawer-title flex items-center gap-2.5">
-      <img src="assets/logo/karirlink-mark.svg" alt="" class="h-8 w-8" />
-      <span class="font-display text-base font-bold"><span class="text-primary-600">Karir</span><span class="text-secondary-600">Kit</span></span>
+    <a href="index.html" class="drawer-title flex items-center gap-2.5" aria-label="KarirKit">
+      <img src="assets/logo/karirkit-logo.svg" alt="KarirKit" class="logo-on-light h-6 w-auto" />
+      <img src="assets/logo/karirkit-logo-white.svg" alt="KarirKit" class="logo-on-dark h-6 w-auto" />
     </a>
     <button type="button" class="drawer-close" data-drawer-hide="dsMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
   </div>
@@ -142,6 +140,61 @@
 
 <main class="w-full px-4 sm:px-6 lg:px-10">
 
+
+  <!-- ============================= OVERVIEW ============================= -->
+  <section id="overview" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
+    <div class="mb-6">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">Overview</h2>
+      <p class="mt-1 text-sm text-slate-500">Design system produk KarirLink: token, komponen, dan ikon yang dipakai semua halaman.</p>
+    </div>
+
+    <div class="card p-6 sm:p-8">
+      <div class="flex flex-wrap items-center gap-3">
+        <img src="assets/logo/karirkit-logo.svg" alt="KarirKit" class="logo-on-light h-9 w-auto" />
+        <img src="assets/logo/karirkit-logo-white.svg" alt="KarirKit" class="logo-on-dark h-9 w-auto" />
+        <span class="badge-primary">v1.5.0</span>
+      </div>
+      <p class="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600">Kelas komponen Tailwind v4, JavaScript ringan untuk interaksi (Modal, Drawer, Table, dan lainnya), serta ikon KarirIcon. Aplikasi memakai paketnya lewat npm dan membangun CSS-nya sendiri dari tema KarirKit.</p>
+      <div class="mt-5 flex flex-wrap gap-2.5">
+        <a href="#buttons" class="btn-primary btn-md">Lihat Komponen</a>
+        <a href="icons.html" class="btn-outline btn-md">KarirIcon</a>
+        <a href="templates/dashboard.html" class="btn-outline btn-md">Template</a>
+      </div>
+    </div>
+
+    <div class="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div class="card p-4"><p class="text-2xl font-bold text-slate-900" data-ds-count="Foundation">0</p><p class="mt-0.5 text-sm text-slate-500">Foundation</p></div>
+      <div class="card p-4"><p class="text-2xl font-bold text-slate-900" data-ds-count="Components">0</p><p class="mt-0.5 text-sm text-slate-500">Components</p></div>
+      <div class="card p-4"><p class="text-2xl font-bold text-slate-900" data-ds-count="Forms">0</p><p class="mt-0.5 text-sm text-slate-500">Forms</p></div>
+      <div class="card p-4"><p class="text-2xl font-bold text-slate-900" data-ds-count="Plugins">0</p><p class="mt-0.5 text-sm text-slate-500">Plugins</p></div>
+    </div>
+
+    <div class="mt-5 grid gap-5 lg:grid-cols-2">
+      <div class="card p-6">
+        <h3 class="font-display text-lg font-bold text-slate-900">Mulai cepat</h3>
+        <p class="mt-1 text-sm text-slate-500">Paket dipublikasikan di GitHub Packages, jadi siapkan <span class="kbd">.npmrc</span> lebih dulu (langkahnya ada di README).</p>
+        <p class="mt-4 text-xs font-semibold text-slate-700">1. Install</p>
+        <div class="relative mt-1.5">
+          <input id="ov-install" type="text" class="input pr-11 font-mono text-sm" value="npm install @foxtrot-sevima/karirkit@1.5.0" readonly aria-label="Perintah install KarirKit" />
+          <span class="group absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex"><button type="button" class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg" data-clipboard-target="#ov-install" aria-label="Salin perintah install"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin perintah install</span></span>
+        </div>
+        <p class="mt-4 text-xs font-semibold text-slate-700">2. Impor tema di CSS aplikasi</p>
+        <div class="relative mt-1.5">
+          <input id="ov-theme" type="text" class="input pr-11 font-mono text-sm" value="@import &quot;@foxtrot-sevima/karirkit/theme&quot;;" readonly aria-label="Impor tema KarirKit di CSS aplikasi" />
+          <span class="group absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex"><button type="button" class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg" data-clipboard-target="#ov-theme" aria-label="Salin impor tema"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin impor tema</span></span>
+        </div>
+      </div>
+      <div class="card p-6">
+        <h3 class="font-display text-lg font-bold text-slate-900">Isi KarirKit</h3>
+        <dl class="mt-4 space-y-4 text-sm">
+          <div><dt class="font-semibold text-slate-800">Design tokens</dt><dd class="mt-0.5 text-slate-500">Warna, tipografi, radius, dan bayangan dalam tiga lapisan: primitive, semantic, dan komponen.</dd></div>
+          <div><dt class="font-semibold text-slate-800">Komponen</dt><dd class="mt-0.5 text-slate-500">Kelas siap pakai untuk tombol, form, tabel, navigasi, modal, dan lainnya, dengan JavaScript ringan bila perlu.</dd></div>
+          <div><dt class="font-semibold text-slate-800">Tema Light, Dark, dan System</dt><dd class="mt-0.5 text-slate-500">Opt-in per halaman lewat <span class="kbd">data-theme</span>, pilihan tersimpan di peramban.</dd></div>
+          <div><dt class="font-semibold text-slate-800">KarirIcon</dt><dd class="mt-0.5 text-slate-500">Set ikon KarirKit dengan beberapa bobot, dipakai lewat kelas <span class="kbd">kk-*</span>.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
 
   <!-- ============================= LOGO ============================= -->
   <section id="logo" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
@@ -5673,6 +5726,120 @@
     </div>
   </section>
 
+  <section id="file-upload" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
+    <div class="mb-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900">File Upload</h2>
+      <p class="mt-1 max-w-3xl text-sm text-slate-500">Unggah file lewat klik atau seret - input file standar, dropzone, banyak file dengan progres, pratinjau gambar, varian ringkas, error, dan disabled. Bungkus dengan <code class="kbd">.upload</code> + <code class="kbd">data-file-upload</code>; <code class="kbd">assets/js/file-upload.js</code> memvalidasi format (<code class="kbd">accept</code>) dan ukuran (<code class="kbd">data-upload-max-size</code>, MB), menampilkan daftar file, dan menyinkronkan file ke <code class="kbd">&lt;input type="file"&gt;</code>. Event <code class="kbd">upload:add</code>, <code class="kbd">upload:remove</code>, <code class="kbd">upload:error</code>; API <code class="kbd">KKUpload</code>.</p>
+    </div>
+    <div class="grid grid-cols-1 gap-x-6 lg:grid-cols-2">
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">File input</h3>
+      <p class="mb-3 text-sm text-slate-500">Input file standar dengan gaya <code>.input-file</code>: tombol "Choose file" bawaan browser dipakai ulang tanpa JS. Cocok untuk satu berkas di formulir yang padat.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="w-full">
+  <label class="form-label" for="fu-input">Unggah proposal</label>
+  <input id="fu-input" type="file" class="input input-file" accept=".pdf,.doc,.docx" />
+  <p class="form-hint">PDF, DOC, atau DOCX, maksimal 5 MB.</p>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Dropzone</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>.upload</code> + <code>.upload-drop</code>: klik atau seret file. Format dibaca dari <code>accept</code>, batas ukuran dari <code>data-upload-max-size</code> (MB); file yang ditolak menampilkan pesan di <code>.form-error</code>. Di ponsel teks "atau seret" disembunyikan dan area lebih ringkas.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full" data-file-upload data-upload-max-size="5">
+  <label class="form-label">Proposal Kegiatan</label>
+  <label class="upload-drop" for="fu-drop">
+    <input id="fu-drop" type="file" class="sr-only" accept=".pdf,.doc,.docx" />
+    <span class="upload-icon"><i class="kk kk-file-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF, DOC, atau DOCX (maks. 5 MB)</span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Multiple files with progress</h3>
+      <p class="mb-3 text-sm text-slate-500">Atribut <code>multiple</code> pada input dan <code>data-upload-max-files</code> membatasi jumlah. <code>data-upload-simulate="true"</code> menampilkan progres palsu untuk mockup; di aplikasi, isi progres lewat <code>KKUpload.progress(el, file, persen)</code>.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full" data-file-upload data-upload-max-size="10" data-upload-max-files="4" data-upload-simulate="true">
+  <label class="form-label">Berkas Pendukung</label>
+  <label class="upload-drop" for="fu-multi">
+    <input id="fu-multi" type="file" class="sr-only" accept=".pdf,.jpg,.jpeg,.png" multiple />
+    <span class="upload-icon"><i class="kk kk-cloud-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF, JPG, atau PNG, maksimal 4 file (maks. 10 MB per file)</span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Image preview</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>data-upload-preview="image"</code> menampilkan miniatur gambar yang dipilih (poster, logo, foto). File non-gambar memakai ikon berkas.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full" data-file-upload data-upload-max-size="2" data-upload-preview="image">
+  <label class="form-label">Poster</label>
+  <label class="upload-drop" for="fu-image">
+    <input id="fu-image" type="file" class="sr-only" accept=".jpg,.jpeg,.png" />
+    <span class="upload-icon"><i class="kk kk-image " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">JPG atau PNG (maks. 2 MB)</span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Compact</h3>
+      <p class="mb-3 text-sm text-slate-500"><code>.upload-compact</code>: satu baris dengan ikon di kiri, untuk formulir yang tidak butuh area besar (pengaturan, modal).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload upload-compact w-full" data-file-upload data-upload-max-size="2" data-upload-preview="image">
+  <label class="form-label">Logo Kampus</label>
+  <label class="upload-drop" for="fu-compact">
+    <input id="fu-compact" type="file" class="sr-only" accept=".jpg,.jpeg,.png" />
+    <span class="upload-icon"><i class="kk kk-image " aria-hidden="true"></i></span>
+    <span class="upload-text"><span class="upload-title"><b>Klik untuk pilih file</b></span><span class="upload-hint">JPG, JPEG, atau PNG (maks. 2 MB)</span></span>
+  </label>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Sizes</h3>
+      <p class="mb-3 text-sm text-slate-500">Lebar selalu mengikuti wadah. Tinggi area diatur lewat <code>.upload-sm</code> (7rem), bawaan (11rem), atau <code>.upload-lg</code> (16rem); nilai bebas lewat <code>style="--upload-h: 12rem"</code>. Di ponsel tinggi dibatasi 8,5rem.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+  <div class="upload upload-sm" data-file-upload><label class="form-label">Kecil</label><label class="upload-drop" for="fu-sm">
+    <input id="fu-sm" type="file" class="sr-only" accept=".pdf" />
+    <span class="upload-icon"><i class="kk kk-cloud-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF (maks. 5 MB)</span>
+  </label></div>
+  <div class="upload upload-lg" data-file-upload><label class="form-label">Besar</label><label class="upload-drop" for="fu-lg">
+    <input id="fu-lg" type="file" class="sr-only" accept=".pdf" />
+    <span class="upload-icon"><i class="kk kk-cloud-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF (maks. 5 MB)</span>
+  </label></div>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Error</h3>
+      <p class="mb-3 text-sm text-slate-500">Tambahkan <code>aria-invalid="true"</code> pada <code>.upload</code> dan <code>.form-error</code> di bawahnya. Pesan ini juga diisi otomatis saat format atau ukuran file ditolak (event <code>upload:error</code>).</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full" data-file-upload aria-invalid="true">
+  <label class="form-label">Proposal Kegiatan</label>
+  <label class="upload-drop" for="fu-error">
+    <input id="fu-error" type="file" class="sr-only" accept=".pdf,.doc,.docx" />
+    <span class="upload-icon"><i class="kk kk-file-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">PDF, DOC, atau DOCX (maks. 5 MB)</span>
+  </label>
+  <p class="form-error" data-upload-error>Proposal wajib diunggah untuk kegiatan kerja sama.</p>
+</div></div>
+    </div>
+    <div class="flex min-w-0 flex-col mb-10">
+      <h3 class="mb-1 text-base font-semibold text-slate-900">Disabled</h3>
+      <p class="mb-3 text-sm text-slate-500">Atribut <code>disabled</code> pada input menonaktifkan klik dan seret.</p>
+      <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8"><div class="upload w-full" data-file-upload>
+  <label class="form-label">Berkas</label>
+  <label class="upload-drop" for="fu-disabled">
+    <input id="fu-disabled" type="file" class="sr-only" accept=".pdf" disabled />
+    <span class="upload-icon"><i class="kk kk-cloud-arrow-up " aria-hidden="true"></i></span>
+    <span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span>
+    <span class="upload-hint">Unggah dinonaktifkan</span>
+  </label>
+</div></div>
+    </div>
+    </div>
+  </section>
+
   <section id="list-group" class="scroll-mt-16 py-8 sm:py-10" data-ds-section>
     <div class="mb-8">
       <h2 class="font-display text-2xl font-bold text-slate-900">List Group</h2>
@@ -6845,7 +7012,7 @@
 <footer class="mt-10 border-t border-slate-200/70 py-8">
   <div class="flex flex-col items-center justify-between gap-3 px-6 text-xs text-slate-400 sm:flex-row lg:px-10">
     <p>© 2026 KarirKit. Dibangun dengan Tailwind CSS.</p>
-    <p>Design System v1.4.0</p>
+    <p>Design System v1.5.0</p>
   </div>
 </footer>
 
@@ -7152,6 +7319,7 @@
 <script src="assets/js/pagination.js"></script>
 <script src="assets/js/clipboard.js"></script>
 <script src="assets/js/drawer.js"></script>
+<script src="assets/js/file-upload.js"></script>
 <script src="assets/js/vendor/apexcharts.min.js"></script>
 <script src="assets/js/chart.js"></script>
 <script src="assets/js/theme.js"></script>
@@ -7160,9 +7328,10 @@
   // <section data-ds-section>; pilihan bagian lewat hash (#colors), ada pencarian dan pintasan Ctrl/Cmd + K.
   (function () {
     var GROUPS = [
+      { name: 'Getting Started', ids: ['overview'] },
       { name: 'Foundation', ids: ['logo', 'colors', 'typography', 'icons'] },
       { name: 'Components', ids: ['buttons', 'button-group', 'badges', 'avatars', 'cards', 'alerts', 'toasts', 'modals', 'drawer', 'dropdowns', 'tabs', 'navigation', 'navbar', 'footer', 'pagination', 'tables', 'list-group', 'timeline', 'progress'] },
-      { name: 'Forms', ids: ['forms', 'datepicker', 'timepicker'] },
+      { name: 'Forms', ids: ['forms', 'file-upload', 'datepicker', 'timepicker'] },
       { name: 'Plugins', ids: ['wysiwyg', 'chart', 'qr-code', 'clipboard'] }
     ];
     var sections = Array.prototype.slice.call(document.querySelectorAll('[data-ds-section]'));
@@ -7174,6 +7343,11 @@
     });
     var used = {};
     GROUPS.forEach(function (g) { g.ids = g.ids.filter(function (id) { return byId[id]; }); g.ids.forEach(function (id) { used[id] = 1; groupOf[id] = g.name; }); });
+    // Hitungan per grup di bagian Overview mengikuti daftar bagian yang ada.
+    document.querySelectorAll('[data-ds-count]').forEach(function (el) {
+      var g = GROUPS.filter(function (x) { return x.name === el.getAttribute('data-ds-count'); })[0];
+      el.textContent = g ? g.ids.length : 0;
+    });
     var rest = sections.map(function (s) { return s.id; }).filter(function (id) { return !used[id]; });
     if (rest.length) { GROUPS.push({ name: 'Lainnya', ids: rest }); rest.forEach(function (id) { groupOf[id] = 'Lainnya'; }); }
 
