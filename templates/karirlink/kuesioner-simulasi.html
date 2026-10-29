@@ -2182,10 +2182,11 @@
       ? 'Survei Pengguna Lulusan | KarirLink'
       : `Tracer Study ${wave.label} | KarirLink`;
 
-    // Normalkan URL ke ?tracer=... (tautan lama ?gelombang= diganti).
+    // Normalkan URL ke ?tracer=... (tautan lama ?gelombang= dan tautan portal ?kuesioner= diganti).
     const url = new URL(location.href);
     url.searchParams.set('tracer', currentWave);
     url.searchParams.delete('gelombang');
+    url.searchParams.delete('kuesioner');
     history.replaceState(null, '', url);
 
     updateExitSim();
@@ -2682,7 +2683,10 @@
   // kondisi jawaban Lulus dari ?exit=. Keduanya dikirim oleh tombol di kuesioner-mail.html. ----
   const startParams = new URLSearchParams(location.search);
   if (EXIT_ANSWERS.includes(startParams.get('exit'))) exitAnswer = startParams.get('exit');
-  applyWave(startParams.get('tracer') || startParams.get('gelombang'));
+  // Portal Karir menautkan kuesioner lewat ?kuesioner=<id> (PK.tracerLink: pra-lulus, pasca-1, pasca-4); id itu dipetakan ke tracer halaman ini.
+  const PORTAL_ID = { 'pasca-1': 'pasca-1th', 'pasca-4': 'pasca-4th' };
+  const portalId = startParams.get('kuesioner');
+  applyWave(startParams.get('tracer') || startParams.get('gelombang') || PORTAL_ID[portalId] || portalId);
   renderStep();
 
   // ---- Branching: f8 (status G1) menentukan cabang detail di step 3 ----
