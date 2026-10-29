@@ -19,12 +19,12 @@ Figma tidak mendukung folder bersarang, jadi pisahkan dengan Project berawalan a
 ```
 00 KarirKit — Index          → file "KarirKit — Index & Changelog" (satu-satunya pintu masuk, berisi link semua file)
 01 KarirKit — Live           → "KarirKit Design System [1.3.4]"   (library yang dipublish; nomor versi diganti saat rilis)
-02 KarirKit — Draft          → "KarirKit Design System [1.3.5] — Draft"  (duplikat kerja; plan tanpa branch)
+02 KarirKit — Draft          → "KarirKit Design System [x.y.z] — Draft"  (hanya untuk percobaan berisiko; rilis dikerjakan langsung di Live, bagian 19)
 03 KarirKit — Archive        → "KarirKit Design System [1.3.4] — Backup 2026-10-14" (beku, satu per rilis)
 04 KarirKit — Templates      → satu file per fitur per revisi. Template contoh DS: "<Nama>, KarirKit [x.y.z]" (mis. "Autentifikasi, KarirKit [1.3.5]"); template mockup: "<Nama halaman>, KarirLink|Portal Karir [YYYY-MM-DD]" (bagian 14)
 ```
 
-Draft: plan yang dipakai tidak mendukung branching, jadi duplikat file Live ke project Draft; saat rilis, terapkan perubahan ke file Live dan jangan menimpa Live dengan duplikat (komponen yang berubah diedit di tempat di Live; komponen baru boleh disalin).
+Draft: plan yang dipakai tidak mendukung branching. Sejak keputusan bagian 19, rilis dikerjakan langsung di Live (perubahan tidak terlihat konsumen sampai Publish); Draft duplikat hanya untuk percobaan berisiko. Jangan menimpa Live dengan duplikat dan jangan menghapus lalu menempel komponen yang sudah ada.
 
 ## 3. Struktur Halaman di Dalam File Library
 
@@ -80,10 +80,10 @@ Ubah bagian "Celah yang diketahui" di catatan 1.3.4 menjadi daftar ber-ID (`KK-0
 
 1. **Persiapan** — tulis entri `[x.y.z] (Draft)` di Changelog dan buat ticket.
 2. **Freeze versi sebelumnya** — Named Version `v<lama>`, duplikat ke Archive sebagai `— Backup <tanggal>`, matikan publish library di file backup, set view-only.
-3. **Draft** — kerjakan di duplikat Draft; update entri changelog setiap ada perubahan. Template yang berubah dikerjakan di file template `[x.y.z]` (bagian 14).
+3. **Kerjakan di Live** (bagian 19) — tanpa Publish sampai review selesai; update entri changelog setiap ada perubahan. Template yang berubah dikerjakan di file template `[x.y.z]` (bagian 14).
 4. **Review** — jalankan checklist (bagian 9).
 5. **Rilis** — terapkan ke Live, rename file ke `[x.y.z]`, Named Version `v<x.y.z>` dengan deskripsi = ringkasan changelog, publish library dengan catatan yang sama, ubah status Cover menjadi Released, buat tag repo, tambahkan backup rilis ke Archive. File template `[x.y.z]` yang berubah dipindah/ditautkan di project 04 dan didaftarkan di Index.
-6. **Pasca rilis** — update Index, bagikan changelog ke tim, buat Draft untuk versi berikutnya.
+6. **Pasca rilis** — update Index, bagikan changelog ke tim, lanjut ke versi berikutnya langsung di Live.
 
 ## 9. Checklist Review Sebelum Rilis
 
@@ -308,3 +308,15 @@ Aturan gerbang: "Dasar KarirKit" file mockup tidak boleh lebih baru dari library
 3. **Template contoh DS tetap `[x.y.z]`** karena berada di lingkup design system.
 4. **Figma boleh tertinggal dari repo**, dicatat di Index, dengan batas satu rilis MINOR (SKILL.md bagian 6).
 5. **Palet kampus sebagai mode `Brand`** (Zamrud, Marun, Ungu, Teal, Navy) atau cukup state default (SKILL.md bagian 7). Usulan: cukup state default sampai ada kebutuhan desain.
+
+## 19. Keputusan 2026-10-29: Live sebagai ruang kerja (menggantikan duplikat Draft ke Live)
+
+Disetujui owner. Latar belakang: pada rilis 1.3.5, menyalin komponen dari Draft ke Live dengan hapus lalu tempel mengganti key komponen (139 ikon, bagian komponen template Autentifikasi) dan memutus instance; pemulihan lewat Version history dan perbaikan manual (instance diarahkan ulang ke komponen lokal, komponen yang tertempel sebagai referensi remote dijadikan komponen lokal).
+
+Aturan baru (rinci di SKILL.md bagian 4 dan 6):
+1. Kerjakan langsung di Live; Publish hanya saat rilis. Titik aman: Named Version `v<lama>` sebelum mulai.
+2. Draft duplikat hanya untuk percobaan berisiko; yang matang dibangun ulang di Live.
+3. Jangan hapus lalu tempel komponen yang sudah ada. Komponen berubah diedit di tempat; komponen baru dibuat di Live atau ditempel hanya yang baru; periksa instance remote atau tanpa parent sesudah menempel.
+4. Backup Archive satu kali, saat rilis.
+5. Catch-up Figma dikerjakan berurutan per versi repo (menggantikan usulan gabungan di bagian 16 dan 18 butir 1); pekerjaan 1.3.6 dan seterusnya langsung di Live.
+6. Branching Figma tetap pilihan terbaik bila plan naik ke Organization atau Enterprise.
