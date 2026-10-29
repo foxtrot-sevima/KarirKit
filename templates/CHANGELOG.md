@@ -8,19 +8,36 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-10-29
+
+Dasar KarirKit: v1.5.0
+
+### Changed
+
+- **Validasi bulan pekerjaan/usaha pertama di simulasi Tracer** (`templates/karirlink/kuesioner-simulasi.html`): bila "Apakah Anda mendapatkan pekerjaan pertama sebelum lulus?" (atau memulai wiraswasta sebelum lulus) dijawab **Tidak**, isian "Dalam berapa bulan…" wajib terisi dan **lebih dari 0** (Format Lampau dan 2025, cabang Bekerja dan Wiraswasta). Nilai 0 atau kosong menampilkan pesan galat dan menahan Lanjut; pesan hilang begitu nilainya valid.
+- **Simulasi Tracer: aksi kembali ke Kuesioner dan pengaturan simulasi digabung** (`templates/karirlink/kuesioner-mail.html`, `kuesioner-simulasi.html`, `kuesioner.html`): halaman email simulasi dan halaman kuesioner simulasi punya tautan "Kembali ke Kuesioner" di atas kartu (ke halaman Kuesioner, bukan popup), di luar kartu supaya email dan kuesioner tetap persis seperti yang dilihat responden. Di kuesioner, tautan itu dan tombol "Isi Ulang Simulasi" di layar selesai hanya tampil bila dibuka dari email simulasi (`?simulasi=1`); responden asli, mis. dari Tracer Study di Portal Karir, tidak melihatnya. Di popup Simulasi Tracer, "Kondisi alumni sebelum membuka kuesioner" dan "Format kuesioner" kini satu bagian di bawah Pasca-Lulus 2: Format selalu tampil untuk Pasca-Lulus 1 dan 2, Kondisi alumni hanya muncul untuk Pasca-Lulus 1.
+
 ## 2026-10-28
 
-Dasar KarirKit: v1.4.0
+Dasar KarirKit: v1.5.0
+
+### Added
+
+- **Palet warna per kampus di Personalisasi Portal** (`templates/karirlink/pengaturan-landing-page.html`, `templates/campus-theme.js`, `templates/portal-karir/landing.js`): section baru **Warna** untuk memilih palet bawaan KarirLink, lima preset (Zamrud, Marun, Ungu, Teal, Navy), atau Kustom dengan warna utama dan aksen (pemilih warna + kolom hex). Warna utama divalidasi kontrasnya dengan teks putih (minimal 4,5:1); ada contoh tampilan langsung di panel Warna. Satu warna dasar dibuat menjadi skala 50-950 oleh skrip baru `templates/campus-theme.js`, dimuat di `<head>` **semua halaman panel admin KarirLink dan Portal Karir** (termasuk login, daftar, onboarding), dan menimpa token `--color-primary-*` / `--color-secondary-*`. Seluruh komponen KarirKit ikut berganti tanpa kelas baru dan tanpa kedipan warna bawaan. Berlaku hanya untuk kampus yang mengisinya: kosong = warna bawaan KarirLink, dan versi white-label `templates/custom` tidak memuat tema ini (`scripts/gen-custom-portal.mjs` membuangnya). Kunci konfigurasi baru: `primaryColor`, `secondaryColor`, `palettePreset`.
+- **Kolom YouTube di Kontak Career Center** (`templates/karirlink/pengaturan-landing-page.html`, `templates/portal-karir/landing.js`): username/handle YouTube kampus tampil sebagai ikon di footer portal (`youtube.com/@handle`). Ikon media sosial yang kolomnya kosong tidak lagi tampil di footer setelah konfigurasi dipublikasikan (sebelumnya memakai tautan contoh `#`). Pratinjau Bimbingan Karir kini memakai poster video YouTube, bukan kotak biru kosong. Kartu pilihan palet warna menampilkan strip lima warna.
 
 ### Changed
 
 - **Redaksi Tracer Study Format Lampau disamakan dengan builder dan yang dilihat lulusan** (`templates/karirlink/kuesioner-simulasi.html`, `kuesioner-builder.html`): "Penggunaan TI" menjadi "Penggunaan Teknologi Informasi"; pertanyaan kesesuaian pendidikan (f15, Bekerja dan Wiraswasta) memakai "Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan Anda saat ini?"; "Pengembangan Diri" menjadi "Pengembangan diri". Deskripsi di bawah pertanyaan yang berupa catatan internal atau penjelasan alur ("Dikirim ke Dikti", "data internal", "Data Atasan tidak ditampilkan", pemisah ribuan, provinsi/kab-kota hanya jika di Indonesia) dihapus dari simulasi agar sama persis dengan tampilan lulusan. Penjelasan tambahan yang dinilai tidak perlu bagi lulusan juga dihapus: "Diisi semua alumni, apa pun status Anda", "Tanggal lulus = tanggal yudisium", "Wiraswasta = wirausaha", "Kelulusan dihitung berdasarkan bulan yudisium" (termasuk "dan pekerjaan sambilan tidak dimasukkan"), dan "Dipakai untuk membuat link Survei Pengguna Lulusan".
 - **Cara mencari pekerjaan di cabang Tidak Bekerja, Mencari Kerja (Format Lampau) menjadi 15 opsi** (`templates/karirlink/kuesioner-simulasi.html`): sebelumnya hanya 6 opsi. Kini sama dengan cabang Bekerja dan builder: `f401`-`f414` ditambah Lainnya (`f415`, dengan isian teks `f416`), sesuai `template-pddikti.json`. Format 2025 tetap 13 opsi karena instrumen 2025 menghapus `f410` dan `f412`.
 - **Redaksi tiga pertanyaan jumlah lamaran di cabang Tidak Bekerja, Mencari Kerja (Format Lampau) disamakan** (`templates/karirlink/kuesioner-simulasi.html`, `kuesioner-builder.html`): "Jumlah perusahaan dilamar", "Jumlah merespons lamaran", dan "Jumlah mengundang wawancara" menjadi kalimat pertanyaan lengkap ("Berapa perusahaan / instansi / institusi yang sudah Anda lamar sampai saat ini?", dan seterusnya), sama dengan cabang Bekerja. Builder (Lampau, Bekerja dan Tidak Bekerja Mencari Kerja) ikut disamakan.
+- **Pengaturan Landing Page menjadi Personalisasi Portal** (`templates/karirlink/pengaturan-landing-page.html` dan menu sidebar semua halaman admin, label "Personalisasi"): isinya sekarang logo, warna, dan landing page, bukan lagi hanya landing page. Panel Pratinjau Portal Karir (iframe) dihapus; editor memakai dua kolom di layar lebar (daftar section di kiri dengan penanda section aktif, form di kanan; Simpan/Batal tetap di section yang sama), sedangkan di ponsel daftar dan form tetap bergantian. Animasi geser/fade antar-section dihapus (panel langsung berganti). Tombol "Lihat Landing Page" membuka draf (`?landing=draft`) di tab baru. Nama file tidak berubah supaya tautan lama tetap jalan.
+- **Onboarding Portal Karir layar penuh** (`templates/portal-karir/onboarding.html`): panel biru di kanan (logo, stepper vertikal, kartu "Kenapa kami menanyakan ini?") dihapus. Satu kolom di semua lebar layar (maks. 56rem) dengan logo, "Lewati semua", dan progres bersegmen di bagian atas seperti tampilan ponsel, ukuran elemen lebih ringkas, dan latar `bg-shell` seperti halaman portal lainnya. Bidang minat 3 kolom di layar lebar.
+
 
 ## 2026-10-27
 
-Dasar KarirKit: v1.4.0
+Dasar KarirKit: v1.5.0
 
 ### Added
 
@@ -31,6 +48,7 @@ Dasar KarirKit: v1.4.0
 
 ### Changed
 
+- **Unggah file memakai komponen File Upload** (`templates/karirlink/pengaturan-landing-page.html`, `lowongan-form.html`, `event-form.html`): kolom gambar Landing Page memakai tampilan `.upload-compact` (CSS `.lp-drop` buatan halaman dihapus); formulir Lowongan dan Event memakai dropzone dengan validasi format/ukuran dan pratinjau gambar. Komponen File Upload sudah dirilis di KarirKit v1.5.0.
 - **Nama gelombang mengikuti istilah kuesioner Kemdikti**, bukan lagi berdasar waktu: Pra-Lulus menjadi **Lulus**, Pasca-Lulus 1 Tahun menjadi **Pasca-Lulus 1**, Pasca-Lulus 4 Tahun menjadi **Pasca-Lulus 2**. Waktu kirim ditentukan kampus per periode (Pasca-Lulus 1 bisa dikirim saat lulus), jadi nama tidak lagi memuat "1 tahun" atau "4 tahun". Berlaku di Yudisium (daftar, detail, jawaban), detail alumni, Kuesioner (builder, simulasi, email undangan), badge periode di Overview, dan Portal Karir.
 - **Tautan Tracer Study mengikuti domain kampus** (`kuesioner.html`, `kuesioner-mail.html`, `kuesioner-simulasi.html`): tautan kuesioner, QR, email undangan, dan tautan survei atasan memakai domain tempat panel dibuka, bukan `karirlink.id` tetap.
 - **Email undangan Tracer Study** (`templates/karirlink/kuesioner-mail.html`): salam memakai nama lengkap (alumni "Halo Ahmad Dimas,"; atasan "Yth. Bapak/Ibu/Saudara ..."), sapaan atasan diganti netral "Bapak/Ibu/Saudara" agar satu template cukup, kartu info (durasi, jumlah langkah, batas waktu) dihapus, nama universitas ditebalkan, dan logo KarirLink menautkan ke https://karirlink.id.
