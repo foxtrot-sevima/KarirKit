@@ -2453,6 +2453,10 @@
     if (typeof el.focus === 'function') el.focus({ preventScroll: true });
   }
 
+  // Id kolom bulan (f502 dijawab "Tidak") dan id pesan galatnya: nilainya harus lebih dari 0.
+  const MONTH_ERROR_ID = { masaTungguInput: 'masaTungguError', bekerja25Masa: 'bekerja25MasaError', wira25Masa: 'wira25MasaError' };
+  const MONTH_FIELDS = Object.keys(MONTH_ERROR_ID);
+
   function validateStep() {
     let valid = true;
     let firstInvalidEl = null;
@@ -2465,6 +2469,15 @@
     function checkText(id) {
       const el = document.getElementById(id);
       if (!markFieldError(el, id + 'Error', el.value.trim() !== '')) noteInvalid(el);
+    }
+
+    // Bulan sampai pekerjaan/usaha pertama (f502 dijawab "Tidak"): wajib terisi dan lebih dari 0, karena 0 berarti sudah didapat sebelum lulus ("Ya").
+    function checkMonths(id) {
+      const el = document.getElementById(id);
+      const raw = el.value.trim();
+      const errorEl = document.getElementById(MONTH_ERROR_ID[id]);
+      if (errorEl) errorEl.textContent = raw === '' ? 'Wajib diisi.' : 'Isi lebih dari 0 bulan, karena Anda menjawab Tidak.';
+      if (!markFieldError(el, MONTH_ERROR_ID[id], raw !== '' && Number(raw) > 0)) noteInvalid(el);
     }
 
     function checkRadioGroup(name, errorId) {
@@ -2491,7 +2504,7 @@
       checkRadioGroup('f8', 'f8Error');
 
       if (!document.getElementById('masaTungguBlock').classList.contains('hidden') && !document.getElementById('masaTungguWrap').classList.contains('hidden')) {
-        checkText('masaTungguInput');
+        checkMonths('masaTungguInput');
       }
     }
 
@@ -2528,7 +2541,7 @@
       // Format 2025: bulan f502 hanya wajib saat jawaban "Tidak" (wrapper-nya tampil).
       const masaIdsByBranch = { bekerja: ['bekerja25Masa', 'masaBekerja25Wrap'], wiraswasta: ['wira25Masa', 'masaWira25Wrap'] };
       const masa = FMT === '2025' && masaIdsByBranch[branch ? branch.value : ''];
-      if (masa && !document.getElementById(masa[1]).classList.contains('hidden')) required.unshift(masa[0]);
+      if (masa && !document.getElementById(masa[1]).classList.contains('hidden')) checkMonths(masa[0]);
       required.forEach(checkText);
     }
 
@@ -2544,6 +2557,7 @@
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('input', () => {
+      if (MONTH_FIELDS.includes(id)) { if (Number(el.value) > 0) markFieldError(el, MONTH_ERROR_ID[id], true); return; }
       if (el.value.trim() !== '') markFieldError(el, id + 'Error', true);
     });
   });
