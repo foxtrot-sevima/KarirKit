@@ -39,6 +39,10 @@
      Opsional untuk menguji Pasca-Lulus 1: tambahkan ?exit=belum|bekerja|wiraswasta (kondisi jawaban
      Lulus alumni), diteruskan ke kuesioner lewat tombol di email. -->
 <main class="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-10">
+  <!-- Aksi kembali (sudut pandang simulasi): ke halaman Kuesioner. Di luar kartu email, jadi emailnya tetap persis seperti yang diterima responden. -->
+  <div class="mb-4">
+    <a href="kuesioner.html" class="btn-ghost btn-sm -ml-2.5"><i class="kk kk-arrow-left h-4 w-4"></i>Kembali ke Kuesioner</a>
+  </div>
   <article class="card overflow-hidden" aria-label="Email undangan">
 
     <!-- Kepala email: subjek, pengirim, penerima, tanggal -->
@@ -167,7 +171,8 @@
   const exit = ['belum', 'bekerja', 'wiraswasta'].includes(params.get('exit')) ? params.get('exit') : null;
 
   // Tombol di email membuka kuesioner (tampilan responden). ?exit= (jika ada) hanya diteruskan untuk Pasca-Lulus 1.
-  const ctaQuery = new URLSearchParams({ tracer: current });
+  // simulasi=1: tanda bahwa kuesioner dibuka dari simulasi admin, sehingga aksi simulasi (Kembali ke Kuesioner, Isi Ulang) tampil. Responden asli tidak membawanya.
+  const ctaQuery = new URLSearchParams({ tracer: current, simulasi: '1' });
   if (current === 'pasca-1th' && exit) ctaQuery.set('exit', exit);
   // ?format=2025|lampau: versi instrumen Pasca-Lulus 1 (default 2025), diteruskan untuk Pasca-Lulus 1 & 2.
   if ((current === 'pasca-1th' || current === 'pasca-4th') && params.get('format') === 'lampau') ctaQuery.set('format', 'lampau');

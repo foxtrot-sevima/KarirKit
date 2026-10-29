@@ -8,6 +8,14 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-10-29
+
+Dasar KarirKit: v1.4.0
+
+### Changed
+
+- **Simulasi Tracer: aksi kembali ke Kuesioner dan pengaturan simulasi digabung** (`templates/karirlink/kuesioner-mail.html`, `kuesioner-simulasi.html`, `kuesioner.html`): halaman email simulasi dan halaman kuesioner simulasi punya tautan "Kembali ke Kuesioner" di atas kartu (ke halaman Kuesioner, bukan popup), di luar kartu supaya email dan kuesioner tetap persis seperti yang dilihat responden. Di kuesioner, tautan itu dan tombol "Isi Ulang Simulasi" di layar selesai hanya tampil bila dibuka dari email simulasi (`?simulasi=1`); responden asli, mis. dari Tracer Study di Portal Karir, tidak melihatnya. Di popup Simulasi Tracer, "Kondisi alumni sebelum membuka kuesioner" dan "Format kuesioner" kini satu bagian di bawah Pasca-Lulus 2: Format selalu tampil untuk Pasca-Lulus 1 dan 2, Kondisi alumni hanya muncul untuk Pasca-Lulus 1.
+
 ## 2026-10-28
 
 Dasar KarirKit: v1.4.0

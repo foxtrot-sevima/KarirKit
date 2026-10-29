@@ -55,6 +55,13 @@
      bagian alur baku. -->
 <main class="mx-auto max-w-5xl space-y-5 px-4 pb-10 pt-6 sm:px-6 sm:pt-10 lg:px-8" data-combo-boundary>
 
+  <!-- Aksi simulasi (hanya admin yang membuka dari email simulasi, ?simulasi=1; responden dari portal tidak melihatnya): kembali ke halaman
+       Kuesioner. Di luar kartu kuesioner, jadi isi kuesioner tetap persis seperti yang dilihat responden. Kembali antarlangkah memakai
+       tombol Kembali di tiap langkah. -->
+  <div data-sim-only hidden>
+    <a href="kuesioner.html" class="btn-ghost btn-sm -ml-2.5"><i class="kk kk-arrow-left h-4 w-4"></i>Kembali ke Kuesioner</a>
+  </div>
+
   <!-- ============ HERO (hanya langkah 1): konteks tracer yang sedang diisi ============
        Isi diganti applyWave() lewat atribut data-w (heroTitle, heroIntro, heroMinutes). -->
   <section id="formHero" class="relative overflow-hidden rounded-2xl bg-brand-gradient px-6 py-7 text-white shadow-card-lg sm:px-8 sm:py-9">
@@ -1689,7 +1696,7 @@
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600"><i class="kk kk-envelope-simple h-4 w-4"></i></span>
         <p class="text-sm leading-relaxed text-slate-600" data-w="successNext"></p>
       </div>
-      <div class="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row">
+      <div class="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row" data-sim-only hidden>
         <button type="button" id="restartBtn" class="btn-outline btn-md">
           <i class="kk kk-x h-4 w-4 shrink-0"></i>
           Isi Ulang Simulasi
@@ -2263,6 +2270,10 @@
   }
 
   const byId = (id) => document.getElementById(id);
+  // Aksi khusus simulasi admin (Kembali ke Kuesioner, Isi Ulang Simulasi) hanya tampil bila dibuka dari email simulasi (?simulasi=1).
+  // Responden asli (mis. dari Tracer Study di portal-karir) tidak membawa tanda itu, jadi tidak melihat aksi ini.
+  const SIM_MODE = new URLSearchParams(location.search).has('simulasi');
+  document.querySelectorAll('[data-sim-only]').forEach((el) => { el.hidden = !SIM_MODE; });
 
   // Hero (konteks tracer) hanya tampil di langkah 1.
   function renderHero() {
