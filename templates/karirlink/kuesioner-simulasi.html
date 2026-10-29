@@ -569,16 +569,19 @@
           </div>
         </div>
         <div>
-          <label class="form-label">Berapa perusahaan / instansi / institusi yang sudah Anda lamar sampai saat ini?</label>
-          <input type="number" min="0" class="input" placeholder="mis. 15" />
+          <label class="form-label">Berapa perusahaan / instansi / institusi yang sudah Anda lamar sampai saat ini? <span class="text-danger-600">*</span></label>
+          <input type="number" min="0" class="input" placeholder="mis. 15" data-reveal-required />
+          <p class="mt-1.5 hidden text-xs font-medium text-danger-600" data-reveal-error>Wajib diisi.</p>
         </div>
         <div>
-          <label class="form-label">Berapa banyak perusahaan / instansi / institusi yang merespon lamaran Anda sampai saat ini?</label>
-          <input type="number" min="0" class="input" placeholder="mis. 5" />
+          <label class="form-label">Berapa banyak perusahaan / instansi / institusi yang merespon lamaran Anda sampai saat ini? <span class="text-danger-600">*</span></label>
+          <input type="number" min="0" class="input" placeholder="mis. 5" data-reveal-required />
+          <p class="mt-1.5 hidden text-xs font-medium text-danger-600" data-reveal-error>Wajib diisi.</p>
         </div>
         <div>
-          <label class="form-label">Berapa banyak perusahaan / instansi / institusi yang mengundang Anda untuk wawancara sampai saat ini?</label>
-          <input type="number" min="0" class="input" placeholder="mis. 2" />
+          <label class="form-label">Berapa banyak perusahaan / instansi / institusi yang mengundang Anda untuk wawancara sampai saat ini? <span class="text-danger-600">*</span></label>
+          <input type="number" min="0" class="input" placeholder="mis. 2" data-reveal-required />
+          <p class="mt-1.5 hidden text-xs font-medium text-danger-600" data-reveal-error>Wajib diisi.</p>
         </div>
         <div>
           <p class="q-prompt">Jika Anda merasa pekerjaan saat ini tidak sesuai dengan pendidikan, mengapa mengambil pekerjaan tersebut? <span class="text-danger-600">*</span> <span class="font-normal text-slate-400">(boleh pilih lebih dari satu)</span></p>
@@ -831,16 +834,19 @@
           </div>
         </div>
         <div>
-          <label class="form-label">Berapa perusahaan / instansi / institusi yang sudah Anda lamar sampai saat ini?</label>
-          <input type="number" min="0" class="input" placeholder="mis. 15" />
+          <label class="form-label">Berapa perusahaan / instansi / institusi yang sudah Anda lamar sampai saat ini? <span class="text-danger-600">*</span></label>
+          <input type="number" min="0" class="input" placeholder="mis. 15" data-reveal-required />
+          <p class="mt-1.5 hidden text-xs font-medium text-danger-600" data-reveal-error>Wajib diisi.</p>
         </div>
         <div>
-          <label class="form-label">Berapa banyak perusahaan / instansi / institusi yang merespon lamaran Anda sampai saat ini?</label>
-          <input type="number" min="0" class="input" placeholder="mis. 4" />
+          <label class="form-label">Berapa banyak perusahaan / instansi / institusi yang merespon lamaran Anda sampai saat ini? <span class="text-danger-600">*</span></label>
+          <input type="number" min="0" class="input" placeholder="mis. 4" data-reveal-required />
+          <p class="mt-1.5 hidden text-xs font-medium text-danger-600" data-reveal-error>Wajib diisi.</p>
         </div>
         <div>
-          <label class="form-label">Berapa banyak perusahaan / instansi / institusi yang mengundang Anda untuk wawancara sampai saat ini?</label>
-          <input type="number" min="0" class="input" placeholder="mis. 2" />
+          <label class="form-label">Berapa banyak perusahaan / instansi / institusi yang mengundang Anda untuk wawancara sampai saat ini? <span class="text-danger-600">*</span></label>
+          <input type="number" min="0" class="input" placeholder="mis. 2" data-reveal-required />
+          <p class="mt-1.5 hidden text-xs font-medium text-danger-600" data-reveal-error>Wajib diisi.</p>
         </div>
       </div>
 
@@ -2558,9 +2564,9 @@
       required.forEach(checkText);
     }
 
-    // f302/f303 (perkiraan bulan mulai mencari kerja/usaha): muncul setelah f301 dijawab Sebelum/Sesudah lulus, jadi wajib terisi selama wrapper-nya tampil.
+    // Isian angka wajib (data-reveal-required): f302/f303 (perkiraan bulan, muncul setelah f301 dijawab Sebelum/Sesudah lulus) dan jumlah lamaran/respons/wawancara Format Lampau; wajib terisi selama kolomnya tampil.
     document.querySelectorAll('input[data-reveal-required]').forEach((el) => {
-      const wrap = el.closest('.reveal-wrap');
+      const wrap = el.closest('.reveal-wrap') || el.parentElement;
       if (!wrap || wrap.offsetParent === null) return;
       const errorEl = wrap.querySelector('[data-reveal-error]');
       const ok = el.value.trim() !== '';
@@ -2577,7 +2583,7 @@
     el.addEventListener('input', () => {
       if (el.value.trim() === '') return;
       el.classList.remove('border-danger-500');
-      const errorEl = el.closest('.reveal-wrap').querySelector('[data-reveal-error]');
+      const errorEl = (el.closest('.reveal-wrap') || el.parentElement).querySelector('[data-reveal-error]');
       if (errorEl) errorEl.classList.add('hidden');
     });
   });
