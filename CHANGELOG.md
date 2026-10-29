@@ -10,10 +10,13 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 - **Komponen File Upload** (`.upload` + `.upload-drop`, `.upload-icon`, `.upload-title`, `.upload-hint`, `.upload-list`, `.upload-item`, `.upload-thumb`, `.upload-remove`, `.upload-compact`; `.input-file` untuk input file standar; `assets/js/file-upload.js`): unggah file lewat klik atau seret. Memvalidasi format (`accept`) dan ukuran (`data-upload-max-size`, MB) serta jumlah file (`data-upload-max-files`), menampilkan daftar file dengan miniatur gambar (`data-upload-preview="image"`), tombol hapus, dan progres (`data-upload-simulate` untuk mockup, `KKUpload.progress()` untuk aplikasi). File yang lolos disinkronkan ke `<input type="file">` sehingga pengiriman `<form>` biasa tetap bekerja. Event `upload:add|remove|error`; API `KKUpload`. Di ponsel teks "seret" disembunyikan dan tombol hapus 44px. Tujuh contoh: file input, dropzone, banyak file dengan progres, pratinjau gambar, ringkas, error, disabled.
 
+### Changed
+
+- **Dokumentasi `index.html`: bagian Overview dan logo KarirKit di sidebar**: halaman pertama kini **Overview** (grup Getting Started): ringkasan KarirKit, tombol ke komponen, KarirIcon, dan Template, hitungan bagian per grup, panduan mulai cepat (install dan impor tema, masing-masing berupa kolom baca-saja dengan tombol salin dari komponen Clipboard), serta isi paket. Logo di sidebar dan Drawer memakai lockup KarirKit (`assets/logo/karirkit-logo.svg`, versi putih untuk tema gelap) menggantikan mark KarirLink dengan teks.
+
 ### Fixed
 
 - **Build Storybook gagal di Vercel** karena `dist/output.css` tidak ada (`dist/` tidak di-commit, sedangkan `staticDirs` Storybook menyalin `dist`). Skrip `build-storybook` kini membangun CSS lebih dulu (`npm run build && storybook build`), jadi berhasil tanpa Build Command khusus di project Vercel storybook.
-
 
 ## [1.4.0] - 2026-10-26
 
