@@ -8,6 +8,16 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-10-28
+
+Dasar KarirKit: v1.4.0
+
+### Changed
+
+- **Redaksi Tracer Study Format Lampau disamakan dengan builder dan yang dilihat lulusan** (`templates/karirlink/kuesioner-simulasi.html`, `kuesioner-builder.html`): "Penggunaan TI" menjadi "Penggunaan Teknologi Informasi"; pertanyaan kesesuaian pendidikan (f15, Bekerja dan Wiraswasta) memakai "Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan Anda saat ini?"; "Pengembangan Diri" menjadi "Pengembangan diri". Deskripsi di bawah pertanyaan yang berupa catatan internal atau penjelasan alur ("Dikirim ke Dikti", "data internal", "Data Atasan tidak ditampilkan", pemisah ribuan, provinsi/kab-kota hanya jika di Indonesia) dihapus dari simulasi agar sama persis dengan tampilan lulusan. Penjelasan tambahan yang dinilai tidak perlu bagi lulusan juga dihapus: "Diisi semua alumni, apa pun status Anda", "Tanggal lulus = tanggal yudisium", "Wiraswasta = wirausaha", "Kelulusan dihitung berdasarkan bulan yudisium" (termasuk "dan pekerjaan sambilan tidak dimasukkan"), dan "Dipakai untuk membuat link Survei Pengguna Lulusan".
+- **Cara mencari pekerjaan di cabang Tidak Bekerja, Mencari Kerja (Format Lampau) menjadi 15 opsi** (`templates/karirlink/kuesioner-simulasi.html`): sebelumnya hanya 6 opsi. Kini sama dengan cabang Bekerja dan builder: `f401`-`f414` ditambah Lainnya (`f415`, dengan isian teks `f416`), sesuai `template-pddikti.json`. Format 2025 tetap 13 opsi karena instrumen 2025 menghapus `f410` dan `f412`.
+- **Redaksi tiga pertanyaan jumlah lamaran di cabang Tidak Bekerja, Mencari Kerja (Format Lampau) disamakan** (`templates/karirlink/kuesioner-simulasi.html`, `kuesioner-builder.html`): "Jumlah perusahaan dilamar", "Jumlah merespons lamaran", dan "Jumlah mengundang wawancara" menjadi kalimat pertanyaan lengkap ("Berapa perusahaan / instansi / institusi yang sudah Anda lamar sampai saat ini?", dan seterusnya), sama dengan cabang Bekerja. Builder (Lampau, Bekerja dan Tidak Bekerja Mencari Kerja) ikut disamakan.
+
 ## 2026-10-27
 
 Dasar KarirKit: v1.4.0
