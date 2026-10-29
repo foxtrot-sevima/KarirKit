@@ -2613,11 +2613,19 @@
     document.querySelectorAll('.border-danger-500').forEach((el) => el.classList.remove('border-danger-500'));
   }
 
+  // Status "Belum memungkinkan bekerja" tidak punya pertanyaan di langkah Detail Sesuai Status (isinya hanya keterangan),
+  // jadi responden asli melewatinya langsung ke Sumber Dana, Kompetensi, dan Metode Pembelajaran. Simulasi admin (?simulasi=1) tetap menampilkannya.
+  function isEmptyDetailStep() {
+    const f8 = document.querySelector('input[name="f8"]:checked');
+    return currentFlow() === 'g1' && currentStep === 3 && !SIM_MODE && !!f8 && f8.value === 'belum-memungkinkan';
+  }
+
   document.querySelectorAll('[data-next]').forEach((btn) => {
     btn.addEventListener('click', () => {
       if (!validateStep()) return;
       if (currentStep < totalSteps()) {
         currentStep += 1;
+        if (isEmptyDetailStep()) currentStep += 1;
         renderStep();
         scrollToForm();
       }
@@ -2628,6 +2636,7 @@
     btn.addEventListener('click', () => {
       if (currentStep > 1) {
         currentStep -= 1;
+        if (isEmptyDetailStep()) currentStep -= 1;
         renderStep();
         scrollToForm();
       }
