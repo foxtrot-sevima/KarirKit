@@ -44,9 +44,10 @@ Repo memisahkan **Design System** dan **Mockup template**; Figma mengikuti pemis
 - Token baru di repo (lewat permintaan template, lihat `karirkit-conventions` bagian 0) wajib masuk Figma di rilis yang sama.
 
 ## 4. Struktur Figma
-- Project: `00 Index` (file "Index & Changelog", pintu masuk; memuat Project Registry dan halaman "Mockup Changelog"), `01 Live` (library yang dipublish), `02 Draft` (duplikat kerja; plan tanpa branch), `03 Archive` (backup beku, satu per rilis DS), `04 Templates` (satu file per fitur; template contoh DS berversi `[x.y.z]`, mockup berversi `[YYYY-MM-DD]`, bagian 8).
+- Project: `00 Index` (file "Index & Changelog", pintu masuk; memuat Project Registry dan halaman "Mockup Changelog"), `01 Live` (library yang dipublish), `02 Draft` (duplikat hanya untuk percobaan berisiko, bukan jalur rilis; plan tanpa branch), `03 Archive` (backup beku, satu per rilis DS), `04 Templates` (satu file per fitur; template contoh DS berversi `[x.y.z]`, mockup berversi `[YYYY-MM-DD]`, bagian 8).
 - Halaman library: Cover (status, owner, tanggal, link tag), Changelog (satu frame per versi, terbaru di atas), Foundations, Components, Symbol, Templates ringkas, Draft/WIP, Deprecated (bertahan minimal satu rilis minor).
-- Draft = duplikat file Live. Saat rilis, terapkan perubahan ke Live (komponen berubah diedit di tempat; komponen baru boleh disalin); **jangan menimpa Live dengan duplikat**.
+- **Live adalah ruang kerja.** Perubahan di Live tidak terlihat oleh file konsumen sampai Publish, jadi komponen dibangun dan diedit langsung di Live (lewat MCP/skrip atau manual), tanpa menyalin dari Draft. Draft duplikat hanya untuk percobaan berisiko (ubah struktur banyak komponen); yang sudah matang dibangun ulang di Live, bukan dihapus lalu ditempel.
+- **Jangan hapus lalu tempel komponen yang sudah ada** (ikon, komponen template, apa pun yang sudah dipublish): komponen berganti key dan instance di file konsumen putus. Komponen yang berubah diedit di tempat (rename variant boleh bila hanya menambah property berdefault); komponen baru dibuat di Live, atau ditempel sekali dengan memilih **hanya** yang baru. Setelah menempel, periksa instance yang menunjuk komponen remote (`mainComponent.remote`) atau tanpa parent dan arahkan ke komponen lokal. Jangan Publish di tengah pekerjaan; tidak ada hotfix selagi pekerjaan belum selesai (pulihkan dari Named Version bila perlu).
 
 ## 5. Format changelog Figma (per versi)
 ```
@@ -62,20 +63,19 @@ Repo tag: vx.y.z · Named Version: vx.y.z · Backup: <nama file backup>
 ## 6. Alur rilis Figma (mengikuti rilis repo)
 Hanya dijalankan untuk rilis **design system** (perintah rilis eksplisit, lihat `karirkit-release`); alur untuk mockup ada di bagian 8.
 1. Persiapan: entri `[x.y.z] (Draft)` di Changelog Figma.
-2. Freeze versi lama: Named Version `v<lama>`, duplikat ke Archive `— Backup <tanggal>`, matikan publish, view-only.
-3. Draft: kerjakan di duplikat; perbarui entri tiap perubahan.
+2. Titik aman: Named Version `v<lama>` di Live (bisa dipulihkan lewat Version history). Backup Archive dibuat sekali saat rilis (langkah 5).
+3. Kerjakan langsung di Live (jangan Publish dulu); perbarui entri `[x.y.z] (Draft)` tiap perubahan.
 4. Review: checklist di bawah.
-5. Rilis: terapkan ke Live, rename file ke `[x.y.z]`, Named Version `vx.y.z` (deskripsi = ringkasan changelog), publish library dengan catatan yang sama, Cover = Released, tag repo, backup ke Archive.
-6. Pasca rilis: perbarui Index, bagikan changelog, buat Draft versi berikutnya.
+5. Rilis, **urut**: (a) Cover dan Changelog = Released (tanggal) dan rename file ke `[x.y.z]` **sebelum** Named Version, supaya snapshot memuat status Released; (b) Named Version `vx.y.z` (deskripsi = ringkasan changelog); (c) Publish library dengan catatan yang sama; (d) duplikat Live ke Archive `[x.y.z] — Backup <tanggal>` **sesudah** Publish (matikan publish di salinan, view-only), agar backup berisi versi yang benar-benar terbit; (e) tag repo sudah ada (rilis repo lebih dulu). Ringkas: Draft, Cover/Changelog, Named Version, Publish, Archive.
+6. Pasca rilis: perbarui Index, bagikan changelog, lanjut ke versi berikutnya langsung di Live.
 
 **Urutan terhadap rilis repo.** Rilis repo (merge `master`/`release`, publish npm, tag `vX.Y.Z`) berjalan lebih dulu dan **tidak menunggu Figma**; Figma dikerjakan sesudahnya, dan tag repo menjadi acuan nomor Named Version. Named Version dan publish library dikerjakan manual di UI Figma (tidak ada tool MCP-nya); isinya disalin dari section `CHANGELOG.md` repo. Selisih antara repo dan Figma dicatat di Index ("Repo vX.Y.Z · Figma vA.B.C").
 
 **Catch-up (Figma tertinggal beberapa versi dari repo).** Status saat ini (versi Live, selisih, isi per versi) dibaca di dokumen versioning bagian 16, bukan di skill ini. Aturan:
-- Satu rilis Figma gabungan ke versi repo terbaru, bukan rilis berurutan per versi: Named Version hanya `v<terbaru>` (deskripsi merujuk semua entri), satu backup versi Live terakhir, satu publish.
-- Changelog Figma tetap satu frame per versi repo yang terlewat, masing-masing ditandai "Released di repo <tanggal>; masuk Figma bersama v<terbaru>", supaya jejak versi tidak hilang.
-- Pekerjaan dilanjutkan di Draft yang ada; daftar isi per versi ada di dokumen versioning bagian 16.
+- **Keputusan: rilis berurutan, satu rilis Figma per versi repo yang terlewat** (Named Version, publish, dan backup masing-masing), supaya version history Figma utuh. Gabungan (satu Named Version ke versi terbaru) hanya bila ada keputusan tertulis baru.
+- Changelog Figma satu frame per versi repo.
+- Pekerjaan dilanjutkan langsung di Live; daftar isi per versi ada di dokumen versioning bagian 16.
 - Selisih repo dan Figma tidak boleh lebih dari satu rilis MINOR saat rilis MINOR/MAJOR berikutnya disiapkan, kecuali ada keputusan tertulis.
-- Catch-up gabungan adalah usulan yang menunggu persetujuan owner rilis; alternatif (rilis berurutan) dibahas di dokumen versioning bagian 18.
 
 **Checklist review:** token sama dengan `@theme` · tidak ada nomor versi di nama elemen · variant/property baru mengikuti penamaan yang ada · binding benar · Light dan Dark dicek · deskripsi dan changelog terisi dengan link node valid · breaking change punya migration note · Known Issues diperbarui · Code Connect diperbarui bila komponen berubah.
 

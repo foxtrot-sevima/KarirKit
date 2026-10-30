@@ -8,6 +8,19 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-10-30
+
+Dasar KarirKit: v1.5.0
+
+### Changed
+
+- **Tanggal Akhir dihapus dari Pengaturan Gelombang Pengiriman** (`templates/karirlink/yudisium-detail.html`): tiap gelombang (Lulus, Pasca-Lulus 1, Pasca-Lulus 2) kini hanya punya Tanggal Mulai. Keterangan yang menyebut "rentang tanggal" diganti "tanggal mulai", dan catatan dev ikut disesuaikan.
+- **Form Tanggal Mulai selalu di bawah kartu gelombang** (`templates/karirlink/yudisium-detail.html`): kartu Lulus, Pasca-Lulus 1, dan Pasca-Lulus 2 kini kolom flex dengan blok Tanggal Mulai di dasar kartu (`mt-auto`), sehingga ketiganya sejajar walau panjang deskripsinya berbeda.
+- **Modal Ekspor Hasil disederhanakan** (`templates/karirlink/kuesioner.html`): pilihan "Menampilkan data terbaru" dihapus, dan penamaan di dropdown Tahun Lulus menjadi "2025 (Baru)" serta "2024/2023/2022 (Lampau)" (sebelumnya "format v2"/"format v1"), sama dengan istilah Format Baru dan Format Lampau di Tracer; keterangan di bawahnya disesuaikan.
+- **Tooltip tombol header Kuesioner dirapikan** (`templates/karirlink/kuesioner.html`): tooltip kini rata tengah di bawah tombol (`data-tooltip-side="bottom"` benar-benar dipakai, sebelumnya diabaikan sehingga muncul di atas dan rata kiri), tetap di dalam layar, dan menghilang saat tombol diklik agar tidak menutupi menu atau modal.
+- **Ekspor Hasil menjadi tombol ikon di luar menu, titik tiga diberi tooltip** (`templates/karirlink/kuesioner.html`): header halaman Kuesioner kini berisi, dari kiri: tombol titik tiga vertikal yang lebih ramping (tooltip "Lainnya", membuka menu QR Tracer dan Lihat Panduan), tombol ikon Ekspor Hasil (tooltip "Ekspor Hasil"), lalu Simulasi Tracer. Tooltip memakai `data-tooltip-trigger`; target sentuh 44px di ponsel dan tidak ada scroll horizontal di 390px.
+- **Data Atasan wajib untuk status Bekerja di Tracer Pasca-Lulus** (`templates/karirlink/kuesioner-simulasi.html`): badge "Opsional" dan tombol "Lewati" dihapus; nama, jabatan, email, telp, dan alamat kantor atasan bertanda `*`, menolak kosong ("Wajib diisi."), dan menahan Buat Link serta Selesai sampai terisi semua. Teks pengantar diganti menjadi langkah wajib terakhir.
+
 ## 2026-10-29
 
 Dasar KarirKit: v1.5.0
