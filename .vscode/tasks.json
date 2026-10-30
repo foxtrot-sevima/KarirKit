@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "mockup:today",
+      "type": "shell",
+      "command": "node scripts/mockup-today.mjs",
+      "detail": "Pindah ke branch mockup tanggal hari ini bila branch aktif adalah branch mockup bertanggal lebih lama.",
+      "runOptions": { "runOn": "folderOpen" },
+      "presentation": { "reveal": "silent", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    }
+  ]
+}
