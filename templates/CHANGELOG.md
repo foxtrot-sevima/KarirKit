@@ -20,6 +20,12 @@ Dasar KarirKit: v1.5.0
 - **Tooltip tombol header Kuesioner dirapikan** (`templates/karirlink/kuesioner.html`): tooltip kini rata tengah di bawah tombol (`data-tooltip-side="bottom"` benar-benar dipakai, sebelumnya diabaikan sehingga muncul di atas dan rata kiri), tetap di dalam layar, dan menghilang saat tombol diklik agar tidak menutupi menu atau modal.
 - **Ekspor Hasil menjadi tombol ikon di luar menu, titik tiga diberi tooltip** (`templates/karirlink/kuesioner.html`): header halaman Kuesioner kini berisi, dari kiri: tombol titik tiga vertikal yang lebih ramping (tooltip "Lainnya", membuka menu QR Tracer dan Lihat Panduan), tombol ikon Ekspor Hasil (tooltip "Ekspor Hasil"), lalu Simulasi Tracer. Tooltip memakai `data-tooltip-trigger`; target sentuh 44px di ponsel dan tidak ada scroll horizontal di 390px.
 - **Data Atasan wajib untuk status Bekerja di Tracer Pasca-Lulus** (`templates/karirlink/kuesioner-simulasi.html`): badge "Opsional" dan tombol "Lewati" dihapus; nama, jabatan, email, telp, dan alamat kantor atasan bertanda `*`, menolak kosong ("Wajib diisi."), dan menahan Buat Link serta Selesai sampai terisi semua. Teks pengantar diganti menjadi langkah wajib terakhir.
+- **Kolom Aksi Lowongan dan Event lebih ringkas** (`templates/karirlink/lowongan.html`, `event.html`): tombol "Lihat Detail" dihapus, judul posisi/event kini menjadi tautan ke detail (Event: membuka drawer detail). Kolom Aksi hanya berisi aksi yang berbeda per baris (Tinjau untuk menunggu persetujuan, Ubah untuk lowongan kampus).
+
+### Added
+
+- **Lowongan di panel admin KarirLink** (`templates/karirlink/lowongan.html`, `lowongan-detail.html`, `lowongan-form.html`): satu daftar untuk lowongan kampus dan lowongan yang diajukan mitra, dengan antrean "Menunggu Persetujuan" (lowongan mitra tidak tampil di Portal Karir sebelum disetujui), filter Status/Sumber/Tipe, halaman tinjau (setujui & terbitkan, tolak dengan alasan wajib, turunkan), pelacakan pelamar per tahap (Belum Diproses, Lolos Berkas, Interview 1, Interview 2, Diterima, Ditolak), serta formulir buat/ubah lowongan (penyelenggara kampus atau mitra, target program studi, batas kota, dokumen wajib, jadwal terbit).
+- **Event di panel admin KarirLink** (`templates/karirlink/event.html`, `event-form.html`): daftar event kampus dan permintaan kegiatan kerja sama mitra (beasiswa, kewirausahaan, pelatihan, seminar/webinar, pameran karier), laci detail dengan setujui/tolak (alasan wajib), dan formulir buat/ubah event dengan proposal untuk kegiatan mitra.
 
 ## 2026-10-29
 

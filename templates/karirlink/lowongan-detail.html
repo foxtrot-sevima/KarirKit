@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Detail Lowongan | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Tinjau lowongan, setujui atau tolak lowongan mitra, dan pantau pelamar." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/lowongan-detail.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Detail Lowongan | KarirLink" />
+<meta property="og:description" content="Tinjau lowongan, setujui atau tolak lowongan mitra, dan pantau pelamar." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/lowongan-detail.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Detail Lowongan | KarirLink" />
+<meta name="twitter:description" content="Tinjau lowongan, setujui atau tolak lowongan mitra, dan pantau pelamar." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Overview</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
+        </a>
+        <a href="yudisium.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Kerjasama" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
+        </a>
+        <a href="lowongan.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a href="event.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a href="mahasiswa-alumni.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
+        </a>
+        <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
+        </a>
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
+        </a>
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Personalisasi" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Personalisasi</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu admin">
+      <div>
+        <div class="space-y-1">
+          <a href="index.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Tracer</p>
+        <div class="space-y-1">
+          <a href="kuesioner.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kuesioner</span>
+          </a>
+          <a href="yudisium.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Daftar Yudisium</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Portal Karir</p>
+        <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Kerjasama" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kerjasama</span>
+          </a>
+          <a href="lowongan.html" class="nav-item nav-item-active">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="event.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Event</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">General</p>
+        <div class="space-y-1">
+          <a href="mahasiswa-alumni.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Mahasiswa/Alumni</span>
+          </a>
+          <a href="aktivitas-lamaran.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Aktivitas Lamaran</span>
+          </a>
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Report</span>
+          </a>
+          <a href="pengaturan-landing-page.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Personalisasi</span>
+          </a>
+        </div>
+      </div>
+  
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">RK</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="navbar navbar-sticky navbar-app">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+<a href="index.html" class="breadcrumb-link shrink-0"><span class="hidden sm:inline">Overview</span></a>
+<span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span><a href="lowongan.html" class="breadcrumb-link shrink-0"><span class="hidden sm:inline">Lowongan</span></a>
+<span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span><span class="breadcrumb-current min-w-0" aria-current="page"><span class="min-w-0 truncate">Detail</span></span>
+</nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
+      <div class="relative hidden lg:block">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title">Rina Kartika</p>
+              <p class="dropdown-header-desc">rina.kartika@kampus.ac.id</p>
+            </div>
+          </div>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+<div class="min-w-0"><a href="lowongan.html" class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-primary-600"><i class="kk kk-arrow-left h-4 w-4"></i>Kembali ke Lowongan</a>
+<h2 class="mt-2 font-display text-2xl font-bold text-slate-900 sm:text-3xl" id="dTitle">Product Designer</h2>
+<p class="mt-1 flex flex-wrap items-center gap-2 text-sm text-slate-500"><span id="dCompany" class="font-medium text-slate-700">Gojek</span><span>·</span><span>Jakarta · Hybrid</span><span id="dStatus"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Persetujuan</span></span><span><span class="badge-secondary">Mitra</span></span></p></div>
+<div class="flex w-full flex-wrap gap-2 sm:w-auto" id="dActions"></div>
+</div>
+<div id="dWarn" class="alert alert-warning hidden" role="alert"><i class="kk kk-warning-circle alert-icon"></i><div>Lowongan ini diajukan mitra dan <span class="font-semibold">belum tampil di Portal Karir</span>. Periksa isi dan kelayakannya, lalu setujui atau tolak dengan alasan.</div></div>
+<div class="grid gap-6 lg:grid-cols-3">
+<div class="space-y-6 lg:col-span-2">
+<section class="card p-5 sm:p-6"><h3 class="text-base font-semibold text-slate-800">Deskripsi Pekerjaan</h3><div class="mt-5 space-y-5"><p class="text-sm leading-relaxed text-slate-700">Merancang pengalaman produk end-to-end: riset pengguna, wireframe, prototipe, hingga handoff ke engineering. Bekerja bersama product manager dan engineer dalam tim lintas fungsi.</p></div></section>
+<section class="card p-5 sm:p-6"><h3 class="text-base font-semibold text-slate-800">Persyaratan</h3><div class="mt-5 space-y-5"><ul class="list-disc space-y-1.5 pl-5 text-sm text-slate-700"><li>Minimal D3/S1 dari program studi Desain, Informatika, atau terkait.</li><li>Portofolio desain produk digital (wajib dilampirkan).</li><li>Menguasai Figma dan dasar design system.</li><li>Pengalaman 0–2 tahun; fresh graduate dipersilakan.</li></ul></div></section>
+<section class="card p-5 sm:p-6"><h3 class="text-base font-semibold text-slate-800">Benefit</h3><div class="mt-5 space-y-5"><div class="flex flex-wrap gap-2"><span class="badge-neutral">BPJS</span><span class="badge-neutral">Tunjangan Makan</span><span class="badge-neutral">Jam Kerja Fleksibel</span><span class="badge-neutral">Pelatihan</span></div></div></section>
+</div>
+<div class="space-y-6">
+<section class="card p-5 sm:p-6"><h3 class="text-base font-semibold text-slate-800">Ringkasan</h3><div class="mt-5 space-y-5"><dl class="space-y-3"><div class="flex items-start justify-between gap-4 text-sm"><dt class="text-slate-500">Sumber</dt><dd class="text-right font-medium text-slate-800">Mitra Perusahaan</dd></div><div class="flex items-start justify-between gap-4 text-sm"><dt class="text-slate-500">Diajukan</dt><dd class="text-right font-medium text-slate-800">27 Okt 2026, 08:12</dd></div><div class="flex items-start justify-between gap-4 text-sm"><dt class="text-slate-500">Tipe</dt><dd class="text-right font-medium text-slate-800">Pekerjaan · Full-time</dd></div><div class="flex items-start justify-between gap-4 text-sm"><dt class="text-slate-500">Gaji</dt><dd class="text-right font-medium text-slate-800">Rp 8.000.000 – 12.000.000 / bulan</dd></div><div class="flex items-start justify-between gap-4 text-sm"><dt class="text-slate-500">Tanggal Terbit</dt><dd class="text-right font-medium text-slate-800">27 Okt 2026</dd></div><div class="flex items-start justify-between gap-4 text-sm"><dt class="text-slate-500">Batas Lamaran</dt><dd class="text-right font-medium text-slate-800">26 Nov 2026</dd></div><div class="flex items-start justify-between gap-4 text-sm"><dt class="text-slate-500">Target Prodi</dt><dd class="text-right font-medium text-slate-800">Semua program studi</dd></div><div class="flex items-start justify-between gap-4 text-sm"><dt class="text-slate-500">Dokumen Wajib</dt><dd class="text-right font-medium text-slate-800">CV &amp; Portofolio</dd></div></dl></div></section>
+<section class="card p-5 sm:p-6"><h3 class="text-base font-semibold text-slate-800">Riwayat</h3><div class="mt-5 space-y-5"><ol class="timeline" id="dTimeline"><li class="timeline-item"><span class="timeline-marker"><i class="kk kk-paper-plane-tilt h-3 w-3"></i></span><time class="timeline-time">27 Okt 2026, 08:12</time><h5 class="text-sm font-semibold text-slate-800">Diajukan oleh mitra</h5><p class="text-xs text-slate-500">Gojek · HR Recruiter</p></li></ol></div></section>
+</div></div>
+<section id="dApplicants" hidden class="space-y-4">
+<div><h3 class="text-base font-semibold text-slate-800">Pelamar</h3><p class="text-sm text-slate-500">Status lamaran diperbarui oleh mitra. Admin kampus dapat membantu mengubahnya bila diperlukan; alumni menerima notifikasi tiap perubahan.</p></div>
+<div class="stat-grid" style="--stat-cols: 6; --stat-lg: 3">
+<div class="stat-card"><span class="stat-icon bg-neutral-100 text-neutral-600"><i class="kk kk-tray h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="cProses" class="stat-value">1</p><p class="stat-label">Belum Diproses</p></div></div><div class="stat-card"><span class="stat-icon bg-info-50 text-info-600"><i class="kk kk-file-text h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="cBerkas" class="stat-value">1</p><p class="stat-label">Lolos Berkas</p></div></div><div class="stat-card"><span class="stat-icon "><i class="kk kk-chats-circle h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="cI1" class="stat-value">1</p><p class="stat-label">Interview 1</p></div></div><div class="stat-card"><span class="stat-icon "><i class="kk kk-chats-circle h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="cI2" class="stat-value">1</p><p class="stat-label">Interview 2</p></div></div><div class="stat-card"><span class="stat-icon bg-success-50 text-success-600"><i class="kk kk-check-circle h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="cDiterima" class="stat-value">1</p><p class="stat-label">Diterima</p></div></div><div class="stat-card"><span class="stat-icon bg-danger-50 text-danger-600"><i class="kk kk-x-circle h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="cDitolak" class="stat-value">1</p><p class="stat-label">Ditolak</p></div></div>
+</div>
+<div class="table-wrap overflow-visible" id="apRoot" data-table data-page-size="10" data-item-label="pelamar">
+<div class="table-toolbar"><div class="table-search"><span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4"></i></span><label for="apSearch" class="sr-only">Cari nama atau NIM...</label><input id="apSearch" type="search" class="input h-9 pl-9" placeholder="Cari nama atau NIM..." data-table-search /></div></div>
+<div class="overflow-x-auto"><table class="table table-lg table-fit table-head-soft"><thead><tr><th scope="col" class="table-col-num">No</th><th scope="col">Pelamar</th><th scope="col" class="table-col-aside hidden md:table-cell">Program Studi</th><th scope="col" class="table-col-aside hidden lg:table-cell">Tanggal Melamar</th><th scope="col">Status</th><th scope="col" class="table-col-actions">Aksi</th></tr></thead><tbody>
+<tr data-st="proses">
+<td class="table-col-num" data-num>1</td>
+<td data-value="Aditya Pratama"><p class="font-medium text-slate-800">Aditya Pratama</p><p class="text-xs text-slate-500">NIM 2111500101</p></td>
+<td class="table-col-aside hidden md:table-cell">S1 Teknik Informatika</td>
+<td class="table-col-aside hidden lg:table-cell">14 Okt 2026</td>
+<td data-ap-badge><span class="badge-neutral badge-wrap"><span class="badge-dot bg-neutral-500"></span>Belum Diproses</span></td>
+<td class="table-col-actions"><div class="flex items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-ap-edit title="Ubah Status" aria-label="Ubah Status"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label">Ubah Status</span></button></div></td>
+</tr>
+<tr data-st="berkas">
+<td class="table-col-num" data-num>2</td>
+<td data-value="Nabila Putri"><p class="font-medium text-slate-800">Nabila Putri</p><p class="text-xs text-slate-500">NIM 2111500214</p></td>
+<td class="table-col-aside hidden md:table-cell">S1 Sistem Informasi</td>
+<td class="table-col-aside hidden lg:table-cell">14 Okt 2026</td>
+<td data-ap-badge><span class="badge-info badge-wrap"><span class="badge-dot bg-info-600"></span>Lolos Berkas</span></td>
+<td class="table-col-actions"><div class="flex items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-ap-edit title="Ubah Status" aria-label="Ubah Status"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label">Ubah Status</span></button></div></td>
+</tr>
+<tr data-st="interview1">
+<td class="table-col-num" data-num>3</td>
+<td data-value="Rizky Ramadhan"><p class="font-medium text-slate-800">Rizky Ramadhan</p><p class="text-xs text-slate-500">NIM 2011500087</p></td>
+<td class="table-col-aside hidden md:table-cell">S1 Teknik Informatika</td>
+<td class="table-col-aside hidden lg:table-cell">15 Okt 2026</td>
+<td data-ap-badge><span class="badge-primary badge-wrap"><span class="badge-dot bg-primary-600"></span>Interview 1</span></td>
+<td class="table-col-actions"><div class="flex items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-ap-edit title="Ubah Status" aria-label="Ubah Status"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label">Ubah Status</span></button></div></td>
+</tr>
+<tr data-st="interview2">
+<td class="table-col-num" data-num>4</td>
+<td data-value="Salsabila Anjani"><p class="font-medium text-slate-800">Salsabila Anjani</p><p class="text-xs text-slate-500">NIM 2111500339</p></td>
+<td class="table-col-aside hidden md:table-cell">S1 Sistem Informasi</td>
+<td class="table-col-aside hidden lg:table-cell">16 Okt 2026</td>
+<td data-ap-badge><span class="badge-primary badge-wrap"><span class="badge-dot bg-primary-600"></span>Interview 2</span></td>
+<td class="table-col-actions"><div class="flex items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-ap-edit title="Ubah Status" aria-label="Ubah Status"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label">Ubah Status</span></button></div></td>
+</tr>
+<tr data-st="diterima">
+<td class="table-col-num" data-num>5</td>
+<td data-value="Dimas Saputra"><p class="font-medium text-slate-800">Dimas Saputra</p><p class="text-xs text-slate-500">NIM 2011500412</p></td>
+<td class="table-col-aside hidden md:table-cell">D3 Manajemen Informatika</td>
+<td class="table-col-aside hidden lg:table-cell">17 Okt 2026</td>
+<td data-ap-badge><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Diterima</span></td>
+<td class="table-col-actions"><div class="flex items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-ap-edit title="Ubah Status" aria-label="Ubah Status"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label">Ubah Status</span></button></div></td>
+</tr>
+<tr data-st="ditolak">
+<td class="table-col-num" data-num>6</td>
+<td data-value="Fitri Handayani"><p class="font-medium text-slate-800">Fitri Handayani</p><p class="text-xs text-slate-500">NIM 2111500455</p></td>
+<td class="table-col-aside hidden md:table-cell">S1 Manajemen</td>
+<td class="table-col-aside hidden lg:table-cell">18 Okt 2026</td>
+<td data-ap-badge><span class="badge-danger badge-wrap"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
+<td class="table-col-actions"><div class="flex items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-ap-edit title="Ubah Status" aria-label="Ubah Status"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label">Ubah Status</span></button></div></td>
+</tr>
+</tbody></table></div>
+<div data-table-empty hidden class="table-empty"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada data yang cocok.</div>
+<div class="table-footer" data-table-pagination><span data-table-info></span><nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav></div></div>
+</section>
+  </main>
+
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+<div class="modal-backdrop z-[60]" id="approveModal" aria-labelledby="approveModalTitle">
+  <div class="modal-panel modal-sm">
+    <div class="modal-header"><h3 id="approveModalTitle" class="modal-title">Setujui lowongan?</h3><button type="button" class="modal-close" data-modal-hide="approveModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button></div>
+    <div class="modal-body"><p class="text-sm text-fg">Lowongan <span class="font-semibold">Product Designer</span> dari <span class="font-semibold">Gojek</span> akan terbit di Portal Karir dan terlihat oleh mahasiswa/alumni. Mitra mendapat notifikasi dan email.</p></div>
+    <div class="modal-footer"><button type="button" class="btn-outline btn-md" data-modal-hide="approveModal">Batal</button><button type="button" class="btn-primary btn-md" id="approveOk"><i class="kk kk-check h-4 w-4"></i>Setujui &amp; Terbitkan</button></div>
+  </div></div>
+<div class="modal-backdrop z-[60]" id="rejectModal" aria-labelledby="rejectModalTitle">
+  <div class="modal-panel modal-sm">
+    <div class="modal-header"><h3 id="rejectModalTitle" class="modal-title">Tolak lowongan</h3><button type="button" class="modal-close" data-modal-hide="rejectModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button></div>
+    <div class="modal-body"><p class="text-sm text-fg">Berikan alasan agar mitra bisa memperbaiki lalu mengajukan ulang.</p><div class="mt-4"><p class="form-label">Alasan penolakan <span class="text-danger-600">*</span></p><div class="space-y-2.5"><label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="radio" name="rejectPreset" value="Informasi tidak lengkap" class="form-radio" /> Informasi tidak lengkap</label><label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="radio" name="rejectPreset" value="Gaji tidak wajar atau tidak sesuai" class="form-radio" /> Gaji tidak wajar atau tidak sesuai</label><label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="radio" name="rejectPreset" value="Mencurigakan atau penipuan" class="form-radio" /> Mencurigakan atau penipuan</label><label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="radio" name="rejectPreset" value="" checked class="form-radio" /> Lainnya (tulis sendiri)</label></div><textarea id="rejectReason" class="input textarea-autogrow h-auto py-2.5 mt-3" rows="3" placeholder="Jelaskan alasan penolakan"></textarea><p class="form-error mt-1.5" id="rejectErr" hidden>Alasan penolakan wajib diisi.</p></div></div>
+    <div class="modal-footer"><button type="button" class="btn-outline btn-md" data-modal-hide="rejectModal">Batal</button><button type="button" class="btn-danger btn-md" id="rejectOk"><i class="kk kk-x h-4 w-4"></i>Tolak Lowongan</button></div>
+  </div></div>
+<div class="modal-backdrop z-[60]" id="closeModal" aria-labelledby="closeModalTitle">
+  <div class="modal-panel modal-sm">
+    <div class="modal-header"><h3 id="closeModalTitle" class="modal-title">Turunkan lowongan?</h3><button type="button" class="modal-close" data-modal-hide="closeModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button></div>
+    <div class="modal-body"><p class="text-sm text-fg">Lowongan akan ditutup dan tidak lagi menerima lamaran. Pelamar yang sudah masuk tetap bisa diproses.</p></div>
+    <div class="modal-footer"><button type="button" class="btn-outline btn-md" data-modal-hide="closeModal">Batal</button><button type="button" class="btn-danger btn-md" id="closeOk">Turunkan</button></div>
+  </div></div>
+<div class="modal-backdrop z-[60]" id="apModal" aria-labelledby="apModalTitle">
+  <div class="modal-panel modal-sm">
+    <div class="modal-header"><h3 id="apModalTitle" class="modal-title">Ubah status lamaran</h3><button type="button" class="modal-close" data-modal-hide="apModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button></div>
+    <div class="modal-body"><p class="text-sm text-fg" id="apWho"></p><div class="mt-4"><p class="form-label">Status baru</p><div class="space-y-2.5"><label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="radio" name="apSt" value="proses" checked class="form-radio" /> Belum Diproses</label><label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="radio" name="apSt" value="berkas" class="form-radio" /> Lolos Berkas</label><label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="radio" name="apSt" value="interview1" class="form-radio" /> Interview 1</label><label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="radio" name="apSt" value="interview2" class="form-radio" /> Interview 2</label><label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="radio" name="apSt" value="diterima" class="form-radio" /> Diterima</label><label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="radio" name="apSt" value="ditolak" class="form-radio" /> Ditolak</label></div></div></div>
+    <div class="modal-footer"><button type="button" class="btn-outline btn-md" data-modal-hide="apModal">Batal</button><button type="button" class="btn-primary btn-md" id="apOk">Simpan</button></div>
+  </div></div>
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/table.js"></script>
+<script src="../../assets/js/datepicker.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+(function () {
+  const S = {"pending":["badge-warning","bg-warning-600","Menunggu Persetujuan"],"terbit":["badge-success","bg-success-600","Terbit"],"draft":["badge-neutral","bg-neutral-500","Draft"],"ditolak":["badge-danger","bg-danger-600","Ditolak"],"ditutup":["badge-secondary","bg-secondary-600","Ditutup"],"terjadwal":["badge-info","bg-info-600","Terjadwal"],"berlangsung":["badge-primary","bg-primary-600","Berlangsung"],"selesai":["badge-neutral","bg-neutral-500","Selesai"]};
+  const AP = {"proses":["badge-neutral","bg-neutral-500","Belum Diproses"],"berkas":["badge-info","bg-info-600","Lolos Berkas"],"interview1":["badge-primary","bg-primary-600","Interview 1"],"interview2":["badge-primary","bg-primary-600","Interview 2"],"diterima":["badge-success","bg-success-600","Diterima"],"ditolak":["badge-danger","bg-danger-600","Ditolak"]};
+  const $ = (id) => document.getElementById(id);
+  const toast = (type, message) => window.KKToast && window.KKToast.show({ type, message, duration: 3500 });
+  const open = (id) => window.KKModal.open($(id));
+  const hide = (id) => window.KKModal.close($(id));
+  const badge = (k) => '<span class="' + S[k][0] + ' badge-wrap"><span class="badge-dot ' + S[k][1] + '"></span>' + S[k][2] + '</span>';
+  const apBadge = (k) => '<span class="' + AP[k][0] + ' badge-wrap"><span class="badge-dot ' + AP[k][1] + '"></span>' + AP[k][2] + '</span>';
+  let state = new URLSearchParams(location.search).get('s') || 'pending';
+  function log(title, note) {
+    const now = new Date().toLocaleString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    $('dTimeline').insertAdjacentHTML('afterbegin', '<li class="timeline-item"><span class="timeline-marker"><i class="kk kk-check h-3 w-3"></i></span><time class="timeline-time">' + now + '</time><h5 class="text-sm font-semibold text-slate-800">' + title + '</h5><p class="text-xs text-slate-500">' + note + '</p></li>');
+  }
+  function render() {
+    $('dStatus').innerHTML = badge(state);
+    $('dWarn').classList.toggle('hidden', state !== 'pending');
+    $('dApplicants').hidden = !['terbit', 'ditutup'].includes(state);
+    const b = {
+      pending: '<button type="button" class="btn-outline btn-md" data-act="reject"><i class="kk kk-x h-4 w-4"></i>Tolak</button><button type="button" class="btn-primary btn-md" data-act="approve"><i class="kk kk-check-circle h-4 w-4"></i>Setujui &amp; Terbitkan</button>',
+      terbit: '<a href="lowongan-form.html" class="btn-outline btn-md"><i class="kk kk-pencil-simple h-4 w-4"></i>Ubah</a><button type="button" class="btn-danger btn-md" data-act="close"><i class="kk kk-arrow-line-down h-4 w-4"></i>Turunkan</button>',
+      draft: '<a href="lowongan-form.html" class="btn-primary btn-md"><i class="kk kk-pencil-simple h-4 w-4"></i>Lanjutkan Ubah</a>',
+      ditolak: '<span class="text-sm text-slate-500">Menunggu mitra memperbaiki dan mengajukan ulang.</span>',
+      ditutup: '<span class="text-sm text-slate-500">Lowongan sudah ditutup.</span>',
+    }[state] || '';
+    $('dActions').innerHTML = b;
+  }
+  $('dActions').addEventListener('click', (e) => { const a = e.target.closest('[data-act]'); if (a) open(a.dataset.act + 'Modal'); });
+  $('approveOk').addEventListener('click', () => { hide('approveModal'); state = 'terbit'; log('Disetujui admin kampus', 'Rina Kartika · terbit di Portal Karir'); render(); toast('success', 'Lowongan disetujui dan terbit (simulasi).'); });
+  $('closeOk').addEventListener('click', () => { hide('closeModal'); state = 'ditutup'; log('Diturunkan admin kampus', 'Tidak lagi menerima lamaran'); render(); toast('success', 'Lowongan diturunkan (simulasi).'); });
+  document.querySelectorAll('input[name=rejectPreset]').forEach((r) => r.addEventListener('change', () => { $('rejectReason').value = r.value; if (!r.value) $('rejectReason').focus(); }));
+  $('rejectOk').addEventListener('click', () => {
+    const r = $('rejectReason').value.trim();
+    $('rejectErr').hidden = !!r; if (!r) return;
+    hide('rejectModal'); state = 'ditolak'; log('Ditolak admin kampus', r); render(); toast('success', 'Lowongan ditolak. Mitra diberi tahu (simulasi).');
+  });
+  // ubah status pelamar
+  let row = null;
+  const apRoot = $('apRoot');
+  function counts() {
+    const rows = [...apRoot.querySelectorAll('tbody tr')], c = (k) => rows.filter((r) => r.dataset.st === k).length;
+    $('cProses').textContent = c('proses'); $('cBerkas').textContent = c('berkas'); $('cI1').textContent = c('interview1'); $('cI2').textContent = c('interview2'); $('cDiterima').textContent = c('diterima'); $('cDitolak').textContent = c('ditolak');
+  }
+  apRoot.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-ap-edit]'); if (!btn) return;
+    row = btn.closest('tr');
+    $('apWho').innerHTML = 'Pelamar: <span class="font-semibold">' + row.querySelector('td:nth-child(2) p').textContent + '</span>';
+    document.querySelector('input[name=apSt][value="' + row.dataset.st + '"]').checked = true;
+    open('apModal');
+  });
+  $('apOk').addEventListener('click', () => {
+    const v = document.querySelector('input[name=apSt]:checked').value; row.dataset.st = v; row.querySelector('[data-ap-badge]').innerHTML = apBadge(v);
+    hide('apModal'); counts(); toast('success', 'Status lamaran diperbarui. Alumni menerima notifikasi (simulasi).');
+  });
+  if (window.KKTable) { const t = window.KKTable.get(apRoot) || (window.KKTable.init(apRoot), window.KKTable.get(apRoot)); t && t.refresh(); }
+  render();
+})();
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();</script>
+<script src="admin-brand.js"></script>
+</body>
+</html>
+</script>
+<script src="admin-brand.js"></script>
+</body></html>

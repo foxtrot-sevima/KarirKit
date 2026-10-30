@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lowongan | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Kelola lowongan kampus dan moderasi lowongan mitra perusahaan sebelum tampil di Portal Karir." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/lowongan.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Lowongan | KarirLink" />
+<meta property="og:description" content="Kelola lowongan kampus dan moderasi lowongan mitra perusahaan sebelum tampil di Portal Karir." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/lowongan.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Lowongan | KarirLink" />
+<meta name="twitter:description" content="Kelola lowongan kampus dan moderasi lowongan mitra perusahaan sebelum tampil di Portal Karir." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Overview</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
+        </a>
+        <a href="yudisium.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Kerjasama" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
+        </a>
+        <a href="lowongan.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a href="event.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a href="mahasiswa-alumni.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
+        </a>
+        <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
+        </a>
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
+        </a>
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Personalisasi" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Personalisasi</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu admin">
+      <div>
+        <div class="space-y-1">
+          <a href="index.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Tracer</p>
+        <div class="space-y-1">
+          <a href="kuesioner.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kuesioner</span>
+          </a>
+          <a href="yudisium.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Daftar Yudisium</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Portal Karir</p>
+        <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Kerjasama" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kerjasama</span>
+          </a>
+          <a href="lowongan.html" class="nav-item nav-item-active">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="event.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Event</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">General</p>
+        <div class="space-y-1">
+          <a href="mahasiswa-alumni.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Mahasiswa/Alumni</span>
+          </a>
+          <a href="aktivitas-lamaran.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Aktivitas Lamaran</span>
+          </a>
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Report</span>
+          </a>
+          <a href="pengaturan-landing-page.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Personalisasi</span>
+          </a>
+        </div>
+      </div>
+  
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">RK</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="navbar navbar-sticky navbar-app">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+<a href="index.html" class="breadcrumb-link shrink-0"><span class="hidden sm:inline">Overview</span></a>
+<span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span><span class="breadcrumb-current min-w-0" aria-current="page"><span class="min-w-0 truncate">Lowongan</span></span>
+</nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
+      <div class="relative hidden lg:block">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title">Rina Kartika</p>
+              <p class="dropdown-header-desc">rina.kartika@kampus.ac.id</p>
+            </div>
+          </div>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div class="min-w-0"><h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Lowongan</h2><p class="mt-1 text-sm text-slate-500">Kelola lowongan kampus dan moderasi lowongan yang diajukan mitra perusahaan sebelum tampil di Portal Karir.</p></div><a href="lowongan-form.html" class="btn-primary btn-md w-full shrink-0 sm:w-auto"><i class="kk kk-plus h-4 w-4"></i>Buat Lowongan</a></div>
+<div id="queueNote" class="alert alert-warning" role="alert"><i class="kk kk-warning-circle alert-icon"></i><div><span class="font-semibold" id="queueCount">5 lowongan mitra</span> menunggu persetujuan. Lowongan baru dari mitra tidak tampil di Portal Karir sampai kamu menyetujuinya.</div></div>
+<div class="stat-grid" style="--stat-cols: 5; --stat-lg: 3">
+<div class="stat-card"><span class="stat-icon "><i class="kk kk-briefcase h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="kpiTotal" class="stat-value">13</p><p class="stat-label">Total Lowongan</p></div></div>
+<div class="stat-card"><span class="stat-icon bg-warning-50 text-warning-600"><i class="kk kk-clock h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="kpiPending" class="stat-value">5</p><p class="stat-label">Menunggu Persetujuan</p></div></div>
+<div class="stat-card"><span class="stat-icon bg-success-50 text-success-600"><i class="kk kk-check-circle h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="kpiTerbit" class="stat-value">4</p><p class="stat-label">Terbit</p></div></div>
+<div class="stat-card"><span class="stat-icon bg-info-50 text-info-600"><i class="kk kk-users h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="kpiApp" class="stat-value">196</p><p class="stat-label">Total Pelamar</p></div></div>
+<div class="stat-card"><span class="stat-icon bg-neutral-100 text-neutral-600"><i class="kk kk-x-circle h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="kpiOther" class="stat-value">4</p><p class="stat-label">Draft, Ditolak, Ditutup</p></div></div>
+</div>
+<div class="table-wrap overflow-visible" id="jobRoot" data-table data-page-size="10" data-item-label="lowongan" data-combo-boundary>
+<div class="table-toolbar table-toolbar-many">
+<div class="table-search"><span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4"></i></span><label for="jobSearch" class="sr-only">Cari posisi atau perusahaan...</label><input id="jobSearch" type="search" class="input h-9 pl-9" placeholder="Cari posisi atau perusahaan..." data-table-search /></div>
+<div class="table-filters">
+<div id="fStatus" class="combo" data-combo data-value="all">
+  <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Semua Status</span><i class="kk kk-caret-down combo-chevron"></i></button>
+  <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list>
+    <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Status">Semua Status</button>
+    <button type="button" class="combo-item" data-combo-item data-value="pending" data-label="Menunggu Persetujuan">Menunggu Persetujuan</button>
+    <button type="button" class="combo-item" data-combo-item data-value="terbit" data-label="Terbit">Terbit</button>
+    <button type="button" class="combo-item" data-combo-item data-value="draft" data-label="Draft">Draft</button>
+    <button type="button" class="combo-item" data-combo-item data-value="ditolak" data-label="Ditolak">Ditolak</button>
+    <button type="button" class="combo-item" data-combo-item data-value="ditutup" data-label="Ditutup">Ditutup</button>
+  </div></div></div>
+<div id="fSource" class="combo" data-combo data-value="all">
+  <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Semua Sumber</span><i class="kk kk-caret-down combo-chevron"></i></button>
+  <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list>
+    <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Sumber">Semua Sumber</button>
+    <button type="button" class="combo-item" data-combo-item data-value="kampus" data-label="Kampus">Kampus</button>
+    <button type="button" class="combo-item" data-combo-item data-value="mitra" data-label="Mitra Perusahaan">Mitra Perusahaan</button>
+  </div></div></div>
+<div id="fTipe" class="combo" data-combo data-value="all">
+  <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Semua Tipe</span><i class="kk kk-caret-down combo-chevron"></i></button>
+  <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list>
+    <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Tipe">Semua Tipe</button>
+    <button type="button" class="combo-item" data-combo-item data-value="magang" data-label="Magang">Magang</button>
+    <button type="button" class="combo-item" data-combo-item data-value="kerja" data-label="Pekerjaan">Pekerjaan</button>
+  </div></div></div>
+</div></div>
+<div class="overflow-x-auto"><table class="table table-lg table-fit table-head-soft"><thead><tr>
+<th scope="col" class="table-col-num">No</th>
+<th scope="col" data-sort="text"><button type="button" class="th-sort">Posisi<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+<th scope="col" class="table-col-aside hidden sm:table-cell">Sumber</th>
+<th scope="col" class="table-col-aside hidden lg:table-cell">Tipe &amp; Lokasi</th>
+<th scope="col" class="table-col-aside hidden xl:table-cell">Batas Lamaran</th>
+<th scope="col" data-sort="number" class="text-right"><button type="button" class="th-sort">Pelamar<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+<th scope="col">Status</th>
+<th scope="col" class="table-col-actions">Aksi</th>
+</tr></thead><tbody>
+<tr data-status="pending" data-source="mitra" data-tipe="kerja" data-applicants="0">
+<td class="table-col-num" data-num>1</td>
+<td data-value="Product Designer"><p class="font-medium text-slate-800">Product Designer</p><p class="text-xs text-slate-500">Gojek</p><p class="mt-1 sm:hidden"><span class="badge-secondary">Mitra</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="mitra"><span class="badge-secondary">Mitra</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="kerja"><p class="text-sm text-slate-700">Pekerjaan</p><p class="text-xs text-slate-500">Jakarta · Hybrid</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="26 Nov 2026"><p class="text-sm text-slate-700">26 Nov 2026</p><p class="text-xs text-slate-500">Terbit 27 Okt 2026</p></td>
+<td data-value="0" class="text-right">0</td>
+<td data-value="pending"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Persetujuan</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><a href="lowongan-detail.html?s=pending" class="btn-primary btn-sm table-action" title="Tinjau" aria-label="Tinjau"><i class="kk kk-check-circle h-4 w-4"></i><span class="table-action-label">Tinjau</span></a></div></td>
+</tr>
+<tr data-status="pending" data-source="mitra" data-tipe="kerja" data-applicants="0">
+<td class="table-col-num" data-num>2</td>
+<td data-value="UI/UX Researcher"><p class="font-medium text-slate-800">UI/UX Researcher</p><p class="text-xs text-slate-500">Tokopedia</p><p class="mt-1 sm:hidden"><span class="badge-secondary">Mitra</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="mitra"><span class="badge-secondary">Mitra</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="kerja"><p class="text-sm text-slate-700">Pekerjaan</p><p class="text-xs text-slate-500">Jakarta · Remote</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="25 Nov 2026"><p class="text-sm text-slate-700">25 Nov 2026</p><p class="text-xs text-slate-500">Terbit 26 Okt 2026</p></td>
+<td data-value="0" class="text-right">0</td>
+<td data-value="pending"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Persetujuan</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><a href="lowongan-detail.html?s=pending" class="btn-primary btn-sm table-action" title="Tinjau" aria-label="Tinjau"><i class="kk kk-check-circle h-4 w-4"></i><span class="table-action-label">Tinjau</span></a></div></td>
+</tr>
+<tr data-status="pending" data-source="mitra" data-tipe="kerja" data-applicants="0">
+<td class="table-col-num" data-num>3</td>
+<td data-value="Business Analyst"><p class="font-medium text-slate-800">Business Analyst</p><p class="text-xs text-slate-500">Bank Jago</p><p class="mt-1 sm:hidden"><span class="badge-secondary">Mitra</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="mitra"><span class="badge-secondary">Mitra</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="kerja"><p class="text-sm text-slate-700">Pekerjaan</p><p class="text-xs text-slate-500">Jakarta · Onsite</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="24 Nov 2026"><p class="text-sm text-slate-700">24 Nov 2026</p><p class="text-xs text-slate-500">Terbit 25 Okt 2026</p></td>
+<td data-value="0" class="text-right">0</td>
+<td data-value="pending"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Persetujuan</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><a href="lowongan-detail.html?s=pending" class="btn-primary btn-sm table-action" title="Tinjau" aria-label="Tinjau"><i class="kk kk-check-circle h-4 w-4"></i><span class="table-action-label">Tinjau</span></a></div></td>
+</tr>
+<tr data-status="pending" data-source="mitra" data-tipe="magang" data-applicants="0">
+<td class="table-col-num" data-num>4</td>
+<td data-value="Frontend Developer Intern"><p class="font-medium text-slate-800">Frontend Developer Intern</p><p class="text-xs text-slate-500">PT Maju Digital</p><p class="mt-1 sm:hidden"><span class="badge-secondary">Mitra</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="mitra"><span class="badge-secondary">Mitra</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="magang"><p class="text-sm text-slate-700">Magang</p><p class="text-xs text-slate-500">Surabaya · Hybrid</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="24 Nov 2026"><p class="text-sm text-slate-700">24 Nov 2026</p><p class="text-xs text-slate-500">Terbit 25 Okt 2026</p></td>
+<td data-value="0" class="text-right">0</td>
+<td data-value="pending"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Persetujuan</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><a href="lowongan-detail.html?s=pending" class="btn-primary btn-sm table-action" title="Tinjau" aria-label="Tinjau"><i class="kk kk-check-circle h-4 w-4"></i><span class="table-action-label">Tinjau</span></a></div></td>
+</tr>
+<tr data-status="pending" data-source="mitra" data-tipe="kerja" data-applicants="0">
+<td class="table-col-num" data-num>5</td>
+<td data-value="Staf Akuntansi"><p class="font-medium text-slate-800">Staf Akuntansi</p><p class="text-xs text-slate-500">CV Kreasi Anak Bangsa</p><p class="mt-1 sm:hidden"><span class="badge-secondary">Mitra</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="mitra"><span class="badge-secondary">Mitra</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="kerja"><p class="text-sm text-slate-700">Pekerjaan</p><p class="text-xs text-slate-500">Malang · Onsite</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="23 Nov 2026"><p class="text-sm text-slate-700">23 Nov 2026</p><p class="text-xs text-slate-500">Terbit 24 Okt 2026</p></td>
+<td data-value="0" class="text-right">0</td>
+<td data-value="pending"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Persetujuan</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><a href="lowongan-detail.html?s=pending" class="btn-primary btn-sm table-action" title="Tinjau" aria-label="Tinjau"><i class="kk kk-check-circle h-4 w-4"></i><span class="table-action-label">Tinjau</span></a></div></td>
+</tr>
+<tr data-status="terbit" data-source="mitra" data-tipe="kerja" data-applicants="38">
+<td class="table-col-num" data-num>6</td>
+<td data-value="Data Analyst"><p class="font-medium text-slate-800"><a href="lowongan-detail.html?s=terbit" class="hover:text-primary-700 hover:underline">Data Analyst</a></p><p class="text-xs text-slate-500">PT Sinar Logistik</p><p class="mt-1 sm:hidden"><span class="badge-secondary">Mitra</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="mitra"><span class="badge-secondary">Mitra</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="kerja"><p class="text-sm text-slate-700">Pekerjaan</p><p class="text-xs text-slate-500">Surabaya · Hybrid</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="11 Nov 2026"><p class="text-sm text-slate-700">11 Nov 2026</p><p class="text-xs text-slate-500">Terbit 12 Okt 2026</p></td>
+<td data-value="38" class="text-right">38</td>
+<td data-value="terbit"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Terbit</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"></div></td>
+</tr>
+<tr data-status="terbit" data-source="kampus" data-tipe="magang" data-applicants="24">
+<td class="table-col-num" data-num>7</td>
+<td data-value="Magang Marketing Digital"><p class="font-medium text-slate-800"><a href="lowongan-detail.html?s=terbit" class="hover:text-primary-700 hover:underline">Magang Marketing Digital</a></p><p class="text-xs text-slate-500">Universitas (Career Center)</p><p class="mt-1 sm:hidden"><span class="badge-primary">Kampus</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="kampus"><span class="badge-primary">Kampus</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="magang"><p class="text-sm text-slate-700">Magang</p><p class="text-xs text-slate-500">Surabaya · Hybrid</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="09 Nov 2026"><p class="text-sm text-slate-700">09 Nov 2026</p><p class="text-xs text-slate-500">Terbit 10 Okt 2026</p></td>
+<td data-value="24" class="text-right">24</td>
+<td data-value="terbit"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Terbit</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><a href="lowongan-form.html" class="btn-outline btn-sm table-action" title="Ubah" aria-label="Ubah"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Ubah</span></a></div></td>
+</tr>
+<tr data-status="terbit" data-source="mitra" data-tipe="kerja" data-applicants="67">
+<td class="table-col-num" data-num>8</td>
+<td data-value="Software Engineer"><p class="font-medium text-slate-800"><a href="lowongan-detail.html?s=terbit" class="hover:text-primary-700 hover:underline">Software Engineer</a></p><p class="text-xs text-slate-500">Bank Cipta Nusa</p><p class="mt-1 sm:hidden"><span class="badge-secondary">Mitra</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="mitra"><span class="badge-secondary">Mitra</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="kerja"><p class="text-sm text-slate-700">Pekerjaan</p><p class="text-xs text-slate-500">Jakarta · Hybrid</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="04 Nov 2026"><p class="text-sm text-slate-700">04 Nov 2026</p><p class="text-xs text-slate-500">Terbit 05 Okt 2026</p></td>
+<td data-value="67" class="text-right">67</td>
+<td data-value="terbit"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Terbit</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"></div></td>
+</tr>
+<tr data-status="terbit" data-source="kampus" data-tipe="kerja" data-applicants="15">
+<td class="table-col-num" data-num>9</td>
+<td data-value="Asisten Laboratorium"><p class="font-medium text-slate-800"><a href="lowongan-detail.html?s=terbit" class="hover:text-primary-700 hover:underline">Asisten Laboratorium</a></p><p class="text-xs text-slate-500">Universitas (Career Center)</p><p class="mt-1 sm:hidden"><span class="badge-primary">Kampus</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="kampus"><span class="badge-primary">Kampus</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="kerja"><p class="text-sm text-slate-700">Pekerjaan</p><p class="text-xs text-slate-500">Surabaya · Onsite</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="31 Okt 2026"><p class="text-sm text-slate-700">31 Okt 2026</p><p class="text-xs text-slate-500">Terbit 01 Okt 2026</p></td>
+<td data-value="15" class="text-right">15</td>
+<td data-value="terbit"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Terbit</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><a href="lowongan-form.html" class="btn-outline btn-sm table-action" title="Ubah" aria-label="Ubah"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Ubah</span></a></div></td>
+</tr>
+<tr data-status="draft" data-source="mitra" data-tipe="kerja" data-applicants="0">
+<td class="table-col-num" data-num>10</td>
+<td data-value="Customer Success"><p class="font-medium text-slate-800"><a href="lowongan-detail.html?s=draft" class="hover:text-primary-700 hover:underline">Customer Success</a></p><p class="text-xs text-slate-500">PT Gizi Sehat Indonesia</p><p class="mt-1 sm:hidden"><span class="badge-secondary">Mitra</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="mitra"><span class="badge-secondary">Mitra</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="kerja"><p class="text-sm text-slate-700">Pekerjaan</p><p class="text-xs text-slate-500">Bandung · Onsite</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="—"><p class="text-sm text-slate-700">—</p><p class="text-xs text-slate-500">Terbit —</p></td>
+<td data-value="0" class="text-right">0</td>
+<td data-value="draft"><span class="badge-neutral badge-wrap"><span class="badge-dot bg-neutral-500"></span>Draft</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"></div></td>
+</tr>
+<tr data-status="draft" data-source="kampus" data-tipe="magang" data-applicants="0">
+<td class="table-col-num" data-num>11</td>
+<td data-value="Magang Content Writer"><p class="font-medium text-slate-800"><a href="lowongan-detail.html?s=draft" class="hover:text-primary-700 hover:underline">Magang Content Writer</a></p><p class="text-xs text-slate-500">Universitas (Career Center)</p><p class="mt-1 sm:hidden"><span class="badge-primary">Kampus</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="kampus"><span class="badge-primary">Kampus</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="magang"><p class="text-sm text-slate-700">Magang</p><p class="text-xs text-slate-500">Surabaya · Remote</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="—"><p class="text-sm text-slate-700">—</p><p class="text-xs text-slate-500">Terbit —</p></td>
+<td data-value="0" class="text-right">0</td>
+<td data-value="draft"><span class="badge-neutral badge-wrap"><span class="badge-dot bg-neutral-500"></span>Draft</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><a href="lowongan-form.html" class="btn-outline btn-sm table-action" title="Ubah" aria-label="Ubah"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Ubah</span></a></div></td>
+</tr>
+<tr data-status="ditolak" data-source="mitra" data-tipe="kerja" data-applicants="0">
+<td class="table-col-num" data-num>12</td>
+<td data-value="Sales Executive"><p class="font-medium text-slate-800"><a href="lowongan-detail.html?s=ditolak" class="hover:text-primary-700 hover:underline">Sales Executive</a></p><p class="text-xs text-slate-500">PT Gizi Sehat Indonesia</p><p class="mt-1 sm:hidden"><span class="badge-secondary">Mitra</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="mitra"><span class="badge-secondary">Mitra</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="kerja"><p class="text-sm text-slate-700">Pekerjaan</p><p class="text-xs text-slate-500">Bandung · Onsite</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="—"><p class="text-sm text-slate-700">—</p><p class="text-xs text-slate-500">Terbit 20 Okt 2026</p></td>
+<td data-value="0" class="text-right">0</td>
+<td data-value="ditolak"><span class="badge-danger badge-wrap"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"></div></td>
+</tr>
+<tr data-status="ditutup" data-source="mitra" data-tipe="kerja" data-applicants="52">
+<td class="table-col-num" data-num>13</td>
+<td data-value="Staf Administrasi"><p class="font-medium text-slate-800"><a href="lowongan-detail.html?s=ditutup" class="hover:text-primary-700 hover:underline">Staf Administrasi</a></p><p class="text-xs text-slate-500">Rumah Sakit Harapan Sehat</p><p class="mt-1 sm:hidden"><span class="badge-secondary">Mitra</span></p></td>
+<td class="table-col-aside hidden sm:table-cell" data-value="mitra"><span class="badge-secondary">Mitra</span></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="kerja"><p class="text-sm text-slate-700">Pekerjaan</p><p class="text-xs text-slate-500">Malang · Onsite</p></td>
+<td class="table-col-aside hidden xl:table-cell" data-value="01 Okt 2026"><p class="text-sm text-slate-700">01 Okt 2026</p><p class="text-xs text-slate-500">Terbit 01 Sep 2026</p></td>
+<td data-value="52" class="text-right">52</td>
+<td data-value="ditutup"><span class="badge-secondary badge-wrap"><span class="badge-dot bg-secondary-600"></span>Ditutup</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"></div></td>
+</tr>
+</tbody></table></div>
+<div data-table-empty hidden class="table-empty"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada data yang cocok.</div>
+<div class="table-footer" data-table-pagination><span data-table-info></span><nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav></div>
+</div>
+  </main>
+
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/table.js"></script>
+<script src="../../assets/js/datepicker.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+(function () {
+  const root = document.getElementById('jobRoot');
+  const table = window.KKTable.get(root) || (window.KKTable.init(root), window.KKTable.get(root));
+  const f = { status: fStatus, source: fSource, tipe: fTipe };
+  table.addFilter((r) => Object.keys(f).every((k) => f[k].dataset.value === 'all' || r.dataset[k] === f[k].dataset.value));
+  const fmt = (n) => n.toLocaleString('id-ID');
+  root.addEventListener('table:render', (e) => {
+    const rows = e.detail.visible, c = (s) => rows.filter((r) => r.dataset.status === s).length;
+    kpiTotal.textContent = fmt(rows.length);
+    kpiPending.textContent = fmt(c('pending'));
+    kpiTerbit.textContent = fmt(c('terbit'));
+    kpiApp.textContent = fmt(rows.reduce((a, r) => a + (+r.dataset.applicants || 0), 0));
+    kpiOther.textContent = fmt(c('draft') + c('ditolak') + c('ditutup'));
+  });
+  Object.values(f).forEach((combo) => combo.querySelectorAll('[data-combo-item]').forEach((it) => it.addEventListener('click', () => { combo.dataset.value = it.dataset.value; table.refresh(); })));
+  // dari dashboard / banner: ?status=pending
+  const q = new URLSearchParams(location.search).get('status');
+  if (q) { const it = fStatus.querySelector('[data-combo-item][data-value="' + q + '"]'); if (it) setTimeout(() => it.click(), 0); }
+  table.refresh();
+})();
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();</script>
+<script src="admin-brand.js"></script>
+</body>
+</html>
+</script>
+<script src="admin-brand.js"></script>
+</body></html>

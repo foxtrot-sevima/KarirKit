@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Buat Event | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Buat atau ubah event kampus atau kegiatan kerja sama mitra." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/event-form.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Buat Event | KarirLink" />
+<meta property="og:description" content="Buat atau ubah event kampus atau kegiatan kerja sama mitra." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/event-form.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Buat Event | KarirLink" />
+<meta name="twitter:description" content="Buat atau ubah event kampus atau kegiatan kerja sama mitra." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Overview</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
+        </a>
+        <a href="yudisium.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Kerjasama" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
+        </a>
+        <a href="lowongan.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a href="event.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a href="mahasiswa-alumni.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
+        </a>
+        <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
+        </a>
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
+        </a>
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Personalisasi" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Personalisasi</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu admin">
+      <div>
+        <div class="space-y-1">
+          <a href="index.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Tracer</p>
+        <div class="space-y-1">
+          <a href="kuesioner.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kuesioner</span>
+          </a>
+          <a href="yudisium.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Daftar Yudisium</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Portal Karir</p>
+        <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Kerjasama" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kerjasama</span>
+          </a>
+          <a href="lowongan.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="event.html" class="nav-item nav-item-active">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Event</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">General</p>
+        <div class="space-y-1">
+          <a href="mahasiswa-alumni.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Mahasiswa/Alumni</span>
+          </a>
+          <a href="aktivitas-lamaran.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Aktivitas Lamaran</span>
+          </a>
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Report</span>
+          </a>
+          <a href="pengaturan-landing-page.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Personalisasi</span>
+          </a>
+        </div>
+      </div>
+  
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">RK</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="navbar navbar-sticky navbar-app">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+<a href="index.html" class="breadcrumb-link shrink-0"><span class="hidden sm:inline">Overview</span></a>
+<span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span><a href="event.html" class="breadcrumb-link shrink-0"><span class="hidden sm:inline">Event</span></a>
+<span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span><span class="breadcrumb-current min-w-0" aria-current="page"><span class="min-w-0 truncate">Buat Event</span></span>
+</nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
+      <div class="relative hidden lg:block">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title">Rina Kartika</p>
+              <p class="dropdown-header-desc">rina.kartika@kampus.ac.id</p>
+            </div>
+          </div>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div class="min-w-0"><h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Buat Event</h2><p class="mt-1 text-sm text-slate-500">Isi informasi event. Event kampus langsung terbit; permintaan dari mitra masuk antrean persetujuan.</p></div></div>
+<form id="evForm" class="space-y-6" novalidate>
+<section class="card p-5 sm:p-6"><h3 class="text-base font-semibold text-slate-800">Informasi Event</h3><p class="mt-0.5 text-sm text-slate-500">Jenis, judul, dan penyelenggara.</p><div class="mt-5 space-y-5"><div class="grid gap-5 sm:grid-cols-2">
+<div><label class="form-label">Jenis Event <span class="text-danger-600">*</span></label><div id="eType" class="combo w-full" data-combo data-value="Seminar/webinar">
+  <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Seminar/webinar</span><i class="kk kk-caret-down combo-chevron"></i></button>
+  <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list>
+    <button type="button" class="combo-item" data-combo-item data-value="Program Beasiswa" data-label="Program Beasiswa">Program Beasiswa</button>
+    <button type="button" class="combo-item" data-combo-item data-value="Program Kewirausahan" data-label="Program Kewirausahaan">Program Kewirausahaan</button>
+    <button type="button" class="combo-item" data-combo-item data-value="Pelatihan" data-label="Program Pelatihan">Program Pelatihan</button>
+    <button type="button" class="combo-item is-selected" data-combo-item data-value="Seminar/webinar" data-label="Seminar/webinar">Seminar/webinar</button>
+    <button type="button" class="combo-item" data-combo-item data-value="Pameran Karier" data-label="Pameran Karier">Pameran Karier</button>
+  </div></div></div><p class="form-error mt-1.5" data-err="eType" hidden></p></div>
+<div><label class="form-label">Penyelenggara <span class="text-danger-600">*</span></label><div id="eOrg" class="combo w-full" data-combo data-value="kampus">
+  <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Kampus (Career Center)</span><i class="kk kk-caret-down combo-chevron"></i></button>
+  <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list>
+    <button type="button" class="combo-item is-selected" data-combo-item data-value="kampus" data-label="Kampus (Career Center)">Kampus (Career Center)</button>
+    <button type="button" class="combo-item" data-combo-item data-value="mitra" data-label="Mitra Perusahaan">Mitra Perusahaan</button>
+  </div></div></div><p class="form-error mt-1.5" data-err="eOrg" hidden></p></div>
+</div>
+<div id="eMitraWrap" hidden><div><label class="form-label">Mitra Penyelenggara <span class="text-danger-600">*</span></label><div id="eMitra" class="combo w-full" data-combo data-value="gojek">
+  <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Gojek</span><i class="kk kk-caret-down combo-chevron"></i></button>
+  <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list>
+    <button type="button" class="combo-item is-selected" data-combo-item data-value="gojek" data-label="Gojek">Gojek</button>
+    <button type="button" class="combo-item" data-combo-item data-value="tokopedia" data-label="Tokopedia">Tokopedia</button>
+    <button type="button" class="combo-item" data-combo-item data-value="jago" data-label="Bank Jago">Bank Jago</button>
+    <button type="button" class="combo-item" data-combo-item data-value="maju" data-label="PT Maju Digital">PT Maju Digital</button>
+  </div></div></div><p class="form-hint">Kegiatan atas nama mitra tercatat sebagai kerja sama kampus.</p><p class="form-error mt-1.5" data-err="eMitra" hidden></p></div></div>
+<div><label class="form-label" for="eTitle">Judul Event <span class="text-danger-600">*</span></label><input id="eTitle" class="input" placeholder="mis. Webinar Karier di Industri Kreatif" maxlength="120" /><p class="form-hint">Tanpa karakter # &lt; &gt;.</p><p class="form-error mt-1.5" data-err="eTitle" hidden></p></div>
+<div><label class="form-label" for="eDesc">Deskripsi <span class="text-danger-600">*</span></label><textarea id="eDesc" class="input textarea-autogrow h-auto py-2.5" rows="6" placeholder="Tujuan, rangkaian acara, dan manfaat bagi peserta"></textarea><p class="form-error mt-1.5" data-err="eDesc" hidden></p></div></div></section>
+<section class="card p-5 sm:p-6"><h3 class="text-base font-semibold text-slate-800">Jadwal & Lokasi</h3><p class="mt-0.5 text-sm text-slate-500">Waktu dan tempat pelaksanaan.</p><div class="mt-5 space-y-5"><div class="grid gap-5 sm:grid-cols-2">
+<div><label class="form-label" for="eStart">Tanggal Mulai <span class="text-danger-600">*</span></label><div class="datepicker"><i class="kk kk-calendar-blank datepicker-icon h-4 w-4"></i><input id="eStart" type="text" class="input" placeholder="dd/mm/yyyy" data-datepicker data-datepicker-format="dd/mm/yyyy" data-datepicker-min="today" /></div><p class="form-error mt-1.5" data-err="eStart" hidden></p></div>
+<div><label class="form-label" for="eEnd">Tanggal Selesai</label><div class="datepicker"><i class="kk kk-calendar-blank datepicker-icon h-4 w-4"></i><input id="eEnd" type="text" class="input" placeholder="dd/mm/yyyy" data-datepicker data-datepicker-format="dd/mm/yyyy" data-datepicker-min="today" /></div><p class="form-hint">Kosong = satu hari.</p><p class="form-error mt-1.5" data-err="eEnd" hidden></p></div>
+</div>
+<div><label class="form-label" for="eLoc">Lokasi <span class="text-danger-600">*</span></label><input id="eLoc" class="input" placeholder="mis. Aula Kampus atau Online (Zoom)"  /><p class="form-error mt-1.5" data-err="eLoc" hidden></p></div>
+<div><label class="form-label" for="eLink">Tautan Pendaftaran</label><input id="eLink" class="input" placeholder="https://" type="url" /><p class="form-hint">Opsional. Pendaftar diarahkan ke tautan ini.</p><p class="form-error mt-1.5" data-err="eLink" hidden></p></div></div></section>
+<section class="card p-5 sm:p-6"><h3 class="text-base font-semibold text-slate-800">Berkas</h3><p class="mt-0.5 text-sm text-slate-500">Poster dan proposal pendukung.</p><div class="mt-5 grid gap-5 sm:grid-cols-2"><div class="upload upload-sm" data-file-upload data-upload-max-size="2" data-upload-preview="image"><label class="form-label" for="ePoster">Poster</label><label class="upload-drop" for="ePoster"><input id="ePoster" type="file" class="sr-only" accept=".jpg,.jpeg,.png" /><span class="upload-icon"><i class="kk kk-image"></i></span><span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span><span class="upload-hint">JPG atau PNG (maks. 2 MB)</span></label></div>
+<div class="upload upload-sm" data-file-upload data-upload-max-size="5"><label class="form-label" for="eProposal">Proposal Kegiatan</label><label class="upload-drop" for="eProposal"><input id="eProposal" type="file" class="sr-only" accept=".pdf,.doc,.docx" /><span class="upload-icon"><i class="kk kk-file-arrow-up"></i></span><span class="upload-title"><b>Klik untuk unggah</b><span class="upload-or"> atau seret file ke sini</span></span><span class="upload-hint">PDF, DOC, atau DOCX (maks. 5 MB)</span></label><p class="form-hint">Wajib untuk kegiatan kerja sama dengan mitra.</p></div></div></section>
+<div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+<a href="event.html" class="btn-outline btn-md">Batal</a>
+<button type="button" class="btn-outline btn-md" id="saveDraft">Simpan Draft</button>
+<button type="submit" class="btn-primary btn-md"><i class="kk kk-paper-plane-tilt h-4 w-4"></i>Terbitkan</button>
+</div>
+</form>
+  </main>
+
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/table.js"></script>
+<script src="../../assets/js/datepicker.js"></script>
+<script src="../../assets/js/file-upload.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const toast = (type, message) => window.KKToast && window.KKToast.show({ type, message, duration: 3500 });
+  const required = ["eTitle","eLoc","eDesc","eStart"];
+  function validate() {
+    let ok = true;
+    required.forEach((id) => {
+      const el = $(id), err = document.querySelector('[data-err="' + id + '"]');
+      const bad = !el.value.trim(); ok = ok && !bad;
+      if (err) { err.hidden = !bad; err.textContent = bad ? 'Wajib diisi.' : ''; }
+    });
+    return ok;
+  }
+  
+  const org = $('eOrg');
+  org.querySelectorAll('[data-combo-item]').forEach((i) => i.addEventListener('click', () => { $('eMitraWrap').hidden = i.dataset.value !== 'mitra'; }));
+  
+  $('saveDraft').addEventListener('click', () => { toast('success', 'Draft disimpan (simulasi).'); });
+  document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!validate()) { toast('error', 'Lengkapi kolom yang wajib diisi.'); return; }
+    toast('success', 'Event diterbitkan (simulasi).');
+    setTimeout(() => { location.href = 'event.html'; }, 900);
+  });
+})();
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();</script>
+<script src="admin-brand.js"></script>
+</body>
+</html>
+</script>
+<script src="admin-brand.js"></script>
+</body></html>
