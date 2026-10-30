@@ -849,6 +849,110 @@
   }
 
   /* ==========================================================================
+     Job Fair (campaign), contoh. Satu campaign = kumpulan perusahaan + lowongan peserta dengan masa aktif.
+     Alur mengikuti KarirLink produksi (Web/V2/CampaignController): halaman publik hanya tampil saat masa aktif (mulai <= hari ini <= selesai);
+     di luar masa itu respons 404, kecuali dibuka dengan ?preview (khusus admin).
+       GET /api/job-fair/:slug                       -> { fair, phase, stats:{ jobs, companies }, companies:[{ slug, name, field, city, jobs }], featured:[ranked] }
+       GET /api/job-fair/:slug/jobs?company&jenis&q&page&pageSize -> { items:[ranked], total, page, pageSize, pages, companies, types }
+       GET /api/job-fair/:slug/companies/:company    -> { fair, phase, company:{ slug, name, field, city, jobList:[ranked] } }
+     Campaign dibuat dan diisi (perusahaan, lowongan, impor Excel) oleh admin SEVIMA; portal hanya membaca. phase: akan | berlangsung | selesai.
+     ========================================================================== */
+  var JOBFAIRS = [
+    { slug: 'job-fair-teknologi-2026', eventId: 1, name: 'Job Fair Teknologi 2026', tagline: 'Satu hari, puluhan perusahaan, ratusan lowongan.',
+      desc: 'Bertemu langsung dengan perekrut, kirim lamaran ke lowongan peserta, dan ikuti sesi walk-in interview. Lowongan peserta bisa dilamar selama job fair berlangsung.',
+      startIn: -1, endIn: 3, place: 'Jakarta Convention Hall dan online',
+      flyers: [
+        { title: 'Walk-in Interview', text: 'Datang langsung ke booth perusahaan dengan CV tercetak.', link: 'event.html?id=1' },
+        { title: 'Klinik CV 15 Menit', text: 'Konsultasikan CV bersama konselor karier sebelum melamar.', link: 'event.html?id=5' },
+        { title: 'Webinar Karier Kreatif', text: 'Tips memilih perusahaan dan menyiapkan portofolio.', link: 'event.html?id=3' }
+      ], jobMax: 30 },
+    { slug: 'job-fair-bisnis-keuangan-2027', eventId: 10, name: 'Job Fair Bisnis dan Keuangan', tagline: 'Peluang karier di perbankan, asuransi, dan konsultan.',
+      desc: 'Lowongan dari perusahaan sektor bisnis dan keuangan untuk fresh graduate dan alumni.',
+      startIn: 75, endIn: 76, place: 'Gedung Serbaguna Kampus', flyers: [], jobMax: 18 }
+  ];
+  JOBFAIRS.forEach(function (f) { EVENTS.forEach(function (e) { if (e.id === f.eventId) e.fair = f.slug; }); });
+  function fairBySlug(slug) { return JOBFAIRS.filter(function (f) { return f.slug === slug; })[0]; }
+  function fairPhase(f) { return f.endIn < 0 ? 'selesai' : f.startIn > 0 ? 'akan' : 'berlangsung'; }
+  function fairStart(f) { return new Date(Date.now() + f.startIn * DAY); }
+  function fairEnd(f) { return new Date(Date.now() + f.endIn * DAY); }
+  function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  function fairJobs(f) { return ranked.filter(function (r) { return r.job.id <= f.jobMax; }); }
+  function fairCompanies(f) {
+    var map = {};
+    fairJobs(f).forEach(function (r) {
+      var j = r.job, k = slugify(j.company);
+      (map[k] = map[k] || { slug: k, name: j.company, field: j.field, city: j.city, jobs: 0 }).jobs++;
+    });
+    return Object.keys(map).map(function (k) { return map[k]; }).sort(function (a, b) { return b.jobs - a.jobs || a.name.localeCompare(b.name); });
+  }
+  // Admin boleh membuka campaign di luar masa aktif lewat ?preview; pengunjung lain menerima 404.
+  function fairGuard(slug, preview) {
+    var f = fairBySlug(slug || JOBFAIRS[0].slug);
+    if (!f) throw new Error('Job Fair tidak ditemukan');
+    var phase = fairPhase(f);
+    if (phase !== 'berlangsung' && !preview) throw new Error('Job Fair ini belum dibuka atau sudah berakhir');
+    return { f: f, phase: phase };
+  }
+  var apiFair = {
+    getJobFair: function (slug, preview) {
+      return simulate(function () {
+        var g = fairGuard(slug, preview), jobs = fairJobs(g.f), companies = fairCompanies(g.f);
+        return {
+          fair: g.f, phase: g.phase, preview: !!preview, stats: { jobs: jobs.length, companies: companies.length },
+          companies: companies, featured: jobs.slice().sort(function (a, b) { return b.job.pop - a.job.pop || a.job.id - b.job.id; }).slice(0, 6)
+        };
+      });
+    },
+    listFairJobs: function (o) {
+      o = o || {};
+      return simulate(function () {
+        var g = fairGuard(o.slug, o.preview), q = (o.q || '').trim().toLowerCase();
+        var base = fairJobs(g.f).filter(function (r) { return !q || (r.job.title + ' ' + r.job.company + ' ' + r.job.city).toLowerCase().indexOf(q) !== -1; });
+        var list = base.filter(function (r) { return (!o.company || slugify(r.job.company) === o.company) && (!o.jenis || r.job.type === o.jenis); });
+        var res = paginate(list, o.page, o.pageSize || 9);
+        res.fair = g.f; res.phase = g.phase; res.companies = fairCompanies(g.f);
+        res.types = [];
+        fairJobs(g.f).forEach(function (r) { if (res.types.indexOf(r.job.type) === -1) res.types.push(r.job.type); });
+        return res;
+      });
+    },
+    getFairCompany: function (slug, company, preview) {
+      return simulate(function () {
+        var g = fairGuard(slug, preview);
+        var c = fairCompanies(g.f).filter(function (x) { return x.slug === company; })[0];
+        if (!c) throw new Error('Perusahaan tidak terdaftar di Job Fair ini');
+        c.jobList = fairJobs(g.f).filter(function (r) { return slugify(r.job.company) === company; });
+        return { fair: g.f, phase: g.phase, company: c };
+      });
+    }
+  };
+  Object.keys(apiFair).forEach(function (k) { api[k] = apiFair[k]; });
+  function fairParams() {
+    var p = new URLSearchParams(location.search);
+    return { slug: p.get('slug') || JOBFAIRS[0].slug, preview: p.has('preview'), company: p.get('company') || '', jenis: p.get('jenis') || '', q: p.get('q') || '', page: parseInt(p.get('page'), 10) || 1 };
+  }
+  // Tautan halaman Job Fair; ?preview ikut terbawa agar admin tidak kehilangan mode pratinjau di antar halaman.
+  function fairUrl(page, slug, preview, extra) {
+    var q = 'slug=' + encodeURIComponent(slug) + (preview ? '&preview' : '');
+    Object.keys(extra || {}).forEach(function (k) { if (extra[k]) q += '&' + k + '=' + encodeURIComponent(extra[k]); });
+    return page + '.html?' + q;
+  }
+  // Tautan dari event: campaign yang belum/sudah tidak aktif dibuka sebagai pratinjau.
+  function fairLink(slug) { var f = fairBySlug(slug); return fairUrl('job-fair', slug, fairPhase(f) !== 'berlangsung'); }
+  var FAIR_PHASE = { akan: ['badge-info', 'Akan dibuka'], berlangsung: ['badge-success', 'Sedang berlangsung'], selesai: ['badge-neutral', 'Sudah berakhir'] };
+  function fairDates(f) {
+    var o = { day: 'numeric', month: 'long', year: 'numeric' };
+    return fairStart(f).toLocaleDateString('id-ID', o) + ' sampai ' + fairEnd(f).toLocaleDateString('id-ID', o);
+  }
+  function fairCompanyCard(c, slug, preview) {
+    var t = TINT[(FIELDS[c.field] || FIELDS['Teknologi & IT']).color];
+    return '<a href="' + fairUrl('job-fair-perusahaan', slug, preview, { company: c.slug }) + '" class="card card-body flex items-center gap-3 transition-shadow hover:shadow-card-lg">' +
+      '<span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-sm font-bold ' + t.logo + '" aria-hidden="true">' + esc(initials(c.name)) + '</span>' +
+      '<span class="min-w-0"><span class="block truncate text-sm font-semibold text-fg">' + esc(c.name) + '</span><span class="block truncate text-xs text-fg-subtle">' + esc(c.field) + '</span>' +
+      '<span class="mt-1 inline-flex items-center gap-1 text-xs font-medium text-primary-600">' + icon('briefcase', 'h-3.5 w-3.5') + c.jobs + ' lowongan</span></span></a>';
+  }
+
+  /* ==========================================================================
      Course dan pelatihan (contoh). Progres belajar tersimpan di localStorage (kk_portal_courses).
        GET  /api/courses?kategori&level&q&mine&page&pageSize -> { items:[{course, progress}], total, page, pageSize, pages, counts:{ all, mine, kategori... } }
        GET  /api/courses/:id                                 -> { course, progress, similar }
@@ -1176,6 +1280,7 @@
     latest: latest, debounce: debounce,
     comboHtml: comboHtml, comboSet: comboSet, initCombos: initCombos,
     logo: logo, tag: tag, saveButton: saveButton, jobCard: jobCard, jobRow: jobRow, stageBar: stageBar, bindSave: bindSave, initShell: initShell,
+    JOBFAIRS: JOBFAIRS, FAIR_PHASE: FAIR_PHASE, fairParams: fairParams, fairUrl: fairUrl, fairLink: fairLink, fairDates: fairDates, fairPhase: fairPhase, fairCompanyCard: fairCompanyCard,
     skeletonRows: skeletonRows, skeletonCards: skeletonCards, skeletonDetail: skeletonDetail, emptyBox: emptyBox, errorBox: errorBox, pager: pager
   };
 })();
