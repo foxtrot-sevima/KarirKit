@@ -176,7 +176,7 @@
       $('detailSide').innerHTML =
         '<div class="card card-body"><ul class="space-y-4">' + sideRow('calendar-blank', 'Tanggal', esc(PK.evFull(e))) + sideRow('clock', 'Waktu', esc(e.time)) + sideRow(e.mode === 'Online' ? 'video-camera' : 'map-pin', 'Lokasi', esc(e.place)) + '</ul>' +
         '<div class="mt-5 border-t border-border pt-5"><div class="flex items-center justify-between text-sm"><span class="font-medium text-fg">' + (left ? left + ' kursi tersisa' : 'Kuota penuh') + '</span><span class="text-fg-muted">' + e.taken + ' dari ' + e.quota + '</span></div><div class="progress-track mt-2 h-2"><div class="progress-bar" style="width: ' + pct + '%"></div></div></div>' +
-        '<div class="mt-5 space-y-2">' + regBtn(e, res.registered, 'btn-lg w-full') + '<button type="button" class="btn-ghost btn-sm w-full" data-share>' + PK.icon('share-network', 'h-4 w-4') + 'Salin tautan event</button></div></div>';
+        '<div class="mt-5 space-y-2">' + regBtn(e, res.registered, 'btn-lg w-full') + (e.fair ? '<a href="' + PK.fairLink(e.fair) + '" class="btn-secondary btn-md w-full">' + PK.icon('briefcase', 'h-4 w-4') + 'Lihat lowongan Job Fair</a>' : '') + '<button type="button" class="btn-ghost btn-sm w-full" data-share>' + PK.icon('share-network', 'h-4 w-4') + 'Salin tautan event</button></div></div>';
       $('similar').hidden = !res.similar.length;
       $('similarGrid').innerHTML = res.similar.map(eventCard).join('');
     }

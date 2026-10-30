@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Job Fair | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Job Fair kampus: perusahaan peserta, lowongan unggulan, dan jadwal sesi. Lamar langsung selama job fair berlangsung." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/job-fair.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Job Fair | Portal Karir KarirLink" />
+<meta property="og:description" content="Job Fair kampus: perusahaan peserta, lowongan unggulan, dan jadwal sesi. Lamar langsung selama job fair berlangsung." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/job-fair.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Job Fair | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Job Fair kampus: perusahaan peserta, lowongan unggulan, dan jadwal sesi. Lamar langsung selama job fair berlangsung." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<div data-shell="nav" data-page="event"></div>
+
+<main class="flex-1">
+
+  <!-- ============================= HERO ============================= -->
+  <section id="hero" data-nav-hero class="relative bg-brand-gradient text-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden"><div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div></div>
+    <div class="relative mx-auto w-full max-w-7xl px-4 pb-10 pt-24 sm:px-6 sm:pb-12">
+      <div id="heroBody"><div class="h-48 animate-pulse rounded-card bg-white/10"></div></div>
+    </div>
+  </section>
+
+  <div id="page" class="mx-auto w-full max-w-7xl space-y-10 px-4 py-8 sm:px-6 sm:py-10" aria-live="polite"></div>
+</main>
+
+<div data-shell="footer"></div>
+
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/pagination.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="shell.js"></script>
+<script src="portal.js"></script>
+<script>
+  /* Job Fair: landing satu campaign. Data lewat PK.api (getJobFair); slug dan ?preview tersimpan di URL. */
+  (function () {
+  var PK = window.PK, api = PK.api, esc = PK.esc, fp = PK.fairParams();
+  function $(id) { return document.getElementById(id); }
+  PK.initShell();
+  PK.bindSave(document);
+  // 404 seperti produksi: campaign di luar masa aktif hanya terbuka untuk admin lewat ?preview.
+  function unavailable(err) {
+    return '<div class="mx-auto max-w-xl">' + PK.emptyBox('default', 'Job Fair tidak tersedia', err.message, '<a href="event.html" class="btn-primary btn-md">Lihat semua event</a>') + '</div>';
+  }
+  function previewNote() {
+    return '<div class="alert alert-warning" role="alert"><i class="kk kk-eye alert-icon" aria-hidden="true"></i><div><span class="alert-title">Mode pratinjau.</span> Job Fair ini belum dibuka atau sudah berakhir, jadi hanya terlihat oleh admin. Pengunjung biasa akan melihat halaman tidak tersedia.</div></div>';
+  }
+    function chip(icon, text) { return '<span class="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-sm font-medium text-white">' + PK.icon(icon, 'h-4 w-4') + text + '</span>'; }
+    function render(res) {
+      var f = res.fair, ph = PK.FAIR_PHASE[res.phase], ev = f.eventId;
+      document.title = f.name + ' | Portal Karir KarirLink';
+      $('heroBody').innerHTML =
+        '<div class="flex flex-wrap items-center gap-2"><span class="' + ph[0] + '">' + ph[1] + '</span><span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">Job Fair</span></div>' +
+        '<h1 class="mt-3 max-w-3xl font-display text-3xl font-bold sm:text-4xl">' + esc(f.name) + '</h1>' +
+        '<p class="mt-2 max-w-2xl text-base text-white/85">' + esc(f.tagline) + '</p>' +
+        '<div class="mt-5 flex flex-wrap gap-2">' + chip('calendar-blank', esc(PK.fairDates(f))) + chip('map-pin', esc(f.place)) + chip('briefcase', res.stats.jobs + ' lowongan') + chip('buildings', res.stats.companies + ' perusahaan') + '</div>' +
+        '<div class="mt-6 flex flex-wrap gap-3"><a href="' + PK.fairUrl('job-fair-lowongan', f.slug, fp.preview) + '" class="btn-secondary btn-lg">' + PK.icon('briefcase', 'h-5 w-5') + 'Lihat semua lowongan</a>' +
+        '<a href="event.html?id=' + ev + '" class="btn-outline btn-lg !border-white/40 !bg-transparent !text-white hover:!bg-white/10">' + PK.icon('calendar-plus', 'h-5 w-5') + 'Daftar acara</a></div>';
+      var h = '';
+      if (res.preview) h += previewNote();
+      h += '<section><div class="flex items-end justify-between gap-3"><div><h2 class="font-display text-xl font-bold text-fg">Tentang Job Fair</h2></div></div><p class="mt-2 max-w-3xl leading-relaxed text-fg-muted">' + esc(f.desc) + '</p></section>';
+      if (f.flyers.length) {
+        h += '<section><h2 class="font-display text-xl font-bold text-fg">Sesi dan informasi</h2><div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">' + f.flyers.map(function (x, i) {
+          return '<a href="' + esc(x.link) + '" class="card card-body flex flex-col transition-shadow hover:shadow-card-lg"><span class="flex h-10 w-10 items-center justify-center rounded-control bg-secondary-50 text-secondary-600">' + PK.icon(['handshake', 'file-text', 'video-camera'][i % 3], 'h-5 w-5') + '</span>' +
+            '<span class="mt-4 text-base font-semibold text-fg">' + esc(x.title) + '</span><span class="mt-1 flex-1 text-sm text-fg-muted">' + esc(x.text) + '</span>' +
+            '<span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary-600">Selengkapnya' + PK.icon('arrow-right', 'h-4 w-4') + '</span></a>';
+        }).join('') + '</div></section>';
+      }
+      h += '<section><div class="flex items-end justify-between gap-3"><div><h2 class="font-display text-xl font-bold text-fg">Perusahaan peserta</h2><p class="mt-1 text-sm text-fg-muted">' + res.stats.companies + ' perusahaan membuka lowongan di Job Fair ini.</p></div></div>' +
+        '<div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">' + res.companies.slice(0, 12).map(function (c) { return PK.fairCompanyCard(c, f.slug, fp.preview); }).join('') + '</div>' + (res.companies.length > 12 ? '<p class="mt-4 text-sm text-fg-muted">dan ' + (res.companies.length - 12) + ' perusahaan lainnya. <a href="' + PK.fairUrl('job-fair-lowongan', f.slug, fp.preview) + '" class="font-medium text-primary-600 hover:underline">Telusuri semua lowongan</a></p>' : '') + '</section>';
+      h += '<section><div class="flex items-end justify-between gap-3"><div><h2 class="font-display text-xl font-bold text-fg">Lowongan unggulan</h2><p class="mt-1 text-sm text-fg-muted">Lowongan paling banyak dilihat dari perusahaan peserta.</p></div>' +
+        '<a href="' + PK.fairUrl('job-fair-lowongan', f.slug, fp.preview) + '" class="btn-ghost btn-sm shrink-0">Lihat semua' + PK.icon('arrow-right', 'h-4 w-4') + '</a></div>' +
+        '<div class="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">' + res.featured.map(function (r) { return PK.jobCard(r); }).join('') + '</div></section>';
+      $('page').innerHTML = h;
+    }
+    function load() {
+      $('page').innerHTML = '<div class="grid grid-cols-1 gap-5 md:grid-cols-3">' + PK.skeletonCards(3) + '</div>';
+      api.getJobFair(fp.slug, fp.preview).then(render).catch(function (err) {
+        $('hero').hidden = true; $('page').innerHTML = unavailable(err);
+      });
+    }
+    document.addEventListener('click', function (e) { if (e.target.closest('[data-retry]')) load(); });
+    load();
+  })();
+</script>
+</body>
+</html>
