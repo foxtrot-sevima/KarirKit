@@ -691,8 +691,8 @@
 </div>
 
 <!-- Ekspor Hasil: unduh jawaban alumni sebagai Excel. Mengikuti fitur "Download Hasil" di Tracer Study live: pilih kuesioner,
-     Template Laporan (Kemendikti / Lengkap), Tahun Lulus (format v2 untuk lulusan 2025 ke atas, v1 sebelumnya), Program Studi,
-     "Menampilkan data terbaru", lalu progres unduhan dan nama berkas. Pengguna Lulusan diunduh langsung tanpa pilihan template.
+     Template Laporan (Kemendikti / Lengkap), Tahun Lulus (Baru untuk lulusan 2025 ke atas, Lampau sebelumnya), Program Studi,
+     lalu progres unduhan dan nama berkas. Pengguna Lulusan diunduh langsung tanpa pilihan template.
      Pengunduhan di mockup hanya simulasi (tidak ada berkas). z-[60]: sidebar karirlink z-50. -->
 <!-- Hapus Kuesioner Kosong: konfirmasi sebelum kuesioner dihapus dari daftar (simulasi). z-[60]: sidebar karirlink z-50. -->
 <div class="modal-backdrop z-[60]" id="deleteModal" aria-labelledby="deleteTitle">
@@ -746,14 +746,14 @@
             </button>
             <div class="combo-menu" data-combo-menu>
               <div class="combo-list" data-combo-list>
-                <button type="button" class="combo-item" data-combo-item data-value="2025" data-label="2025 (format v2)">2025 (format v2)</button>
-                <button type="button" class="combo-item" data-combo-item data-value="2024" data-label="2024 (format v1)">2024 (format v1)</button>
-                <button type="button" class="combo-item" data-combo-item data-value="2023" data-label="2023 (format v1)">2023 (format v1)</button>
-                <button type="button" class="combo-item" data-combo-item data-value="2022" data-label="2022 (format v1)">2022 (format v1)</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2025" data-label="2025 (Baru)">2025 (Baru)</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2024" data-label="2024 (Lampau)">2024 (Lampau)</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2023" data-label="2023 (Lampau)">2023 (Lampau)</button>
+                <button type="button" class="combo-item" data-combo-item data-value="2022" data-label="2022 (Lampau)">2022 (Lampau)</button>
               </div>
             </div>
           </div>
-          <p class="form-hint mt-1.5">Format v2 untuk lulusan 2025 ke atas, v1 untuk sebelumnya.</p>
+          <p class="form-hint mt-1.5">Baru untuk lulusan 2025 ke atas, Lampau untuk sebelumnya.</p>
         </div>
         <div id="expGrpProdi">
           <label class="form-label">Program Studi</label>
@@ -779,14 +779,6 @@
       <div id="expDirect" class="callout-info flex items-start gap-2.5" hidden>
         <i class="kk kk-info mt-0.5 h-4 w-4 shrink-0 text-info-600"></i>
         <p class="text-sm text-fg">Kuesioner Pengguna Lulusan diunduh langsung dalam satu berkas untuk semua program studi, tanpa pilihan template.</p>
-      </div>
-
-      <div id="expGrpFresh" class="flex items-start justify-between gap-4 rounded-control border border-border px-4 py-3">
-        <label for="expFresh" class="min-w-0 cursor-pointer">
-          <span class="block text-sm font-medium text-fg">Menampilkan data terbaru</span>
-          <span class="mt-0.5 block text-xs text-fg-muted">Memakai isian terakhir tiap alumni. Matikan untuk menyertakan semua isian.</span>
-        </label>
-        <span class="toggle shrink-0"><input id="expFresh" type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></span>
       </div>
 
       <div id="expProgress" hidden role="status" aria-live="polite">
@@ -1304,10 +1296,16 @@
         tip.style.top = top + 'px';
         return;
       }
-      let top = r.top - tipRect.height - GAP;
-      if (top < 8) top = r.bottom + GAP;
-      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
-      left = Math.max(8, left);
+      // Atas (bawaan) atau bawah (data-tooltip-side="bottom"), rata tengah terhadap pemicu dan tetap di dalam layar.
+      let top;
+      if (trigger.dataset.tooltipSide === 'bottom') {
+        top = r.bottom + GAP;
+        if (top + tipRect.height > window.innerHeight - 8) top = r.top - tipRect.height - GAP;
+      } else {
+        top = r.top - tipRect.height - GAP;
+        if (top < 8) top = r.bottom + GAP;
+      }
+      const left = Math.max(8, Math.min(r.left + (r.width - tipRect.width) / 2, window.innerWidth - tipRect.width - 8));
       tip.style.top = top + 'px';
       tip.style.left = left + 'px';
     }
@@ -1329,6 +1327,7 @@
       trigger.addEventListener('mouseleave', hide);
       trigger.addEventListener('focus', show);
       trigger.addEventListener('blur', hide);
+      trigger.addEventListener('click', hide);
     });
   })();</script>
 <script>
@@ -1542,7 +1541,6 @@
       show('expGrpTpl', lulusan);
       show('expGrpYear', lulusan && tpl === 'pddikti');
       show('expGrpProdi', !pengguna);
-      show('expGrpFresh', !pengguna);
       show('expDirect', pengguna);
       // tombol aktif: Lulusan wajib memilih template, dan tahun lulus bila Kemendikti
       var ready = !lulusan || (tpl && (tpl !== 'pddikti' || yr));
@@ -1555,7 +1553,6 @@
       resetCombo('expYear', 'Pilih tahun lulus'); resetCombo('expProdi', 'Semua Program Studi');
       // posisi menu dihitung saat modal masih tersembunyi (ukuran 0); setel ulang agar tidak melebarkan isi modal
       modal.querySelectorAll('.combo-menu').forEach(function (m) { m.style.left = '0px'; });
-      $('expFresh').checked = true;
       show('expProgress', false);
       render();
       if (window.KKModal) KKModal.open('exportModal');
