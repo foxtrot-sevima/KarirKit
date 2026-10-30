@@ -15,6 +15,7 @@ Dasar KarirKit: v1.5.0
 ### Changed
 
 - **Tanggal Akhir dihapus dari Pengaturan Gelombang Pengiriman** (`templates/karirlink/yudisium-detail.html`): tiap gelombang (Lulus, Pasca-Lulus 1, Pasca-Lulus 2) kini hanya punya Tanggal Mulai. Keterangan yang menyebut "rentang tanggal" diganti "tanggal mulai", dan catatan dev ikut disesuaikan.
+- **Form Tanggal Mulai selalu di bawah kartu gelombang** (`templates/karirlink/yudisium-detail.html`): kartu Lulus, Pasca-Lulus 1, dan Pasca-Lulus 2 kini kolom flex dengan blok Tanggal Mulai di dasar kartu (`mt-auto`), sehingga ketiganya sejajar walau panjang deskripsinya berbeda.
 - **Ekspor Hasil menjadi tombol ikon di luar menu, titik tiga diberi tooltip** (`templates/karirlink/kuesioner.html`): header halaman Kuesioner kini berisi tombol ikon Ekspor Hasil (tooltip "Ekspor Hasil"), tombol ikon titik tiga (tooltip "Lainnya") yang membuka menu QR Tracer dan Lihat Panduan, lalu Simulasi Tracer. Tooltip memakai `data-tooltip-trigger`; target sentuh 44px di ponsel dan tidak ada scroll horizontal di 390px.
 - **Data Atasan wajib untuk status Bekerja di Tracer Pasca-Lulus** (`templates/karirlink/kuesioner-simulasi.html`): badge "Opsional" dan tombol "Lewati" dihapus; nama, jabatan, email, telp, dan alamat kantor atasan bertanda `*`, menolak kosong ("Wajib diisi."), dan menahan Buat Link serta Selesai sampai terisi semua. Teks pengantar diganti menjadi langkah wajib terakhir.
 
