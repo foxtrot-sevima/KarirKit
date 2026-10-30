@@ -58,7 +58,8 @@
     "build-storybook": "npm run build && storybook build",
     "icons:names": "node scripts/gen-icon-names.mjs",
     "assets:classes": "node scripts/gen-asset-classes.mjs",
-    "check:templates": "node scripts/check-templates.mjs"
+    "check:templates": "node scripts/check-templates.mjs",
+    "mockup:today": "node scripts/mockup-today.mjs"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.6.0",
