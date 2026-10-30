@@ -589,10 +589,10 @@
       <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Jadwal pengiriman Kuesioner Lulusan per gelombang.</span><span class="hidden sm:inline">Menentukan kapan Kuesioner Lulusan dikirim ke lulusan periode <span class="font-medium text-slate-700">Yudisium Genap 2025/2026</span> ini, per gelombang.</span></p>
       <div class="callout-info mt-4 flex items-start gap-3">
         <i class="kk kk-clock h-4 w-4 shrink-0 text-info-600"></i>
-        <p class="text-sm text-slate-600"><span class="sm:hidden">Dikirim otomatis pukul <span class="font-medium text-slate-800">09.00 WIB</span> selama rentang tiap gelombang.</span><span class="hidden sm:inline">Pengiriman otomatis dijalankan setiap pukul <span class="font-medium text-slate-800">09.00 WIB</span> selama rentang tanggal tiap gelombang di bawah ini.</span></p>
+        <p class="text-sm text-slate-600"><span class="sm:hidden">Dikirim otomatis pukul <span class="font-medium text-slate-800">09.00 WIB</span> pada tanggal mulai tiap gelombang.</span><span class="hidden sm:inline">Pengiriman otomatis dijalankan setiap pukul <span class="font-medium text-slate-800">09.00 WIB</span> pada tanggal mulai tiap gelombang di bawah ini.</span></p>
       </div>
       <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="rounded-xl border border-slate-100 p-4" data-wave="1">
+        <div class="flex flex-col rounded-xl border border-slate-100 p-4" data-wave="1">
           <div class="flex items-start gap-3">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-opacity" data-wave-dim>
               <i class="kk kk-clock h-4 w-4"></i>
@@ -606,58 +606,46 @@
               <span class="toggle-track"></span>
             </label>
           </div>
-          <div class="mt-4 grid grid-cols-2 gap-3 transition-opacity" data-wave-dim>
+          <div class="mt-auto pt-4 transition-opacity" data-wave-dim>
             <div>
               <label class="form-label">Tanggal Mulai</label>
               <input class="input" type="date" value="2026-08-14" data-wave-input />
             </div>
-            <div>
-              <label class="form-label">Tanggal Akhir</label>
-              <input class="input" type="date" value="2026-08-27" data-wave-input />
-            </div>
           </div>
         </div>
 
-        <div class="rounded-xl border border-slate-100 p-4">
+        <div class="flex flex-col rounded-xl border border-slate-100 p-4">
           <div class="flex items-start gap-3">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600">
               <i class="kk kk-clock h-4 w-4"></i>
             </span>
             <div>
               <p class="text-sm font-semibold text-slate-800">Pasca-Lulus 1</p>
-              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim sesuai rentang tanggalnya.</span><span class="hidden sm:inline">Dikirim pada rentang tanggal yang ditentukan kampus untuk memantau status karier lulusan, misalnya saat lulus atau 1 tahun setelahnya.</span></p>
+              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim sesuai tanggal mulai.</span><span class="hidden sm:inline">Dikirim pada tanggal mulai yang ditentukan kampus untuk memantau status karier lulusan, misalnya saat lulus atau 1 tahun setelahnya.</span></p>
             </div>
           </div>
-          <div class="mt-4 grid grid-cols-2 gap-3">
+          <div class="mt-auto pt-4">
             <div>
               <label class="form-label">Tanggal Mulai</label>
               <input class="input" type="date" value="2027-08-28" />
             </div>
-            <div>
-              <label class="form-label">Tanggal Akhir</label>
-              <input class="input" type="date" value="2027-09-11" />
-            </div>
           </div>
         </div>
 
-        <div class="rounded-xl border border-slate-100 p-4">
+        <div class="flex flex-col rounded-xl border border-slate-100 p-4">
           <div class="flex items-start gap-3">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600">
               <i class="kk kk-clock h-4 w-4"></i>
             </span>
             <div>
               <p class="text-sm font-semibold text-slate-800">Pasca-Lulus 2</p>
-              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim sesuai rentang tanggalnya.</span><span class="hidden sm:inline">Dikirim pada rentang tanggal yang ditentukan kampus untuk memantau perkembangan karier jangka panjang.</span></p>
+              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim sesuai tanggal mulai.</span><span class="hidden sm:inline">Dikirim pada tanggal mulai yang ditentukan kampus untuk memantau perkembangan karier jangka panjang.</span></p>
             </div>
           </div>
-          <div class="mt-4 grid grid-cols-2 gap-3">
+          <div class="mt-auto pt-4">
             <div>
               <label class="form-label">Tanggal Mulai</label>
               <input class="input" type="date" value="2030-08-28" />
-            </div>
-            <div>
-              <label class="form-label">Tanggal Akhir</label>
-              <input class="input" type="date" value="2030-09-11" />
             </div>
           </div>
         </div>
@@ -671,7 +659,7 @@
          Data: satu flag per periode yudisium (bukan global), mis. periode.lulus_enabled boolean, default true. Disimpan bersama tombol
          "Simpan Pengaturan Gelombang" di aplikasi sungguhan (di mockup ini tersimpan saat toggle digeser).
          Bila enabled = false:
-           1. Penjadwal pengiriman (09.00 WIB) TIDAK mengirim Kuesioner Lulus ke lulusan periode ini, apa pun isi Tanggal Mulai/Akhir.
+           1. Penjadwal pengiriman (09.00 WIB) TIDAK mengirim Kuesioner Lulus ke lulusan periode ini, apa pun isi Tanggal Mulai.
               Tanggal tidak divalidasi dan tidak dipakai (input di UI dikunci).
            2. Portal Karir: GET /api/tracer tidak menyertakan item 'lulus' (id 'pra-lulus'), jadi kartunya tidak tampil di halaman alumni
               maupun mahasiswa. Penyaringan dilakukan server, bukan FE.
