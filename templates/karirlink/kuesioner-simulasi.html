@@ -1647,7 +1647,7 @@
         <i class="kk kk-check-circle h-9 w-9"></i>
       </span>
       <h2 class="relative mt-4 font-display text-xl font-bold sm:text-2xl">Tracer Study Dikti Selesai!</h2>
-      <p id="dataAtasanCaption" class="relative mx-auto mt-2 max-w-md text-sm leading-relaxed text-white/85">Terima kasih! Bagian wajib sudah lengkap. Satu langkah opsional lagi di bawah untuk survei atasan Anda.</p>
+      <p id="dataAtasanCaption" class="relative mx-auto mt-2 max-w-md text-sm leading-relaxed text-white/85">Terima kasih! Tinggal satu langkah wajib lagi: lengkapi data atasan Anda di bawah agar survei pengguna lulusan bisa dikirim.</p>
     </div>
 
     <div class="px-6 py-6 text-left sm:px-10 sm:py-8">
@@ -1655,30 +1655,35 @@
         <div class="flex items-start gap-3">
           <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-briefcase h-5 w-5"></i></span>
           <div class="min-w-0">
-            <p class="flex flex-wrap items-center gap-2 text-base font-semibold text-slate-900">Data Atasan <span class="badge-neutral">Opsional</span></p>
+            <p class="flex flex-wrap items-center gap-2 text-base font-semibold text-slate-900">Data Atasan</p>
           </div>
         </div>
 
         <div id="dataAtasanForm" class="mt-5 space-y-4">
           <div>
-            <label class="form-label" for="atasanNama">Nama atasan</label>
+            <label class="form-label" for="atasanNama">Nama atasan <span class="text-danger-600">*</span></label>
             <input id="atasanNama" class="input" placeholder="mis. Rina Wulandari" />
+            <p id="atasanNamaError" class="mt-1.5 hidden text-xs font-medium text-danger-600">Wajib diisi.</p>
           </div>
           <div>
-            <label class="form-label" for="atasanJabatan">Jabatan atasan</label>
+            <label class="form-label" for="atasanJabatan">Jabatan atasan <span class="text-danger-600">*</span></label>
             <input id="atasanJabatan" class="input" placeholder="mis. HRD Manager" />
+            <p id="atasanJabatanError" class="mt-1.5 hidden text-xs font-medium text-danger-600">Wajib diisi.</p>
           </div>
           <div>
-            <label class="form-label" for="atasanEmail">Email atasan</label>
+            <label class="form-label" for="atasanEmail">Email atasan <span class="text-danger-600">*</span></label>
             <input id="atasanEmail" type="email" class="input" placeholder="nama@perusahaan.co.id" />
+            <p id="atasanEmailError" class="mt-1.5 hidden text-xs font-medium text-danger-600">Wajib diisi.</p>
           </div>
           <div>
-            <label class="form-label" for="atasanTelp">No. telp atasan</label>
+            <label class="form-label" for="atasanTelp">No. telp atasan <span class="text-danger-600">*</span></label>
             <input id="atasanTelp" type="tel" class="input" placeholder="mis. 081298765432" />
+            <p id="atasanTelpError" class="mt-1.5 hidden text-xs font-medium text-danger-600">Wajib diisi.</p>
           </div>
           <div>
-            <label class="form-label" for="atasanAlamat">Alamat kantor</label>
+            <label class="form-label" for="atasanAlamat">Alamat kantor <span class="text-danger-600">*</span></label>
             <input id="atasanAlamat" class="input" placeholder="mis. Jl. Jenderal Sudirman No. 45, Jakarta Selatan" />
+            <p id="atasanAlamatError" class="mt-1.5 hidden text-xs font-medium text-danger-600">Wajib diisi.</p>
           </div>
           <button type="button" id="buatLinkBtn" class="btn-primary btn-md w-full justify-center">
             <i class="kk kk-chart-bar h-4 w-4 shrink-0"></i>
@@ -1695,7 +1700,6 @@
       </div>
 
       <div class="mt-8 flex flex-col justify-center gap-2.5 sm:flex-row">
-        <button type="button" id="skipAtasanBtn" class="btn-outline btn-md">Lewati</button>
         <button type="button" id="finishAtasanBtn" class="btn-primary btn-md">Selesai</button>
       </div>
     </div>
@@ -2659,10 +2663,31 @@
     });
   });
 
-  document.getElementById('buatLinkBtn').addEventListener('click', () => {
+  // Data Atasan wajib untuk status Bekerja: semua isian harus terisi sebelum link dibuat atau sebelum Selesai.
+  const ATASAN_IDS = ['atasanNama', 'atasanJabatan', 'atasanEmail', 'atasanTelp', 'atasanAlamat'];
+  function validateAtasan() {
+    let first = null;
+    ATASAN_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      const ok = el.value.trim() !== '';
+      markFieldError(el, id + 'Error', ok);
+      if (!ok && !first) first = el;
+    });
+    if (first) jumpToField(first);
+    return !first;
+  }
+  ATASAN_IDS.forEach((id) => {
+    const el = document.getElementById(id);
+    el.addEventListener('input', () => { if (el.value.trim() !== '') markFieldError(el, id + 'Error', true); });
+  });
+
+  function makeAtasanLink() {
     // Tautan mengikuti domain tempat halaman dibuka (subdomain kampus).
     if (location.host) document.getElementById('dataAtasanLinkText').textContent = 'karirlink.id/survei/pgl-8f2a91'.replace('karirlink.id', location.host);
     document.getElementById('dataAtasanLinkResult').classList.remove('hidden');
+  }
+  document.getElementById('buatLinkBtn').addEventListener('click', () => {
+    if (validateAtasan()) makeAtasanLink();
   });
 
   function goToSuccessFromDataAtasan() {
@@ -2671,8 +2696,11 @@
     success.classList.remove('hidden');
     success.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-  document.getElementById('skipAtasanBtn').addEventListener('click', goToSuccessFromDataAtasan);
-  document.getElementById('finishAtasanBtn').addEventListener('click', goToSuccessFromDataAtasan);
+  document.getElementById('finishAtasanBtn').addEventListener('click', () => {
+    if (!validateAtasan()) return;
+    makeAtasanLink();
+    goToSuccessFromDataAtasan();
+  });
 
   document.getElementById('restartBtn').addEventListener('click', () => {
     resetSimulation();
