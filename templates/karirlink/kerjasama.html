@@ -529,7 +529,7 @@
     window.KKModal.close($('kmInviteModal')); toast('success', 'Undangan dikirim ke ' + v + ' (simulasi).');
   });
   $('kmCopyLink').addEventListener('click', () => {
-    const url = location.origin + '/templates/karirlink/mitra-daftar.html?kampus=' + encodeURIComponent('Universitas Contoh');
+    const url = location.origin + '/templates/portal-karir/mitra-daftar.html?kampus=' + encodeURIComponent('Universitas Contoh');
     const done = () => toast('success', 'Tautan pendaftaran mitra disalin. Pengajuan lewat tautan ini otomatis diarahkan ke kampus kamu.');
     try { navigator.clipboard.writeText(url).then(done, done); } catch (err) { done(); }
   });
