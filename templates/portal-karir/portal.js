@@ -816,23 +816,22 @@
   function evWeekday(e) { return evFmt(e, { weekday: 'long', day: 'numeric', month: 'long' }); }
   function evFull(e) { return evFmt(e, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); }
 
-  // Kartu event: gaya yang sama dengan kartu lowongan (blok pastel per kategori, penanda tanggal, tag, dan kaki kartu).
+  // Kartu event: penanda tanggal berwarna per kategori, nama kategori sebagai teks (bukan tag), waktu dan lokasi. Tanpa angka kuota.
   var EVENT_TONE = { 'Job Fair': 'primary', 'Workshop': 'secondary', 'Webinar': 'info', 'Pelatihan': 'success', 'Kegiatan Kampus': 'warning' };
   function eventCard(e) {
     var t = TINT[EVENT_TONE[e.cat] || 'primary'];
-    var left = Math.max(e.quota - e.taken, 0), pct = Math.min(100, Math.round(e.taken / e.quota * 100));
     var reg = eventRegistered(e.id);
-    return '<article class="relative flex flex-col rounded-2xl border border-border/70 bg-surface p-2 shadow-card transition-shadow hover:shadow-card-lg" data-event-card="' + e.id + '">' +
-      '<div class="flex flex-1 flex-col rounded-xl p-4 ' + t.soft + '">' +
-        '<div class="flex items-start justify-between gap-2"><span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-semibold ' + t.text + '">' + esc(e.cat) + '</span>' +
-        '<span class="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700">' + icon(e.mode === 'Online' ? 'video-camera' : 'map-pin', 'h-3.5 w-3.5') + (e.mode === 'Online' ? 'Online' : 'Tatap muka') + '</span></div>' +
-        '<div class="mt-5 flex items-start justify-between gap-3"><div class="min-w-0"><p class="truncate text-xs text-slate-500">' + esc(e.org) + '</p>' +
-        '<h3 class="mt-1 font-display text-lg font-semibold leading-snug text-slate-900"><a href="event.html?id=' + e.id + '" data-open="' + e.id + '" class="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500">' + esc(e.title) + '</a></h3></div>' +
-        '<span class="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl bg-white ' + t.text + '"><span class="text-lg font-bold leading-none">' + evDay(e) + '</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">' + evMonth(e) + '</span></span></div>' +
-        '<div class="mt-4 flex flex-wrap gap-1.5">' + tag(evWeekday(e)) + tag(e.time.split(' - ')[0] + ' WIB') + '</div>' +
-      '</div>' +
-      '<div class="flex items-center justify-between gap-3 px-3 pb-2 pt-3.5"><div class="min-w-0"><p class="truncate text-sm font-semibold text-slate-900">' + esc(e.place) + '</p><p class="mt-0.5 text-xs ' + (left ? 'text-slate-400' : 'text-danger-600') + '">' + (left ? left + ' kursi tersisa (' + pct + '% terisi)' : 'Kuota penuh') + '</p></div>' +
-      (reg ? '<span class="inline-flex h-8 shrink-0 items-center gap-1 rounded-xl bg-success-50 px-3 text-xs font-semibold text-success-700">' + icon('check', 'h-3.5 w-3.5') + 'Terdaftar</span>' : '<span class="btn-primary btn-sm shrink-0" aria-hidden="true">Lihat Detail</span>') + '</div></article>';
+    return '<article class="relative flex flex-col rounded-2xl border border-border/70 bg-surface p-5 shadow-card transition-shadow hover:shadow-card-lg" data-event-card="' + e.id + '">' +
+      '<div class="flex items-start gap-4">' +
+        '<span class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl ' + t.soft + ' ' + t.text + '"><span class="text-2xl font-bold leading-none">' + evDay(e) + '</span><span class="mt-1 text-[11px] font-semibold uppercase tracking-wider">' + evMonth(e) + '</span></span>' +
+        '<div class="min-w-0"><p class="text-xs font-semibold ' + t.text + '">' + esc(e.cat) + '</p>' +
+        '<h3 class="mt-1 font-display text-lg font-semibold leading-snug text-slate-900"><a href="event-detail.html?id=' + e.id + '" class="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500">' + esc(e.title) + '</a></h3></div></div>' +
+      '<p class="mt-3 text-sm text-slate-500">' + esc(e.org) + '</p>' +
+      '<ul class="mb-5 mt-4 space-y-2 text-sm text-slate-600">' +
+        '<li class="flex items-start gap-2.5">' + icon('clock', 'mt-0.5 h-4 w-4 shrink-0 text-slate-400') + '<span>' + evFmt(e, { weekday: 'long' }) + ', ' + esc(e.time) + '</span></li>' +
+        '<li class="flex items-start gap-2.5">' + icon(e.mode === 'Online' ? 'video-camera' : 'map-pin', 'mt-0.5 h-4 w-4 shrink-0 text-slate-400') + '<span>' + esc(e.place) + '</span></li></ul>' +
+      '<div class="mt-auto flex items-center justify-between gap-3 border-t border-border/70 pt-4"><span class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700">Lihat detail' + icon('arrow-right', 'h-4 w-4') + '</span>' +
+      (reg ? '<span class="inline-flex items-center gap-1 text-xs font-semibold text-success-700">' + icon('check', 'h-3.5 w-3.5') + 'Terdaftar</span>' : '') + '</div></article>';
   }
 
   /* ==========================================================================
@@ -849,9 +848,9 @@
       desc: 'Bertemu langsung dengan perekrut, kirim lamaran ke lowongan peserta, dan ikuti sesi walk-in interview. Lowongan peserta bisa dilamar selama job fair berlangsung.',
       startIn: -1, endIn: 3, place: 'Jakarta Convention Hall dan online',
       flyers: [
-        { title: 'Walk-in Interview', text: 'Datang langsung ke booth perusahaan dengan CV tercetak.', link: 'event.html?id=1' },
-        { title: 'Klinik CV 15 Menit', text: 'Konsultasikan CV bersama konselor karier sebelum melamar.', link: 'event.html?id=5' },
-        { title: 'Webinar Karier Kreatif', text: 'Tips memilih perusahaan dan menyiapkan portofolio.', link: 'event.html?id=3' }
+        { title: 'Walk-in Interview', text: 'Datang langsung ke booth perusahaan dengan CV tercetak.', link: 'event-detail.html?id=1' },
+        { title: 'Klinik CV 15 Menit', text: 'Konsultasikan CV bersama konselor karier sebelum melamar.', link: 'event-detail.html?id=5' },
+        { title: 'Webinar Karier Kreatif', text: 'Tips memilih perusahaan dan menyiapkan portofolio.', link: 'event-detail.html?id=3' }
       ], jobMax: 30 },
     { slug: 'job-fair-bisnis-keuangan-2027', eventId: 10, name: 'Job Fair Bisnis dan Keuangan', tagline: 'Peluang karier di perbankan, asuransi, dan konsultan.',
       desc: 'Lowongan dari perusahaan sektor bisnis dan keuangan untuk fresh graduate dan alumni.',
