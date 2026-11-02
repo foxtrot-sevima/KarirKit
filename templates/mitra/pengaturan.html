@@ -327,48 +327,70 @@
   <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
 <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div class="min-w-0"><h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Pengaturan</h2><p class="mt-1 text-sm text-slate-500">Kelola akun, kata sandi, tim perekrut, dan notifikasi email perusahaanmu.</p></div></div>
 
-<div class="max-w-3xl space-y-10">
-    <section class="space-y-4" aria-labelledby="secAkun">
-      <div><h3 id="secAkun" class="font-display text-lg font-bold text-slate-900">Akun Saya</h3><p class="mt-1 text-sm text-slate-500">Data penanggung jawab yang terdaftar di KarirLink.</p></div>
-      <div class="min-w-0"><form id="akunForm" class="card card-body" novalidate><div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+<section id="pgEditor" class="grid items-start gap-6 lg:grid-cols-[18rem_minmax(0,1fr)]">
+
+  <!-- Daftar bagian -->
+  <div id="pgList" class="card overflow-hidden lg:sticky lg:top-24">
+    <div class="flex items-center gap-2.5 border-b border-slate-100 px-5 py-4"><i class="kk kk-gear-six h-4 w-4 text-slate-400"></i><h3 class="text-sm font-semibold text-slate-800">Bagian</h3></div>
+    <div class="divide-y divide-slate-100">
+            <button type="button" class="flex w-full items-center justify-between gap-3 px-5 py-4 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50" data-pg-open="akun"><span class="min-w-0"><span class="block">Akun Saya</span><span class="block text-xs font-normal text-slate-500">Nama, jabatan, dan telepon</span></span><i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-400"></i></button>
+            <button type="button" class="flex w-full items-center justify-between gap-3 px-5 py-4 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50" data-pg-open="sandi"><span class="min-w-0"><span class="block">Kata Sandi</span><span class="block text-xs font-normal text-slate-500">Ganti kata sandi akun</span></span><i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-400"></i></button>
+            <button type="button" class="flex w-full items-center justify-between gap-3 px-5 py-4 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50" data-pg-open="tim"><span class="min-w-0"><span class="block">Tim Perekrut</span><span class="block text-xs font-normal text-slate-500">Anggota dan peran</span></span><i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-400"></i></button>
+            <button type="button" class="flex w-full items-center justify-between gap-3 px-5 py-4 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50" data-pg-open="notif"><span class="min-w-0"><span class="block">Notifikasi Email</span><span class="block text-xs font-normal text-slate-500">Kabar yang dikirim ke email</span></span><i class="kk kk-caret-right h-4 w-4 shrink-0 text-slate-400"></i></button>
+    </div>
+  </div>
+
+  <!-- Isi bagian (di kanan pada layar lebar, layar penuh di ponsel) -->
+  <div id="pgPanels" class="card w-full max-w-4xl overflow-hidden max-lg:hidden">
+
+    <form data-pg-panel="akun" id="akunForm" novalidate hidden>
+      <button type="button" data-pg-back class="flex w-full items-center gap-2 border-b border-slate-100 px-5 py-4 text-left text-sm font-semibold text-slate-800 hover:bg-slate-50 lg:pointer-events-none lg:hover:bg-transparent"><i class="kk kk-arrow-left h-4 w-4 lg:hidden"></i><span class="lg:hidden">Kembali</span><span class="ml-auto text-slate-800 lg:ml-0 lg:text-base lg:font-semibold">Akun Saya</span></button>
+      <div class="space-y-5 p-5">
+        <p class="text-sm text-slate-500">Data penanggung jawab yang terdaftar di KarirLink.</p>
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
             <label for="sNama" class="form-label">Nama Lengkap <span class="text-danger-600" aria-hidden="true">*</span></label>
-            <input id="sNama" type="text" class="input" value="Dewi Anggraini" placeholder="" data-req />
+            <input id="sNama" type="text" class="input" value="Dewi Anggraini" />
             
             <p class="form-error mt-1.5" data-err="sNama" hidden>Nama Lengkap wajib diisi.</p>
           </div>
           <div>
             <label for="sJabatan" class="form-label">Jabatan <span class="text-danger-600" aria-hidden="true">*</span></label>
-            <input id="sJabatan" type="text" class="input" value="HR Manager" placeholder="" data-req />
+            <input id="sJabatan" type="text" class="input" value="HR Manager" />
             
             <p class="form-error mt-1.5" data-err="sJabatan" hidden>Jabatan wajib diisi.</p>
           </div>
           <div>
             <label for="sEmail" class="form-label">Email Kerja</label>
-            <input id="sEmail" type="email" class="input" value="dewi@lintasniaga.example" placeholder="" readonly data-email />
+            <input id="sEmail" type="email" class="input" value="dewi@lintasniaga.example" readonly />
             <p class="form-hint mt-1.5">Email sudah terverifikasi dan dipakai untuk masuk.</p>
           </div>
           <div>
             <label for="sTelp" class="form-label">No. Telepon <span class="text-danger-600" aria-hidden="true">*</span></label>
-            <input id="sTelp" type="tel" class="input" value="0812 3456 7890" placeholder="" data-req />
+            <input id="sTelp" type="tel" class="input" value="0812 3456 7890" />
             
             <p class="form-error mt-1.5" data-err="sTelp" hidden>Telepon minimal 8 digit.</p>
           </div>
-        </div><div class="mt-6 flex justify-end"><button type="submit" class="btn-primary btn-md">Simpan Akun</button></div></form></div>
-    </section>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 border-t border-slate-100 bg-slate-50 px-5 py-4 sm:flex sm:justify-end"><button type="button" class="btn-outline btn-md" data-pg-cancel>Batal</button><button type="submit" class="btn-primary btn-md">Simpan</button></div>
+    </form>
 
-    <section class="space-y-4" aria-labelledby="secSandi">
-      <div><h3 id="secSandi" class="font-display text-lg font-bold text-slate-900">Kata Sandi</h3><p class="mt-1 text-sm text-slate-500">Gunakan kata sandi minimal 8 karakter yang tidak dipakai di layanan lain.</p></div>
-      <div class="min-w-0"><form id="sandiForm" class="card card-body" novalidate><div class="space-y-5">
-          <div><label for="sCur" class="form-label">Kata Sandi Saat Ini <span class="text-danger-600" aria-hidden="true">*</span></label><input id="sCur" type="password" class="input" autocomplete="current-password" /><p class="form-error mt-1.5" data-err="sCur" hidden></p></div>
-          <div><label for="sNew" class="form-label">Kata Sandi Baru <span class="text-danger-600" aria-hidden="true">*</span></label><input id="sNew" type="password" class="input" autocomplete="new-password" /><p class="form-error mt-1.5" data-err="sNew" hidden></p></div>
-          <div><label for="sCon" class="form-label">Konfirmasi Kata Sandi Baru <span class="text-danger-600" aria-hidden="true">*</span></label><input id="sCon" type="password" class="input" autocomplete="new-password" /><p class="form-error mt-1.5" data-err="sCon" hidden></p></div>
-        </div><div class="mt-6 flex justify-end"><button type="submit" class="btn-primary btn-md">Perbarui Kata Sandi</button></div></form></div>
-    </section>
+    <form data-pg-panel="sandi" id="sandiForm" novalidate hidden>
+      <button type="button" data-pg-back class="flex w-full items-center gap-2 border-b border-slate-100 px-5 py-4 text-left text-sm font-semibold text-slate-800 hover:bg-slate-50 lg:pointer-events-none lg:hover:bg-transparent"><i class="kk kk-arrow-left h-4 w-4 lg:hidden"></i><span class="lg:hidden">Kembali</span><span class="ml-auto text-slate-800 lg:ml-0 lg:text-base lg:font-semibold">Kata Sandi</span></button>
+      <div class="space-y-5 p-5">
+        <p class="text-sm text-slate-500">Gunakan kata sandi minimal 8 karakter yang tidak dipakai di layanan lain.</p>
+        <div><label for="sCur" class="form-label">Kata Sandi Saat Ini <span class="text-danger-600" aria-hidden="true">*</span></label><input id="sCur" type="password" class="input" autocomplete="current-password" /><p class="form-error mt-1.5" data-err="sCur" hidden></p></div>
+        <div><label for="sNew" class="form-label">Kata Sandi Baru <span class="text-danger-600" aria-hidden="true">*</span></label><input id="sNew" type="password" class="input" autocomplete="new-password" /><p class="form-error mt-1.5" data-err="sNew" hidden></p></div>
+        <div><label for="sCon" class="form-label">Konfirmasi Kata Sandi Baru <span class="text-danger-600" aria-hidden="true">*</span></label><input id="sCon" type="password" class="input" autocomplete="new-password" /><p class="form-error mt-1.5" data-err="sCon" hidden></p></div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 border-t border-slate-100 bg-slate-50 px-5 py-4 sm:flex sm:justify-end"><button type="button" class="btn-outline btn-md" data-pg-cancel>Batal</button><button type="submit" class="btn-primary btn-md">Perbarui</button></div>
+    </form>
 
-    <section class="space-y-4" aria-labelledby="secTim">
-      <div><h3 id="secTim" class="font-display text-lg font-bold text-slate-900">Tim Perekrut</h3><p class="mt-1 text-sm text-slate-500">Admin mengelola profil, tim, dan langganan. Perekrut mengelola lowongan, pelamar, dan talent.</p></div>
-      <div class="min-w-0"><div class="space-y-4"><div class="flex justify-end"><button type="button" class="btn-primary btn-md" id="invBtn"><i class="kk kk-plus h-4 w-4"></i>Undang Anggota</button></div>
+    <div data-pg-panel="tim" hidden>
+      <button type="button" data-pg-back class="flex w-full items-center gap-2 border-b border-slate-100 px-5 py-4 text-left text-sm font-semibold text-slate-800 hover:bg-slate-50 lg:pointer-events-none lg:hover:bg-transparent"><i class="kk kk-arrow-left h-4 w-4 lg:hidden"></i><span class="lg:hidden">Kembali</span><span class="ml-auto text-slate-800 lg:ml-0 lg:text-base lg:font-semibold">Tim Perekrut</span></button>
+      <div class="space-y-4 p-5">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><p class="text-sm text-slate-500">Admin mengelola profil, tim, dan langganan. Perekrut mengelola lowongan, pelamar, dan talent.</p><button type="button" class="btn-primary btn-md shrink-0" id="invBtn"><i class="kk kk-plus h-4 w-4"></i>Undang Anggota</button></div>
 <div class="table-wrap overflow-visible" id="timRoot" data-table data-page-size="10" data-item-label="anggota" data-combo-boundary>
 <div class="table-toolbar">
 <div class="table-search"><span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4"></i></span><label for="timSearch" class="sr-only">Cari anggota...</label><input id="timSearch" type="search" class="input h-9 pl-9" placeholder="Cari anggota..." data-table-search /></div>
@@ -411,19 +433,24 @@
 </tbody></table></div>
 <div data-table-empty hidden class="table-empty"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada anggota yang cocok dengan pencarian.</div>
 <div class="table-footer" data-table-pagination><span data-table-info></span><nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav></div>
-</div></div></div>
-    </section>
-
-    <section class="space-y-4" aria-labelledby="secNotif">
-      <div><h3 id="secNotif" class="font-display text-lg font-bold text-slate-900">Notifikasi Email</h3><p class="mt-1 text-sm text-slate-500">Pilih kabar yang dikirim ke email kerjamu.</p></div>
-      <div class="min-w-0"><form id="notifForm" class="card card-body"><div class="space-y-5">
-          <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Pelamar baru</span><span class="block text-xs text-slate-500">Email setiap ada pelamar baru di lowonganmu.</span></span><span class="toggle shrink-0"><input id="nPelamar" type="checkbox" checked class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
-          <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Undangan talent dijawab</span><span class="block text-xs text-slate-500">Kabar saat talent menerima atau menolak undanganmu.</span></span><span class="toggle shrink-0"><input id="nTalent" type="checkbox" checked class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
-          <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Keputusan kerja sama kampus</span><span class="block text-xs text-slate-500">Kabar saat kampus menyetujui atau menolak pengajuan kerja sama.</span></span><span class="toggle shrink-0"><input id="nKampus" type="checkbox" checked class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
-          <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Ringkasan mingguan</span><span class="block text-xs text-slate-500">Rangkuman pelamar dan aktivitas lowongan tiap Senin pagi.</span></span><span class="toggle shrink-0"><input id="nMingguan" type="checkbox" class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
-        </div><div class="mt-6 flex justify-end"><button type="submit" class="btn-primary btn-md">Simpan Preferensi</button></div></form></div>
-    </section>
 </div>
+      </div>
+    </div>
+
+    <form data-pg-panel="notif" id="notifForm" hidden>
+      <button type="button" data-pg-back class="flex w-full items-center gap-2 border-b border-slate-100 px-5 py-4 text-left text-sm font-semibold text-slate-800 hover:bg-slate-50 lg:pointer-events-none lg:hover:bg-transparent"><i class="kk kk-arrow-left h-4 w-4 lg:hidden"></i><span class="lg:hidden">Kembali</span><span class="ml-auto text-slate-800 lg:ml-0 lg:text-base lg:font-semibold">Notifikasi Email</span></button>
+      <div class="space-y-5 p-5">
+        <p class="text-sm text-slate-500">Pilih kabar yang dikirim ke email kerjamu.</p>
+        <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Pelamar baru</span><span class="block text-xs text-slate-500">Email setiap ada pelamar baru di lowonganmu.</span></span><span class="toggle shrink-0"><input id="nPelamar" type="checkbox" checked class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
+        <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Undangan talent dijawab</span><span class="block text-xs text-slate-500">Kabar saat talent menerima atau menolak undanganmu.</span></span><span class="toggle shrink-0"><input id="nTalent" type="checkbox" checked class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
+        <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Keputusan kerja sama kampus</span><span class="block text-xs text-slate-500">Kabar saat kampus menyetujui atau menolak pengajuan kerja sama.</span></span><span class="toggle shrink-0"><input id="nKampus" type="checkbox" checked class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
+        <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Ringkasan mingguan</span><span class="block text-xs text-slate-500">Rangkuman pelamar dan aktivitas lowongan tiap Senin pagi.</span></span><span class="toggle shrink-0"><input id="nMingguan" type="checkbox" class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
+      </div>
+      <div class="grid grid-cols-2 gap-3 border-t border-slate-100 bg-slate-50 px-5 py-4 sm:flex sm:justify-end"><button type="button" class="btn-outline btn-md" data-pg-cancel>Batal</button><button type="submit" class="btn-primary btn-md">Simpan</button></div>
+    </form>
+
+  </div>
+</section>
   </main>
   <footer class="footer footer-bar">
     <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
@@ -495,6 +522,30 @@
   const err = (id, bad, msg) => { const e = document.querySelector('[data-err="' + id + '"]'); if (e) { if (msg) e.textContent = msg; e.hidden = !bad; } return bad; };
   document.addEventListener('click', (e) => { const it = e.target.closest('[data-combo-item]'); if (it) it.closest('[data-combo]').dataset.value = it.dataset.value; });
 
+  // Daftar bagian di kiri, isi bagian di kanan; di ponsel berganti layar dengan tombol Kembali (pola Personalisasi Portal).
+  const wide = matchMedia('(min-width: 1024px)');
+  const ACTIVE = ['bg-primary-50', 'text-primary-700'];
+  let current = null;
+  function show(name) {
+    current = name;
+    document.querySelectorAll('[data-pg-panel]').forEach((p) => { p.hidden = p.dataset.pgPanel !== name; });
+    document.querySelectorAll('[data-pg-open]').forEach((b) => { const on = b.dataset.pgOpen === name; ACTIVE.forEach((c) => b.classList.toggle(c, on && wide.matches)); b.classList.toggle('hover:bg-slate-50', !(on && wide.matches)); });
+    $('pgList').classList.toggle('max-lg:hidden', !!name);
+    $('pgPanels').classList.toggle('max-lg:hidden', !name);
+    if (name) { try { history.replaceState(null, '', '#' + name); } catch (e) { /* file:// */ } }
+    if (!wide.matches) window.scrollTo({ top: 0 });
+  }
+  document.querySelectorAll('[data-pg-open]').forEach((b) => b.addEventListener('click', () => show(b.dataset.pgOpen)));
+  document.querySelectorAll('[data-pg-back]').forEach((b) => b.addEventListener('click', () => { if (!wide.matches) show(null); }));
+  document.querySelectorAll('[data-pg-cancel]').forEach((b) => b.addEventListener('click', () => {
+    const f = b.closest('form'); if (f) { f.reset(); f.querySelectorAll('[data-err]').forEach((e) => { e.hidden = true; }); }
+    if (!wide.matches) show(null);
+  }));
+  const start = (location.hash || '').slice(1);
+  const valid = ['akun', 'sandi', 'tim', 'notif'];
+  const open0 = () => show(valid.indexOf(start) > -1 ? start : (wide.matches ? 'akun' : null));
+  wide.addEventListener('change', () => show(current || (wide.matches ? 'akun' : null)));
+
   $('akunForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const bad = [err('sNama', !$('sNama').value.trim()), err('sJabatan', !$('sJabatan').value.trim()), err('sTelp', $('sTelp').value.replace(/[^0-9]/g, '').length < 8)].some(Boolean);
@@ -522,6 +573,7 @@
     if (e.target.closest('[data-remove]')) { cur = tr; $('rmName').textContent = tr.dataset.name; window.KKModal.open($('rmModal')); }
   });
   $('rmOk').addEventListener('click', () => { window.KKModal.close($('rmModal')); if (cur) { cur.remove(); table.refresh(); toast('success', 'Anggota dihapus (simulasi).'); } });
+  open0();
 })();
   // KarirKit combo dropdown (self-positioning select replacement) — same
   // component used across the dashboard filters.
