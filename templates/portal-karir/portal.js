@@ -1192,7 +1192,7 @@
     else if (s.draft && s.answered) {
       var pct = Math.round(s.answered / t.count * 100);
       foot = '<div class="min-w-0 flex-1"><div class="flex items-center justify-between text-xs"><span class="font-semibold text-slate-900">Draf ' + pct + '%</span><span class="text-slate-400">' + s.answered + '/' + t.count + '</span></div><div class="progress-track mt-1.5 h-1.5"><div class="progress-bar" style="width: ' + pct + '%"></div></div></div><span class="btn-primary btn-sm shrink-0" aria-hidden="true">Lanjutkan</span>';
-    } else if (s.active) foot = '<div class="min-w-0"><p class="flex items-center gap-2 text-sm font-semibold text-slate-900">Hasilmu ' + codeChips(s.active.code, 'h-6 w-6 text-[11px]') + '</p></div><span class="btn-secondary btn-sm shrink-0" aria-hidden="true">Lihat Hasil</span>';
+    } else if (s.active) foot = '<div class="min-w-0"><p class="text-sm font-semibold text-slate-900">Sudah dikerjakan</p><p class="mt-0.5 text-xs text-slate-400">Hasil siap dilihat</p></div><span class="btn-secondary btn-sm shrink-0" aria-hidden="true">Lihat Hasil</span>';
     else foot = '<div class="min-w-0"><p class="text-sm font-semibold text-slate-900">Gratis</p><p class="mt-0.5 text-xs text-slate-400">Draf tersimpan otomatis</p></div><span class="btn-primary btn-sm shrink-0" aria-hidden="true">Mulai Tes</span>';
     return '<article class="relative flex flex-col rounded-2xl border border-border/70 bg-surface p-2 shadow-card transition-shadow ' + (t.ready ? 'hover:shadow-card-lg' : '') + '">' +
       '<div class="flex flex-1 flex-col rounded-xl p-4 ' + tn.soft + '">' + head +
