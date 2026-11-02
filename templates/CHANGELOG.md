@@ -15,6 +15,7 @@ Dasar KarirKit: v1.5.0
 ### Changed
 
 - **Fitur notifikasi disembunyikan dari Portal Karir** (`templates/portal-karir/shell.js`, dipakai juga oleh versi white-label di `templates/custom/portal-karir`): tombol lonceng di navbar (dropdown di desktop, lembar bawah di ponsel), panel daftar notifikasi, dan tautan "Lihat semua notifikasi" dihapus dari navbar. Menu dan akun tidak berubah; tidak ada overflow di 390px.
+- **Navbar dan sidebar selalu logo KarirLink; nama dan logo kampus cukup di hero** (`templates/portal-karir/shell.js`, `portal.js`, `templates/karirlink/admin-brand.js`, `pengaturan-landing-page.html`): navbar Portal Karir (dan versi white-label) tidak lagi berganti ke logo dan nama kampus saat logo Career Center dipublikasikan, begitu pula sidebar dan drawer panel admin KarirLink. Nama dan logo kampus tampil di hero Beranda Portal Karir (dan identitas di footer). Keterangan di Personalisasi Portal disesuaikan.
 
 ## 2026-10-30
 

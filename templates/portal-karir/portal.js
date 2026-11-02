@@ -666,25 +666,7 @@
   }
   function initCombos(scope) { (scope || document).querySelectorAll('[data-combo]').forEach(initCombo); }
 
-  // Isi nama pengguna di navbar, tahun di footer, dan beri efek kaca pada navbar saat halaman digulir.
-  // Merek di navbar: bawaan = logo KarirLink SEVIMA; bila CAMPUS.logo diisi, tampil logo kampus (white-label) dengan inisial sebagai cadangan.
-  function initBrand() {
-    document.querySelectorAll('[data-brand]').forEach(function (a) {
-      var def = a.querySelector('[data-brand-default]'), cus = a.querySelector('[data-brand-custom]');
-      if (!def || !cus || !CAMPUS.logo) return;
-      def.hidden = true; cus.hidden = false;
-      a.title = CAMPUS.name;
-      var nm = cus.querySelector('[data-campus-name]'); if (nm) nm.textContent = CAMPUS.name;
-      var av = cus.querySelector('[data-brand-avatar]');
-      if (av) {
-        av.textContent = CAMPUS.name.split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
-        var img = new Image(); img.alt = '';
-        img.className = 'absolute inset-0 h-full w-full bg-white object-contain p-0.5';
-        img.addEventListener('load', function () { av.appendChild(img); });
-        img.src = new URL(CAMPUS.logo, location.href).href;
-      }
-    });
-  }
+  // Merek di navbar selalu logo KarirLink SEVIMA; nama dan logo kampus hanya tampil di hero Beranda (dan identitas di footer).
 
   // ---- shell bersama: navbar, drawer, dan footer (markup di shell.js)
   var PAGE_FILE = { home: 'index.html', jobs: 'lowongan.html', event: 'event.html', grow: 'pengembangan.html', tracer: 'tracer-study.html' };
@@ -756,7 +738,6 @@
 
   function initShell() {
     mountShell();
-    initBrand();
     initNav();
     initFooter();
     var name = user.name || 'Pengguna';
