@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Daftar Mitra Perusahaan | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau alumni kampus." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/mitra-daftar.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Daftar Mitra Perusahaan | KarirLink" />
+<meta property="og:description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau alumni kampus." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/mitra-daftar.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:locale" content="id_ID" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Daftar Mitra Perusahaan | KarirLink" />
+<meta name="twitter:description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau alumni kampus." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+<header class="border-b border-border/70 bg-surface">
+  <div class="mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-3 px-4 sm:px-6">
+    <a href="mitra-daftar.html" class="flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <p class="text-sm text-slate-500">Sudah punya akun? <a href="segera-hadir.html?menu=Masuk%20Mitra" class="font-semibold text-primary-600 hover:text-primary-700">Masuk</a></p>
+  </div>
+</header>
+
+<main class="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_20rem] lg:items-start">
+
+    <section class="card card-body !p-6 sm:!p-8">
+      <h1 class="font-display text-2xl font-bold text-slate-900">Daftar sebagai mitra perusahaan</h1>
+      <p class="mt-1.5 text-sm text-slate-500">Pasang lowongan dan jangkau alumni kampus lewat KarirLink. Pendaftaran gratis dan tidak perlu lewat kampus.</p>
+
+      <div id="campusNote" class="alert alert-info mt-5" role="alert" hidden><i class="kk kk-handshake alert-icon"></i><div>Kamu mendaftar lewat tautan <span class="font-semibold" id="campusName"></span>. Setelah perusahaanmu terverifikasi, pengajuan kerja sama ke kampus ini dikirim otomatis.</div></div>
+
+      <form id="mitraForm" class="mt-6 space-y-8" novalidate>
+        <fieldset class="space-y-5">
+          <legend class="text-sm font-semibold text-slate-900">Data perusahaan</legend>
+          <div>
+            <label for="fNama" class="form-label">Nama Perusahaan</label>
+            <input id="fNama" name="fNama" type="text" required class="input" placeholder="mis. PT Maju Bersama" autocomplete="organization" />
+            <p class="form-error hidden" data-error-for="fNama">Nama perusahaan wajib diisi.</p>
+          </div>
+          <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div>
+            <label for="fNib" class="form-label">NIB (13 digit)</label>
+            <input id="fNib" name="fNib" type="text" required class="input" placeholder="1234567890123" inputmode="numeric" maxlength="13" />
+            <p class="form-error hidden" data-error-for="fNib">NIB harus 13 digit angka.</p>
+          </div>
+          <div>
+            <label for="fBidang" class="form-label">Bidang Usaha</label>
+            <input id="fBidang" name="fBidang" type="text" required class="input" placeholder="mis. Teknologi, Perbankan, Manufaktur"  />
+            <p class="form-error hidden" data-error-for="fBidang">Bidang usaha wajib diisi.</p>
+          </div>
+          </div>
+          <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div>
+            <label for="fKota" class="form-label">Kota</label>
+            <input id="fKota" name="fKota" type="text" required class="input" placeholder="mis. Surabaya"  />
+            <p class="form-error hidden" data-error-for="fKota">Kota wajib diisi.</p>
+          </div>
+          <div>
+            <label for="fWeb" class="form-label">Situs Web <span class="font-normal text-slate-400">(opsional)</span></label>
+            <input id="fWeb" name="fWeb" type="text" class="input" placeholder="perusahaan.co.id" />
+          </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="space-y-5">
+          <legend class="text-sm font-semibold text-slate-900">Penanggung jawab</legend>
+          <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div>
+            <label for="fPic" class="form-label">Nama Lengkap</label>
+            <input id="fPic" name="fPic" type="text" required class="input" placeholder="Nama penanggung jawab" autocomplete="name" />
+            <p class="form-error hidden" data-error-for="fPic">Nama penanggung jawab wajib diisi.</p>
+          </div>
+          <div>
+            <label for="fJabatan" class="form-label">Jabatan</label>
+            <input id="fJabatan" name="fJabatan" type="text" required class="input" placeholder="mis. HR Manager"  />
+            <p class="form-error hidden" data-error-for="fJabatan">Jabatan wajib diisi.</p>
+          </div>
+          </div>
+          <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div>
+            <label for="fEmail" class="form-label">Email Kerja</label>
+            <input id="fEmail" name="fEmail" type="email" required class="input" placeholder="nama@perusahaan.co.id" autocomplete="email" />
+            <p class="form-error hidden" data-error-for="fEmail">Masukkan email kerja yang valid.</p>
+          </div>
+          <div>
+            <label for="fTelp" class="form-label">No. Telepon</label>
+            <input id="fTelp" name="fTelp" type="tel" required class="input" placeholder="0812 3456 7890" autocomplete="tel" />
+            <p class="form-error hidden" data-error-for="fTelp">Nomor telepon minimal 8 digit.</p>
+          </div>
+          </div>
+          <p class="-mt-2 text-xs text-slate-500">Pakai email dengan domain perusahaan. Email gratis seperti Gmail atau Yahoo tidak diterima.</p>
+        </fieldset>
+
+        <fieldset class="space-y-5">
+          <legend class="text-sm font-semibold text-slate-900">Keamanan akun</legend>
+          <div>
+            <label for="fPass" class="form-label">Kata Sandi</label>
+            <div class="relative">
+              <input id="fPass" name="fPass" type="password" required minlength="8" autocomplete="new-password" class="input pr-10" placeholder="Minimal 8 karakter" />
+              <button type="button" class="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-fg-subtle transition-colors hover:text-neutral-600" data-password-toggle aria-label="Tampilkan kata sandi"><i class="kk kk-eye h-4 w-4"></i></button>
+            </div>
+            <p class="form-error hidden" data-error-for="fPass">Kata sandi minimal 8 karakter.</p>
+          </div>
+          <div>
+            <label class="flex cursor-pointer items-start gap-2 text-sm text-slate-600">
+              <input id="fTerms" type="checkbox" required class="form-check mt-0.5" />
+              <span>Saya mewakili perusahaan ini dan menyetujui <a href="segera-hadir.html" class="font-medium text-primary-600 hover:text-primary-700">Syarat &amp; Ketentuan</a> serta <a href="segera-hadir.html" class="font-medium text-primary-600 hover:text-primary-700">Kebijakan Privasi</a>.</span>
+            </label>
+            <p class="form-error hidden" data-error-for="fTerms">Centang persetujuan untuk melanjutkan.</p>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-primary btn-lg w-full sm:w-auto sm:min-w-48">Daftar Sekarang</button>
+      </form>
+    </section>
+
+    <aside class="space-y-4 lg:sticky lg:top-6" aria-label="Alur pendaftaran">
+      <div class="card card-body">
+        <h2 class="card-title">Setelah mendaftar</h2>
+        <ol class="mt-4 space-y-4 text-sm">
+          <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-bold text-primary-700">1</span><div><p class="font-semibold text-slate-900">Verifikasi email</p><p class="mt-0.5 text-slate-500">Klik tautan yang kami kirim ke email kerjamu.</p></div></li>
+          <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-bold text-primary-700">2</span><div><p class="font-semibold text-slate-900">Verifikasi perusahaan</p><p class="mt-0.5 text-slate-500">Tim KarirLink memeriksa NIB dan data perusahaan, biasanya 1-2 hari kerja.</p></div></li>
+          <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-bold text-primary-700">3</span><div><p class="font-semibold text-slate-900">Terbitkan lowongan</p><p class="mt-0.5 text-slate-500">Lowongan tampil di KarirLink dan bisa dilamar alumni.</p></div></li>
+          <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-bold text-primary-700">4</span><div><p class="font-semibold text-slate-900">Ajukan kerja sama kampus <span class="font-normal text-slate-400">(opsional)</span></p><p class="mt-0.5 text-slate-500">Kampus yang menyetujui memberi penanda mitra dan menjangkau alumninya lebih langsung.</p></div></li>
+        </ol>
+      </div>
+      <div class="flex items-start gap-3 rounded-2xl border border-border/70 bg-surface p-4 text-sm text-slate-600"><i class="kk kk-shield-check mt-0.5 h-5 w-5 shrink-0 text-success-600"></i><p>Data perusahaan hanya dipakai untuk verifikasi dan ditampilkan di profil perusahaanmu.</p></div>
+    </aside>
+  </div>
+</main>
+
+<footer class="py-8 text-center text-xs text-fg-subtle">&copy; 2005-2026 SEVIMA. All Rights Reserved.</footer>
+
+<script>
+  (function () {
+    var FREE = ['gmail.com', 'yahoo.com', 'yahoo.co.id', 'outlook.com', 'hotmail.com', 'icloud.com', 'rocketmail.com', 'ymail.com'];
+    var form = document.getElementById('mitraForm');
+    var qs = new URLSearchParams(location.search);
+    if (qs.get('kampus')) { document.getElementById('campusName').textContent = qs.get('kampus'); document.getElementById('campusNote').hidden = false; }
+    function err(id, show) { var e = document.querySelector('[data-error-for="' + id + '"]'); if (e) e.classList.toggle('hidden', !show); var el = document.getElementById(id); if (el && el.type !== 'checkbox') el.classList.toggle('is-invalid', show); return show; }
+    var rules = {
+      fNama: function (v) { return v.trim().length > 0; }, fNib: function (v) { return /^\d{13}$/.test(v.trim()); }, fBidang: function (v) { return v.trim().length > 0; }, fKota: function (v) { return v.trim().length > 0; },
+      fPic: function (v) { return v.trim().length > 0; }, fJabatan: function (v) { return v.trim().length > 0; },
+      fEmail: function (v) { var m = /^[^\s@]+@([^\s@]+\.[^\s@]+)$/.exec(v.trim()); return !!m && FREE.indexOf(m[1].toLowerCase()) === -1; },
+      fTelp: function (v) { return v.replace(/[^0-9]/g, '').length >= 8; }, fPass: function (v) { return v.length >= 8; }
+    };
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bad = false;
+      Object.keys(rules).forEach(function (id) { if (err(id, !rules[id](document.getElementById(id).value))) bad = true; });
+      if (err('fTerms', !document.getElementById('fTerms').checked)) bad = true;
+      if (bad) { var first = form.querySelector('.is-invalid') || document.getElementById('fTerms'); first.focus(); return; }
+      var p = new URLSearchParams({ status: 'email', n: document.getElementById('fNama').value.trim() });
+      if (qs.get('kampus')) p.set('kampus', qs.get('kampus'));
+      location.href = 'mitra-status.html?' + p.toString();
+    });
+    form.addEventListener('input', function (e) { if (e.target.id && rules[e.target.id]) err(e.target.id, false); });
+    document.querySelector('[data-password-toggle]').addEventListener('click', function () {
+      var i = document.getElementById('fPass'), show = i.type === 'password'; i.type = show ? 'text' : 'password';
+      this.querySelector('i').className = 'kk ' + (show ? 'kk-eye-slash' : 'kk-eye') + ' h-4 w-4';
+    });
+  })();
+</script>
+</body>
+</html>

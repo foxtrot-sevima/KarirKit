@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Status Pendaftaran Mitra | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Pantau verifikasi perusahaan dan kerja sama dengan kampus setelah mendaftar sebagai mitra KarirLink." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/mitra-status.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Status Pendaftaran Mitra | KarirLink" />
+<meta property="og:description" content="Pantau verifikasi perusahaan dan kerja sama dengan kampus setelah mendaftar sebagai mitra KarirLink." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/mitra-status.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:locale" content="id_ID" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Status Pendaftaran Mitra | KarirLink" />
+<meta name="twitter:description" content="Pantau verifikasi perusahaan dan kerja sama dengan kampus setelah mendaftar sebagai mitra KarirLink." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+<header class="border-b border-border/70 bg-surface">
+  <div class="mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-3 px-4 sm:px-6">
+    <a href="mitra-daftar.html" class="flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <span class="avatar h-9 w-9 text-sm" id="avatar">PM</span>
+  </div>
+</header>
+
+<main class="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
+
+  <section class="card card-body !p-6 sm:!p-8">
+    <div class="flex flex-wrap items-center gap-2"><p id="company" class="text-sm font-semibold text-slate-500">Perusahaan</p><span id="statusBadge"></span></div>
+    <h1 id="headline" class="mt-2 font-display text-2xl font-bold text-slate-900 sm:text-3xl"></h1>
+    <p id="lead" class="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base"></p>
+    <div id="reject" class="alert alert-danger mt-5" role="alert" hidden><i class="kk kk-warning-circle alert-icon"></i><div><span class="font-semibold">Alasan:</span> NIB tidak cocok dengan nama perusahaan. Periksa kembali lalu perbarui data.</div></div>
+    <div id="campusLine" class="mt-5 flex items-start gap-2 text-sm text-slate-600" hidden><i class="kk kk-handshake mt-0.5 h-4 w-4 shrink-0 text-primary-600"></i><p>Pengajuan kerja sama ke <span class="font-semibold" id="campusName"></span> dikirim otomatis setelah perusahaanmu terverifikasi.</p></div>
+  </section>
+
+  <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_20rem] lg:items-start">
+
+    <section class="card card-body !p-6 sm:!p-8" aria-label="Tahapan">
+      <h2 class="card-title">Tahapan pendaftaran</h2>
+      <ol class="mt-6 space-y-0">
+        <li data-step="1" class="relative flex gap-4 pb-8"><span data-marker class="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold"></span><span data-line class="absolute left-[18px] top-9 h-full w-0.5 -translate-x-1/2 bg-border"></span><div class="min-w-0 pt-1"><p class="font-semibold text-slate-900">Akun dibuat</p><p class="mt-0.5 text-sm text-slate-500">Data perusahaan dan penanggung jawab sudah tersimpan.</p></div></li>
+        <li data-step="2" class="relative flex gap-4 pb-8"><span data-marker class="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold"></span><span data-line class="absolute left-[18px] top-9 h-full w-0.5 -translate-x-1/2 bg-border"></span><div class="min-w-0 pt-1"><p class="font-semibold text-slate-900">Verifikasi email</p><p class="mt-0.5 text-sm text-slate-500">Klik tautan yang dikirim ke email kerja penanggung jawab. Tautan berlaku 24 jam.</p><div data-actions="2" class="mt-3 flex flex-wrap gap-2" hidden><button type="button" class="btn-outline btn-sm" data-resend><i class="kk kk-paper-plane-tilt h-4 w-4"></i>Kirim Ulang Email</button><a href="mitra-status.html?status=ditinjau" class="btn-primary btn-sm" data-keep>Saya Sudah Verifikasi</a></div></div></li>
+        <li data-step="3" class="relative flex gap-4 pb-8"><span data-marker class="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold"></span><span data-line class="absolute left-[18px] top-9 h-full w-0.5 -translate-x-1/2 bg-border"></span><div class="min-w-0 pt-1"><p class="font-semibold text-slate-900">Verifikasi perusahaan</p><p class="mt-0.5 text-sm text-slate-500">Tim KarirLink memeriksa NIB dan data perusahaan, biasanya 1-2 hari kerja.</p><div data-actions="3" class="mt-3" hidden><a href="mitra-daftar.html" class="btn-primary btn-sm"><i class="kk kk-arrow-left h-4 w-4"></i>Perbarui Data</a></div></div></li>
+        <li data-step="4" class="relative flex gap-4"><span data-marker class="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold"></span><div class="min-w-0 pt-1"><p class="font-semibold text-slate-900">Kerja sama dengan kampus <span class="font-normal text-slate-400">(opsional)</span></p><p class="mt-0.5 text-sm text-slate-500">Kampus yang menyetujui memberi penanda mitra pada lowonganmu dan menjangkau alumninya lebih langsung.</p><div data-actions="4" class="mt-3" hidden><button type="button" class="btn-primary btn-sm" data-apply><i class="kk kk-handshake h-4 w-4"></i>Ajukan Kerja Sama ke Kampus</button></div></div></li>
+      </ol>
+    </section>
+
+    <aside class="space-y-4 lg:sticky lg:top-6" aria-label="Yang bisa dilakukan">
+      <div class="card card-body">
+        <h2 class="card-title">Yang bisa kamu lakukan</h2>
+        <ul id="can" class="mt-4 space-y-4 text-sm"></ul>
+      </div>
+      <p class="px-1 text-xs text-slate-500">Pratinjau status (mockup):
+        <a class="font-medium text-primary-600 hover:text-primary-700" href="mitra-status.html?status=email" data-keep>Verifikasi email</a> &middot;
+        <a class="font-medium text-primary-600 hover:text-primary-700" href="mitra-status.html?status=ditinjau" data-keep>Ditinjau</a> &middot;
+        <a class="font-medium text-primary-600 hover:text-primary-700" href="mitra-status.html?status=terverifikasi" data-keep>Terverifikasi</a> &middot;
+        <a class="font-medium text-primary-600 hover:text-primary-700" href="mitra-status.html?status=ditolak" data-keep>Ditolak</a></p>
+    </aside>
+  </div>
+</main>
+
+<footer class="py-8 text-center text-xs text-fg-subtle">&copy; 2005-2026 SEVIMA. All Rights Reserved.</footer>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+<script src="../../assets/js/toast.js"></script>
+<script>
+  (function () {
+    var qs = new URLSearchParams(location.search);
+    var status = ['email', 'ditinjau', 'terverifikasi', 'ditolak'].indexOf(qs.get('status')) > -1 ? qs.get('status') : 'email';
+    var name = qs.get('n') || 'PT Contoh Mitra', campus = qs.get('kampus');
+    function $(id) { return document.getElementById(id); }
+    var toast = function (t, m) { if (window.KKToast) window.KKToast.show({ type: t, message: m, duration: 3500 }); };
+
+    var BADGE = { email: ['badge-warning', 'bg-warning-600', 'Menunggu Verifikasi Email'], ditinjau: ['badge-info', 'bg-info-600', 'Sedang Ditinjau'], terverifikasi: ['badge-success', 'bg-success-600', 'Terverifikasi'], ditolak: ['badge-danger', 'bg-danger-600', 'Perlu Diperbarui'] };
+    var COPY = {
+      email: ['Cek emailmu untuk verifikasi', 'Kami mengirim tautan verifikasi ke email kerja penanggung jawab. Setelah itu tim KarirLink mulai memeriksa data perusahaanmu.'],
+      ditinjau: ['Perusahaanmu sedang ditinjau', 'Tim KarirLink memeriksa NIB dan data perusahaan. Kamu bisa melengkapi profil dan menyusun draf lowongan sambil menunggu.'],
+      terverifikasi: ['Perusahaanmu sudah terverifikasi', 'Sekarang kamu bisa menerbitkan lowongan. Ajukan kerja sama ke kampus agar lowonganmu mendapat penanda mitra.'],
+      ditolak: ['Verifikasi belum berhasil', 'Data perusahaanmu belum bisa kami verifikasi. Perbarui data sesuai alasan di bawah, lalu kirim ulang.']
+    };
+    var STEPS = { email: ['done', 'current', 'todo', 'todo'], ditinjau: ['done', 'done', 'current', 'todo'], terverifikasi: ['done', 'done', 'done', 'current'], ditolak: ['done', 'done', 'error', 'todo'] };
+    var MARK = { done: 'bg-success-50 text-success-600', current: 'bg-primary-600 text-white', todo: 'bg-neutral-100 text-neutral-400', error: 'bg-danger-50 text-danger-600' };
+
+    $('company').textContent = name; $('avatar').textContent = name.replace(/^(PT|CV|UD)\s+/i, '').slice(0, 2).toUpperCase();
+    var b = BADGE[status]; $('statusBadge').innerHTML = '<span class="' + b[0] + ' badge-wrap"><span class="badge-dot ' + b[1] + '"></span>' + b[2] + '</span>';
+    $('headline').textContent = COPY[status][0]; $('lead').textContent = COPY[status][1];
+    $('reject').hidden = status !== 'ditolak';
+    if (campus) { $('campusName').textContent = campus; $('campusLine').hidden = status === 'terverifikasi'; }
+
+    STEPS[status].forEach(function (s, i) {
+      var li = document.querySelector('[data-step="' + (i + 1) + '"]'), m = li.querySelector('[data-marker]');
+      m.className = m.className.replace(/bg-\S+|text-(?!sm)\S+/g, '').trim() + ' ' + MARK[s];
+      m.innerHTML = s === 'done' ? '<i class="kk kk-check h-5 w-5"></i>' : s === 'error' ? '<i class="kk kk-x h-5 w-5"></i>' : String(i + 1);
+      var a = li.querySelector('[data-actions]'); if (a) a.hidden = !(i === 2 ? s === 'error' : s === 'current');
+      var ln = li.querySelector('[data-line]'); if (ln) ln.className = ln.className.replace(/bg-\S+/, '') + ' ' + (s === 'done' ? 'bg-success-500' : 'bg-border');
+    });
+    var step4 = document.querySelector('[data-step="4"] [data-actions]'); if (step4 && status === 'terverifikasi' && campus) step4.hidden = true;
+
+    var verified = status === 'terverifikasi', mailOk = status !== 'email';
+    var CAN = [
+      ['Lengkapi profil perusahaan', 'Logo, deskripsi, dan alamat.', true],
+      ['Susun draf lowongan', mailOk ? 'Simpan sebagai draf.' : 'Terbuka setelah email terverifikasi.', mailOk],
+      ['Terbitkan lowongan', verified ? 'Tampil di KarirLink dan bisa dilamar alumni.' : 'Terbuka setelah perusahaan terverifikasi.', verified],
+      ['Ajukan kerja sama ke kampus', verified ? 'Pilih kampus yang ingin kamu ajak bekerja sama.' : 'Terbuka setelah perusahaan terverifikasi.', verified]
+    ];
+    $('can').innerHTML = CAN.map(function (c) {
+      return '<li class="flex items-start gap-3"><i class="kk ' + (c[2] ? 'kk-check-circle text-success-600' : 'kk-lock-simple text-slate-400') + ' mt-0.5 h-5 w-5 shrink-0"></i><div><p class="font-semibold ' + (c[2] ? 'text-slate-900' : 'text-slate-400') + '">' + c[0] + '</p><p class="mt-0.5 ' + (c[2] ? 'text-slate-500' : 'text-slate-400') + '">' + c[1] + '</p></div></li>';
+    }).join('');
+
+    document.querySelectorAll('a[data-keep]').forEach(function (a) {
+      var u = new URL(a.getAttribute('href'), location.href); u.searchParams.set('n', name); if (campus) u.searchParams.set('kampus', campus); a.setAttribute('href', u.pathname + u.search);
+    });
+    document.querySelector('[data-resend]').addEventListener('click', function () { toast('success', 'Email verifikasi dikirim ulang (simulasi).'); });
+    document.querySelector('[data-apply]').addEventListener('click', function () { toast('success', 'Pengajuan kerja sama dikirim ke kampus (simulasi).'); });
+  })();
+</script>
+</body>
+</html>
