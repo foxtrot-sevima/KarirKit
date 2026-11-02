@@ -691,13 +691,19 @@
   function initNav() {
     var header = document.querySelector('[data-shell-header]'), bar = document.querySelector('[data-glass-nav]');
     if (!header || !bar) return;
+    var hero = false, last;
+    // Saat digulir hanya membaca scrollY dan menulis atribut bila berubah; cek band hero (membaca layout) hanya saat sync penuh.
+    function apply() {
+      var v = String(!hero || window.scrollY > 8);
+      if (v !== last) { last = v; bar.setAttribute('data-scrolled', v); }
+    }
     function sync() {
-      var hero = Array.prototype.some.call(document.querySelectorAll('[data-nav-hero]'), function (e) { return !e.hidden && e.offsetParent !== null; });
+      hero = Array.prototype.some.call(document.querySelectorAll('[data-nav-hero]'), function (e) { return !e.hidden && e.offsetParent !== null; });
       header.classList.toggle('-mb-[4.5rem]', hero);
-      bar.setAttribute('data-scrolled', String(!hero || window.scrollY > 8));
+      apply();
     }
     sync();
-    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('scroll', apply, { passive: true });
     window.addEventListener('resize', sync);
     if ('MutationObserver' in window) {
       var mo = new MutationObserver(sync);
