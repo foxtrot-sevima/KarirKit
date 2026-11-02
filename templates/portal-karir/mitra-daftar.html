@@ -40,29 +40,31 @@
 
       <div id="campusNote" class="alert alert-info mt-6" role="alert" hidden><i class="kk kk-handshake alert-icon"></i><div>Kamu mendaftar lewat tautan <span class="font-semibold" id="campusName"></span>. Setelah perusahaanmu terverifikasi, pengajuan kerja sama ke kampus ini dikirim otomatis.</div></div>
 
-      <form id="mitraForm" class="mt-7 space-y-8" novalidate>
+      <p class="mt-6 text-xs text-slate-500">Kolom bertanda <span class="text-danger-600">*</span> wajib diisi.</p>
+
+      <form id="mitraForm" class="mt-4 space-y-8" novalidate>
         <fieldset class="space-y-5">
           <legend class="text-sm font-semibold text-slate-900">Data perusahaan</legend>
           <div>
-            <label for="fNama" class="form-label">Nama Perusahaan</label>
+            <label for="fNama" class="form-label">Nama Perusahaan <span class="text-danger-600" aria-hidden="true">*</span></label>
             <input id="fNama" name="fNama" type="text" required class="input" placeholder="mis. PT Maju Bersama" autocomplete="organization" />
             <p class="form-error hidden" data-error-for="fNama">Nama perusahaan wajib diisi.</p>
           </div>
           <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
-            <label for="fNib" class="form-label">NIB (13 digit)</label>
+            <label for="fNib" class="form-label">NIB (13 digit) <span class="text-danger-600" aria-hidden="true">*</span></label>
             <input id="fNib" name="fNib" type="text" required class="input" placeholder="1234567890123" inputmode="numeric" maxlength="13" />
             <p class="form-error hidden" data-error-for="fNib">NIB harus 13 digit angka.</p>
           </div>
           <div>
-            <label for="fBidang" class="form-label">Bidang Usaha</label>
+            <label for="fBidang" class="form-label">Bidang Usaha <span class="text-danger-600" aria-hidden="true">*</span></label>
             <input id="fBidang" name="fBidang" type="text" required class="input" placeholder="mis. Teknologi"  />
             <p class="form-error hidden" data-error-for="fBidang">Bidang usaha wajib diisi.</p>
           </div>
           </div>
           <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
-            <label for="fKota" class="form-label">Kota</label>
+            <label for="fKota" class="form-label">Kota <span class="text-danger-600" aria-hidden="true">*</span></label>
             <input id="fKota" name="fKota" type="text" required class="input" placeholder="mis. Surabaya"  />
             <p class="form-error hidden" data-error-for="fKota">Kota wajib diisi.</p>
           </div>
@@ -77,24 +79,24 @@
           <legend class="text-sm font-semibold text-slate-900">Penanggung jawab</legend>
           <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
-            <label for="fPic" class="form-label">Nama Lengkap</label>
+            <label for="fPic" class="form-label">Nama Lengkap <span class="text-danger-600" aria-hidden="true">*</span></label>
             <input id="fPic" name="fPic" type="text" required class="input" placeholder="Nama penanggung jawab" autocomplete="name" />
             <p class="form-error hidden" data-error-for="fPic">Nama penanggung jawab wajib diisi.</p>
           </div>
           <div>
-            <label for="fJabatan" class="form-label">Jabatan</label>
+            <label for="fJabatan" class="form-label">Jabatan <span class="text-danger-600" aria-hidden="true">*</span></label>
             <input id="fJabatan" name="fJabatan" type="text" required class="input" placeholder="mis. HR Manager"  />
             <p class="form-error hidden" data-error-for="fJabatan">Jabatan wajib diisi.</p>
           </div>
           </div>
           <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
-            <label for="fEmail" class="form-label">Email Kerja</label>
+            <label for="fEmail" class="form-label">Email Kerja <span class="text-danger-600" aria-hidden="true">*</span></label>
             <input id="fEmail" name="fEmail" type="email" required class="input" placeholder="nama@perusahaan.co.id" autocomplete="email" />
             <p class="form-error hidden" data-error-for="fEmail">Masukkan email kerja yang valid.</p>
           </div>
           <div>
-            <label for="fTelp" class="form-label">No. Telepon</label>
+            <label for="fTelp" class="form-label">No. Telepon <span class="text-danger-600" aria-hidden="true">*</span></label>
             <input id="fTelp" name="fTelp" type="tel" required class="input" placeholder="0812 3456 7890" autocomplete="tel" />
             <p class="form-error hidden" data-error-for="fTelp">Nomor telepon minimal 8 digit.</p>
           </div>
@@ -105,7 +107,7 @@
         <fieldset class="space-y-5">
           <legend class="text-sm font-semibold text-slate-900">Keamanan akun</legend>
           <div>
-            <label for="fPass" class="form-label">Kata Sandi</label>
+            <label for="fPass" class="form-label">Kata Sandi <span class="text-danger-600" aria-hidden="true">*</span></label>
             <div class="relative">
               <input id="fPass" name="fPass" type="password" required minlength="8" autocomplete="new-password" class="input pr-10" placeholder="Minimal 8 karakter" />
               <button type="button" class="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-fg-subtle transition-colors hover:text-neutral-600" data-password-toggle aria-label="Tampilkan kata sandi"><i class="kk kk-eye h-4 w-4"></i></button>
@@ -115,7 +117,7 @@
           <div>
             <label class="flex cursor-pointer items-start gap-2 text-sm text-slate-600">
               <input id="fTerms" type="checkbox" required class="form-check mt-0.5" />
-              <span>Saya mewakili perusahaan ini dan menyetujui <a href="segera-hadir.html" class="font-medium text-primary-600 hover:text-primary-700">Syarat &amp; Ketentuan</a> serta <a href="segera-hadir.html" class="font-medium text-primary-600 hover:text-primary-700">Kebijakan Privasi</a>.</span>
+              <span>Saya mewakili perusahaan ini dan menyetujui <a href="segera-hadir.html" class="font-medium text-primary-600 hover:text-primary-700">Syarat &amp; Ketentuan</a> serta <a href="segera-hadir.html" class="font-medium text-primary-600 hover:text-primary-700">Kebijakan Privasi</a>. <span class="text-danger-600" aria-hidden="true">*</span></span>
             </label>
             <p class="form-error hidden" data-error-for="fTerms">Centang persetujuan untuk melanjutkan.</p>
           </div>
