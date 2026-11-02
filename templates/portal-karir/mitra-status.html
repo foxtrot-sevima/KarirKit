@@ -107,7 +107,7 @@
 
     var verified = status === 'terverifikasi', mailOk = status !== 'email';
     var CAN = [
-      ['Lengkapi profil perusahaan', 'Logo, deskripsi, dan alamat.', true],
+      ['<a href="../mitra/profil.html" class="hover:text-primary-700 hover:underline">Lengkapi profil perusahaan</a>', 'Logo, deskripsi, dan alamat.', true],
       ['Susun draf lowongan', mailOk ? 'Simpan sebagai draf.' : 'Terbuka setelah email terverifikasi.', mailOk],
       ['Terbitkan lowongan', verified ? 'Tampil di KarirLink dan bisa dilamar alumni.' : 'Terbuka setelah perusahaan terverifikasi.', verified],
       ['Ajukan kerja sama ke kampus', verified ? 'Pilih kampus yang ingin kamu ajak bekerja sama.' : 'Terbuka setelah perusahaan terverifikasi.', verified]
