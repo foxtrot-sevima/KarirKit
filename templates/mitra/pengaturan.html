@@ -327,10 +327,10 @@
   <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
 <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div class="min-w-0"><h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Pengaturan</h2><p class="mt-1 text-sm text-slate-500">Kelola akun, kata sandi, tim perekrut, dan notifikasi email perusahaanmu.</p></div></div>
 
-<div class="space-y-10">
-    <section class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8" aria-labelledby="secAkun">
+<div class="max-w-3xl space-y-10">
+    <section class="space-y-4" aria-labelledby="secAkun">
       <div><h3 id="secAkun" class="font-display text-lg font-bold text-slate-900">Akun Saya</h3><p class="mt-1 text-sm text-slate-500">Data penanggung jawab yang terdaftar di KarirLink.</p></div>
-      <div class="min-w-0 lg:col-span-2"><form id="akunForm" class="card card-body" novalidate><div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <div class="min-w-0"><form id="akunForm" class="card card-body" novalidate><div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
             <label for="sNama" class="form-label">Nama Lengkap <span class="text-danger-600" aria-hidden="true">*</span></label>
             <input id="sNama" type="text" class="input" value="Dewi Anggraini" placeholder="" data-req />
@@ -357,18 +357,18 @@
         </div><div class="mt-6 flex justify-end"><button type="submit" class="btn-primary btn-md">Simpan Akun</button></div></form></div>
     </section>
 
-    <section class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8" aria-labelledby="secSandi">
+    <section class="space-y-4" aria-labelledby="secSandi">
       <div><h3 id="secSandi" class="font-display text-lg font-bold text-slate-900">Kata Sandi</h3><p class="mt-1 text-sm text-slate-500">Gunakan kata sandi minimal 8 karakter yang tidak dipakai di layanan lain.</p></div>
-      <div class="min-w-0 lg:col-span-2"><form id="sandiForm" class="card card-body" novalidate><div class="space-y-5">
+      <div class="min-w-0"><form id="sandiForm" class="card card-body" novalidate><div class="space-y-5">
           <div><label for="sCur" class="form-label">Kata Sandi Saat Ini <span class="text-danger-600" aria-hidden="true">*</span></label><input id="sCur" type="password" class="input" autocomplete="current-password" /><p class="form-error mt-1.5" data-err="sCur" hidden></p></div>
           <div><label for="sNew" class="form-label">Kata Sandi Baru <span class="text-danger-600" aria-hidden="true">*</span></label><input id="sNew" type="password" class="input" autocomplete="new-password" /><p class="form-error mt-1.5" data-err="sNew" hidden></p></div>
           <div><label for="sCon" class="form-label">Konfirmasi Kata Sandi Baru <span class="text-danger-600" aria-hidden="true">*</span></label><input id="sCon" type="password" class="input" autocomplete="new-password" /><p class="form-error mt-1.5" data-err="sCon" hidden></p></div>
         </div><div class="mt-6 flex justify-end"><button type="submit" class="btn-primary btn-md">Perbarui Kata Sandi</button></div></form></div>
     </section>
 
-    <section class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8" aria-labelledby="secTim">
+    <section class="space-y-4" aria-labelledby="secTim">
       <div><h3 id="secTim" class="font-display text-lg font-bold text-slate-900">Tim Perekrut</h3><p class="mt-1 text-sm text-slate-500">Admin mengelola profil, tim, dan langganan. Perekrut mengelola lowongan, pelamar, dan talent.</p></div>
-      <div class="min-w-0 lg:col-span-2"><div class="space-y-4"><div class="flex justify-end"><button type="button" class="btn-primary btn-md" id="invBtn"><i class="kk kk-plus h-4 w-4"></i>Undang Anggota</button></div>
+      <div class="min-w-0"><div class="space-y-4"><div class="flex justify-end"><button type="button" class="btn-primary btn-md" id="invBtn"><i class="kk kk-plus h-4 w-4"></i>Undang Anggota</button></div>
 <div class="table-wrap overflow-visible" id="timRoot" data-table data-page-size="10" data-item-label="anggota" data-combo-boundary>
 <div class="table-toolbar">
 <div class="table-search"><span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4"></i></span><label for="timSearch" class="sr-only">Cari anggota...</label><input id="timSearch" type="search" class="input h-9 pl-9" placeholder="Cari anggota..." data-table-search /></div>
@@ -414,9 +414,9 @@
 </div></div></div>
     </section>
 
-    <section class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8" aria-labelledby="secNotif">
+    <section class="space-y-4" aria-labelledby="secNotif">
       <div><h3 id="secNotif" class="font-display text-lg font-bold text-slate-900">Notifikasi Email</h3><p class="mt-1 text-sm text-slate-500">Pilih kabar yang dikirim ke email kerjamu.</p></div>
-      <div class="min-w-0 lg:col-span-2"><form id="notifForm" class="card card-body"><div class="space-y-5">
+      <div class="min-w-0"><form id="notifForm" class="card card-body"><div class="space-y-5">
           <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Pelamar baru</span><span class="block text-xs text-slate-500">Email setiap ada pelamar baru di lowonganmu.</span></span><span class="toggle shrink-0"><input id="nPelamar" type="checkbox" checked class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
           <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Undangan talent dijawab</span><span class="block text-xs text-slate-500">Kabar saat talent menerima atau menolak undanganmu.</span></span><span class="toggle shrink-0"><input id="nTalent" type="checkbox" checked class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
           <label class="flex cursor-pointer items-start justify-between gap-4"><span class="min-w-0"><span class="block text-sm font-medium text-slate-800">Keputusan kerja sama kampus</span><span class="block text-xs text-slate-500">Kabar saat kampus menyetujui atau menolak pengajuan kerja sama.</span></span><span class="toggle shrink-0"><input id="nKampus" type="checkbox" checked class="toggle-input" /><span class="toggle-track" aria-hidden="true"></span></span></label>
