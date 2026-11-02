@@ -59,7 +59,8 @@
     "icons:names": "node scripts/gen-icon-names.mjs",
     "assets:classes": "node scripts/gen-asset-classes.mjs",
     "check:templates": "node scripts/check-templates.mjs",
-    "mockup:today": "node scripts/mockup-today.mjs"
+    "mockup:new": "node scripts/mockup-new.mjs",
+    "sync": "node scripts/sync.mjs"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.6.0",
