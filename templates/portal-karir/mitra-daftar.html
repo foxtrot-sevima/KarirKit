@@ -2,21 +2,21 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8" />
-<base href="/templates/karirlink/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Daftar Mitra Perusahaan | KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
 <meta name="description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau alumni kampus." />
 <meta name="author" content="SEVIMA" />
-<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/mitra-daftar.html" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/mitra-daftar.html" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#2361e7" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="KarirKit" />
 <meta property="og:title" content="Daftar Mitra Perusahaan | KarirLink" />
 <meta property="og:description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau alumni kampus." />
-<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/mitra-daftar.html" />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/mitra-daftar.html" />
 <meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
 <meta property="og:locale" content="id_ID" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -24,24 +24,23 @@
 <meta name="twitter:description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau alumni kampus." />
 <meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
 </head>
-<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
-<header class="border-b border-border/70 bg-surface">
-  <div class="mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-3 px-4 sm:px-6">
-    <a href="mitra-daftar.html" class="flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
-    <p class="text-sm text-slate-500">Sudah punya akun? <a href="segera-hadir.html?menu=Masuk%20Mitra" class="font-semibold text-primary-600 hover:text-primary-700">Masuk</a></p>
-  </div>
-</header>
+<body class="font-sans text-slate-800 antialiased">
 
-<main class="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_20rem] lg:items-start">
+<div class="flex min-h-screen flex-col lg:flex-row">
 
-    <section class="card card-body !p-6 sm:!p-8">
+  <!-- ============================= FORM PANEL ============================= -->
+  <div class="flex w-full flex-1 flex-col justify-center px-6 py-10 sm:px-12 lg:w-1/2 lg:px-16 xl:px-24">
+    <div class="mx-auto w-full max-w-xl">
+      <a href="login.html" class="mb-8 inline-flex lg:hidden">
+        <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+      </a>
+
       <h1 class="font-display text-2xl font-bold text-slate-900">Daftar sebagai mitra perusahaan</h1>
       <p class="mt-1.5 text-sm text-slate-500">Pasang lowongan dan jangkau alumni kampus lewat KarirLink. Pendaftaran gratis dan tidak perlu lewat kampus.</p>
 
-      <div id="campusNote" class="alert alert-info mt-5" role="alert" hidden><i class="kk kk-handshake alert-icon"></i><div>Kamu mendaftar lewat tautan <span class="font-semibold" id="campusName"></span>. Setelah perusahaanmu terverifikasi, pengajuan kerja sama ke kampus ini dikirim otomatis.</div></div>
+      <div id="campusNote" class="alert alert-info mt-6" role="alert" hidden><i class="kk kk-handshake alert-icon"></i><div>Kamu mendaftar lewat tautan <span class="font-semibold" id="campusName"></span>. Setelah perusahaanmu terverifikasi, pengajuan kerja sama ke kampus ini dikirim otomatis.</div></div>
 
-      <form id="mitraForm" class="mt-6 space-y-8" novalidate>
+      <form id="mitraForm" class="mt-7 space-y-8" novalidate>
         <fieldset class="space-y-5">
           <legend class="text-sm font-semibold text-slate-900">Data perusahaan</legend>
           <div>
@@ -57,7 +56,7 @@
           </div>
           <div>
             <label for="fBidang" class="form-label">Bidang Usaha</label>
-            <input id="fBidang" name="fBidang" type="text" required class="input" placeholder="mis. Teknologi, Perbankan, Manufaktur"  />
+            <input id="fBidang" name="fBidang" type="text" required class="input" placeholder="mis. Teknologi"  />
             <p class="form-error hidden" data-error-for="fBidang">Bidang usaha wajib diisi.</p>
           </div>
           </div>
@@ -124,24 +123,67 @@
 
         <button type="submit" class="btn-primary btn-lg w-full sm:w-auto sm:min-w-48">Daftar Sekarang</button>
       </form>
-    </section>
 
-    <aside class="space-y-4 lg:sticky lg:top-6" aria-label="Alur pendaftaran">
-      <div class="card card-body">
-        <h2 class="card-title">Setelah mendaftar</h2>
-        <ol class="mt-4 space-y-4 text-sm">
-          <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-bold text-primary-700">1</span><div><p class="font-semibold text-slate-900">Verifikasi email</p><p class="mt-0.5 text-slate-500">Klik tautan yang kami kirim ke email kerjamu.</p></div></li>
-          <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-bold text-primary-700">2</span><div><p class="font-semibold text-slate-900">Verifikasi perusahaan</p><p class="mt-0.5 text-slate-500">Tim KarirLink memeriksa NIB dan data perusahaan, biasanya 1-2 hari kerja.</p></div></li>
-          <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-bold text-primary-700">3</span><div><p class="font-semibold text-slate-900">Terbitkan lowongan</p><p class="mt-0.5 text-slate-500">Lowongan tampil di KarirLink dan bisa dilamar alumni.</p></div></li>
-          <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-xs font-bold text-primary-700">4</span><div><p class="font-semibold text-slate-900">Ajukan kerja sama kampus <span class="font-normal text-slate-400">(opsional)</span></p><p class="mt-0.5 text-slate-500">Kampus yang menyetujui memberi penanda mitra dan menjangkau alumninya lebih langsung.</p></div></li>
-        </ol>
-      </div>
-      <div class="flex items-start gap-3 rounded-2xl border border-border/70 bg-surface p-4 text-sm text-slate-600"><i class="kk kk-shield-check mt-0.5 h-5 w-5 shrink-0 text-success-600"></i><p>Data perusahaan hanya dipakai untuk verifikasi dan ditampilkan di profil perusahaanmu.</p></div>
-    </aside>
+      <p class="mt-6 text-center text-sm text-slate-500">
+        Sudah punya akun mitra?
+        <a href="segera-hadir.html" class="font-semibold text-primary-600 hover:text-primary-700">Masuk</a>
+      </p>
+      <p class="mt-8 text-center text-xs text-fg-subtle">&copy; <span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
+    </div>
   </div>
-</main>
 
-<footer class="py-8 text-center text-xs text-fg-subtle">&copy; 2005-2026 SEVIMA. All Rights Reserved.</footer>
+  <!-- ============================= VISUAL PANEL ============================= -->
+  <div class="relative hidden overflow-hidden bg-brand-gradient lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:p-12 xl:p-16">
+    <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
+
+    <div class="relative"><img src="../../assets/logo/karirlink-sevima-white.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" /></div>
+
+    <div class="relative max-w-md">
+      <span class="badge bg-white/15 text-white">Mitra Perusahaan</span>
+      <h2 class="mt-5 font-display text-3xl font-bold leading-tight text-white xl:text-4xl">
+        Temukan talenta dari banyak kampus, tanpa perantara.
+      </h2>
+      <p class="mt-4 text-sm text-primary-100/90 sm:text-base">
+        Daftarkan perusahaanmu, lewati verifikasi satu kali, lalu terbitkan lowongan yang bisa dilamar alumni.
+      </p>
+      <ol class="mt-9 space-y-6">
+        <li class="relative flex gap-4">
+          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-envelope-simple h-5 w-5"></i></span>
+          <div class="pt-0.5">
+            <p class="text-sm font-semibold text-white">Verifikasi email</p>
+            <p class="mt-0.5 text-xs text-primary-100/80">Klik tautan yang kami kirim ke email kerjamu.</p>
+          </div>
+          <span class="absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full bg-white/25"></span>
+        </li>
+        <li class="relative flex gap-4">
+          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-shield-check h-5 w-5"></i></span>
+          <div class="pt-0.5">
+            <p class="text-sm font-semibold text-white">Verifikasi perusahaan</p>
+            <p class="mt-0.5 text-xs text-primary-100/80">Tim KarirLink memeriksa NIB, biasanya 1-2 hari kerja.</p>
+          </div>
+          <span class="absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full bg-white/25"></span>
+        </li>
+        <li class="relative flex gap-4">
+          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-briefcase h-5 w-5"></i></span>
+          <div class="pt-0.5">
+            <p class="text-sm font-semibold text-white">Terbitkan lowongan</p>
+            <p class="mt-0.5 text-xs text-primary-100/80">Tampil di KarirLink dan bisa dilamar alumni.</p>
+          </div>
+          <span class="absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full bg-white/25"></span>
+        </li>
+        <li class="relative flex gap-4">
+          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-handshake h-5 w-5"></i></span>
+          <div class="pt-0.5">
+            <p class="text-sm font-semibold text-white">Ajukan kerja sama kampus</p>
+            <p class="mt-0.5 text-xs text-primary-100/80">Opsional: kampus yang menyetujui memberi penanda mitra.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <p class="relative text-xs text-primary-100/70">Portal karier kampus dari SEVIMA.</p>
+  </div>
+</div>
 
 <script>
   (function () {
@@ -171,6 +213,7 @@
       var i = document.getElementById('fPass'), show = i.type === 'password'; i.type = show ? 'text' : 'password';
       this.querySelector('i').className = 'kk ' + (show ? 'kk-eye-slash' : 'kk-eye') + ' h-4 w-4';
     });
+    document.querySelectorAll('.js-current-year').forEach(function (el) { el.textContent = new Date().getFullYear(); });
   })();
 </script>
 </body>
