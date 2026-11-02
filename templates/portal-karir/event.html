@@ -46,27 +46,25 @@
       <h1 class="font-display text-2xl font-bold sm:text-3xl">Event dan kegiatan</h1>
       <p class="mt-1 max-w-2xl text-sm text-white/80">Job fair, workshop, webinar, pelatihan, dan kegiatan kampus untuk mahasiswa dan alumni.</p>
       <form id="filterForm" role="search" class="card mt-5 p-4" data-combo-boundary>
-        <div class="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_14rem_auto] sm:items-end">
-          <div>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_13rem_13rem_auto] lg:items-end">
+          <div class="sm:col-span-2 lg:col-span-1">
             <label for="fQ" class="form-label">Kata kunci</label>
             <div class="relative">
               <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
               <input id="fQ" type="search" class="input pl-9" placeholder="Cari nama event, lokasi, atau penyelenggara" autocomplete="off" />
             </div>
           </div>
+          <div><p class="form-label">Kategori</p><div id="hCat"></div></div>
           <div><p class="form-label">Format</p><div id="hFormat"></div></div>
-          <button type="submit" class="btn-primary btn-md">Cari</button>
+          <button type="submit" class="btn-primary btn-md sm:col-span-2 lg:col-span-1">Cari</button>
         </div>
       </form>
     </div>
   </section>
 
   <!-- ============================= DAFTAR EVENT ============================= -->
-  <div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
-    <div class="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-      <div id="catTabs" class="tabs tabs-pills w-max flex-nowrap" role="tablist" aria-label="Kategori event"></div>
-    </div>
-    <div id="eventGrid" class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+  <div class="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
+    <div id="eventGrid" class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
     <div id="pager" class="mt-8"></div>
   </div>
 </main>
@@ -80,7 +78,7 @@
 <script src="shell.js"></script>
 <script src="portal.js"></script>
 <script>
-  /* Halaman Event (daftar): kategori, format, pencarian, dan paginasi. Data lewat PK.api.listEvents; semua pilihan tersimpan di URL.
+  /* Halaman Event (daftar): kategori, format, pencarian, dan paginasi (semua filter di satu formulir). Data lewat PK.api.listEvents; semua pilihan tersimpan di URL.
      Detail satu event ada di event-detail.html. */
   (function () {
     var PK = window.PK;
@@ -94,6 +92,7 @@
     var state = { kategori: params.get('kategori') || '', format: params.get('format') || '', q: params.get('q') || '', page: parseInt(params.get('page'), 10) || 1 };
     var listToken = PK.latest();
 
+    $('hCat').innerHTML = PK.comboHtml({ id: 'fCat', all: 'Semua kategori', label: 'Kategori', value: state.kategori, options: PK.EVENT_CATS.map(function (c) { return [c, c]; }) });
     $('hFormat').innerHTML = PK.comboHtml({ id: 'fFormat', all: 'Semua format', label: 'Format', value: state.format, options: [['Offline', 'Tatap muka'], ['Online', 'Online']] });
     PK.initCombos(document);
     $('fQ').value = state.q;
@@ -106,15 +105,8 @@
       if (state.page > 1) p.set('page', state.page);
       try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) { /* file:// */ }
     }
-    function paintTabs() {
-      var list = [['', 'Semua']].concat(PK.EVENT_CATS.map(function (c) { return [c, c]; }));
-      $('catTabs').innerHTML = list.map(function (t) {
-        return '<button type="button" role="tab" class="tabs-item whitespace-nowrap !py-2" data-cat="' + esc(t[0]) + '" aria-selected="' + (state.kategori === t[0]) + '">' + esc(t[1]) + '</button>';
-      }).join('');
-    }
-
     function loadList() {
-      syncUrl(); paintTabs();
+      syncUrl();
       var grid = $('eventGrid');
       grid.setAttribute('aria-busy', 'true');
       grid.innerHTML = [1, 2, 3].map(function () { return '<div class="h-64 animate-pulse rounded-card bg-neutral-100"></div>'; }).join('');
@@ -129,13 +121,11 @@
     }
 
     document.addEventListener('click', function (e) {
-      var c = e.target.closest('[data-cat]');
-      if (c) { state.kategori = c.getAttribute('data-cat'); state.page = 1; loadList(); return; }
-      if (e.target.closest('[data-reset]')) { state.kategori = state.format = state.q = ''; state.page = 1; $('fQ').value = ''; PK.comboSet($('fFormat'), ''); loadList(); return; }
+      if (e.target.closest('[data-reset]')) { state.kategori = state.format = state.q = ''; state.page = 1; $('fQ').value = ''; PK.comboSet($('fCat'), ''); PK.comboSet($('fFormat'), ''); loadList(); return; }
       if (e.target.closest('[data-retry]')) loadList();
     });
-    $('pager').addEventListener('pagination:change', function (e) { state.page = e.detail.page; loadList(); $('catTabs').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-    $('filterForm').addEventListener('combo:change', function () { state.format = $('fFormat').dataset.value; state.page = 1; loadList(); });
+    $('pager').addEventListener('pagination:change', function (e) { state.page = e.detail.page; loadList(); $('eventGrid').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    $('filterForm').addEventListener('combo:change', function () { state.kategori = $('fCat').dataset.value; state.format = $('fFormat').dataset.value; state.page = 1; loadList(); });
     $('filterForm').addEventListener('submit', function (e) { e.preventDefault(); state.q = $('fQ').value; state.page = 1; loadList(); });
     $('fQ').addEventListener('input', PK.debounce(function () { state.q = $('fQ').value; state.page = 1; loadList(); }, 350));
 
