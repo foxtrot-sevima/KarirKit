@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/mitra/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Segera Hadir | KarirLink Mitra</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Fitur ini sedang disiapkan di dashboard mitra KarirLink." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/mitra/segera-hadir.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Segera Hadir | KarirLink Mitra" />
+<meta property="og:description" content="Fitur ini sedang disiapkan di dashboard mitra KarirLink." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/mitra/segera-hadir.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Segera Hadir | KarirLink Mitra" />
+<meta name="twitter:description" content="Fitur ini sedang disiapkan di dashboard mitra KarirLink." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Overview" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Overview</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Rekrutmen</p>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Lowongan" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a href="segera-hadir.html?menu=Rekomendasi%20Kandidat" class="nav-item" data-tooltip-trigger data-tooltip-text="Rekomendasi Kandidat" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-star h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Rekomendasi Kandidat</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Talent</p>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Cari%20Talent" class="nav-item" data-tooltip-trigger data-tooltip-text="Cari Talent" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-magnifying-glass h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Cari Talent</span>
+        </a>
+        <a href="segera-hadir.html?menu=Talenta%20Saya" class="nav-item" data-tooltip-trigger data-tooltip-text="Talenta Saya" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Talenta Saya</span>
+        </a>
+        <a href="segera-hadir.html?menu=Undangan" class="nav-item" data-tooltip-trigger data-tooltip-text="Undangan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-envelope-simple h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Undangan</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Kerjasama</p>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Kampus%20Mitra" class="nav-item" data-tooltip-trigger data-tooltip-text="Kampus Mitra" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kampus Mitra</span>
+        </a>
+        <a href="segera-hadir.html?menu=Kegiatan%20Kolaborasi" class="nav-item" data-tooltip-trigger data-tooltip-text="Kegiatan Kolaborasi" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kegiatan Kolaborasi</span>
+        </a>
+        <a href="segera-hadir.html?menu=Job%20Fair" class="nav-item" data-tooltip-trigger data-tooltip-text="Job Fair" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Job Fair</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Komunikasi</p>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Pesan" class="nav-item" data-tooltip-trigger data-tooltip-text="Pesan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chat-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pesan</span>
+        </a>
+        <a href="segera-hadir.html?menu=Pengikut" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengikut" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pengikut</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Perusahaan</p>
+      <div class="space-y-1">
+        <a href="profil.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Profil Perusahaan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-buildings h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Profil Perusahaan</span>
+        </a>
+        <a href="pengaturan.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pengaturan</span>
+        </a>
+        <a href="segera-hadir.html?menu=Premium" class="nav-item" data-tooltip-trigger data-tooltip-text="Premium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-crown h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Premium</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu mitra">
+    <div>
+      <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Overview" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Rekrutmen</p>
+      <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Lowongan" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="segera-hadir.html?menu=Rekomendasi%20Kandidat" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-star h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Rekomendasi Kandidat</span>
+          </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Talent</p>
+      <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Cari%20Talent" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-magnifying-glass h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Cari Talent</span>
+          </a>
+          <a href="segera-hadir.html?menu=Talenta%20Saya" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-users h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Talenta Saya</span>
+          </a>
+          <a href="segera-hadir.html?menu=Undangan" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-envelope-simple h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Undangan</span>
+          </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Kerjasama</p>
+      <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Kampus%20Mitra" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kampus Mitra</span>
+          </a>
+          <a href="segera-hadir.html?menu=Kegiatan%20Kolaborasi" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kegiatan Kolaborasi</span>
+          </a>
+          <a href="segera-hadir.html?menu=Job%20Fair" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Job Fair</span>
+          </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Komunikasi</p>
+      <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Pesan" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chat-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Pesan</span>
+          </a>
+          <a href="segera-hadir.html?menu=Pengikut" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-users h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Pengikut</span>
+          </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Perusahaan</p>
+      <div class="space-y-1">
+          <a href="profil.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-buildings h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Profil Perusahaan</span>
+          </a>
+          <a href="pengaturan.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Pengaturan</span>
+          </a>
+          <a href="segera-hadir.html?menu=Premium" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-crown h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Premium</span>
+          </a>
+      </div>
+    </div>
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">DA</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Dewi Anggraini</p><p class="truncate text-xs text-fg-muted">dewi@lintasniaga.example</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="navbar navbar-sticky navbar-app">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+<a href="segera-hadir.html?menu=Overview" class="breadcrumb-link shrink-0"><span class="hidden sm:inline">Mitra</span></a>
+<span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span><span class="breadcrumb-current min-w-0" aria-current="page"><span class="min-w-0 truncate">Segera Hadir</span></span>
+</nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">DA</span></button>
+      <div class="relative hidden lg:block">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">DA</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Dewi Anggraini</span>
+            <span class="block truncate text-xs text-slate-400">Admin Perusahaan</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 shrink-0 text-sm">DA</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title">Dewi Anggraini</p>
+              <p class="dropdown-header-desc">dewi@lintasniaga.example</p>
+            </div>
+          </div>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex flex-1 items-center justify-center px-4 py-10 sm:px-6">
+    <!-- Halaman umum "Segera Hadir" untuk menu mitra yang belum dibuat. Menu sidebar yang diklik tetap aktif lewat ?menu=. -->
+    <section class="w-full max-w-md text-center" aria-labelledby="soonTitle">
+      <img src="../../assets/illustrations/empty-state/time.svg" alt="" class="mx-auto h-52 w-auto mix-blend-multiply" />
+      <h2 id="soonTitle" class="mt-6 font-display text-3xl font-bold text-slate-900 sm:text-4xl">Segera Hadir</h2>
+      <p class="card-text mx-auto mt-3 max-w-sm">Halaman ini sedang kami siapkan.</p>
+      <div class="mt-8 flex justify-center"><a href="profil.html" class="btn-primary btn-lg"><i class="kk kk-buildings h-4 w-4"></i>Ke Profil Perusahaan</a></div>
+    </section>
+  </main>
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/table.js"></script>
+<script src="../../assets/js/datepicker.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+(function () {
+  // Menu sidebar dan drawer yang mengarah ke halaman ini (dari ?menu=) tampil aktif.
+  const menu = new URLSearchParams(location.search).get('menu');
+  if (!menu) return;
+  document.querySelectorAll('#sidebar a.nav-item, #adminMenu a.nav-item').forEach((a) => {
+    const l = a.querySelector('.sidebar-label');
+    if (l && l.textContent.trim() === menu) { a.classList.add('nav-item-active'); a.setAttribute('aria-current', 'page'); }
+  });
+})();
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();</script>
+</body>
+</html>
