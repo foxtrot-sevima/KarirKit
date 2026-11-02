@@ -126,7 +126,7 @@
     <div>
       <p class="nav-eyebrow mb-2">Portal Karir</p>
       <div class="space-y-1">
-        <a href="segera-hadir.html?menu=Kerjasama" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+        <a href="kerjasama.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Kerjasama</span>
         </a>
@@ -210,7 +210,7 @@
       <div>
         <p class="nav-eyebrow mb-2">Portal Karir</p>
         <div class="space-y-1">
-          <a href="segera-hadir.html?menu=Kerjasama" class="nav-item">
+          <a href="kerjasama.html" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Kerjasama</span>
           </a>
@@ -691,8 +691,8 @@
   </div>
 </div>
 
-<!-- Ekspor Hasil: unduh jawaban alumni sebagai Excel. Mengikuti fitur "Download Hasil" di Tracer Study live: pilih kuesioner,
-     Template Laporan (Kemendikti / Lengkap), Tahun Lulus (Baru untuk lulusan 2025 ke atas, Lampau sebelumnya), Program Studi,
+<!-- Unduh Hasil Kuesioner: unduh jawaban alumni sebagai Excel. Mengikuti fitur "Download Hasil" di Tracer Study live: pilih kuesioner,
+     Template Laporan (Kemendikti / Lengkap), Tahun Lulus untuk keduanya (Baru untuk lulusan 2025 ke atas, Lampau sebelumnya), Program Studi,
      lalu progres unduhan dan nama berkas. Pengguna Lulusan diunduh langsung tanpa pilihan template.
      Pengunduhan di mockup hanya simulasi (tidak ada berkas). z-[60]: sidebar karirlink z-50. -->
 <!-- Hapus Kuesioner Kosong: konfirmasi sebelum kuesioner dihapus dari daftar (simulasi). z-[60]: sidebar karirlink z-50. -->
@@ -715,7 +715,7 @@
 <div class="modal-backdrop z-[60]" id="exportModal" aria-labelledby="exportTitle">
   <div class="modal-panel modal-xl">
     <div class="modal-header">
-      <h3 id="exportTitle" class="modal-title">Ekspor Hasil Kuesioner</h3>
+      <h3 id="exportTitle" class="modal-title">Unduh Hasil Kuesioner</h3>
       <button type="button" class="modal-close" data-modal-hide="exportModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
     </div>
 
@@ -1519,7 +1519,7 @@
     document.querySelectorAll('[data-combo]').forEach(setupCombo);
   })();
 
-  // Ekspor Hasil (simulasi): pilihan mengikuti "Download Hasil" Tracer Study live; berkas tidak benar-benar dibuat.
+  // Unduh Hasil (simulasi): pilihan mengikuti "Download Hasil" Tracer Study live; berkas tidak benar-benar dibuat.
   (function () {
     var $ = function (id) { return document.getElementById(id); };
     var modal = $('exportModal');
@@ -1540,11 +1540,11 @@
       var src = val('expSource'), tpl = val('expTpl'), yr = combo('expYear');
       var lulusan = src === 'lulusan', pengguna = src === 'pengguna';
       show('expGrpTpl', lulusan);
-      show('expGrpYear', lulusan && tpl === 'pddikti');
+      show('expGrpYear', lulusan && !!tpl);
       show('expGrpProdi', !pengguna);
       show('expDirect', pengguna);
-      // tombol aktif: Lulusan wajib memilih template, dan tahun lulus bila Kemendikti
-      var ready = !lulusan || (tpl && (tpl !== 'pddikti' || yr));
+      // tombol aktif: Lulusan wajib memilih template dan tahun lulus (Kemendikti maupun Lengkap)
+      var ready = !lulusan || (tpl && yr);
       $('expGo').disabled = busy || !ready;
     }
 
@@ -1583,7 +1583,7 @@
             clearInterval(t);
             setTimeout(function () {
               if (window.KKModal) KKModal.close('exportModal');
-              if (window.KKToast) KKToast.show({ type: 'success', message: 'Ekspor selesai (simulasi, tidak ada berkas).' });
+              if (window.KKToast) KKToast.show({ type: 'success', message: 'Unduhan selesai (simulasi, tidak ada berkas).' });
               busy = false;
               modal.querySelectorAll('input, [data-combo-trigger]').forEach(function (i) { i.disabled = false; });
               $('expGo').classList.remove('btn-loading'); $('expCancel').disabled = false; show('expProgress', false); render();

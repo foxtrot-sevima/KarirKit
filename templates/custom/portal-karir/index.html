@@ -304,7 +304,7 @@
     }).join('');
 
     // ---- course (3 terpopuler; yang sedang diikuti tampil dengan progresnya)
-    $('courseGrid').innerHTML = PK.COURSES.slice().sort(function (a, b) { return (PK.courseProgress(b).enrolled - PK.courseProgress(a).enrolled) || b.learners - a.learners; }).slice(0, 3).map(function (c) { return PK.courseCard({ course: c }); }).join('');
+    $('courseGrid').innerHTML = PK.COURSES.slice().sort(function (a, b) { return (PK.courseProgress(b).enrolled - PK.courseProgress(a).enrolled); }).slice(0, 3).map(function (c) { return PK.courseCard({ course: c }); }).join('');
 
     // ---- pengembangan diri
     var GROW = [

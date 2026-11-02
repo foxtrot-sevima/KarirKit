@@ -666,25 +666,7 @@
   }
   function initCombos(scope) { (scope || document).querySelectorAll('[data-combo]').forEach(initCombo); }
 
-  // Isi nama pengguna di navbar, tahun di footer, dan beri efek kaca pada navbar saat halaman digulir.
-  // Merek di navbar: bawaan = logo KarirLink SEVIMA; bila CAMPUS.logo diisi, tampil logo kampus (white-label) dengan inisial sebagai cadangan.
-  function initBrand() {
-    document.querySelectorAll('[data-brand]').forEach(function (a) {
-      var def = a.querySelector('[data-brand-default]'), cus = a.querySelector('[data-brand-custom]');
-      if (!def || !cus || !CAMPUS.logo) return;
-      def.hidden = true; cus.hidden = false;
-      a.title = CAMPUS.name;
-      var nm = cus.querySelector('[data-campus-name]'); if (nm) nm.textContent = CAMPUS.name;
-      var av = cus.querySelector('[data-brand-avatar]');
-      if (av) {
-        av.textContent = CAMPUS.name.split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
-        var img = new Image(); img.alt = '';
-        img.className = 'absolute inset-0 h-full w-full bg-white object-contain p-0.5';
-        img.addEventListener('load', function () { av.appendChild(img); });
-        img.src = new URL(CAMPUS.logo, location.href).href;
-      }
-    });
-  }
+  // Merek di navbar selalu logo KarirLink SEVIMA; nama dan logo kampus hanya tampil di hero Beranda (dan identitas di footer).
 
   // ---- shell bersama: navbar, drawer, dan footer (markup di shell.js)
   var PAGE_FILE = { home: 'index.html', jobs: 'lowongan.html', event: 'event.html', grow: 'pengembangan.html', tracer: 'tracer-study.html' };
@@ -709,13 +691,19 @@
   function initNav() {
     var header = document.querySelector('[data-shell-header]'), bar = document.querySelector('[data-glass-nav]');
     if (!header || !bar) return;
+    var hero = false, last;
+    // Saat digulir hanya membaca scrollY dan menulis atribut bila berubah; cek band hero (membaca layout) hanya saat sync penuh.
+    function apply() {
+      var v = String(!hero || window.scrollY > 8);
+      if (v !== last) { last = v; bar.setAttribute('data-scrolled', v); }
+    }
     function sync() {
-      var hero = Array.prototype.some.call(document.querySelectorAll('[data-nav-hero]'), function (e) { return !e.hidden && e.offsetParent !== null; });
+      hero = Array.prototype.some.call(document.querySelectorAll('[data-nav-hero]'), function (e) { return !e.hidden && e.offsetParent !== null; });
       header.classList.toggle('-mb-[4.5rem]', hero);
-      bar.setAttribute('data-scrolled', String(!hero || window.scrollY > 8));
+      apply();
     }
     sync();
-    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('scroll', apply, { passive: true });
     window.addEventListener('resize', sync);
     if ('MutationObserver' in window) {
       var mo = new MutationObserver(sync);
@@ -756,7 +744,6 @@
 
   function initShell() {
     mountShell();
-    initBrand();
     initNav();
     initFooter();
     var name = user.name || 'Pengguna';
@@ -829,23 +816,22 @@
   function evWeekday(e) { return evFmt(e, { weekday: 'long', day: 'numeric', month: 'long' }); }
   function evFull(e) { return evFmt(e, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); }
 
-  // Kartu event: gaya yang sama dengan kartu lowongan (blok pastel per kategori, penanda tanggal, tag, dan kaki kartu).
+  // Kartu event: penanda tanggal berwarna per kategori, nama kategori sebagai teks (bukan tag), waktu dan lokasi. Tanpa angka kuota.
   var EVENT_TONE = { 'Job Fair': 'primary', 'Workshop': 'secondary', 'Webinar': 'info', 'Pelatihan': 'success', 'Kegiatan Kampus': 'warning' };
   function eventCard(e) {
     var t = TINT[EVENT_TONE[e.cat] || 'primary'];
-    var left = Math.max(e.quota - e.taken, 0), pct = Math.min(100, Math.round(e.taken / e.quota * 100));
     var reg = eventRegistered(e.id);
-    return '<article class="relative flex flex-col rounded-2xl border border-border/70 bg-surface p-2 shadow-card transition-shadow hover:shadow-card-lg" data-event-card="' + e.id + '">' +
-      '<div class="flex flex-1 flex-col rounded-xl p-4 ' + t.soft + '">' +
-        '<div class="flex items-start justify-between gap-2"><span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-semibold ' + t.text + '">' + esc(e.cat) + '</span>' +
-        '<span class="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700">' + icon(e.mode === 'Online' ? 'video-camera' : 'map-pin', 'h-3.5 w-3.5') + (e.mode === 'Online' ? 'Online' : 'Tatap muka') + '</span></div>' +
-        '<div class="mt-5 flex items-start justify-between gap-3"><div class="min-w-0"><p class="truncate text-xs text-slate-500">' + esc(e.org) + '</p>' +
-        '<h3 class="mt-1 font-display text-lg font-semibold leading-snug text-slate-900"><a href="event.html?id=' + e.id + '" data-open="' + e.id + '" class="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500">' + esc(e.title) + '</a></h3></div>' +
-        '<span class="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl bg-white ' + t.text + '"><span class="text-lg font-bold leading-none">' + evDay(e) + '</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">' + evMonth(e) + '</span></span></div>' +
-        '<div class="mt-4 flex flex-wrap gap-1.5">' + tag(evWeekday(e)) + tag(e.time.split(' - ')[0] + ' WIB') + '</div>' +
-      '</div>' +
-      '<div class="flex items-center justify-between gap-3 px-3 pb-2 pt-3.5"><div class="min-w-0"><p class="truncate text-sm font-semibold text-slate-900">' + esc(e.place) + '</p><p class="mt-0.5 text-xs ' + (left ? 'text-slate-400' : 'text-danger-600') + '">' + (left ? left + ' kursi tersisa (' + pct + '% terisi)' : 'Kuota penuh') + '</p></div>' +
-      (reg ? '<span class="inline-flex h-8 shrink-0 items-center gap-1 rounded-xl bg-success-50 px-3 text-xs font-semibold text-success-700">' + icon('check', 'h-3.5 w-3.5') + 'Terdaftar</span>' : '<span class="btn-primary btn-sm shrink-0" aria-hidden="true">Lihat Detail</span>') + '</div></article>';
+    return '<article class="relative flex flex-col rounded-2xl border border-border/70 bg-surface p-5 shadow-card transition-shadow hover:shadow-card-lg" data-event-card="' + e.id + '">' +
+      '<div class="flex items-start gap-4">' +
+        '<span class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl ' + t.soft + ' ' + t.text + '"><span class="text-2xl font-bold leading-none">' + evDay(e) + '</span><span class="mt-1 text-[11px] font-semibold uppercase tracking-wider">' + evMonth(e) + '</span></span>' +
+        '<div class="min-w-0"><p class="text-xs font-semibold ' + t.text + '">' + esc(e.cat) + '</p>' +
+        '<h3 class="mt-1 font-display text-lg font-semibold leading-snug text-slate-900"><a href="event-detail.html?id=' + e.id + '" class="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary-500">' + esc(e.title) + '</a></h3></div></div>' +
+      '<p class="mt-3 text-sm text-slate-500">' + esc(e.org) + '</p>' +
+      '<ul class="mb-5 mt-4 space-y-2 text-sm text-slate-600">' +
+        '<li class="flex items-start gap-2.5">' + icon('clock', 'mt-0.5 h-4 w-4 shrink-0 text-slate-400') + '<span>' + evFmt(e, { weekday: 'long' }) + ', ' + esc(e.time) + '</span></li>' +
+        '<li class="flex items-start gap-2.5">' + icon(e.mode === 'Online' ? 'video-camera' : 'map-pin', 'mt-0.5 h-4 w-4 shrink-0 text-slate-400') + '<span>' + esc(e.place) + '</span></li></ul>' +
+      '<div class="mt-auto flex items-center justify-between gap-3 border-t border-border/70 pt-4"><span class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700">Lihat detail' + icon('arrow-right', 'h-4 w-4') + '</span>' +
+      (reg ? '<span class="inline-flex items-center gap-1 text-xs font-semibold text-success-700">' + icon('check', 'h-3.5 w-3.5') + 'Terdaftar</span>' : '') + '</div></article>';
   }
 
   /* ==========================================================================
@@ -862,9 +848,9 @@
       desc: 'Bertemu langsung dengan perekrut, kirim lamaran ke lowongan peserta, dan ikuti sesi walk-in interview. Lowongan peserta bisa dilamar selama job fair berlangsung.',
       startIn: -1, endIn: 3, place: 'Jakarta Convention Hall dan online',
       flyers: [
-        { title: 'Walk-in Interview', text: 'Datang langsung ke booth perusahaan dengan CV tercetak.', link: 'event.html?id=1' },
-        { title: 'Klinik CV 15 Menit', text: 'Konsultasikan CV bersama konselor karier sebelum melamar.', link: 'event.html?id=5' },
-        { title: 'Webinar Karier Kreatif', text: 'Tips memilih perusahaan dan menyiapkan portofolio.', link: 'event.html?id=3' }
+        { title: 'Walk-in Interview', text: 'Datang langsung ke booth perusahaan dengan CV tercetak.', link: 'event-detail.html?id=1' },
+        { title: 'Klinik CV 15 Menit', text: 'Konsultasikan CV bersama konselor karier sebelum melamar.', link: 'event-detail.html?id=5' },
+        { title: 'Webinar Karier Kreatif', text: 'Tips memilih perusahaan dan menyiapkan portofolio.', link: 'event-detail.html?id=3' }
       ], jobMax: 30 },
     { slug: 'job-fair-bisnis-keuangan-2027', eventId: 10, name: 'Job Fair Bisnis dan Keuangan', tagline: 'Peluang karier di perbankan, asuransi, dan konsultan.',
       desc: 'Lowongan dari perusahaan sektor bisnis dan keuangan untuk fresh graduate dan alumni.',
@@ -963,14 +949,14 @@
   var COURSE_TONE = { 'Soft Skill': 'secondary', 'Keahlian Digital': 'primary', 'Persiapan Karier': 'success', 'Bahasa': 'info', 'Kewirausahaan': 'warning' };
   function mod(title, lessons) { return { title: title, lessons: lessons.map(function (l) { return { t: l[0], min: l[1] }; }) }; }
   var COURSES = [
-    { id: 1, cat: 'Persiapan Karier', title: 'CV dan Personal Branding yang Menarik Perekrut', level: 'Pemula', instructor: 'Rina Maharani', role: 'Konselor Karier', desc: 'Susun CV satu halaman yang jelas, tulis pencapaian dengan angka, dan bangun profil profesional yang konsisten di berbagai platform.', learn: ['Struktur CV yang mudah dipindai', 'Menulis pencapaian yang terukur', 'Menyesuaikan CV dengan lowongan', 'Dasar personal branding'], learners: 1240, modules: [mod('Dasar CV', [['Apa yang dicari perekrut', 8], ['Struktur dan tata letak', 12]]), mod('Isi CV', [['Menulis pencapaian dengan angka', 14], ['Keahlian dan kata kunci', 10]]), mod('Branding', [['Profil profesional online', 11], ['Latihan dan umpan balik', 15]])] },
-    { id: 2, cat: 'Persiapan Karier', title: 'Menghadapi Wawancara Kerja dengan Percaya Diri', level: 'Pemula', instructor: 'Dimas Aryo', role: 'Praktisi HR', desc: 'Pelajari pola pertanyaan wawancara, teknik menjawab dengan metode STAR, dan cara mengelola gugup sebelum dan saat wawancara.', learn: ['Jenis pertanyaan wawancara', 'Metode STAR', 'Bahasa tubuh dan wawancara daring', 'Menegosiasikan gaji'], learners: 980, modules: [mod('Persiapan', [['Riset perusahaan', 9], ['Mengenali pertanyaan umum', 12]]), mod('Menjawab', [['Metode STAR', 15], ['Pertanyaan sulit', 13]]), mod('Hari H', [['Wawancara daring', 10], ['Negosiasi gaji', 12]])] },
-    { id: 3, cat: 'Soft Skill', title: 'Komunikasi dan Presentasi Efektif', level: 'Pemula', instructor: 'Maya Sari', role: 'Trainer Komunikasi', desc: 'Berbicara jelas, menyusun presentasi yang menarik, dan menyampaikan ide dengan meyakinkan di depan tim maupun klien.', learn: ['Struktur pesan yang jelas', 'Menyusun slide yang efektif', 'Mengelola audiens', 'Umpan balik yang membangun'], learners: 860, modules: [mod('Dasar komunikasi', [['Pesan yang jelas', 10], ['Mendengar aktif', 9]]), mod('Presentasi', [['Menyusun slide', 14], ['Menyampaikan dengan percaya diri', 12]]), mod('Praktik', [['Latihan presentasi', 18]])] },
-    { id: 4, cat: 'Keahlian Digital', title: 'Dasar Analisis Data dengan Spreadsheet', level: 'Pemula', instructor: 'Fajar Nugroho', role: 'Data Analyst', desc: 'Mengolah, membersihkan, dan menyajikan data menggunakan spreadsheet, dari rumus dasar sampai tabel pivot dan grafik.', learn: ['Rumus dan fungsi dasar', 'Membersihkan data', 'Tabel pivot', 'Visualisasi data'], learners: 1520, modules: [mod('Dasar spreadsheet', [['Rumus dan fungsi', 15], ['Format dan validasi', 10]]), mod('Mengolah data', [['Membersihkan data', 14], ['Tabel pivot', 16]]), mod('Menyajikan', [['Grafik yang informatif', 12], ['Proyek mini', 20]])] },
-    { id: 5, cat: 'Keahlian Digital', title: 'Pengantar SQL untuk Pemula', level: 'Menengah', instructor: 'Fajar Nugroho', role: 'Data Analyst', desc: 'Menulis kueri untuk mengambil dan menggabungkan data dari basis data relasional, dengan latihan di kasus nyata.', learn: ['SELECT, WHERE, dan ORDER BY', 'JOIN antar tabel', 'Agregasi dan GROUP BY', 'Menulis kueri yang rapi'], learners: 740, modules: [mod('Dasar', [['SELECT dan filter', 12], ['Pengurutan dan batas', 8]]), mod('Lanjutan', [['JOIN', 16], ['GROUP BY dan agregasi', 15]]), mod('Latihan', [['Studi kasus penjualan', 22]])] },
-    { id: 6, cat: 'Bahasa', title: 'Bahasa Inggris untuk Dunia Kerja', level: 'Menengah', instructor: 'Sarah Williams', role: 'Pengajar Bahasa', desc: 'Kosakata dan ungkapan profesional untuk surel, rapat, dan wawancara dalam bahasa Inggris.', learn: ['Surel profesional', 'Berbicara di rapat', 'Wawancara dalam bahasa Inggris', 'Kosakata kantor'], learners: 1100, modules: [mod('Tulisan', [['Menulis surel', 12], ['Pesan singkat profesional', 9]]), mod('Lisan', [['Rapat dan diskusi', 14], ['Wawancara', 15]])] },
-    { id: 7, cat: 'Kewirausahaan', title: 'Memulai Usaha dari Nol', level: 'Pemula', instructor: 'Budi Hartono', role: 'Pendiri Startup', desc: 'Dari ide ke usaha pertama: validasi masalah, model bisnis sederhana, dan langkah awal menjangkau pelanggan.', learn: ['Validasi ide usaha', 'Model bisnis sederhana', 'Menentukan harga', 'Menjangkau pelanggan pertama'], learners: 560, modules: [mod('Ide', [['Menemukan masalah nyata', 11], ['Validasi dengan calon pelanggan', 13]]), mod('Model', [['Model bisnis sederhana', 14], ['Harga dan keuntungan', 12]]), mod('Peluncuran', [['Pelanggan pertama', 16]])] },
-    { id: 8, cat: 'Soft Skill', title: 'Bekerja dalam Tim dan Mengelola Waktu', level: 'Pemula', instructor: 'Maya Sari', role: 'Trainer Komunikasi', desc: 'Kolaborasi lintas peran, membagi tugas, dan mengatur prioritas agar pekerjaan selesai tepat waktu tanpa kewalahan.', learn: ['Kolaborasi yang sehat', 'Prioritas dan jadwal', 'Menangani konflik', 'Kebiasaan kerja produktif'], learners: 690, modules: [mod('Tim', [['Peran dan tanggung jawab', 10], ['Komunikasi dalam tim', 11]]), mod('Waktu', [['Prioritas', 9], ['Jadwal dan kebiasaan', 12]])] }
+    { id: 1, cat: 'Persiapan Karier', title: 'CV dan Personal Branding yang Menarik Perekrut', level: 'Pemula', instructor: 'Rina Maharani', role: 'Konselor Karier', desc: 'Susun CV satu halaman yang jelas, tulis pencapaian dengan angka, dan bangun profil profesional yang konsisten di berbagai platform.', learn: ['Struktur CV yang mudah dipindai', 'Menulis pencapaian yang terukur', 'Menyesuaikan CV dengan lowongan', 'Dasar personal branding'], modules: [mod('Dasar CV', [['Apa yang dicari perekrut', 8], ['Struktur dan tata letak', 12]]), mod('Isi CV', [['Menulis pencapaian dengan angka', 14], ['Keahlian dan kata kunci', 10]]), mod('Branding', [['Profil profesional online', 11], ['Latihan dan umpan balik', 15]])] },
+    { id: 2, cat: 'Persiapan Karier', title: 'Menghadapi Wawancara Kerja dengan Percaya Diri', level: 'Pemula', instructor: 'Dimas Aryo', role: 'Praktisi HR', desc: 'Pelajari pola pertanyaan wawancara, teknik menjawab dengan metode STAR, dan cara mengelola gugup sebelum dan saat wawancara.', learn: ['Jenis pertanyaan wawancara', 'Metode STAR', 'Bahasa tubuh dan wawancara daring', 'Menegosiasikan gaji'], modules: [mod('Persiapan', [['Riset perusahaan', 9], ['Mengenali pertanyaan umum', 12]]), mod('Menjawab', [['Metode STAR', 15], ['Pertanyaan sulit', 13]]), mod('Hari H', [['Wawancara daring', 10], ['Negosiasi gaji', 12]])] },
+    { id: 3, cat: 'Soft Skill', title: 'Komunikasi dan Presentasi Efektif', level: 'Pemula', instructor: 'Maya Sari', role: 'Trainer Komunikasi', desc: 'Berbicara jelas, menyusun presentasi yang menarik, dan menyampaikan ide dengan meyakinkan di depan tim maupun klien.', learn: ['Struktur pesan yang jelas', 'Menyusun slide yang efektif', 'Mengelola audiens', 'Umpan balik yang membangun'], modules: [mod('Dasar komunikasi', [['Pesan yang jelas', 10], ['Mendengar aktif', 9]]), mod('Presentasi', [['Menyusun slide', 14], ['Menyampaikan dengan percaya diri', 12]]), mod('Praktik', [['Latihan presentasi', 18]])] },
+    { id: 4, cat: 'Keahlian Digital', title: 'Dasar Analisis Data dengan Spreadsheet', level: 'Pemula', instructor: 'Fajar Nugroho', role: 'Data Analyst', desc: 'Mengolah, membersihkan, dan menyajikan data menggunakan spreadsheet, dari rumus dasar sampai tabel pivot dan grafik.', learn: ['Rumus dan fungsi dasar', 'Membersihkan data', 'Tabel pivot', 'Visualisasi data'], modules: [mod('Dasar spreadsheet', [['Rumus dan fungsi', 15], ['Format dan validasi', 10]]), mod('Mengolah data', [['Membersihkan data', 14], ['Tabel pivot', 16]]), mod('Menyajikan', [['Grafik yang informatif', 12], ['Proyek mini', 20]])] },
+    { id: 5, cat: 'Keahlian Digital', title: 'Pengantar SQL untuk Pemula', level: 'Menengah', instructor: 'Fajar Nugroho', role: 'Data Analyst', desc: 'Menulis kueri untuk mengambil dan menggabungkan data dari basis data relasional, dengan latihan di kasus nyata.', learn: ['SELECT, WHERE, dan ORDER BY', 'JOIN antar tabel', 'Agregasi dan GROUP BY', 'Menulis kueri yang rapi'], modules: [mod('Dasar', [['SELECT dan filter', 12], ['Pengurutan dan batas', 8]]), mod('Lanjutan', [['JOIN', 16], ['GROUP BY dan agregasi', 15]]), mod('Latihan', [['Studi kasus penjualan', 22]])] },
+    { id: 6, cat: 'Bahasa', title: 'Bahasa Inggris untuk Dunia Kerja', level: 'Menengah', instructor: 'Sarah Williams', role: 'Pengajar Bahasa', desc: 'Kosakata dan ungkapan profesional untuk surel, rapat, dan wawancara dalam bahasa Inggris.', learn: ['Surel profesional', 'Berbicara di rapat', 'Wawancara dalam bahasa Inggris', 'Kosakata kantor'], modules: [mod('Tulisan', [['Menulis surel', 12], ['Pesan singkat profesional', 9]]), mod('Lisan', [['Rapat dan diskusi', 14], ['Wawancara', 15]])] },
+    { id: 7, cat: 'Kewirausahaan', title: 'Memulai Usaha dari Nol', level: 'Pemula', instructor: 'Budi Hartono', role: 'Pendiri Startup', desc: 'Dari ide ke usaha pertama: validasi masalah, model bisnis sederhana, dan langkah awal menjangkau pelanggan.', learn: ['Validasi ide usaha', 'Model bisnis sederhana', 'Menentukan harga', 'Menjangkau pelanggan pertama'], modules: [mod('Ide', [['Menemukan masalah nyata', 11], ['Validasi dengan calon pelanggan', 13]]), mod('Model', [['Model bisnis sederhana', 14], ['Harga dan keuntungan', 12]]), mod('Peluncuran', [['Pelanggan pertama', 16]])] },
+    { id: 8, cat: 'Soft Skill', title: 'Bekerja dalam Tim dan Mengelola Waktu', level: 'Pemula', instructor: 'Maya Sari', role: 'Trainer Komunikasi', desc: 'Kolaborasi lintas peran, membagi tugas, dan mengatur prioritas agar pekerjaan selesai tepat waktu tanpa kewalahan.', learn: ['Kolaborasi yang sehat', 'Prioritas dan jadwal', 'Menangani konflik', 'Kebiasaan kerja produktif'], modules: [mod('Tim', [['Peran dan tanggung jawab', 10], ['Komunikasi dalam tim', 11]]), mod('Waktu', [['Prioritas', 9], ['Jadwal dan kebiasaan', 12]])] }
   ];
   var COURSES_KEY = 'kk_portal_courses';
   var courseState = read(COURSES_KEY, {}); // { id: { done: [indeks materi] } }
@@ -1038,7 +1024,7 @@
       '<div class="flex items-center justify-between gap-3 px-3 pb-2 pt-3.5">' +
       (p.enrolled
         ? '<div class="min-w-0 flex-1"><div class="flex items-center justify-between text-xs"><span class="font-semibold text-slate-900">' + (p.complete ? 'Selesai' : 'Progres ' + p.pct + '%') + '</span><span class="text-slate-400">' + p.done.length + '/' + p.total + '</span></div><div class="progress-track mt-1.5 h-1.5"><div class="progress-bar" style="width: ' + p.pct + '%"></div></div></div><span class="btn-' + (p.complete ? 'secondary' : 'primary') + ' btn-sm shrink-0" aria-hidden="true">' + (p.complete ? 'Lihat' : 'Lanjutkan') + '</span>'
-        : '<div class="min-w-0"><p class="text-sm font-semibold text-slate-900">Gratis</p><p class="mt-0.5 text-xs text-slate-400">' + c.learners.toLocaleString('id-ID') + ' peserta</p></div><span class="btn-primary btn-sm shrink-0" aria-hidden="true">Lihat Detail</span>') +
+        : '<div class="min-w-0"><p class="text-sm font-semibold text-slate-900">Gratis</p></div><span class="btn-primary btn-sm shrink-0" aria-hidden="true">Lihat Detail</span>') +
       '</div></article>';
   }
 
@@ -1205,7 +1191,7 @@
     else if (s.draft && s.answered) {
       var pct = Math.round(s.answered / t.count * 100);
       foot = '<div class="min-w-0 flex-1"><div class="flex items-center justify-between text-xs"><span class="font-semibold text-slate-900">Draf ' + pct + '%</span><span class="text-slate-400">' + s.answered + '/' + t.count + '</span></div><div class="progress-track mt-1.5 h-1.5"><div class="progress-bar" style="width: ' + pct + '%"></div></div></div><span class="btn-primary btn-sm shrink-0" aria-hidden="true">Lanjutkan</span>';
-    } else if (s.active) foot = '<div class="min-w-0"><p class="flex items-center gap-2 text-sm font-semibold text-slate-900">Hasilmu ' + codeChips(s.active.code, 'h-6 w-6 text-[11px]') + '</p><p class="mt-0.5 text-xs text-slate-400">' + s.attempts + 'x dikerjakan</p></div><span class="btn-secondary btn-sm shrink-0" aria-hidden="true">Lihat Hasil</span>';
+    } else if (s.active) foot = '<div class="min-w-0"><p class="text-sm font-semibold text-slate-900">Sudah dikerjakan</p><p class="mt-0.5 text-xs text-slate-400">Hasil siap dilihat</p></div><span class="btn-secondary btn-sm shrink-0" aria-hidden="true">Lihat Hasil</span>';
     else foot = '<div class="min-w-0"><p class="text-sm font-semibold text-slate-900">Gratis</p><p class="mt-0.5 text-xs text-slate-400">Draf tersimpan otomatis</p></div><span class="btn-primary btn-sm shrink-0" aria-hidden="true">Mulai Tes</span>';
     return '<article class="relative flex flex-col rounded-2xl border border-border/70 bg-surface p-2 shadow-card transition-shadow ' + (t.ready ? 'hover:shadow-card-lg' : '') + '">' +
       '<div class="flex flex-1 flex-col rounded-xl p-4 ' + tn.soft + '">' + head +

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Job Fair | Portal Karir KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../../assets/logo/karirlink-mark.svg" />
-<link rel="stylesheet" href="../../../dist/output.css" />
+<link rel="stylesheet" href="../../../dist/output.css" />
 <meta name="description" content="Job Fair kampus: perusahaan peserta, lowongan unggulan, dan jadwal sesi. Lamar langsung selama job fair berlangsung." />
 <meta name="author" content="SEVIMA" />
 <link rel="canonical" href="https://karirkit.vercel.app/templates/custom/portal-karir/job-fair.html" />
@@ -80,7 +80,7 @@
         '<p class="mt-2 max-w-2xl text-base text-white/85">' + esc(f.tagline) + '</p>' +
         '<div class="mt-5 flex flex-wrap gap-2">' + chip('calendar-blank', esc(PK.fairDates(f))) + chip('map-pin', esc(f.place)) + chip('briefcase', res.stats.jobs + ' lowongan') + chip('buildings', res.stats.companies + ' perusahaan') + '</div>' +
         '<div class="mt-6 flex flex-wrap gap-3"><a href="' + PK.fairUrl('job-fair-lowongan', f.slug, fp.preview) + '" class="btn-secondary btn-lg">' + PK.icon('briefcase', 'h-5 w-5') + 'Lihat semua lowongan</a>' +
-        '<a href="event.html?id=' + ev + '" class="btn-outline btn-lg !border-white/40 !bg-transparent !text-white hover:!bg-white/10">' + PK.icon('calendar-plus', 'h-5 w-5') + 'Daftar acara</a></div>';
+        '<a href="event-detail.html?id=' + ev + '" class="btn-outline btn-lg !border-white/40 !bg-transparent !text-white hover:!bg-white/10">' + PK.icon('calendar-plus', 'h-5 w-5') + 'Daftar acara</a></div>';
       var h = '';
       if (res.preview) h += previewNote();
       h += '<section><div class="flex items-end justify-between gap-3"><div><h2 class="font-display text-xl font-bold text-fg">Tentang Job Fair</h2></div></div><p class="mt-2 max-w-3xl leading-relaxed text-fg-muted">' + esc(f.desc) + '</p></section>';
