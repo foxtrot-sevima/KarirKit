@@ -8,6 +8,14 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-02
+
+Dasar KarirKit: v1.5.0
+
+### Changed
+
+- **Fitur notifikasi disembunyikan dari Portal Karir** (`templates/portal-karir/shell.js`, dipakai juga oleh versi white-label di `templates/custom/portal-karir`): tombol lonceng di navbar (dropdown di desktop, lembar bawah di ponsel), panel daftar notifikasi, dan tautan "Lihat semua notifikasi" dihapus dari navbar. Menu dan akun tidak berubah; tidak ada overflow di 390px.
+
 ## 2026-10-30
 
 Dasar KarirKit: v1.5.0
