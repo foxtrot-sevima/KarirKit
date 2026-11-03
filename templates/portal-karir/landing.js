@@ -3,7 +3,7 @@
    endpoint (GET/PUT /api/landing-page) tanpa mengubah bagian lain.
 
    Bentuk konfigurasi (semua opsional; kosong = bawaan portal, bagian tambahan disembunyikan):
-     logo          URL/data-URL logo Career Center (navbar + footer)                     -> PK_CAMPUS.logo
+     logo          URL/data-URL logo Career Center (hero + footer)                     -> PK_CAMPUS.logo
      heroImage     URL/data-URL gambar latar hero (16:9)
      heroTitle     Judul hero (50-100 karakter)      heroDesc   Deskripsi hero (50-250 karakter)
      guideUrl      URL video YouTube Bimbingan Karir (watch / youtu.be / embed; disimpan apa adanya, diubah ke embed saat tampil)
@@ -62,7 +62,7 @@
 
   var palette = !!CT.active; // warna kampus sudah dipasang campus-theme.js di <head>
 
-  // 1) Sebelum portal.js: isi PK_CAMPUS supaya navbar dan footer bawaan portal memakai identitas Career Center.
+  // 1) Sebelum portal.js: isi PK_CAMPUS supaya hero dan footer bawaan portal memakai identitas Career Center.
   var ov = {}, social = {};
   if (cfg.logo) ov.logo = cfg.logo;
   if (cfg.about) ov.about = cfg.about;

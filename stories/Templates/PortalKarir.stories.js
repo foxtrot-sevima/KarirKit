@@ -61,6 +61,26 @@ export const Event = {
   render: () => pageFrame("/templates/portal-karir/event.html", "Portal Karir Event"),
 };
 
+export const EventDetail = {
+  name: "Event - Detail",
+  render: () => pageFrame("/templates/portal-karir/event-detail.html?id=1", "Portal Karir Detail Event"),
+};
+
+export const JobFair = {
+  name: "Job Fair",
+  render: () => pageFrame("/templates/portal-karir/job-fair.html", "Portal Karir Job Fair"),
+};
+
+export const JobFairLowongan = {
+  name: "Job Fair - Lowongan",
+  render: () => pageFrame("/templates/portal-karir/job-fair-lowongan.html", "Portal Karir Lowongan Job Fair"),
+};
+
+export const JobFairPerusahaan = {
+  name: "Job Fair - Perusahaan",
+  render: () => pageFrame("/templates/portal-karir/job-fair-perusahaan.html?company=teknologi-cakra", "Portal Karir Perusahaan Job Fair"),
+};
+
 export const PengembanganDiri = {
   name: "Pengembangan Diri",
   render: () => pageFrame("/templates/portal-karir/pengembangan.html", "Portal Karir Pengembangan Diri"),

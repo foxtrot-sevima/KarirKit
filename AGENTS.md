@@ -6,7 +6,7 @@ Satu-satunya sumber aturan untuk **semua** AI agent (Cursor, Claude Code, Codex,
 
 - `CLAUDE.md` dan `GEMINI.md` hanya meng-import `@AGENTS.md`. **Jangan** membuat file aturan agent lain (`.cursor/rules/`, `.github/copilot-instructions.md`, `.windsurfrules`, dan sejenisnya): aturan baru masuk ke `AGENTS.md` atau ke skill.
 - Jika `AGENTS.md` tidak terbaca, berhenti dan laporkan ke user; jangan mengubah kode.
-- Sebelum mengubah file, jalankan `git status`. File yang berubah dan bukan kamu yang mengubahnya adalah pekerjaan orang/sesi lain: jangan commit, jangan revert, jangan pindah branch di atasnya.
+- Agent bekerja di **worktree sementara** (`npm run mockup:new <fitur>` membuatnya dari `origin/staging`), tidak di checkout utama; checkout utama milik engineer dan sering berisi pekerjaan setengah jadi (`copy`, `backup`, WIP). Sebelum mengubah file, jalankan `git status`. File yang berubah dan bukan kamu yang mengubahnya adalah pekerjaan orang/sesi lain: jangan commit, jangan revert, jangan pindah branch di atasnya.
 - Aturan ini mencatat **keputusan tim**, bukan isi kode. Mengubah aturan = ubah file ini atau skill-nya di commit yang sama dengan perubahan kebiasaannya.
 
 ## Skill (baca sesuai topik)
@@ -18,6 +18,7 @@ Satu-satunya sumber aturan untuk **semua** AI agent (Cursor, Claude Code, Codex,
 | Sinkron dengan Figma (SemVer Figma, token = `@theme`, changelog Figma) | `karirkit-figma-sync` |
 | Komponen Modal | `karirkit-modal` |
 | Halaman admin KarirLink (`templates/karirlink`) | `karirlink-admin-pages` |
+| Dashboard mitra perusahaan (`templates/mitra`) | `mitra-dashboard-pages` |
 | Halaman Portal Karir (`templates/portal-karir`) | `portal-karir-ui` |
 | Kuesioner Tracer Study Format 2025 | `tracer-study-format-2025` |
 | Memeriksa tampilan di browser sebelum menyatakan selesai | `karirkit-verify-in-browser` |
@@ -25,16 +26,16 @@ Satu-satunya sumber aturan untuk **semua** AI agent (Cursor, Claude Code, Codex,
 ## Produk
 
 - **KarirKit** = design system SEVIMA (`@foxtrot-sevima/karirkit`, Tailwind v4): kelas komponen di `src/input.css`, JS di `assets/js`, dokumentasi `index.html` + Storybook (`stories/`), ikon KarirIcon (`icons.html`).
-- **Mockup template** KarirLink dan Portal Karir (`templates/karirlink`, `templates/portal-karir`, `templates/custom`): visual untuk kebutuhan produk, memakai komponen KarirKit.
+- **Mockup template** KarirLink, Portal Karir, dan dashboard mitra (`templates/karirlink`, `templates/portal-karir`, `templates/custom`, `templates/mitra`): visual untuk kebutuhan produk, memakai komponen KarirKit.
 - Produk KarirLink (aplikasi sungguhan) memakai paket KarirKit untuk semua FE; repo ini bukan aplikasinya. Jangan menaruh logika aplikasi atau panggilan API sungguhan di mockup (data contoh lewat `PK.api`).
 - Repo: GitHub `foxtrot-sevima/KarirKit` dan mirror GitLab (`origin` punya dua pushurl).
 
 ## Keputusan terkunci (jangan buka ulang tanpa perintah user)
 
-1. **Dua lingkup, dipisah commit-nya.** Design System: `src/`, `dist/`, `assets/js`, `stories/` (kecuali `stories/Templates`), `index.html`, `icons.html`, `package*.json`, `README.md`, `CHANGELOG.md`, dan template contoh DS di akar `templates/` (dashboard, login, register, error). Template mockup: `templates/karirlink`, `templates/portal-karir`, `templates/custom`, `stories/Templates`, `scripts/gen-custom-portal.mjs`, `templates/CHANGELOG.md`.
+1. **Dua lingkup, dipisah commit-nya.** Design System: `src/`, `dist/`, `assets/js`, `stories/` (kecuali `stories/Templates`), `index.html`, `icons.html`, `package*.json`, `README.md`, `CHANGELOG.md`, dan template contoh DS di akar `templates/` (dashboard, login, register, error). Template mockup: `templates/karirlink`, `templates/portal-karir`, `templates/custom`, `templates/mitra`, `stories/Templates`, `scripts/gen-custom-portal.mjs`, `templates/CHANGELOG.md`.
 2. **Versi.** Design System = semver `X.Y.Z` (`CHANGELOG.md`, Table of Version, tag, publish). Template = **hanya tanggal** (`templates/CHANGELOG.md`, `## YYYY-MM-DD` + "Dasar KarirKit: vX.Y.Z"). Satu-satunya yang menjadi komponen/npm adalah KarirKit.
-3. **Commit.** Satu commit satu lingkup: `feat(ds)` / `fix(ds)` / `docs(ds)` untuk design system; `feat(karirlink)` / `feat(portal-karir)` / `fix(...)` untuk template. Pekerjaan yang menyentuh keduanya dipecah: design system dulu, lalu template yang memakainya. Stage per path; **jangan `git add -A`**.
-4. **Branch.** Design System: `karirkit/<versi>` (topik lain `karirkit/<topik>`). Mockup: `mockup/<YYYY-MM-DD>`. Tanpa `fix/`, `chore/`, `feat/`. Mockup: satu branch per tanggal; hari baru = branch baru dari ujung branch lama, tanggal dicek dengan `date` (jangan menyalin dari nama branch). Keduanya bermuara ke cabang utama yang sama (`staging`/`master` > `release` > deploy Vercel); hanya `karirkit/<versi>` yang menjadi paket npm.
+3. **Commit.** Satu commit satu lingkup: `feat(ds)` / `fix(ds)` / `docs(ds)` untuk design system; `feat(karirlink)` / `feat(portal-karir)` / `feat(mitra)` / `fix(...)` untuk template. Pekerjaan yang menyentuh keduanya dipecah: design system dulu, lalu template yang memakainya. Stage per path; **jangan `git add -A`**.
+4. **Branch.** Design System: `karirkit/<versi>` (topik lain `karirkit/<topik>`). Mockup: `mockup/<fitur>` (mis. `mockup/event-redesign`, `mockup/mitra-dashboard`), **satu branch per fitur**, dibuat dari ujung `staging` terbaru (bukan dari branch fitur atau tanggal lain), tanpa tanggal dan tanpa `fix/`, `chore/`, `feat/` (jenis perubahan ada di prefiks commit). Branch fitur digabung **langsung ke `staging`** (merge commit); ke `master` hanya atas perintah rilis dan hanya fitur yang gate-nya lolos (keputusan 5), jadi tiap fitur bisa dirilis atau ditunda sendiri. Tanggal hanya ada di `templates/CHANGELOG.md` (section tanggal hari fitur selesai, dicek dengan `date`). Branch `mockup/<YYYY-MM-DD>` lama dibiarkan sampai tergabung; jangan membuat yang baru. Semua bermuara ke cabang utama yang sama (`staging`/`master` > `release` > deploy Vercel); hanya `karirkit/<versi>` yang menjadi paket npm.
 5. **Template memakai komponen KarirKit terbaru dan tidak membuat komponen sendiri** (tidak ada blok `<style>` komponen, kelas komponen buatan, atau logika komponen di `portal.js`/`admin-*.js`). Butuh komponen atau varian baru: dibuat dulu di KarirKit (kelas, story, JS, `CHANGELOG.md`, build), baru dipakai di template. Yang disesuaikan komponennya, bukan logika di template. **Gerbang produksi:** mockup masuk `master`/`release` hanya bila komponen KarirKit yang dipakainya sudah dirilis (`Dasar KarirKit` di `templates/CHANGELOG.md` harus versi yang sudah bertag). Selama komponennya belum rilis, mockup boleh menumpuk di atas branch `karirkit/<versi>` hanya untuk staging (`dev-karirkit`) dan tertahan di sana. Cek dengan `npm run check:templates`.
 6. **Rilis hanya atas perintah eksplisit user** (merge ke `master`, `master` > `release`, tag, GitHub release, deploy produksi). Persetujuan sebelumnya tidak berlaku untuk rilis berikutnya. "Siapkan versi X" = ubah file, commit, push branch; berhenti di situ dan katakan belum ada yang dirilis. `master` hanya berisi kode yang sudah dirilis; pekerjaan belum rilis lewat `staging`.
 7. **Satu halaman = satu file.** Halaman yang tujuan dan tampilannya berbeda (daftar, detail, pengerjaan, hasil) adalah file HTML sendiri. Dilarang satu file multi-view yang berpindah lewat JS. Konten statis ditulis sebagai HTML; JS hanya mengisi data dari `PK.api`. Kode yang dipakai dua halaman pindah ke `portal.js`.
@@ -61,6 +62,8 @@ Satu-satunya sumber aturan untuk **semua** AI agent (Cursor, Claude Code, Codex,
 
 ## Git & push
 
+- Engineer menarik hasil dengan `npm run sync` (fetch, `merge --ff-only --autostash`, lalu build); cukup sekali `git config merge.autoStash true` agar `git pull --ff-only` biasa pun menyimpan dan mengembalikan perubahan lokal sendiri. Melihat hasil tidak perlu pull: `dev-karirkit.vercel.app` ter-build dari `staging`.
+- `templates/CHANGELOG.md` memakai `merge=union` (`.gitattributes`): entri dua fitur di section tanggal yang sama tergabung otomatis; periksa hasilnya sekilas setelah merge.
 - Merge antar-branch memakai merge commit (jejak "Merge branch ..."); tidak squash. Jangan merge cabang utama ke branch fitur; menyusul base lewat rebase.
 - `git push origin <branch>` mengirim ke GitHub **dan** GitLab. Tag dipush eksplisit. Bila "Out of memory, malloc failed": `git -c http.postBuffer=1048576 push ...`. Setelah push penting, bandingkan `LC_ALL=C git ls-remote --heads <url>` di kedua sisi.
 - GitLab `main` berisi satu commit README yang tidak terkait: jangan disentuh. **Jangan force-push atau menghapus ref** tanpa izin.

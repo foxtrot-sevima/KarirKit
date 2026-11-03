@@ -296,7 +296,7 @@ Aturan gerbang: "Dasar KarirKit" file mockup tidak boleh lebih baru dari library
 4. Template contoh DS (Autentifikasi, Error, Dashboard) diperbarui sebagai `[x.y.z]` hanya bila berubah.
 
 **Mockup (template, tanggal)**
-1. Kode: halaman di `templates/karirlink`, `templates/portal-karir`, `templates/custom` dengan komponen KarirKit terbaru; branch `mockup/<YYYY-MM-DD>`; entri di `templates/CHANGELOG.md` dengan "Dasar KarirKit".
+1. Kode: halaman di `templates/karirlink`, `templates/portal-karir`, `templates/custom` dengan komponen KarirKit terbaru; branch `mockup/<fitur>`; entri di `templates/CHANGELOG.md` dengan "Dasar KarirKit".
 2. Komponen baru dibutuhkan: lewat jalur Design System dulu, lalu mockup menyusul.
 3. Rilis batch ke `master` dan Vercel (gerbang: Dasar KarirKit sudah dirilis, `check:templates`).
 4. Figma menyusul per batch: Mockup Changelog (ringkas), file template `[YYYY-MM-DD]` untuk fitur yang berubah, Index diperbarui. Tanpa Named Version, tag, atau publish.
