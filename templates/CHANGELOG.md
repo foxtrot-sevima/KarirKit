@@ -8,6 +8,14 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-03
+
+Dasar KarirKit: v1.5.0
+
+### Changed
+
+- **Beranda Portal Karir: "Lowongan pilihan" kini di atas "Layanan pusat karier"** (`templates/portal-karir/index.html`, dan versi white-label): urutan bagian menjadi Lowongan pilihan, Layanan pusat karier, Tes Potensi, lalu bagian lainnya.
+
 ## 2026-10-30
 
 Dasar KarirKit: v1.5.0
