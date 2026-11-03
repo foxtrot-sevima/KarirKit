@@ -15,7 +15,7 @@ const SHARED = ['login', 'register', 'onboarding']; // tetap dipakai dari portal
 
 fs.mkdirSync(out, { recursive: true });
 for (const name of PAGES) {
-  let s = fs.readFileSync(path.join(src, name + '.html'), 'utf8');
+  let s = fs.readFileSync(path.join(src, name + '.html'), 'utf8').split('\r\n').join('\n'); // keluaran selalu LF, apa pun autocrlf di mesin
   s = s.split('../../assets/').join('../../../assets/').split('../../dist/').join('../../../dist/');
   s = s.replace(/\n?<script src="..\/campus-theme.js"><\/script>/, ''); // tema warna milik satu kampus; versi white-label memakai identitasnya sendiri
   s = s.replace('<script src="shell.js"></script>', '<script src="../../portal-karir/shell.js"></script>');
