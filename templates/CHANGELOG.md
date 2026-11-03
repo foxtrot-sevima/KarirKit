@@ -19,6 +19,7 @@ Dasar KarirKit: v1.5.0
 ### Fixed
 
 - **Tombol di footer modal detail dashboard mitra tidak lagi keluar dari panel** (`templates/mitra/job-fair.html`, `kampus-mitra.html`, `kegiatan-kolaborasi.html`): footer kini boleh turun ke baris berikutnya, dan modal detail Job Fair memakai ukuran lebar karena tiga tombolnya (Tutup, Ubah Lowongan, Lihat Halaman Job Fair) tidak muat di ukuran sedang.
+- **Beranda Portal Karir tampil sama dengan atau tanpa garis miring di akhir alamat** (`templates/portal-karir/index.html`, dan versi white-label): alamat `/templates/portal-karir` (tanpa `/`) disajikan tanpa pengalihan, sehingga `shell.js`, `landing.js`, dan `portal.js` dicari di `/templates/` dan 404 (navbar, footer, dan data hilang). `<base href>` membuat jalur skrip selalu benar, seperti di halaman admin KarirLink.
 
 ## 2026-11-02
 
