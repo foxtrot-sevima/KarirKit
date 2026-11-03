@@ -91,6 +91,16 @@
 
   <div class="mx-auto w-full max-w-7xl space-y-14 px-4 py-10 sm:px-6 sm:py-12">
 
+    <!-- ============================= LOWONGAN PILIHAN ============================= -->
+    <section aria-labelledby="jobsTitle">
+      <div class="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
+        <div><h2 id="jobsTitle" class="font-display text-2xl font-bold text-fg">Lowongan pilihan</h2><p id="jobsNote" class="card-text mt-1"></p></div>
+        <a id="jobsMore" href="lowongan.html" class="btn-outline btn-md w-full sm:w-auto">Lihat semua lowongan<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
+      </div>
+      <!-- ponsel: kartu digeser ke samping (snap); sm ke atas: grid -->
+      <div id="jobGrid" class="-mx-4 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3" aria-live="polite"></div>
+    </section>
+
     <!-- ============================= LAYANAN ============================= -->
     <section id="layanan" class="scroll-mt-28" aria-labelledby="svcTitle">
       <div class="flex flex-wrap items-end justify-between gap-4">
@@ -163,16 +173,6 @@
         </div>
       </div>
       </div>
-    </section>
-
-    <!-- ============================= LOWONGAN PILIHAN ============================= -->
-    <section aria-labelledby="jobsTitle">
-      <div class="flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
-        <div><h2 id="jobsTitle" class="font-display text-2xl font-bold text-fg">Lowongan pilihan</h2><p id="jobsNote" class="card-text mt-1"></p></div>
-        <a id="jobsMore" href="lowongan.html" class="btn-outline btn-md w-full sm:w-auto">Lihat semua lowongan<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></a>
-      </div>
-      <!-- ponsel: kartu digeser ke samping (snap); sm ke atas: grid -->
-      <div id="jobGrid" class="-mx-4 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3" aria-live="polite"></div>
     </section>
 
     <!-- ============================= PENGEMBANGAN DIRI ============================= -->
