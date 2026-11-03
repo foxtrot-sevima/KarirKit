@@ -19,6 +19,7 @@ Dasar KarirKit: v1.5.0
 ### Changed
 
 - **Beranda Portal Karir: "Lowongan pilihan" kini di atas "Layanan pusat karier"** (`templates/portal-karir/index.html`, dan versi white-label): urutan bagian menjadi Lowongan pilihan, Layanan pusat karier, Tes Potensi, lalu bagian lainnya.
+- **Daftar Yudisium: kolom "Tanggal Yudisium" dan kartu "Menunggu Finalisasi" dihapus** (`templates/karirlink/yudisium.html`): tabel periode kini berisi Periode Yudisium, Jumlah Lulusan, Partisipasi Mengisi, dan Aksi; ringkasan menjadi empat kartu (Periode Yudisium, Total Lulusan Tercatat, Alumni Sudah Mengisi, Periode Capai Target). Baris kecil di ponsel hanya memuat jumlah lulusan.
 
 ### Fixed
 
