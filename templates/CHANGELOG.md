@@ -16,6 +16,10 @@ Dasar KarirKit: v1.5.0
 
 - **Beranda Portal Karir: "Lowongan pilihan" kini di atas "Layanan pusat karier"** (`templates/portal-karir/index.html`, dan versi white-label): urutan bagian menjadi Lowongan pilihan, Layanan pusat karier, Tes Potensi, lalu bagian lainnya.
 
+### Fixed
+
+- **Beranda Portal Karir tampil sama dengan atau tanpa garis miring di akhir alamat** (`templates/portal-karir/index.html`, dan versi white-label): alamat `/templates/portal-karir` (tanpa `/`) disajikan tanpa pengalihan, sehingga `shell.js`, `landing.js`, dan `portal.js` dicari di `/templates/` dan 404 (navbar, footer, dan data hilang). `<base href>` membuat jalur skrip selalu benar, seperti di halaman admin KarirLink.
+
 ## 2026-10-30
 
 Dasar KarirKit: v1.5.0
