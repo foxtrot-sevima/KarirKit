@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Detail Event | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../../dist/output.css" />
+<meta name="description" content="Detail event dan kegiatan pusat karier kampus: waktu, lokasi, rangkaian acara, dan pendaftaran." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/custom/portal-karir/event-detail.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Detail Event | Portal Karir KarirLink" />
+<meta property="og:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/custom/portal-karir/event-detail.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Detail Event | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Cari lowongan, magang, dan pekerjaan lepas di Portal Karir KarirLink. Bandingkan beberapa lowongan sekaligus dan lamar langsung dari halaman detail." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<div data-shell="nav" data-page="event"></div>
+
+<main class="flex-1">
+
+  <!-- ============================= BAND JUDUL ============================= -->
+  <section data-nav-hero class="relative bg-brand-gradient text-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
+    </div>
+    <div class="relative mx-auto w-full max-w-7xl px-4 pb-10 pt-24 sm:px-6 sm:pb-12">
+      <nav class="flex min-w-0 items-center gap-1.5 text-sm text-white/80" aria-label="Breadcrumb">
+        <a href="event.html" class="inline-flex shrink-0 items-center gap-1.5 hover:text-white"><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i>Semua event</a>
+      </nav>
+      <div id="heroBody" class="mt-4 max-w-3xl"><div class="h-5 w-24 animate-pulse rounded bg-white/20"></div><div class="mt-3 h-9 w-full animate-pulse rounded bg-white/20"></div><div class="mt-3 h-4 w-2/3 animate-pulse rounded bg-white/20"></div></div>
+    </div>
+  </section>
+
+  <!-- ============================= DETAIL EVENT ============================= -->
+  <div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:items-start">
+      <article id="detailMain" class="card min-w-0 lg:col-span-2"><div class="h-80 animate-pulse rounded-card bg-neutral-100"></div></article>
+      <aside id="detailSide" class="order-first min-w-0 lg:sticky lg:top-20 lg:order-none" aria-label="Pendaftaran"><div class="h-72 animate-pulse rounded-card bg-neutral-100"></div></aside>
+    </div>
+    <section id="similar" class="mt-10" hidden>
+      <h2 class="font-display text-xl font-bold text-fg">Event serupa</h2>
+      <div id="similarGrid" class="mt-4 grid grid-cols-1 gap-5 md:grid-cols-3"></div>
+    </section>
+  </div>
+</main>
+
+<div data-shell="footer"></div>
+
+<script src="../../../assets/js/ui.js"></script>
+<script src="../../../assets/js/drawer.js"></script>
+<script src="../../../assets/js/pagination.js"></script>
+<script src="../../../assets/js/toast.js"></script>
+<script src="../../portal-karir/shell.js"></script>
+<script src="campus.js"></script>
+<script src="../../portal-karir/portal.js"></script>
+<script>
+  /* Halaman Detail Event: satu event (id di URL). Data lewat PK.api (getEvent, registerEvent). Daftar event ada di event.html. */
+  (function () {
+    var PK = window.PK;
+    var api = PK.api;
+    var esc = PK.esc;
+    function $(id) { return document.getElementById(id); }
+    PK.initShell();
+
+    var id = parseInt(new URLSearchParams(location.search).get('id'), 10) || null;
+    var token = PK.latest();
+
+    function row(ic, label, value) { return '<li class="flex items-start gap-3"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600">' + PK.icon(ic, 'h-5 w-5') + '</span><span class="min-w-0"><span class="block text-xs text-fg-muted">' + label + '</span><span class="block text-sm font-semibold text-fg">' + value + '</span></span></li>'; }
+    function regBtn(e, reg) {
+      if (reg) return '<button type="button" class="btn-secondary btn-lg w-full" disabled>' + PK.icon('check', 'h-4 w-4') + 'Kamu sudah terdaftar</button>';
+      return '<button type="button" class="btn-primary btn-lg w-full" data-register="' + e.id + '">' + PK.icon('calendar-plus', 'h-4 w-4') + 'Daftar sekarang</button>';
+    }
+    function render(res) {
+      var e = res.event;
+      document.title = e.title + ' | Event KarirLink';
+      $('heroBody').innerHTML =
+        '<p class="text-sm font-semibold text-white/80">' + esc(e.cat) + '</p>' +
+        '<h1 class="mt-1 font-display text-2xl font-bold leading-tight sm:text-4xl">' + esc(e.title) + '</h1>' +
+        '<p class="mt-3 text-sm text-white/80 sm:text-base">Diselenggarakan oleh ' + esc(e.org) + '</p>';
+      $('detailMain').innerHTML =
+        '<div class="card-body">' +
+          '<h2 class="card-title">Tentang acara</h2><p class="card-text mt-2 leading-relaxed">' + esc(e.desc) + '</p>' +
+          '<h2 class="card-title mt-8">Rangkaian acara</h2><ol class="timeline mt-5 ms-3">' + e.agenda.map(function (a) { return '<li class="timeline-item"><span class="timeline-marker">' + PK.icon('check', 'h-3 w-3') + '</span><h3 class="timeline-title !my-0 !text-base">' + esc(a) + '</h3></li>'; }).join('') + '</ol>' +
+        '</div>';
+      $('detailSide').innerHTML =
+        '<div class="card card-body"><ul class="space-y-4">' + row('calendar-blank', 'Tanggal', esc(PK.evFull(e))) + row('clock', 'Waktu', esc(e.time)) + row(e.mode === 'Online' ? 'video-camera' : 'map-pin', e.mode === 'Online' ? 'Platform' : 'Lokasi', esc(e.place)) + '</ul>' +
+        '<div class="mt-6 space-y-2">' + regBtn(e, res.registered) + (e.fair ? '<a href="' + PK.fairLink(e.fair) + '" class="btn-secondary btn-md w-full">' + PK.icon('briefcase', 'h-4 w-4') + 'Lihat lowongan Job Fair</a>' : '') + '<button type="button" class="btn-ghost btn-sm w-full" data-share>' + PK.icon('share-network', 'h-4 w-4') + 'Salin tautan event</button></div></div>';
+      $('similar').hidden = !res.similar.length;
+      $('similarGrid').innerHTML = res.similar.map(PK.eventCard).join('');
+    }
+    function fail(html) { $('heroBody').innerHTML = '<h1 class="font-display text-2xl font-bold sm:text-3xl">Event tidak tersedia</h1>'; $('detailSide').innerHTML = ''; $('detailMain').innerHTML = '<div class="p-5">' + html + '</div>'; $('similar').hidden = true; }
+    function load() {
+      if (!id) { fail(PK.emptyBox('calendar', 'Event tidak ditemukan', 'Pilih event dari daftar untuk melihat detailnya.', '<a href="event.html" class="btn-primary btn-md">Lihat semua event</a>')); return; }
+      var ok = token();
+      api.getEvent(id).then(function (res) { if (ok()) render(res); })
+        .catch(function (err) { if (ok()) fail(PK.errorBox(err.message)); });
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('[data-retry]')) { load(); return; }
+      var reg = e.target.closest('[data-register]');
+      if (reg) {
+        reg.disabled = true; reg.classList.add('btn-loading');
+        api.registerEvent(id).then(function () { PK.toast('success', 'Kamu terdaftar di event ini.'); load(); }).catch(function () { reg.disabled = false; reg.classList.remove('btn-loading'); PK.toast('danger', 'Pendaftaran belum berhasil. Coba lagi.'); });
+        return;
+      }
+      if (e.target.closest('[data-share]')) {
+        var done = function () { PK.toast('success', 'Tautan event disalin.'); };
+        try { navigator.clipboard.writeText(location.href).then(done, done); } catch (err) { done(); }
+      }
+    });
+    load();
+  })();
+</script>
+</body>
+</html>
