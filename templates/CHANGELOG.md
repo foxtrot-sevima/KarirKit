@@ -16,6 +16,10 @@ Dasar KarirKit: v1.5.0
 
 - **Halaman Kerjasama di dashboard mitra** (`templates/mitra/kampus-mitra.html`, `kampus-cari.html`, `kegiatan-kolaborasi.html`, `kegiatan-kolaborasi-form.html`, `job-fair.html`): Kampus Mitra menampilkan kampus yang bermitra dengan status Menunggu Jawabanmu (undangan kampus: Terima atau Tolak), Menunggu Kampus (pengajuan sendiri: bisa dibatalkan), Berhasil Bergabung, dan Ditolak; Cari Kampus mencari berdasarkan kota atau nama lalu mengajukan kerja sama dengan pesan perkenalan. Kegiatan Kolaborasi mendaftar kegiatan yang diajukan ke kampus (Draf, Menunggu Persetujuan, Terjadwal, Berlangsung, Selesai, Ditolak) dengan form pengajuan sendiri (kampus tujuan, jenis, jadwal, lokasi, proposal wajib) dan opsi tarik pengajuan. Job Fair menampilkan job fair dari kampus mitra: perusahaan ikut dengan memilih lowongan yang ditampilkan, lalu menunggu persetujuan kampus. Langkah "Ajukan Kerja Sama ke Kampus" di status pendaftaran mitra kini menuju Cari Kampus. Detail baris memakai Modal, tanpa blok `<style>` baru.
 
+### Fixed
+
+- **Tombol di footer modal detail dashboard mitra tidak lagi keluar dari panel** (`templates/mitra/job-fair.html`, `kampus-mitra.html`, `kegiatan-kolaborasi.html`): footer kini boleh turun ke baris berikutnya, dan modal detail Job Fair memakai ukuran lebar karena tiga tombolnya (Tutup, Ubah Lowongan, Lihat Halaman Job Fair) tidak muat di ukuran sedang.
+
 ## 2026-11-02
 
 Dasar KarirKit: v1.5.0
