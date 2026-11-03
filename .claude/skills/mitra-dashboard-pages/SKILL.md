@@ -28,9 +28,13 @@ Menambah halaman: ubah daftar menu di semua halaman mitra (sidebar dan drawer), 
 ## Halaman yang ada
 - `profil.html`: informasi umum (nama dan NIB baca-saja karena terverifikasi), kontak dan alamat, media sosial, logo, kelengkapan profil (dihitung di browser).
 - `pengaturan.html`: akun, kata sandi, tim perekrut (tabel KKTable, undang, hapus), notifikasi email.
+- `kampus-mitra.html` (+ `kampus-cari.html`): kampus yang bermitra (undangan masuk, pengajuan, berhasil bergabung, ditolak) dan pencarian kampus untuk mengajukan kerja sama. Mengikuti rute `collaboration/partner`, `search`, dan `search-list` di aplikasi.
+- `kegiatan-kolaborasi.html` (+ `kegiatan-kolaborasi-form.html`): kegiatan yang diajukan ke kampus mitra (beasiswa, kewirausahaan, pelatihan, seminar, pameran karier), dengan persetujuan kampus. Mengikuti rute `collaboration/activity`.
+- `job-fair.html`: job fair dari kampus mitra; perusahaan ikut dengan memilih lowongan yang ditampilkan di halaman campaign Portal Karir kampus.
 - `segera-hadir.html`: placeholder; menu yang diklik tetap aktif lewat `?menu=`.
 
 ## Aturan
+- Detail baris memakai **Modal** (`z-[60]`, di atas sidebar), bukan Drawer, supaya tidak perlu blok `<style>` penaik z-index.
 - Form: kolom wajib bertanda `*` merah, pesan galat `form-error`, simpan hanya simulasi (toast), tanpa panggilan API.
 - Tabel dan combo mengikuti skill `karirlink-admin-pages` (No, Title Case, aksi berupa tombol berikon, tanpa kebab).
 - Hindari angka real-time dari server (jumlah peserta, dilihat sekian kali) pada kartu dan daftar.
