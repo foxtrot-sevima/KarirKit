@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/mitra/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kegiatan Kolaborasi | KarirLink Mitra</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="Kegiatan yang diajukan atau dijalankan bersama kampus mitra: beasiswa, kewirausahaan, pelatihan, seminar, dan pameran karier." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/mitra/kegiatan-kolaborasi.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Kegiatan Kolaborasi | KarirLink Mitra" />
+<meta property="og:description" content="Kegiatan yang diajukan atau dijalankan bersama kampus mitra: beasiswa, kewirausahaan, pelatihan, seminar, dan pameran karier." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/mitra/kegiatan-kolaborasi.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Kegiatan Kolaborasi | KarirLink Mitra" />
+<meta name="twitter:description" content="Kegiatan yang diajukan atau dijalankan bersama kampus mitra: beasiswa, kewirausahaan, pelatihan, seminar, dan pameran karier." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Overview" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Overview</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Rekrutmen</p>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Lowongan" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a href="segera-hadir.html?menu=Rekomendasi%20Kandidat" class="nav-item" data-tooltip-trigger data-tooltip-text="Rekomendasi Kandidat" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-star h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Rekomendasi Kandidat</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Talent</p>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Cari%20Talent" class="nav-item" data-tooltip-trigger data-tooltip-text="Cari Talent" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-magnifying-glass h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Cari Talent</span>
+        </a>
+        <a href="segera-hadir.html?menu=Talenta%20Saya" class="nav-item" data-tooltip-trigger data-tooltip-text="Talenta Saya" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Talenta Saya</span>
+        </a>
+        <a href="segera-hadir.html?menu=Undangan" class="nav-item" data-tooltip-trigger data-tooltip-text="Undangan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-envelope-simple h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Undangan</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Kerjasama</p>
+      <div class="space-y-1">
+        <a href="kampus-mitra.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kampus Mitra" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kampus Mitra</span>
+        </a>
+        <a href="kegiatan-kolaborasi.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Kegiatan Kolaborasi" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kegiatan Kolaborasi</span>
+        </a>
+        <a href="job-fair.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Job Fair" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Job Fair</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Komunikasi</p>
+      <div class="space-y-1">
+        <a href="segera-hadir.html?menu=Pesan" class="nav-item" data-tooltip-trigger data-tooltip-text="Pesan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chat-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pesan</span>
+        </a>
+        <a href="segera-hadir.html?menu=Pengikut" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengikut" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pengikut</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Perusahaan</p>
+      <div class="space-y-1">
+        <a href="profil.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Profil Perusahaan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-buildings h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Profil Perusahaan</span>
+        </a>
+        <a href="pengaturan.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Pengaturan</span>
+        </a>
+        <a href="segera-hadir.html?menu=Premium" class="nav-item" data-tooltip-trigger data-tooltip-text="Premium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-crown h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Premium</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu mitra">
+    <div>
+      <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Overview" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Rekrutmen</p>
+      <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Lowongan" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="segera-hadir.html?menu=Rekomendasi%20Kandidat" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-star h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Rekomendasi Kandidat</span>
+          </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Talent</p>
+      <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Cari%20Talent" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-magnifying-glass h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Cari Talent</span>
+          </a>
+          <a href="segera-hadir.html?menu=Talenta%20Saya" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-users h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Talenta Saya</span>
+          </a>
+          <a href="segera-hadir.html?menu=Undangan" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-envelope-simple h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Undangan</span>
+          </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Kerjasama</p>
+      <div class="space-y-1">
+          <a href="kampus-mitra.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kampus Mitra</span>
+          </a>
+          <a href="kegiatan-kolaborasi.html" class="nav-item nav-item-active">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kegiatan Kolaborasi</span>
+          </a>
+          <a href="job-fair.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Job Fair</span>
+          </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Komunikasi</p>
+      <div class="space-y-1">
+          <a href="segera-hadir.html?menu=Pesan" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chat-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Pesan</span>
+          </a>
+          <a href="segera-hadir.html?menu=Pengikut" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-users h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Pengikut</span>
+          </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Perusahaan</p>
+      <div class="space-y-1">
+          <a href="profil.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-buildings h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Profil Perusahaan</span>
+          </a>
+          <a href="pengaturan.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Pengaturan</span>
+          </a>
+          <a href="segera-hadir.html?menu=Premium" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-crown h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Premium</span>
+          </a>
+      </div>
+    </div>
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">DA</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Dewi Anggraini</p><p class="truncate text-xs text-fg-muted">dewi@lintasniaga.example</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="navbar navbar-sticky navbar-app">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+<a href="segera-hadir.html?menu=Overview" class="breadcrumb-link shrink-0"><span class="hidden sm:inline">Mitra</span></a>
+<span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span><span class="breadcrumb-current min-w-0" aria-current="page"><span class="min-w-0 truncate">Kegiatan Kolaborasi</span></span>
+</nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">DA</span></button>
+      <div class="relative hidden lg:block">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">DA</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Dewi Anggraini</span>
+            <span class="block truncate text-xs text-slate-400">Admin Perusahaan</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 shrink-0 text-sm">DA</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title">Dewi Anggraini</p>
+              <p class="dropdown-header-desc">dewi@lintasniaga.example</p>
+            </div>
+          </div>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div class="min-w-0"><h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Kegiatan Kolaborasi</h2><p class="mt-1 text-sm text-slate-500">Kegiatan yang kamu ajukan atau jalankan bersama kampus mitra: beasiswa, kewirausahaan, pelatihan, seminar, dan pameran karier.</p></div><a href="kegiatan-kolaborasi-form.html" class="btn-primary btn-md w-full shrink-0 sm:w-auto"><i class="kk kk-plus h-4 w-4"></i>Ajukan Kegiatan</a></div>
+<div class="alert alert-warning" role="alert"><i class="kk kk-warning-circle alert-icon"></i><div><span class="font-semibold" id="kgQueue">0 pengajuan kegiatan</span> menunggu persetujuan kampus. Kegiatan tampil di Portal Karir kampus setelah disetujui.</div></div>
+<div class="stat-grid" style="--stat-cols: 4; --stat-lg: 2">
+<div class="stat-card"><span class="stat-icon "><i class="kk kk-calendar-blank h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="kTot" class="stat-value">0</p><p class="stat-label">Total Kegiatan</p></div></div>
+<div class="stat-card"><span class="stat-icon bg-warning-50 text-warning-600"><i class="kk kk-clock h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="kPend" class="stat-value">0</p><p class="stat-label">Menunggu Persetujuan</p></div></div>
+<div class="stat-card"><span class="stat-icon bg-info-50 text-info-600"><i class="kk kk-calendar-check h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="kUp" class="stat-value">0</p><p class="stat-label">Berlangsung & Terjadwal</p></div></div>
+<div class="stat-card"><span class="stat-icon bg-success-50 text-success-600"><i class="kk kk-check-circle h-[18px] w-[18px]"></i></span><div class="min-w-0"><p id="kDone" class="stat-value">0</p><p class="stat-label">Selesai</p></div></div>
+</div>
+<div class="table-wrap overflow-visible" id="kgRoot" data-table data-page-size="10" data-item-label="kegiatan" data-combo-boundary>
+<div class="table-toolbar table-toolbar-many">
+<div class="table-search"><span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4"></i></span><label for="kgSearch" class="sr-only">Cari kegiatan atau kampus...</label><input id="kgSearch" type="search" class="input h-9 pl-9" placeholder="Cari kegiatan atau kampus..." data-table-search /></div>
+<div class="table-filters">
+<div id="fKgStatus" class="combo" data-combo data-value="all">
+  <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Semua Status</span><i class="kk kk-caret-down combo-chevron"></i></button>
+  <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list>
+    <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Status">Semua Status</button>
+    <button type="button" class="combo-item" data-combo-item data-value="draft" data-label="Draf">Draf</button>
+    <button type="button" class="combo-item" data-combo-item data-value="pending" data-label="Menunggu Persetujuan">Menunggu Persetujuan</button>
+    <button type="button" class="combo-item" data-combo-item data-value="terjadwal" data-label="Terjadwal">Terjadwal</button>
+    <button type="button" class="combo-item" data-combo-item data-value="berlangsung" data-label="Berlangsung">Berlangsung</button>
+    <button type="button" class="combo-item" data-combo-item data-value="selesai" data-label="Selesai">Selesai</button>
+    <button type="button" class="combo-item" data-combo-item data-value="ditolak" data-label="Ditolak">Ditolak</button>
+  </div></div></div>
+<div id="fKgJenis" class="combo" data-combo data-value="all">
+  <button type="button" class="combo-trigger" data-combo-trigger><span data-combo-label>Semua Jenis</span><i class="kk kk-caret-down combo-chevron"></i></button>
+  <div class="combo-menu" data-combo-menu><div class="combo-list" data-combo-list>
+    <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua Jenis">Semua Jenis</button>
+    <button type="button" class="combo-item" data-combo-item data-value="Program Beasiswa" data-label="Program Beasiswa">Program Beasiswa</button>
+    <button type="button" class="combo-item" data-combo-item data-value="Program Kewirausahaan" data-label="Program Kewirausahaan">Program Kewirausahaan</button>
+    <button type="button" class="combo-item" data-combo-item data-value="Pelatihan" data-label="Pelatihan">Pelatihan</button>
+    <button type="button" class="combo-item" data-combo-item data-value="Seminar/webinar" data-label="Seminar/webinar">Seminar/webinar</button>
+    <button type="button" class="combo-item" data-combo-item data-value="Pameran Karier" data-label="Pameran Karier">Pameran Karier</button>
+  </div></div></div>
+</div></div>
+<div class="overflow-x-auto"><table class="table table-lg table-fit table-head-soft"><thead><tr>
+<th scope="col" class="table-col-num">No</th>
+<th scope="col" data-sort="text"><button type="button" class="th-sort">Kegiatan<i class="kk kk-caret-up-down sort-icon"></i></button></th>
+<th scope="col" class="table-col-aside hidden md:table-cell">Kampus</th>
+<th scope="col" class="table-col-aside hidden lg:table-cell">Jadwal &amp; Lokasi</th>
+<th scope="col">Status</th>
+<th scope="col" class="table-col-actions">Aksi</th>
+</tr></thead><tbody>
+<tr data-id="0" data-status="pending" data-jenis="Program Beasiswa" data-title="Beasiswa Talenta Digital 2026" data-kampus="Universitas Foxtrot" data-waktu="05 Des 2026 - 06 Des 2026" data-lokasi="Aula Utama Kampus" data-desc="Beasiswa untuk mahasiswa semester akhir di bidang teknologi, termasuk magang berbayar di perusahaan kami." data-note="">
+<td class="table-col-num" data-num>1</td>
+<td data-value="Beasiswa Talenta Digital 2026"><p class="font-medium text-slate-800"><button type="button" class="text-left hover:text-primary-700 hover:underline" data-kg-view>Beasiswa Talenta Digital 2026</button></p><p class="text-xs text-slate-500">Program Beasiswa</p></td>
+<td class="table-col-aside hidden md:table-cell" data-value="Universitas Foxtrot"><p class="text-sm text-slate-700">Universitas Foxtrot</p></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="05 Des 2026 - 06 Des 2026"><p class="text-sm text-slate-700">05 Des 2026 - 06 Des 2026</p><p class="text-xs text-slate-500">Aula Utama Kampus</p></td>
+<td data-value="pending"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Persetujuan</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-kg-view title="Detail" aria-label="Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Detail</span></button></div></td>
+</tr>
+<tr data-id="1" data-status="terjadwal" data-jenis="Seminar/webinar" data-title="Webinar Karier Teknologi 2026" data-kampus="Politeknik Bahari Nusantara" data-waktu="14 Nov 2026" data-lokasi="Online (Zoom)" data-desc="Berbagi jalur karier di industri teknologi dan tips menghadapi seleksi rekrutmen." data-note="">
+<td class="table-col-num" data-num>2</td>
+<td data-value="Webinar Karier Teknologi 2026"><p class="font-medium text-slate-800"><button type="button" class="text-left hover:text-primary-700 hover:underline" data-kg-view>Webinar Karier Teknologi 2026</button></p><p class="text-xs text-slate-500">Seminar/webinar</p></td>
+<td class="table-col-aside hidden md:table-cell" data-value="Politeknik Bahari Nusantara"><p class="text-sm text-slate-700">Politeknik Bahari Nusantara</p></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="14 Nov 2026"><p class="text-sm text-slate-700">14 Nov 2026</p><p class="text-xs text-slate-500">Online (Zoom)</p></td>
+<td data-value="terjadwal"><span class="badge-info badge-wrap"><span class="badge-dot bg-info-600"></span>Terjadwal</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-kg-view title="Detail" aria-label="Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Detail</span></button></div></td>
+</tr>
+<tr data-id="2" data-status="berlangsung" data-jenis="Pelatihan" data-title="Pelatihan Analisis Data untuk Lulusan" data-kampus="Institut Teknologi Cakrawala" data-waktu="02 Nov 2026 - 04 Nov 2026" data-lokasi="Laboratorium Komputer 2" data-desc="Tiga hari pelatihan spreadsheet dan SQL untuk lulusan yang menyiapkan diri masuk dunia kerja." data-note="">
+<td class="table-col-num" data-num>3</td>
+<td data-value="Pelatihan Analisis Data untuk Lulusan"><p class="font-medium text-slate-800"><button type="button" class="text-left hover:text-primary-700 hover:underline" data-kg-view>Pelatihan Analisis Data untuk Lulusan</button></p><p class="text-xs text-slate-500">Pelatihan</p></td>
+<td class="table-col-aside hidden md:table-cell" data-value="Institut Teknologi Cakrawala"><p class="text-sm text-slate-700">Institut Teknologi Cakrawala</p></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="02 Nov 2026 - 04 Nov 2026"><p class="text-sm text-slate-700">02 Nov 2026 - 04 Nov 2026</p><p class="text-xs text-slate-500">Laboratorium Komputer 2</p></td>
+<td data-value="berlangsung"><span class="badge-primary badge-wrap"><span class="badge-dot bg-primary-600"></span>Berlangsung</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-kg-view title="Detail" aria-label="Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Detail</span></button></div></td>
+</tr>
+<tr data-id="3" data-status="selesai" data-jenis="Pameran Karier" data-title="Pameran Karier Logistik" data-kampus="Universitas Foxtrot" data-waktu="10 Okt 2026" data-lokasi="Gedung Serbaguna Kampus" data-desc="Pameran karier bidang logistik dan rantai pasok bersama beberapa perusahaan mitra." data-note="">
+<td class="table-col-num" data-num>4</td>
+<td data-value="Pameran Karier Logistik"><p class="font-medium text-slate-800"><button type="button" class="text-left hover:text-primary-700 hover:underline" data-kg-view>Pameran Karier Logistik</button></p><p class="text-xs text-slate-500">Pameran Karier</p></td>
+<td class="table-col-aside hidden md:table-cell" data-value="Universitas Foxtrot"><p class="text-sm text-slate-700">Universitas Foxtrot</p></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="10 Okt 2026"><p class="text-sm text-slate-700">10 Okt 2026</p><p class="text-xs text-slate-500">Gedung Serbaguna Kampus</p></td>
+<td data-value="selesai"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Selesai</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-kg-view title="Detail" aria-label="Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Detail</span></button></div></td>
+</tr>
+<tr data-id="4" data-status="pending" data-jenis="Program Kewirausahaan" data-title="Program Wirausaha Muda" data-kampus="Universitas Mulia Persada" data-waktu="18 Jan 2027 - 19 Jan 2027" data-lokasi="Inkubator Bisnis Kampus" data-desc="Pendampingan mahasiswa membangun usaha rintisan dengan mentor dari perusahaan kami." data-note="">
+<td class="table-col-num" data-num>5</td>
+<td data-value="Program Wirausaha Muda"><p class="font-medium text-slate-800"><button type="button" class="text-left hover:text-primary-700 hover:underline" data-kg-view>Program Wirausaha Muda</button></p><p class="text-xs text-slate-500">Program Kewirausahaan</p></td>
+<td class="table-col-aside hidden md:table-cell" data-value="Universitas Mulia Persada"><p class="text-sm text-slate-700">Universitas Mulia Persada</p></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="18 Jan 2027 - 19 Jan 2027"><p class="text-sm text-slate-700">18 Jan 2027 - 19 Jan 2027</p><p class="text-xs text-slate-500">Inkubator Bisnis Kampus</p></td>
+<td data-value="pending"><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Menunggu Persetujuan</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-kg-view title="Detail" aria-label="Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Detail</span></button></div></td>
+</tr>
+<tr data-id="5" data-status="draft" data-jenis="Pelatihan" data-title="Bootcamp Product Management" data-kampus="Universitas Foxtrot" data-waktu="" data-lokasi="" data-desc="Draf bootcamp dua minggu tentang manajemen produk digital." data-note="">
+<td class="table-col-num" data-num>6</td>
+<td data-value="Bootcamp Product Management"><p class="font-medium text-slate-800"><button type="button" class="text-left hover:text-primary-700 hover:underline" data-kg-view>Bootcamp Product Management</button></p><p class="text-xs text-slate-500">Pelatihan</p></td>
+<td class="table-col-aside hidden md:table-cell" data-value="Universitas Foxtrot"><p class="text-sm text-slate-700">Universitas Foxtrot</p></td>
+<td class="table-col-aside hidden lg:table-cell" data-value=""><p class="text-sm text-slate-700">-</p></td>
+<td data-value="draft"><span class="badge-neutral badge-wrap"><span class="badge-dot bg-neutral-400"></span>Draf</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><a href="kegiatan-kolaborasi-form.html" class="btn-primary btn-sm table-action" title="Lanjutkan" aria-label="Lanjutkan"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Lanjutkan</span></a></div></td>
+</tr>
+<tr data-id="6" data-status="selesai" data-jenis="Seminar/webinar" data-title="Kuliah Tamu Rantai Pasok" data-kampus="Politeknik Bahari Nusantara" data-waktu="25 Sep 2026" data-lokasi="Auditorium Kampus" data-desc="Kuliah tamu tentang praktik rantai pasok di perusahaan logistik digital." data-note="">
+<td class="table-col-num" data-num>7</td>
+<td data-value="Kuliah Tamu Rantai Pasok"><p class="font-medium text-slate-800"><button type="button" class="text-left hover:text-primary-700 hover:underline" data-kg-view>Kuliah Tamu Rantai Pasok</button></p><p class="text-xs text-slate-500">Seminar/webinar</p></td>
+<td class="table-col-aside hidden md:table-cell" data-value="Politeknik Bahari Nusantara"><p class="text-sm text-slate-700">Politeknik Bahari Nusantara</p></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="25 Sep 2026"><p class="text-sm text-slate-700">25 Sep 2026</p><p class="text-xs text-slate-500">Auditorium Kampus</p></td>
+<td data-value="selesai"><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Selesai</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-kg-view title="Detail" aria-label="Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Detail</span></button></div></td>
+</tr>
+<tr data-id="7" data-status="ditolak" data-jenis="Program Beasiswa" data-title="Beasiswa Logistik Mandiri" data-kampus="Akademi Teknologi Prima Karya" data-waktu="12 Des 2026" data-lokasi="Aula Kampus" data-desc="Beasiswa untuk mahasiswa program studi logistik." data-note="Jadwal bentrok dengan ujian akhir semester.">
+<td class="table-col-num" data-num>8</td>
+<td data-value="Beasiswa Logistik Mandiri"><p class="font-medium text-slate-800"><button type="button" class="text-left hover:text-primary-700 hover:underline" data-kg-view>Beasiswa Logistik Mandiri</button></p><p class="text-xs text-slate-500">Program Beasiswa</p></td>
+<td class="table-col-aside hidden md:table-cell" data-value="Akademi Teknologi Prima Karya"><p class="text-sm text-slate-700">Akademi Teknologi Prima Karya</p></td>
+<td class="table-col-aside hidden lg:table-cell" data-value="12 Des 2026"><p class="text-sm text-slate-700">12 Des 2026</p><p class="text-xs text-slate-500">Aula Kampus</p></td>
+<td data-value="ditolak"><span class="badge-danger badge-wrap"><span class="badge-dot bg-danger-600"></span>Ditolak</span></td>
+<td class="table-col-actions"><div class="flex flex-wrap items-center justify-end gap-2"><button type="button" class="btn-outline btn-sm table-action" data-kg-view title="Detail" aria-label="Detail"><i class="kk kk-eye h-4 w-4"></i><span class="table-action-label">Detail</span></button></div></td>
+</tr>
+</tbody></table></div>
+<div data-table-empty hidden class="table-empty"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada kegiatan yang cocok dengan pencarian atau filter.</div>
+<div class="table-footer" data-table-pagination><span data-table-info></span><nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav></div>
+</div>
+  </main>
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+<div class="modal-backdrop z-[60]" id="kgModal" aria-labelledby="kgModalTitle">
+  <div class="modal-panel modal-md">
+    <div class="modal-header"><div class="min-w-0"><h3 id="kgModalTitle" class="modal-title truncate">Detail</h3><p class="mt-0.5 truncate text-xs text-slate-500" id="kgModalSub"></p></div><button type="button" class="modal-close" data-modal-hide="kgModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button></div>
+    <div class="modal-body space-y-4">
+      <div class="flex flex-wrap items-center gap-2" id="kgModalBadges"></div>
+      <div id="kgModalNote" class="alert" role="alert" hidden></div>
+      <dl class="space-y-3" id="kgModalDl"></dl>
+      <div><h4 class="text-sm font-semibold text-slate-800">Deskripsi</h4><p class="mt-1.5 text-sm leading-relaxed text-slate-700" id="kgModalDesc"></p></div>
+    </div>
+    <div class="modal-footer" id="kgModalFoot"></div>
+  </div></div>
+<div class="modal-backdrop z-[60]" id="kgWithdrawModal" aria-labelledby="kgWithdrawTitle">
+  <div class="modal-panel modal-sm">
+    <div class="modal-header"><h3 id="kgWithdrawTitle" class="modal-title">Tarik pengajuan?</h3><button type="button" class="modal-close" data-modal-hide="kgWithdrawModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button></div>
+    <div class="modal-body"><p class="text-sm text-fg">Pengajuan <span class="font-semibold" id="kgWithdrawName"></span> ditarik dan kembali menjadi draf.</p></div>
+    <div class="modal-footer"><button type="button" class="btn-outline btn-md" data-modal-hide="kgWithdrawModal">Kembali</button><button type="button" class="btn-danger btn-md" id="kgWithdrawOk">Tarik Pengajuan</button></div>
+  </div></div>
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/table.js"></script>
+<script src="../../assets/js/datepicker.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const toast = (type, message) => window.KKToast && window.KKToast.show({ type, message, duration: 3500 });
+  const dl = (rows) => rows.map((r) => '<div class="flex justify-between gap-4 text-sm"><dt class="shrink-0 text-slate-500">' + r[0] + '</dt><dd class="break-words text-right font-medium text-slate-800">' + r[1] + '</dd></div>').join('');
+  document.addEventListener('click', (e) => { const it = e.target.closest('[data-combo-item]'); if (it) it.closest('[data-combo]').dataset.value = it.dataset.value; });
+  const errShow = (id, bad, msg) => { const e = document.querySelector('[data-err="' + id + '"]'); if (e) { if (msg) e.textContent = msg; e.hidden = !bad; } return bad; };
+  const S = {"draft":["badge-neutral","bg-neutral-400","Draf"],"pending":["badge-warning","bg-warning-600","Menunggu Persetujuan"],"terjadwal":["badge-info","bg-info-600","Terjadwal"],"berlangsung":["badge-primary","bg-primary-600","Berlangsung"],"selesai":["badge-success","bg-success-600","Selesai"],"ditolak":["badge-danger","bg-danger-600","Ditolak"]};
+  const badge = (k) => '<span class="' + S[k][0] + ' badge-wrap"><span class="badge-dot ' + S[k][1] + '"></span>' + S[k][2] + '</span>';
+  const root = $('kgRoot');
+  const table = window.KKTable.get(root) || (window.KKTable.init(root), window.KKTable.get(root));
+  const f = { status: fKgStatus, jenis: fKgJenis };
+  table.addFilter((r) => Object.keys(f).every((k) => f[k].dataset.value === 'all' || r.dataset[k] === f[k].dataset.value));
+  Object.values(f).forEach((c) => c.querySelectorAll('[data-combo-item]').forEach((it) => it.addEventListener('click', () => { c.dataset.value = it.dataset.value; table.refresh(); })));
+  const count = (...s) => [...root.querySelectorAll('tbody tr')].filter((r) => s.includes(r.dataset.status)).length;
+  function kpi() { kTot.textContent = root.querySelectorAll('tbody tr').length; kPend.textContent = count('pending'); kUp.textContent = count('terjadwal', 'berlangsung'); kDone.textContent = count('selesai'); $('kgQueue').textContent = count('pending') + ' pengajuan kegiatan'; }
+  root.addEventListener('table:render', kpi);
+  table.refresh(); kpi();
+  let cur = null;
+  const NOTE = { pending: ['alert-warning', 'Menunggu persetujuan Career Center kampus. Kamu diberi tahu lewat email setelah ada keputusan.'] };
+  function open(tr) {
+    cur = tr; const d = tr.dataset;
+    $('kgModalTitle').textContent = d.title; $('kgModalSub').textContent = d.jenis;
+    $('kgModalBadges').innerHTML = badge(d.status);
+    const note = $('kgModalNote'), n = d.status === 'ditolak' ? ['alert-danger', 'Alasan kampus: ' + (d.note || '-')] : NOTE[d.status];
+    note.hidden = !n; note.className = 'alert' + (n ? ' ' + n[0] : ''); if (n) note.textContent = n[1];
+    $('kgModalDl').innerHTML = dl([['Jenis', d.jenis], ['Kampus', d.kampus], ['Jadwal', d.waktu || '-'], ['Lokasi', d.lokasi || '-']]);
+    $('kgModalDesc').textContent = d.desc;
+    $('kgModalFoot').innerHTML = d.status === 'pending'
+      ? '<button type="button" class="btn-outline btn-md" data-modal-hide="kgModal">Tutup</button><button type="button" class="btn-danger btn-md" id="kgWithdraw">Tarik Pengajuan</button>'
+      : d.status === 'ditolak'
+        ? '<button type="button" class="btn-outline btn-md" data-modal-hide="kgModal">Tutup</button><a href="kegiatan-kolaborasi-form.html" class="btn-primary btn-md"><i class="kk kk-pencil-simple h-4 w-4"></i>Ajukan Ulang</a>'
+        : '<button type="button" class="btn-outline btn-md" data-modal-hide="kgModal">Tutup</button>';
+    window.KKModal.open($('kgModal'));
+  }
+  root.addEventListener('click', (e) => { const b = e.target.closest('[data-kg-view]'); if (b) open(b.closest('tr')); });
+  $('kgModalFoot').addEventListener('click', (e) => { if (e.target.closest('#kgWithdraw')) { $('kgWithdrawName').textContent = cur.dataset.title; window.KKModal.open($('kgWithdrawModal')); } });
+  $('kgWithdrawOk').addEventListener('click', () => {
+    window.KKModal.close($('kgWithdrawModal')); window.KKModal.close($('kgModal'));
+    cur.dataset.status = 'draft'; const td = cur.children[4]; td.dataset.value = 'draft'; td.innerHTML = badge('draft');
+    cur.querySelector('.table-col-actions div').innerHTML = '<a href="kegiatan-kolaborasi-form.html" class="btn-primary btn-sm table-action" title="Lanjutkan" aria-label="Lanjutkan"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Lanjutkan</span></a>';
+    table.refresh(); kpi(); toast('success', 'Pengajuan ditarik dan kembali menjadi draf (simulasi).');
+  });
+})();
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();</script>
+</body>
+</html>

@@ -8,6 +8,14 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-03
+
+Dasar KarirKit: v1.5.0
+
+### Added
+
+- **Halaman Kerjasama di dashboard mitra** (`templates/mitra/kampus-mitra.html`, `kampus-cari.html`, `kegiatan-kolaborasi.html`, `kegiatan-kolaborasi-form.html`, `job-fair.html`): Kampus Mitra menampilkan kampus yang bermitra dengan status Menunggu Jawabanmu (undangan kampus: Terima atau Tolak), Menunggu Kampus (pengajuan sendiri: bisa dibatalkan), Berhasil Bergabung, dan Ditolak; Cari Kampus mencari berdasarkan kota atau nama lalu mengajukan kerja sama dengan pesan perkenalan. Kegiatan Kolaborasi mendaftar kegiatan yang diajukan ke kampus (Draf, Menunggu Persetujuan, Terjadwal, Berlangsung, Selesai, Ditolak) dengan form pengajuan sendiri (kampus tujuan, jenis, jadwal, lokasi, proposal wajib) dan opsi tarik pengajuan. Job Fair menampilkan job fair dari kampus mitra: perusahaan ikut dengan memilih lowongan yang ditampilkan, lalu menunggu persetujuan kampus. Langkah "Ajukan Kerja Sama ke Kampus" di status pendaftaran mitra kini menuju Cari Kampus. Detail baris memakai Modal, tanpa blok `<style>` baru.
+
 ## 2026-11-02
 
 Dasar KarirKit: v1.5.0
