@@ -292,7 +292,7 @@
     </div>
 
     <!-- KPI row -->
-    <div class="stat-grid" style="--stat-cols: 5; --stat-lg: 3">
+    <div class="stat-grid" style="--stat-cols: 4; --stat-lg: 2">
       <div class="stat-card">
         <span class="stat-icon"><i class="kk kk-calendar-blank h-[18px] w-[18px]"></i></span>
         <div class="min-w-0">
@@ -319,13 +319,6 @@
         <div class="min-w-0">
           <p id="kpiTarget" class="stat-value">7 dari 15</p>
           <p class="stat-label">Periode Capai Target <span class="stat-note">(&ge;50%)</span></p>
-        </div>
-      </div>
-      <div class="stat-card">
-        <span class="stat-icon bg-warning-50 text-warning-600"><i class="kk kk-hourglass h-[18px] w-[18px]"></i></span>
-        <div class="min-w-0">
-          <p id="kpiMenungguFinalisasi" class="stat-value">1</p>
-          <p class="stat-label">Menunggu Finalisasi</p>
         </div>
       </div>
     </div>
@@ -383,7 +376,6 @@
             <tr>
               <th scope="col" class="table-col-num">No</th>
               <th scope="col" data-sort="text"><button type="button" class="th-sort">Periode Yudisium<i class="kk kk-caret-up-down sort-icon"></i></button></th>
-              <th scope="col" class="hidden md:table-cell" data-sort="date"><button type="button" class="th-sort">Tanggal Yudisium<i class="kk kk-caret-up-down sort-icon"></i></button></th>
               <th scope="col" class="hidden md:table-cell" data-sort="number"><button type="button" class="th-sort">Jumlah Lulusan<i class="kk kk-caret-up-down sort-icon"></i></button></th>
               <th scope="col" data-sort="number"><button type="button" class="th-sort"><span class="sm:hidden">Isi</span><span class="hidden sm:inline xl:hidden">Partisipasi</span><span class="hidden xl:inline">Partisipasi Mengisi</span><i class="kk kk-caret-up-down sort-icon"></i></button></th>
               <th scope="col" class="table-col-actions">Aksi</th>
@@ -394,9 +386,8 @@
               <td class="table-col-num" data-num>1</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2025/2026</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">28 Agu 2026 &middot; 342 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">342 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2026-08-28">28 Agu 2026</td>
               <td class="hidden md:table-cell" data-value="342">342 lulusan</td>
               <td data-value="-1"><span class="text-xs font-medium text-slate-400">Belum dikirim</span></td>
               <td class="table-col-actions">
@@ -409,9 +400,8 @@
               <td class="table-col-num" data-num>2</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2025/2026</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">20 Feb 2026 &middot; 298 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">298 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2026-02-20">20 Feb 2026</td>
               <td class="hidden md:table-cell" data-value="298">298 lulusan</td>
               <td data-value="41"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 41%"></div></div>
@@ -428,9 +418,8 @@
               <td class="table-col-num" data-num>3</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2024/2025</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">29 Agu 2025 &middot; 356 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">356 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2025-08-29">29 Agu 2025</td>
               <td class="hidden md:table-cell" data-value="356">356 lulusan</td>
               <td data-value="78"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 78%"></div></div>
@@ -447,9 +436,8 @@
               <td class="table-col-num" data-num>4</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2024/2025</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">21 Feb 2025 &middot; 288 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">288 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2025-02-21">21 Feb 2025</td>
               <td class="hidden md:table-cell" data-value="288">288 lulusan</td>
               <td data-value="72"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 72%"></div></div>
@@ -466,9 +454,8 @@
               <td class="table-col-num" data-num>5</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2023/2024</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">30 Agu 2024 &middot; 340 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">340 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2024-08-30">30 Agu 2024</td>
               <td class="hidden md:table-cell" data-value="340">340 lulusan</td>
               <td data-value="65"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 65%"></div></div>
@@ -485,9 +472,8 @@
               <td class="table-col-num" data-num>6</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2023/2024</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">22 Feb 2024 &middot; 275 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">275 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2024-02-22">22 Feb 2024</td>
               <td class="hidden md:table-cell" data-value="275">275 lulusan</td>
               <td data-value="61"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 61%"></div></div>
@@ -504,9 +490,8 @@
               <td class="table-col-num" data-num>7</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2022/2023</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">31 Agu 2023 &middot; 312 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">312 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2023-08-31">31 Agu 2023</td>
               <td class="hidden md:table-cell" data-value="312">312 lulusan</td>
               <td data-value="58"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 58%"></div></div>
@@ -523,9 +508,8 @@
               <td class="table-col-num" data-num>8</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2022/2023</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">23 Feb 2023 &middot; 260 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">260 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2023-02-23">23 Feb 2023</td>
               <td class="hidden md:table-cell" data-value="260">260 lulusan</td>
               <td data-value="55"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 55%"></div></div>
@@ -542,9 +526,8 @@
               <td class="table-col-num" data-num>9</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2021/2022</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">25 Agu 2022 &middot; 298 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">298 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2022-08-25">25 Agu 2022</td>
               <td class="hidden md:table-cell" data-value="298">298 lulusan</td>
               <td data-value="52"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-success-600" style="width: 52%"></div></div>
@@ -561,9 +544,8 @@
               <td class="table-col-num" data-num>10</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2021/2022</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">18 Feb 2022 &middot; 245 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">245 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2022-02-18">18 Feb 2022</td>
               <td class="hidden md:table-cell" data-value="245">245 lulusan</td>
               <td data-value="49"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 49%"></div></div>
@@ -580,9 +562,8 @@
               <td class="table-col-num" data-num>11</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2020/2021</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">26 Agu 2021 &middot; 270 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">270 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2021-08-26">26 Agu 2021</td>
               <td class="hidden md:table-cell" data-value="270">270 lulusan</td>
               <td data-value="47"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 47%"></div></div>
@@ -599,9 +580,8 @@
               <td class="table-col-num" data-num>12</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2020/2021</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">19 Feb 2021 &middot; 230 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">230 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2021-02-19">19 Feb 2021</td>
               <td class="hidden md:table-cell" data-value="230">230 lulusan</td>
               <td data-value="44"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 44%"></div></div>
@@ -618,9 +598,8 @@
               <td class="table-col-num" data-num>13</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2019/2020</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">27 Agu 2020 &middot; 255 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">255 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2020-08-27">27 Agu 2020</td>
               <td class="hidden md:table-cell" data-value="255">255 lulusan</td>
               <td data-value="41"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 41%"></div></div>
@@ -637,9 +616,8 @@
               <td class="table-col-num" data-num>14</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Ganjil 2019/2020</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">21 Feb 2020 &middot; 210 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">210 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2020-02-21">21 Feb 2020</td>
               <td class="hidden md:table-cell" data-value="210">210 lulusan</td>
               <td data-value="38"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 38%"></div></div>
@@ -656,9 +634,8 @@
               <td class="table-col-num" data-num>15</td>
               <td>
                 <span class="font-medium text-slate-800">Yudisium Genap 2018/2019</span>
-                <p class="mt-0.5 text-xs text-slate-400 md:hidden">29 Agu 2019 &middot; 240 lulusan</p>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">240 lulusan</p>
               </td>
-              <td class="hidden md:table-cell" data-value="2019-08-29">29 Agu 2019</td>
               <td class="hidden md:table-cell" data-value="240">240 lulusan</td>
               <td data-value="35"><div class="flex items-center gap-2">
                   <div class="hidden h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-slate-100 sm:block xl:w-14"><div class="h-full rounded-full bg-warning-600" style="width: 35%"></div></div>
@@ -743,7 +720,6 @@
     const kpiSudahMengisi = document.getElementById('kpiSudahMengisi');
     const kpiSudahMengisiPct = document.getElementById('kpiSudahMengisiPct');
     const kpiTarget = document.getElementById('kpiTarget');
-    const kpiMenungguFinalisasi = document.getElementById('kpiMenungguFinalisasi');
     const TARGET_RATE = 0.5; // contoh target minimum 50% partisipasi per periode
     const fmt = (n) => n.toLocaleString('id-ID');
 
@@ -758,7 +734,6 @@
       const totalLulusan = rows.reduce((sum, r) => sum + Number(r.dataset.total), 0);
       const totalFilled = rows.reduce((sum, r) => sum + Number(r.dataset.filled), 0);
       const targetMet = rows.filter((r) => Number(r.dataset.filled) / Number(r.dataset.total) >= TARGET_RATE).length;
-      const menungguFinalisasi = rows.filter((r) => r.dataset.status === 'belum-dikirim').length;
       const overallPct = totalLulusan > 0 ? Math.round((totalFilled / totalLulusan) * 100) : 0;
 
       kpiPeriode.textContent = fmt(rows.length);
@@ -766,7 +741,6 @@
       kpiSudahMengisi.textContent = fmt(totalFilled);
       kpiSudahMengisiPct.textContent = `(${overallPct}%)`;
       kpiTarget.textContent = `${fmt(targetMet)} dari ${fmt(rows.length)}`;
-      kpiMenungguFinalisasi.textContent = fmt(menungguFinalisasi);
     });
 
     [filterTahun, filterJenis].forEach((combo) => {
