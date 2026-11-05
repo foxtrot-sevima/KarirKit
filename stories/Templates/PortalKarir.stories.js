@@ -25,6 +25,51 @@ export const Register = {
   render: () => pageFrame("/templates/portal-karir/register.html", "Portal Karir Register"),
 };
 
+export const EmailUndanganAktivasi = {
+  name: "Email Undangan Aktivasi",
+  render: () => pageFrame("/templates/portal-karir/email-undangan.html", "Portal Karir Email Undangan Aktivasi"),
+};
+
+export const AktivasiAkun = {
+  name: "Aktivasi Akun",
+  render: () => pageFrame("/templates/portal-karir/aktivasi.html", "Portal Karir Aktivasi Akun"),
+};
+
+export const CekEmailLogin = {
+  name: "Login Cek Email",
+  render: () => pageFrame("/templates/portal-karir/login-cek-email.html", "Portal Karir Login Cek Email"),
+};
+
+export const LoginPassword = {
+  name: "Login Password",
+  render: () => pageFrame("/templates/portal-karir/login-password.html", "Portal Karir Login Password"),
+};
+
+export const EmailLinkMasuk = {
+  name: "Email Link Masuk",
+  render: () => pageFrame("/templates/portal-karir/email-masuk.html", "Portal Karir Email Link Masuk"),
+};
+
+export const LinkKedaluwarsa = {
+  name: "Link Kedaluwarsa",
+  render: () => pageFrame("/templates/portal-karir/link-kedaluwarsa.html", "Portal Karir Link Kedaluwarsa"),
+};
+
+export const LinkTerpakai = {
+  name: "Link Sudah Dipakai",
+  render: () => pageFrame("/templates/portal-karir/link-terpakai.html", "Portal Karir Link Sudah Dipakai"),
+};
+
+export const LinkTidakValid = {
+  name: "Link Tidak Valid",
+  render: () => pageFrame("/templates/portal-karir/link-tidak-valid.html", "Portal Karir Link Tidak Valid"),
+};
+
+export const UbahPassword = {
+  name: "Ubah Password",
+  render: () => pageFrame("/templates/portal-karir/ubah-password.html", "Portal Karir Ubah Password"),
+};
+
 export const Onboarding = {
   name: "Onboarding",
   render: () => pageFrame("/templates/portal-karir/onboarding.html", "Portal Karir Onboarding"),

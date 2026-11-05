@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cek Email Anda | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Link untuk masuk ke KarirLink sudah dikirim ke email Anda." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/login-cek-email.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Cek Email Anda | KarirLink" />
+<meta property="og:description" content="Link untuk masuk ke KarirLink sudah dikirim ke email Anda." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/login-cek-email.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Cek Email Anda | KarirLink" />
+<meta name="twitter:description" content="Link untuk masuk ke KarirLink sudah dikirim ke email Anda." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="font-sans text-slate-800 antialiased">
+
+<div class="flex min-h-screen flex-col lg:flex-row">
+
+  <!-- ============================= FORM PANEL ============================= -->
+  <div class="flex w-full flex-1 flex-col justify-center px-6 py-10 sm:px-12 lg:w-1/2 lg:px-16 lg:py-16 xl:px-24">
+    <div class="mx-auto w-full max-w-md">
+      <!-- Logo kiri hanya di layar kecil: di layar lebar logo sudah ada di panel kanan -->
+      <a href="login.html" class="mb-10 inline-flex lg:hidden">
+        <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+      </a>
+
+      <div>
+        <h1 class="font-display text-2xl font-bold text-slate-900">Cek email Anda</h1>
+        <p class="mt-1.5 text-sm text-slate-500">Kami sudah mengirim link untuk masuk ke KarirLink.</p>
+
+        <section class="card card-body mt-8" aria-labelledby="ceSentTitle">
+          <h2 id="ceSentTitle" class="text-base font-semibold text-slate-900">Untuk melanjutkan, klik link yang dikirim ke</h2>
+          <p class="mt-3 flex items-center gap-2 rounded-xl border border-border/70 bg-neutral-50 px-3.5 py-2.5 text-sm font-semibold text-slate-800">
+            <i class="kk kk-envelope-simple h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span id="ceEmail" class="min-w-0 break-all">email Anda</span>
+          </p>
+          <p class="mt-3 text-xs text-fg-muted">Link berlaku 10 menit dan hanya bisa dipakai satu kali.</p>
+
+          <div id="ceResent" class="alert alert-success mt-5 hidden" role="status">
+            <i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0" aria-hidden="true"></i>
+            <p>Link sudah dikirim ulang. Periksa juga folder spam.</p>
+          </div>
+
+          <div class="mt-5 space-y-1.5 border-t border-border/70 pt-5 text-center text-sm text-slate-500">
+            <p>Tidak melihat email di kotak masuk? <button type="button" id="ceResend" class="font-semibold text-primary-600 hover:text-primary-700">Kirim ulang</button></p>
+            <p>Salah email? <a id="ceBack" href="login.html" class="font-semibold text-primary-600 hover:text-primary-700">Ubah alamat email</a></p>
+          </div>
+        </section>
+
+        <p class="mt-6 text-center text-sm text-slate-500">Lebih suka pakai password? <a id="cePassword" href="login-password.html" class="font-semibold text-primary-600 hover:text-primary-700">Masuk dengan password</a></p>
+      </div>
+
+      <p class="mt-10 text-center text-xs text-fg-subtle">&copy; <span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
+    </div>
+  </div>
+
+  <!-- ============================= VISUAL PANEL ============================= -->
+  <div class="relative hidden overflow-hidden bg-brand-gradient lg:sticky lg:top-0 lg:block lg:h-screen lg:w-1/2 lg:self-start lg:p-4">
+    <!-- Dot texture -->
+    <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
+    <div class="relative h-full rounded-3xl bg-white p-2">
+      <div class="h-full overflow-hidden rounded-[1.25rem] p-8 xl:p-12" style="background-image: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-100) 58%, var(--color-secondary-50) 100%);">
+        <div class="flex items-center justify-between gap-4">
+          <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+          <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-primary-200 bg-white/80 px-3 py-1 text-xs font-semibold text-primary-700"><i class="kk kk-graduation-cap h-3.5 w-3.5" aria-hidden="true"></i>Platform Karier Kampus</span>
+        </div>
+        <h2 class="mt-6 font-display text-3xl font-bold leading-snug text-fg xl:text-4xl">Satu platform karier untuk kampus, alumni, dan mitra.</h2>
+        <p class="mt-4 max-w-lg text-sm leading-relaxed text-slate-600 sm:text-base">Cari lowongan, magang, dan event karier, lalu lamar langsung dalam satu tempat.</p>
+      <!-- Pratinjau dekoratif: lowongan, event, dan status lamaran; satu kartu menonjol, sisanya memudar -->
+      <div class="relative mx-auto mt-8 w-full max-w-md [zoom:1.125]" aria-hidden="true">
+        <div class="rounded-[2rem] border border-white/70 bg-white/50 p-3 sm:p-4">
+          <div class="space-y-2.5">
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 ">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-briefcase h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Staf Pemasaran Digital</p><p class="text-xs text-slate-500">PT Sentra Vidya Utama &middot; Magang</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-success-50 text-success-700">Lowongan</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 ">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-calendar-dots h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Job Fair Kampus</p><p class="text-xs text-slate-500">Bursa kerja kampus</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-secondary-50 text-secondary-700">Event</span>
+          </div>
+          <div class="relative z-10 -mx-5 flex items-center gap-3 rounded-2xl border border-primary-100 bg-white p-4 shadow-card-lg sm:-mx-8">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-paper-plane-tilt h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">UI/UX Designer</p><p class="text-xs text-slate-500">Kirim lamaran dalam satu klik</p></div>
+            <span class="rounded-full border border-primary-200 bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-700">Lamar</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-60 blur-[1.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-buildings h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Analis Data</p><p class="text-xs text-slate-500">PT DigitalDream &middot; Penuh waktu</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Lowongan</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-40 blur-[2.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-danger-50 text-danger-600"><i class="kk kk-megaphone h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Webinar Persiapan Karier</p><p class="text-xs text-slate-500">Seminar daring</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Event</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-25 blur-[3.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-warning-50 text-warning-600"><i class="kk kk-graduation-cap h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Magang Software Engineer</p><p class="text-xs text-slate-500">PT Inovasi Mandiri &middot; Magang</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Lowongan</span>
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Khusus mockup: pintasan ke email yang seolah baru masuk. Di produk sungguhan email dibuka di aplikasi surel pengguna, tombol ini tidak ada. -->
+<a href="email-masuk.html" id="mockOpenEmail" class="btn-primary btn-lg fixed bottom-5 left-5 z-50 rounded-full shadow-card-lg" title="Hanya untuk mockup: buka email link masuk"><i class="kk kk-envelope-simple-open h-5 w-5" aria-hidden="true"></i>Buka email (simulasi)</a>
+
+<script>
+  // Pesan di halaman ini sama untuk email terdaftar maupun tidak (tidak membocorkan siapa yang punya akun).
+  const email = new URLSearchParams(window.location.search).get('email');
+  if (email) {
+    document.getElementById('ceEmail').textContent = email;
+    document.getElementById('cePassword').href = 'login-password.html?email=' + encodeURIComponent(email);
+    document.getElementById('ceBack').href = 'login.html?email=' + encodeURIComponent(email);
+  }
+  document.getElementById('ceResend').addEventListener('click', () => document.getElementById('ceResent').classList.remove('hidden'));
+
+  document.querySelectorAll('.js-current-year').forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+</script>
+</body>
+</html>

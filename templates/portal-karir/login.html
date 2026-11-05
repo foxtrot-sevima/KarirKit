@@ -46,50 +46,30 @@
         <h1 class="font-display text-2xl font-bold text-slate-900">Masuk ke akun Anda</h1>
         <p class="mt-1.5 text-sm text-slate-500">Silakan masukkan detail akun untuk melanjutkan.</p>
 
-        <form id="loginForm" class="mt-8 space-y-5" novalidate>
-          <div>
-            <label for="loginEmail" class="form-label">Alamat Email</label>
-            <input id="loginEmail" name="email" type="email" required autocomplete="email" class="input" placeholder="nama@email.com" />
-            <p class="form-error hidden" data-error-for="loginEmail">Masukkan alamat email yang valid.</p>
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between">
-              <label for="loginPassword" class="form-label mb-0">Kata Sandi</label>
-              <a href="segera-hadir.html" class="text-xs font-medium text-primary-600 hover:text-primary-700">Lupa kata sandi?</a>
-            </div>
-            <div class="relative">
-              <input id="loginPassword" name="password" type="password" required autocomplete="current-password" class="input pr-10" placeholder="Masukkan kata sandi" />
-              <button type="button" class="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-fg-subtle transition-colors hover:text-neutral-600" data-password-toggle aria-label="Tampilkan kata sandi">
-                <i class="kk kk-eye h-4 w-4"></i>
-              </button>
-            </div>
-            <p class="form-error hidden" data-error-for="loginPassword">Kata sandi wajib diisi.</p>
-          </div>
-
-          <label class="flex w-fit cursor-pointer items-center gap-2 text-sm text-slate-600">
-            <input type="checkbox" class="form-check" checked />
-            Ingat saya selama 30 hari
-          </label>
-
-          <button type="submit" class="btn-primary btn-lg w-full">Masuk</button>
-        </form>
-
-        <div class="relative my-6">
-          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-border"></div></div>
-          <div class="relative flex justify-center"><span class="bg-surface px-3 text-xs text-fg-subtle">atau lanjutkan dengan</span></div>
-        </div>
-
-        <div class="space-y-3">
-          <button type="button" class="btn-outline btn-md w-full" data-social-login>
+        <div class="mt-8 space-y-3">
+          <button type="button" class="btn-outline btn-lg w-full" data-social-login>
             <span class="kk-app kk-app-siakadcloud h-4 w-4" aria-hidden="true"></span>
             Lanjutkan dengan SiAkadCloud
           </button>
-          <button type="button" class="btn-outline btn-md w-full" data-social-login>
+          <button type="button" class="btn-outline btn-lg w-full" data-social-login>
             <span class="kk-brand kk-brand-google h-4 w-4" aria-hidden="true"></span>
             Lanjutkan dengan Google
           </button>
         </div>
+
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-border"></div></div>
+          <div class="relative flex justify-center"><span class="bg-surface px-3 text-xs text-fg-subtle">atau</span></div>
+        </div>
+
+        <form id="linkForm" class="space-y-5" novalidate>
+          <div>
+            <label for="linkEmail" class="form-label">Email</label>
+            <input id="linkEmail" name="email" type="email" required autocomplete="email" class="input" placeholder="nama@email.com" />
+            <p class="form-error hidden" data-error-for="linkEmail">Masukkan alamat email yang valid.</p>
+          </div>
+          <button type="submit" class="btn-primary btn-lg w-full">Lanjutkan</button>
+        </form>
 
         <p class="mt-6 text-center text-sm text-slate-500">
           Belum punya akun?
@@ -161,21 +141,6 @@
 </div>
 
 <script>
-  // Password visibility toggle.
-  document.querySelectorAll('[data-password-toggle]').forEach((btn) => {
-    const icon = btn.querySelector('.kk');
-    btn.addEventListener('click', () => {
-      const input = btn.previousElementSibling;
-      const showing = input.type === 'text';
-      input.type = showing ? 'password' : 'text';
-      icon.classList.toggle('kk-eye', showing);
-      icon.classList.toggle('kk-eye-slash', !showing);
-      btn.setAttribute('aria-label', showing ? 'Tampilkan kata sandi' : 'Sembunyikan kata sandi');
-    });
-  });
-
-  // Demo sign-in (no backend): validate, then open the portal home (index.html) when onboarding was already
-  // finished on this browser, otherwise the onboarding steps (onboarding.html).
   function nextPage() {
     try {
       const saved = JSON.parse(localStorage.getItem('kk_portal_onboarding'));
@@ -183,25 +148,21 @@
     } catch (e) { /* storage unavailable: treat as a new user */ }
     return 'onboarding.html';
   }
-  const form = document.getElementById('loginForm');
-  function setError(input, bad) {
-    input.setAttribute('aria-invalid', bad ? 'true' : 'false');
-    const msg = form.querySelector('[data-error-for="' + input.id + '"]');
-    if (msg) msg.classList.toggle('hidden', !bad);
-  }
-  form.querySelectorAll('.input').forEach((input) => input.addEventListener('input', () => setError(input, !input.checkValidity())));
+  document.querySelectorAll('[data-social-login]').forEach((btn) => btn.addEventListener('click', () => { window.location.href = nextPage(); }));
+
+  // Email dulu: link masuk langsung dikirim, lalu opsi password muncul di halaman berikutnya.
+  // Pesan di halaman berikutnya sama untuk email terdaftar maupun tidak.
+  const form = document.getElementById('linkForm');
+  const email = document.getElementById('linkEmail');
+  const err = form.querySelector('[data-error-for="linkEmail"]');
+  const prefill = new URLSearchParams(window.location.search).get('email');
+  if (prefill) email.value = prefill;
+  email.addEventListener('input', () => { email.setAttribute('aria-invalid', 'false'); err.classList.add('hidden'); });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    let firstBad = null;
-    form.querySelectorAll('.input').forEach((input) => {
-      const bad = !input.checkValidity();
-      setError(input, bad);
-      if (bad && !firstBad) firstBad = input;
-    });
-    if (firstBad) { firstBad.focus(); return; }
-    window.location.href = nextPage();
+    if (!email.checkValidity()) { email.setAttribute('aria-invalid', 'true'); err.classList.remove('hidden'); email.focus(); return; }
+    window.location.href = 'login-cek-email.html?email=' + encodeURIComponent(email.value);
   });
-  document.querySelectorAll('[data-social-login]').forEach((btn) => btn.addEventListener('click', () => { window.location.href = nextPage(); }));
 
   document.querySelectorAll('.js-current-year').forEach((el) => {
     el.textContent = new Date().getFullYear();
