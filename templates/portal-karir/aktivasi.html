@@ -15,12 +15,12 @@
 <body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
 
 <main class="flex flex-1 items-center justify-center px-4 py-10 sm:py-16">
-  <div class="w-full max-w-md">
+  <div class="w-full max-w-2xl">
     <a href="login.html" class="mb-8 flex justify-center" aria-label="KarirLink SEVIMA">
       <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
     </a>
 
-    <section class="card card-body sm:p-8">
+    <section class="card card-body sm:p-10">
       <div class="text-center">
       <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary-50 text-primary-600"><i class="kk kk-lock-key h-7 w-7" aria-hidden="true"></i></span>
         <h1 class="mt-5 font-display text-2xl font-bold text-slate-900">Buat password Anda</h1>
@@ -39,6 +39,7 @@
           <p class="form-hint">Email dari data kampus dan tidak bisa diubah.</p>
         </div>
 
+        <div class="grid gap-5 md:grid-cols-2">
         <div>
           <label for="actPass" class="form-label">Password</label>
           <div class="relative">
@@ -47,12 +48,6 @@
               <i class="kk kk-eye h-4 w-4"></i>
             </button>
           </div>
-          <ul id="actRules" class="mt-3 space-y-1.5 text-xs" aria-label="Aturan password">
-            <li data-rule="len" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Minimal 8 karakter</span></li>
-            <li data-rule="upper" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Mengandung huruf besar</span></li>
-            <li data-rule="lower" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Mengandung huruf kecil</span></li>
-            <li data-rule="digit" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Mengandung angka</span></li>
-          </ul>
         </div>
 
         <div>
@@ -65,6 +60,15 @@
           </div>
           <p id="actConfirmErr" class="form-error hidden">Konfirmasi password belum sama dengan password.</p>
         </div>
+        </div>
+
+        <ul id="actRules" class="grid grid-cols-1 gap-x-6 gap-y-1.5 rounded-xl bg-neutral-50 p-4 text-xs sm:grid-cols-2" aria-label="Aturan password">
+          <li data-rule="len" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Minimal 8 karakter</span></li>
+          <li data-rule="upper" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Mengandung huruf besar</span></li>
+          <li data-rule="lower" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Mengandung huruf kecil</span></li>
+          <li data-rule="digit" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Mengandung angka</span></li>
+        </ul>
+
 
         <button id="actSubmit" type="submit" class="btn-primary btn-lg w-full" disabled>Aktifkan Akun</button>
       </form>
