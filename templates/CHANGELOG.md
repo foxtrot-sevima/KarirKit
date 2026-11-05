@@ -14,10 +14,25 @@ Dasar KarirKit: v1.5.0
 
 ### Added
 - **Aktivasi akun Alumni (FOX-1293):** desain alur dari email undangan sampai akun aktif di Portal Karir, versi mobile dan desktop. Desain yang sama nanti dipakai Mahasiswa Aktif dengan teks email berbeda. Tiket terkait: FOX-1295 (BE aktivasi), FOX-1296 (FE), FOX-1303 (BE undangan).
-  - **Alur aktivasi:** `email-undangan.html` (tombol "Aktifkan Akun"; tampilan sama dengan email Tracer Study di `kuesioner-mail.html`) → `aktivasi.html` (nama kampus, email tidak bisa diubah, password dan konfirmasi) → `login.html` (email terisi dan pesan "Akun Anda sudah aktif").
-  - **Link bermasalah:** link kedaluwarsa, sudah dipakai, atau salah menuju `aktivasi-kedaluwarsa.html`, `aktivasi-terpakai.html`, atau `aktivasi-tidak-valid.html`; tombol "Kirim link baru" membuka `link-baru.html` (isian email) lalu `link-baru-terkirim.html`.
-  - **Dari halaman login:** tautan "Belum menerima undangan atau link kedaluwarsa?" membuka `link-baru.html`. Pesan hasilnya sama untuk email terdaftar maupun tidak terdaftar.
-  - **Ubah password:** kartu "Keamanan akun" di `profil.html` → `ubah-password.html` (password lama, baru, konfirmasi; ada keadaan galat bila password lama salah).
+  - **Alur** (nama berkas di `templates/portal-karir/`; email undangan bertampilan sama dengan email Tracer Study di `kuesioner-mail.html`):
+
+    ```mermaid
+    flowchart TD
+        A["email-undangan.html<br/>tombol Aktifkan Akun"] --> B{"Status link"}
+        B -->|Valid| C["aktivasi.html<br/>buat password + konfirmasi"]
+        B -->|Kedaluwarsa| D["aktivasi-kedaluwarsa.html"]
+        B -->|Sudah dipakai| E["aktivasi-terpakai.html"]
+        B -->|Salah| F["aktivasi-tidak-valid.html"]
+        C -->|Aktifkan Akun| G["login.html<br/>email terisi, pesan akun aktif"]
+        E -->|Masuk| G
+        D -->|Kirim link baru| H["link-baru.html<br/>isi email"]
+        E -->|Kirim link baru| H
+        F -->|Kirim link baru| H
+        I["login.html<br/>Belum menerima undangan atau link kedaluwarsa?"] --> H
+        H --> J["link-baru-terkirim.html<br/>pesan sama untuk email terdaftar dan tidak"]
+        J -.->|link baru dikirim bila email terdaftar| A
+        K["profil.html<br/>kartu Keamanan akun"] --> L["ubah-password.html<br/>password lama, baru, konfirmasi"]
+    ```
   - **Aturan di desain:** email undangan tidak memuat password dan berlaku 7 hari; tombol "Aktifkan Akun" aktif bila aturan password terpenuhi dan konfirmasi sama. Aturan password (minimal 8 karakter, huruf besar, huruf kecil, angka) hanyalah contoh; nilai pastinya mengikuti BE (FOX-1295).
 
 ### Changed
