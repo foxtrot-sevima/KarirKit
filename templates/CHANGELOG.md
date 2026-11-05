@@ -13,18 +13,18 @@ Aturan singkat:
 Dasar KarirKit: v1.5.0
 
 ### Added
-- **Aktivasi akun dan cara masuk Alumni (FOX-1293):** desain alur dari email undangan sampai akun aktif di Portal Karir, versi mobile dan desktop. Konsepnya mirip login Claude: halaman login punya **dua cara masuk**, yaitu **link ke email** (magic link, tanpa password) dan **email + password**. Desain yang sama nanti dipakai Mahasiswa Aktif dengan teks email berbeda. Tiket terkait: FOX-1295 (BE aktivasi), FOX-1296 (FE), FOX-1303 (BE undangan).
+- **Aktivasi akun dan cara masuk Alumni (FOX-1293):** desain alur dari email undangan sampai akun aktif di Portal Karir, versi mobile dan desktop. Halaman login berurutan: SiAkadCloud SSO, Google SSO, pemisah, lalu isian email. Setelah email diisi, **magic link dikirim otomatis** dan baru di halaman berikutnya muncul opsi **masuk dengan password** (konsep mirip login Claude dan Spotify). Desain yang sama nanti dipakai Mahasiswa Aktif dengan teks email berbeda. Tiket terkait: FOX-1295 (BE aktivasi), FOX-1296 (FE), FOX-1303 (BE undangan).
   - **Alur** (nama berkas di `templates/portal-karir/`; email bertampilan sama dengan email Tracer Study di `kuesioner-mail.html`):
 
     ```mermaid
     flowchart TD
-        L["login.html<br/>pilih cara masuk"] --> M{"Cara masuk"}
-        M -->|Email + password| P["tab Email & password<br/>email + password"]
-        P --> H["portal<br/>onboarding.html / index.html"]
-        M -->|Link ke email| E1["tab Link ke email<br/>isi email, Lanjutkan dengan email"]
-        E1 --> C["login-cek-email.html<br/>Cek email Anda: kirim ulang, ubah email, kode verifikasi"]
-        C -->|kode verifikasi 6 angka| H
+        L["login.html<br/>SiAkadCloud SSO, Google SSO<br/>atau isi email lalu Lanjutkan"] -->|SSO| H["portal<br/>onboarding.html / index.html"]
+        L -->|email| C["login-cek-email.html<br/>magic link terkirim otomatis<br/>kirim ulang, kode verifikasi, Berikutnya"]
         C -.->|link dikirim bila email terdaftar| EM["email-masuk.html<br/>tombol Masuk ke KarirLink, berlaku 10 menit"]
+        C -->|kode verifikasi 6 angka| H
+        C -->|Masuk dengan password| P["login-password.html<br/>email + password"]
+        P --> H
+        P -->|Kirim magic link saja| C
         EM --> S{"Status link"}
         S -->|Valid| H
         S -->|Kedaluwarsa| X1["link-kedaluwarsa.html"]
@@ -37,11 +37,12 @@ Dasar KarirKit: v1.5.0
         U["email-undangan.html<br/>tombol Aktifkan Akun, berlaku 7 hari"] --> S2{"Status link undangan"}
         S2 -->|Valid| A["aktivasi.html<br/>buat password + konfirmasi"]
         S2 -->|Kedaluwarsa / dipakai / salah| X1
-        A -->|Aktifkan Akun| L2["login.html<br/>tab password, email terisi, pesan akun aktif"]
+        A -->|Aktifkan Akun| P2["login-password.html<br/>email terisi, pesan akun aktif"]
+        P2 --> H
 
         PR["profil.html<br/>kartu Keamanan akun"] --> UP["ubah-password.html<br/>password lama, baru, konfirmasi"]
     ```
-  - **Aturan di desain:** pesan setelah memilih "Lanjutkan dengan email" sama untuk email terdaftar maupun tidak; email undangan tidak memuat password; tombol "Aktifkan Akun" aktif bila aturan password terpenuhi dan konfirmasi sama. Link undangan berlaku 7 hari; masa berlaku link masuk (10 menit), kode verifikasi, dan aturan password (minimal 8 karakter, huruf besar, huruf kecil, angka) hanyalah contoh; nilai pastinya mengikuti BE (FOX-1295). Tautan "Belum menerima undangan atau link kedaluwarsa?" ada di tab "Link ke email": memasukkan email di sana mengirim link baru bila email terdaftar.
+  - **Aturan di desain:** pesan setelah memasukkan email sama untuk email terdaftar maupun tidak; email undangan tidak memuat password; tombol "Aktifkan Akun" aktif bila aturan password terpenuhi dan konfirmasi sama. Link undangan berlaku 7 hari; masa berlaku magic link (10 menit), kode verifikasi 6 angka, dan aturan password (minimal 8 karakter, huruf besar, huruf kecil, angka) hanyalah contoh; nilai pastinya mengikuti BE (FOX-1295). Memasukkan email di halaman login juga menjadi jalan meminta link baru ("Belum menerima undangan atau link kedaluwarsa?"): alumni yang belum aktif menerima link undangan, yang sudah aktif menerima magic link.
 
 ### Changed
 - **Versi white-label portal disamakan dengan sumbernya.** Lamaran Saya, Lowongan, Profil, Tes RIASEC, dan Hasil RIASEC di `templates/custom/portal-karir` dibuat ulang dari halaman Portal Karir terbaru (hero Lowongan dan hiasan latar yang sudah dihapus di sumber ikut hilang; contoh kampus di Profil menjadi Universitas Foxtrot).
