@@ -34,6 +34,10 @@
   function dateOf(ago) {
     return new Date(Date.now() - ago * DAY).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
   }
+  // Label waktu posting lowongan: kurang dari seminggu relatif (Hari ini, 3 hari lalu), sejak seminggu ke atas tanggal publish.
+  function postedLabel(ago) {
+    return ago >= 7 ? dateOf(ago) : when(ago);
+  }
 
   // Warna per bidang (nama kelas ditulis utuh supaya terbaca build CSS).
   var TINT = {
@@ -440,7 +444,7 @@
     return '<article class="relative flex flex-col rounded-2xl border border-border/70 bg-surface p-2 shadow-card transition-shadow hover:shadow-card-lg" data-job="' + j.id + '">' +
       '<div class="flex flex-1 flex-col rounded-xl p-4 ' + tintOf(j).soft + '">' +
         '<div class="flex items-start justify-between gap-2">' +
-          '<span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700">' + when(j.posted) + '</span>' +
+          '<span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700">' + postedLabel(j.posted) + '</span>' +
           saveButton(j.id, pick ? 'relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-slate-500 transition-colors hover:text-primary-600' : null) +
         '</div>' +
         '<div class="mt-5 flex items-start justify-between gap-3">' +
@@ -470,7 +474,7 @@
         (!noMatch && hasPrefs && r.score > 0 ? tag(r.score + '% cocok', 'rounded-md bg-primary-50 px-2 py-0.5 text-xs font-semibold text-primary-700') : '') +
 '</div>' +
       '<div class="mt-3 flex items-center justify-between gap-2 text-xs"><span class="font-semibold text-slate-800">' + esc(j.pay) + '</span>' +
-        '<span class="flex items-center gap-1.5 text-slate-400">' + (hasApplied(j.id) ? '<span class="inline-flex items-center gap-1 rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">' + icon('check', 'h-3 w-3') + 'Sudah dilamar</span>' : j.posted <= 2 ? '<span class="rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">Baru</span>' : '') + when(j.posted) + '</span></div></article>';
+        '<span class="flex items-center gap-1.5 text-slate-400">' + (hasApplied(j.id) ? '<span class="inline-flex items-center gap-1 rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">' + icon('check', 'h-3 w-3') + 'Sudah dilamar</span>' : j.posted <= 2 ? '<span class="rounded-full bg-success-50 px-2 py-0.5 text-[11px] font-semibold text-success-700">Baru</span>' : '') + postedLabel(j.posted) + '</span></div></article>';
   }
 
   // Penanda tahap lamaran: 4 segmen, terisi sampai tahap sekarang.
@@ -1260,7 +1264,7 @@
     CAMPUS: CAMPUS, tracerLink: tracerLink, COURSES: COURSES, COURSE_CATS: COURSE_CATS, courseCard: courseCard, courseDuration: courseDuration, lessonsOf: lessonsOf, courseProgress: courseProgress, TINT_OF: tintOfCat, eventCard: eventCard, EVENTS: EVENTS, EVENT_CATS: EVENT_CATS, eventRegistered: eventRegistered, evDay: evDay, evMonth: evMonth, evWeekday: evWeekday, evFull: evFull,
     JOBS: JOBS, STATUSES: STATUSES, STEPS: STEPS, FIELDS: FIELDS, api: api,
     user: user, prefs: prefs, onboarded: onboarded, hasPrefs: hasPrefs,
-    esc: esc, initials: initials, when: when, dateOf: dateOf, icon: icon, profile: profile,
+    esc: esc, initials: initials, when: when, postedLabel: postedLabel, dateOf: dateOf, icon: icon, profile: profile,
     statusOf: statusOf, tintOf: tintOf, isActive: isActive, history: history, hasApplied: hasApplied,
     isSaved: isSaved, savedCount: function () { return savedIds.length; }, toast: toast,
     latest: latest, debounce: debounce,
