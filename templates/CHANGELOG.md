@@ -13,7 +13,12 @@ Aturan singkat:
 Dasar KarirKit: v1.5.0
 
 ### Added
-- **Aktivasi akun Alumni (FOX-1293):** alur dari email undangan sampai akun aktif di Portal Karir. Halaman baru: `email-undangan.html` (tampilan sama dengan email Tracer Study di `kuesioner-mail.html`; tanpa password, berlaku 7 hari), `aktivasi.html` (nama kampus, email tidak bisa diubah, password + konfirmasi dengan aturan yang dicek langsung), `aktivasi-kedaluwarsa.html`, `aktivasi-terpakai.html`, `aktivasi-tidak-valid.html` (masing-masing dengan tombol "Kirim link baru"), `link-baru.html` + `link-baru-terkirim.html` (pesan hasil sama untuk email terdaftar maupun tidak), dan `ubah-password.html` (password lama, baru, konfirmasi). Login: tautan "Belum menerima undangan atau link kedaluwarsa?", email terisi dan pesan berhasil setelah aktivasi. Profil: kartu "Keamanan akun" dengan tombol Ubah Password. Desain yang sama dipakai Mahasiswa Aktif nanti dengan teks email berbeda.
+- **Aktivasi akun Alumni (FOX-1293):** desain alur dari email undangan sampai akun aktif di Portal Karir, versi mobile dan desktop. Desain yang sama nanti dipakai Mahasiswa Aktif dengan teks email berbeda. Tiket terkait: FOX-1295 (BE aktivasi), FOX-1296 (FE), FOX-1303 (BE undangan).
+  - **Alur aktivasi:** `email-undangan.html` (tombol "Aktifkan Akun"; tampilan sama dengan email Tracer Study di `kuesioner-mail.html`) → `aktivasi.html` (nama kampus, email tidak bisa diubah, password dan konfirmasi) → `login.html` (email terisi dan pesan "Akun Anda sudah aktif").
+  - **Link bermasalah:** link kedaluwarsa, sudah dipakai, atau salah menuju `aktivasi-kedaluwarsa.html`, `aktivasi-terpakai.html`, atau `aktivasi-tidak-valid.html`; tombol "Kirim link baru" membuka `link-baru.html` (isian email) lalu `link-baru-terkirim.html`.
+  - **Dari halaman login:** tautan "Belum menerima undangan atau link kedaluwarsa?" membuka `link-baru.html`. Pesan hasilnya sama untuk email terdaftar maupun tidak terdaftar.
+  - **Ubah password:** kartu "Keamanan akun" di `profil.html` → `ubah-password.html` (password lama, baru, konfirmasi; ada keadaan galat bila password lama salah).
+  - **Aturan di desain:** email undangan tidak memuat password dan berlaku 7 hari; tombol "Aktifkan Akun" aktif bila aturan password terpenuhi dan konfirmasi sama. Aturan password (minimal 8 karakter, huruf besar, huruf kecil, angka) hanyalah contoh; nilai pastinya mengikuti BE (FOX-1295).
 
 ### Changed
 - **Versi white-label portal disamakan dengan sumbernya.** Lamaran Saya, Lowongan, Profil, Tes RIASEC, dan Hasil RIASEC di `templates/custom/portal-karir` dibuat ulang dari halaman Portal Karir terbaru (hero Lowongan dan hiasan latar yang sudah dihapus di sumber ikut hilang; contoh kampus di Profil menjadi Universitas Foxtrot).
