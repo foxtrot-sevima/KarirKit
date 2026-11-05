@@ -8,6 +8,16 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-05
+
+Dasar KarirKit: v1.5.0
+
+### Changed
+- **Versi white-label portal disamakan dengan sumbernya.** Lamaran Saya, Lowongan, Profil, Tes RIASEC, dan Hasil RIASEC di `templates/custom/portal-karir` dibuat ulang dari halaman Portal Karir terbaru (hero Lowongan dan hiasan latar yang sudah dihapus di sumber ikut hilang; contoh kampus di Profil menjadi Universitas Foxtrot).
+- **KarirLink: menu Kerjasama dan Report di Segera Hadir kini bisa diklik, dan teks bantuan warna di Personalisasi Portal dirapikan.**
+- **Login dan Daftar: teks panel kiri dirapikan.** Judul menjadi "Satu platform karier untuk kampus, alumni, dan mitra.", deskripsi menjadi "Cari lowongan, magang, dan event karier, lalu lamar langsung dalam satu tempat."; tiga langkah (Masuk atau daftar, Atur minat, Cari dan lamar) dan teks "Portal karier kampus dari SEVIMA." dihapus.
+- **Login dan Daftar: panel kanan berupa kartu terang berisi pratinjau lowongan, event, dan status lamaran.** Kartu putih berlatar gradasi lembut di atas latar biru, berisi lencana Platform Karier Kampus (ikon topi wisuda), judul gelap, deskripsi, dan pratinjau enam kartu (Lowongan, Event, dan satu kartu Lamar yang menonjol, sisanya memudar; isinya statis tanpa tanggal, status, atau penanda real-time). Logo KarirLink SEVIMA di kiri atas, sejajar dengan lencana di kanan.
+
 ## 2026-11-03
 
 Dasar KarirKit: v1.5.0
@@ -19,6 +29,7 @@ Dasar KarirKit: v1.5.0
 ### Changed
 
 - **Beranda Portal Karir: "Lowongan pilihan" kini di atas "Layanan pusat karier"** (`templates/portal-karir/index.html`, dan versi white-label): urutan bagian menjadi Lowongan pilihan, Layanan pusat karier, Tes Potensi, lalu bagian lainnya.
+- **Daftar Yudisium: kolom "Tanggal Yudisium" dan kartu "Menunggu Finalisasi" dihapus** (`templates/karirlink/yudisium.html`): tabel periode kini berisi Periode Yudisium, Jumlah Lulusan, Partisipasi Mengisi, dan Aksi; ringkasan menjadi empat kartu (Periode Yudisium, Total Lulusan Tercatat, Alumni Sudah Mengisi, Periode Capai Target). Baris kecil di ponsel hanya memuat jumlah lulusan.
 
 ### Fixed
 
