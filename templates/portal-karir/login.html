@@ -150,7 +150,7 @@
   }
   document.querySelectorAll('[data-social-login]').forEach((btn) => btn.addEventListener('click', () => { window.location.href = nextPage(); }));
 
-  // Email dulu: link masuk (magic link) langsung dikirim, lalu opsi password muncul di halaman berikutnya.
+  // Email dulu: link masuk langsung dikirim, lalu opsi password muncul di halaman berikutnya.
   // Pesan di halaman berikutnya sama untuk email terdaftar maupun tidak.
   const form = document.getElementById('linkForm');
   const email = document.getElementById('linkEmail');
