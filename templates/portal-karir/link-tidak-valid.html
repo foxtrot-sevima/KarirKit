@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Permintaan Diterima | KarirLink</title>
+<title>Link Tidak Valid | KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
 <script src="../campus-theme.js"></script>
-<meta name="description" content="Permintaan link aktivasi baru sudah diterima." />
+<meta name="description" content="Link ini tidak dikenali. Pastikan Anda membuka link lengkap dari email, atau minta link baru." />
 <meta name="author" content="SEVIMA" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#2361e7" />
@@ -22,11 +22,12 @@
 
     <section class="card card-body sm:p-8">
       <div class="text-center">
-      <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-success-50 text-success-600"><i class="kk kk-paper-plane-tilt h-7 w-7" aria-hidden="true"></i></span>
-        <h1 class="mt-5 font-display text-2xl font-bold text-slate-900">Permintaan diterima</h1>
-        <p class="mt-2 text-sm text-slate-500">Jika email tersebut terdaftar dan akunnya belum aktif, link aktivasi baru akan dikirim. Periksa kotak masuk dan folder spam. Link berlaku 7 hari.</p>
-        <div class="mt-7">
-          <a href="login.html" class="btn-primary btn-lg w-full">Kembali ke halaman masuk</a>
+      <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-danger-50 text-danger-600"><i class="kk kk-link-break h-7 w-7" aria-hidden="true"></i></span>
+        <h1 class="mt-5 font-display text-2xl font-bold text-slate-900">Link tidak valid</h1>
+        <p class="mt-2 text-sm text-slate-500">Link ini tidak dikenali. Pastikan Anda membuka link lengkap dari email, atau minta link baru.</p>
+        <div class="mt-7 space-y-3">
+          <a href="login.html?metode=link" class="btn-primary btn-lg w-full">Kirim link baru</a>
+          <a href="login.html?metode=password" class="btn-outline btn-md w-full">Masuk dengan password</a>
         </div>
       </div>
     </section>

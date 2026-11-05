@@ -13,27 +13,35 @@ Aturan singkat:
 Dasar KarirKit: v1.5.0
 
 ### Added
-- **Aktivasi akun Alumni (FOX-1293):** desain alur dari email undangan sampai akun aktif di Portal Karir, versi mobile dan desktop. Desain yang sama nanti dipakai Mahasiswa Aktif dengan teks email berbeda. Tiket terkait: FOX-1295 (BE aktivasi), FOX-1296 (FE), FOX-1303 (BE undangan).
-  - **Alur** (nama berkas di `templates/portal-karir/`; email undangan bertampilan sama dengan email Tracer Study di `kuesioner-mail.html`):
+- **Aktivasi akun dan cara masuk Alumni (FOX-1293):** desain alur dari email undangan sampai akun aktif di Portal Karir, versi mobile dan desktop. Konsepnya mirip login Claude: halaman login punya **dua cara masuk**, yaitu **link ke email** (magic link, tanpa password) dan **email + password**. Desain yang sama nanti dipakai Mahasiswa Aktif dengan teks email berbeda. Tiket terkait: FOX-1295 (BE aktivasi), FOX-1296 (FE), FOX-1303 (BE undangan).
+  - **Alur** (nama berkas di `templates/portal-karir/`; email bertampilan sama dengan email Tracer Study di `kuesioner-mail.html`):
 
     ```mermaid
     flowchart TD
-        A["email-undangan.html<br/>tombol Aktifkan Akun"] --> B{"Status link"}
-        B -->|Valid| C["aktivasi.html<br/>buat password + konfirmasi"]
-        B -->|Kedaluwarsa| D["aktivasi-kedaluwarsa.html"]
-        B -->|Sudah dipakai| E["aktivasi-terpakai.html"]
-        B -->|Salah| F["aktivasi-tidak-valid.html"]
-        C -->|Aktifkan Akun| G["login.html<br/>email terisi, pesan akun aktif"]
-        E -->|Masuk| G
-        D -->|Kirim link baru| H["link-baru.html<br/>isi email"]
-        E -->|Kirim link baru| H
-        F -->|Kirim link baru| H
-        I["login.html<br/>Belum menerima undangan atau link kedaluwarsa?"] --> H
-        H --> J["link-baru-terkirim.html<br/>pesan sama untuk email terdaftar dan tidak"]
-        J -.->|link baru dikirim bila email terdaftar| A
-        K["profil.html<br/>kartu Keamanan akun"] --> L["ubah-password.html<br/>password lama, baru, konfirmasi"]
+        L["login.html<br/>pilih cara masuk"] --> M{"Cara masuk"}
+        M -->|Email + password| P["tab Email & password<br/>email + password"]
+        P --> H["portal<br/>onboarding.html / index.html"]
+        M -->|Link ke email| E1["tab Link ke email<br/>isi email, Lanjutkan dengan email"]
+        E1 --> C["login-cek-email.html<br/>Cek email Anda: kirim ulang, ubah email, kode verifikasi"]
+        C -->|kode verifikasi 6 angka| H
+        C -.->|link dikirim bila email terdaftar| EM["email-masuk.html<br/>tombol Masuk ke KarirLink, berlaku 10 menit"]
+        EM --> S{"Status link"}
+        S -->|Valid| H
+        S -->|Kedaluwarsa| X1["link-kedaluwarsa.html"]
+        S -->|Sudah dipakai| X2["link-terpakai.html"]
+        S -->|Salah| X3["link-tidak-valid.html"]
+        X1 -->|Kirim link baru| L
+        X2 -->|Masuk / Kirim link baru| L
+        X3 -->|Kirim link baru| L
+
+        U["email-undangan.html<br/>tombol Aktifkan Akun, berlaku 7 hari"] --> S2{"Status link undangan"}
+        S2 -->|Valid| A["aktivasi.html<br/>buat password + konfirmasi"]
+        S2 -->|Kedaluwarsa / dipakai / salah| X1
+        A -->|Aktifkan Akun| L2["login.html<br/>tab password, email terisi, pesan akun aktif"]
+
+        PR["profil.html<br/>kartu Keamanan akun"] --> UP["ubah-password.html<br/>password lama, baru, konfirmasi"]
     ```
-  - **Aturan di desain:** email undangan tidak memuat password dan berlaku 7 hari; tombol "Aktifkan Akun" aktif bila aturan password terpenuhi dan konfirmasi sama. Aturan password (minimal 8 karakter, huruf besar, huruf kecil, angka) hanyalah contoh; nilai pastinya mengikuti BE (FOX-1295).
+  - **Aturan di desain:** pesan setelah memilih "Lanjutkan dengan email" sama untuk email terdaftar maupun tidak; email undangan tidak memuat password; tombol "Aktifkan Akun" aktif bila aturan password terpenuhi dan konfirmasi sama. Link undangan berlaku 7 hari; masa berlaku link masuk (10 menit), kode verifikasi, dan aturan password (minimal 8 karakter, huruf besar, huruf kecil, angka) hanyalah contoh; nilai pastinya mengikuti BE (FOX-1295). Tautan "Belum menerima undangan atau link kedaluwarsa?" ada di tab "Link ke email": memasukkan email di sana mengirim link baru bila email terdaftar.
 
 ### Changed
 - **Versi white-label portal disamakan dengan sumbernya.** Lamaran Saya, Lowongan, Profil, Tes RIASEC, dan Hasil RIASEC di `templates/custom/portal-karir` dibuat ulang dari halaman Portal Karir terbaru (hero Lowongan dan hiasan latar yang sudah dihapus di sumber ikut hilang; contoh kampus di Profil menjadi Universitas Foxtrot).

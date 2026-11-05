@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cek Email Anda | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Link masuk KarirLink sudah dikirim ke email Anda." />
+<meta name="author" content="SEVIMA" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<main class="flex flex-1 items-center justify-center px-4 py-10 sm:py-16">
+  <div class="w-full max-w-md">
+    <a href="login.html" class="mb-8 flex justify-center" aria-label="KarirLink SEVIMA">
+      <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+    </a>
+
+    <section class="card card-body sm:p-8">
+      <div class="text-center">
+      <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary-50 text-primary-600"><i class="kk kk-envelope-simple-open h-7 w-7" aria-hidden="true"></i></span>
+        <h1 class="mt-5 font-display text-2xl font-bold text-slate-900">Cek email Anda</h1>
+        <p class="mt-2 text-sm text-slate-500">Untuk melanjutkan, klik link yang dikirim ke <strong id="ceEmail" class="break-words font-semibold text-slate-800">email Anda</strong>.</p>
+      </div>
+
+      <div class="mt-6 space-y-1.5 rounded-xl bg-neutral-50 p-4 text-center text-sm text-slate-600">
+        <p>Tidak melihat email di kotak masuk? <button type="button" id="ceResend" class="font-semibold text-primary-600 hover:text-primary-700">Kirim ulang</button></p>
+        <p>Salah email? <a href="login.html" class="font-semibold text-primary-600 hover:text-primary-700">Ubah alamat email</a></p>
+        <p id="ceResent" class="hidden font-medium text-success-700" role="status">Link sudah dikirim ulang. Periksa juga folder spam.</p>
+      </div>
+
+      <form id="codeForm" class="mt-6 space-y-3" novalidate>
+        <label for="ceCode" class="form-label">Jika link menampilkan kode verifikasi, masukkan di sini.</label>
+        <input id="ceCode" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" class="input text-center tracking-widest" placeholder="Masukkan kode verifikasi" />
+        <p id="ceCodeErr" class="form-error hidden">Kode salah atau sudah kedaluwarsa. Periksa lagi, atau minta link baru.</p>
+        <button id="ceVerify" type="submit" class="btn-primary btn-lg w-full" disabled>Verifikasi email</button>
+      </form>
+    </section>
+
+    <p class="mt-8 text-center text-xs text-fg-subtle">&copy; <span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
+  </div>
+</main>
+
+<script>
+  // Pesan di halaman ini sama untuk email terdaftar maupun tidak (tidak membocorkan siapa yang punya akun).
+  const email = new URLSearchParams(window.location.search).get('email');
+  if (email) document.getElementById('ceEmail').textContent = email;
+  document.getElementById('ceResend').addEventListener('click', () => document.getElementById('ceResent').classList.remove('hidden'));
+
+  // Kode verifikasi (6 angka). Mockup tanpa backend: kode 000000 memperlihatkan keadaan galat, selain itu dianggap benar.
+  const code = document.getElementById('ceCode');
+  const verify = document.getElementById('ceVerify');
+  const codeErr = document.getElementById('ceCodeErr');
+  code.addEventListener('input', () => {
+    code.value = code.value.replace(/[^0-9]/g, '');
+    codeErr.classList.add('hidden');
+    code.setAttribute('aria-invalid', 'false');
+    verify.disabled = code.value.length !== 6;
+  });
+  function nextPage() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('kk_portal_onboarding'));
+      if (saved && saved.completedAt) return 'index.html';
+    } catch (e) { /* storage unavailable: treat as a new user */ }
+    return 'onboarding.html';
+  }
+  document.getElementById('codeForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (verify.disabled) return;
+    if (code.value === '000000') { codeErr.classList.remove('hidden'); code.setAttribute('aria-invalid', 'true'); code.focus(); return; }
+    window.location.href = nextPage();
+  });
+  document.querySelectorAll('.js-current-year').forEach((el) => { el.textContent = new Date().getFullYear(); });
+</script>
+</body>
+</html>
