@@ -25,6 +25,46 @@ export const Register = {
   render: () => pageFrame("/templates/portal-karir/register.html", "Portal Karir Register"),
 };
 
+export const EmailUndanganAktivasi = {
+  name: "Email Undangan Aktivasi",
+  render: () => pageFrame("/templates/portal-karir/email-undangan.html", "Portal Karir Email Undangan Aktivasi"),
+};
+
+export const AktivasiAkun = {
+  name: "Aktivasi Akun",
+  render: () => pageFrame("/templates/portal-karir/aktivasi.html", "Portal Karir Aktivasi Akun"),
+};
+
+export const AktivasiKedaluwarsa = {
+  name: "Aktivasi Link Kedaluwarsa",
+  render: () => pageFrame("/templates/portal-karir/aktivasi-kedaluwarsa.html", "Portal Karir Aktivasi Link Kedaluwarsa"),
+};
+
+export const AktivasiTerpakai = {
+  name: "Aktivasi Link Sudah Dipakai",
+  render: () => pageFrame("/templates/portal-karir/aktivasi-terpakai.html", "Portal Karir Aktivasi Link Sudah Dipakai"),
+};
+
+export const AktivasiTidakValid = {
+  name: "Aktivasi Link Tidak Valid",
+  render: () => pageFrame("/templates/portal-karir/aktivasi-tidak-valid.html", "Portal Karir Aktivasi Link Tidak Valid"),
+};
+
+export const MintaLinkBaru = {
+  name: "Minta Link Aktivasi Baru",
+  render: () => pageFrame("/templates/portal-karir/link-baru.html", "Portal Karir Minta Link Aktivasi Baru"),
+};
+
+export const LinkBaruTerkirim = {
+  name: "Link Aktivasi Baru Terkirim",
+  render: () => pageFrame("/templates/portal-karir/link-baru-terkirim.html", "Portal Karir Link Aktivasi Baru Terkirim"),
+};
+
+export const UbahPassword = {
+  name: "Ubah Password",
+  render: () => pageFrame("/templates/portal-karir/ubah-password.html", "Portal Karir Ubah Password"),
+};
+
 export const Onboarding = {
   name: "Onboarding",
   render: () => pageFrame("/templates/portal-karir/onboarding.html", "Portal Karir Onboarding"),
