@@ -40,6 +40,11 @@ export const CekEmailLogin = {
   render: () => pageFrame("/templates/portal-karir/login-cek-email.html", "Portal Karir Login Cek Email"),
 };
 
+export const LoginPassword = {
+  name: "Login Password",
+  render: () => pageFrame("/templates/portal-karir/login-password.html", "Portal Karir Login Password"),
+};
+
 export const EmailLinkMasuk = {
   name: "Email Link Masuk",
   render: () => pageFrame("/templates/portal-karir/email-masuk.html", "Portal Karir Email Link Masuk"),
