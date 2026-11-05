@@ -14,7 +14,7 @@ Dasar KarirKit: v1.5.0
 
 ### Changed
 - **Login dan Daftar: teks panel kiri dirapikan.** Judul menjadi "Satu platform karier untuk kampus, alumni, dan mitra.", deskripsi menjadi "Cari lowongan, magang, dan event karier, lalu lamar langsung dalam satu tempat."; tiga langkah (Masuk atau daftar, Atur minat, Cari dan lamar) dan teks "Portal karier kampus dari SEVIMA." dihapus.
-- **Login dan Daftar: pratinjau hasil Tes Potensi di panel kiri.** Visual kartu tipe RIASEC (Sosial, Investigatif "tipe dominanmu" dengan tombol Lihat hasil, dua kartu memudar) seperti CTA "Kenali potensi dirimu" di Beranda, ditaruh di bawah deskripsi. Disembunyikan di layar yang tingginya kurang dari 780px.
+- **Login dan Daftar: pratinjau hasil Tes Potensi di panel kiri.** Bingkai kaca dengan enam kartu tipe RIASEC (Sosial, Artistik, Investigatif "tipe dominanmu" dengan tombol Lihat hasil, lalu Konvensional, Wirausaha, Realistis yang makin memudar), gayanya sama dengan CTA "Kenali potensi dirimu" di Beranda. Disembunyikan di layar yang tingginya 900px ke bawah.
 
 ## 2026-11-03
 
