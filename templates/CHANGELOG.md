@@ -14,7 +14,7 @@ Dasar KarirKit: v1.5.0
 
 ### Changed
 - **Login dan Daftar: teks panel kiri dirapikan.** Judul menjadi "Satu platform karier untuk kampus, alumni, dan mitra.", deskripsi menjadi "Cari lowongan, magang, dan event karier, lalu lamar langsung dalam satu tempat."; tiga langkah (Masuk atau daftar, Atur minat, Cari dan lamar) dan teks "Portal karier kampus dari SEVIMA." dihapus.
-- **Login dan Daftar: panel kanan berupa kartu terang berisi pratinjau lowongan, event, dan status lamaran.** Kartu putih berlatar gradasi lembut di atas latar biru, berisi lencana Platform Karier Kampus (ikon topi wisuda), judul gelap, deskripsi, dan pratinjau enam kartu (Lowongan, Event, dan satu kartu Lamaran terkirim dengan tombol Lihat status yang menonjol, sisanya memudar). Logo di panel dihapus.
+- **Login dan Daftar: panel kanan berupa kartu terang berisi pratinjau lowongan, event, dan status lamaran.** Kartu putih berlatar gradasi lembut di atas latar biru, berisi lencana Platform Karier Kampus (ikon topi wisuda), judul gelap, deskripsi, dan pratinjau enam kartu (Lowongan, Event, dan satu kartu Lamaran terkirim dengan tombol Lihat status yang menonjol, sisanya memudar). Logo KarirLink SEVIMA di atas lencana.
 
 ## 2026-11-03
 
