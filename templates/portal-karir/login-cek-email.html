@@ -42,14 +42,30 @@
         <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
       </a>
 
-      <div class="text-center">
+      <div>
         <h1 class="font-display text-2xl font-bold text-slate-900">Cek email Anda</h1>
-        <p class="mt-4 text-sm text-slate-500">Untuk melanjutkan, klik link yang dikirim ke<br /><strong id="ceEmail" class="break-words font-semibold text-slate-800">email Anda</strong></p>
+        <p class="mt-1.5 text-sm text-slate-500">Kami sudah mengirim magic link untuk masuk ke KarirLink.</p>
 
-        <p class="mt-6 text-sm leading-relaxed text-slate-500">Tidak melihat email di kotak masuk? <button type="button" id="ceResend" class="font-semibold text-primary-600 hover:text-primary-700">Kirim ulang</button>.<br />Salah email? <a id="ceBack" href="login.html" class="font-semibold text-primary-600 hover:text-primary-700">Ubah alamat email</a></p>
-        <p id="ceResent" class="mt-3 hidden text-sm font-medium text-success-700" role="status">Link sudah dikirim ulang. Periksa juga folder spam.</p>
+        <section class="card card-body mt-8" aria-labelledby="ceSentTitle">
+          <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-envelope-simple-open h-6 w-6" aria-hidden="true"></i></span>
+          <h2 id="ceSentTitle" class="mt-4 text-base font-semibold text-slate-900">Untuk melanjutkan, klik link yang dikirim ke</h2>
+          <p class="mt-3 flex items-center gap-2 rounded-xl border border-border/70 bg-neutral-50 px-3.5 py-2.5 text-sm font-semibold text-slate-800">
+            <i class="kk kk-envelope-simple h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span id="ceEmail" class="min-w-0 break-all">email Anda</span>
+          </p>
+          <p class="mt-3 text-xs text-fg-muted">Link berlaku 10 menit dan hanya bisa dipakai satu kali.</p>
 
-        <p class="mt-8 text-sm text-slate-500">Lebih suka pakai password? <a id="cePassword" href="login-password.html" class="font-semibold text-primary-600 hover:text-primary-700">Masuk dengan password</a></p>
+          <div id="ceResent" class="alert alert-success mt-5 hidden" role="status">
+            <i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0" aria-hidden="true"></i>
+            <p>Link sudah dikirim ulang. Periksa juga folder spam.</p>
+          </div>
+
+          <div class="mt-5 space-y-1.5 border-t border-border/70 pt-5 text-sm text-slate-500">
+            <p>Tidak melihat email di kotak masuk? <button type="button" id="ceResend" class="font-semibold text-primary-600 hover:text-primary-700">Kirim ulang</button></p>
+            <p>Salah email? <a id="ceBack" href="login.html" class="font-semibold text-primary-600 hover:text-primary-700">Ubah alamat email</a></p>
+          </div>
+        </section>
+
+        <p class="mt-6 text-center text-sm text-slate-500">Lebih suka pakai password? <a id="cePassword" href="login-password.html" class="font-semibold text-primary-600 hover:text-primary-700">Masuk dengan password</a></p>
       </div>
 
       <p class="mt-10 text-center text-xs text-fg-subtle">&copy; <span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
