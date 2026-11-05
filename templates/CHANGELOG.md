@@ -13,6 +13,8 @@ Aturan singkat:
 Dasar KarirKit: v1.5.0
 
 ### Changed
+- **Versi white-label portal disamakan dengan sumbernya.** Lamaran Saya, Lowongan, Profil, Tes RIASEC, dan Hasil RIASEC di `templates/custom/portal-karir` dibuat ulang dari halaman Portal Karir terbaru (hero Lowongan dan hiasan latar yang sudah dihapus di sumber ikut hilang; contoh kampus di Profil menjadi Universitas Foxtrot).
+- **KarirLink: menu Kerjasama dan Report di Segera Hadir kini bisa diklik, dan teks bantuan warna di Personalisasi Portal dirapikan.**
 - **Login dan Daftar: teks panel kiri dirapikan.** Judul menjadi "Satu platform karier untuk kampus, alumni, dan mitra.", deskripsi menjadi "Cari lowongan, magang, dan event karier, lalu lamar langsung dalam satu tempat."; tiga langkah (Masuk atau daftar, Atur minat, Cari dan lamar) dan teks "Portal karier kampus dari SEVIMA." dihapus.
 - **Login dan Daftar: panel kanan berupa kartu terang berisi pratinjau lowongan, event, dan status lamaran.** Kartu putih berlatar gradasi lembut di atas latar biru, berisi lencana Platform Karier Kampus (ikon topi wisuda), judul gelap, deskripsi, dan pratinjau enam kartu (Lowongan, Event, dan satu kartu Lamar yang menonjol, sisanya memudar; isinya statis tanpa tanggal, status, atau penanda real-time). Logo KarirLink SEVIMA di kiri atas, sejajar dengan lencana di kanan.
 
