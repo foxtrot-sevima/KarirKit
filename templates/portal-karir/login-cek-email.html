@@ -42,16 +42,14 @@
         <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
       </a>
 
-      <div>
-        <a id="ceBack" href="login.html" class="btn-ghost btn-sm -ml-2.5"><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i>Ubah email</a>
-        <h1 class="mt-4 font-display text-2xl font-bold text-slate-900">Kami kirim magic link ke <span id="ceEmail" class="break-words">email Anda</span></h1>
-        <p class="mt-1.5 text-sm text-slate-500">Buka email Anda lalu klik link untuk masuk. Link berlaku 10 menit.</p>
-        <button type="button" id="ceResend" class="btn-outline btn-sm mt-5 rounded-full">Kirim ulang link</button>
+      <div class="text-center">
+        <h1 class="font-display text-2xl font-bold text-slate-900">Cek email Anda</h1>
+        <p class="mt-4 text-sm text-slate-500">Untuk melanjutkan, klik link yang dikirim ke<br /><strong id="ceEmail" class="break-words font-semibold text-slate-800">email Anda</strong></p>
+
+        <p class="mt-6 text-sm leading-relaxed text-slate-500">Tidak melihat email di kotak masuk? <button type="button" id="ceResend" class="font-semibold text-primary-600 hover:text-primary-700">Kirim ulang</button>.<br />Salah email? <a id="ceBack" href="login.html" class="font-semibold text-primary-600 hover:text-primary-700">Ubah alamat email</a></p>
         <p id="ceResent" class="mt-3 hidden text-sm font-medium text-success-700" role="status">Link sudah dikirim ulang. Periksa juga folder spam.</p>
 
-        <a id="ceNext" href="onboarding.html" class="btn-primary btn-lg mt-8 w-full">Berikutnya</a>
-
-        <p class="mt-6 text-center text-sm"><a id="cePassword" href="login-password.html" class="font-semibold text-primary-600 hover:text-primary-700">Masuk dengan password</a></p>
+        <p class="mt-8 text-sm text-slate-500">Lebih suka pakai password? <a id="cePassword" href="login-password.html" class="font-semibold text-primary-600 hover:text-primary-700">Masuk dengan password</a></p>
       </div>
 
       <p class="mt-10 text-center text-xs text-fg-subtle">&copy; <span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
@@ -124,14 +122,6 @@
     document.getElementById('ceBack').href = 'login.html?email=' + encodeURIComponent(email);
   }
   document.getElementById('ceResend').addEventListener('click', () => document.getElementById('ceResent').classList.remove('hidden'));
-
-  // "Berikutnya": mockup menganggap link di email sudah diklik, lalu membuka portal (onboarding bila belum selesai).
-  document.getElementById('ceNext').addEventListener('click', (e) => {
-    try {
-      const saved = JSON.parse(localStorage.getItem('kk_portal_onboarding'));
-      if (saved && saved.completedAt) { e.preventDefault(); window.location.href = 'index.html'; }
-    } catch (err) { /* storage unavailable: treat as a new user */ }
-  });
 
   document.querySelectorAll('.js-current-year').forEach((el) => {
     el.textContent = new Date().getFullYear();
