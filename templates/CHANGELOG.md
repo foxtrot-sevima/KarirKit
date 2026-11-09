@@ -8,6 +8,41 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-09
+
+Dasar KarirKit: v1.5.0
+
+### Added
+- **Alur Alumni dari email Tracer sampai selesai, tanpa login (FOX-1329):** desain email Tracer Study, layar verifikasi NIM + tanggal lahir, empat layar status link, dan layar selesai, versi mobile dan desktop. Halaman kuesioner tidak diubah; alur masuk ke `kuesioner-simulasi.html`. Berkas di `templates/portal-karir/`:
+  - `tracer-email.html`: nama alumni, kampus, gelombang, batas akhir, tombol "Isi Tracer Study", manfaat mengisi; tanpa password, NIM, atau tanggal lahir.
+  - `tracer-validasi.html`: isian NIM dan tanggal lahir, pesan salah yang sama untuk semua kasus, sisa percobaan, dan pesan terkunci (usulan 5 kali salah, kunci 15 menit, menunggu persetujuan PM).
+  - `tracer-link-tidak-berlaku.html`, `tracer-sudah-mengisi.html`, `tracer-belum-dibuka.html`, `tracer-berakhir.html`: satu layar per kondisi link.
+  - `tracer-selesai.html`: ucapan terima kasih dengan tautan ke Portal Karir.
+  - **Alur** (email bertampilan sama dengan email Tracer Study di `kuesioner-mail.html`):
+
+    ```mermaid
+    flowchart TD
+        EM["tracer-email.html<br/>tombol Isi Tracer Study<br/>link unik per alumni per gelombang"] --> S{"Status link"}
+        S -->|Tidak dikenali / diganti| X1["tracer-link-tidak-berlaku.html"]
+        S -->|Sudah mengisi| X2["tracer-sudah-mengisi.html"]
+        S -->|Gelombang belum dibuka| X3["tracer-belum-dibuka.html"]
+        S -->|Gelombang berakhir| X4["tracer-berakhir.html"]
+        S -->|Valid| V["tracer-validasi.html<br/>NIM + tanggal lahir"]
+        V -->|Data belum cocok| E["Pesan sama untuk semua kasus<br/>+ sisa percobaan"]
+        E --> V
+        E -->|Percobaan habis, usulan 5 kali| K["Terkunci sementara<br/>usulan 15 menit"]
+        V -->|Cocok| Q["kuesioner-simulasi.html<br/>halaman kuesioner, tidak didesain ulang"]
+        Q -->|Status Bekerja| D["Data Atasan"]
+        Q -->|Status lain| F["tracer-selesai.html<br/>ucapan terima kasih"]
+        D --> F
+        F -->|Buka Portal Karir| P["index.html<br/>Portal Karir"]
+        X2 -->|Buka Portal Karir| P
+        X3 -->|Buka Portal Karir| P
+        X1 -->|Hubungi Pusat Karir| H["segera-hadir.html"]
+        X4 -->|Hubungi Pusat Karir| H
+    ```
+  - **Aturan di desain:** tidak ada layar login atau pembuatan akun di alur ini. Pesan salah validasi tidak menyebut isian mana yang salah. Bentuk URL dan token pada email hanya contoh; formatnya ditentukan BE.
+
 ## 2026-11-05
 
 Dasar KarirKit: v1.5.0
