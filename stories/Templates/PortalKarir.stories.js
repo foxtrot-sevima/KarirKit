@@ -160,3 +160,38 @@ export const CustomKampus = {
   name: "Custom Kampus (white-label)",
   render: () => pageFrame("/templates/custom/portal-karir/index.html", "Portal Karir Custom Kampus"),
 };
+
+export const TracerEmail = {
+  name: "Tracer Email Alumni",
+  render: () => pageFrame("/templates/portal-karir/tracer-email.html", "Portal Karir Tracer Email Alumni"),
+};
+
+export const TracerValidasi = {
+  name: "Tracer Verifikasi Data",
+  render: () => pageFrame("/templates/portal-karir/tracer-validasi.html", "Portal Karir Tracer Verifikasi Data"),
+};
+
+export const TracerLinkTidakBerlaku = {
+  name: "Tracer Link Tidak Berlaku",
+  render: () => pageFrame("/templates/portal-karir/tracer-link-tidak-berlaku.html", "Portal Karir Tracer Link Tidak Berlaku"),
+};
+
+export const TracerSudahMengisi = {
+  name: "Tracer Sudah Mengisi",
+  render: () => pageFrame("/templates/portal-karir/tracer-sudah-mengisi.html", "Portal Karir Tracer Sudah Mengisi"),
+};
+
+export const TracerBelumDibuka = {
+  name: "Tracer Gelombang Belum Dibuka",
+  render: () => pageFrame("/templates/portal-karir/tracer-belum-dibuka.html", "Portal Karir Tracer Gelombang Belum Dibuka"),
+};
+
+export const TracerBerakhir = {
+  name: "Tracer Gelombang Berakhir",
+  render: () => pageFrame("/templates/portal-karir/tracer-berakhir.html", "Portal Karir Tracer Gelombang Berakhir"),
+};
+
+export const TracerSelesai = {
+  name: "Tracer Selesai",
+  render: () => pageFrame("/templates/portal-karir/tracer-selesai.html", "Portal Karir Tracer Selesai"),
+};
