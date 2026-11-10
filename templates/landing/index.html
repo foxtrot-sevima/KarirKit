@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beranda | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<meta name="description" content="KarirLink menghubungkan industri, perguruan tinggi, dan lulusan: lowongan kerja, tracer study, CDC, dan CV Builder dalam satu platform." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/landing/index.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Beranda | KarirLink" />
+<meta property="og:description" content="Solusi Link and Match: menghubungkan industri, perguruan tinggi, dan lulusan." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/landing/index.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Beranda | KarirLink" />
+<meta name="twitter:description" content="Solusi Link and Match: menghubungkan industri, perguruan tinggi, dan lulusan." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<div data-shell="nav" data-page="home"></div>
+
+<main class="flex-1 overflow-x-clip">
+
+  <!-- ============================= HERO (selebar layar, gradasi memudar ke bawah) ============================= -->
+  <section class="relative -mt-[4.5rem] overflow-hidden bg-gradient-to-b from-primary-300/80 via-primary-100/70 to-transparent">
+    <div class="relative">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <div class="absolute -left-20 -top-24 h-96 w-96 rounded-full bg-info-300/50 blur-[100px]"></div>
+        <div class="absolute -right-24 top-10 h-96 w-96 rounded-full bg-secondary-200/60 blur-[100px]"></div>
+        <div class="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-background via-background/70 to-transparent"></div>
+      </div>
+
+      <!-- ikon melayang (dekoratif) -->
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 hidden lg:block">
+        <span class="absolute left-[7%] top-[34%] flex h-14 w-14 items-center justify-center rounded-full bg-white/80 text-primary-600 shadow-xl ring-1 ring-white backdrop-blur"><i class="kk kk-briefcase h-6 w-6" aria-hidden="true"></i></span>
+        <span class="absolute right-[8%] top-[30%] flex h-14 w-14 items-center justify-center rounded-full bg-white/80 text-secondary-600 shadow-xl ring-1 ring-white backdrop-blur"><i class="kk kk-graduation-cap h-6 w-6" aria-hidden="true"></i></span>
+        <span class="absolute left-[16%] top-[56%] flex h-11 w-11 items-center justify-center rounded-full bg-white/80 text-success-600 shadow-xl ring-1 ring-white backdrop-blur"><i class="kk kk-users h-5 w-5" aria-hidden="true"></i></span>
+        <span class="absolute right-[15%] top-[58%] flex h-11 w-11 items-center justify-center rounded-full bg-white/80 text-info-600 shadow-xl ring-1 ring-white backdrop-blur"><i class="kk kk-list-checks h-5 w-5" aria-hidden="true"></i></span>
+      </div>
+
+      <div class="relative mx-auto flex max-w-5xl flex-col items-center px-4 pb-24 pt-32 text-center sm:px-6 sm:pb-36 sm:pt-44" data-reveal>
+        <span class="inline-flex items-center gap-3 rounded-full bg-white/70 py-1.5 pl-1.5 pr-4 text-xs font-semibold text-fg-muted shadow-sm ring-1 ring-white backdrop-blur"><span class="flex -space-x-2"><span class="avatar h-9 w-9 text-xs font-bold ring-2 ring-white bg-primary-100 text-primary-700">AR</span><span class="avatar h-9 w-9 text-xs font-bold ring-2 ring-white bg-secondary-100 text-secondary-700">SD</span><span class="avatar h-9 w-9 text-xs font-bold ring-2 ring-white bg-success-100 text-success-700">BP</span></span>Dipercaya 1000+ perguruan tinggi</span>
+        <h1 class="mt-7 text-balance font-display text-[2.6rem] font-extrabold leading-[1.02] tracking-[-0.045em] text-fg sm:text-7xl xl:text-[5.5rem]">Hubungkan Kampus, Industri, dan <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">Karier Impian</span></h1>
+        <p class="mt-6 max-w-2xl text-base text-fg-muted sm:text-lg">Platform Link and Match yang mempercepat lulusan mendapat pekerjaan pertama, membantu perusahaan menemukan talenta, dan menyederhanakan tracer study.</p>
+
+        <form action="https://karirlink.id/lowongan" role="search" class="mt-9 w-full max-w-3xl rounded-[2rem] bg-white p-2 text-left shadow-2xl shadow-primary-900/10 ring-1 ring-black/5 sm:flex sm:items-center sm:rounded-full">
+          <label class="relative block min-w-0 flex-1"><span class="sr-only">Posisi atau kata kunci</span><span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-5 w-5" aria-hidden="true"></i></span><input type="search" name="q" class="input h-12 rounded-full border-0 pl-12 shadow-none focus:ring-0" placeholder="Posisi atau kata kunci" autocomplete="off" /></label>
+          <label class="relative block min-w-0 flex-1 border-t border-border sm:border-l sm:border-t-0"><span class="sr-only">Lokasi</span><span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-map-pin h-5 w-5" aria-hidden="true"></i></span><input type="text" name="lokasi" class="input h-12 rounded-full border-0 pl-12 shadow-none focus:ring-0" placeholder="Lokasi" autocomplete="off" /></label>
+          <button type="submit" class="btn-primary btn-lg mt-2 w-full rounded-full sm:mt-0 sm:w-auto sm:px-9">Cari</button>
+        </form>
+        <div class="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm">
+          <span class="text-fg-muted">Populer:</span>
+          <a href="https://karirlink.id/?tipe_pekerjaan=1" class="inline-flex min-h-9 items-center rounded-full bg-white/70 px-3.5 font-medium text-fg ring-1 ring-white transition-colors hover:bg-white">Full time</a>
+          <a href="https://karirlink.id/?tipe_pekerjaan=4" class="inline-flex min-h-9 items-center rounded-full bg-white/70 px-3.5 font-medium text-fg ring-1 ring-white transition-colors hover:bg-white">Magang</a>
+          <a href="https://karirlink.id/?tipe_pekerjaan=2" class="inline-flex min-h-9 items-center rounded-full bg-white/70 px-3.5 font-medium text-fg ring-1 ring-white transition-colors hover:bg-white">Part time</a>
+          <a href="https://karirlink.id/?tipe_pekerjaan=5" class="inline-flex min-h-9 items-center rounded-full bg-white/70 px-3.5 font-medium text-fg ring-1 ring-white transition-colors hover:bg-white">Freelance</a>
+        </div>
+      </div>
+
+      <!-- kartu lowongan melayang (dekoratif) -->
+      <div aria-hidden="true" class="pointer-events-none absolute bottom-14 left-[5%] hidden w-56 -rotate-6 rounded-3xl bg-white p-4 shadow-2xl shadow-primary-900/15 ring-1 ring-black/5 xl:block">
+        <div class="flex items-center gap-3"><span class="avatar avatar-square h-10 w-10 rounded-xl bg-secondary-100 text-xs font-extrabold text-secondary-700">TK</span><div class="min-w-0"><p class="truncate text-sm font-bold text-fg">Frontend Developer</p><p class="text-xs text-fg-muted">Jakarta &middot; Full time</p></div></div>
+        <p class="mt-3 text-sm font-bold text-fg">Rp7 jt - Rp10 jt</p>
+      </div>
+      <div aria-hidden="true" class="pointer-events-none absolute bottom-20 right-[5%] hidden w-56 rotate-6 rounded-3xl bg-white p-4 shadow-2xl shadow-primary-900/15 ring-1 ring-black/5 xl:block">
+        <div class="flex items-center gap-3"><span class="avatar avatar-square h-10 w-10 rounded-xl bg-info-100 text-xs font-extrabold text-info-700">KD</span><div class="min-w-0"><p class="truncate text-sm font-bold text-fg">UI/UX Designer</p><p class="text-xs text-fg-muted">Yogyakarta &middot; Magang</p></div></div>
+        <p class="mt-3 text-sm font-bold text-fg">Rp2 jt / bulan</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= STRIP EKOSISTEM ============================= -->
+  <section class="mx-auto w-full max-w-7xl px-4 pb-4 pt-14 text-center sm:px-6" aria-label="Ekosistem SEVIMA" data-reveal>
+    <p class="text-sm font-medium text-fg-muted">Bagian dari ekosistem SEVIMA yang dipakai 1000+ perguruan tinggi</p>
+    <p class="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 font-display text-xl font-extrabold tracking-tight text-neutral-300 sm:text-2xl"><span>siAkad Cloud</span><span>GOFeeder</span><span>Akreditasi Cloud</span><span>Profeeder</span><span>EdLink</span></p>
+  </section>
+
+  <!-- ============================= KATEGORI BIDANG ============================= -->
+  <section class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="catTitle">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <h2 id="catTitle" class="font-display font-extrabold leading-[1.04] tracking-[-0.035em] text-fg text-4xl sm:text-6xl">Jelajahi lowongan berdasarkan <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">bidang</span></h2>
+      <p class="mx-auto mt-4 max-w-xl text-fg-muted">Temukan peluang di berbagai industri dan cari peran yang sesuai keahlian dan minat Anda.</p>
+    </div>
+    <div class="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+      <a href="https://karirlink.id/lowongan" class="group flex flex-col rounded-3xl border border-border/70 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-lg" data-reveal>
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-50 text-primary-600 transition-transform duration-300 group-hover:scale-110"><i class="kk kk-laptop h-6 w-6" aria-hidden="true"></i></span>
+        <p class="mt-5 font-display text-base font-bold text-fg sm:text-lg">Teknologi</p>
+        <p class="mt-1 inline-flex items-center gap-1 text-sm font-medium text-fg-muted group-hover:text-primary-700">Lihat lowongan<i class="kk kk-arrow-right h-3.5 w-3.5" aria-hidden="true"></i></p>
+      </a>
+      <a href="https://karirlink.id/lowongan" class="group flex flex-col rounded-3xl border border-border/70 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-lg" data-reveal>
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary-50 text-secondary-600 transition-transform duration-300 group-hover:scale-110"><i class="kk kk-palette h-6 w-6" aria-hidden="true"></i></span>
+        <p class="mt-5 font-display text-base font-bold text-fg sm:text-lg">Desain & Kreatif</p>
+        <p class="mt-1 inline-flex items-center gap-1 text-sm font-medium text-fg-muted group-hover:text-primary-700">Lihat lowongan<i class="kk kk-arrow-right h-3.5 w-3.5" aria-hidden="true"></i></p>
+      </a>
+      <a href="https://karirlink.id/lowongan" class="group flex flex-col rounded-3xl border border-border/70 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-lg" data-reveal>
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-success-50 text-success-600 transition-transform duration-300 group-hover:scale-110"><i class="kk kk-chart-line-up h-6 w-6" aria-hidden="true"></i></span>
+        <p class="mt-5 font-display text-base font-bold text-fg sm:text-lg">Pemasaran & Penjualan</p>
+        <p class="mt-1 inline-flex items-center gap-1 text-sm font-medium text-fg-muted group-hover:text-primary-700">Lihat lowongan<i class="kk kk-arrow-right h-3.5 w-3.5" aria-hidden="true"></i></p>
+      </a>
+      <a href="https://karirlink.id/lowongan" class="group flex flex-col rounded-3xl border border-border/70 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-lg" data-reveal>
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-danger-50 text-danger-600 transition-transform duration-300 group-hover:scale-110"><i class="kk kk-hand-heart h-6 w-6" aria-hidden="true"></i></span>
+        <p class="mt-5 font-display text-base font-bold text-fg sm:text-lg">Kesehatan</p>
+        <p class="mt-1 inline-flex items-center gap-1 text-sm font-medium text-fg-muted group-hover:text-primary-700">Lihat lowongan<i class="kk kk-arrow-right h-3.5 w-3.5" aria-hidden="true"></i></p>
+      </a>
+      <a href="https://karirlink.id/lowongan" class="group flex flex-col rounded-3xl border border-border/70 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-lg" data-reveal>
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-info-50 text-info-600 transition-transform duration-300 group-hover:scale-110"><i class="kk kk-money h-6 w-6" aria-hidden="true"></i></span>
+        <p class="mt-5 font-display text-base font-bold text-fg sm:text-lg">Bisnis & Keuangan</p>
+        <p class="mt-1 inline-flex items-center gap-1 text-sm font-medium text-fg-muted group-hover:text-primary-700">Lihat lowongan<i class="kk kk-arrow-right h-3.5 w-3.5" aria-hidden="true"></i></p>
+      </a>
+      <a href="https://karirlink.id/lowongan" class="group flex flex-col rounded-3xl border border-border/70 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-lg" data-reveal>
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-warning-50 text-warning-600 transition-transform duration-300 group-hover:scale-110"><i class="kk kk-shield-check h-6 w-6" aria-hidden="true"></i></span>
+        <p class="mt-5 font-display text-base font-bold text-fg sm:text-lg">Hukum & Kepatuhan</p>
+        <p class="mt-1 inline-flex items-center gap-1 text-sm font-medium text-fg-muted group-hover:text-primary-700">Lihat lowongan<i class="kk kk-arrow-right h-3.5 w-3.5" aria-hidden="true"></i></p>
+      </a>
+      <a href="https://karirlink.id/lowongan" class="group flex flex-col rounded-3xl border border-border/70 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-lg" data-reveal>
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-50 text-primary-600 transition-transform duration-300 group-hover:scale-110"><i class="kk kk-graduation-cap h-6 w-6" aria-hidden="true"></i></span>
+        <p class="mt-5 font-display text-base font-bold text-fg sm:text-lg">Pendidikan & Pelatihan</p>
+        <p class="mt-1 inline-flex items-center gap-1 text-sm font-medium text-fg-muted group-hover:text-primary-700">Lihat lowongan<i class="kk kk-arrow-right h-3.5 w-3.5" aria-hidden="true"></i></p>
+      </a>
+      <a href="https://karirlink.id/lowongan" class="group flex flex-col rounded-3xl border border-border/70 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-lg" data-reveal>
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary-50 text-secondary-600 transition-transform duration-300 group-hover:scale-110"><i class="kk kk-compass h-6 w-6" aria-hidden="true"></i></span>
+        <p class="mt-5 font-display text-base font-bold text-fg sm:text-lg">Perhotelan & Wisata</p>
+        <p class="mt-1 inline-flex items-center gap-1 text-sm font-medium text-fg-muted group-hover:text-primary-700">Lihat lowongan<i class="kk kk-arrow-right h-3.5 w-3.5" aria-hidden="true"></i></p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================= PERAN (tab interaktif) ============================= -->
+  <section id="untuk" class="mx-auto w-full max-w-7xl scroll-mt-12 sm:scroll-mt-10 px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="forTitle">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <h2 id="forTitle" class="font-display font-extrabold leading-[1.04] tracking-[-0.035em] text-fg text-4xl sm:text-6xl">Satu ekosistem, <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">tiga peran</span></h2>
+      <p class="mx-auto mt-4 max-w-xl text-fg-muted">Pilih peran Anda dan lihat bagaimana KarirLink mempertemukan semua pihak di ekosistem karier.</p>
+    </div>
+
+    <div data-ui-tabs class="mt-10">
+      <div class="mx-auto flex w-full max-w-md gap-1 rounded-full bg-neutral-100 p-1.5" role="tablist">
+        <button type="button" role="tab" data-ui-tab="role-perusahaan" aria-selected="true" class="tab tab-active min-h-11 flex-1 rounded-full px-5 sm:px-7">Perusahaan</button>
+        <button type="button" role="tab" data-ui-tab="role-kampus" aria-selected="false" class="tab min-h-11 flex-1 rounded-full px-5 sm:px-7"><span class="sm:hidden">Kampus</span><span class="hidden sm:inline">Perguruan Tinggi</span></button>
+        <button type="button" role="tab" data-ui-tab="role-lulusan" aria-selected="false" class="tab min-h-11 flex-1 rounded-full px-5 sm:px-7">Lulusan</button>
+      </div>
+
+      <div role="tabpanel" id="role-perusahaan" class="mt-8">
+        <div class="grid items-stretch gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div class="flex flex-col justify-between rounded-[2.5rem] bg-primary-50 p-8 sm:p-12">
+            <div>
+              <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm text-primary-600"><i class="kk kk-buildings h-7 w-7" aria-hidden="true"></i></span>
+              <h3 class="mt-6 font-display text-3xl font-extrabold leading-tight tracking-tight text-fg sm:text-4xl">Dapatkan talenta unggul dari kampus terpercaya.</h3>
+              <ul class="mt-6 space-y-3 text-fg-muted"><li class="flex gap-3"><i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0 text-primary-600" aria-hidden="true"></i>Publikasi lowongan dengan target spesifik: jurusan, lokasi, kampus</li><li class="flex gap-3"><i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0 text-primary-600" aria-hidden="true"></i>Application Tracking System (ATS) yang efektif</li><li class="flex gap-3"><i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0 text-primary-600" aria-hidden="true"></i>Talent Pool kandidat yang berminat bekerja di perusahaan Anda</li></ul>
+            </div>
+            <a href="https://portal.karirlink.id" class="btn-dark btn-lg mt-8 self-start">Pasang Lowongan<i class="kk kk-arrow-up-right h-4 w-4" aria-hidden="true"></i></a>
+          </div>
+          <div class="relative flex flex-col justify-center overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-primary-100 via-primary-50 to-secondary-100 p-6 sm:p-10" aria-hidden="true">
+            <div class="grid gap-3 sm:grid-cols-3">
+              <div class="rounded-3xl bg-white/70 p-3 backdrop-blur"><p class="mb-3 flex items-center justify-between text-xs font-bold text-fg">Baru <span class="badge badge-neutral">3</span></p><div class="space-y-2"><div class="rounded-2xl bg-white p-3 shadow-sm"><p class="text-xs font-semibold">Bima P.</p><p class="text-[11px] text-fg-muted">Informatika</p></div><div class="rounded-2xl bg-white p-3 shadow-sm"><p class="text-xs font-semibold">Dewi A.</p><p class="text-[11px] text-fg-muted">Manajemen</p></div></div></div>
+              <div class="rounded-3xl bg-white/70 p-3 backdrop-blur"><p class="mb-3 flex items-center justify-between text-xs font-bold text-fg">Diproses <span class="badge badge-primary">2</span></p><div class="space-y-2"><div class="rounded-2xl bg-white p-3 shadow-sm ring-2 ring-primary-300"><p class="text-xs font-semibold">Sari D.</p><p class="text-[11px] text-fg-muted">Akuntansi</p></div><div class="rounded-2xl bg-white p-3 shadow-sm"><p class="text-xs font-semibold">Rafi M.</p><p class="text-[11px] text-fg-muted">Informatika</p></div></div></div>
+              <div class="rounded-3xl bg-white/70 p-3 backdrop-blur"><p class="mb-3 flex items-center justify-between text-xs font-bold text-fg">Wawancara <span class="badge badge-success">1</span></p><div class="space-y-2"><div class="rounded-2xl bg-white p-3 shadow-sm"><p class="text-xs font-semibold">Aditya R.</p><p class="text-[11px] text-fg-muted">Teknik Industri</p></div></div></div>
+            </div>
+            <div class="mt-4 flex items-center gap-3 rounded-2xl bg-white p-4 shadow-lg"><span class="flex h-10 w-10 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-paper-plane-tilt h-5 w-5" aria-hidden="true"></i></span><div class="min-w-0 flex-1"><p class="text-sm font-bold">Undangan wawancara terkirim</p><p class="text-xs text-fg-muted">Pelamar diberi tahu otomatis</p></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="role-kampus" class="mt-8 hidden">
+        <div class="grid items-stretch gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div class="flex flex-col justify-between rounded-[2.5rem] bg-info-50 p-8 sm:p-12">
+            <div>
+              <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm text-info-600"><i class="kk kk-graduation-cap h-7 w-7" aria-hidden="true"></i></span>
+              <h3 class="mt-6 font-display text-3xl font-extrabold leading-tight tracking-tight text-fg sm:text-4xl">Sukses tracer study dan bantu karier alumni.</h3>
+              <ul class="mt-6 space-y-3 text-fg-muted"><li class="flex gap-3"><i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0 text-info-600" aria-hidden="true"></i>Digitalisasi tracer study untuk pelaporan IKU dan akreditasi</li><li class="flex gap-3"><i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0 text-info-600" aria-hidden="true"></i>CDC dengan merek kampus dan testimoni alumni</li><li class="flex gap-3"><i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0 text-info-600" aria-hidden="true"></i>Virtual Job Expo bersama mitra perusahaan</li></ul>
+            </div>
+            <a href="https://wa.me/628113023500" class="btn-dark btn-lg mt-8 self-start">Jadwalkan Demo<i class="kk kk-arrow-up-right h-4 w-4" aria-hidden="true"></i></a>
+          </div>
+          <div class="relative flex flex-col justify-center overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-secondary-100 via-secondary-50 to-primary-100 p-6 sm:p-10" aria-hidden="true">
+            <div class="rounded-3xl bg-white p-5 shadow-xl">
+              <div class="flex items-center justify-between"><p class="font-display text-base font-bold">Ringkasan Tracer Study</p><span class="badge badge-success">Berjalan</span></div>
+              <div class="mt-6 flex h-36 items-end gap-3">
+                <div class="h-[45%] flex-1 rounded-t-xl bg-primary-200"></div><div class="h-[62%] flex-1 rounded-t-xl bg-primary-300"></div><div class="h-[86%] flex-1 rounded-t-xl bg-primary-500"></div><div class="h-[70%] flex-1 rounded-t-xl bg-secondary-400"></div><div class="h-[54%] flex-1 rounded-t-xl bg-primary-400"></div><div class="h-[94%] flex-1 rounded-t-xl bg-primary-600"></div>
+              </div>
+              <div class="mt-3 flex justify-between text-[11px] text-fg-subtle"><span>Gel. 1</span><span>Gel. 2</span><span>Gel. 3</span><span>Gel. 4</span><span>Gel. 5</span><span>Gel. 6</span></div>
+            </div>
+            <div class="mt-4 grid gap-3 sm:grid-cols-2">
+              <div class="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-lg"><span class="flex h-10 w-10 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-certificate h-5 w-5" aria-hidden="true"></i></span><p class="text-sm font-bold">Siap untuk IKU</p></div>
+              <div class="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-lg"><span class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-database h-5 w-5" aria-hidden="true"></i></span><p class="text-sm font-bold">Data alumni terpadu</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="role-lulusan" class="mt-8 hidden">
+        <div class="grid items-stretch gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div class="flex flex-col justify-between rounded-[2.5rem] bg-secondary-50 p-8 sm:p-12">
+            <div>
+              <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm text-secondary-600"><i class="kk kk-user-plus h-7 w-7" aria-hidden="true"></i></span>
+              <h3 class="mt-6 font-display text-3xl font-extrabold leading-tight tracking-tight text-fg sm:text-4xl">Temukan pekerjaan pertama yang benar-benar cocok.</h3>
+              <ul class="mt-6 space-y-3 text-fg-muted"><li class="flex gap-3"><i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0 text-secondary-600" aria-hidden="true"></i>Rekomendasi sesuai minat, keahlian, dan pengalaman</li><li class="flex gap-3"><i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0 text-secondary-600" aria-hidden="true"></i>CV Builder profesional untuk personal branding</li><li class="flex gap-3"><i class="kk kk-check-circle mt-0.5 h-5 w-5 shrink-0 text-secondary-600" aria-hidden="true"></i>Lowongan full time, magang, part time, dan freelance</li></ul>
+            </div>
+            <a href="https://portal.karirlink.id" class="btn-dark btn-lg mt-8 self-start">Mulai Cari Kerja<i class="kk kk-arrow-up-right h-4 w-4" aria-hidden="true"></i></a>
+          </div>
+          <div class="relative flex items-end justify-center overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-success-100 via-primary-50 to-primary-100 px-6 pt-10 sm:px-10" aria-hidden="true">
+            <div class="w-full max-w-[19rem] rounded-t-[2.5rem] border-8 border-b-0 border-neutral-900 bg-white p-4 pb-10 shadow-2xl">
+              <div class="mx-auto mb-3 h-1.5 w-16 rounded-full bg-neutral-200"></div>
+              <p class="text-xs text-fg-muted">Halo, Sari</p><p class="font-display text-lg font-extrabold">Pekerjaan untukmu</p>
+              <div class="mt-3 space-y-2.5">
+                <div class="flex items-center gap-3 rounded-2xl bg-neutral-50 p-3"><span class="avatar avatar-square h-10 w-10 rounded-xl bg-secondary-100 text-xs font-bold text-secondary-700">TK</span><div class="min-w-0 flex-1"><p class="truncate text-xs font-bold">Junior Frontend Dev</p><p class="text-[11px] text-fg-muted">Jakarta</p></div><span class="badge badge-primary">Cocok</span></div>
+                <div class="flex items-center gap-3 rounded-2xl bg-neutral-50 p-3"><span class="avatar avatar-square h-10 w-10 rounded-xl bg-success-100 text-xs font-bold text-success-700">BM</span><div class="min-w-0 flex-1"><p class="truncate text-xs font-bold">Management Trainee</p><p class="text-[11px] text-fg-muted">Bandung</p></div><i class="kk kk-bookmark-simple h-4 w-4 text-fg-subtle" aria-hidden="true"></i></div>
+                <div class="flex items-center gap-3 rounded-2xl bg-primary-50 p-3 text-primary-700"><i class="kk kk-file-text h-5 w-5" aria-hidden="true"></i><span class="text-xs font-bold">CV Builder siap diunduh</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= ANGKA (petak pastel) ============================= -->
+  <section class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="statTitle">
+    <div class="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <div data-reveal>
+        <h2 id="statTitle" class="font-display font-extrabold leading-[1.04] tracking-[-0.035em] text-fg text-4xl sm:text-6xl">Ekosistem karier yang <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">terus tumbuh.</span></h2>
+        <p class="mt-5 max-w-md italic text-fg-muted">Dibangun di atas pengalaman SEVIMA di bidang teknologi pendidikan, untuk kampus, industri, dan lulusan.</p>
+      </div>
+      <div class="grid gap-4 pb-8 sm:grid-cols-2">
+        <div class="rounded-[2rem] bg-primary-100 p-6 sm:p-7 " data-reveal><p class="font-display text-6xl font-extrabold leading-none tracking-[-0.05em] text-primary-700 sm:text-7xl">1000+</p><p class="mt-4 text-sm font-medium text-fg/80">Perguruan tinggi se-Indonesia</p></div>
+        <div class="rounded-[2rem] bg-secondary-100 p-6 sm:p-7 sm:translate-y-8" data-reveal><p class="font-display text-6xl font-extrabold leading-none tracking-[-0.05em] text-secondary-600 sm:text-7xl">4</p><p class="mt-4 text-sm font-medium text-fg/80">Jenis lowongan: full time, magang, part time, freelance</p></div>
+        <div class="rounded-[2rem] bg-success-100 p-6 sm:p-7 " data-reveal><p class="font-display text-6xl font-extrabold leading-none tracking-[-0.05em] text-success-700 sm:text-7xl">ATS</p><p class="mt-4 text-sm font-medium text-fg/80">Status pelamar terpantau real-time</p></div>
+        <div class="rounded-[2rem] bg-info-100 p-6 sm:p-7 sm:translate-y-8" data-reveal><p class="font-display text-6xl font-extrabold leading-none tracking-[-0.05em] text-info-700 sm:text-7xl">IKU</p><p class="mt-4 text-sm font-medium text-fg/80">Pelaporan dan akreditasi lebih mudah</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FITUR ============================= -->
+  <section id="fitur" class="mx-auto w-full max-w-7xl scroll-mt-12 sm:scroll-mt-10 px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="benefitTitle">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <h2 id="benefitTitle" class="font-display font-extrabold leading-[1.04] tracking-[-0.035em] text-fg text-4xl sm:text-6xl">Semua yang dibutuhkan, <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">tanpa ribet.</span></h2>
+    </div>
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="rounded-[2rem] border border-border/70 bg-white p-3 shadow-card" data-reveal>
+        <div class="flex h-32 items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-primary-100 to-primary-50"><span class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-primary-600 shadow-lg"><i class="kk kk-users h-8 w-8" aria-hidden="true"></i></span></div>
+        <div class="p-4"><h3 class="font-display text-xl font-bold text-fg">Akses ke Talenta Unggul</h3><p class="card-text mt-2">Database lulusan berkualitas sesuai kebutuhan spesifik dari 1000+ perguruan tinggi se-Indonesia.</p></div>
+      </div>
+      <div class="rounded-[2rem] border border-border/70 bg-white p-3 shadow-card" data-reveal>
+        <div class="flex h-32 items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-secondary-100 to-secondary-50"><span class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-secondary-600 shadow-lg"><i class="kk kk-list-checks h-8 w-8" aria-hidden="true"></i></span></div>
+        <div class="p-4"><h3 class="font-display text-xl font-bold text-fg">Tracer Study Management</h3><p class="card-text mt-2">Sukses pelaporan IKU dan akreditasi dengan modul Tracer Study.</p></div>
+      </div>
+      <div class="rounded-[2rem] border border-border/70 bg-white p-3 shadow-card" data-reveal>
+        <div class="flex h-32 items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-success-100 to-success-50"><span class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-success-600 shadow-lg"><i class="kk kk-database h-8 w-8" aria-hidden="true"></i></span></div>
+        <div class="p-4"><h3 class="font-display text-xl font-bold text-fg">Data Alumni Terintegrasi</h3><p class="card-text mt-2">Kelola dan lacak data alumni, dari akreditasi hingga manajemen karier lulusan.</p></div>
+      </div>
+      <div class="rounded-[2rem] border border-border/70 bg-white p-3 shadow-card" data-reveal>
+        <div class="flex h-32 items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-info-100 to-info-50"><span class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-info-600 shadow-lg"><i class="kk kk-paper-plane-tilt h-8 w-8" aria-hidden="true"></i></span></div>
+        <div class="p-4"><h3 class="font-display text-xl font-bold text-fg">ATS yang Efektif</h3><p class="card-text mt-2">Rekrutmen terintegrasi dengan kanal komunikasi kepada pelamar.</p></div>
+      </div>
+      <div class="rounded-[2rem] border border-border/70 bg-white p-3 shadow-card" data-reveal>
+        <div class="flex h-32 items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-warning-100 to-warning-50"><span class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-warning-600 shadow-lg"><i class="kk kk-file-text h-8 w-8" aria-hidden="true"></i></span></div>
+        <div class="p-4"><h3 class="font-display text-xl font-bold text-fg">CV Builder</h3><p class="card-text mt-2">CV profesional yang otomatis dan interaktif, terintegrasi dengan portal karier.</p></div>
+      </div>
+      <div class="rounded-[2rem] border border-border/70 bg-white p-3 shadow-card" data-reveal>
+        <div class="flex h-32 items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-danger-100 to-danger-50"><span class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-danger-600 shadow-lg"><i class="kk kk-handshake h-8 w-8" aria-hidden="true"></i></span></div>
+        <div class="p-4"><h3 class="font-display text-xl font-bold text-fg">Kolaborasi Industri</h3><p class="card-text mt-2">Perkuat hubungan kampus, perusahaan, dan alumni untuk peluang kerja yang lebih baik.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= LOWONGAN ============================= -->
+  <section id="lowongan" class="mx-auto w-full max-w-7xl scroll-mt-12 sm:scroll-mt-10 px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="jobsTitle">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <h2 id="jobsTitle" class="font-display font-extrabold leading-[1.04] tracking-[-0.035em] text-fg text-4xl sm:text-6xl">Pilihan pekerjaan <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">terbaik.</span></h2>
+      <p class="mx-auto mt-4 max-w-xl text-fg-muted">Lulusan baru punya bakat dan potensi luar biasa. Temukan perusahaan yang siap tumbuh bersama Anda.</p>
+    </div>
+    <div data-ui-tabs class="mt-10">
+      <div class="mx-auto flex w-full max-w-sm gap-1 rounded-full bg-neutral-100 p-1.5" role="tablist">
+        <button type="button" role="tab" data-ui-tab="jobs-kerja" aria-selected="true" class="tab tab-active min-h-11 flex-1 rounded-full px-4">Lowongan Kerja</button>
+        <button type="button" role="tab" data-ui-tab="jobs-magang" aria-selected="false" class="tab min-h-11 flex-1 rounded-full px-4">Lowongan Magang</button>
+      </div>
+      <div role="tabpanel" id="jobs-kerja" class="mt-8"><div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <article class="group flex flex-col rounded-[1.75rem] border border-border/70 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-card-lg">
+              <div class="flex items-start justify-between gap-3"><span class="avatar avatar-square h-14 w-14 rounded-2xl text-base font-extrabold bg-primary-100 text-primary-700">NB</span><span class="badge badge-neutral">2 hari lalu</span></div>
+              <p class="mt-5 text-sm font-medium text-fg-muted">Nusantara Boga</p>
+              <h3 class="mt-1 font-display text-xl font-bold leading-snug text-fg">Staf Administrasi dan Operasional</h3>
+              <div class="mt-4 flex flex-wrap gap-2"><span class="badge badge-primary">Full time</span><span class="badge badge-neutral"><i class="kk kk-map-pin h-3 w-3" aria-hidden="true"></i>Surabaya, Jawa Timur</span></div>
+              <div class="mt-6 flex items-center justify-between gap-3 border-t border-dashed border-border pt-4"><span class="font-display text-base font-bold text-fg">Rp4,5 jt - Rp6 jt</span><a href="https://karirlink.id/lowongan" class="inline-flex min-h-11 items-center rounded-full bg-neutral-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700">Lamar</a></div>
+            </article>
+            <article class="group flex flex-col rounded-[1.75rem] border border-border/70 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-card-lg">
+              <div class="flex items-start justify-between gap-3"><span class="avatar avatar-square h-14 w-14 rounded-2xl text-base font-extrabold bg-secondary-100 text-secondary-700">TK</span><span class="badge badge-neutral">3 hari lalu</span></div>
+              <p class="mt-5 text-sm font-medium text-fg-muted">Teknologi Karya</p>
+              <h3 class="mt-1 font-display text-xl font-bold leading-snug text-fg">Junior Frontend Developer</h3>
+              <div class="mt-4 flex flex-wrap gap-2"><span class="badge badge-primary">Full time</span><span class="badge badge-neutral"><i class="kk kk-map-pin h-3 w-3" aria-hidden="true"></i>Jakarta Selatan</span></div>
+              <div class="mt-6 flex items-center justify-between gap-3 border-t border-dashed border-border pt-4"><span class="font-display text-base font-bold text-fg">Rp7 jt - Rp10 jt</span><a href="https://karirlink.id/lowongan" class="inline-flex min-h-11 items-center rounded-full bg-neutral-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700">Lamar</a></div>
+            </article>
+            <article class="group flex flex-col rounded-[1.75rem] border border-border/70 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-card-lg">
+              <div class="flex items-start justify-between gap-3"><span class="avatar avatar-square h-14 w-14 rounded-2xl text-base font-extrabold bg-success-100 text-success-700">BM</span><span class="badge badge-neutral">5 hari lalu</span></div>
+              <p class="mt-5 text-sm font-medium text-fg-muted">Bank Mitra Sejahtera</p>
+              <h3 class="mt-1 font-display text-xl font-bold leading-snug text-fg">Management Trainee</h3>
+              <div class="mt-4 flex flex-wrap gap-2"><span class="badge badge-primary">Full time</span><span class="badge badge-neutral"><i class="kk kk-map-pin h-3 w-3" aria-hidden="true"></i>Bandung, Jawa Barat</span></div>
+              <div class="mt-6 flex items-center justify-between gap-3 border-t border-dashed border-border pt-4"><span class="font-display text-base font-bold text-fg">Rp6,5 jt - Rp8 jt</span><a href="https://karirlink.id/lowongan" class="inline-flex min-h-11 items-center rounded-full bg-neutral-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700">Lamar</a></div>
+            </article>
+      </div></div>
+      <div role="tabpanel" id="jobs-magang" class="mt-8 hidden"><div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <article class="group flex flex-col rounded-[1.75rem] border border-border/70 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-card-lg">
+              <div class="flex items-start justify-between gap-3"><span class="avatar avatar-square h-14 w-14 rounded-2xl text-base font-extrabold bg-info-100 text-info-700">KD</span><span class="badge badge-neutral">1 hari lalu</span></div>
+              <p class="mt-5 text-sm font-medium text-fg-muted">Kreasi Digital Studio</p>
+              <h3 class="mt-1 font-display text-xl font-bold leading-snug text-fg">Magang UI/UX Designer</h3>
+              <div class="mt-4 flex flex-wrap gap-2"><span class="badge badge-primary">Magang</span><span class="badge badge-neutral"><i class="kk kk-map-pin h-3 w-3" aria-hidden="true"></i>Yogyakarta</span></div>
+              <div class="mt-6 flex items-center justify-between gap-3 border-t border-dashed border-border pt-4"><span class="font-display text-base font-bold text-fg">Rp2 jt / bulan</span><a href="https://karirlink.id/lowongan" class="inline-flex min-h-11 items-center rounded-full bg-neutral-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700">Lamar</a></div>
+            </article>
+            <article class="group flex flex-col rounded-[1.75rem] border border-border/70 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-card-lg">
+              <div class="flex items-start justify-between gap-3"><span class="avatar avatar-square h-14 w-14 rounded-2xl text-base font-extrabold bg-warning-100 text-warning-700">MP</span><span class="badge badge-neutral">4 hari lalu</span></div>
+              <p class="mt-5 text-sm font-medium text-fg-muted">Media Pustaka Indonesia</p>
+              <h3 class="mt-1 font-display text-xl font-bold leading-snug text-fg">Magang Content Writer</h3>
+              <div class="mt-4 flex flex-wrap gap-2"><span class="badge badge-primary">Magang</span><span class="badge badge-neutral"><i class="kk kk-map-pin h-3 w-3" aria-hidden="true"></i>Semarang, Jawa Tengah</span></div>
+              <div class="mt-6 flex items-center justify-between gap-3 border-t border-dashed border-border pt-4"><span class="font-display text-base font-bold text-fg">Rp1,5 jt / bulan</span><a href="https://karirlink.id/lowongan" class="inline-flex min-h-11 items-center rounded-full bg-neutral-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700">Lamar</a></div>
+            </article>
+            <article class="group flex flex-col rounded-[1.75rem] border border-border/70 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-card-lg">
+              <div class="flex items-start justify-between gap-3"><span class="avatar avatar-square h-14 w-14 rounded-2xl text-base font-extrabold bg-danger-100 text-danger-700">LS</span><span class="badge badge-neutral">6 hari lalu</span></div>
+              <p class="mt-5 text-sm font-medium text-fg-muted">Logistik Sentosa</p>
+              <h3 class="mt-1 font-display text-xl font-bold leading-snug text-fg">Magang Analis Data</h3>
+              <div class="mt-4 flex flex-wrap gap-2"><span class="badge badge-primary">Magang</span><span class="badge badge-neutral"><i class="kk kk-map-pin h-3 w-3" aria-hidden="true"></i>Medan, Sumatera Utara</span></div>
+              <div class="mt-6 flex items-center justify-between gap-3 border-t border-dashed border-border pt-4"><span class="font-display text-base font-bold text-fg">Rp2,5 jt / bulan</span><a href="https://karirlink.id/lowongan" class="inline-flex min-h-11 items-center rounded-full bg-neutral-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700">Lamar</a></div>
+            </article>
+      </div></div>
+    </div>
+    <div class="mt-10 text-center"><a href="https://karirlink.id/lowongan" class="btn-dark btn-lg">Lowongan Lainnya<i class="kk kk-arrow-up-right h-4 w-4" aria-hidden="true"></i></a></div>
+  </section>
+
+  <!-- ============================= CARA BERGABUNG ============================= -->
+  <section id="cara-bergabung" class="mx-auto w-full max-w-7xl scroll-mt-12 sm:scroll-mt-10 px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="stepTitle">
+    <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <div data-reveal><h2 id="stepTitle" class="font-display font-extrabold leading-[1.04] tracking-[-0.035em] text-fg text-4xl sm:text-6xl">Karier impianmu dimulai <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">dari sini.</span></h2>
+        <p class="mt-4 max-w-md text-fg-muted">Tiga langkah sederhana untuk bergabung, baik sebagai pencari kerja, perusahaan, maupun perguruan tinggi.</p>
+        <a href="https://portal.karirlink.id" class="btn-dark btn-lg mt-6">Gabung Sekarang<i class="kk kk-arrow-up-right h-4 w-4" aria-hidden="true"></i></a></div>
+        <ol class="mt-8 space-y-3">
+          <li class="flex items-start gap-4 rounded-3xl border border-border/70 bg-white p-5 shadow-card" data-reveal><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-50 font-display text-sm font-extrabold text-primary-700 ring-1 ring-primary-200">01</span><div><h3 class="font-display text-lg font-bold text-fg">Buat akun</h3><p class="card-text mt-1">Daftar sebagai mahasiswa atau lulusan, perusahaan, atau perguruan tinggi.</p></div></li>
+          <li class="flex items-start gap-4 rounded-3xl border border-border/70 bg-white p-5 shadow-card" data-reveal><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-50 font-display text-sm font-extrabold text-primary-700 ring-1 ring-primary-200">02</span><div><h3 class="font-display text-lg font-bold text-fg">Lengkapi profil</h3><p class="card-text mt-1">Isi data diri, pengalaman, dan minat. CV profesional tersusun otomatis dari profil Anda.</p></div></li>
+          <li class="flex items-start gap-4 rounded-3xl border border-border/70 bg-white p-5 shadow-card" data-reveal><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-50 font-display text-sm font-extrabold text-primary-700 ring-1 ring-primary-200">03</span><div><h3 class="font-display text-lg font-bold text-fg">Lamar atau rekrut</h3><p class="card-text mt-1">Lamar lowongan yang cocok, atau publikasikan lowongan dan kelola kandidat lewat ATS.</p></div></li>
+        </ol>
+      </div>
+      <div class="relative flex min-h-[26rem] items-center justify-center overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-primary-100 via-primary-50 to-secondary-100 p-8" aria-hidden="true" data-reveal>
+        <div class="relative w-full max-w-sm">
+          <div class="rounded-3xl bg-white p-5 shadow-2xl ring-1 ring-black/5">
+            <div class="flex items-center gap-3"><span class="avatar h-12 w-12 bg-primary-100 text-sm font-bold text-primary-700">SD</span><div class="min-w-0 flex-1"><div class="h-2.5 w-28 rounded-full bg-neutral-800"></div><div class="mt-2 h-2 w-20 rounded-full bg-neutral-200"></div></div><span class="badge badge-success">Lengkap</span></div>
+            <div class="mt-5 space-y-2"><div class="h-2 w-full rounded-full bg-neutral-100"></div><div class="h-2 w-5/6 rounded-full bg-neutral-100"></div><div class="h-2 w-2/3 rounded-full bg-neutral-100"></div></div>
+            <div class="mt-5 flex flex-wrap gap-2"><span class="badge badge-primary">Informatika</span><span class="badge badge-neutral">Magang</span><span class="badge badge-neutral">Organisasi</span></div>
+          </div>
+          <div class="absolute -right-4 -top-5 flex items-center gap-2 rounded-full bg-neutral-900 py-2 pl-2 pr-4 text-white shadow-xl"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-success-500"><i class="kk kk-check-circle h-4 w-4" aria-hidden="true"></i></span><span class="text-xs font-semibold">Diterima!</span></div>
+          <div class="absolute -bottom-6 -left-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-black/5"><span class="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-briefcase h-5 w-5" aria-hidden="true"></i></span><div><p class="text-xs font-bold text-fg">Junior Frontend Developer</p><p class="text-[11px] text-fg-muted">Lamaran terkirim</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= TESTIMONI ============================= -->
+  <section class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="testiTitle">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <h2 id="testiTitle" class="font-display font-extrabold leading-[1.04] tracking-[-0.035em] text-fg text-4xl sm:text-6xl">Cerita dari <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">pengguna</span> kami</h2>
+    </div>
+    <div class="mt-12 grid gap-5 md:grid-cols-3">
+      <figure class="flex flex-col rounded-[2rem] border border-border/70 bg-white p-7 shadow-card" data-reveal>
+        <i class="kk kk-quotes h-8 w-8 text-primary-200" aria-hidden="true"></i>
+        <blockquote class="mt-4 flex-1 text-base leading-relaxed text-fg">Dengan CV Builder, saya bisa melamar ke beberapa perusahaan dalam satu sore. Prosesnya ringkas dan statusnya jelas.</blockquote>
+        <figcaption class="mt-6 flex items-center gap-3"><span class="avatar h-11 w-11 text-sm font-bold bg-primary-100 text-primary-700">AP</span><span><span class="block text-sm font-bold text-fg">Alex P.</span><span class="block text-xs text-fg-muted">Lulusan, Informatika</span></span></figcaption>
+      </figure>
+      <figure class="flex flex-col rounded-[2rem] border border-border/70 bg-white p-7 shadow-card" data-reveal>
+        <i class="kk kk-quotes h-8 w-8 text-primary-200" aria-hidden="true"></i>
+        <blockquote class="mt-4 flex-1 text-base leading-relaxed text-fg">Rekrutmen jadi lebih tertata. Status pelamar langsung terlihat dan kandidat bisa difilter sesuai kebutuhan.</blockquote>
+        <figcaption class="mt-6 flex items-center gap-3"><span class="avatar h-11 w-11 text-sm font-bold bg-secondary-100 text-secondary-700">ML</span><span><span class="block text-sm font-bold text-fg">Maria L.</span><span class="block text-xs text-fg-muted">HR, perusahaan mitra</span></span></figcaption>
+      </figure>
+      <figure class="flex flex-col rounded-[2rem] border border-border/70 bg-white p-7 shadow-card" data-reveal>
+        <i class="kk kk-quotes h-8 w-8 text-primary-200" aria-hidden="true"></i>
+        <blockquote class="mt-4 flex-1 text-base leading-relaxed text-fg">Tracer study kampus kami berjalan lebih rapi dan datanya siap dipakai untuk pelaporan IKU.</blockquote>
+        <figcaption class="mt-6 flex items-center gap-3"><span class="avatar h-11 w-11 text-sm font-bold bg-success-100 text-success-700">JR</span><span><span class="block text-sm font-bold text-fg">James R.</span><span class="block text-xs text-fg-muted">Admin CDC, perguruan tinggi</span></span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================= TIPS ============================= -->
+  <section id="tips" class="mx-auto w-full max-w-7xl scroll-mt-12 sm:scroll-mt-10 px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="tipsTitle">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <h2 id="tipsTitle" class="font-display font-extrabold leading-[1.04] tracking-[-0.035em] text-fg text-4xl sm:text-6xl">Tips &amp; trik sukses <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">melamar kerja.</span></h2>
+      <p class="mx-auto mt-4 max-w-xl text-fg-muted">Panduan menuju karier impian dari para ahli, mulai dari surat lamaran sampai persiapan wawancara.</p>
+    </div>
+    <div class="mt-12 grid gap-5 lg:grid-cols-[1.15fr_1fr]">
+      <a href="https://portal.karirlink.id/article" class="group relative flex min-h-[22rem] flex-col justify-end overflow-hidden rounded-[2.25rem] bg-gradient-to-br from-primary-500 via-primary-600 to-primary-800 p-8 text-white" data-reveal>
+        <i class="kk kk-identification-card absolute -right-6 -top-6 h-56 w-56 text-white/10 transition-transform duration-500 group-hover:scale-110" aria-hidden="true"></i>
+        <span class="badge badge-neutral relative self-start">Persiapan Kerja</span>
+        <h3 class="relative mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">Mengoptimalkan profil LinkedIn untuk mencari pekerjaan</h3>
+        <p class="relative mt-3 max-w-md text-white/80">Hadirkan diri secara profesional, dari foto profil yang menarik hingga ringkasan yang berdampak.</p>
+      </a>
+      <div class="grid gap-5">
+        <a href="https://portal.karirlink.id/article" class="group flex items-center gap-5 rounded-[2.25rem] border border-border/70 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-lg" data-reveal>
+          <span class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-secondary-100 text-secondary-600"><i class="kk kk-users h-9 w-9" aria-hidden="true"></i></span>
+          <div><span class="badge badge-primary">Persiapan Kerja</span><h3 class="mt-2 font-display text-lg font-bold leading-snug text-fg">Memanfaatkan jaringan kontak untuk peluang kerja</h3></div>
+        </a>
+        <a href="https://portal.karirlink.id/article" class="group flex items-center gap-5 rounded-[2.25rem] border border-border/70 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-lg" data-reveal>
+          <span class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-success-100 text-success-600"><i class="kk kk-file-text h-9 w-9" aria-hidden="true"></i></span>
+          <div><span class="badge badge-primary">Persiapan Kerja</span><h3 class="mt-2 font-display text-lg font-bold leading-snug text-fg">Menyusun resume yang menonjol di tumpukan lamaran</h3></div>
+        </a>
+      </div>
+    </div>
+    <div class="mt-8 text-center"><a href="https://portal.karirlink.id/article" class="btn-outline btn-lg bg-white">Lihat semua tips<i class="kk kk-arrow-up-right h-4 w-4" aria-hidden="true"></i></a></div>
+  </section>
+
+  <!-- ============================= FAQ ============================= -->
+  <section id="faq" class="mx-auto w-full max-w-7xl scroll-mt-12 sm:scroll-mt-10 px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="faqTitle">
+    <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <div class="lg:sticky lg:top-28 lg:self-start" data-reveal>
+        <h2 id="faqTitle" class="font-display font-extrabold leading-[1.04] tracking-[-0.035em] text-fg text-4xl sm:text-6xl">Ada <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">pertanyaan?</span></h2>
+        <p class="card-text mt-4 max-w-sm">Masih ada yang ingin ditanyakan? <a href="https://wa.me/628113023500" class="card-link inline-flex">Hubungi tim kami</a></p>
+      </div>
+      <div class="space-y-3">
+          <details class="group rounded-3xl border border-border/70 bg-white shadow-card transition-shadow open:shadow-card-lg" open>
+            <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left font-display text-base font-bold text-fg sm:text-lg">Apa itu KarirLink?<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-fg transition-transform duration-300 group-open:rotate-45 group-open:bg-neutral-900 group-open:text-white"><i class="kk kk-plus h-4 w-4" aria-hidden="true"></i></span></summary>
+            <p class="px-6 pb-6 text-sm leading-relaxed text-fg-muted sm:text-base">KarirLink adalah platform portal lowongan yang membantu mahasiswa dan alumni mencari kerja, mulai dari lowongan full time, magang, part time, hingga freelance. Bagi perusahaan, KarirLink memudahkan manajemen kandidat lewat sistem talent management yang efisien.</p>
+          </details>
+          <details class="group rounded-3xl border border-border/70 bg-white shadow-card transition-shadow open:shadow-card-lg">
+            <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left font-display text-base font-bold text-fg sm:text-lg">Apa itu CV Builder KarirLink?<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-fg transition-transform duration-300 group-open:rotate-45 group-open:bg-neutral-900 group-open:text-white"><i class="kk kk-plus h-4 w-4" aria-hidden="true"></i></span></summary>
+            <p class="px-6 pb-6 text-sm leading-relaxed text-fg-muted sm:text-base">Cukup lengkapi profil di KarirLink, lalu Anda mendapat CV dengan tata letak dan huruf yang profesional. CV bisa langsung diunduh dan dibagikan untuk melamar pekerjaan.</p>
+          </details>
+          <details class="group rounded-3xl border border-border/70 bg-white shadow-card transition-shadow open:shadow-card-lg">
+            <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left font-display text-base font-bold text-fg sm:text-lg">Apa itu Career Development Center (CDC)?<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-fg transition-transform duration-300 group-open:rotate-45 group-open:bg-neutral-900 group-open:text-white"><i class="kk kk-plus h-4 w-4" aria-hidden="true"></i></span></summary>
+            <p class="px-6 pb-6 text-sm leading-relaxed text-fg-muted sm:text-base">CDC KarirLink dapat dipersonalisasi sesuai merek masing-masing perguruan tinggi. Alumni mendapat info lowongan terbaru dan testimoni alumni yang sukses, ditambah Virtual Job Expo yang diselenggarakan berkala.</p>
+          </details>
+          <details class="group rounded-3xl border border-border/70 bg-white shadow-card transition-shadow open:shadow-card-lg">
+            <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left font-display text-base font-bold text-fg sm:text-lg">Apa itu Virtual Job Expo?<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-fg transition-transform duration-300 group-open:rotate-45 group-open:bg-neutral-900 group-open:text-white"><i class="kk kk-plus h-4 w-4" aria-hidden="true"></i></span></summary>
+            <p class="px-6 pb-6 text-sm leading-relaxed text-fg-muted sm:text-base">Perguruan tinggi berkolaborasi dengan mitra perusahaan untuk mengadakan job expo daring. Alumni mendapat info lowongan, mengikuti proses rekrutmen, dan mengenal industri; perusahaan mudah menjangkau kandidat dari berbagai kampus.</p>
+          </details>
+          <details class="group rounded-3xl border border-border/70 bg-white shadow-card transition-shadow open:shadow-card-lg">
+            <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left font-display text-base font-bold text-fg sm:text-lg">Apa itu Talent Pool?<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-fg transition-transform duration-300 group-open:rotate-45 group-open:bg-neutral-900 group-open:text-white"><i class="kk kk-plus h-4 w-4" aria-hidden="true"></i></span></summary>
+            <p class="px-6 pb-6 text-sm leading-relaxed text-fg-muted sm:text-base">Talent Pool adalah kandidat potensial yang menunjukkan minat bekerja di perusahaan pilihannya. Perusahaan bisa melihat keterampilan, pengalaman, dan latar belakang pendidikan kandidat, sehingga menghemat waktu dan biaya rekrutmen.</p>
+          </details>
+          <details class="group rounded-3xl border border-border/70 bg-white shadow-card transition-shadow open:shadow-card-lg">
+            <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left font-display text-base font-bold text-fg sm:text-lg">Bagaimana perusahaan merekrut lewat KarirLink?<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-fg transition-transform duration-300 group-open:rotate-45 group-open:bg-neutral-900 group-open:text-white"><i class="kk kk-plus h-4 w-4" aria-hidden="true"></i></span></summary>
+            <p class="px-6 pb-6 text-sm leading-relaxed text-fg-muted sm:text-base">Perusahaan mengunggah lowongan dengan kriteria spesifik seperti jurusan, lokasi, dan lulusan perguruan tinggi tertentu, lalu memantau status pelamar secara real-time lewat Talent Management System.</p>
+          </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= CTA (panel pastel) ============================= -->
+  <section id="hubungi-kami" class="px-3 pb-16 sm:px-5 sm:pb-24" aria-labelledby="ctaTitle">
+    <div class="relative mx-auto max-w-[90rem] overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary-200 via-primary-100 to-secondary-100 px-6 py-20 text-center sm:rounded-[3rem] sm:py-28" data-reveal>
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 hidden opacity-60 md:block">
+        <div class="absolute left-[4%] top-[18%] w-56 -rotate-6 rounded-3xl bg-white/70 p-4 backdrop-blur"><div class="flex items-center gap-3"><span class="avatar avatar-square h-10 w-10 rounded-xl bg-secondary-100 text-xs font-extrabold text-secondary-700">TK</span><div><p class="text-sm font-bold">Data Analyst</p><p class="text-xs text-fg-muted">Full time</p></div></div></div>
+        <div class="absolute bottom-[14%] left-[10%] w-52 rotate-3 rounded-3xl bg-white/70 p-4 backdrop-blur"><div class="flex items-center gap-3"><span class="avatar avatar-square h-10 w-10 rounded-xl bg-success-100 text-xs font-extrabold text-success-700">BM</span><div><p class="text-sm font-bold">Management Trainee</p><p class="text-xs text-fg-muted">Bandung</p></div></div></div>
+        <div class="absolute right-[4%] top-[14%] w-56 rotate-6 rounded-3xl bg-white/70 p-4 backdrop-blur"><div class="flex items-center gap-3"><span class="avatar avatar-square h-10 w-10 rounded-xl bg-info-100 text-xs font-extrabold text-info-700">KD</span><div><p class="text-sm font-bold">UI/UX Designer</p><p class="text-xs text-fg-muted">Magang</p></div></div></div>
+        <div class="absolute bottom-[16%] right-[9%] w-52 -rotate-3 rounded-3xl bg-white/70 p-4 backdrop-blur"><div class="flex items-center gap-3"><span class="avatar avatar-square h-10 w-10 rounded-xl bg-primary-100 text-xs font-extrabold text-primary-700">NB</span><div><p class="text-sm font-bold">Staf Administrasi</p><p class="text-xs text-fg-muted">Surabaya</p></div></div></div>
+      </div>
+      <div class="relative mx-auto max-w-3xl">
+        <h2 id="ctaTitle" class="text-balance font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-fg sm:text-6xl">Mulai perjalanan <span class="italic bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 box-decoration-clone bg-clip-text pr-[0.2em] text-transparent">kariermu</span> hari ini</h2>
+        <p class="mx-auto mt-5 max-w-xl text-base text-fg-muted sm:text-lg">Ribuan peluang menanti Anda. Temukan pekerjaan yang cocok, atau temukan talenta terbaik untuk perusahaan Anda.</p>
+        <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+          <a href="https://karirlink.id/lowongan" class="btn-dark btn-xl">Cari Lowongan<i class="kk kk-arrow-up-right h-4 w-4" aria-hidden="true"></i></a>
+          <a href="https://portal.karirlink.id" class="btn-outline btn-xl bg-white/80">Pasang Lowongan</a>
+        </div>
+        <p class="mt-6 text-sm text-fg-muted">Ada pertanyaan? <a href="https://wa.me/628113023500" class="card-link inline-flex">Hubungi tim KarirLink</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================= FOOTER ============================= -->
+<div data-shell="footer"></div>
+
+<script src="shell.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/drawer.js"></script>
+</body>
+</html>
