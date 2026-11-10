@@ -8,6 +8,15 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-10
+
+Dasar KarirKit: v1.5.0
+
+### Added
+- **Revamp landing page publik KarirLink (`karirlink.id/beranda`) dengan KarirKit** di folder baru `templates/landing` (`index.html`, `shell.js`): navbar bergaya Portal Karir (kapsul kaca di atas halaman, putih dan mengecil saat digulir, penanda menu aktif berpindah mengikuti bagian yang dibaca) serta Drawer di ponsel (lebar di atas halaman, mengecil menjadi kapsul saat digulir); hero selebar layar dengan gradasi pastel yang memudar ke bagian berikutnya, judul bermotif kata miring, bar pencarian posisi dan lokasi, serta ikon dan kartu lowongan melayang; strip ekosistem SEVIMA; kartu kategori bidang; peran dengan tab interaktif (perusahaan, perguruan tinggi, lulusan) beserta mockup ATS, ringkasan tracer study, dan ponsel; petak angka pastel; enam fitur; lowongan kerja dan magang (tab) dengan tombol Lamar; cara bergabung dengan mockup profil; testimoni contoh; tips dan trik; FAQ dua kolom dari teks "Mengenal KarirLink"; ajakan penutup pastel dengan kartu lowongan samar; dan footer. Arah visual mengikuti moodboard `moodboard/landing-page`. Animasi masuk saat digulir (dimatikan bila pengguna mengurangi gerakan). Isi mengikuti landing lama; tanpa gaya komponen sendiri, data contoh ditulis sebagai HTML.
+  - Tautan Kebijakan Privasi dan Syarat & Ketentuan di footer belum mengarah ke halaman (`#`); halaman Cara Bergabung, FAQ, Privacy Policy, dan Terms lama belum dibuat ulang.
+  - Folder `templates/landing` ditambahkan ke daftar lingkup template (`AGENTS.md`, `scripts/check-templates.mjs`) dan ke Storybook (`Templates/Landing`).
+
 ## 2026-11-09
 
 Dasar KarirKit: v1.5.0
