@@ -19,6 +19,7 @@ Satu-satunya sumber aturan untuk **semua** AI agent (Cursor, Claude Code, Codex,
 | Komponen Modal | `karirkit-modal` |
 | Halaman admin KarirLink (`templates/karirlink`) | `karirlink-admin-pages` |
 | Dashboard mitra perusahaan (`templates/mitra`) | `mitra-dashboard-pages` |
+| Landing page publik KarirLink (`templates/landing`) | `karirkit-conventions` (komponen KarirKit, satu halaman satu file; belum punya skill sendiri) |
 | Halaman Portal Karir (`templates/portal-karir`) | `portal-karir-ui` |
 | Kuesioner Tracer Study Format 2025 | `tracer-study-format-2025` |
 | Memeriksa tampilan di browser sebelum menyatakan selesai | `karirkit-verify-in-browser` |
@@ -26,13 +27,13 @@ Satu-satunya sumber aturan untuk **semua** AI agent (Cursor, Claude Code, Codex,
 ## Produk
 
 - **KarirKit** = design system SEVIMA (`@foxtrot-sevima/karirkit`, Tailwind v4): kelas komponen di `src/input.css`, JS di `assets/js`, dokumentasi `index.html` + Storybook (`stories/`), ikon KarirIcon (`icons.html`).
-- **Mockup template** KarirLink, Portal Karir, dan dashboard mitra (`templates/karirlink`, `templates/portal-karir`, `templates/custom`, `templates/mitra`): visual untuk kebutuhan produk, memakai komponen KarirKit.
+- **Mockup template** KarirLink, Portal Karir, dan dashboard mitra (`templates/karirlink`, `templates/portal-karir`, `templates/custom`, `templates/mitra`, `templates/landing`): visual untuk kebutuhan produk, memakai komponen KarirKit.
 - Produk KarirLink (aplikasi sungguhan) memakai paket KarirKit untuk semua FE; repo ini bukan aplikasinya. Jangan menaruh logika aplikasi atau panggilan API sungguhan di mockup (data contoh lewat `PK.api`).
 - Repo: GitHub `foxtrot-sevima/KarirKit` dan mirror GitLab (`origin` punya dua pushurl).
 
 ## Keputusan terkunci (jangan buka ulang tanpa perintah user)
 
-1. **Dua lingkup, dipisah commit-nya.** Design System: `src/`, `dist/`, `assets/js`, `stories/` (kecuali `stories/Templates`), `index.html`, `icons.html`, `package*.json`, `README.md`, `CHANGELOG.md`, dan template contoh DS di akar `templates/` (dashboard, login, register, error). Template mockup: `templates/karirlink`, `templates/portal-karir`, `templates/custom`, `templates/mitra`, `stories/Templates`, `scripts/gen-custom-portal.mjs`, `templates/CHANGELOG.md`.
+1. **Dua lingkup, dipisah commit-nya.** Design System: `src/`, `dist/`, `assets/js`, `stories/` (kecuali `stories/Templates`), `index.html`, `icons.html`, `package*.json`, `README.md`, `CHANGELOG.md`, dan template contoh DS di akar `templates/` (dashboard, login, register, error). Template mockup: `templates/karirlink`, `templates/portal-karir`, `templates/custom`, `templates/mitra`, `templates/landing`, `stories/Templates`, `scripts/gen-custom-portal.mjs`, `templates/CHANGELOG.md`.
 2. **Versi.** Design System = semver `X.Y.Z` (`CHANGELOG.md`, Table of Version, tag, publish). Template = **hanya tanggal** (`templates/CHANGELOG.md`, `## YYYY-MM-DD` + "Dasar KarirKit: vX.Y.Z"). Satu-satunya yang menjadi komponen/npm adalah KarirKit.
 3. **Commit.** Satu commit satu lingkup: `feat(ds)` / `fix(ds)` / `docs(ds)` untuk design system; `feat(karirlink)` / `feat(portal-karir)` / `feat(mitra)` / `fix(...)` untuk template. Pekerjaan yang menyentuh keduanya dipecah: design system dulu, lalu template yang memakainya. Stage per path; **jangan `git add -A`**.
 4. **Branch.** Design System: `karirkit/<versi>` (topik lain `karirkit/<topik>`). Mockup: `mockup/<fitur>` (mis. `mockup/event-redesign`, `mockup/mitra-dashboard`), **satu branch per fitur**, dibuat dari ujung `staging` terbaru (bukan dari branch fitur atau tanggal lain), tanpa tanggal dan tanpa `fix/`, `chore/`, `feat/` (jenis perubahan ada di prefiks commit). Branch fitur digabung **langsung ke `staging`** (merge commit); ke `master` hanya atas perintah rilis dan hanya fitur yang gate-nya lolos (keputusan 5), jadi tiap fitur bisa dirilis atau ditunda sendiri. Tanggal hanya ada di `templates/CHANGELOG.md` (section tanggal hari fitur selesai, dicek dengan `date`). Branch `mockup/<YYYY-MM-DD>` lama dibiarkan sampai tergabung; jangan membuat yang baru. Semua bermuara ke cabang utama yang sama (`staging`/`master` > `release` > deploy Vercel); hanya `karirkit/<versi>` yang menjadi paket npm.
