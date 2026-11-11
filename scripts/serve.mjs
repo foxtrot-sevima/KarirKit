@@ -94,9 +94,9 @@ async function listen(port, attempts = 50) {
     try { branch = execFileSync('git', ['branch', '--show-current'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch {}
     const base = `http://localhost:${port}`;
     say(`Menyajikan ${root}${branch ? ` (branch ${branch})` : ''}`);
-    say(`Beranda         ${base}/`);
-    say(`Portal Karir    ${base}/templates/portal-karir/index.html`);
-    say(`Admin KarirLink ${base}/templates/karirlink/`);
+    const links = [['KarirKit - Design System', '/'], ['Portal Karir', '/templates/portal-karir/'], ['Tracer Study', '/templates/karirlink/']];
+    const w = Math.max(...links.map(([l]) => l.length));
+    for (const [label, path] of links) say(`${label.padEnd(w)}  ${base}${path}`);
     say('Hentikan dengan Ctrl+C.');
     if (openPath !== null) {
       const url = `${base}/${openPath.replace(/^\/+/, '')}`;
