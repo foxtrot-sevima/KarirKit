@@ -1,0 +1,9 @@
+stages: [deploy]
+
+deploy:
+  stage: deploy
+  tags: [foxtrot-mockup]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  script:
+    - 'sudo /usr/local/bin/deploy-mockup "${CI_PROJECT_PATH##*/}" "$CI_PROJECT_DIR"'
