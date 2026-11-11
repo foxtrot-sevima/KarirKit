@@ -60,7 +60,8 @@
     "assets:classes": "node scripts/gen-asset-classes.mjs",
     "check:templates": "node scripts/check-templates.mjs",
     "mockup:new": "node scripts/mockup-new.mjs",
-    "sync": "node scripts/sync.mjs"
+    "sync": "node scripts/sync.mjs",
+    "serve": "node scripts/serve.mjs"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.6.0",
