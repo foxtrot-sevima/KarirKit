@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sinkronisasi Siakad | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Pantau penarikan data program studi, periode yudisium, dan lulusan dari Siakad, dan sinkronkan ulang periode yang belum cocok." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/sinkronisasi-siakad.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Sinkronisasi Siakad | KarirLink" />
+<meta property="og:description" content="Pantau penarikan data program studi, periode yudisium, dan lulusan dari Siakad, dan sinkronkan ulang periode yang belum cocok." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/sinkronisasi-siakad.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sinkronisasi Siakad | KarirLink" />
+<meta name="twitter:description" content="Pantau penarikan data program studi, periode yudisium, dan lulusan dari Siakad, dan sinkronkan ulang periode yang belum cocok." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Overview</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
+        </a>
+        <a href="yudisium.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a href="kerjasama.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
+        </a>
+        <a href="lowongan.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a href="event.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a href="mahasiswa-alumni.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
+        </a>
+        <a href="sinkronisasi-siakad.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Sinkronisasi Siakad" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Sinkronisasi Siakad</span>
+        </a>
+        <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
+        </a>
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
+        </a>
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Personalisasi" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Personalisasi</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Internal</p>
+      <div class="space-y-1">
+        <a href="konfigurasi-pt.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi PT" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi PT</span>
+        </a>
+        <a href="konfigurasi-akses.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi Akses" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi Akses</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu admin">
+      <div>
+        <div class="space-y-1">
+          <a href="index.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Tracer</p>
+        <div class="space-y-1">
+          <a href="kuesioner.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kuesioner</span>
+          </a>
+          <a href="yudisium.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Daftar Yudisium</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Portal Karir</p>
+        <div class="space-y-1">
+          <a href="kerjasama.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kerjasama</span>
+          </a>
+          <a href="lowongan.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="event.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Event</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">General</p>
+        <div class="space-y-1">
+          <a href="mahasiswa-alumni.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Mahasiswa/Alumni</span>
+          </a>
+          <a href="sinkronisasi-siakad.html" class="nav-item nav-item-active">
+            <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Sinkronisasi Siakad</span>
+          </a>
+          <a href="aktivitas-lamaran.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Aktivitas Lamaran</span>
+          </a>
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Report</span>
+          </a>
+          <a href="pengaturan-landing-page.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Personalisasi</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Internal</p>
+        <div class="space-y-1">
+          <a href="konfigurasi-pt.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi PT</span>
+          </a>
+          <a href="konfigurasi-akses.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi Akses</span>
+          </a>
+        </div>
+      </div>
+  
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">RK</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="navbar navbar-sticky navbar-app">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+        <a href="index.html" class="breadcrumb-link shrink-0">
+          <i class="kk kk-house h-4 w-4"></i>
+          <span class="hidden sm:inline">Overview</span>
+        </a>
+        <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
+        <span class="breadcrumb-current min-w-0" aria-current="page">
+          <span class="min-w-0 truncate">Sinkronisasi Siakad</span>
+        </span>
+      </nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
+      <div class="relative hidden lg:block">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title">Rina Kartika</p>
+              <p class="dropdown-header-desc">rina.kartika@kampus.ac.id</p>
+            </div>
+          </div>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Heading -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Sinkronisasi Siakad</h2>
+        <p class="mt-1 text-sm text-slate-500">Data program studi, periode yudisium, dan lulusan ditarik otomatis dari Siakad. Pantau hasilnya dan sinkronkan ulang periode yang belum cocok.</p>
+      </div>
+    </div>
+
+    <!-- Koneksi belum diatur (tampil dengan ?state=belum-terhubung) -->
+    <div id="syncNotConnected" class="card" hidden>
+      <div class="flex flex-col items-center gap-2 px-4 py-10 text-center">
+        <i class="kk kk-plug h-8 w-8 text-slate-400"></i>
+        <p class="text-sm font-semibold text-slate-800">Koneksi Siakad belum diatur</p>
+        <p class="max-w-md text-sm text-slate-500">Sinkronisasi data lulusan dari Siakad belum aktif untuk kampus Anda. Hubungi tim support Karirlink untuk mendaftarkan koneksi Siakad Live.</p>
+      </div>
+    </div>
+
+    <div id="syncConnected" class="space-y-6">
+    <!-- KPI row -->
+    <div class="stat-grid" style="--stat-cols: 4; --stat-lg: 2">
+      <div class="stat-card">
+        <span class="stat-icon bg-info-50 text-info-600"><i class="kk kk-clock h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p class="stat-value">11 Nov 2026</p>
+          <p class="stat-label">Data Siakad Terbaru <span class="stat-note">(09:00)</span></p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon bg-secondary-50 text-secondary-600"><i class="kk kk-arrows-clockwise h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p id="kpiActive" class="stat-value">2</p>
+          <p class="stat-label">Proses Berjalan/Antre</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon bg-warning-50 text-warning-600"><i class="kk kk-warning-circle h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p class="stat-value">1</p>
+          <p class="stat-label">Proses Terhenti</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon bg-warning-50 text-warning-600"><i class="kk kk-user-circle-minus h-[18px] w-[18px]"></i></span>
+        <div class="min-w-0">
+          <p class="stat-value">37</p>
+          <p class="stat-label">Lulusan Ditahan</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Peringatan -->
+    <div class="space-y-3">
+      <div class="alert alert-danger" role="alert">
+        <i class="kk kk-warning-circle alert-icon"></i>
+        <div><span class="alert-title">Sinkronisasi berhenti: Pencocokan malam.</span> Proses ini gagal 5 kali berturut-turut dan tidak dijalankan lagi sampai koneksi Siakad diperbaiki. Hubungi tim support Karirlink untuk memeriksa koneksi Siakad Live kampus Anda.</div>
+      </div>
+      <div class="alert alert-warning" role="alert">
+        <i class="kk kk-warning alert-icon"></i>
+        <div><span class="alert-title">37 lulusan ditahan.</span> Lulusan ini belum masuk Karirlink karena datanya di Siakad belum lengkap: belum ada waktu perubahan data, atau program studinya belum dikenal. Perbaiki data lulusan tersebut di Siakad; Karirlink memprosesnya otomatis pada sinkronisasi berikutnya.</div>
+      </div>
+    </div>
+
+    <!-- Proses Sinkronisasi -->
+    <div class="table-wrap" data-table data-page-size="10" data-item-label="proses">
+      <div class="table-toolbar">
+        <h3 class="text-base font-semibold text-slate-800">Proses Sinkronisasi</h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="table table-lg table-fit table-head-soft">
+          <thead>
+            <tr>
+              <th scope="col" class="table-col-num">No</th>
+              <th scope="col">Proses</th>
+              <th scope="col" class="hidden sm:table-cell">Terakhir Berhasil</th>
+              <th scope="col">Proses Terakhir</th>
+              <th scope="col" class="hidden md:table-cell">Keterangan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="table-col-num" data-num>1</td>
+              <td>
+                <span class="font-medium text-slate-800">Program studi</span>
+                <p class="mt-0.5 text-xs text-slate-400">Daftar program studi dari Siakad.</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">Terakhir berhasil: 10 Nov 2026, 01:00</p>
+              </td>
+              <td class="hidden sm:table-cell">10 Nov 2026, 01:00</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span class="badge-success"><span class="badge-dot bg-success-600"></span>Selesai</span>
+                  <span class="text-xs text-slate-400">10 Nov 2026, 01:00</span>
+                </div>
+              </td>
+              <td class="hidden md:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>2</td>
+              <td>
+                <span class="font-medium text-slate-800">Tarikan awal</span>
+                <p class="mt-0.5 text-xs text-slate-400">Tarikan penuh pertama seluruh lulusan.</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">Terakhir berhasil: 02 Sep 2026, 03:12</p>
+              </td>
+              <td class="hidden sm:table-cell">02 Sep 2026, 03:12</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span class="badge-success"><span class="badge-dot bg-success-600"></span>Selesai</span>
+                  <span class="text-xs text-slate-400">02 Sep 2026, 03:12</span>
+                </div>
+              </td>
+              <td class="hidden md:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>3</td>
+              <td>
+                <span class="font-medium text-slate-800">Perubahan data</span>
+                <p class="mt-0.5 text-xs text-slate-400">Lulusan yang berubah di Siakad, tiap jam.</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">Terakhir berhasil: 11 Nov 2026, 09:00</p>
+              </td>
+              <td class="hidden sm:table-cell">11 Nov 2026, 09:00</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span class="badge-success"><span class="badge-dot bg-success-600"></span>Selesai</span>
+                  <span class="text-xs text-slate-400">11 Nov 2026, 09:00</span>
+                </div>
+              </td>
+              <td class="hidden md:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>4</td>
+              <td>
+                <span class="font-medium text-slate-800">Pencocokan malam</span>
+                <p class="mt-0.5 text-xs text-slate-400">Jumlah lulusan per periode dicocokkan tiap malam.</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">Terakhir berhasil: 04 Nov 2026, 01:30</p>
+              </td>
+              <td class="hidden sm:table-cell">04 Nov 2026, 01:30</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Gagal</span>
+                  <span class="text-xs text-slate-400">11 Nov 2026, 01:30</span>
+                </div>
+              </td>
+              <td class="hidden md:table-cell"><span class="text-sm text-danger-700">Berhenti setelah 5 kali gagal: Siakad Live tidak merespons (timeout)</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>5</td>
+              <td>
+                <span class="font-medium text-slate-800">Sinkronkan ulang periode</span>
+                <p class="mt-0.5 text-xs text-slate-400">Tarikan ulang penuh satu periode yudisium.</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">Terakhir berhasil: -</p>
+              </td>
+              <td class="hidden sm:table-cell"><span class="text-slate-400">-</span></td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span class="badge-info"><span class="badge-dot bg-info-600"></span>Berjalan</span>
+                  <span class="text-xs text-slate-400">11 Nov 2026, 09:02</span>
+                </div>
+              </td>
+              <td class="hidden md:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-footer" data-table-pagination>
+        <span data-table-info></span>
+        <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+      </div>
+    </div>
+
+    <!-- Kecocokan per Periode Yudisium -->
+    <div class="table-wrap" id="periodRoot" data-table data-page-size="10" data-item-label="periode">
+      <div class="table-toolbar">
+        <div>
+          <h3 class="text-base font-semibold text-slate-800">Kecocokan per Periode Yudisium</h3>
+          <p class="mt-0.5 text-sm text-slate-500">Jumlah lulusan di Siakad dibandingkan dengan yang sudah masuk Karirlink, dicek tiap malam.</p>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="table table-lg table-fit table-head-soft">
+          <thead>
+            <tr>
+              <th scope="col" class="table-col-num">No</th>
+              <th scope="col">Periode Yudisium</th>
+              <th scope="col" class="hidden md:table-cell">Siakad</th>
+              <th scope="col" class="hidden md:table-cell">Karirlink</th>
+              <th scope="col">Kecocokan</th>
+              <th scope="col" class="hidden lg:table-cell">Terakhir Dicek</th>
+              <th scope="col" class="table-col-actions">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-period="Yudisium Genap 2025/2026" data-status="synced">
+              <td class="table-col-num" data-num>1</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Genap 2025/2026</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 342 &middot; Karirlink 342</p>
+              </td>
+              <td class="hidden md:table-cell">342</td>
+              <td class="hidden md:table-cell">342</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Cocok</span></span>
+                  <span class="text-xs text-slate-400">100%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">11 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Genap 2025/2026"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Ganjil 2025/2026" data-status="syncing">
+              <td class="table-col-num" data-num>2</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2025/2026</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 298 &middot; Karirlink 270</p>
+              </td>
+              <td class="hidden md:table-cell">298</td>
+              <td class="hidden md:table-cell">270</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-info badge-wrap"><span class="badge-dot bg-info-600"></span>Sedang disinkronkan</span></span>
+                  <span class="text-xs text-slate-400">91%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">11 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Ganjil 2025/2026" disabled><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Mengantre…</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Genap 2024/2025" data-status="out_of_sync">
+              <td class="table-col-num" data-num>3</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Genap 2024/2025</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 356 &middot; Karirlink 349</p>
+              </td>
+              <td class="hidden md:table-cell">356</td>
+              <td class="hidden md:table-cell">349</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Tidak cocok</span></span>
+                  <span class="text-xs text-slate-400">98%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">11 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Genap 2024/2025"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Ganjil 2024/2025" data-status="synced">
+              <td class="table-col-num" data-num>4</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2024/2025</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 318 &middot; Karirlink 318</p>
+              </td>
+              <td class="hidden md:table-cell">318</td>
+              <td class="hidden md:table-cell">318</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Cocok</span></span>
+                  <span class="text-xs text-slate-400">100%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">11 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Ganjil 2024/2025"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Genap 2023/2024" data-status="synced">
+              <td class="table-col-num" data-num>5</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Genap 2023/2024</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 331 &middot; Karirlink 331</p>
+              </td>
+              <td class="hidden md:table-cell">331</td>
+              <td class="hidden md:table-cell">331</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Cocok</span></span>
+                  <span class="text-xs text-slate-400">100%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">11 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Genap 2023/2024"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Ganjil 2023/2024" data-status="out_of_sync">
+              <td class="table-col-num" data-num>6</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2023/2024</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 287 &middot; Karirlink 281</p>
+              </td>
+              <td class="hidden md:table-cell">287</td>
+              <td class="hidden md:table-cell">281</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-warning badge-wrap"><span class="badge-dot bg-warning-600"></span>Tidak cocok</span></span>
+                  <span class="text-xs text-slate-400">98%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">11 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Ganjil 2023/2024"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Genap 2022/2023" data-status="synced">
+              <td class="table-col-num" data-num>7</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Genap 2022/2023</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 305 &middot; Karirlink 305</p>
+              </td>
+              <td class="hidden md:table-cell">305</td>
+              <td class="hidden md:table-cell">305</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Cocok</span></span>
+                  <span class="text-xs text-slate-400">100%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">11 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Genap 2022/2023"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Ganjil 2022/2023" data-status="synced">
+              <td class="table-col-num" data-num>8</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2022/2023</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 262 &middot; Karirlink 262</p>
+              </td>
+              <td class="hidden md:table-cell">262</td>
+              <td class="hidden md:table-cell">262</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Cocok</span></span>
+                  <span class="text-xs text-slate-400">100%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">11 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Ganjil 2022/2023"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Genap 2021/2022" data-status="synced">
+              <td class="table-col-num" data-num>9</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Genap 2021/2022</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 274 &middot; Karirlink 274</p>
+              </td>
+              <td class="hidden md:table-cell">274</td>
+              <td class="hidden md:table-cell">274</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Cocok</span></span>
+                  <span class="text-xs text-slate-400">100%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">10 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Genap 2021/2022"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Ganjil 2021/2022" data-status="synced">
+              <td class="table-col-num" data-num>10</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2021/2022</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 245 &middot; Karirlink 245</p>
+              </td>
+              <td class="hidden md:table-cell">245</td>
+              <td class="hidden md:table-cell">245</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Cocok</span></span>
+                  <span class="text-xs text-slate-400">100%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">10 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Ganjil 2021/2022"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Genap 2020/2021" data-status="synced">
+              <td class="table-col-num" data-num>11</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Genap 2020/2021</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 270 &middot; Karirlink 270</p>
+              </td>
+              <td class="hidden md:table-cell">270</td>
+              <td class="hidden md:table-cell">270</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-success badge-wrap"><span class="badge-dot bg-success-600"></span>Cocok</span></span>
+                  <span class="text-xs text-slate-400">100%</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell">10 Nov 2026, 01:30</td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Genap 2020/2021"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-period="Yudisium Ganjil 2020/2021" data-status="unchecked">
+              <td class="table-col-num" data-num>12</td>
+              <td>
+                <span class="font-medium text-slate-800">Yudisium Ganjil 2020/2021</span>
+                <p class="mt-0.5 text-xs text-slate-400 md:hidden">Siakad 230 &middot; Karirlink 0</p>
+              </td>
+              <td class="hidden md:table-cell">230</td>
+              <td class="hidden md:table-cell">0</td>
+              <td>
+                <div class="flex flex-col items-start gap-1">
+                  <span data-period-badge><span class="badge-neutral badge-wrap"><span class="badge-dot bg-neutral-500"></span>Belum dicek</span></span>
+                  <span class="text-xs text-slate-400">-</span>
+                </div>
+              </td>
+              <td class="hidden lg:table-cell"><span class="text-slate-400">-</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-resync title="Sinkronkan ulang" aria-label="Sinkronkan ulang Yudisium Ganjil 2020/2021"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span class="table-action-label" data-resync-label>Sinkronkan ulang</span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div data-table-empty hidden class="table-empty"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Belum ada periode yudisium dari Siakad.</div>
+      <div class="table-footer" data-table-pagination>
+        <span data-table-info></span>
+        <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+      </div>
+    </div>
+
+    <!-- Riwayat Proses -->
+    <div class="table-wrap" data-table data-page-size="10" data-item-label="proses">
+      <div class="table-toolbar">
+        <h3 class="text-base font-semibold text-slate-800">Riwayat Proses</h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="table table-fit table-head-soft">
+          <thead>
+            <tr>
+              <th scope="col" class="table-col-num">No</th>
+              <th scope="col" class="hidden sm:table-cell">Diantre</th>
+              <th scope="col">Proses</th>
+              <th scope="col">Status</th>
+              <th scope="col" class="hidden md:table-cell">Data Diterima</th>
+              <th scope="col" class="hidden md:table-cell">Percobaan</th>
+              <th scope="col" class="hidden lg:table-cell">Keterangan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="table-col-num" data-num>1</td>
+              <td class="hidden sm:table-cell">11 Nov 2026, 09:02</td>
+              <td>
+                <span class="font-medium text-slate-800">Sinkronkan ulang periode</span>
+                <p class="mt-0.5 text-xs text-slate-400">Yudisium Ganjil 2025/2026 · Diminta admin</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">11 Nov 2026, 09:02</p>
+              </td>
+              <td><span class="badge-info"><span class="badge-dot bg-info-600"></span>Berjalan</span></td>
+              <td class="hidden md:table-cell">0 baris</td>
+              <td class="hidden md:table-cell">1</td>
+              <td class="hidden lg:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>2</td>
+              <td class="hidden sm:table-cell">11 Nov 2026, 09:01</td>
+              <td>
+                <span class="font-medium text-slate-800">Sinkronkan ulang periode</span>
+                <p class="mt-0.5 text-xs text-slate-400">Yudisium Genap 2024/2025 · Diminta admin</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">11 Nov 2026, 09:01</p>
+              </td>
+              <td><span class="badge-neutral"><span class="badge-dot bg-neutral-500"></span>Diantre</span></td>
+              <td class="hidden md:table-cell">0 baris</td>
+              <td class="hidden md:table-cell">0</td>
+              <td class="hidden lg:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>3</td>
+              <td class="hidden sm:table-cell">11 Nov 2026, 09:00</td>
+              <td>
+                <span class="font-medium text-slate-800">Perubahan data</span>
+                <p class="mt-0.5 text-xs text-slate-400">Otomatis</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">11 Nov 2026, 09:00</p>
+              </td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Selesai</span></td>
+              <td class="hidden md:table-cell">128 baris</td>
+              <td class="hidden md:table-cell">1</td>
+              <td class="hidden lg:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>4</td>
+              <td class="hidden sm:table-cell">11 Nov 2026, 08:00</td>
+              <td>
+                <span class="font-medium text-slate-800">Perubahan data</span>
+                <p class="mt-0.5 text-xs text-slate-400">Otomatis</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">11 Nov 2026, 08:00</p>
+              </td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Selesai</span></td>
+              <td class="hidden md:table-cell">64 baris</td>
+              <td class="hidden md:table-cell">1</td>
+              <td class="hidden lg:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>5</td>
+              <td class="hidden sm:table-cell">11 Nov 2026, 07:00</td>
+              <td>
+                <span class="font-medium text-slate-800">Perubahan data</span>
+                <p class="mt-0.5 text-xs text-slate-400">Otomatis</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">11 Nov 2026, 07:00</p>
+              </td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Selesai</span></td>
+              <td class="hidden md:table-cell">9 baris</td>
+              <td class="hidden md:table-cell">1</td>
+              <td class="hidden lg:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>6</td>
+              <td class="hidden sm:table-cell">11 Nov 2026, 01:30</td>
+              <td>
+                <span class="font-medium text-slate-800">Pencocokan malam</span>
+                <p class="mt-0.5 text-xs text-slate-400">Otomatis</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">11 Nov 2026, 01:30</p>
+              </td>
+              <td><span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Gagal</span></td>
+              <td class="hidden md:table-cell">0 baris</td>
+              <td class="hidden md:table-cell">5</td>
+              <td class="hidden lg:table-cell"><span class="text-sm text-danger-700">Siakad Live tidak merespons (timeout)</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>7</td>
+              <td class="hidden sm:table-cell">11 Nov 2026, 01:00</td>
+              <td>
+                <span class="font-medium text-slate-800">Perubahan data</span>
+                <p class="mt-0.5 text-xs text-slate-400">Otomatis</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">11 Nov 2026, 01:00</p>
+              </td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Selesai</span></td>
+              <td class="hidden md:table-cell">212 baris</td>
+              <td class="hidden md:table-cell">1</td>
+              <td class="hidden lg:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>8</td>
+              <td class="hidden sm:table-cell">10 Nov 2026, 22:00</td>
+              <td>
+                <span class="font-medium text-slate-800">Perubahan data</span>
+                <p class="mt-0.5 text-xs text-slate-400">Otomatis</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">10 Nov 2026, 22:00</p>
+              </td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Selesai</span></td>
+              <td class="hidden md:table-cell">47 baris</td>
+              <td class="hidden md:table-cell">2</td>
+              <td class="hidden lg:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>9</td>
+              <td class="hidden sm:table-cell">10 Nov 2026, 01:30</td>
+              <td>
+                <span class="font-medium text-slate-800">Pencocokan malam</span>
+                <p class="mt-0.5 text-xs text-slate-400">Otomatis</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">10 Nov 2026, 01:30</p>
+              </td>
+              <td><span class="badge-danger"><span class="badge-dot bg-danger-600"></span>Gagal</span></td>
+              <td class="hidden md:table-cell">0 baris</td>
+              <td class="hidden md:table-cell">5</td>
+              <td class="hidden lg:table-cell"><span class="text-sm text-danger-700">Siakad Live tidak merespons (timeout)</span></td>
+            </tr>
+            <tr>
+              <td class="table-col-num" data-num>10</td>
+              <td class="hidden sm:table-cell">10 Nov 2026, 01:00</td>
+              <td>
+                <span class="font-medium text-slate-800">Program studi</span>
+                <p class="mt-0.5 text-xs text-slate-400">Otomatis</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden">10 Nov 2026, 01:00</p>
+              </td>
+              <td><span class="badge-success"><span class="badge-dot bg-success-600"></span>Selesai</span></td>
+              <td class="hidden md:table-cell">38 baris</td>
+              <td class="hidden md:table-cell">1</td>
+              <td class="hidden lg:table-cell"><span class="text-slate-400">-</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-footer" data-table-pagination>
+        <span data-table-info></span>
+        <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+      </div>
+    </div>
+    </div>
+  </main>
+
+
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/table.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+
+
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();
+  // Sinkronisasi Siakad - data contoh. Tabel memakai table.js (nomor, halaman); halaman ini hanya
+  // menangani "Sinkronkan ulang" (antre + toast) dan keadaan "koneksi belum diatur".
+  (function () {
+    var q = new URLSearchParams(location.search);
+    if (q.get('state') === 'belum-terhubung') {
+      document.getElementById('syncConnected').hidden = true;
+      document.getElementById('syncNotConnected').hidden = false;
+      return;
+    }
+
+    var kpiActive = document.getElementById('kpiActive');
+    var root = document.getElementById('periodRoot');
+    var toast = function (type, message) { if (window.KKToast) window.KKToast.show({ type: type, message: message, duration: 3500 }); };
+
+    root.querySelectorAll('[data-resync]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var row = btn.closest('tr');
+        var name = row.dataset.period;
+        if (row.dataset.status === 'syncing') return;
+        row.dataset.status = 'syncing';
+        row.querySelector('[data-period-badge]').innerHTML = '<span class="badge-info badge-wrap"><span class="badge-dot bg-info-600"></span>Sedang disinkronkan</span>';
+        btn.disabled = true;
+        btn.querySelector('[data-resync-label]').textContent = 'Mengantre…';
+        kpiActive.textContent = String(Number(kpiActive.textContent) + 1);
+        toast('success', 'Sinkronisasi ulang ' + name + ' sudah diantre.');
+      });
+    });
+  })();
+
+</script>
+<script src="admin-brand.js"></script>
+</body>
+</html>
