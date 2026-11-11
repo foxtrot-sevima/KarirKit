@@ -1,9 +1,44 @@
-stages: [deploy]
+stages: [build, deploy]
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+
+default:
+  tags: [foxtrot-mockup]
+
+build:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  cache:
+    key:
+      files: [package-lock.json]
+    paths: [.npm/]
+  script:
+    - node -v
+    - npm ci --prefer-offline
+    - npm run build          # menghasilkan dist/output.css
+    - npx storybook build    # menghasilkan storybook-static/
+    - mkdir _site
+    - |
+      rsync -a \
+        --exclude '/.git' --exclude '/.github' --exclude '/.claude' --exclude '/.storybook' \
+        --exclude '/.npm' --exclude '/node_modules' --exclude '/_site' --exclude '/storybook-static' \
+        --exclude '/deploy' --exclude '/scripts' --exclude '/stories' \
+        --exclude '/*.md' --exclude '/package*.json' --exclude '/vercel.json' \
+        --exclude '/.gitlab-ci.yml' \
+        ./ _site/
+    - mkdir -p _site/storybook
+    - cp -a storybook-static/. _site/storybook/
+  artifacts:
+    paths: [_site/]
+    expire_in: 1 day
 
 deploy:
   stage: deploy
-  tags: [foxtrot-mockup]
+  needs: [build]
+  resource_group: deploy-vm
   rules:
     - if: $CI_COMMIT_BRANCH == "master"
   script:
-    - 'sudo /usr/local/bin/deploy-mockup "${CI_PROJECT_PATH##*/}" "$CI_PROJECT_DIR"'
+    - 'sudo /usr/local/bin/deploy-mockup "${CI_PROJECT_PATH##*/}" "$CI_PROJECT_DIR/_site" --delete'
