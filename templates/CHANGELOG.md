@@ -8,6 +8,17 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-11
+
+Dasar KarirKit: v1.5.0
+
+### Added
+- **Tiga halaman admin KarirLink yang sudah ada di aplikasi tetapi belum di mockup** (`templates/karirlink`), mengikuti fitur dan teks aplikasinya:
+  - `sinkronisasi-siakad.html` (Sinkronisasi Siakad): kartu ringkasan (data Siakad terbaru, proses berjalan/antre, proses terhenti, lulusan ditahan), peringatan proses berhenti dan lulusan ditahan, tabel Proses Sinkronisasi, tabel Kecocokan per Periode Yudisium dengan aksi "Sinkronkan ulang" (diantre + toast), dan Riwayat Proses. `?state=belum-terhubung` menampilkan keadaan "Koneksi Siakad belum diatur".
+  - `konfigurasi-pt.html` (Konfigurasi PT, internal): kartu "Data PT dari CRM" dengan tombol Sync dari CRM, tabel PT (cari nama/kode Dikti, filter status koneksi), dan laci koneksi Siakad Live (Live URL, Client ID, Client Secret, Aktif) dengan validasi yang sama dengan aplikasi. `?pt=<id>` membuka laci langsung.
+  - `konfigurasi-akses.html` (Konfigurasi Akses, internal): tab Akun dan Role & Permission. Akun: cari + filter cara masuk/status, laci kelola akun (aktif/nonaktif, cara masuk, role per organisasi dengan tambah/lepas, reset password dengan password sekali tampil). Role: role baru, ubah nama, atur permission per resource, hapus (role sistem tidak bisa dihapus). `?tab=role` dan `?akun=<id>` membuka bagian/laci langsung.
+- Menu sidebar dan menu mobile semua halaman admin: "Sinkronisasi Siakad" di grup General, dan grup baru **Internal** berisi Konfigurasi PT dan Konfigurasi Akses (di aplikasi grup ini hanya terlihat oleh role internal).
+
 ## 2026-11-10
 
 Dasar KarirKit: v1.5.0

@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Konfigurasi PT | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Atur koneksi Siakad Live tiap perguruan tinggi dan jalankan sinkronisasi data PT dari CRM Sevima. Khusus tim internal." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/konfigurasi-pt.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Konfigurasi PT | KarirLink" />
+<meta property="og:description" content="Atur koneksi Siakad Live tiap perguruan tinggi dan jalankan sinkronisasi data PT dari CRM Sevima. Khusus tim internal." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/konfigurasi-pt.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Konfigurasi PT | KarirLink" />
+<meta name="twitter:description" content="Atur koneksi Siakad Live tiap perguruan tinggi dan jalankan sinkronisasi data PT dari CRM Sevima. Khusus tim internal." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Overview</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
+        </a>
+        <a href="yudisium.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a href="kerjasama.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
+        </a>
+        <a href="lowongan.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a href="event.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a href="mahasiswa-alumni.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
+        </a>
+        <a href="sinkronisasi-siakad.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Sinkronisasi Siakad" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Sinkronisasi Siakad</span>
+        </a>
+        <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
+        </a>
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
+        </a>
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Personalisasi" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Personalisasi</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Internal</p>
+      <div class="space-y-1">
+        <a href="konfigurasi-pt.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Konfigurasi PT" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi PT</span>
+        </a>
+        <a href="konfigurasi-akses.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi Akses" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi Akses</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu admin">
+      <div>
+        <div class="space-y-1">
+          <a href="index.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Tracer</p>
+        <div class="space-y-1">
+          <a href="kuesioner.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kuesioner</span>
+          </a>
+          <a href="yudisium.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Daftar Yudisium</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Portal Karir</p>
+        <div class="space-y-1">
+          <a href="kerjasama.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kerjasama</span>
+          </a>
+          <a href="lowongan.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="event.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Event</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">General</p>
+        <div class="space-y-1">
+          <a href="mahasiswa-alumni.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Mahasiswa/Alumni</span>
+          </a>
+          <a href="sinkronisasi-siakad.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Sinkronisasi Siakad</span>
+          </a>
+          <a href="aktivitas-lamaran.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Aktivitas Lamaran</span>
+          </a>
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Report</span>
+          </a>
+          <a href="pengaturan-landing-page.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Personalisasi</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Internal</p>
+        <div class="space-y-1">
+          <a href="konfigurasi-pt.html" class="nav-item nav-item-active">
+            <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi PT</span>
+          </a>
+          <a href="konfigurasi-akses.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi Akses</span>
+          </a>
+        </div>
+      </div>
+  
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">RK</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="navbar navbar-sticky navbar-app">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+        <a href="index.html" class="breadcrumb-link shrink-0">
+          <i class="kk kk-house h-4 w-4"></i>
+          <span class="hidden sm:inline">Overview</span>
+        </a>
+        <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
+        <span class="breadcrumb-current min-w-0" aria-current="page">
+          <span class="min-w-0 truncate">Konfigurasi PT</span>
+        </span>
+      </nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
+      <div class="relative hidden lg:block">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title">Rina Kartika</p>
+              <p class="dropdown-header-desc">rina.kartika@kampus.ac.id</p>
+            </div>
+          </div>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Heading -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Konfigurasi PT</h2>
+        <p class="mt-1 text-sm text-slate-500">Atur koneksi Siakad Live tiap perguruan tinggi supaya data lulusan ditarik otomatis ke Karirlink. Khusus tim internal Sevima.</p>
+      </div>
+    </div>
+
+    <!-- Data PT dari CRM -->
+    <div class="card p-5">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h3 class="text-base font-semibold text-slate-900">Data PT dari CRM</h3>
+          <p class="mt-1 text-sm text-slate-500">Daftar perguruan tinggi disinkronkan dari CRM Sevima secara terjadwal tiap minggu. Jalankan manual bila ada PT baru yang belum muncul.</p>
+        </div>
+        <button type="button" id="crmSyncBtn" class="btn-outline btn-sm shrink-0"><i class="kk kk-arrows-clockwise h-4 w-4"></i><span>Sync dari CRM</span></button>
+      </div>
+      <div class="mt-4 space-y-3" id="crmRun">
+        <p class="text-sm text-slate-800"><span class="font-semibold" id="crmStatus">Berhasil</span> &middot; <span id="crmTrigger">Terjadwal</span> &middot; <span id="crmAt">09 Nov 2026, 01:00</span></p>
+        <dl class="grid grid-cols-2 gap-2 text-sm sm:grid-cols-4" id="crmCounts">
+          <div><dt class="text-slate-500">PT baru</dt><dd class="font-semibold text-slate-900">3</dd></div>
+          <div><dt class="text-slate-500">Dilengkapi</dt><dd class="font-semibold text-slate-900">18</dd></div>
+          <div><dt class="text-slate-500">Tidak ada di CRM</dt><dd class="font-semibold text-slate-900">2</dd></div>
+          <div><dt class="text-slate-500">Dilewati</dt><dd class="font-semibold text-slate-900">1.204</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Daftar PT -->
+    <div class="table-wrap overflow-visible" id="ptRoot" data-table data-page-size="10" data-item-label="PT" data-combo-boundary>
+      <div class="table-toolbar">
+        <div class="table-search">
+          <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+            <i class="kk kk-magnifying-glass h-4 w-4"></i>
+          </span>
+          <label for="ptSearch" class="sr-only">Cari perguruan tinggi</label>
+          <input id="ptSearch" type="search" class="input h-9 pl-9" placeholder="Cari PT atau kode Dikti..." data-table-search />
+        </div>
+        <div class="table-filters">
+          <div id="filterState" class="combo" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua status</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua status">Semua status</button>
+                <button type="button" class="combo-item" data-combo-item data-value="none" data-label="Belum diatur">Belum diatur</button>
+                <button type="button" class="combo-item" data-combo-item data-value="enabled" data-label="Aktif">Aktif</button>
+                <button type="button" class="combo-item" data-combo-item data-value="disabled" data-label="Nonaktif">Nonaktif</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="table table-lg table-fit table-head-soft">
+          <thead>
+            <tr>
+              <th scope="col" class="table-col-num">No</th>
+              <th scope="col">Perguruan Tinggi</th>
+              <th scope="col" class="hidden xl:table-cell">Alamat Siakad (CRM)</th>
+              <th scope="col">Koneksi</th>
+              <th scope="col" class="hidden md:table-cell">Diubah</th>
+              <th scope="col" class="table-col-actions">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="ptBody">
+            <tr data-id="u01" data-name="Universitas Nusantara Raya UNR 001001" data-state="enabled">
+              <td class="table-col-num" data-num>1</td>
+              <td>
+                <span class="font-medium text-slate-800">Universitas Nusantara Raya</span>
+                <p class="mt-0.5 text-xs text-slate-400">UNR · Kode Dikti 001001</p>
+              </td>
+              <td class="hidden xl:table-cell"><p class="max-w-[260px] truncate text-slate-600">https://siakad.unr.ac.id</p></td>
+              <td>
+                <span data-cell="badge"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live">https://siakad.unr.ac.id/live</p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated">10 Nov 2026, 14:20</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u01" title="Atur koneksi" aria-label="Atur koneksi Universitas Nusantara Raya"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u02" data-name="Institut Teknologi Cendekia ITC 001002" data-state="enabled">
+              <td class="table-col-num" data-num>2</td>
+              <td>
+                <span class="font-medium text-slate-800">Institut Teknologi Cendekia</span>
+                <p class="mt-0.5 text-xs text-slate-400">ITC · Kode Dikti 001002</p>
+              </td>
+              <td class="hidden xl:table-cell"><p class="max-w-[260px] truncate text-slate-600">https://siakad.itc.ac.id</p></td>
+              <td>
+                <span data-cell="badge"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live">https://siakad.itc.ac.id/live</p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated">09 Nov 2026, 10:05</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u02" title="Atur koneksi" aria-label="Atur koneksi Institut Teknologi Cendekia"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u03" data-name="Universitas Samudra Biru USB 001003" data-state="disabled">
+              <td class="table-col-num" data-num>3</td>
+              <td>
+                <span class="font-medium text-slate-800">Universitas Samudra Biru</span>
+                <p class="mt-0.5 text-xs text-slate-400">USB · Kode Dikti 001003</p>
+              </td>
+              <td class="hidden xl:table-cell"><p class="max-w-[260px] truncate text-slate-600">https://akademik.samudrabiru.ac.id</p></td>
+              <td>
+                <span data-cell="badge"><span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Nonaktif</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live">https://akademik.samudrabiru.ac.id/live</p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated">28 Okt 2026, 16:40</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u03" title="Atur koneksi" aria-label="Atur koneksi Universitas Samudra Biru"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u04" data-name="Politeknik Negeri Bumi Pertiwi Polbup 002001" data-state="enabled">
+              <td class="table-col-num" data-num>4</td>
+              <td>
+                <span class="font-medium text-slate-800">Politeknik Negeri Bumi Pertiwi</span>
+                <p class="mt-0.5 text-xs text-slate-400">Polbup · Kode Dikti 002001</p>
+              </td>
+              <td class="hidden xl:table-cell"><p class="max-w-[260px] truncate text-slate-600">https://siakad.polbup.ac.id</p></td>
+              <td>
+                <span data-cell="badge"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live">https://siakad.polbup.ac.id/live</p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated">05 Nov 2026, 08:15</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u04" title="Atur koneksi" aria-label="Atur koneksi Politeknik Negeri Bumi Pertiwi"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u05" data-name="Universitas Kartika Bangsa UKB 001005" data-state="none">
+              <td class="table-col-num" data-num>5</td>
+              <td>
+                <span class="font-medium text-slate-800">Universitas Kartika Bangsa</span>
+                <p class="mt-0.5 text-xs text-slate-400">UKB · Kode Dikti 001005</p>
+              </td>
+              <td class="hidden xl:table-cell"><p class="max-w-[260px] truncate text-slate-600">https://siakad.kartikabangsa.ac.id</p></td>
+              <td>
+                <span data-cell="badge"><span class="badge-neutral"><span class="badge-dot bg-neutral-500"></span>Belum diatur</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live"></p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated"><span class="text-slate-400">-</span></span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u05" title="Atur koneksi" aria-label="Atur koneksi Universitas Kartika Bangsa"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Atur</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u06" data-name="Sekolah Tinggi Ekonomi Mandiri STEM 003001" data-state="none">
+              <td class="table-col-num" data-num>6</td>
+              <td>
+                <span class="font-medium text-slate-800">Sekolah Tinggi Ekonomi Mandiri</span>
+                <p class="mt-0.5 text-xs text-slate-400">STEM · Kode Dikti 003001</p>
+              </td>
+              <td class="hidden xl:table-cell"><span class="text-slate-400">-</span></td>
+              <td>
+                <span data-cell="badge"><span class="badge-neutral"><span class="badge-dot bg-neutral-500"></span>Belum diatur</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live"></p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated"><span class="text-slate-400">-</span></span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u06" title="Atur koneksi" aria-label="Atur koneksi Sekolah Tinggi Ekonomi Mandiri"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Atur</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u07" data-name="Universitas Garuda Perkasa UGP 001007" data-state="enabled">
+              <td class="table-col-num" data-num>7</td>
+              <td>
+                <span class="font-medium text-slate-800">Universitas Garuda Perkasa</span>
+                <p class="mt-0.5 text-xs text-slate-400">UGP · Kode Dikti 001007</p>
+              </td>
+              <td class="hidden xl:table-cell"><p class="max-w-[260px] truncate text-slate-600">https://siakad.garudaperkasa.ac.id</p></td>
+              <td>
+                <span data-cell="badge"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live">https://siakad.garudaperkasa.ac.id/live</p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated">02 Nov 2026, 13:30</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u07" title="Atur koneksi" aria-label="Atur koneksi Universitas Garuda Perkasa"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u08" data-name="Institut Seni dan Budaya Tirta ISBT 004001" data-state="none">
+              <td class="table-col-num" data-num>8</td>
+              <td>
+                <span class="font-medium text-slate-800">Institut Seni dan Budaya Tirta</span>
+                <p class="mt-0.5 text-xs text-slate-400">ISBT · Kode Dikti 004001</p>
+              </td>
+              <td class="hidden xl:table-cell"><p class="max-w-[260px] truncate text-slate-600">https://siakad.isbt.ac.id</p></td>
+              <td>
+                <span data-cell="badge"><span class="badge-neutral"><span class="badge-dot bg-neutral-500"></span>Belum diatur</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live"></p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated"><span class="text-slate-400">-</span></span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u08" title="Atur koneksi" aria-label="Atur koneksi Institut Seni dan Budaya Tirta"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Atur</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u09" data-name="Universitas Dwipa Mandala UDM 001009" data-state="enabled">
+              <td class="table-col-num" data-num>9</td>
+              <td>
+                <span class="font-medium text-slate-800">Universitas Dwipa Mandala</span>
+                <p class="mt-0.5 text-xs text-slate-400">UDM · Kode Dikti 001009</p>
+              </td>
+              <td class="hidden xl:table-cell"><p class="max-w-[260px] truncate text-slate-600">https://siakad.dwipamandala.ac.id</p></td>
+              <td>
+                <span data-cell="badge"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live">https://siakad.dwipamandala.ac.id/live</p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated">30 Okt 2026, 09:50</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u09" title="Atur koneksi" aria-label="Atur koneksi Universitas Dwipa Mandala"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u10" data-name="Politeknik Kesehatan Harapan Poltekes Harapan 002010" data-state="disabled">
+              <td class="table-col-num" data-num>10</td>
+              <td>
+                <span class="font-medium text-slate-800">Politeknik Kesehatan Harapan</span>
+                <p class="mt-0.5 text-xs text-slate-400">Poltekes Harapan · Kode Dikti 002010</p>
+              </td>
+              <td class="hidden xl:table-cell"><p class="max-w-[260px] truncate text-slate-600">https://siakad.poltekesharapan.ac.id</p></td>
+              <td>
+                <span data-cell="badge"><span class="badge-warning"><span class="badge-dot bg-warning-600"></span>Nonaktif</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live">https://siakad.poltekesharapan.ac.id/live</p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated">21 Okt 2026, 11:00</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u10" title="Atur koneksi" aria-label="Atur koneksi Politeknik Kesehatan Harapan"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u11" data-name="Universitas Surya Kencana USK 001011" data-state="enabled">
+              <td class="table-col-num" data-num>11</td>
+              <td>
+                <span class="font-medium text-slate-800">Universitas Surya Kencana</span>
+                <p class="mt-0.5 text-xs text-slate-400">USK · Kode Dikti 001011</p>
+              </td>
+              <td class="hidden xl:table-cell"><p class="max-w-[260px] truncate text-slate-600">https://siakad.suryakencana.ac.id</p></td>
+              <td>
+                <span data-cell="badge"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live">https://siakad.suryakencana.ac.id/live</p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated">08 Nov 2026, 15:45</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u11" title="Atur koneksi" aria-label="Atur koneksi Universitas Surya Kencana"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="u12" data-name="Akademi Komunitas Sentosa  " data-state="none">
+              <td class="table-col-num" data-num>12</td>
+              <td>
+                <span class="font-medium text-slate-800">Akademi Komunitas Sentosa</span>
+                <p class="mt-0.5 text-xs text-slate-400">Tanpa singkatan dan kode Dikti</p>
+              </td>
+              <td class="hidden xl:table-cell"><span class="text-slate-400">-</span></td>
+              <td>
+                <span data-cell="badge"><span class="badge-neutral"><span class="badge-dot bg-neutral-500"></span>Belum diatur</span></span>
+                <p class="mt-1 hidden max-w-[240px] truncate text-xs text-slate-400 sm:block" data-cell="live"></p>
+              </td>
+              <td class="hidden md:table-cell"><span class="whitespace-nowrap text-slate-600" data-cell="updated"><span class="text-slate-400">-</span></span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-pt="u12" title="Atur koneksi" aria-label="Atur koneksi Akademi Komunitas Sentosa"><i class="kk kk-gear-six h-4 w-4"></i><span class="table-action-label" data-cell="action">Atur</span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div data-table-empty hidden class="table-empty"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada PT yang cocok.</div>
+      <div class="table-footer" data-table-pagination>
+        <span data-table-info></span>
+        <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+      </div>
+    </div>
+  </main>
+
+  <!-- Koneksi Siakad Live: laci kanan di desktop, lembar bawah di ponsel -->
+  <div class="drawer drawer-right w-full sm:max-w-md" id="ptDrawer" aria-label="Koneksi Siakad">
+    <div class="drawer-header">
+      <div class="min-w-0">
+        <h3 class="drawer-title truncate" id="ptDrName">Perguruan Tinggi</h3>
+        <p class="mt-0.5 truncate text-xs text-slate-500" id="ptDrSub"></p>
+      </div>
+      <button type="button" class="drawer-close" data-drawer-hide="ptDrawer" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+    </div>
+    <form id="ptForm" class="flex min-h-0 flex-1 flex-col" novalidate>
+      <div class="drawer-body space-y-4">
+        <p class="text-sm text-slate-500" id="ptDrHelp"></p>
+        <div class="alert alert-info" id="ptDrNew" role="alert" hidden>
+          <i class="kk kk-info alert-icon"></i>
+          <div><span class="alert-title">Koneksi Siakad belum diatur.</span> <span id="ptDrNewText"></span></div>
+        </div>
+        <p class="text-xs text-slate-500" id="ptDrUpdated" hidden></p>
+
+        <div>
+          <label class="form-label" for="ptLiveUrl">Live URL</label>
+          <input id="ptLiveUrl" name="liveUrl" type="url" inputmode="url" class="input" maxlength="500" placeholder="https://kampus.siakadcloud.com/live" />
+          <p class="form-error" data-err="liveUrl" hidden></p>
+        </div>
+        <div>
+          <label class="form-label" for="ptClientId">Client ID</label>
+          <input id="ptClientId" name="clientId" class="input" maxlength="100" />
+          <p class="form-error" data-err="clientId" hidden></p>
+        </div>
+        <div>
+          <label class="form-label" for="ptClientSecret">Client Secret</label>
+          <input id="ptClientSecret" name="clientSecret" type="password" autocomplete="new-password" class="input" />
+          <p class="form-hint" id="ptSecretHint"></p>
+          <p class="form-error" data-err="clientSecret" hidden></p>
+        </div>
+        <label class="inline-flex cursor-pointer items-center gap-3">
+          <span class="toggle">
+            <input type="checkbox" id="ptEnabled" name="enabled" class="toggle-input" checked />
+            <span class="toggle-track" aria-hidden="true"></span>
+          </span>
+          <span class="text-sm text-slate-600">Aktif (Karirlink menarik data dari Siakad)</span>
+        </label>
+      </div>
+      <div class="drawer-footer">
+        <button type="button" class="btn-outline btn-md" data-drawer-hide="ptDrawer">Batal</button>
+        <button type="submit" class="btn-primary btn-md">Simpan</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/table.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+
+
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();
+  const UNIVERSITIES = [{"id":"u01","name":"Universitas Nusantara Raya","abbrev":"UNR","dikti":"001001","siakad":"https://siakad.unr.ac.id","state":"enabled","live":"https://siakad.unr.ac.id/live","clientId":"klcore","updated":"10 Nov 2026, 14:20"},{"id":"u02","name":"Institut Teknologi Cendekia","abbrev":"ITC","dikti":"001002","siakad":"https://siakad.itc.ac.id","state":"enabled","live":"https://siakad.itc.ac.id/live","clientId":"klcore","updated":"09 Nov 2026, 10:05"},{"id":"u03","name":"Universitas Samudra Biru","abbrev":"USB","dikti":"001003","siakad":"https://akademik.samudrabiru.ac.id","state":"disabled","live":"https://akademik.samudrabiru.ac.id/live","clientId":"klcore","updated":"28 Okt 2026, 16:40"},{"id":"u04","name":"Politeknik Negeri Bumi Pertiwi","abbrev":"Polbup","dikti":"002001","siakad":"https://siakad.polbup.ac.id","state":"enabled","live":"https://siakad.polbup.ac.id/live","clientId":"klcore","updated":"05 Nov 2026, 08:15"},{"id":"u05","name":"Universitas Kartika Bangsa","abbrev":"UKB","dikti":"001005","siakad":"https://siakad.kartikabangsa.ac.id","state":"none","live":null,"clientId":null,"updated":null},{"id":"u06","name":"Sekolah Tinggi Ekonomi Mandiri","abbrev":"STEM","dikti":"003001","siakad":null,"state":"none","live":null,"clientId":null,"updated":null},{"id":"u07","name":"Universitas Garuda Perkasa","abbrev":"UGP","dikti":"001007","siakad":"https://siakad.garudaperkasa.ac.id","state":"enabled","live":"https://siakad.garudaperkasa.ac.id/live","clientId":"klcore","updated":"02 Nov 2026, 13:30"},{"id":"u08","name":"Institut Seni dan Budaya Tirta","abbrev":"ISBT","dikti":"004001","siakad":"https://siakad.isbt.ac.id","state":"none","live":null,"clientId":null,"updated":null},{"id":"u09","name":"Universitas Dwipa Mandala","abbrev":"UDM","dikti":"001009","siakad":"https://siakad.dwipamandala.ac.id","state":"enabled","live":"https://siakad.dwipamandala.ac.id/live","clientId":"klcore","updated":"30 Okt 2026, 09:50"},{"id":"u10","name":"Politeknik Kesehatan Harapan","abbrev":"Poltekes Harapan","dikti":"002010","siakad":"https://siakad.poltekesharapan.ac.id","state":"disabled","live":"https://siakad.poltekesharapan.ac.id/live","clientId":"klcore","updated":"21 Okt 2026, 11:00"},{"id":"u11","name":"Universitas Surya Kencana","abbrev":"USK","dikti":"001011","siakad":"https://siakad.suryakencana.ac.id","state":"enabled","live":"https://siakad.suryakencana.ac.id/live","clientId":"klcore","updated":"08 Nov 2026, 15:45"},{"id":"u12","name":"Akademi Komunitas Sentosa","abbrev":null,"dikti":null,"siakad":null,"state":"none","live":null,"clientId":null,"updated":null}];
+
+  // Konfigurasi PT - data contoh. table.js mengurus pencarian, nomor, dan halaman; halaman ini menambah
+  // filter status (combo), laci koneksi Siakad Live (?pt=<id> membuka laci, bisa dibagikan), dan kartu Sync CRM.
+  (function () {
+    var root = document.getElementById('ptRoot');
+    var filterState = document.getElementById('filterState');
+    var drawer = document.getElementById('ptDrawer');
+    var form = document.getElementById('ptForm');
+    if (!root || !drawer || !window.KKTable) return;
+    var table = window.KKTable.get(root) || (window.KKTable.init(root), window.KKTable.get(root));
+    var toast = function (type, message) { if (window.KKToast) window.KKToast.show({ type: type, message: message, duration: 3500 }); };
+    var byId = function (id) { return document.getElementById(id); };
+
+    // ---- filter status
+    table.addFilter(function (row) { return filterState.dataset.value === 'all' || row.dataset.state === filterState.dataset.value; });
+    filterState.querySelectorAll('[data-combo-item]').forEach(function (item) {
+      item.addEventListener('click', function () { filterState.dataset.value = item.dataset.value; table.refresh(); });
+    });
+    table.refresh();
+
+    // ---- aturan form (sama dengan domain app: Live URL https, Client ID, Client Secret)
+    var STATE = { none: ['neutral', 'Belum diatur'], enabled: ['success', 'Aktif'], disabled: ['warning', 'Nonaktif'] };
+    var badge = function (state) {
+      var s = STATE[state];
+      return '<span class="badge-' + s[0] + '"><span class="badge-dot bg-' + (s[0] === 'neutral' ? 'neutral-500' : s[0] + '-600') + '"></span>' + s[1] + '</span>';
+    };
+    function cleanLiveUrl(raw) {
+      var url = raw.trim().replace(/\/+$/, '');
+      if (!url || url.length > 500 || /[?#\s]/.test(url)) return null;
+      var u; try { u = new URL(url); } catch (e) { return null; }
+      if (u.protocol !== 'https:' || u.username || u.password) return null;
+      var host = url.slice('https://'.length).split(/[/:]/)[0];
+      return host && /^[A-Za-z0-9.-]+$/.test(host) ? url : null;
+    }
+    function defaultLiveUrl(u) { return u.siakad ? u.siakad.replace(/\/+$/, '') + '/live' : ''; }
+
+    var current = null;
+    var hasSecret = false;
+    function setErrors(errs) {
+      form.querySelectorAll('[data-err]').forEach(function (p) {
+        var msg = errs[p.dataset.err];
+        p.hidden = !msg; p.textContent = msg || '';
+      });
+    }
+
+    function openDrawerFor(u) {
+      current = u;
+      hasSecret = u.state !== 'none';
+      byId('ptDrName').textContent = u.name;
+      byId('ptDrSub').textContent = [u.abbrev, u.dikti && 'Kode Dikti ' + u.dikti].filter(Boolean).join(' · ');
+      byId('ptDrHelp').textContent = 'Salin nilainya dari Siakad ' + u.name + ': Pengaturan → Plugin/Addon → baris Karirlink Live URL, Client ID, dan Client Secret.';
+      var isNew = u.state === 'none';
+      byId('ptDrNew').hidden = !isNew;
+      byId('ptDrNewText').textContent = u.siakad
+        ? 'Live URL diisi dari alamat Siakad di CRM. Periksa lalu isi Client Secret.'
+        : 'Alamat Siakad PT ini belum ada di CRM. Isi Live URL secara manual.';
+      var upd = byId('ptDrUpdated');
+      upd.hidden = isNew || !u.updated;
+      upd.textContent = 'Terakhir diubah ' + (u.updated || '');
+      byId('ptLiveUrl').value = isNew ? defaultLiveUrl(u) : u.live;
+      byId('ptClientId').value = isNew ? 'klcore' : u.clientId;
+      byId('ptClientSecret').value = '';
+      byId('ptClientSecret').placeholder = hasSecret ? '••••••••••••' : '';
+      byId('ptSecretHint').textContent = hasSecret ? 'Secret tersimpan. Kosongkan untuk tetap memakai secret lama.' : 'Wajib untuk koneksi baru.';
+      byId('ptEnabled').checked = isNew ? true : u.state === 'enabled';
+      setErrors({});
+      drawer.setAttribute('data-drawer-placement', window.innerWidth >= 640 ? 'right' : 'bottom');
+      KKDrawer.open(drawer);
+    }
+
+    function setParam(id) {
+      var url = new URL(location.href);
+      if (id) url.searchParams.set('pt', id); else url.searchParams.delete('pt');
+      history.replaceState(null, '', url);
+    }
+    drawer.addEventListener('drawer:show', function () {
+      // Sidebar karirlink ber-z-50, di atas backdrop laci bawaan (z-30): naikkan laci dan backdrop supaya sidebar dan topbar ikut gelap.
+      drawer.style.zIndex = '60';
+      document.querySelectorAll('.drawer-backdrop').forEach(function (b) { b.style.zIndex = '59'; });
+    });
+    drawer.addEventListener('drawer:hide', function () {
+      drawer.style.zIndex = '';
+      document.querySelectorAll('.drawer-backdrop').forEach(function (b) { b.style.zIndex = ''; });
+      setParam(null);
+    });
+
+    root.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-open-pt]');
+      if (!btn) return;
+      var u = UNIVERSITIES.find(function (x) { return x.id === btn.dataset.openPt; });
+      if (!u) return;
+      setParam(u.id);
+      openDrawerFor(u);
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var errs = {};
+      var live = byId('ptLiveUrl').value;
+      var clientId = byId('ptClientId').value.trim();
+      var secret = byId('ptClientSecret').value;
+      if (!live.trim()) errs.liveUrl = 'Live URL wajib diisi.';
+      else if (!cleanLiveUrl(live)) errs.liveUrl = 'Live URL harus https dengan domain valid, tanpa ?query atau #fragment, contoh https://kampus.siakadcloud.com/live.';
+      if (!clientId) errs.clientId = 'Client ID wajib diisi.';
+      else if (/\s/.test(clientId)) errs.clientId = 'Client ID tidak boleh mengandung spasi.';
+      if (secret !== secret.trim()) errs.clientSecret = 'Client Secret tidak boleh diawali atau diakhiri spasi.';
+      else if (!hasSecret && !secret) errs.clientSecret = 'Client Secret wajib diisi untuk koneksi baru.';
+      setErrors(errs);
+      if (Object.keys(errs).length) { toast('danger', 'Periksa kembali isian koneksi.'); return; }
+
+      // simpan (simulasi): perbarui data dan baris tabel
+      current.live = cleanLiveUrl(live);
+      current.clientId = clientId;
+      current.state = byId('ptEnabled').checked ? 'enabled' : 'disabled';
+      var d = new Date();
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+      var pad = function (n) { return String(n).padStart(2, '0'); };
+      current.updated = pad(d.getDate()) + ' ' + months[d.getMonth()] + ' ' + d.getFullYear() + ', ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+      var row = root.querySelector('tr[data-id="' + current.id + '"]');
+      row.dataset.state = current.state;
+      row.querySelector('[data-cell="badge"]').innerHTML = badge(current.state);
+      row.querySelector('[data-cell="live"]').textContent = current.live;
+      row.querySelector('[data-cell="updated"]').textContent = current.updated;
+      row.querySelector('[data-cell="action"]').textContent = 'Ubah';
+      table.refresh();
+      KKDrawer.close(drawer);
+      toast('success', 'Koneksi Siakad tersimpan.');
+    });
+
+    var pt = new URLSearchParams(location.search).get('pt');
+    var initial = pt && UNIVERSITIES.find(function (x) { return x.id === pt; });
+    if (initial) openDrawerFor(initial);
+
+    // ---- Sync dari CRM (simulasi): antre, lalu dianggap selesai
+    var syncBtn = byId('crmSyncBtn');
+    syncBtn.addEventListener('click', function () {
+      syncBtn.disabled = true;
+      byId('crmStatus').textContent = 'Antre';
+      byId('crmTrigger').textContent = 'Manual';
+      byId('crmAt').textContent = 'Baru saja';
+      byId('crmCounts').hidden = true;
+      toast('success', 'Sync CRM diantre. Data PT diperbarui dalam beberapa saat.');
+    });
+  })();
+
+</script>
+<script src="admin-brand.js"></script>
+</body>
+</html>
