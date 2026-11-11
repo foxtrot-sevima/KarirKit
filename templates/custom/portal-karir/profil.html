@@ -49,8 +49,6 @@
       <div id="profBanner" class="relative aspect-[6/1] w-full overflow-hidden bg-gradient-to-r from-primary-800 via-primary-600 to-primary-500">
         <img id="bannerImg" alt="" class="absolute inset-0 h-full w-full object-cover object-center" hidden />
         <div aria-hidden="true" class="absolute inset-0 opacity-30" style="background-image: radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 22px 22px;"></div>
-        <div aria-hidden="true" class="absolute -right-16 -top-24 h-72 w-72 rounded-full bg-secondary-400/30 blur-3xl"></div>
-        <div aria-hidden="true" class="absolute -bottom-24 left-1/3 h-64 w-64 rounded-full bg-primary-300/30 blur-3xl"></div>
       </div>
 
       <div class="px-5 pb-7 sm:px-8">
@@ -124,6 +122,12 @@
           <div class="mt-3 grid grid-cols-2 gap-2"><button type="button" class="btn-outline btn-sm" id="copyUrl"><i class="kk kk-copy h-4 w-4" aria-hidden="true"></i>Salin</button><a href="profil.html?publik=1" class="btn-outline btn-sm"><i class="kk kk-globe-hemisphere-west h-4 w-4" aria-hidden="true"></i>Lihat publik</a></div>
         </section>
 
+        <section class="card owner-only card-body" aria-labelledby="secTitle">
+          <h2 id="secTitle" class="card-title">Keamanan akun</h2>
+          <p class="card-text mt-1 text-xs">Ganti password secara berkala agar akun tetap aman.</p>
+          <a href="ubah-password.html" class="btn-outline btn-sm mt-4 w-full"><i class="kk kk-key h-4 w-4" aria-hidden="true"></i>Ubah Password</a>
+        </section>
+
         <section class="card owner-only card-body" aria-labelledby="completeTitle">
           <div class="flex items-center justify-between"><h2 id="completeTitle" class="card-title">Kelengkapan profil</h2><span id="pPct" class="badge-primary">0%</span></div>
           <div class="progress-track mt-3 h-1.5"><div id="pBar" class="progress-bar" style="width: 0%"></div></div>
@@ -181,7 +185,7 @@
     var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'pengguna';
     var DEFAULTS = {
       headline: 'Mahasiswa tingkat akhir yang mencari peluang magang dan posisi junior',
-      location: 'Bandung, Jawa Barat', campus: 'Universitas Contoh, Sistem Informasi', phone: '+62 812-3456-7890',
+      location: 'Bandung, Jawa Barat', campus: 'Universitas Foxtrot, Sistem Informasi', phone: '+62 812-3456-7890',
       about: 'Mahasiswa tingkat akhir dengan minat pada pengembangan produk digital. Terbiasa bekerja dalam tim, belajar cepat, dan senang membangun hal yang berguna bagi pengguna.\nSedang mencari kesempatan magang atau posisi junior untuk menerapkan ilmu sekaligus bertumbuh bersama tim yang suportif.',
       open: true, banner: '', skills: [],
       exp: [
@@ -189,7 +193,7 @@
         { role: 'Asisten Laboratorium Basis Data', org: 'Program Studi Sistem Informasi', period: 'Sep 2024 sampai Jan 2025', desc: 'Membimbing 40 mahasiswa dalam praktikum SQL dan perancangan basis data.' }
       ],
       edu: [
-        { school: 'Universitas Contoh', degree: 'S1 Sistem Informasi', period: '2022 sampai sekarang', desc: 'IPK 3,62. Aktif di himpunan mahasiswa bidang teknologi.' },
+        { school: 'Universitas Foxtrot', degree: 'S1 Sistem Informasi', period: '2022 sampai sekarang', desc: 'IPK 3,62. Aktif di himpunan mahasiswa bidang teknologi.' },
         { school: 'SMA Negeri 1 Bandung', degree: 'IPA', period: '2019 sampai 2022', desc: '' }
       ]
     };

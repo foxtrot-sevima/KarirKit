@@ -36,5 +36,5 @@ git('worktree', 'add', dir, '-b', branch, 'origin/staging');
 const nm = join(root, 'node_modules');
 if (existsSync(nm) && !existsSync(join(dir, 'node_modules'))) symlinkSync(nm, join(dir, 'node_modules'), 'junction');
 say(`Siap: ${dir} (branch ${branch}, dari origin/staging).`);
-say(`Kerjakan di folder itu. Selesai: git push origin ${branch}, lalu merge --no-ff ke staging (lihat skill karirkit-release).`);
+say(`Kerjakan di folder itu. Selesai: merge --no-ff ke staging di worktree sementara; branch fitur tidak perlu dipush, supaya kuota deployment Vercel tidak habis (lihat skill karirkit-release).`);
 say(`Bersihkan setelah tergabung: hapus tautan node_modules (rmdir di Windows), lalu git worktree remove "${dir}".`);

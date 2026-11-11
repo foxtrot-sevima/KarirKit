@@ -6,7 +6,7 @@ description: Alur rilis dan staging KarirKit - checklist rilis (CHANGELOG, versi
 # Rilis dan staging KarirKit
 
 ## Aturan utama
-- **Fitur mockup langsung ke `staging`.** Branch `mockup/<fitur>` dibuat dari `origin/staging`, selesai = push branch lalu merge `--no-ff` ke `staging` (worktree sementara), lalu `staging` > `karirkit/staging-vercel` (pohon harus identik). Cek hash di GitHub dan GitLab. Tidak ada cabang perantara bertanggal.
+- **Fitur mockup langsung ke `staging`.** Branch `mockup/<fitur>` dibuat dari `origin/staging`, selesai = merge `--no-ff` ke `staging` di worktree sementara (branch fitur tidak perlu dipush; push hanya `staging` dan `karirkit/staging-vercel`, supaya kuota 100 deployment Vercel per hari tidak habis), lalu `staging` > `karirkit/staging-vercel` (pohon harus identik). Cek hash di GitHub dan GitLab. Tidak ada cabang perantara bertanggal.
 - **Versi semver, Table of Version, tag, dan publish hanya untuk komponen design system.** Perubahan mockup template KarirLink/Portal Karir tidak menaikkan versi; dicatat di `templates/CHANGELOG.md` dengan tanggal (lihat skill `karirkit-conventions` bagian 0). Commit dipisah per lingkup (`feat(ds)` vs `feat(karirlink)` / `feat(portal-karir)`).
 - Checklist rilis di bawah hanya untuk branch `karirkit/<versi>` dan `CHANGELOG.md` (design system); catatan template ke `templates/CHANGELOG.md` dari branch `mockup/<fitur>`.
 - **Rilis hanya atas perintah eksplisit** (merge PR rilis ke `master`, PR `master` -> `release`, tag, GitHub release, deploy `master` -> `karirkit/vercel`). Persetujuan rilis sebelumnya tidak berlaku untuk rilis berikutnya.

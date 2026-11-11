@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aktivasi Akun | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Buat password untuk mengaktifkan akun KarirLink Anda." />
+<meta name="author" content="SEVIMA" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<main class="flex flex-1 items-center justify-center px-4 py-10 sm:py-16">
+  <div class="w-full max-w-2xl">
+    <a href="login.html" class="mb-8 flex justify-center" aria-label="KarirLink SEVIMA">
+      <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+    </a>
+
+    <section class="card card-body sm:p-10">
+      <div class="text-center">
+      <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary-50 text-primary-600"><i class="kk kk-lock-key h-7 w-7" aria-hidden="true"></i></span>
+        <h1 class="mt-5 font-display text-2xl font-bold text-slate-900">Buat password Anda</h1>
+        <p class="mt-2 text-sm text-slate-500">Satu langkah lagi untuk mengaktifkan akun KarirLink Anda.</p>
+      </div>
+
+      <div class="mt-6 flex items-center gap-3 rounded-xl border border-border/70 bg-surface p-3.5 text-sm">
+        <i class="kk kk-buildings h-5 w-5 shrink-0 text-primary-600" aria-hidden="true"></i>
+        <div class="min-w-0"><p class="text-xs text-fg-muted">Kampus</p><p class="truncate font-semibold text-fg">Universitas Foxtrot</p></div>
+      </div>
+
+      <form id="activateForm" class="mt-6 space-y-5" novalidate>
+        <div>
+          <label for="actEmail" class="form-label">Alamat Email</label>
+          <input id="actEmail" name="email" type="email" class="input bg-neutral-50" value="rani.putri@email.com" readonly aria-readonly="true" />
+          <p class="form-hint">Email dari data kampus dan tidak bisa diubah.</p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2">
+        <div>
+          <label for="actPass" class="form-label">Password</label>
+          <div class="relative">
+            <input id="actPass" name="password" type="password" required autocomplete="new-password" class="input pr-10" placeholder="Buat password" />
+            <button type="button" class="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-fg-subtle transition-colors hover:text-neutral-600" data-password-toggle aria-label="Tampilkan password">
+              <i class="kk kk-eye h-4 w-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label for="actConfirm" class="form-label">Konfirmasi Password</label>
+          <div class="relative">
+            <input id="actConfirm" name="confirm" type="password" required autocomplete="new-password" class="input pr-10" placeholder="Ulangi password" />
+            <button type="button" class="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-fg-subtle transition-colors hover:text-neutral-600" data-password-toggle aria-label="Tampilkan password">
+              <i class="kk kk-eye h-4 w-4"></i>
+            </button>
+          </div>
+          <p id="actConfirmErr" class="form-error hidden">Konfirmasi password belum sama dengan password.</p>
+        </div>
+        </div>
+
+        <ul id="actRules" class="grid grid-cols-1 gap-x-6 gap-y-1.5 rounded-xl bg-neutral-50 p-4 text-xs sm:grid-cols-2" aria-label="Aturan password">
+          <li data-rule="len" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Minimal 8 karakter</span></li>
+          <li data-rule="upper" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Mengandung huruf besar</span></li>
+          <li data-rule="lower" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Mengandung huruf kecil</span></li>
+          <li data-rule="digit" class="flex items-center gap-2 text-fg-muted"><i class="kk kk-circle h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span>Mengandung angka</span></li>
+        </ul>
+
+
+        <button id="actSubmit" type="submit" class="btn-primary btn-lg w-full" disabled>Aktifkan Akun</button>
+      </form>
+
+      <p class="mt-6 text-center text-xs text-fg-muted">Dengan mengaktifkan akun, Anda menyetujui <a href="segera-hadir.html" class="font-semibold text-primary-600 hover:text-primary-700">Syarat &amp; Ketentuan</a> dan <a href="segera-hadir.html" class="font-semibold text-primary-600 hover:text-primary-700">Kebijakan Privasi</a> KarirLink.</p>
+    </section>
+
+    <p class="mt-8 text-center text-xs text-fg-subtle">&copy; <span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
+  </div>
+</main>
+
+<script>
+  // Tampilkan/sembunyikan password.
+  document.querySelectorAll('[data-password-toggle]').forEach((btn) => {
+    const ic = btn.querySelector('.kk');
+    btn.addEventListener('click', () => {
+      const input = btn.previousElementSibling;
+      const showing = input.type === 'text';
+      input.type = showing ? 'password' : 'text';
+      ic.classList.toggle('kk-eye', showing);
+      ic.classList.toggle('kk-eye-slash', !showing);
+      btn.setAttribute('aria-label', showing ? 'Tampilkan password' : 'Sembunyikan password');
+    });
+  });
+
+  // Aturan password dicek langsung; tombol aktif bila semua aturan terpenuhi dan konfirmasi sama.
+  // Aturan di sini contoh desain; angka pastinya mengikuti kebijakan di BE (FOX-1295).
+  const pass = document.getElementById('actPass');
+  const confirm = document.getElementById('actConfirm');
+  const confirmErr = document.getElementById('actConfirmErr');
+  const submit = document.getElementById('actSubmit');
+  const checks = { len: (v) => v.length >= 8, upper: (v) => /[A-Z]/.test(v), lower: (v) => /[a-z]/.test(v), digit: (v) => /[0-9]/.test(v) };
+  function refresh() {
+    let allOk = true;
+    Object.keys(checks).forEach((k) => {
+      const ok = checks[k](pass.value);
+      allOk = allOk && ok;
+      const li = document.querySelector('[data-rule="' + k + '"]');
+      const ic = li.querySelector('.kk');
+      ic.classList.toggle('kk-check-circle', ok);
+      ic.classList.toggle('kk-circle', !ok);
+      ic.classList.toggle('text-success-600', ok);
+      ic.classList.toggle('text-fg-subtle', !ok);
+      li.classList.toggle('text-success-700', ok);
+      li.classList.toggle('text-fg-muted', !ok);
+    });
+    const mismatch = confirm.value !== '' && confirm.value !== pass.value;
+    confirmErr.classList.toggle('hidden', !mismatch);
+    confirm.setAttribute('aria-invalid', mismatch ? 'true' : 'false');
+    submit.disabled = !(allOk && confirm.value !== '' && !mismatch);
+  }
+  pass.addEventListener('input', refresh);
+  confirm.addEventListener('input', refresh);
+  document.getElementById('activateForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (submit.disabled) return;
+    // Akun dibuat saat link diselesaikan (FOX-1295), lalu ke login dengan email terisi.
+    window.location.href = 'login-password.html?aktif=1&email=' + encodeURIComponent(document.getElementById('actEmail').value);
+  });
+  document.querySelectorAll('.js-current-year').forEach((el) => { el.textContent = new Date().getFullYear(); });
+</script>
+</body>
+</html>

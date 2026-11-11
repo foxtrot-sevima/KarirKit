@@ -35,7 +35,7 @@
 <div class="flex min-h-screen flex-col lg:flex-row">
 
   <!-- ============================= FORM PANEL ============================= -->
-  <div class="flex w-full flex-1 flex-col justify-center px-6 py-10 sm:px-12 lg:w-1/2 lg:px-16 xl:px-24">
+  <div class="flex w-full flex-1 flex-col justify-center px-6 py-10 sm:px-12 lg:w-1/2 lg:px-16 lg:py-16 xl:px-24">
     <div class="mx-auto w-full max-w-md">
       <!-- Logo kiri hanya di layar kecil: di layar lebar logo sudah ada di panel kanan -->
       <a href="login.html" class="mb-10 inline-flex lg:hidden">
@@ -46,41 +46,7 @@
         <h1 class="font-display text-2xl font-bold text-slate-900">Masuk ke akun Anda</h1>
         <p class="mt-1.5 text-sm text-slate-500">Silakan masukkan detail akun untuk melanjutkan.</p>
 
-        <form id="loginForm" class="mt-8 space-y-5" novalidate>
-          <div>
-            <label for="loginEmail" class="form-label">Alamat Email</label>
-            <input id="loginEmail" name="email" type="email" required autocomplete="email" class="input" placeholder="nama@email.com" />
-            <p class="form-error hidden" data-error-for="loginEmail">Masukkan alamat email yang valid.</p>
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between">
-              <label for="loginPassword" class="form-label mb-0">Kata Sandi</label>
-              <a href="segera-hadir.html" class="text-xs font-medium text-primary-600 hover:text-primary-700">Lupa kata sandi?</a>
-            </div>
-            <div class="relative">
-              <input id="loginPassword" name="password" type="password" required autocomplete="current-password" class="input pr-10" placeholder="Masukkan kata sandi" />
-              <button type="button" class="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-fg-subtle transition-colors hover:text-neutral-600" data-password-toggle aria-label="Tampilkan kata sandi">
-                <i class="kk kk-eye h-4 w-4"></i>
-              </button>
-            </div>
-            <p class="form-error hidden" data-error-for="loginPassword">Kata sandi wajib diisi.</p>
-          </div>
-
-          <label class="flex w-fit cursor-pointer items-center gap-2 text-sm text-slate-600">
-            <input type="checkbox" class="form-check" checked />
-            Ingat saya selama 30 hari
-          </label>
-
-          <button type="submit" class="btn-primary btn-lg w-full">Masuk</button>
-        </form>
-
-        <div class="relative my-6">
-          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-border"></div></div>
-          <div class="relative flex justify-center"><span class="bg-surface px-3 text-xs text-fg-subtle">atau lanjutkan dengan</span></div>
-        </div>
-
-        <div class="space-y-3">
+        <div class="mt-8 space-y-3">
           <button type="button" class="btn-outline btn-md w-full" data-social-login>
             <span class="kk-app kk-app-siakadcloud h-4 w-4" aria-hidden="true"></span>
             Lanjutkan dengan SiAkadCloud
@@ -90,6 +56,20 @@
             Lanjutkan dengan Google
           </button>
         </div>
+
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-border"></div></div>
+          <div class="relative flex justify-center"><span class="bg-surface px-3 text-xs text-fg-subtle">atau</span></div>
+        </div>
+
+        <form id="linkForm" class="space-y-5" novalidate>
+          <div>
+            <label for="linkEmail" class="form-label">Email</label>
+            <input id="linkEmail" name="email" type="email" required autocomplete="email" class="input" placeholder="nama@email.com" />
+            <p class="form-error hidden" data-error-for="linkEmail">Masukkan alamat email yang valid.</p>
+          </div>
+          <button type="submit" class="btn-primary btn-lg w-full">Lanjutkan</button>
+        </form>
 
         <p class="mt-6 text-center text-sm text-slate-500">
           Belum punya akun?
@@ -107,68 +87,60 @@
   </div>
 
   <!-- ============================= VISUAL PANEL ============================= -->
-  <div class="relative hidden overflow-hidden bg-brand-gradient lg:flex lg:w-1/2 lg:flex-col lg:justify-between lg:p-12 xl:p-16">
+  <div class="relative hidden overflow-hidden bg-brand-gradient lg:sticky lg:top-0 lg:block lg:h-screen lg:w-1/2 lg:self-start lg:p-4">
     <!-- Dot texture -->
     <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
-    <!-- Soft glow accents -->
-
-    <div class="relative"><img src="../../assets/logo/karirlink-sevima-white.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" /></div>
-
-    <div class="relative max-w-md">
-      <span class="badge bg-white/15 text-white">Platform Karier Kampus</span>
-      <h2 class="mt-5 font-display text-3xl font-bold leading-tight text-white xl:text-4xl">
-        Satu platform karier untuk kampus, alumni, dan mitra industri.
-      </h2>
-      <p class="mt-4 text-sm text-primary-100/90 sm:text-base">
-        Cari lowongan, magang, dan event karier, lalu lamar langsung ke mitra industri kampus dalam satu tempat.
-      </p>
-      <ol class="mt-9 space-y-6">
-        <li class="relative flex gap-4">
-          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-user-circle h-5 w-5"></i></span>
-          <span class="absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full bg-white/25"></span>
-          <div class="pt-0.5">
-            <p class="text-sm font-semibold text-white">Masuk atau daftar</p>
-            <p class="mt-0.5 text-xs text-primary-100/80">Pakai akun SiAkadCloud, Google, atau email.</p>
+    <div class="relative h-full rounded-3xl bg-white p-2">
+      <div class="h-full overflow-hidden rounded-[1.25rem] p-8 xl:p-12" style="background-image: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-100) 58%, var(--color-secondary-50) 100%);">
+        <div class="flex items-center justify-between gap-4">
+          <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+          <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-primary-200 bg-white/80 px-3 py-1 text-xs font-semibold text-primary-700"><i class="kk kk-graduation-cap h-3.5 w-3.5" aria-hidden="true"></i>Platform Karier Kampus</span>
+        </div>
+        <h2 class="mt-6 font-display text-3xl font-bold leading-snug text-fg xl:text-4xl">Satu platform karier untuk kampus, alumni, dan mitra.</h2>
+        <p class="mt-4 max-w-lg text-sm leading-relaxed text-slate-600 sm:text-base">Cari lowongan, magang, dan event karier, lalu lamar langsung dalam satu tempat.</p>
+      <!-- Pratinjau dekoratif: lowongan, event, dan status lamaran; satu kartu menonjol, sisanya memudar -->
+      <div class="relative mx-auto mt-8 w-full max-w-md [zoom:1.125]" aria-hidden="true">
+        <div class="rounded-[2rem] border border-white/70 bg-white/50 p-3 sm:p-4">
+          <div class="space-y-2.5">
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 ">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-briefcase h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Staf Pemasaran Digital</p><p class="text-xs text-slate-500">PT Sentra Vidya Utama &middot; Magang</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-success-50 text-success-700">Lowongan</span>
           </div>
-        </li>
-        <li class="relative flex gap-4">
-          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-target h-5 w-5"></i></span>
-          <span class="absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full bg-white/25"></span>
-          <div class="pt-0.5">
-            <p class="text-sm font-semibold text-white">Atur minat</p>
-            <p class="mt-0.5 text-xs text-primary-100/80">Bidang, preferensi kerja, dan keahlianmu.</p>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 ">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-calendar-dots h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Job Fair Kampus</p><p class="text-xs text-slate-500">Bursa kerja kampus</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-secondary-50 text-secondary-700">Event</span>
           </div>
-        </li>
-        <li class="relative flex gap-4">
-          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-paper-plane-tilt h-5 w-5"></i></span>
-          <div class="pt-0.5">
-            <p class="text-sm font-semibold text-white">Cari dan lamar</p>
-            <p class="mt-0.5 text-xs text-primary-100/80">Rekomendasi pas, lamar dalam satu klik.</p>
+          <div class="relative z-10 -mx-5 flex items-center gap-3 rounded-2xl border border-primary-100 bg-white p-4 shadow-card-lg sm:-mx-8">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-paper-plane-tilt h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">UI/UX Designer</p><p class="text-xs text-slate-500">Kirim lamaran dalam satu klik</p></div>
+            <span class="rounded-full border border-primary-200 bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-700">Lamar</span>
           </div>
-        </li>
-      </ol>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-60 blur-[1.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-buildings h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Analis Data</p><p class="text-xs text-slate-500">PT DigitalDream &middot; Penuh waktu</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Lowongan</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-40 blur-[2.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-danger-50 text-danger-600"><i class="kk kk-megaphone h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Webinar Persiapan Karier</p><p class="text-xs text-slate-500">Seminar daring</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Event</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-25 blur-[3.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-warning-50 text-warning-600"><i class="kk kk-graduation-cap h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Magang Software Engineer</p><p class="text-xs text-slate-500">PT Inovasi Mandiri &middot; Magang</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Lowongan</span>
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
-
-    <p class="relative text-xs text-primary-100/70">Portal karier kampus dari SEVIMA.</p>
   </div>
 </div>
 
 <script>
-  // Password visibility toggle.
-  document.querySelectorAll('[data-password-toggle]').forEach((btn) => {
-    const icon = btn.querySelector('.kk');
-    btn.addEventListener('click', () => {
-      const input = btn.previousElementSibling;
-      const showing = input.type === 'text';
-      input.type = showing ? 'password' : 'text';
-      icon.classList.toggle('kk-eye', showing);
-      icon.classList.toggle('kk-eye-slash', !showing);
-      btn.setAttribute('aria-label', showing ? 'Tampilkan kata sandi' : 'Sembunyikan kata sandi');
-    });
-  });
-
-  // Demo sign-in (no backend): validate, then open the portal home (index.html) when onboarding was already
-  // finished on this browser, otherwise the onboarding steps (onboarding.html).
   function nextPage() {
     try {
       const saved = JSON.parse(localStorage.getItem('kk_portal_onboarding'));
@@ -176,25 +148,21 @@
     } catch (e) { /* storage unavailable: treat as a new user */ }
     return 'onboarding.html';
   }
-  const form = document.getElementById('loginForm');
-  function setError(input, bad) {
-    input.setAttribute('aria-invalid', bad ? 'true' : 'false');
-    const msg = form.querySelector('[data-error-for="' + input.id + '"]');
-    if (msg) msg.classList.toggle('hidden', !bad);
-  }
-  form.querySelectorAll('.input').forEach((input) => input.addEventListener('input', () => setError(input, !input.checkValidity())));
+  document.querySelectorAll('[data-social-login]').forEach((btn) => btn.addEventListener('click', () => { window.location.href = nextPage(); }));
+
+  // Email dulu: link masuk langsung dikirim, lalu opsi password muncul di halaman berikutnya.
+  // Pesan di halaman berikutnya sama untuk email terdaftar maupun tidak.
+  const form = document.getElementById('linkForm');
+  const email = document.getElementById('linkEmail');
+  const err = form.querySelector('[data-error-for="linkEmail"]');
+  const prefill = new URLSearchParams(window.location.search).get('email');
+  if (prefill) email.value = prefill;
+  email.addEventListener('input', () => { email.setAttribute('aria-invalid', 'false'); err.classList.add('hidden'); });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    let firstBad = null;
-    form.querySelectorAll('.input').forEach((input) => {
-      const bad = !input.checkValidity();
-      setError(input, bad);
-      if (bad && !firstBad) firstBad = input;
-    });
-    if (firstBad) { firstBad.focus(); return; }
-    window.location.href = nextPage();
+    if (!email.checkValidity()) { email.setAttribute('aria-invalid', 'true'); err.classList.remove('hidden'); email.focus(); return; }
+    window.location.href = 'login-cek-email.html?email=' + encodeURIComponent(email.value);
   });
-  document.querySelectorAll('[data-social-login]').forEach((btn) => btn.addEventListener('click', () => { window.location.href = nextPage(); }));
 
   document.querySelectorAll('.js-current-year').forEach((el) => {
     el.textContent = new Date().getFullYear();

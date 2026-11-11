@@ -8,6 +8,95 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-10
+
+Dasar KarirKit: v1.5.0
+
+### Added
+- **Revamp landing page publik KarirLink (`karirlink.id/beranda`) dengan KarirKit** di folder baru `templates/landing` (`index.html`, `shell.js`): navbar bergaya Portal Karir (kapsul kaca di atas halaman, putih dan mengecil saat digulir, penanda menu aktif berpindah mengikuti bagian yang dibaca) serta Drawer di ponsel (lebar di atas halaman, mengecil menjadi kapsul saat digulir); hero selebar layar dengan gradasi pastel yang memudar ke bagian berikutnya, judul bermotif kata miring, bar pencarian posisi dan lokasi, serta ikon dan kartu lowongan melayang; strip ekosistem SEVIMA; kartu kategori bidang; peran dengan tab interaktif (perusahaan, perguruan tinggi, lulusan) beserta mockup ATS, ringkasan tracer study, dan ponsel; petak angka pastel; enam fitur; lowongan kerja dan magang (tab) dengan tombol Lamar; cara bergabung dengan mockup profil; testimoni contoh; tips dan trik; FAQ dua kolom dari teks "Mengenal KarirLink"; ajakan penutup pastel dengan kartu lowongan samar; dan footer. Arah visual mengikuti moodboard `moodboard/landing-page`. Animasi masuk saat digulir (dimatikan bila pengguna mengurangi gerakan). Isi mengikuti landing lama; tanpa gaya komponen sendiri, data contoh ditulis sebagai HTML.
+  - Tautan Kebijakan Privasi dan Syarat & Ketentuan di footer belum mengarah ke halaman (`#`); halaman Cara Bergabung, FAQ, Privacy Policy, dan Terms lama belum dibuat ulang.
+  - Folder `templates/landing` ditambahkan ke daftar lingkup template (`AGENTS.md`, `scripts/check-templates.mjs`) dan ke Storybook (`Templates/Landing`).
+
+## 2026-11-09
+
+Dasar KarirKit: v1.5.0
+
+### Added
+- **Alur Alumni dari email Tracer sampai selesai, tanpa login (FOX-1329):** desain email Tracer Study, layar verifikasi NIM + tanggal lahir, empat layar status link, dan layar selesai, versi mobile dan desktop. Halaman kuesioner tidak diubah; alur masuk ke `kuesioner-simulasi.html`. Berkas di `templates/portal-karir/`:
+  - `tracer-email.html`: nama alumni, kampus, gelombang, batas akhir, tombol "Isi Tracer Study", manfaat mengisi; tanpa password, NIM, atau tanggal lahir.
+  - `tracer-validasi.html`: isian NIM dan tanggal lahir, pesan salah yang sama untuk semua kasus, sisa percobaan, dan pesan terkunci (usulan 5 kali salah, kunci 15 menit, menunggu persetujuan PM).
+  - `tracer-link-tidak-berlaku.html`, `tracer-sudah-mengisi.html`, `tracer-belum-dibuka.html`, `tracer-berakhir.html`: satu layar per kondisi link.
+  - `tracer-selesai.html`: ucapan terima kasih dengan tautan ke Portal Karir.
+  - **Alur** (email bertampilan sama dengan email Tracer Study di `kuesioner-mail.html`):
+
+    ```mermaid
+    flowchart TD
+        EM["tracer-email.html<br/>tombol Isi Tracer Study<br/>link unik per alumni per gelombang"] --> S{"Status link"}
+        S -->|Tidak dikenali / diganti| X1["tracer-link-tidak-berlaku.html"]
+        S -->|Sudah mengisi| X2["tracer-sudah-mengisi.html"]
+        S -->|Gelombang belum dibuka| X3["tracer-belum-dibuka.html"]
+        S -->|Gelombang berakhir| X4["tracer-berakhir.html"]
+        S -->|Valid| V["tracer-validasi.html<br/>NIM + tanggal lahir"]
+        V -->|Data belum cocok| E["Pesan sama untuk semua kasus<br/>+ sisa percobaan"]
+        E --> V
+        E -->|Percobaan habis, usulan 5 kali| K["Terkunci sementara<br/>usulan 15 menit"]
+        V -->|Cocok| Q["kuesioner-simulasi.html<br/>halaman kuesioner, tidak didesain ulang"]
+        Q -->|Status Bekerja| D["Data Atasan"]
+        Q -->|Status lain| F["tracer-selesai.html<br/>ucapan terima kasih"]
+        D --> F
+        F -->|Buka Portal Karir| P["index.html<br/>Portal Karir"]
+        X2 -->|Buka Portal Karir| P
+        X3 -->|Buka Portal Karir| P
+        X1 -->|Hubungi Pusat Karir| H["segera-hadir.html"]
+        X4 -->|Hubungi Pusat Karir| H
+    ```
+  - **Aturan di desain:** tidak ada layar login atau pembuatan akun di alur ini. Pesan salah validasi tidak menyebut isian mana yang salah. Bentuk URL dan token pada email hanya contoh; formatnya ditentukan BE.
+
+## 2026-11-05
+
+Dasar KarirKit: v1.5.0
+
+### Added
+- **Aktivasi akun dan cara masuk Alumni (FOX-1293):** desain alur dari email undangan sampai akun aktif di Portal Karir, versi mobile dan desktop. Halaman login berurutan: SiAkadCloud SSO, Google SSO, pemisah, lalu isian email. Setelah email diisi, **magic link dikirim otomatis** dan baru di halaman berikutnya muncul opsi **masuk dengan password** (konsep mirip login Claude dan Spotify). Desain yang sama nanti dipakai Mahasiswa Aktif dengan teks email berbeda. Tiket terkait: FOX-1295 (BE aktivasi), FOX-1296 (FE), FOX-1303 (BE undangan).
+  - **Alur** (nama berkas di `templates/portal-karir/`; email bertampilan sama dengan email Tracer Study di `kuesioner-mail.html`):
+
+    ```mermaid
+    flowchart TD
+        L["login.html<br/>SiAkadCloud SSO, Google SSO<br/>atau isi email lalu Lanjutkan"] -->|SSO| H["portal<br/>onboarding.html / index.html"]
+        L -->|email| C["login-cek-email.html<br/>magic link terkirim otomatis<br/>kirim ulang, ubah email"]
+        C -.->|link dikirim bila email terdaftar| EM["email-masuk.html<br/>tombol Masuk ke KarirLink, berlaku 10 menit"]
+        C -->|Masuk dengan password| P["login-password.html<br/>email + password"]
+        P --> H
+        P -->|Kirim link masuk ke email| C
+        EM --> S{"Status link"}
+        S -->|Valid| H
+        S -->|Kedaluwarsa| X1["link-kedaluwarsa.html"]
+        S -->|Sudah dipakai| X2["link-terpakai.html"]
+        S -->|Salah| X3["link-tidak-valid.html"]
+        X1 -->|Kirim link baru| L
+        X2 -->|Masuk / Kirim link baru| L
+        X3 -->|Kirim link baru| L
+
+        U["email-undangan.html<br/>tombol Aktifkan Akun, berlaku 7 hari"] --> S2{"Status link undangan"}
+        S2 -->|Valid| A["aktivasi.html<br/>buat password + konfirmasi"]
+        S2 -->|Kedaluwarsa / dipakai / salah| X1
+        A -->|Aktifkan Akun| P2["login-password.html<br/>email terisi, pesan akun aktif"]
+        P2 --> H
+
+        PR["profil.html<br/>kartu Keamanan akun"] --> UP["ubah-password.html<br/>password lama, baru, konfirmasi"]
+    ```
+  - **Aturan di desain:** istilah "magic link" hanya dipakai di dokumentasi ini; di antarmuka pengguna melihat "link masuk" atau "link yang dikirim ke email". pesan setelah memasukkan email sama untuk email terdaftar maupun tidak; email undangan tidak memuat password; tombol "Aktifkan Akun" aktif bila aturan password terpenuhi dan konfirmasi sama. Link undangan berlaku 7 hari; masa berlaku magic link (10 menit) dan aturan password (minimal 8 karakter, huruf besar, huruf kecil, angka) hanyalah contoh; nilai pastinya mengikuti BE (FOX-1295). Halaman cek email memakai tata letak yang sama dengan login, berisi kartu "Untuk melanjutkan, klik link yang dikirim ke {email}" dengan tautan Kirim ulang dan Ubah alamat email, dan pesan "Link sudah dikirim ulang" tampil sebagai alert (tanpa tombol besar dan tanpa kode). Halaman masuk dengan password memakai tata letak yang sama, serta tombol mengambang "Buka email (simulasi)" yang khusus mockup untuk membuka contoh email. Memasukkan email di halaman login juga menjadi jalan meminta link baru ("Belum menerima undangan atau link kedaluwarsa?"): alumni yang belum aktif menerima link undangan, yang sudah aktif menerima magic link.
+
+### Changed
+- **Daftar: tombol SiAkadCloud dan Google dipindah ke paling atas,** disusul pemisah "atau" lalu form pendaftaran, urutannya sama dengan Login.
+- **Masuk dengan password: tampilan sama persis dengan `login.html`, ditambah kolom Password.** Judul, SSO SiAkadCloud dan Google, pemisah "atau", isian Email, tombol "Lanjutkan", tautan Daftar, dan kotak mitra identik dengan login; yang bertambah hanya kolom Password (dengan "Lupa password?"). Email terisi dari langkah sebelumnya dan bisa diubah; setelah aktivasi muncul alert "Akun Anda sudah aktif".
+- **Login: tombol SiAkadCloud dan Google memakai ukuran sedang (`btn-md`, tinggi 40px),** sama dengan halaman Daftar. Tombol utama "Lanjutkan" tetap besar.
+- **Portal Karir: jumlah pelamar dihapus, waktu posting memakai tanggal setelah seminggu.** Kartu dan daftar lowongan tidak lagi menampilkan "N pelamar"; waktu posting tetap relatif untuk kurang dari 7 hari ("Hari ini", "Kemarin", "3 hari lalu"), dan sejak 7 hari ke atas berubah menjadi tanggal publish (mis. "29 Okt 2026"). Detail lowongan menampilkan **Tanggal publish** dan **Batas lamar** sebagai tanggal (bukan "N hari lagi") di samping Kisaran gaji, dan "Pelamar: N orang" dihapus. Berlaku juga di versi white-label. Jumlah pelamar tetap ada di sisi admin KarirLink.
+- **Versi white-label portal disamakan dengan sumbernya.** Lamaran Saya, Lowongan, Profil, Tes RIASEC, dan Hasil RIASEC di `templates/custom/portal-karir` dibuat ulang dari halaman Portal Karir terbaru (hero Lowongan dan hiasan latar yang sudah dihapus di sumber ikut hilang; contoh kampus di Profil menjadi Universitas Foxtrot).
+- **KarirLink: menu Kerjasama dan Report di Segera Hadir kini bisa diklik, dan teks bantuan warna di Personalisasi Portal dirapikan.**
+- **Login dan Daftar: teks panel kiri dirapikan.** Judul menjadi "Satu platform karier untuk kampus, alumni, dan mitra.", deskripsi menjadi "Cari lowongan, magang, dan event karier, lalu lamar langsung dalam satu tempat."; tiga langkah (Masuk atau daftar, Atur minat, Cari dan lamar) dan teks "Portal karier kampus dari SEVIMA." dihapus.
+- **Login dan Daftar: panel kanan berupa kartu terang berisi pratinjau lowongan, event, dan status lamaran.** Kartu putih berlatar gradasi lembut di atas latar biru, berisi lencana Platform Karier Kampus (ikon topi wisuda), judul gelap, deskripsi, dan pratinjau enam kartu (Lowongan, Event, dan satu kartu Lamar yang menonjol, sisanya memudar; isinya statis tanpa tanggal, status, atau penanda real-time). Logo KarirLink SEVIMA di kiri atas, sejajar dengan lencana di kanan.
+
 ## 2026-11-03
 
 Dasar KarirKit: v1.5.0
