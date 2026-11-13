@@ -184,3 +184,16 @@ export const ScalePills = {
       ${[1, 2, 3, 4, 5].map((n) => `<label class="scale-pill"><input type="radio" class="sr-only" name="sp" ${n === 3 ? "checked" : ""} />${n}</label>`).join("")}
     </div>`),
 };
+
+export const OptionCards = {
+  name: "Option cards",
+  parameters: { docs: { description: { story: "`.option-card` (+ `.option-card-icon`, `.option-card-check`): kartu pilihan dengan ikon dan penanda centang; `data-tone=\"secondary\"` memakai warna sekunder. Input disembunyikan (`sr-only`), state dari `:has(input:checked)`." } } },
+  render: () =>
+    exBlock(`<div class="grid max-w-2xl gap-3 sm:grid-cols-2">
+      ${[["primary", "clipboard-text", "Pasca-Lulus 1", "Kuesioner lulusan setahun."], ["secondary", "briefcase", "Pasca-Lulus 4", "Kuesioner lulusan empat tahun."]]
+        .map(([tone, ic, t, d], i) => `<label class="option-card" data-tone="${tone}"><input type="radio" name="oc" class="sr-only" ${i === 0 ? "checked" : ""} />
+        <span class="option-card-icon">${rIcon(ic, "h-5 w-5")}</span><span class="min-w-0 flex-1"><span class="block text-sm font-semibold text-fg">${t}</span><span class="block text-xs text-fg-muted">${d}</span></span>
+        <span class="option-card-check">${rIcon("check", "h-3.5 w-3.5")}</span></label>`)
+        .join("")}
+    </div>`),
+};
