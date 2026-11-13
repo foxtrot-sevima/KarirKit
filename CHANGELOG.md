@@ -6,6 +6,8 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-11-13
+
 ### Added
 
 - **Drawer di atas shell aplikasi** (`.drawer-over-shell`): drawer dan latarnya (`.drawer-backdrop-over-shell`, ditambahkan `drawer.js`) tampil di atas sidebar/topbar ber-z-50 (laci z-60, latar z-59), menggantikan blok `<style>` per halaman.
