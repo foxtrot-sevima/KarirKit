@@ -13,6 +13,23 @@ Aturan singkat:
 Dasar KarirKit: v1.7.0
 
 ### Changed
+- **Alur Alumni dari email Tracer diubah: login dulu, tanpa verifikasi NIM (FOX-1294)**, menggantikan alur tanpa login FOX-1329 (2026-11-09):
+
+  ```mermaid
+  flowchart TD
+      EM["tracer-email.html<br/>tombol Isi Tracer Study"] --> L["login.html?next=...<br/>SSO, magic link, atau password"]
+      L --> Q["kuesioner-simulasi.html?tracer=pasca-1th<br/>langsung terbuka, tanpa validasi karena sudah login"]
+      Q -->|Status Bekerja| D["Data Atasan<br/>disimpan, sistem otomatis kirim email<br/>Survei Pengguna Lulusan ke atasan"]
+      Q -->|Status lain| S["Pop-up Kuesioner Berhasil Dikirim!"]
+      D --> S
+      S -->|Pop-up lalu redirect| P["index.html<br/>Portal Karir"]
+  ```
+  - `tracer-email.html`: tombol membuka `login.html` dengan tujuan kuesioner (`?next=`); teks "tidak perlu login, verifikasi NIM" diganti ajakan masuk ke akun.
+  - Login yang dibuka dari undangan (`?next=`) menyembunyikan tombol Google, "Belum punya akun? Daftar sekarang", dan ajakan daftar sebagai mitra.
+  - `login.html`, `login-cek-email.html`, `login-password.html`, `email-masuk.html`: membawa `?next=` sepanjang alur masuk (SSO, link email, password) dan membukanya setelah masuk, bukan Onboarding/Beranda. Hanya jalur `.html` relatif yang diterima; selain itu diabaikan.
+  - `kuesioner-simulasi.html`: Data Atasan tidak lagi membuat link; tombol "Buat Link Survei Pengguna Lulusan" dan kotak link dihapus, diganti "Simpan Data Atasan" yang membuat sistem langsung mengirim email survei ke atasan. Setelah selesai, alumni melihat pop-up Modal "Kuesioner Berhasil Dikirim!" (ajakan menjelajahi Portal Karir dan mencari lowongan) lalu dialihkan ke Portal Karir: otomatis setelah hitung mundur 5 detik atau langsung lewat tombol "Jelajahi Portal Karir". Atasan di Survei Pengguna Lulusan dan simulasi admin tetap memakai layar sukses di halaman (simulasi admin punya Isi Ulang dan Kembali ke Kuesioner).
+  - `kuesioner-mail.html`: komentar diperbarui (email atasan dikirim sistem, bukan dari link alumni).
+  - `tracer-validasi.html` tidak lagi ada di alur; berkasnya belum dihapus.
 - **Sepuluh halaman tidak lagi punya blok `<style>` lokal**; semuanya memakai komponen KarirKit (`npm run check:templates` kini bersih):
   - Laci detail di `aktivitas-lamaran`, `event`, dan `kerjasama` memakai `.drawer-over-shell` (menggantikan aturan z-index per halaman dan penanda kelas pada `body`).
   - `portal-karir/index` dan `riasec-tes` (serta salinan `custom/portal-karir`) memakai `.anim-orbit`, `.anim-orbit-rev`, `.anim-float`, `.anim-pulse`, `.anim-enter`.
