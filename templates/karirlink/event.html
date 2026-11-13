@@ -433,12 +433,7 @@
 </div>
 
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
-<style>
-  /* Sidebar karirlink ber-z-50, di atas backdrop laci bawaan: naikkan backdrop dan laci saat laci detail terbuka. */
-  body.ev-drawer-open .drawer-backdrop { z-index: 59; }
-  body.ev-drawer-open #evDrawer { z-index: 60; }
-</style>
-<div class="drawer drawer-right w-full sm:max-w-md" id="evDrawer" aria-label="Detail event">
+<div class="drawer drawer-right drawer-over-shell w-full sm:max-w-md" id="evDrawer" aria-label="Detail event">
   <div class="drawer-header"><div class="min-w-0"><h3 class="drawer-title truncate" id="evdTitle">Event</h3><p class="mt-0.5 truncate text-xs text-slate-500" id="evdSub"></p></div><button type="button" class="drawer-close" data-drawer-hide="evDrawer" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button></div>
   <div class="drawer-body">
     <div class="flex flex-wrap items-center gap-2"><span id="evdBadge"></span><span id="evdSrc"></span></div>
@@ -515,8 +510,6 @@
   table.refresh();
 
   const drawer = $('evDrawer');
-  drawer.addEventListener('drawer:show', () => document.body.classList.add('ev-drawer-open'));
-  drawer.addEventListener('drawer:hide', () => document.body.classList.remove('ev-drawer-open'));
   let cur = null;
   function setStatus(tr, st) {
     tr.dataset.status = st; tr.querySelector('td[data-value="pending"], td[data-value="terjadwal"], td[data-value="ditolak"]').innerHTML = badge(st);
