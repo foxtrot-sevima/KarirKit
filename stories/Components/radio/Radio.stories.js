@@ -164,3 +164,23 @@ export const RadioAdvancedWithIcons = {
         .join("")}
     </ul>`),
 };
+
+export const RadioCards = {
+  name: "Radio cards",
+  parameters: { docs: { description: { story: "`.radio-card`: pilihan berupa kartu dengan radio terlihat di dalamnya (beda dengan `.choice` yang menyembunyikan input). Terpilih = `:has(input:checked)`; cincin fokus muncul untuk keyboard." } } },
+  render: () =>
+    exBlock(`<div class="grid max-w-2xl gap-3 sm:grid-cols-2">
+      ${["Sudah bekerja", "Berwirausaha", "Melanjutkan studi", "Belum memungkinkan bekerja"]
+        .map((t, i) => `<label class="radio-card"><input type="radio" class="form-radio" name="rc" ${i === 0 ? "checked" : ""} /><span>${t}</span></label>`)
+        .join("")}
+    </div>`),
+};
+
+export const ScalePills = {
+  name: "Scale pills",
+  parameters: { docs: { description: { story: "`.scale-pill`: skala 1-5 sebagai tombol. Pilihan aktif lewat `.scale-pill-active` (diatur skrip) atau `<label class=\"scale-pill\"><input type=\"radio\" class=\"sr-only\">` yang memakai `:has(input:checked)`." } } },
+  render: () =>
+    exBlock(`<div class="grid max-w-md grid-cols-5 gap-2">
+      ${[1, 2, 3, 4, 5].map((n) => `<label class="scale-pill"><input type="radio" class="sr-only" name="sp" ${n === 3 ? "checked" : ""} />${n}</label>`).join("")}
+    </div>`),
+};

@@ -6,6 +6,19 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+### Added
+
+- **Drawer di atas shell aplikasi** (`.drawer-over-shell`): drawer dan latarnya (`.drawer-backdrop-over-shell`, ditambahkan `drawer.js`) tampil di atas sidebar/topbar ber-z-50 (laci z-60, latar z-59), menggantikan blok `<style>` per halaman.
+- **Kelas animasi** (`.anim-orbit`, `.anim-orbit-rev`, `.anim-float`, `.anim-pulse`, `.anim-enter`): gerak dekoratif dan masuk halus, otomatis mati bila pengguna meminta gerakan dikurangi. Story Components -> Animation.
+- **Radio card dan Scale pill** (`.radio-card`, `.scale-pill`, `.scale-pill-active`): pilihan berupa kartu dengan radio terlihat, dan skala 1-5 sebagai tombol; state dari `:has(input:checked)`, cincin fokus keyboard. Story Radio -> Radio cards, Scale pills.
+- **List menu** (`.list-menu-item`, `.list-menu-row` + `.is-off`, `.list-menu-back`, `.list-menu-foot`): daftar pengaturan berbaris. Story List group -> List menu.
+- **Sticky actions dan Form question** (`.sticky-actions`, `.form-question`): bilah aksi lengket di dasar kartu formulir bertahap, dan teks pertanyaan yang lebih tegas daripada `.form-label`. Story Components -> Sticky actions.
+- **Upload thumb besar** (`.upload-thumb-lg`): miniatur 48px berlatar permukaan dengan cincin tipis.
+
+### Fixed
+
+- **Drawer `.drawer-contained` menimpa halaman**: z-index drawer di dalam kotak kini lokal (`z-1`), sehingga tidak lagi tampil di atas header atau latar drawer lain saat halaman digulir (contoh "Bottom sheet with edge" di dokumentasi).
+
 ## [1.6.0] - 2026-11-13
 
 ### Added
