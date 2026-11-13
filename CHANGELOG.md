@@ -6,6 +6,23 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-11-13
+
+### Added
+
+- **Drawer di atas shell aplikasi** (`.drawer-over-shell`): drawer dan latarnya (`.drawer-backdrop-over-shell`, ditambahkan `drawer.js`) tampil di atas sidebar/topbar ber-z-50 (laci z-60, latar z-59), menggantikan blok `<style>` per halaman.
+- **Kelas animasi** (`.anim-orbit`, `.anim-orbit-rev`, `.anim-float`, `.anim-pulse`, `.anim-enter`): gerak dekoratif dan masuk halus, otomatis mati bila pengguna meminta gerakan dikurangi. Story Components -> Animation.
+- **Radio card dan Scale pill** (`.radio-card`, `.scale-pill`, `.scale-pill-active`): pilihan berupa kartu dengan radio terlihat, dan skala 1-5 sebagai tombol; state dari `:has(input:checked)`, cincin fokus keyboard. Story Radio -> Radio cards, Scale pills.
+- **List menu** (`.list-menu-item`, `.list-menu-row` + `.is-off`, `.list-menu-back`, `.list-menu-foot`): daftar pengaturan berbaris. Story List group -> List menu.
+- **Option card** (`.option-card` + `.option-card-icon`, `.option-card-check`, `data-tone="secondary"`): kartu pilihan dengan ikon dan penanda centang, state dari `:has(input:checked)`, cincin fokus keyboard. Story Radio -> Option cards.
+- **Grid collapse dan Swap fade** (`.grid-collapse[data-open]`, `.swap-fade` + `.is-swapping`): transisi tinggi tanpa JS ukur, dan ganti isi dengan memudar; keduanya mati bila gerakan dikurangi. Story Components -> Animation.
+- **QR present** (`.qr-present` pada Modal + `.qr-grid`, `.qr-stage*`, `.qr-present-qr`, `[data-qr-fs-only|hide]`, `.qr-print-sheet`): layar penyajian QR dua kolom yang menjadi tampilan layar penuh untuk monitor (ukuran mengikuti tinggi layar) dan lembar cetak A4 lewat `body.printing-qr`. Dijelaskan di story QR Code.
+- **Sticky actions dan Form question** (`.sticky-actions`, `.form-question`): bilah aksi lengket di dasar kartu formulir bertahap, dan teks pertanyaan yang lebih tegas daripada `.form-label`. Story Components -> Sticky actions.
+
+### Fixed
+
+- **Drawer `.drawer-contained` menimpa halaman**: z-index drawer di dalam kotak kini lokal (`z-1`), sehingga tidak lagi tampil di atas header atau latar drawer lain saat halaman digulir (contoh "Bottom sheet with edge" di dokumentasi).
+
 ## [1.6.0] - 2026-11-13
 
 ### Added
