@@ -13,7 +13,6 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 - **Radio card dan Scale pill** (`.radio-card`, `.scale-pill`, `.scale-pill-active`): pilihan berupa kartu dengan radio terlihat, dan skala 1-5 sebagai tombol; state dari `:has(input:checked)`, cincin fokus keyboard. Story Radio -> Radio cards, Scale pills.
 - **List menu** (`.list-menu-item`, `.list-menu-row` + `.is-off`, `.list-menu-back`, `.list-menu-foot`): daftar pengaturan berbaris. Story List group -> List menu.
 - **Sticky actions dan Form question** (`.sticky-actions`, `.form-question`): bilah aksi lengket di dasar kartu formulir bertahap, dan teks pertanyaan yang lebih tegas daripada `.form-label`. Story Components -> Sticky actions.
-- **Upload thumb besar** (`.upload-thumb-lg`): miniatur 48px berlatar permukaan dengan cincin tipis.
 
 ### Fixed
 

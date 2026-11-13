@@ -20094,7 +20094,6 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .upload-thumb { @apply flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-neutral-100 text-fg-subtle; }
   .upload-thumb > img { @apply h-full w-full object-cover; }
   .upload-thumb > .kk { @apply h-5 w-5; }
-  .upload-thumb-lg { @apply h-12 w-12 bg-surface; box-shadow: inset 0 0 0 1px var(--color-border); }
   .upload-body { @apply min-w-0 flex-1; }
   .upload-name { @apply block truncate text-sm font-medium text-neutral-700; }
   .upload-meta { @apply block text-xs text-fg-subtle; }
