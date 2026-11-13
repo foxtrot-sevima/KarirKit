@@ -38,7 +38,10 @@
      tracer, maupun kontrol admin, karena responden membukanya dari tombol di email. Admin masuk lewat
      kuesioner.html (popup Simulasi Tracer) -> kuesioner-mail.html?tracer=... (isi email) -> halaman ini
      (?tracer=...; Pasca-Lulus 1 juga membawa ?exit=belum|bekerja|wiraswasta, kondisi jawaban
-     Lulus alumni).
+     Lulus alumni). Alur alumni di Portal Karir (FOX-1294): portal-karir/tracer-email.html -> login.html
+     -> halaman ini langsung (alumni sudah login, jadi tanpa verifikasi NIM dan tanggal lahir)
+     -> isi tracer -> Data Atasan (bila Bekerja; begitu disimpan, sistem otomatis mengirim email
+     Survei Pengguna Lulusan ke atasan) -> "Kuesioner Berhasil Dikirim!" dengan tombol ke Portal Karir.
      Alur & isi pertanyaan di file ini mengikuti
      templates/karirlink/docs/about-tracer/arsitektur-pertanyaan.md apa
      adanya. Tiga flow terpisah karena strukturnya memang beda di dokumen:
@@ -1497,8 +1500,8 @@
 
     <!-- ================= SURVEI PENGGUNA LULUSAN =================
          Sumber: docs/template-question/template-pengguna-lulusan.json (formula graduate-user). Diisi
-         atasan/perusahaan, bukan alumni; email undangannya terkirim setelah alumni membuat link lewat
-         "Data Atasan" (lihat state Data Atasan di bawah). Urutan & redaksi pertanyaan mengikuti template
+         atasan/perusahaan, bukan alumni; email undangannya dikirim otomatis oleh sistem begitu alumni
+         menyimpan "Data Atasan" (lihat state Data Atasan di bawah), alumni tidak membuat atau membagikan link. Urutan & redaksi pertanyaan mengikuti template
          apa adanya: tiga kunci pencocokan alumni (gu_nama_alumni, gu_prodi_alumni, gu_tahun_lulus) terkunci
          dari tautan, identitas penilai, matriks 12 aspek kinerja (Kurang/Cukup/Baik/Sangat Baik, wajib),
          lalu harapan & saran (opsional). Empat langkah, sama seperti Wave G1. -->
@@ -1647,7 +1650,7 @@
         <i class="kk kk-check-circle h-9 w-9"></i>
       </span>
       <h2 class="relative mt-4 font-display text-xl font-bold sm:text-2xl">Tracer Study Dikti Selesai!</h2>
-      <p id="dataAtasanCaption" class="relative mx-auto mt-2 max-w-md text-sm leading-relaxed text-white/85">Terima kasih! Tinggal satu langkah wajib lagi: lengkapi data atasan Anda di bawah agar survei pengguna lulusan bisa dikirim.</p>
+      <p id="dataAtasanCaption" class="relative mx-auto mt-2 max-w-md text-sm leading-relaxed text-white/85">Terima kasih! Tinggal satu langkah wajib lagi: lengkapi data atasan Anda. Setelah disimpan, sistem otomatis mengirim survei pengguna lulusan ke email atasan Anda.</p>
     </div>
 
     <div class="px-6 py-6 text-left sm:px-10 sm:py-8">
@@ -1685,22 +1688,14 @@
             <input id="atasanAlamat" class="input" placeholder="mis. Jl. Jenderal Sudirman No. 45, Jakarta Selatan" />
             <p id="atasanAlamatError" class="mt-1.5 hidden text-xs font-medium text-danger-600">Wajib diisi.</p>
           </div>
-          <button type="button" id="buatLinkBtn" class="btn-primary btn-md w-full justify-center">
-            <i class="kk kk-chart-bar h-4 w-4 shrink-0"></i>
-            Buat Link Survei Pengguna Lulusan
-          </button>
-        </div>
-
-        <div id="dataAtasanLinkResult" class="mt-4 hidden">
-          <div class="flex items-start gap-3 rounded-xl bg-success-50 p-3.5 text-sm text-slate-700">
-            <i class="kk kk-check-circle mt-0.5 h-4 w-4 shrink-0 text-success-600"></i>
-            <p>Link berhasil dibuat: <span id="dataAtasanLinkText" class="break-all font-medium text-primary-600">karirlink.id/survei/pgl-8f2a91</span></p>
-          </div>
         </div>
       </div>
 
       <div class="mt-8 flex flex-col justify-center gap-2.5 sm:flex-row">
-        <button type="button" id="finishAtasanBtn" class="btn-primary btn-md">Selesai</button>
+        <button type="button" id="finishAtasanBtn" class="btn-primary btn-md">
+          Simpan Data Atasan
+          <i class="kk kk-check-circle h-4 w-4 shrink-0"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -1721,18 +1716,47 @@
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600"><i class="kk kk-envelope-simple h-4 w-4"></i></span>
         <p class="text-sm leading-relaxed text-slate-600" data-w="successNext"></p>
       </div>
-      <div class="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row" data-sim-only hidden>
+      <!-- Hanya untuk alumni (bukan atasan di Survei Pengguna Lulusan): lanjut ke Portal Karir. -->
+      <div class="mt-6 flex justify-center" data-alumni-only>
+        <a href="../portal-karir/index.html" class="btn-primary btn-md">
+          Buka Portal Karir
+          <i class="kk kk-caret-right h-4 w-4 shrink-0"></i>
+        </a>
+      </div>
+      <div class="mt-3 flex flex-col justify-center gap-2.5 sm:flex-row" data-sim-only hidden>
         <button type="button" id="restartBtn" class="btn-outline btn-md">
           <i class="kk kk-x h-4 w-4 shrink-0"></i>
           Isi Ulang Simulasi
         </button>
-        <a href="kuesioner.html" class="btn-primary btn-md">Kembali ke Kuesioner</a>
+        <a href="kuesioner.html" class="btn-outline btn-md">Kembali ke Kuesioner</a>
       </div>
     </div>
   </div>
 
 </main>
 
+<!-- ============ POP-UP SUKSES (alumni, di luar simulasi admin) ============
+     Setelah kuesioner (dan Data Atasan) tersimpan, alumni melihat pop-up ini lalu dialihkan ke Portal Karir
+     (otomatis setelah hitung mundur, atau langsung lewat tombol). Atasan (Survei Pengguna Lulusan) dan simulasi
+     admin memakai layar #successWrap. -->
+<div class="modal-backdrop" id="successModal" data-modal-backdrop="static" data-modal-keyboard="false" role="dialog" aria-modal="true" aria-labelledby="successModalTitle">
+  <div class="modal-panel modal-sm modal-popup">
+    <div class="modal-body">
+      <span class="modal-icon modal-icon-success"><i class="kk kk-check-circle h-7 w-7"></i></span>
+      <h3 id="successModalTitle" class="modal-title text-lg">Kuesioner Berhasil Dikirim!</h3>
+      <p class="mt-1.5 text-sm text-fg-muted">Terima kasih, Ahmad — jawaban kuesioner Anda telah tercatat dan akan membantu kampus meningkatkan kualitas pendidikan serta layanan karir bagi alumni. Lanjut jelajahi Portal Karir dan temukan lowongan pekerjaan yang cocok untuk Anda.</p>
+      <div class="modal-footer-body">
+        <a href="../portal-karir/index.html" class="btn-primary btn-md w-full justify-center sm:w-auto">
+          Jelajahi Portal Karir
+          <i class="kk kk-caret-right h-4 w-4 shrink-0"></i>
+        </a>
+      </div>
+      <p class="mt-3 text-xs text-fg-subtle">Dialihkan otomatis dalam <span id="successCountdown">5</span> detik.</p>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/modal.js"></script>
 <script>
   // ---- Redaksi yang beda per tracer: judul step G1 dan teks layar sukses. Empat tracer: tiga gelombang alumni
   // + Survei Pengguna Lulusan (diisi atasan). Halaman ini murni tampilan responden: dibuka dari tombol di email
@@ -2104,6 +2128,8 @@
     url.searchParams.delete('kuesioner');
     history.replaceState(null, '', url);
 
+    document.querySelectorAll('[data-alumni-only]').forEach((el) => { el.hidden = currentWave === 'pengguna-lulusan'; });
+
     updateExitSim();
     updateMasaTungguVisibility();
   }
@@ -2284,7 +2310,9 @@
     currentStep = 1;
     byId('successWrap').classList.add('hidden');
     byId('dataAtasanWrap').classList.add('hidden');
-    byId('dataAtasanLinkResult').classList.add('hidden');
+    setAtasanSuccessNext(null);
+    clearInterval(redirectTimer);
+    KKModal.close('#successModal');
     byId('formWrap').classList.remove('hidden');
     clearAllErrors();
 
@@ -2559,6 +2587,30 @@
     });
   });
 
+  // Layar akhir: alumni (di luar simulasi admin) mendapat pop-up lalu dialihkan ke Portal Karir; atasan dan simulasi admin
+  // memakai layar #successWrap.
+  const PORTAL_URL = '../portal-karir/index.html';
+  let redirectTimer = null;
+  function showSuccess() {
+    byId('dataAtasanWrap').classList.add('hidden');
+    byId('formWrap').classList.add('hidden');
+    byId('formHero').classList.add('hidden');
+    if (currentWave !== 'pengguna-lulusan' && !SIM_MODE) {
+      KKModal.open('#successModal');
+      let left = 5;
+      byId('successCountdown').textContent = left;
+      redirectTimer = setInterval(() => {
+        left -= 1;
+        byId('successCountdown').textContent = Math.max(left, 0);
+        if (left <= 0) { clearInterval(redirectTimer); window.location.href = PORTAL_URL; }
+      }, 1000);
+      return;
+    }
+    const success = byId('successWrap');
+    success.classList.remove('hidden');
+    success.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   document.querySelectorAll('[data-submit]').forEach((btn) => {
     btn.addEventListener('click', () => {
       document.getElementById('formWrap').classList.add('hidden');
@@ -2568,7 +2620,8 @@
       // Wave G1 — Data Atasan dipisah jadi step/CTA tersendiri di bawah. Wiraswasta
       // (dan Wave Exit) tidak pernah melalui state ini.
       const showDataAtasan = currentFlow() === 'g1' && f8 && f8.value === 'bekerja';
-      const target = document.getElementById(showDataAtasan ? 'dataAtasanWrap' : 'successWrap');
+      if (!showDataAtasan) return showSuccess();
+      const target = document.getElementById('dataAtasanWrap');
       target.classList.remove('hidden');
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
@@ -2592,25 +2645,19 @@
     el.addEventListener('input', () => { if (el.value.trim() !== '') markFieldError(el, id + 'Error', true); });
   });
 
-  function makeAtasanLink() {
-    // Tautan mengikuti domain tempat halaman dibuka (subdomain kampus).
-    if (location.host) document.getElementById('dataAtasanLinkText').textContent = 'karirlink.id/survei/pgl-8f2a91'.replace('karirlink.id', location.host);
-    document.getElementById('dataAtasanLinkResult').classList.remove('hidden');
+  // Teks "langkah berikutnya" di layar sukses: setelah Data Atasan disimpan, menyebut email atasan yang dikirimi survei
+  // oleh sistem; null mengembalikan teks gelombang (dipakai Isi Ulang Simulasi).
+  function setAtasanSuccessNext(email) {
+    const el = document.querySelector('[data-w="successNext"]');
+    el.textContent = email
+      ? `Data atasan Anda tersimpan dan sistem sudah mengirim Survei Pengguna Lulusan ke ${email}. Tidak ada yang perlu Anda kirim lagi. ${KEEP_CONTACT}`
+      : get(WAVES[currentWave], 'successNext');
   }
-  document.getElementById('buatLinkBtn').addEventListener('click', () => {
-    if (validateAtasan()) makeAtasanLink();
-  });
 
-  function goToSuccessFromDataAtasan() {
-    document.getElementById('dataAtasanWrap').classList.add('hidden');
-    const success = document.getElementById('successWrap');
-    success.classList.remove('hidden');
-    success.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
   document.getElementById('finishAtasanBtn').addEventListener('click', () => {
     if (!validateAtasan()) return;
-    makeAtasanLink();
-    goToSuccessFromDataAtasan();
+    setAtasanSuccessNext(document.getElementById('atasanEmail').value.trim());
+    showSuccess();
   });
 
   document.getElementById('restartBtn').addEventListener('click', () => {
