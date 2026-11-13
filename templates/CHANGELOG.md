@@ -10,7 +10,7 @@ Aturan singkat:
 
 ## 2026-11-13
 
-Dasar KarirKit: v1.7.0 (belum dirilis)
+Dasar KarirKit: v1.7.0
 
 ### Changed
 - **Sepuluh halaman tidak lagi punya blok `<style>` lokal**; semuanya memakai komponen KarirKit (`npm run check:templates` kini bersih):
@@ -20,7 +20,12 @@ Dasar KarirKit: v1.7.0 (belum dirilis)
   - `pengaturan-landing-page` memakai `.list-menu-*`, `.textarea-autogrow`, dan `.upload-thumb`.
   - `kuesioner` memakai `.qr-present` (layar penuh dan lembar cetak QR), `.option-card`, `.grid-collapse`, `.swap-fade`, dan `.scale-pill`.
 - Tampilan dan perilaku tidak berubah; diperiksa lewat perbandingan nilai CSS terhitung dengan halaman sebelumnya. Aturan layar penuh QR tidak bisa dijalankan di peramban uji tanpa gestur pengguna, jadi diperiksa dengan membandingkan teks aturannya.
-- Mockup ini tertahan di staging sampai KarirKit v1.7.0 (komponen barunya) dirilis.
+- **Kuesioner Kosong mengikuti aplikasi**: `kuesioner-builder.html?tpl=kosong` kini dialihkan ke halaman baru `kuesioner-kosong.html`; mode versi Kosong ("Tambah Versi Baru", "Versi 1.0") dihapus karena aplikasi tidak memakai versi pada Kuesioner Kosong. Tautan Buat dan Edit di `kuesioner.html` diarahkan ke halaman baru.
+
+### Added
+- **Pemilih PT di header admin** (24 halaman `templates/karirlink`, skrip bersama `admin-pt-picker.js`), mengikuti aplikasi: kombo yang bisa dicari ("Pilih PT...", "Cari PT..."), tampil mulai lebar `xl`, pilihan tersimpan di peramban. Di aplikasi pemilih ini hanya muncul untuk role internal.
+- **Halaman `kuesioner-kosong.html`**: tata letak Kuesioner Kosong seperti di aplikasi, satu halaman per kuesioner (`?id=kosong-1`, tanpa id = kuesioner baru). Kartu Judul Kuesioner (maks. 150 karakter) dan Deskripsi (maks. 1000) dengan penghitung karakter, kartu pertanyaan Custom (atau keadaan kosong dengan ajakan menambah), dan Simpan yang memvalidasi judul. Di ponsel header kartu pertanyaan menjadi kolom dan tombol Tambah Pertanyaan penuh lebar.
+- **Toolbar builder seperti aplikasi** (`kuesioner-builder.html` dan `kuesioner-kosong.html`, skrip bersama `kuesioner-toolbar.js`): "Simpan Perubahan" nonaktif sampai ada perubahan; saat ada perubahan muncul lencana "Ada perubahan belum disimpan" dan tombol Batalkan (membuang perubahan).
 
 ## 2026-11-11
 
