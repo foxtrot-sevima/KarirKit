@@ -276,6 +276,31 @@
       </nav>
     </div>
     <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <div class="hidden w-56 xl:block">
+        <span id="ptPickerLabel" class="sr-only">Pilih perguruan tinggi</span>
+        <div class="combo combo-full" data-pt-picker>
+          <button type="button" class="combo-trigger" data-pt-trigger aria-haspopup="listbox" aria-labelledby="ptPickerLabel">
+            <span data-pt-label class="combo-placeholder">Pilih PT...</span>
+            <i class="kk kk-caret-down combo-chevron"></i>
+          </button>
+          <div class="combo-menu" data-pt-menu>
+            <div class="combo-search-wrap">
+              <div class="combo-search-field">
+                <span class="combo-search-icon"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>
+                <input type="text" class="combo-search" placeholder="Cari PT..." aria-label="Cari PT" data-pt-search />
+              </div>
+            </div>
+            <div class="combo-list" data-pt-list>
+              <button type="button" class="combo-item" data-pt-item data-label="Institut Seni dan Budaya Tirta">Institut Seni dan Budaya Tirta</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Institut Teknologi Cendekia">Institut Teknologi Cendekia</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Politeknik Kesehatan Harapan">Politeknik Kesehatan Harapan</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Politeknik Negeri Bumi Pertiwi">Politeknik Negeri Bumi Pertiwi</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Universitas Sentra Vidya Utama">Universitas Sentra Vidya Utama</button>
+            </div>
+            <p class="combo-empty hidden" data-pt-empty>Tidak ada PT yang cocok.</p>
+          </div>
+        </div>
+      </div>
       <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
       <div class="relative hidden lg:block">
         <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
@@ -377,7 +402,7 @@
         </span>
         <h3 class="mt-4 text-base font-semibold text-slate-800">Kuesioner Kosong</h3>
         <p class="mt-1 text-sm text-slate-500">Template kosong untuk kebutuhan survei kustom di luar dua jenis di atas.</p>
-        <a href="kuesioner-builder.html?tpl=kosong" class="btn-outline btn-md mt-5 w-full">Buat</a>
+        <a href="kuesioner-kosong.html" class="btn-outline btn-md mt-5 w-full">Buat</a>
       </div>
     </div>
 
@@ -406,8 +431,8 @@
               </div>
             </div>
             <div class="flex shrink-0 gap-2">
-              <a href="kuesioner-builder.html?tpl=kosong&amp;id=kosong-2" class="btn-outline btn-icon-sm sm:hidden" aria-label="Edit Evaluasi Job Fair Oktober" title="Edit"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i></a>
-              <a href="kuesioner-builder.html?tpl=kosong&amp;id=kosong-2" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Edit Evaluasi Job Fair Oktober"><i class="kk kk-pencil-simple h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Edit</a>
+              <a href="kuesioner-kosong.html?id=kosong-2" class="btn-outline btn-icon-sm sm:hidden" aria-label="Edit Evaluasi Job Fair Oktober" title="Edit"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-kosong.html?id=kosong-2" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Edit Evaluasi Job Fair Oktober"><i class="kk kk-pencil-simple h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Edit</a>
               <button type="button" class="btn-outline btn-icon-sm sm:hidden" data-delete-row="Evaluasi Job Fair Oktober" aria-label="Hapus Evaluasi Job Fair Oktober" title="Hapus"><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i></button>
               <button type="button" class="btn-outline btn-sm hidden sm:inline-flex" data-delete-row="Evaluasi Job Fair Oktober" aria-label="Hapus Evaluasi Job Fair Oktober"><i class="kk kk-trash h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Hapus</button>
             </div>
@@ -422,8 +447,8 @@
               </div>
             </div>
             <div class="flex shrink-0 gap-2">
-              <a href="kuesioner-builder.html?tpl=kosong&amp;id=kosong-1" class="btn-outline btn-icon-sm sm:hidden" aria-label="Edit Survei Kepuasan Layanan Karir 2026" title="Edit"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i></a>
-              <a href="kuesioner-builder.html?tpl=kosong&amp;id=kosong-1" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Edit Survei Kepuasan Layanan Karir 2026"><i class="kk kk-pencil-simple h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Edit</a>
+              <a href="kuesioner-kosong.html?id=kosong-1" class="btn-outline btn-icon-sm sm:hidden" aria-label="Edit Survei Kepuasan Layanan Karir 2026" title="Edit"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i></a>
+              <a href="kuesioner-kosong.html?id=kosong-1" class="btn-outline btn-sm hidden sm:inline-flex" aria-label="Edit Survei Kepuasan Layanan Karir 2026"><i class="kk kk-pencil-simple h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Edit</a>
               <button type="button" class="btn-outline btn-icon-sm sm:hidden" data-delete-row="Survei Kepuasan Layanan Karir 2026" aria-label="Hapus Survei Kepuasan Layanan Karir 2026" title="Hapus"><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i></button>
               <button type="button" class="btn-outline btn-sm hidden sm:inline-flex" data-delete-row="Survei Kepuasan Layanan Karir 2026" aria-label="Hapus Survei Kepuasan Layanan Karir 2026"><i class="kk kk-trash h-3.5 w-3.5 shrink-0" aria-hidden="true"></i>Hapus</button>
             </div>
@@ -1576,5 +1601,6 @@
   })();
 </script>
 <script src="admin-brand.js"></script>
+<script src="admin-pt-picker.js"></script>
 </body>
 </html>

@@ -278,6 +278,31 @@
       </nav>
     </div>
     <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <div class="hidden w-56 xl:block">
+        <span id="ptPickerLabel" class="sr-only">Pilih perguruan tinggi</span>
+        <div class="combo combo-full" data-pt-picker>
+          <button type="button" class="combo-trigger" data-pt-trigger aria-haspopup="listbox" aria-labelledby="ptPickerLabel">
+            <span data-pt-label class="combo-placeholder">Pilih PT...</span>
+            <i class="kk kk-caret-down combo-chevron"></i>
+          </button>
+          <div class="combo-menu" data-pt-menu>
+            <div class="combo-search-wrap">
+              <div class="combo-search-field">
+                <span class="combo-search-icon"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>
+                <input type="text" class="combo-search" placeholder="Cari PT..." aria-label="Cari PT" data-pt-search />
+              </div>
+            </div>
+            <div class="combo-list" data-pt-list>
+              <button type="button" class="combo-item" data-pt-item data-label="Institut Seni dan Budaya Tirta">Institut Seni dan Budaya Tirta</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Institut Teknologi Cendekia">Institut Teknologi Cendekia</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Politeknik Kesehatan Harapan">Politeknik Kesehatan Harapan</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Politeknik Negeri Bumi Pertiwi">Politeknik Negeri Bumi Pertiwi</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Universitas Sentra Vidya Utama">Universitas Sentra Vidya Utama</button>
+            </div>
+            <p class="combo-empty hidden" data-pt-empty>Tidak ada PT yang cocok.</p>
+          </div>
+        </div>
+      </div>
       <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
       <div class="relative hidden lg:block">
         <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
@@ -322,12 +347,15 @@
       <div class="min-w-0">
         <div class="flex flex-wrap items-center gap-2.5">
           <h2 id="tplTitle" class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Kuesioner Pengguna Lulusan</h2>
-          <span id="tplVersioningBadge" class="badge-secondary">Versioning</span>
           <span id="tplGelombangBadge" class="badge-info hidden">3 Gelombang</span>
+          <span id="builderDirtyBadge" class="badge-warning hidden whitespace-nowrap"><span class="badge-dot bg-warning-600"></span>Ada perubahan belum disimpan</span>
         </div>
         <p id="tplDesc" class="mt-1 text-sm text-slate-500">Diisi oleh atasan/perusahaan tempat lulusan bekerja untuk menilai kinerja.</p>
       </div>
-      <button class="btn-primary btn-md w-full sm:w-auto">Simpan Perubahan</button>
+      <div class="flex shrink-0 flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+        <button type="button" id="builderDiscardBtn" class="btn-outline btn-md hidden">Batalkan</button>
+        <button type="button" id="builderSaveBtn" class="btn-primary btn-md w-full sm:w-auto" disabled>Simpan Perubahan</button>
+      </div>
     </div>
 
     <!-- ============ FLAT, NON-VERSIONED (Pengguna Lulusan) ============ -->
@@ -504,38 +532,6 @@
             </button>
             <button type="button" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 hover:bg-danger-50 hover:text-danger-600">
               <i class="kk kk-trash h-4 w-4"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============ VERSIONED (Kosong) ============ -->
-    <div id="versionedWrap" class="hidden space-y-6">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <button class="btn-outline btn-md w-full sm:w-auto">
-          <i class="kk kk-plus h-4 w-4 shrink-0"></i>
-          Tambah Versi Baru
-        </button>
-      </div>
-
-      <!-- Versi 1.0 — Aktif, belum ada pertanyaan -->
-      <div class="card overflow-hidden">
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 p-5">
-          <div class="flex items-center gap-2.5">
-            <h3 class="text-base font-semibold text-slate-800">Versi 1.0</h3>
-            <span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span>
-          </div>
-          <p class="text-xs text-slate-400">Dibuat 2 hari lalu</p>
-        </div>
-        <div class="p-5" id="kosongV1Body">
-          <div class="rounded-xl border border-dashed border-slate-200 p-10 text-center" id="kosongEmptyState">
-            <img src="../../assets/illustrations/empty-state/document.svg" alt="" class="mx-auto h-32 w-auto" />
-            <p class="mt-3 text-sm font-semibold text-slate-700">Belum ada pertanyaan di versi ini</p>
-            <p class="mx-auto mt-1 max-w-md text-sm text-slate-400">Kosong tidak punya pertanyaan Core/Optional bawaan sistem — mulai susun kuesioner ini dengan menambahkan pertanyaan Custom Anda sendiri.</p>
-            <button type="button" class="btn-primary btn-md mt-4 js-add-custom-kosong">
-              <i class="kk kk-plus h-4 w-4 shrink-0"></i>
-              Tambah Pertanyaan
             </button>
           </div>
         </div>
@@ -3755,42 +3751,36 @@
     });
   })();
 
-  // Pick which template's view to show based on ?tpl=... — versioning is
-  // exclusive to Kosong now; Lulusan groups its questions by Gelombang
-  // instead, and Pengguna Lulusan is a single flat set of tiers with no
-  // versioning and no gelombang.
+  // Pick which template's view to show based on ?tpl=... — Lulusan groups its
+  // questions by Gelombang, and Pengguna Lulusan is a single flat set of
+  // tiers. Kuesioner Kosong has its own page (kuesioner-kosong.html).
   (function () {
     const TEMPLATES = {
       lulusan: {
         title: 'Kuesioner Lulusan',
         desc: 'Ditujukan ke mahasiswa yang baru diyudisium — dikirim dalam 3 gelombang. Lulus punya pertanyaannya sendiri; Pasca-Lulus 1 & 2 berbagi satu struktur pertanyaan resmi PDDikti yang sama.',
-        versioned: false,
         gelombang: true,
       },
       'pengguna-lulusan': {
         title: 'Kuesioner Pengguna Lulusan',
         desc: 'Diisi oleh atasan/perusahaan tempat lulusan bekerja untuk menilai kinerja.',
-        versioned: false,
-        gelombang: false,
-      },
-      kosong: {
-        title: 'Kuesioner Kosong',
-        desc: 'Template kosong untuk kebutuhan survei kustom di luar dua jenis lainnya — satu-satunya template yang mendukung versioning.',
-        versioned: true,
         gelombang: false,
       },
     };
 
     const params = new URLSearchParams(location.search);
+    // Kuesioner Kosong punya halamannya sendiri (satu halaman per kuesioner), seperti di aplikasi.
+    if (params.get('tpl') === 'kosong') {
+      location.replace('kuesioner-kosong.html' + (params.get('id') ? '?id=' + encodeURIComponent(params.get('id')) : ''));
+      return;
+    }
     const tpl = TEMPLATES[params.get('tpl')] || TEMPLATES['pengguna-lulusan'];
 
     document.getElementById('tplTitle').textContent = tpl.title;
     document.getElementById('tplDesc').textContent = tpl.desc;
-    document.getElementById('tplVersioningBadge').classList.toggle('hidden', !tpl.versioned);
     document.getElementById('tplGelombangBadge').classList.toggle('hidden', !tpl.gelombang);
-    document.getElementById('versionedWrap').classList.toggle('hidden', !tpl.versioned);
     document.getElementById('gelombangWrap').classList.toggle('hidden', !tpl.gelombang);
-    document.getElementById('flatWrap').classList.toggle('hidden', tpl.versioned || tpl.gelombang);
+    document.getElementById('flatWrap').classList.toggle('hidden', tpl.gelombang);
   })();
 
   // Expand/collapse archived version sections.
@@ -4192,35 +4182,6 @@
       return row;
     }
 
-    // The "Kosong" empty state has no Custom card yet — build one the
-    // first time a question is added, then hand off to the same
-    // js-add-custom path for any further additions.
-    function ensureKosongCard() {
-      if (document.getElementById('customRowsKosong')) return;
-      const body = document.getElementById('kosongV1Body');
-      const emptyState = document.getElementById('kosongEmptyState');
-      if (!body) return;
-      emptyState?.classList.add('hidden');
-
-      const card = document.createElement('div');
-      card.className = 'rounded-xl border border-slate-100 overflow-hidden';
-      card.innerHTML = `
-        <div class="flex flex-col gap-2 border-b border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <div class="flex items-center gap-2.5">
-            <span class="badge-secondary">Custom</span>
-            <h4 class="text-sm font-semibold text-slate-800">Pertanyaan Buatan Admin</h4>
-          </div>
-          <button type="button" class="btn-outline btn-sm w-full sm:w-auto js-add-custom" data-target="customRowsKosong">
-            <i class="kk kk-plus h-3.5 w-3.5 shrink-0"></i>
-            Tambah Pertanyaan
-          </button>
-        </div>
-        <div class="divide-y divide-slate-100" id="customRowsKosong" data-sortable-list></div>
-      `;
-      body.appendChild(card);
-      window.initSortableList?.(document.getElementById('customRowsKosong'));
-    }
-
     function openModal() {
       errorEl.classList.add('hidden');
       overlay.classList.remove('hidden');
@@ -4259,11 +4220,6 @@
 
       if (btn.classList.contains('js-add-custom')) {
         openAddModal(btn.dataset.target);
-        return;
-      }
-      if (btn.classList.contains('js-add-custom-kosong')) {
-        ensureKosongCard();
-        openAddModal('customRowsKosong');
         return;
       }
 
@@ -4384,5 +4340,7 @@
   })();
 </script>
 <script src="admin-brand.js"></script>
+<script src="admin-pt-picker.js"></script>
+<script src="kuesioner-toolbar.js"></script>
 </body>
 </html>
