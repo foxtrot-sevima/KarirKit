@@ -10,7 +10,7 @@ Aturan singkat:
 
 ## 2026-11-13
 
-Dasar KarirKit: v1.7.0 (belum dirilis)
+Dasar KarirKit: v1.7.0
 
 ### Changed
 - **Sepuluh halaman tidak lagi punya blok `<style>` lokal**; semuanya memakai komponen KarirKit (`npm run check:templates` kini bersih):
@@ -20,7 +20,6 @@ Dasar KarirKit: v1.7.0 (belum dirilis)
   - `pengaturan-landing-page` memakai `.list-menu-*`, `.textarea-autogrow`, dan `.upload-thumb`.
   - `kuesioner` memakai `.qr-present` (layar penuh dan lembar cetak QR), `.option-card`, `.grid-collapse`, `.swap-fade`, dan `.scale-pill`.
 - Tampilan dan perilaku tidak berubah; diperiksa lewat perbandingan nilai CSS terhitung dengan halaman sebelumnya. Aturan layar penuh QR tidak bisa dijalankan di peramban uji tanpa gestur pengguna, jadi diperiksa dengan membandingkan teks aturannya.
-- Mockup ini tertahan di staging sampai KarirKit v1.7.0 (komponen barunya) dirilis.
 
 ## 2026-11-11
 
