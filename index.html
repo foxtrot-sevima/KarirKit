@@ -7367,8 +7367,8 @@
       }).join('');
       return '<div class="shrink-0 px-3 pb-2 pt-3"><div class="relative">' +
         '<span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>' +
-        '<input type="search" class="input h-9 pl-9 pr-12" placeholder="Cari halaman..." aria-label="Cari halaman" data-ds-search />' +
-        '<kbd class="kbd pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 lg:inline-flex">Ctrl K</kbd></div></div>' +
+        '<input type="search" class="peer input h-9 pl-9 pr-3 lg:placeholder-shown:pr-14" placeholder="Cari halaman..." aria-label="Cari halaman" data-ds-search />' +
+        '<kbd class="kbd pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 lg:inline-flex peer-[:not(:placeholder-shown)]:hidden!">Ctrl K</kbd></div></div>' +
         '<nav class="min-h-0 flex-1 space-y-5 overflow-y-auto px-3 py-3" aria-label="Bagian dokumentasi">' + nav +
         '<p class="hidden px-3 text-sm text-fg-muted" data-ds-none>Tidak ada halaman.</p></nav>';
     }
