@@ -8,7 +8,7 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ### Changed
 
-- **Tombol solid bergaya semi-3D** (`.btn-primary`, `.btn-accent`, `.btn-danger`, `.btn-success`, `.btn-warning`): warna kini berupa gradien atas-bawah dari satu warna dasar, dengan highlight tipis di tepi atas, bayangan 1px di bawah, tepi yang lebih gelap, dan bayangan jatuh kecil. Hover menggelapkan gradien, tekan (`:active`) menampilkan kesan menekan ke dalam, dan cincin fokus tetap tersusun di atas bayangan. Seluruhnya diturunkan dari token warna yang sudah ada lewat `color-mix` (tanpa token `@theme` baru), sehingga ikut mode gelap. Nama kelas dan markup tidak berubah.
+- **Tombol solid bergaya semi-3D** (`.btn-primary`, `.btn-accent`, `.btn-danger`, `.btn-success`, `.btn-warning`): warna kini berupa gradien atas-bawah dari satu warna dasar, dengan highlight tipis di tepi atas, bayangan 1px di bawah, tepi yang lebih gelap, dan bayangan jatuh kecil. Hover menggelapkan gradien, tekan (`:active`) menampilkan kesan menekan ke dalam, dan cincin fokus tetap tersusun di atas bayangan. Seluruhnya diturunkan dari token warna yang sudah ada lewat `color-mix` (tanpa token `@theme` baru), sehingga ikut mode gelap. Nama kelas dan markup tidak berubah. Gaya yang sama berlaku untuk `.btn-dark`, tombol social berwarna, `.btn-gradient-*` (monochrome), `.btn-duo-*` (duotone), dan `.btn-glow-*` (bayangan berwarna tetap dipertahankan); tombol terang (`.btn-secondary`, `.btn-tertiary`, `.btn-outline`, `.btn-white`, `.btn-social`) memakai versi yang lebih tipis. Tombol ghost dan outline berwarna tetap datar.
 
 ## [1.5.0] - 2026-10-29
 
