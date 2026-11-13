@@ -18577,7 +18577,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
 
   .btn-primary { @apply bg-primary-600 text-white shadow-sm hover:bg-primary-700 focus-visible:ring-primary-500; }
   .btn-secondary { @apply bg-primary-50 text-primary-700 hover:bg-primary-100 focus-visible:ring-primary-300; }
-  .btn-accent { @apply bg-secondary-600 text-neutral-900 shadow-sm hover:bg-secondary-700 focus-visible:ring-secondary-300; }
+  .btn-accent { @apply bg-secondary-600 text-white shadow-sm hover:bg-secondary-700 focus-visible:ring-secondary-300; }
   .btn-outline { @apply border border-border bg-surface text-neutral-700 hover:bg-neutral-50 focus-visible:ring-neutral-300; }
   .btn-ghost { @apply text-fg-muted hover:bg-neutral-100 hover:text-neutral-800 focus-visible:ring-neutral-300; }
   .btn-ghost-inverse {
@@ -18614,7 +18614,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
     color: var(--color-primary-600);
   }
   .btn-accent.btn-loading::after {
-    color: var(--color-neutral-900);
+    color: white;
   }
 
   /* ----- Badges ----- */
@@ -19391,7 +19391,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .btn-warning {
     background-image: linear-gradient(180deg, var(--btn-top) 0%, var(--btn-base) 100%);
     --btn-top: color-mix(in srgb, var(--btn-base) 84%, white);
-    --btn-edge: color-mix(in srgb, var(--btn-base) 80%, black);
+    --btn-edge: color-mix(in srgb, var(--btn-base) 92%, black);
     --tw-shadow:
       0 0 0 1px var(--btn-edge),
       inset 0 1px 0 rgb(255 255 255 / 0.28),
