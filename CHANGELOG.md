@@ -9,6 +9,11 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 ### Changed
 
 - **Tombol solid bergaya semi-3D** (`.btn-primary`, `.btn-accent`, `.btn-danger`, `.btn-success`, `.btn-warning`): warna kini berupa gradien atas-bawah dari satu warna dasar, dengan highlight tipis di tepi atas, bayangan 1px di bawah, tepi yang lebih gelap, dan bayangan jatuh kecil. Hover menggelapkan gradien, tekan (`:active`) menampilkan kesan menekan ke dalam, dan cincin fokus tetap tersusun di atas bayangan. Seluruhnya diturunkan dari token warna yang sudah ada lewat `color-mix` (tanpa token `@theme` baru), sehingga ikut mode gelap. Nama kelas dan markup tidak berubah. Gaya yang sama berlaku untuk `.btn-dark`, tombol social berwarna, `.btn-gradient-*` (monochrome), `.btn-duo-*` (duotone), dan `.btn-glow-*` (bayangan berwarna tetap dipertahankan); tombol terang (`.btn-secondary`, `.btn-tertiary`, `.btn-outline`, `.btn-white`, `.btn-social`) memakai versi yang lebih tipis. Item Button Group (`.btn-group-item`, `-primary|success|danger|dark`) memakai gradien dan highlight atas saja, tanpa tepi gelap dan bayangan jatuh agar sambungan antar item tetap rapi. Tombol ghost dan outline berwarna tetap datar.
+- **Gaya semi-3D untuk kontrol dan indikator**: kilau vertikal transparan dan bayangan dalam 1px (tanpa variabel per varian, jadi ikut semua warna) pada track Toggle aktif (termasuk `.toggle-red|green|purple`), Checkbox dan Radio yang tercentang (`.form-check`, `.form-radio`, termasuk indeterminate), `.progress-bar`, `.pagination-btn-active`, serta item aktif `.tabs-pills` dan `.tabs-vertical`. Item aktif bertint terang (`.pagination-link.is-active`, `.tabs-full`, `.tabs-default`) dan `.stat-icon` mendapat kilau putih tipis. `.input` dan `.combo-trigger` mendapat bayangan dalam sangat tipis; cincin fokus tidak berubah.
+
+### Added
+
+- **Badge solid** (`.badge-solid` + `.badge-primary|secondary|success|warning|danger|info|neutral`): varian berlatar warna penuh dengan gradien semi-3D dan teks putih. Story Badge -> Solid dan bagian Badge di `index.html` memakainya.
 
 ## [1.5.0] - 2026-10-29
 

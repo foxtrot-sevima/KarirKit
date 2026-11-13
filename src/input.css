@@ -19502,6 +19502,74 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
     background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn-hover-base) 55%, white) 0%, var(--btn-hover-base) 100%);
   }
 
+  /* ==== Semi-3D: kontrol dan indikator ====
+     Kilau vertikal transparan (terang di atas, sedikit gelap di bawah) ditumpuk di atas warna latar apa pun, sehingga cocok
+     untuk semua varian warna tanpa variabel per varian; bayangan dalam 1px memberi tepi atas dan bawah. Semua lewat
+     --tw-inset-shadow supaya cincin fokus dan bayangan luar tetap tersusun. */
+  .toggle-input:checked + .toggle-track,
+  .progress-bar,
+  .pagination-btn-active,
+  .tabs-pills .tabs-item[aria-current="page"],
+  .tabs-pills .tabs-item[aria-selected="true"],
+  .tabs-pills .tabs-item.is-active,
+  .tabs-vertical .tabs-item[aria-current="page"],
+  .tabs-vertical .tabs-item[aria-selected="true"],
+  .tabs-vertical .tabs-item.is-active {
+    background-image: linear-gradient(180deg, rgb(255 255 255 / 0.18) 0%, rgb(0 0 0 / 0.06) 100%);
+    --tw-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25), inset 0 -1px 0 rgb(0 0 0 / 0.12);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .toggle-track {
+    --tw-inset-shadow: inset 0 1px 2px rgb(15 23 42 / 0.08);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .form-check:checked,
+  .form-check:indeterminate,
+  .form-radio:checked {
+    --tw-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), inset 0 6px 6px -5px rgb(255 255 255 / 0.25), inset 0 -1px 0 rgb(0 0 0 / 0.14);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .form-check:disabled:checked,
+  .form-check:disabled:indeterminate,
+  .form-radio:disabled:checked { --tw-inset-shadow: 0 0 #0000; }
+
+  /* Item aktif bertint terang (pagination, tab penuh, tab bawaan): kilau putih tipis saja. */
+  .pagination-link.is-active,
+  .tabs-full .tabs-item[aria-current="page"],
+  .tabs-full .tabs-item[aria-selected="true"],
+  .tabs-full .tabs-item.is-active,
+  .tabs-default .tabs-item[aria-current="page"],
+  .tabs-default .tabs-item[aria-selected="true"],
+  .tabs-default .tabs-item.is-active,
+  .stat-icon {
+    background-image: linear-gradient(180deg, rgb(255 255 255 / 0.55) 0%, rgb(255 255 255 / 0) 100%);
+    --tw-inset-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.45);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+
+  /* Input dan pemicu combo: bayangan dalam sangat tipis agar terasa sedikit masuk. */
+  .input,
+  .combo-trigger {
+    --tw-inset-shadow: inset 0 1px 2px rgb(15 23 42 / 0.05);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .input:disabled { --tw-inset-shadow: 0 0 #0000; }
+
+  /* Badge solid (varian baru): .badge-solid + warna, mis. <span class="badge badge-solid badge-success">. */
+  .badge-solid {
+    @apply text-white;
+    background-image: linear-gradient(180deg, rgb(255 255 255 / 0.18) 0%, rgb(0 0 0 / 0.06) 100%);
+    --tw-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25), inset 0 -1px 0 rgb(0 0 0 / 0.12);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .badge-solid.badge-primary { @apply bg-primary-600; }
+  .badge-solid.badge-secondary { @apply bg-secondary-600; }
+  .badge-solid.badge-success { @apply bg-success-600; }
+  .badge-solid.badge-warning { @apply bg-warning-600; }
+  .badge-solid.badge-danger { @apply bg-danger-600; }
+  .badge-solid.badge-info { @apply bg-info-600; }
+  .badge-solid.badge-neutral { @apply bg-neutral-600; }
+
   /* ==== Button group ==== */
   .btn-group { @apply inline-flex rounded-control shadow-xs; }
   .btn-group-vertical { @apply flex-col; }
