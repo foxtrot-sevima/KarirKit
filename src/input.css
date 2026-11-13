@@ -19854,7 +19854,7 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   @media (max-width: 420px) { .sticky-actions { gap: 0.5rem; padding-left: 1rem; padding-right: 1rem; } }
 
   /* Teks pertanyaan: lebih tegas daripada .form-label (kuesioner, formulir bertahap). */
-  .form-question { @apply block text-[0.9375rem] font-semibold leading-snug text-neutral-800; }
+  .form-question { @apply block text-[0.9375rem] font-semibold leading-[1.45] text-neutral-800; }
 
   /* ==== Drawer — .drawer[.drawer-left|right|top|bottom] > .drawer-header + .drawer-body + .drawer-footer ====
      Behaviour: assets/js/drawer.js (data-drawer-*). Closed = off-screen + invisible; .is-open slides it in. */
