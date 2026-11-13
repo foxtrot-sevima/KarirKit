@@ -6,6 +6,39 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+### Added
+
+- **Drawer di atas shell aplikasi** (`.drawer-over-shell`): drawer dan latarnya (`.drawer-backdrop-over-shell`, ditambahkan `drawer.js`) tampil di atas sidebar/topbar ber-z-50 (laci z-60, latar z-59), menggantikan blok `<style>` per halaman.
+- **Kelas animasi** (`.anim-orbit`, `.anim-orbit-rev`, `.anim-float`, `.anim-pulse`, `.anim-enter`): gerak dekoratif dan masuk halus, otomatis mati bila pengguna meminta gerakan dikurangi. Story Components -> Animation.
+- **Radio card dan Scale pill** (`.radio-card`, `.scale-pill`, `.scale-pill-active`): pilihan berupa kartu dengan radio terlihat, dan skala 1-5 sebagai tombol; state dari `:has(input:checked)`, cincin fokus keyboard. Story Radio -> Radio cards, Scale pills.
+- **List menu** (`.list-menu-item`, `.list-menu-row` + `.is-off`, `.list-menu-back`, `.list-menu-foot`): daftar pengaturan berbaris. Story List group -> List menu.
+- **Option card** (`.option-card` + `.option-card-icon`, `.option-card-check`, `data-tone="secondary"`): kartu pilihan dengan ikon dan penanda centang, state dari `:has(input:checked)`, cincin fokus keyboard. Story Radio -> Option cards.
+- **Grid collapse dan Swap fade** (`.grid-collapse[data-open]`, `.swap-fade` + `.is-swapping`): transisi tinggi tanpa JS ukur, dan ganti isi dengan memudar; keduanya mati bila gerakan dikurangi. Story Components -> Animation.
+- **QR present** (`.qr-present` pada Modal + `.qr-grid`, `.qr-stage*`, `.qr-present-qr`, `[data-qr-fs-only|hide]`, `.qr-print-sheet`): layar penyajian QR dua kolom yang menjadi tampilan layar penuh untuk monitor (ukuran mengikuti tinggi layar) dan lembar cetak A4 lewat `body.printing-qr`. Dijelaskan di story QR Code.
+- **Sticky actions dan Form question** (`.sticky-actions`, `.form-question`): bilah aksi lengket di dasar kartu formulir bertahap, dan teks pertanyaan yang lebih tegas daripada `.form-label`. Story Components -> Sticky actions.
+
+### Fixed
+
+- **Drawer `.drawer-contained` menimpa halaman**: z-index drawer di dalam kotak kini lokal (`z-1`), sehingga tidak lagi tampil di atas header atau latar drawer lain saat halaman digulir (contoh "Bottom sheet with edge" di dokumentasi).
+
+## [1.6.0] - 2026-11-13
+
+### Added
+
+- **Badge solid** (`.badge-solid` + `.badge-primary|secondary|success|warning|danger|info|neutral`): varian berlatar warna penuh dengan gradien semi-3D dan teks putih. Story Badge -> Solid dan bagian Badge di `index.html` memakainya.
+
+### Changed
+
+- **Tombol solid bergaya semi-3D** (`.btn-primary`, `.btn-accent`, `.btn-danger`, `.btn-success`, `.btn-warning`): warna kini berupa gradien atas-bawah dari satu warna dasar, dengan highlight tipis di tepi atas, bayangan 1px di bawah, tepi yang lebih gelap, dan bayangan jatuh kecil. Hover menggelapkan gradien, tekan (`:active`) menampilkan kesan menekan ke dalam, dan cincin fokus tetap tersusun di atas bayangan. Seluruhnya diturunkan dari token warna yang sudah ada lewat `color-mix` (tanpa token `@theme` baru), sehingga ikut mode gelap. Nama kelas dan markup tidak berubah. Teks tombol Accent dan Warning kini putih (spinner loading Accent ikut putih).
+- **Gaya semi-3D untuk varian tombol lain**: `.btn-dark`, tombol social berwarna, `.btn-gradient-*` (monochrome), `.btn-duo-*` (duotone), dan `.btn-glow-*` (bayangan berwarna tetap dipertahankan). Tombol terang (`.btn-secondary`, `.btn-tertiary`, `.btn-outline`, `.btn-white`, `.btn-social`) memakai versi yang lebih tipis, dan dilewati bila tombol memberi utilitas `bg-*` sendiri (mis. `!bg-transparent` di atas latar gelap). Item Button Group (`.btn-group-item`, `-primary|success|danger|dark`) memakai gradien dan highlight atas saja, tanpa tepi gelap dan bayangan jatuh agar sambungan antar item tetap rapi. Tombol ghost dan outline berwarna tetap datar.
+- **Gaya semi-3D untuk kontrol dan indikator**: kilau vertikal transparan dan bayangan dalam 1px (tanpa variabel per varian, jadi ikut semua warna) pada track Toggle aktif (termasuk `.toggle-red|green|purple`), Checkbox dan Radio yang tercentang (`.form-check`, `.form-radio`, termasuk indeterminate), `.progress-bar`, `.pagination-btn-active`, serta item aktif `.tabs-pills` dan `.tabs-vertical`. Item aktif bertint terang (`.pagination-link.is-active`, `.tabs-full`, `.tabs-default`) dan `.stat-icon` mendapat kilau putih tipis. `.input` dan `.combo-trigger` mendapat bayangan dalam sangat tipis; cincin fokus tidak berubah.
+
+- **Mode gelap dirombak** (`html[data-theme="dark"]`): palet kini hitam netral dengan sedikit nuansa dingin (latar `#0c1015`, permukaan `#12171d`, teks utama `#f4f7fa`, teks sekunder `#8f9498`) menggantikan navy sebelumnya, dengan garis pemisah yang jauh lebih tipis (`--color-border` `#1f252c`) dan tint sukses/primary yang lebih netral. Bayangan (`--shadow-card`, `--shadow-card-lg`) memakai hitam; sebelumnya memakai `neutral-900` yang terbalik menjadi hampir putih sehingga tampak seperti glow. Gaya semi-3D punya penyesuaian khusus: kilau tombol terang, item Button Group, item aktif, dan `.stat-icon` diturunkan agar tidak menjadi blok abu-abu, dan tombol solid dicampur 12% dengan warna permukaan agar tidak terlalu terang. Nama kelas dan token `@theme` tidak berubah.
+
+### Fixed
+
+- **Dokumentasi `index.html`: pencarian sidebar**: hint "Ctrl K" tidak lagi menimpa tombol hapus bawaan kotak pencarian; hint tersembunyi saat kotak berisi teks dan padding kanan menyesuaikan.
+
 ## [1.5.0] - 2026-10-29
 
 ### Added

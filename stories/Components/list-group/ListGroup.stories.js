@@ -37,3 +37,15 @@ export const WithIcons = story("icons");
 export const Features = story("features");
 export const Statistics = story("stats");
 export const AvatarsAndCta = story("avatars");
+
+export const ListMenu = {
+  name: "List menu",
+  parameters: { docs: { description: { story: "Daftar pengaturan berbaris: `.list-menu-item` (tombol), `.list-menu-row` (baris dengan aksi di sisi), `.list-menu-back`, `.list-menu-foot`. `.list-menu-row.is-off` meredupkan barisnya." } } },
+  render: () => `<div class="p-6"><div class="list-group max-w-md divide-y divide-border-subtle">
+    <button type="button" class="list-menu-item"><span>Header</span><i class="kk kk-caret-right h-4 w-4 text-fg-subtle"></i></button>
+    <div class="list-menu-row"><button type="button" class="list-menu-item"><span>Testimoni Alumni</span></button><label class="toggle mr-5"><input type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></label></div>
+    <div class="list-menu-row is-off"><button type="button" class="list-menu-item"><span>Bimbingan Karir</span></button><label class="toggle mr-5"><input type="checkbox" class="toggle-input" /><span class="toggle-track"></span></label></div>
+    <button type="button" class="list-menu-item" disabled><span>Segera hadir</span></button>
+    <div class="list-menu-foot"><button type="button" class="btn-outline btn-md">Batal</button><button type="button" class="btn-primary btn-md">Simpan</button></div>
+  </div></div>`,
+};

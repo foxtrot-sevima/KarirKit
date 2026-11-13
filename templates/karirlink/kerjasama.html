@@ -429,12 +429,7 @@
 </div>
 
 <div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
-<style>
-  /* Sidebar karirlink ber-z-50, di atas backdrop laci bawaan: naikkan backdrop dan laci saat laci detail terbuka. */
-  body.km-drawer-open .drawer-backdrop { z-index: 59; }
-  body.km-drawer-open #kmDrawer { z-index: 60; }
-</style>
-<div class="drawer drawer-right w-full sm:max-w-md" id="kmDrawer" aria-label="Detail mitra">
+<div class="drawer drawer-right drawer-over-shell w-full sm:max-w-md" id="kmDrawer" aria-label="Detail mitra">
   <div class="drawer-header"><div class="min-w-0"><h3 class="drawer-title truncate" id="kmdTitle">Mitra</h3><p class="mt-0.5 truncate text-xs text-slate-500" id="kmdSub"></p></div><button type="button" class="drawer-close" data-drawer-hide="kmDrawer" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button></div>
   <div class="drawer-body">
     <div class="flex flex-wrap items-center gap-2"><span id="kmdBadge"></span><span id="kmdSrc"></span></div>
@@ -517,8 +512,6 @@
   table.refresh();
 
   const drawer = $('kmDrawer');
-  drawer.addEventListener('drawer:show', () => document.body.classList.add('km-drawer-open'));
-  drawer.addEventListener('drawer:hide', () => document.body.classList.remove('km-drawer-open'));
   let cur = null;
   function queue() {
     const left = [...root.querySelectorAll('tbody tr')].filter((r) => r.dataset.status === 'pending').length;
