@@ -7,6 +7,7 @@
 <title>Kelola Pertanyaan | KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
 <meta name="description" content="Kelola pertanyaan kuesioner Tracer Study per tingkatan - Core (kode Dikti), Optional, dan Custom - di panel admin KarirLink." />
 <meta name="author" content="SEVIMA" />
 <link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/kuesioner-builder-2.html" />
@@ -70,15 +71,15 @@
     <div>
       <p class="nav-eyebrow mb-2">Portal Karir</p>
       <div class="space-y-1">
-        <a href="segera-hadir.html?menu=Kerjasama" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+        <a href="kerjasama.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Kerjasama</span>
         </a>
-        <a href="segera-hadir.html?menu=Lowongan" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+        <a href="lowongan.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Lowongan</span>
         </a>
-        <a href="segera-hadir.html?menu=Event" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+        <a href="event.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Event</span>
         </a>
@@ -92,6 +93,10 @@
           <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Mahasiswa/Alumni</span>
         </a>
+        <a href="sinkronisasi-siakad.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Sinkronisasi Siakad" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Sinkronisasi Siakad</span>
+        </a>
         <a class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Aktivitas Lamaran</span>
@@ -100,9 +105,23 @@
           <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Report</span>
         </a>
-        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+        <a class="nav-item" data-tooltip-trigger data-tooltip-text="Personalisasi" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
-          <span class="sidebar-label">Pengaturan Landing Page</span>
+          <span class="sidebar-label">Personalisasi</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Internal</p>
+      <div class="space-y-1">
+        <a href="konfigurasi-pt.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi PT" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi PT</span>
+        </a>
+        <a href="konfigurasi-akses.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi Akses" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi Akses</span>
         </a>
       </div>
     </div>
@@ -149,15 +168,15 @@
       <div>
         <p class="nav-eyebrow mb-2">Portal Karir</p>
         <div class="space-y-1">
-          <a href="segera-hadir.html?menu=Kerjasama" class="nav-item">
+          <a href="kerjasama.html" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Kerjasama</span>
           </a>
-          <a href="segera-hadir.html?menu=Lowongan" class="nav-item">
+          <a href="lowongan.html" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Lowongan</span>
           </a>
-          <a href="segera-hadir.html?menu=Event" class="nav-item">
+          <a href="event.html" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Event</span>
           </a>
@@ -171,6 +190,10 @@
             <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Mahasiswa/Alumni</span>
           </a>
+          <a href="sinkronisasi-siakad.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Sinkronisasi Siakad</span>
+          </a>
           <a class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Aktivitas Lamaran</span>
@@ -181,7 +204,21 @@
           </a>
           <a class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Pengaturan Landing Page</span>
+            <span class="sidebar-label">Personalisasi</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Internal</p>
+        <div class="space-y-1">
+          <a href="konfigurasi-pt.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi PT</span>
+          </a>
+          <a href="konfigurasi-akses.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi Akses</span>
           </a>
         </div>
       </div>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lowongan Job Fair | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../../dist/output.css" />
+<meta name="description" content="Semua lowongan peserta Job Fair kampus, dengan filter perusahaan dan tipe pekerjaan." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/custom/portal-karir/job-fair-lowongan.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Lowongan Job Fair | Portal Karir KarirLink" />
+<meta property="og:description" content="Semua lowongan peserta Job Fair kampus, dengan filter perusahaan dan tipe pekerjaan." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/custom/portal-karir/job-fair-lowongan.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Lowongan Job Fair | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Semua lowongan peserta Job Fair kampus, dengan filter perusahaan dan tipe pekerjaan." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<div data-shell="nav" data-page="event"></div>
+
+<main class="flex-1">
+
+  <!-- ============================= BAND JUDUL + FILTER ============================= -->
+  <section id="head" data-nav-hero class="relative bg-brand-gradient text-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden"><div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div></div>
+    <div class="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-24 sm:px-6">
+      <a id="back" href="job-fair.html" class="inline-flex items-center gap-1.5 text-sm text-white/80 hover:text-white"><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i><span id="backText">Job Fair</span></a>
+      <h1 class="mt-2 font-display text-2xl font-bold sm:text-3xl">Lowongan Job Fair</h1>
+      <p id="sub" class="mt-1 text-sm text-white/80">Memuat lowongan...</p>
+      <form id="filterForm" role="search" class="card mt-5 p-4" data-combo-boundary>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_16rem_12rem_auto] sm:items-end">
+          <div>
+            <label for="fQ" class="form-label">Kata kunci</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+              <input id="fQ" type="search" class="input pl-9" placeholder="Cari posisi, perusahaan, atau kota" autocomplete="off" />
+            </div>
+          </div>
+          <div><p class="form-label">Perusahaan</p><div id="hCompany"></div></div>
+          <div><p class="form-label">Tipe pekerjaan</p><div id="hType"></div></div>
+          <button type="submit" class="btn-primary btn-md">Cari</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+    <div id="notice" class="mb-5" hidden></div>
+    <div id="grid" class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+    <div id="pager" class="mt-8"></div>
+  </div>
+</main>
+
+<div data-shell="footer"></div>
+
+<script src="../../../assets/js/ui.js"></script>
+<script src="../../../assets/js/drawer.js"></script>
+<script src="../../../assets/js/pagination.js"></script>
+<script src="../../../assets/js/toast.js"></script>
+<script src="../../portal-karir/shell.js"></script>
+<script src="campus.js"></script>
+<script src="../../portal-karir/portal.js"></script>
+<script>
+  /* Job Fair: daftar lowongan peserta (filter perusahaan, tipe, pencarian, paginasi). Data lewat PK.api (listFairJobs); pilihan tersimpan di URL. */
+  (function () {
+  var PK = window.PK, api = PK.api, esc = PK.esc, fp = PK.fairParams();
+  function $(id) { return document.getElementById(id); }
+  PK.initShell();
+  PK.bindSave(document);
+  // 404 seperti produksi: campaign di luar masa aktif hanya terbuka untuk admin lewat ?preview.
+  function unavailable(err) {
+    return '<div class="mx-auto max-w-xl">' + PK.emptyBox('default', 'Job Fair tidak tersedia', err.message, '<a href="event.html" class="btn-primary btn-md">Lihat semua event</a>') + '</div>';
+  }
+  function previewNote() {
+    return '<div class="alert alert-warning" role="alert"><i class="kk kk-eye alert-icon" aria-hidden="true"></i><div><span class="alert-title">Mode pratinjau.</span> Job Fair ini belum dibuka atau sudah berakhir, jadi hanya terlihat oleh admin. Pengunjung biasa akan melihat halaman tidak tersedia.</div></div>';
+  }
+    var PAGE_SIZE = 9, state = { company: fp.company, jenis: fp.jenis, q: fp.q, page: fp.page }, built = false, token = PK.latest();
+    $('fQ').value = state.q;
+    $('back').href = PK.fairUrl('job-fair', fp.slug, fp.preview);
+    function syncUrl() {
+      var q = 'slug=' + encodeURIComponent(fp.slug) + (fp.preview ? '&preview' : '');
+      if (state.company) q += '&company=' + encodeURIComponent(state.company);
+      if (state.jenis) q += '&jenis=' + encodeURIComponent(state.jenis);
+      if (state.q) q += '&q=' + encodeURIComponent(state.q);
+      if (state.page > 1) q += '&page=' + state.page;
+      try { history.replaceState(null, '', '?' + q); } catch (e) { /* file:// */ }
+    }
+    function buildCombos(res) {
+      $('hCompany').innerHTML = PK.comboHtml({ id: 'fCompany', all: 'Semua perusahaan', label: 'Perusahaan', value: state.company, options: res.companies.map(function (c) { return [c.slug, c.name + ' (' + c.jobs + ')']; }) });
+      $('hType').innerHTML = PK.comboHtml({ id: 'fType', all: 'Semua tipe', label: 'Tipe pekerjaan', value: state.jenis, options: res.types.map(function (t) { return [t, t]; }) });
+      PK.initCombos(document); built = true;
+    }
+    function load() {
+      syncUrl();
+      var grid = $('grid'), ok = token();
+      grid.setAttribute('aria-busy', 'true'); grid.innerHTML = PK.skeletonCards(6);
+      api.listFairJobs({ slug: fp.slug, preview: fp.preview, company: state.company, jenis: state.jenis, q: state.q, page: state.page, pageSize: PAGE_SIZE }).then(function (res) {
+        if (!ok()) return;
+        if (!built) buildCombos(res);
+        state.page = res.page; syncUrl();
+        $('backText').textContent = res.fair.name;
+        $('sub').textContent = res.total + ' lowongan dari ' + res.companies.length + ' perusahaan peserta.';
+        $('notice').hidden = !fp.preview; $('notice').innerHTML = fp.preview ? previewNote() : '';
+        grid.innerHTML = res.items.length ? res.items.map(function (r) { return PK.jobCard(r); }).join('')
+          : '<div class="col-span-full">' + PK.emptyBox('default', 'Belum ada lowongan yang cocok', 'Coba ubah perusahaan, tipe pekerjaan, atau kata kunci.', '<button type="button" class="btn-outline btn-md" data-reset>Atur ulang filter</button>') + '</div>';
+        grid.removeAttribute('aria-busy');
+        PK.pager($('pager'), res, 'lowongan');
+      }).catch(function (err) {
+        if (!ok()) return;
+        $('head').hidden = true; $('notice').hidden = true; $('pager').innerHTML = '';
+        grid.className = ''; grid.innerHTML = unavailable(err);
+      });
+    }
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('[data-reset]')) { state.company = state.jenis = state.q = ''; state.page = 1; $('fQ').value = ''; PK.comboSet($('fCompany'), ''); PK.comboSet($('fType'), ''); load(); }
+    });
+    $('pager').addEventListener('pagination:change', function (e) { state.page = e.detail.page; load(); $('filterForm').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    $('filterForm').addEventListener('combo:change', function () { state.company = $('fCompany').dataset.value; state.jenis = $('fType').dataset.value; state.page = 1; load(); });
+    $('filterForm').addEventListener('submit', function (e) { e.preventDefault(); state.q = $('fQ').value; state.page = 1; load(); });
+    $('fQ').addEventListener('input', PK.debounce(function () { state.q = $('fQ').value; state.page = 1; load(); }, 350));
+    load();
+  })();
+</script>
+</body>
+</html>

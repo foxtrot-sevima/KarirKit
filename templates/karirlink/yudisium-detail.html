@@ -7,6 +7,7 @@
 <title>Detail Periode Yudisium | KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
 <meta name="description" content="Detail partisipasi kuesioner Tracer Study per Periode Yudisium - status pengisian, filter, dan pencarian mahasiswa - di panel admin KarirLink." />
 <meta name="author" content="SEVIMA" />
 <link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/yudisium-detail.html" />
@@ -70,15 +71,15 @@
     <div>
       <p class="nav-eyebrow mb-2">Portal Karir</p>
       <div class="space-y-1">
-        <a href="segera-hadir.html?menu=Kerjasama" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+        <a href="kerjasama.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Kerjasama</span>
         </a>
-        <a href="segera-hadir.html?menu=Lowongan" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+        <a href="lowongan.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Lowongan</span>
         </a>
-        <a href="segera-hadir.html?menu=Event" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+        <a href="event.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Event</span>
         </a>
@@ -92,6 +93,10 @@
           <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Mahasiswa/Alumni</span>
         </a>
+        <a href="sinkronisasi-siakad.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Sinkronisasi Siakad" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Sinkronisasi Siakad</span>
+        </a>
         <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Aktivitas Lamaran</span>
@@ -100,9 +105,23 @@
           <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Report</span>
         </a>
-        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Pengaturan Landing Page" data-tooltip-side="right">
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Personalisasi" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
-          <span class="sidebar-label">Pengaturan Landing Page</span>
+          <span class="sidebar-label">Personalisasi</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Internal</p>
+      <div class="space-y-1">
+        <a href="konfigurasi-pt.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi PT" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi PT</span>
+        </a>
+        <a href="konfigurasi-akses.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi Akses" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi Akses</span>
         </a>
       </div>
     </div>
@@ -154,15 +173,15 @@
       <div>
         <p class="nav-eyebrow mb-2">Portal Karir</p>
         <div class="space-y-1">
-          <a href="segera-hadir.html?menu=Kerjasama" class="nav-item">
+          <a href="kerjasama.html" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Kerjasama</span>
           </a>
-          <a href="segera-hadir.html?menu=Lowongan" class="nav-item">
+          <a href="lowongan.html" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Lowongan</span>
           </a>
-          <a href="segera-hadir.html?menu=Event" class="nav-item">
+          <a href="event.html" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Event</span>
           </a>
@@ -176,6 +195,10 @@
             <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Mahasiswa/Alumni</span>
           </a>
+          <a href="sinkronisasi-siakad.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Sinkronisasi Siakad</span>
+          </a>
           <a href="aktivitas-lamaran.html" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Aktivitas Lamaran</span>
@@ -186,7 +209,21 @@
           </a>
           <a href="pengaturan-landing-page.html" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
-            <span class="sidebar-label">Pengaturan Landing Page</span>
+            <span class="sidebar-label">Personalisasi</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Internal</p>
+        <div class="space-y-1">
+          <a href="konfigurasi-pt.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi PT</span>
+          </a>
+          <a href="konfigurasi-akses.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi Akses</span>
           </a>
         </div>
       </div>
@@ -588,10 +625,10 @@
       <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Jadwal pengiriman Kuesioner Lulusan per gelombang.</span><span class="hidden sm:inline">Menentukan kapan Kuesioner Lulusan dikirim ke lulusan periode <span class="font-medium text-slate-700">Yudisium Genap 2025/2026</span> ini, per gelombang.</span></p>
       <div class="callout-info mt-4 flex items-start gap-3">
         <i class="kk kk-clock h-4 w-4 shrink-0 text-info-600"></i>
-        <p class="text-sm text-slate-600"><span class="sm:hidden">Dikirim otomatis pukul <span class="font-medium text-slate-800">09.00 WIB</span> selama rentang tiap gelombang.</span><span class="hidden sm:inline">Pengiriman otomatis dijalankan setiap pukul <span class="font-medium text-slate-800">09.00 WIB</span> selama rentang tanggal tiap gelombang di bawah ini.</span></p>
+        <p class="text-sm text-slate-600"><span class="sm:hidden">Dikirim otomatis pukul <span class="font-medium text-slate-800">09.00 WIB</span> pada tanggal mulai tiap gelombang.</span><span class="hidden sm:inline">Pengiriman otomatis dijalankan setiap pukul <span class="font-medium text-slate-800">09.00 WIB</span> pada tanggal mulai tiap gelombang di bawah ini.</span></p>
       </div>
       <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="rounded-xl border border-slate-100 p-4" data-wave="1">
+        <div class="flex flex-col rounded-xl border border-slate-100 p-4" data-wave="1">
           <div class="flex items-start gap-3">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-opacity" data-wave-dim>
               <i class="kk kk-clock h-4 w-4"></i>
@@ -605,58 +642,46 @@
               <span class="toggle-track"></span>
             </label>
           </div>
-          <div class="mt-4 grid grid-cols-2 gap-3 transition-opacity" data-wave-dim>
+          <div class="mt-auto pt-4 transition-opacity" data-wave-dim>
             <div>
               <label class="form-label">Tanggal Mulai</label>
               <input class="input" type="date" value="2026-08-14" data-wave-input />
             </div>
-            <div>
-              <label class="form-label">Tanggal Akhir</label>
-              <input class="input" type="date" value="2026-08-27" data-wave-input />
-            </div>
           </div>
         </div>
 
-        <div class="rounded-xl border border-slate-100 p-4">
+        <div class="flex flex-col rounded-xl border border-slate-100 p-4">
           <div class="flex items-start gap-3">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-secondary-600">
               <i class="kk kk-clock h-4 w-4"></i>
             </span>
             <div>
               <p class="text-sm font-semibold text-slate-800">Pasca-Lulus 1</p>
-              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim sesuai rentang tanggalnya.</span><span class="hidden sm:inline">Dikirim pada rentang tanggal yang ditentukan kampus untuk memantau status karier lulusan, misalnya saat lulus atau 1 tahun setelahnya.</span></p>
+              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim sesuai tanggal mulai.</span><span class="hidden sm:inline">Dikirim pada tanggal mulai yang ditentukan kampus untuk memantau status karier lulusan, misalnya saat lulus atau 1 tahun setelahnya.</span></p>
             </div>
           </div>
-          <div class="mt-4 grid grid-cols-2 gap-3">
+          <div class="mt-auto pt-4">
             <div>
               <label class="form-label">Tanggal Mulai</label>
               <input class="input" type="date" value="2027-08-28" />
             </div>
-            <div>
-              <label class="form-label">Tanggal Akhir</label>
-              <input class="input" type="date" value="2027-09-11" />
-            </div>
           </div>
         </div>
 
-        <div class="rounded-xl border border-slate-100 p-4">
+        <div class="flex flex-col rounded-xl border border-slate-100 p-4">
           <div class="flex items-start gap-3">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-info-50 text-info-600">
               <i class="kk kk-clock h-4 w-4"></i>
             </span>
             <div>
               <p class="text-sm font-semibold text-slate-800">Pasca-Lulus 2</p>
-              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim sesuai rentang tanggalnya.</span><span class="hidden sm:inline">Dikirim pada rentang tanggal yang ditentukan kampus untuk memantau perkembangan karier jangka panjang.</span></p>
+              <p class="mt-1 text-sm text-slate-500"><span class="sm:hidden">Dikirim sesuai tanggal mulai.</span><span class="hidden sm:inline">Dikirim pada tanggal mulai yang ditentukan kampus untuk memantau perkembangan karier jangka panjang.</span></p>
             </div>
           </div>
-          <div class="mt-4 grid grid-cols-2 gap-3">
+          <div class="mt-auto pt-4">
             <div>
               <label class="form-label">Tanggal Mulai</label>
               <input class="input" type="date" value="2030-08-28" />
-            </div>
-            <div>
-              <label class="form-label">Tanggal Akhir</label>
-              <input class="input" type="date" value="2030-09-11" />
             </div>
           </div>
         </div>
@@ -670,7 +695,7 @@
          Data: satu flag per periode yudisium (bukan global), mis. periode.lulus_enabled boolean, default true. Disimpan bersama tombol
          "Simpan Pengaturan Gelombang" di aplikasi sungguhan (di mockup ini tersimpan saat toggle digeser).
          Bila enabled = false:
-           1. Penjadwal pengiriman (09.00 WIB) TIDAK mengirim Kuesioner Lulus ke lulusan periode ini, apa pun isi Tanggal Mulai/Akhir.
+           1. Penjadwal pengiriman (09.00 WIB) TIDAK mengirim Kuesioner Lulus ke lulusan periode ini, apa pun isi Tanggal Mulai.
               Tanggal tidak divalidasi dan tidak dipakai (input di UI dikunci).
            2. Portal Karir: GET /api/tracer tidak menyertakan item 'lulus' (id 'pra-lulus'), jadi kartunya tidak tampil di halaman alumni
               maupun mahasiswa. Penyaringan dilakukan server, bukan FE.

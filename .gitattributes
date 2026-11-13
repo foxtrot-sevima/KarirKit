@@ -1,0 +1,2 @@
+# Entri dua fitur di section tanggal yang sama tergabung otomatis (lihat AGENTS.md, bagian Git & push).
+templates/CHANGELOG.md merge=union

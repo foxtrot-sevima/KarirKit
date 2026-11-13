@@ -9,14 +9,15 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = path.join(root, 'templates/portal-karir');
 const out = path.join(root, 'templates/custom/portal-karir');
-const ALL = ['index', 'lowongan', 'event', 'pengembangan', 'course', 'segera-hadir', 'riasec', 'riasec-tes', 'riasec-hasil', 'lamaran', 'profil', 'tracer-study', 'tracer-study-mahasiswa'];
+const ALL = ['index', 'lowongan', 'event', 'event-detail', 'job-fair', 'job-fair-lowongan', 'job-fair-perusahaan', 'pengembangan', 'course', 'segera-hadir', 'riasec', 'riasec-tes', 'riasec-hasil', 'lamaran', 'profil', 'tracer-study', 'tracer-study-mahasiswa', 'ubah-password'];
 const PAGES = process.argv.length > 2 ? ALL.filter((n) => process.argv.slice(2).includes(n)) : ALL;
 const SHARED = ['login', 'register', 'onboarding']; // tetap dipakai dari portal-karir
 
 fs.mkdirSync(out, { recursive: true });
 for (const name of PAGES) {
-  let s = fs.readFileSync(path.join(src, name + '.html'), 'utf8');
+  let s = fs.readFileSync(path.join(src, name + '.html'), 'utf8').split('\r\n').join('\n'); // keluaran selalu LF, apa pun autocrlf di mesin
   s = s.split('../../assets/').join('../../../assets/').split('../../dist/').join('../../../dist/');
+  s = s.replace(/\n?<script src="..\/campus-theme.js"><\/script>/, ''); // tema warna milik satu kampus; versi white-label memakai identitasnya sendiri
   s = s.replace('<script src="shell.js"></script>', '<script src="../../portal-karir/shell.js"></script>');
   s = s.replace('<script src="portal.js"></script>', '<script src="campus.js"></script>\n<script src="../../portal-karir/portal.js"></script>');
   for (const t of SHARED) s = s.split(`"${t}.html`).join(`"../../portal-karir/${t}.html`).split(`'${t}.html`).join(`'../../portal-karir/${t}.html`);

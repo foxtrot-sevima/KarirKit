@@ -9,7 +9,7 @@ import fs from 'node:fs';
 const strict = process.argv.includes('--strict');
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).replace(/\r/g, '');
 
-const files = git('ls-files', 'templates/karirlink', 'templates/portal-karir', 'templates/custom').split('\n').filter((f) => f.endsWith('.html'));
+const files = git('ls-files', 'templates/karirlink', 'templates/portal-karir', 'templates/custom', 'templates/mitra', 'templates/landing').split('\n').filter((f) => f.endsWith('.html'));
 const findings = [];
 for (const f of files) {
   const html = fs.readFileSync(f, 'utf8');

@@ -57,11 +57,13 @@ export const Soft = {
 export const Solid = {
   render: () => `
     <div class="flex flex-wrap gap-3 p-6">
-      <span class="badge bg-success-600 text-white">Success</span>
-      <span class="badge bg-info-600 text-white">Info</span>
-      <span class="badge bg-warning-600 text-white">Warning</span>
-      <span class="badge bg-danger-600 text-white">Danger</span>
-      <span class="badge bg-slate-800 text-white">Neutral</span>
+      <span class="badge badge-solid badge-primary">Primary</span>
+      <span class="badge badge-solid badge-secondary">Secondary</span>
+      <span class="badge badge-solid badge-success">Success</span>
+      <span class="badge badge-solid badge-info">Info</span>
+      <span class="badge badge-solid badge-warning">Warning</span>
+      <span class="badge badge-solid badge-danger">Danger</span>
+      <span class="badge badge-solid badge-neutral">Neutral</span>
     </div>`,
 };
 

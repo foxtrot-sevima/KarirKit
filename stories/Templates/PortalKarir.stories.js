@@ -25,6 +25,51 @@ export const Register = {
   render: () => pageFrame("/templates/portal-karir/register.html", "Portal Karir Register"),
 };
 
+export const EmailUndanganAktivasi = {
+  name: "Email Undangan Aktivasi",
+  render: () => pageFrame("/templates/portal-karir/email-undangan.html", "Portal Karir Email Undangan Aktivasi"),
+};
+
+export const AktivasiAkun = {
+  name: "Aktivasi Akun",
+  render: () => pageFrame("/templates/portal-karir/aktivasi.html", "Portal Karir Aktivasi Akun"),
+};
+
+export const CekEmailLogin = {
+  name: "Login Cek Email",
+  render: () => pageFrame("/templates/portal-karir/login-cek-email.html", "Portal Karir Login Cek Email"),
+};
+
+export const LoginPassword = {
+  name: "Login Password",
+  render: () => pageFrame("/templates/portal-karir/login-password.html", "Portal Karir Login Password"),
+};
+
+export const EmailLinkMasuk = {
+  name: "Email Link Masuk",
+  render: () => pageFrame("/templates/portal-karir/email-masuk.html", "Portal Karir Email Link Masuk"),
+};
+
+export const LinkKedaluwarsa = {
+  name: "Link Kedaluwarsa",
+  render: () => pageFrame("/templates/portal-karir/link-kedaluwarsa.html", "Portal Karir Link Kedaluwarsa"),
+};
+
+export const LinkTerpakai = {
+  name: "Link Sudah Dipakai",
+  render: () => pageFrame("/templates/portal-karir/link-terpakai.html", "Portal Karir Link Sudah Dipakai"),
+};
+
+export const LinkTidakValid = {
+  name: "Link Tidak Valid",
+  render: () => pageFrame("/templates/portal-karir/link-tidak-valid.html", "Portal Karir Link Tidak Valid"),
+};
+
+export const UbahPassword = {
+  name: "Ubah Password",
+  render: () => pageFrame("/templates/portal-karir/ubah-password.html", "Portal Karir Ubah Password"),
+};
+
 export const Onboarding = {
   name: "Onboarding",
   render: () => pageFrame("/templates/portal-karir/onboarding.html", "Portal Karir Onboarding"),
@@ -61,6 +106,26 @@ export const Event = {
   render: () => pageFrame("/templates/portal-karir/event.html", "Portal Karir Event"),
 };
 
+export const EventDetail = {
+  name: "Event - Detail",
+  render: () => pageFrame("/templates/portal-karir/event-detail.html?id=1", "Portal Karir Detail Event"),
+};
+
+export const JobFair = {
+  name: "Job Fair",
+  render: () => pageFrame("/templates/portal-karir/job-fair.html", "Portal Karir Job Fair"),
+};
+
+export const JobFairLowongan = {
+  name: "Job Fair - Lowongan",
+  render: () => pageFrame("/templates/portal-karir/job-fair-lowongan.html", "Portal Karir Lowongan Job Fair"),
+};
+
+export const JobFairPerusahaan = {
+  name: "Job Fair - Perusahaan",
+  render: () => pageFrame("/templates/portal-karir/job-fair-perusahaan.html?company=teknologi-cakra", "Portal Karir Perusahaan Job Fair"),
+};
+
 export const PengembanganDiri = {
   name: "Pengembangan Diri",
   render: () => pageFrame("/templates/portal-karir/pengembangan.html", "Portal Karir Pengembangan Diri"),
@@ -94,4 +159,39 @@ export const HasilTesRiasec = {
 export const CustomKampus = {
   name: "Custom Kampus (white-label)",
   render: () => pageFrame("/templates/custom/portal-karir/index.html", "Portal Karir Custom Kampus"),
+};
+
+export const TracerEmail = {
+  name: "Tracer Email Alumni",
+  render: () => pageFrame("/templates/portal-karir/tracer-email.html", "Portal Karir Tracer Email Alumni"),
+};
+
+export const TracerValidasi = {
+  name: "Tracer Verifikasi Data",
+  render: () => pageFrame("/templates/portal-karir/tracer-validasi.html", "Portal Karir Tracer Verifikasi Data"),
+};
+
+export const TracerLinkTidakBerlaku = {
+  name: "Tracer Link Tidak Berlaku",
+  render: () => pageFrame("/templates/portal-karir/tracer-link-tidak-berlaku.html", "Portal Karir Tracer Link Tidak Berlaku"),
+};
+
+export const TracerSudahMengisi = {
+  name: "Tracer Sudah Mengisi",
+  render: () => pageFrame("/templates/portal-karir/tracer-sudah-mengisi.html", "Portal Karir Tracer Sudah Mengisi"),
+};
+
+export const TracerBelumDibuka = {
+  name: "Tracer Gelombang Belum Dibuka",
+  render: () => pageFrame("/templates/portal-karir/tracer-belum-dibuka.html", "Portal Karir Tracer Gelombang Belum Dibuka"),
+};
+
+export const TracerBerakhir = {
+  name: "Tracer Gelombang Berakhir",
+  render: () => pageFrame("/templates/portal-karir/tracer-berakhir.html", "Portal Karir Tracer Gelombang Berakhir"),
+};
+
+export const TracerSelesai = {
+  name: "Tracer Selesai",
+  render: () => pageFrame("/templates/portal-karir/tracer-selesai.html", "Portal Karir Tracer Selesai"),
 };

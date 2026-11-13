@@ -6,6 +6,7 @@
 <title>Daftar | KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
 <meta name="description" content="Buat akun KarirLink gratis untuk mencari lowongan, magang, dan event karier. Setelah daftar, ceritakan minatmu agar rekomendasi sesuai." />
 <meta name="author" content="SEVIMA" />
 <link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/register.html" />
@@ -35,7 +36,7 @@
 <div class="flex min-h-screen flex-col lg:flex-row">
 
   <!-- ============================= FORM PANEL ============================= -->
-  <div class="flex w-full flex-1 flex-col justify-center px-6 py-10 sm:px-12 lg:w-1/2 lg:px-16 xl:px-24">
+  <div class="flex w-full flex-1 flex-col justify-center px-6 py-10 sm:px-12 lg:w-1/2 lg:px-16 lg:py-16 xl:px-24">
     <div class="mx-auto w-full max-w-md">
       <a href="login.html" class="mb-10 inline-flex lg:hidden">
         <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
@@ -45,7 +46,23 @@
         <h1 class="font-display text-2xl font-bold text-slate-900">Buat akun baru</h1>
         <p class="mt-1.5 text-sm text-slate-500">Daftar gratis untuk mulai mencari lowongan dan magang yang cocok.</p>
 
-        <form id="registerForm" class="mt-8 space-y-5" novalidate>
+        <div class="mt-8 space-y-3">
+          <button type="button" class="btn-outline btn-md w-full" data-social-register>
+            <span class="kk-app kk-app-siakadcloud h-4 w-4" aria-hidden="true"></span>
+            Lanjutkan dengan SiAkadCloud
+          </button>
+          <button type="button" class="btn-outline btn-md w-full" data-social-register>
+            <span class="kk-brand kk-brand-google h-4 w-4" aria-hidden="true"></span>
+            Lanjutkan dengan Google
+          </button>
+        </div>
+
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-border"></div></div>
+          <div class="relative flex justify-center"><span class="bg-surface px-3 text-xs text-fg-subtle">atau</span></div>
+        </div>
+
+        <form id="registerForm" class="space-y-5" novalidate>
           <div>
             <label for="registerName" class="form-label">Nama Lengkap</label>
             <input id="registerName" name="name" type="text" required autocomplete="name" class="input" placeholder="Nama lengkap Anda" />
@@ -80,26 +97,15 @@
           <button type="submit" class="btn-primary btn-lg w-full">Daftar</button>
         </form>
 
-        <div class="relative my-6">
-          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-border"></div></div>
-          <div class="relative flex justify-center"><span class="bg-surface px-3 text-xs text-fg-subtle">atau daftar dengan</span></div>
-        </div>
-
-        <div class="space-y-3">
-          <button type="button" class="btn-outline btn-md w-full" data-social-register>
-            <span class="kk-app kk-app-siakadcloud h-4 w-4" aria-hidden="true"></span>
-            Lanjutkan dengan SiAkadCloud
-          </button>
-          <button type="button" class="btn-outline btn-md w-full" data-social-register>
-            <span class="kk-brand kk-brand-google h-4 w-4" aria-hidden="true"></span>
-            Lanjutkan dengan Google
-          </button>
-        </div>
-
         <p class="mt-6 text-center text-sm text-slate-500">
           Sudah punya akun?
           <a href="login.html" class="font-semibold text-primary-600 hover:text-primary-700">Masuk</a>
         </p>
+
+        <div class="mt-6 flex items-start gap-3 rounded-xl border border-border/70 bg-surface p-3.5 text-sm text-slate-600">
+          <i class="kk kk-buildings mt-0.5 h-5 w-5 shrink-0 text-primary-600" aria-hidden="true"></i>
+          <p>Perusahaan yang ingin memasang lowongan? <a href="mitra-daftar.html" class="font-semibold text-primary-600 hover:text-primary-700">Daftar sebagai mitra</a></p>
+        </div>
       </div>
 
       <p class="mt-10 text-center text-xs text-fg-subtle">&copy; <span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
@@ -107,49 +113,56 @@
   </div>
 
   <!-- ============================= VISUAL PANEL ============================= -->
-  <div class="relative hidden overflow-hidden bg-brand-gradient lg:flex lg:w-1/2 lg:flex-col lg:justify-between lg:p-12 xl:p-16">
+  <div class="relative hidden overflow-hidden bg-brand-gradient lg:sticky lg:top-0 lg:block lg:h-screen lg:w-1/2 lg:self-start lg:p-4">
     <!-- Dot texture -->
     <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
-    <!-- Soft glow accents -->
-
-    <div class="relative"><img src="../../assets/logo/karirlink-sevima-white.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" /></div>
-
-    <div class="relative max-w-md">
-      <span class="badge bg-white/15 text-white">Platform Karier Kampus</span>
-      <h2 class="mt-5 font-display text-3xl font-bold leading-tight text-white xl:text-4xl">
-        Satu platform karier untuk kampus, alumni, dan mitra industri.
-      </h2>
-      <p class="mt-4 text-sm text-primary-100/90 sm:text-base">
-        Cari lowongan, magang, dan event karier, lalu lamar langsung ke mitra industri kampus dalam satu tempat.
-      </p>
-      <ol class="mt-9 space-y-6">
-        <li class="relative flex gap-4">
-          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-user-circle h-5 w-5"></i></span>
-          <span class="absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full bg-white/25"></span>
-          <div class="pt-0.5">
-            <p class="text-sm font-semibold text-white">Masuk atau daftar</p>
-            <p class="mt-0.5 text-xs text-primary-100/80">Pakai akun SiAkadCloud, Google, atau email.</p>
+    <div class="relative h-full rounded-3xl bg-white p-2">
+      <div class="h-full overflow-hidden rounded-[1.25rem] p-8 xl:p-12" style="background-image: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-100) 58%, var(--color-secondary-50) 100%);">
+        <div class="flex items-center justify-between gap-4">
+          <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+          <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-primary-200 bg-white/80 px-3 py-1 text-xs font-semibold text-primary-700"><i class="kk kk-graduation-cap h-3.5 w-3.5" aria-hidden="true"></i>Platform Karier Kampus</span>
+        </div>
+        <h2 class="mt-6 font-display text-3xl font-bold leading-snug text-fg xl:text-4xl">Satu platform karier untuk kampus, alumni, dan mitra.</h2>
+        <p class="mt-4 max-w-lg text-sm leading-relaxed text-slate-600 sm:text-base">Cari lowongan, magang, dan event karier, lalu lamar langsung dalam satu tempat.</p>
+      <!-- Pratinjau dekoratif: lowongan, event, dan status lamaran; satu kartu menonjol, sisanya memudar -->
+      <div class="relative mx-auto mt-8 w-full max-w-md [zoom:1.125]" aria-hidden="true">
+        <div class="rounded-[2rem] border border-white/70 bg-white/50 p-3 sm:p-4">
+          <div class="space-y-2.5">
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 ">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-briefcase h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Staf Pemasaran Digital</p><p class="text-xs text-slate-500">PT Sentra Vidya Utama &middot; Magang</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-success-50 text-success-700">Lowongan</span>
           </div>
-        </li>
-        <li class="relative flex gap-4">
-          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-target h-5 w-5"></i></span>
-          <span class="absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full bg-white/25"></span>
-          <div class="pt-0.5">
-            <p class="text-sm font-semibold text-white">Atur minat</p>
-            <p class="mt-0.5 text-xs text-primary-100/80">Bidang, preferensi kerja, dan keahlianmu.</p>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 ">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-calendar-dots h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Job Fair Kampus</p><p class="text-xs text-slate-500">Bursa kerja kampus</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-secondary-50 text-secondary-700">Event</span>
           </div>
-        </li>
-        <li class="relative flex gap-4">
-          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-paper-plane-tilt h-5 w-5"></i></span>
-          <div class="pt-0.5">
-            <p class="text-sm font-semibold text-white">Cari dan lamar</p>
-            <p class="mt-0.5 text-xs text-primary-100/80">Rekomendasi pas, lamar dalam satu klik.</p>
+          <div class="relative z-10 -mx-5 flex items-center gap-3 rounded-2xl border border-primary-100 bg-white p-4 shadow-card-lg sm:-mx-8">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-paper-plane-tilt h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">UI/UX Designer</p><p class="text-xs text-slate-500">Kirim lamaran dalam satu klik</p></div>
+            <span class="rounded-full border border-primary-200 bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-700">Lamar</span>
           </div>
-        </li>
-      </ol>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-60 blur-[1.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-buildings h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Analis Data</p><p class="text-xs text-slate-500">PT DigitalDream &middot; Penuh waktu</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Lowongan</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-40 blur-[2.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-danger-50 text-danger-600"><i class="kk kk-megaphone h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Webinar Persiapan Karier</p><p class="text-xs text-slate-500">Seminar daring</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Event</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-25 blur-[3.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-warning-50 text-warning-600"><i class="kk kk-graduation-cap h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Magang Software Engineer</p><p class="text-xs text-slate-500">PT Inovasi Mandiri &middot; Magang</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Lowongan</span>
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
-
-    <p class="relative text-xs text-primary-100/70">Portal karier kampus dari SEVIMA.</p>
   </div>
 </div>
 

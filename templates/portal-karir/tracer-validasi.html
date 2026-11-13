@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Verifikasi Tracer Study | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Verifikasi NIM dan tanggal lahir alumni untuk membuka kuesioner Tracer Study tanpa login." />
+<meta name="author" content="SEVIMA" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<main class="flex flex-1 items-center justify-center px-4 py-10 sm:py-16">
+  <div class="w-full max-w-md">
+    <a href="login.html" class="mb-8 flex justify-center" aria-label="KarirLink SEVIMA">
+      <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+    </a>
+
+    <section class="card card-body sm:p-8">
+      <div class="text-center">
+        <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary-50 text-primary-600"><i class="kk kk-shield-check h-7 w-7" aria-hidden="true"></i></span>
+        <h1 class="mt-5 font-display text-2xl font-bold text-slate-900">Verifikasi data Anda</h1>
+        <p class="mt-2 text-sm text-slate-500">Masukkan NIM dan tanggal lahir sesuai data kampus untuk membuka kuesioner. Tidak perlu login.</p>
+      </div>
+      <div class="mt-6 flex items-center gap-3 rounded-xl border border-border/70 bg-surface p-3.5 text-sm">
+        <i class="kk kk-buildings h-5 w-5 shrink-0 text-primary-600" aria-hidden="true"></i>
+        <div class="min-w-0"><p class="text-xs text-fg-muted">Tracer Study</p><p class="truncate font-semibold text-fg">Pasca-Lulus 1 &middot; Universitas Foxtrot</p></div>
+      </div>
+
+      <div id="valLocked" class="alert alert-danger mt-5 hidden" role="alert">
+        <div><p class="alert-title">Verifikasi dikunci sementara</p><p>Terlalu banyak percobaan. Coba lagi dalam 15 menit.</p></div>
+      </div>
+
+      <form id="valForm" class="mt-5 space-y-5" novalidate>
+        <div id="valError" class="alert alert-danger hidden" role="alert">
+          <div><p class="alert-title">Data belum cocok</p><p>Data yang Anda masukkan belum cocok. Periksa kembali lalu coba lagi. <span id="valLeft" class="font-semibold">Sisa 5 percobaan.</span></p></div>
+        </div>
+        <div>
+          <label for="valNim" class="form-label">NIM</label>
+          <input id="valNim" name="nim" type="text" inputmode="numeric" required autocomplete="off" class="input" placeholder="Contoh: 2021010001" />
+        </div>
+        <div>
+          <label for="valDob" class="form-label">Tanggal Lahir</label>
+          <input id="valDob" name="dob" type="date" required autocomplete="bday" class="input" />
+        </div>
+        <button id="valSubmit" type="submit" class="btn-primary btn-lg w-full">Lanjut ke Kuesioner</button>
+      </form>
+
+      <p class="mt-6 text-center text-xs text-fg-muted">Data hanya dipakai untuk memastikan Anda penerima link ini. Link ini untuk Anda pribadi.</p>
+    </section>
+
+    <!-- Catatan simulasi: di luar kartu karena bukan bagian UI yang dilihat alumni. -->
+    <aside class="mt-4 rounded-xl border border-dashed border-border bg-transparent p-4 text-xs text-fg-muted" aria-label="Catatan simulasi">
+      <p class="font-semibold text-fg">Catatan simulasi (bukan bagian UI)</p>
+      <p class="mt-1">Data yang dianggap cocok: NIM <span class="font-semibold text-fg">2021010001</span> dan tanggal lahir <span class="font-semibold text-fg">14 Mei 2000</span>. Isian lain dihitung salah; setelah 5 kali, form terkunci.</p>
+    </aside>
+
+    <p class="mt-8 text-center text-xs text-fg-subtle">&copy; <span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
+  </div>
+</main>
+
+<script>
+  // Perilaku contoh untuk desain, bukan validasi sungguhan. Usulan FOX-1329 (menunggu persetujuan PM): 5 kali salah, kunci 15 menit.
+  // Pesan salah sengaja sama untuk semua kasus dan tidak menyebut isian mana yang salah.
+  let left = 5;
+  const form = document.getElementById('valForm');
+  const err = document.getElementById('valError');
+  const leftEl = document.getElementById('valLeft');
+  const locked = document.getElementById('valLocked');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nim = document.getElementById('valNim').value.trim();
+    const dob = document.getElementById('valDob').value;
+    if (nim === '2021010001' && dob === '2000-05-14') { window.location.href = '../karirlink/kuesioner-simulasi.html?tracer=pasca-1th'; return; }
+    left -= 1;
+    if (left <= 0) {
+      err.classList.add('hidden');
+      locked.classList.remove('hidden');
+      form.querySelectorAll('input,button').forEach((el) => { el.disabled = true; });
+      return;
+    }
+    leftEl.textContent = 'Sisa ' + left + ' percobaan.';
+    err.classList.remove('hidden');
+  });
+</script>
+<script>
+  document.querySelectorAll('.js-current-year').forEach((el) => { el.textContent = new Date().getFullYear(); });
+</script>
+</body>
+</html>

@@ -12,7 +12,7 @@ Perbaikan dan peningkatan dibagi dua lingkup, masing-masing dengan commit dan ca
 |---|---|---|
 | Isi | `src/`, `dist/`, `assets/js/*`, ikon/logo, `stories/` (kecuali `stories/Templates/`), `index.html`, `icons.html`, `.storybook/`, `package*.json`, `README.md`, `CHANGELOG.md`, serta template contoh DS di akar `templates/` (dashboard, login, register, halaman error) | `templates/karirlink/**`, `templates/portal-karir/**`, `templates/custom/**`, `stories/Templates/**`, `scripts/gen-custom-portal.mjs`, `templates/CHANGELOG.md` |
 | Versi | semver `X.Y.Z`, Table of Version, tag, publish | **hanya tanggal** (`## YYYY-MM-DD` di `templates/CHANGELOG.md`); tanpa naik versi, tanpa tag |
-| Branch | `karirkit/<versi>` (topik lain: `karirkit/<topik>`) | `mockup/<YYYY-MM-DD>` |
+| Branch | `karirkit/<versi>` (topik lain: `karirkit/<topik>`) | `mockup/<fitur>` (satu per fitur, dari `staging`) |
 | Commit | `feat(ds): ...`, `fix(ds): ...`, `docs(ds): ...` | `feat(karirlink): ...`, `feat(portal-karir): ...`, `fix(...)` dengan nama area yang sama |
 | Catatan perubahan | `CHANGELOG.md` (dibaca halaman Storybook Changelog) | `templates/CHANGELOG.md` (halaman Storybook "Changelog Template") |
 
@@ -25,11 +25,15 @@ Perbaikan dan peningkatan dibagi dua lingkup, masing-masing dengan commit dan ca
 ## 1. Nama branch
 Dua keluarga branch, dipisah menurut lingkup (bagian 0). Keduanya bermuara ke cabang utama yang sama (`staging`/`master`/`release`), tetapi hanya `karirkit/<versi>` yang menjadi komponen/npm.
 - **Design System:** `karirkit/<versi>` untuk rilis (contoh `karirkit/1.4.0`); topik lain `karirkit/<topik>` (contoh `karirkit/storybook`). Hanya berisi commit `(ds)`.
-- **Mockup template:** `mockup/<YYYY-MM-DD>` (contoh `mockup/2026-10-26`), satu branch per tanggal; bila perlu batch kedua di hari yang sama, akhiran `-2`. Hanya berisi commit template (`feat(karirlink)`, `feat(portal-karir)`, `fix(...)`).
+- **Mockup template:** `mockup/<fitur>` (contoh `mockup/event-redesign`), satu branch per fitur, dibuat dari ujung `staging` terbaru dan digabung langsung ke `staging`. Tanpa tanggal, tanpa `feat/`/`fix/` (jenis ada di prefiks commit). Hanya berisi commit template (`feat(karirlink)`, `feat(portal-karir)`, `feat(mitra)`, `fix(...)`). Branch `mockup/<YYYY-MM-DD>` lama dibiarkan sampai tergabung; jangan membuat yang baru.
 - Branch yang sudah ada (`karirkit/vercel`, `karirkit/staging-vercel`, `staging`, `master`, `release`) adalah cabang utama/deploy, bukan keluarga di atas.
 - Jangan pakai `fix/`, `chore/`, `feat/`, jangan menambah akhiran seperti `-components`, dan jangan memasukkan nama UI kit pihak ketiga.
 - Tentukan nama sebelum `git switch -c`. Salah nama: ganti nama lokal, push nama baru, buka PR baru, tutup PR lama dengan `--delete-branch`.
-- Template butuh komponen baru: branch `karirkit/<versi>` yang memuat komponen itu digabung lebih dulu; branch `mockup/<tanggal>` baru menyusul (atau memuat commit DS-nya lebih dulu).
+- Template butuh komponen baru: branch `karirkit/<versi>` yang memuat komponen itu digabung lebih dulu; branch `mockup/<fitur>` baru menyusul (atau memuat commit DS-nya lebih dulu).
+- **Cek tanggal dulu.** Sebelum menamai branch atau menulis section `## YYYY-MM-DD` di `templates/CHANGELOG.md`, jalankan `date +%Y-%m-%d`. Jangan menyalin tanggal dari nama branch yang sedang aktif atau dari section changelog terakhir.
+- **Mulai fitur:** `npm run mockup:new <fitur>` (skrip `scripts/mockup-new.mjs`) membuat worktree `../karirkit-<fitur>` dengan branch `mockup/<fitur>` dari `origin/staging` terbaru dan menautkan `node_modules`; checkout utama tidak disentuh. Selesai: merge `--no-ff` ke `staging` di worktree sementara; branch fitur tidak perlu dipush (lihat `karirkit-release`).
+- **Tanggal hanya di changelog.** Tulis entri di section `## <hari ini>` pada hari fitur selesai (buat section bila belum ada, "Dasar KarirKit: vX.Y.Z" yang berlaku). Tidak ada lagi pergantian branch per hari.
+- **Changelog dipakai bersama.** `templates/CHANGELOG.md` memakai `merge=union` (`.gitattributes`), jadi entri fitur lain di section tanggal yang sama tergabung otomatis. Di checkout yang berisi entri sesi lain yang belum di-commit, commit hanya baris milikmu: susun versi file dari `git show HEAD:templates/CHANGELOG.md` + barismu, lalu `git hash-object -w` dan `git update-index --cacheinfo`; jangan `git add` seluruh file.
 
 ## 2. Jangan sebut UI kit / library pihak ketiga
 KarirKit tampil sebagai design system sendiri. Jangan menulis nama design system / UI kit lain atau library rujukan di belakangnya (termasuk library editor teks) di mana pun yang terlihat pengguna atau tercatat di repo: `CHANGELOG.md`, `stories/Guides/TableOfVersion.mdx`, catatan rilis GitHub, README/Storybook, deskripsi story, copy `index.html`, teks contoh, dan komentar kode.
