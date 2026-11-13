@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Konfigurasi Akses | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Kelola akun, cara masuk, role per organisasi, dan permission tiap role di KarirLink. Khusus tim internal." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/konfigurasi-akses.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Konfigurasi Akses | KarirLink" />
+<meta property="og:description" content="Kelola akun, cara masuk, role per organisasi, dan permission tiap role di KarirLink. Khusus tim internal." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/konfigurasi-akses.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Konfigurasi Akses | KarirLink" />
+<meta name="twitter:description" content="Kelola akun, cara masuk, role per organisasi, dan permission tiap role di KarirLink. Khusus tim internal." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Overview</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
+        </a>
+        <a href="yudisium.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a href="kerjasama.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
+        </a>
+        <a href="lowongan.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a href="event.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a href="mahasiswa-alumni.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
+        </a>
+        <a href="sinkronisasi-siakad.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Sinkronisasi Siakad" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Sinkronisasi Siakad</span>
+        </a>
+        <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
+        </a>
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
+        </a>
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Personalisasi" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Personalisasi</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Internal</p>
+      <div class="space-y-1">
+        <a href="konfigurasi-pt.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi PT" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi PT</span>
+        </a>
+        <a href="konfigurasi-akses.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Konfigurasi Akses" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi Akses</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu admin">
+      <div>
+        <div class="space-y-1">
+          <a href="index.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Tracer</p>
+        <div class="space-y-1">
+          <a href="kuesioner.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kuesioner</span>
+          </a>
+          <a href="yudisium.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Daftar Yudisium</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Portal Karir</p>
+        <div class="space-y-1">
+          <a href="kerjasama.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kerjasama</span>
+          </a>
+          <a href="lowongan.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="event.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Event</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">General</p>
+        <div class="space-y-1">
+          <a href="mahasiswa-alumni.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Mahasiswa/Alumni</span>
+          </a>
+          <a href="sinkronisasi-siakad.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Sinkronisasi Siakad</span>
+          </a>
+          <a href="aktivitas-lamaran.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Aktivitas Lamaran</span>
+          </a>
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Report</span>
+          </a>
+          <a href="pengaturan-landing-page.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Personalisasi</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Internal</p>
+        <div class="space-y-1">
+          <a href="konfigurasi-pt.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi PT</span>
+          </a>
+          <a href="konfigurasi-akses.html" class="nav-item nav-item-active">
+            <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi Akses</span>
+          </a>
+        </div>
+      </div>
+  
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">RK</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="navbar navbar-sticky navbar-app">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+        <a href="index.html" class="breadcrumb-link shrink-0">
+          <i class="kk kk-house h-4 w-4"></i>
+          <span class="hidden sm:inline">Overview</span>
+        </a>
+        <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
+        <span class="breadcrumb-current min-w-0" aria-current="page">
+          <span class="min-w-0 truncate">Konfigurasi Akses</span>
+        </span>
+      </nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
+      <div class="relative hidden lg:block">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title">Rina Kartika</p>
+              <p class="dropdown-header-desc">rina.kartika@kampus.ac.id</p>
+            </div>
+          </div>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Heading -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Konfigurasi Akses</h2>
+        <p class="mt-1 text-sm text-slate-500">Kelola akun, cara masuk, role per organisasi, dan permission tiap role. Khusus tim internal Sevima.</p>
+      </div>
+    </div>
+
+    <div data-ui-tabs id="aksesTabs">
+      <div class="tabs tabs-underline mb-4" role="tablist" aria-label="Bagian konfigurasi akses">
+        <button type="button" role="tab" id="tabAkun" class="tabs-item" data-ui-tab="panelAkun" aria-selected="true">Akun</button>
+        <button type="button" role="tab" id="tabRole" class="tabs-item" data-ui-tab="panelRole" aria-selected="false">Role &amp; Permission</button>
+      </div>
+
+      <!-- Akun -->
+      <div role="tabpanel" id="panelAkun" aria-labelledby="tabAkun">
+        <div class="table-wrap overflow-visible" id="akunRoot" data-table data-page-size="10" data-item-label="akun" data-combo-boundary>
+          <div class="table-toolbar">
+        <div class="table-search">
+          <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+            <i class="kk kk-magnifying-glass h-4 w-4"></i>
+          </span>
+          <label for="akunSearch" class="sr-only">Cari akun</label>
+          <input id="akunSearch" type="search" class="input h-9 pl-9" placeholder="Cari email..." data-table-search />
+        </div>
+            <div class="table-filters">
+          <div id="filterProvider" class="combo" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua cara masuk</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua cara masuk">Semua cara masuk</button>
+                <button type="button" class="combo-item" data-combo-item data-value="local" data-label="Email &amp; password">Email &amp; password</button>
+                <button type="button" class="combo-item" data-combo-item data-value="sso" data-label="SSO Sevima">SSO Sevima</button>
+                <button type="button" class="combo-item" data-combo-item data-value="siakad" data-label="Siakad">Siakad</button>
+              </div>
+            </div>
+          </div>
+          <div id="filterStatus" class="combo" data-combo data-value="all">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Semua status</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="all" data-label="Semua status">Semua status</button>
+                <button type="button" class="combo-item" data-combo-item data-value="active" data-label="Aktif">Aktif</button>
+                <button type="button" class="combo-item" data-combo-item data-value="inactive" data-label="Nonaktif">Nonaktif</button>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="table table-lg table-fit table-head-soft">
+              <thead>
+                <tr>
+                  <th scope="col" class="table-col-num">No</th>
+                  <th scope="col">Akun</th>
+                  <th scope="col" class="hidden md:table-cell">Cara Masuk</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="hidden lg:table-cell">Login Terakhir</th>
+                  <th scope="col" class="table-col-actions">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+            <tr data-id="a01" data-providers="local" data-status="active" data-email="rina.kartika@unr.ac.id">
+              <td class="table-col-num" data-num>1</td>
+              <td><span class="font-medium break-all text-slate-800">rina.kartika@unr.ac.id</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">Email & password</span></div></td>
+              <td data-cell="status"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">11 Nov 2026, 08:42</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a01" title="Kelola akun" aria-label="Kelola akun rina.kartika@unr.ac.id"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a02" data-providers="sso" data-status="active" data-email="dimas.pratama@sevima.com">
+              <td class="table-col-num" data-num>2</td>
+              <td><span class="font-medium break-all text-slate-800">dimas.pratama@sevima.com</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">SSO Sevima</span></div></td>
+              <td data-cell="status"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">11 Nov 2026, 09:10</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a02" title="Kelola akun" aria-label="Kelola akun dimas.pratama@sevima.com"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a03" data-providers="local siakad" data-status="active" data-email="siti.nurhaliza@itc.ac.id">
+              <td class="table-col-num" data-num>3</td>
+              <td><span class="font-medium break-all text-slate-800">siti.nurhaliza@itc.ac.id</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">Email & password</span><span class="badge-secondary">Siakad</span></div></td>
+              <td data-cell="status"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">10 Nov 2026, 15:03</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a03" title="Kelola akun" aria-label="Kelola akun siti.nurhaliza@itc.ac.id"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a04" data-providers="local" data-status="active" data-email="budi.santoso@polbup.ac.id">
+              <td class="table-col-num" data-num>4</td>
+              <td><span class="font-medium break-all text-slate-800">budi.santoso@polbup.ac.id</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">Email & password</span></div></td>
+              <td data-cell="status"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">09 Nov 2026, 13:27</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a04" title="Kelola akun" aria-label="Kelola akun budi.santoso@polbup.ac.id"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a05" data-providers="local" data-status="active" data-email="maya.anggraini@gmail.com">
+              <td class="table-col-num" data-num>5</td>
+              <td><span class="font-medium break-all text-slate-800">maya.anggraini@gmail.com</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">Email & password</span></div></td>
+              <td data-cell="status"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">08 Nov 2026, 19:44</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a05" title="Kelola akun" aria-label="Kelola akun maya.anggraini@gmail.com"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a06" data-providers="local" data-status="active" data-email="hrd@mitrakarya.co.id">
+              <td class="table-col-num" data-num>6</td>
+              <td><span class="font-medium break-all text-slate-800">hrd@mitrakarya.co.id</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">Email & password</span></div></td>
+              <td data-cell="status"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">07 Nov 2026, 11:15</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a06" title="Kelola akun" aria-label="Kelola akun hrd@mitrakarya.co.id"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a07" data-providers="siakad" data-status="inactive" data-email="agus.wibowo@garudaperkasa.ac.id">
+              <td class="table-col-num" data-num>7</td>
+              <td><span class="font-medium break-all text-slate-800">agus.wibowo@garudaperkasa.ac.id</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">Siakad</span></div></td>
+              <td data-cell="status"><span class="badge-neutral"><span class="badge-dot bg-neutral-500"></span>Nonaktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">14 Sep 2026, 10:00</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a07" title="Kelola akun" aria-label="Kelola akun agus.wibowo@garudaperkasa.ac.id"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a08" data-providers="local" data-status="active" data-email="lestari@dwipamandala.ac.id">
+              <td class="table-col-num" data-num>8</td>
+              <td><span class="font-medium break-all text-slate-800">lestari@dwipamandala.ac.id</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">Email & password</span></div></td>
+              <td data-cell="status"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></td>
+              <td class="hidden lg:table-cell"><span class="text-slate-400">Belum pernah</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a08" title="Kelola akun" aria-label="Kelola akun lestari@dwipamandala.ac.id"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a09" data-providers="sso" data-status="active" data-email="fajar.ramadhan@sevima.com">
+              <td class="table-col-num" data-num>9</td>
+              <td><span class="font-medium break-all text-slate-800">fajar.ramadhan@sevima.com</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">SSO Sevima</span></div></td>
+              <td data-cell="status"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">10 Nov 2026, 17:36</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a09" title="Kelola akun" aria-label="Kelola akun fajar.ramadhan@sevima.com"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a10" data-providers="local" data-status="active" data-email="putri.wulandari@suryakencana.ac.id">
+              <td class="table-col-num" data-num>10</td>
+              <td><span class="font-medium break-all text-slate-800">putri.wulandari@suryakencana.ac.id</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">Email & password</span></div></td>
+              <td data-cell="status"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">06 Nov 2026, 09:58</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a10" title="Kelola akun" aria-label="Kelola akun putri.wulandari@suryakencana.ac.id"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a11" data-providers="local" data-status="inactive" data-email="eko.prasetyo@samudrabiru.ac.id">
+              <td class="table-col-num" data-num>11</td>
+              <td><span class="font-medium break-all text-slate-800">eko.prasetyo@samudrabiru.ac.id</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">Email & password</span></div></td>
+              <td data-cell="status"><span class="badge-neutral"><span class="badge-dot bg-neutral-500"></span>Nonaktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">21 Okt 2026, 14:12</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a11" title="Kelola akun" aria-label="Kelola akun eko.prasetyo@samudrabiru.ac.id"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-id="a12" data-providers="local" data-status="active" data-email="diah.permata@outlook.com">
+              <td class="table-col-num" data-num>12</td>
+              <td><span class="font-medium break-all text-slate-800">diah.permata@outlook.com</span></td>
+              <td class="hidden md:table-cell"><div class="flex flex-wrap gap-1"><span class="badge-secondary">Email & password</span></div></td>
+              <td data-cell="status"><span class="badge-success"><span class="badge-dot bg-success-600"></span>Aktif</span></td>
+              <td class="hidden lg:table-cell"><span class="whitespace-nowrap text-slate-600">05 Nov 2026, 20:31</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end">
+                  <button type="button" class="btn-outline btn-sm table-action" data-open-account="a12" title="Kelola akun" aria-label="Kelola akun diah.permata@outlook.com"><i class="kk kk-user-gear h-4 w-4"></i><span class="table-action-label">Kelola</span></button>
+                </div>
+              </td>
+            </tr>
+              </tbody>
+            </table>
+          </div>
+      <div data-table-empty hidden class="table-empty"><img src="../../assets/illustrations/empty-state/default.svg" alt="" class="mx-auto mb-3 h-28 w-auto" />Tidak ada akun yang cocok.</div>
+      <div class="table-footer" data-table-pagination>
+        <span data-table-info></span>
+        <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+      </div>
+        </div>
+      </div>
+
+      <!-- Role & Permission -->
+      <div role="tabpanel" id="panelRole" aria-labelledby="tabRole" class="hidden">
+        <div class="table-wrap" id="roleRoot" data-table data-page-size="10" data-item-label="role">
+          <div class="table-toolbar">
+            <p class="text-sm text-slate-500">Role sistem dipakai kode dan tidak bisa dihapus. Grant role berlaku di semua organisasi pemegangnya.</p>
+            <button type="button" class="btn-primary btn-sm" id="roleNewBtn"><i class="kk kk-plus h-4 w-4"></i>Role baru</button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="table table-lg table-fit table-head-soft">
+              <thead>
+                <tr>
+                  <th scope="col" class="table-col-num">No</th>
+                  <th scope="col">Role</th>
+                  <th scope="col" class="hidden sm:table-cell">Permission</th>
+                  <th scope="col" class="table-col-actions">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="roleBody">
+            <tr data-role="r1">
+              <td class="table-col-num" data-num>1</td>
+              <td>
+                <span class="font-medium text-slate-800">Talent</span> <span class="badge-neutral ml-1">Sistem</span>
+                <p class="mt-0.5 font-mono text-xs text-slate-400">talent</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden"><span data-cell="count">1</span> permission</p>
+              </td>
+              <td class="hidden sm:table-cell"><span class="text-slate-600" data-cell="count">1</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end gap-1">
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="permissions" data-role-id="r1" title="Atur permission" aria-label="Atur permission Talent"><i class="kk kk-shield-check h-4 w-4"></i><span class="table-action-label">Permission</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="rename" data-role-id="r1" title="Ubah nama" aria-label="Ubah nama Talent"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-role="r2">
+              <td class="table-col-num" data-num>2</td>
+              <td>
+                <span class="font-medium text-slate-800">Admin Perusahaan</span> <span class="badge-neutral ml-1">Sistem</span>
+                <p class="mt-0.5 font-mono text-xs text-slate-400">company_admin</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden"><span data-cell="count">1</span> permission</p>
+              </td>
+              <td class="hidden sm:table-cell"><span class="text-slate-600" data-cell="count">1</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end gap-1">
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="permissions" data-role-id="r2" title="Atur permission" aria-label="Atur permission Admin Perusahaan"><i class="kk kk-shield-check h-4 w-4"></i><span class="table-action-label">Permission</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="rename" data-role-id="r2" title="Ubah nama" aria-label="Ubah nama Admin Perusahaan"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-role="r3">
+              <td class="table-col-num" data-num>3</td>
+              <td>
+                <span class="font-medium text-slate-800">Admin Perguruan Tinggi</span> <span class="badge-neutral ml-1">Sistem</span>
+                <p class="mt-0.5 font-mono text-xs text-slate-400">university_admin</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden"><span data-cell="count">8</span> permission</p>
+              </td>
+              <td class="hidden sm:table-cell"><span class="text-slate-600" data-cell="count">8</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end gap-1">
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="permissions" data-role-id="r3" title="Atur permission" aria-label="Atur permission Admin Perguruan Tinggi"><i class="kk kk-shield-check h-4 w-4"></i><span class="table-action-label">Permission</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="rename" data-role-id="r3" title="Ubah nama" aria-label="Ubah nama Admin Perguruan Tinggi"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-role="r4">
+              <td class="table-col-num" data-num>4</td>
+              <td>
+                <span class="font-medium text-slate-800">Internal Sevima</span> <span class="badge-neutral ml-1">Sistem</span>
+                <p class="mt-0.5 font-mono text-xs text-slate-400">internal</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden"><span data-cell="count">18</span> permission</p>
+              </td>
+              <td class="hidden sm:table-cell"><span class="text-slate-600" data-cell="count">18</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end gap-1">
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="permissions" data-role-id="r4" title="Atur permission" aria-label="Atur permission Internal Sevima"><i class="kk kk-shield-check h-4 w-4"></i><span class="table-action-label">Permission</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="rename" data-role-id="r4" title="Ubah nama" aria-label="Ubah nama Internal Sevima"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Ubah</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr data-role="r5">
+              <td class="table-col-num" data-num>5</td>
+              <td>
+                <span class="font-medium text-slate-800">Staf CDC</span>
+                <p class="mt-0.5 font-mono text-xs text-slate-400">cdc_staff</p>
+                <p class="mt-0.5 text-xs text-slate-500 sm:hidden"><span data-cell="count">4</span> permission</p>
+              </td>
+              <td class="hidden sm:table-cell"><span class="text-slate-600" data-cell="count">4</span></td>
+              <td class="table-col-actions">
+                <div class="flex items-center justify-end gap-1">
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="permissions" data-role-id="r5" title="Atur permission" aria-label="Atur permission Staf CDC"><i class="kk kk-shield-check h-4 w-4"></i><span class="table-action-label">Permission</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="rename" data-role-id="r5" title="Ubah nama" aria-label="Ubah nama Staf CDC"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Ubah</span></button>
+                  <button type="button" class="btn-outline btn-sm table-action" data-role-act="delete" data-role-id="r5" title="Hapus role" aria-label="Hapus Staf CDC"><i class="kk kk-trash h-4 w-4"></i><span class="table-action-label">Hapus</span></button>
+                </div>
+              </td>
+            </tr>
+              </tbody>
+            </table>
+          </div>
+      <div class="table-footer" data-table-pagination>
+        <span data-table-info></span>
+        <nav data-table-pages class="flex items-center gap-1" aria-label="Halaman"></nav>
+      </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Kelola akun: laci kanan di desktop, lembar bawah di ponsel -->
+  <div class="drawer drawer-right w-full sm:max-w-lg" id="acDrawer" aria-label="Detail akun">
+    <div class="drawer-header">
+      <div class="min-w-0">
+        <h3 class="drawer-title break-all" id="acDrTitle">Detail akun</h3>
+      </div>
+      <button type="button" class="drawer-close" data-drawer-hide="acDrawer" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+    </div>
+    <div class="drawer-body space-y-6" id="acDrBody">
+      <section id="acSecStatus"></section>
+      <section id="acSecIdentity" class="space-y-2" aria-labelledby="acIdentityHeading"></section>
+      <section class="space-y-3" aria-labelledby="acMemberHeading">
+        <h3 id="acMemberHeading" class="text-sm font-semibold text-slate-800">Role &amp; organisasi</h3>
+        <div id="acMemberList"></div>
+        <form id="acAddForm" novalidate aria-label="Tambah role" class="space-y-3 rounded-md border border-dashed border-slate-200 p-3">
+          <p class="text-sm font-medium text-slate-800">Tambah role</p>
+          <div class="space-y-1">
+            <span id="addRoleLabel" class="text-xs text-slate-500">Role</span>
+            <div id="addRole" class="combo w-full" data-combo data-value="">
+            <button type="button" class="combo-trigger w-full" data-combo-trigger aria-labelledby="addRoleLabel">
+              <span data-combo-label class="combo-placeholder">Pilih role</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item" data-combo-item data-value="talent" data-label="Talent">Talent</button>
+                <button type="button" class="combo-item" data-combo-item data-value="company_admin" data-label="Admin Perusahaan">Admin Perusahaan</button>
+                <button type="button" class="combo-item" data-combo-item data-value="university_admin" data-label="Admin Perguruan Tinggi">Admin Perguruan Tinggi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="internal" data-label="Internal Sevima">Internal Sevima</button>
+                <button type="button" class="combo-item" data-combo-item data-value="cdc_staff" data-label="Staf CDC">Staf CDC</button>
+              </div>
+            </div>
+          </div>
+            <p class="text-xs text-danger-600" data-err="role" hidden></p>
+          </div>
+          <div class="space-y-1">
+            <span id="addOrgTypeLabel" class="text-xs text-slate-500">Berlaku di</span>
+            <div id="addOrgType" class="combo w-full" data-combo data-value="university">
+            <button type="button" class="combo-trigger w-full" data-combo-trigger aria-labelledby="addOrgTypeLabel">
+              <span data-combo-label>Perguruan tinggi</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item" data-combo-item data-value="none" data-label="Tanpa organisasi (global)">Tanpa organisasi (global)</button>
+                <button type="button" class="combo-item is-selected" data-combo-item data-value="university" data-label="Perguruan tinggi">Perguruan tinggi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="company" data-label="Perusahaan">Perusahaan</button>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="space-y-1" id="addUniWrap">
+            <span id="addUniLabel" class="text-xs text-slate-500">Perguruan tinggi</span>
+            <div id="addUni" class="combo w-full" data-combo data-value="">
+            <button type="button" class="combo-trigger w-full" data-combo-trigger aria-labelledby="addUniLabel">
+              <span data-combo-label class="combo-placeholder">Pilih PT</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item" data-combo-item data-value="u01" data-label="Universitas Nusantara Raya">Universitas Nusantara Raya</button>
+                <button type="button" class="combo-item" data-combo-item data-value="u02" data-label="Institut Teknologi Cendekia">Institut Teknologi Cendekia</button>
+                <button type="button" class="combo-item" data-combo-item data-value="u03" data-label="Universitas Samudra Biru">Universitas Samudra Biru</button>
+                <button type="button" class="combo-item" data-combo-item data-value="u04" data-label="Politeknik Negeri Bumi Pertiwi">Politeknik Negeri Bumi Pertiwi</button>
+                <button type="button" class="combo-item" data-combo-item data-value="u07" data-label="Universitas Garuda Perkasa">Universitas Garuda Perkasa</button>
+                <button type="button" class="combo-item" data-combo-item data-value="u09" data-label="Universitas Dwipa Mandala">Universitas Dwipa Mandala</button>
+                <button type="button" class="combo-item" data-combo-item data-value="u11" data-label="Universitas Surya Kencana">Universitas Surya Kencana</button>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div id="addCompanyWrap" hidden>
+            <label class="form-label" for="addCompany">ID perusahaan</label>
+            <input id="addCompany" class="input" />
+          </div>
+          <p class="text-xs text-danger-600" data-err="orgId" hidden></p>
+          <div class="flex justify-end">
+            <button type="submit" class="btn-primary btn-sm"><i class="kk kk-plus h-4 w-4"></i>Tambah role</button>
+          </div>
+        </form>
+      </section>
+      <section id="acSecPwd" class="space-y-2" aria-labelledby="acPwdHeading"></section>
+    </div>
+  </div>
+
+  <div class="modal-backdrop z-[60]" id="confirmModal" aria-labelledby="confirmModalTitle">
+    <div class="modal-panel modal-sm">
+      <div class="modal-header">
+        <h3 id="confirmModalTitle" class="modal-title">Konfirmasi</h3>
+        <button type="button" class="modal-close" data-modal-hide="confirmModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-sm text-fg" id="confirmMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline btn-md" data-modal-hide="confirmModal">Batal</button>
+        <button type="button" class="btn-danger btn-md" id="confirmOk">Ya</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop z-[60]" id="roleModal" aria-labelledby="roleModalTitle">
+    <div class="modal-panel modal-sm">
+      <div class="modal-header">
+        <h3 id="roleModalTitle" class="modal-title">Role baru</h3>
+        <button type="button" class="modal-close" data-modal-hide="roleModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="roleForm" class="space-y-4" novalidate>
+          <div>
+            <label class="form-label" for="roleSlug">Slug</label>
+            <input id="roleSlug" class="input" maxlength="50" placeholder="cdc_staff" />
+            <p class="form-hint" id="roleSlugHint">Huruf kecil, angka, dan _.</p>
+            <p class="form-error" data-err="slug" hidden></p>
+          </div>
+          <div>
+            <label class="form-label" for="roleName">Nama</label>
+            <input id="roleName" class="input" maxlength="100" placeholder="Staf CDC" />
+            <p class="form-error" data-err="name" hidden></p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline btn-md" data-modal-hide="roleModal">Batal</button>
+        <button type="submit" form="roleForm" class="btn-primary btn-md">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop z-[60]" id="permModal" aria-labelledby="permModalTitle">
+    <div class="modal-panel modal-xl">
+      <div class="modal-header">
+        <h3 id="permModalTitle" class="modal-title">Permission</h3>
+        <button type="button" class="modal-close" data-modal-hide="permModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-4 text-sm text-fg-muted">Anda hanya bisa menambahkan permission yang Anda miliki sendiri.</p>
+        <div class="space-y-4" id="permGroups"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline btn-md" data-modal-hide="permModal">Batal</button>
+        <button type="button" class="btn-primary btn-md" id="permSave">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop z-[60]" id="pwdModal" aria-labelledby="pwdModalTitle">
+    <div class="modal-panel modal-sm">
+      <div class="modal-header">
+        <h3 id="pwdModalTitle" class="modal-title">Password baru</h3>
+        <button type="button" class="modal-close" data-modal-hide="pwdModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="space-y-3">
+          <div class="alert alert-warning" role="alert">
+            <i class="kk kk-warning alert-icon"></i>
+            <div><span class="alert-title">Hanya ditampilkan sekali.</span> Sampaikan password ini ke pengguna lewat jalur aman. Setelah jendela ini ditutup, password tidak bisa dilihat lagi.</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <code id="pwdValue" aria-label="Password sementara" class="flex-1 select-all rounded-md border border-slate-200 bg-slate-50 px-3 py-2 font-mono text-base tracking-wide text-slate-800"></code>
+            <button type="button" class="btn-outline btn-sm" data-clipboard-target="#pwdValue" data-clipboard-toast="Password disalin."><i class="kk kk-copy h-4 w-4"></i>Salin</button>
+          </div>
+          <p class="text-xs text-slate-500" id="pwdNote"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-primary btn-md" data-modal-hide="pwdModal">Selesai</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
+  </footer>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
+<script src="../../assets/js/drawer.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/table.js"></script>
+<script src="../../assets/js/modal.js"></script>
+<script src="../../assets/js/clipboard.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+
+
+  // KarirKit combo dropdown (self-positioning select replacement) — same
+  // component used across the dashboard filters.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = isOpen();
+        wasOpen ? close() : open();
+      });
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          getItems().forEach((i) => i.classList.remove('is-selected'));
+          item.classList.add('is-selected');
+          const label = item.getAttribute('data-label') || item.textContent.trim();
+          if (labelEl) {
+            labelEl.textContent = label;
+            labelEl.classList.remove('combo-placeholder');
+          }
+          close();
+        });
+      });
+
+      // Give the (still invisible) menu a real position/placement up front -
+      // otherwise, before first open, its default static position can hang
+      // off the edge of the viewport and inflate the page's scroll width.
+      place();
+    }
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();
+  const UNIVERSITIES = [{"id":"u01","name":"Universitas Nusantara Raya"},{"id":"u02","name":"Institut Teknologi Cendekia"},{"id":"u03","name":"Universitas Samudra Biru"},{"id":"u04","name":"Politeknik Negeri Bumi Pertiwi"},{"id":"u07","name":"Universitas Garuda Perkasa"},{"id":"u09","name":"Universitas Dwipa Mandala"},{"id":"u11","name":"Universitas Surya Kencana"}];
+  const ACCOUNTS = [{"id":"a01","email":"rina.kartika@unr.ac.id","active":true,"last":"11 Nov 2026, 08:42","identities":[{"provider":"local","uid":"rina.kartika@unr.ac.id","last":"11 Nov 2026, 08:42"}],"memberships":[{"id":"m1","role":"university_admin","uni":"u01","company":null,"primary":true}]},{"id":"a02","email":"dimas.pratama@sevima.com","active":true,"last":"11 Nov 2026, 09:10","identities":[{"provider":"sso","uid":"sso-7f31c2","last":"11 Nov 2026, 09:10"}],"memberships":[{"id":"m2","role":"internal","uni":null,"company":null,"primary":true}]},{"id":"a03","email":"siti.nurhaliza@itc.ac.id","active":true,"last":"10 Nov 2026, 15:03","identities":[{"provider":"local","uid":"siti.nurhaliza@itc.ac.id","last":"10 Nov 2026, 15:03"},{"provider":"siakad","uid":"siakad-itc-0412","last":"02 Nov 2026, 10:20"}],"memberships":[{"id":"m3","role":"university_admin","uni":"u02","company":null,"primary":true},{"id":"m4","role":"cdc_staff","uni":"u02","company":null,"primary":false}]},{"id":"a04","email":"budi.santoso@polbup.ac.id","active":true,"last":"09 Nov 2026, 13:27","identities":[{"provider":"local","uid":"budi.santoso@polbup.ac.id","last":"09 Nov 2026, 13:27"}],"memberships":[{"id":"m5","role":"cdc_staff","uni":"u04","company":null,"primary":true}]},{"id":"a05","email":"maya.anggraini@gmail.com","active":true,"last":"08 Nov 2026, 19:44","identities":[{"provider":"local","uid":"maya.anggraini@gmail.com","last":"08 Nov 2026, 19:44"}],"memberships":[{"id":"m6","role":"talent","uni":null,"company":null,"primary":true}]},{"id":"a06","email":"hrd@mitrakarya.co.id","active":true,"last":"07 Nov 2026, 11:15","identities":[{"provider":"local","uid":"hrd@mitrakarya.co.id","last":"07 Nov 2026, 11:15"}],"memberships":[{"id":"m7","role":"company_admin","uni":null,"company":"c-1042","primary":true}]},{"id":"a07","email":"agus.wibowo@garudaperkasa.ac.id","active":false,"last":"14 Sep 2026, 10:00","identities":[{"provider":"siakad","uid":"siakad-ugp-2231","last":"14 Sep 2026, 10:00"}],"memberships":[{"id":"m8","role":"university_admin","uni":"u07","company":null,"primary":true}]},{"id":"a08","email":"lestari@dwipamandala.ac.id","active":true,"last":null,"identities":[{"provider":"local","uid":"lestari@dwipamandala.ac.id","last":null}],"memberships":[]},{"id":"a09","email":"fajar.ramadhan@sevima.com","active":true,"last":"10 Nov 2026, 17:36","identities":[{"provider":"sso","uid":"sso-a90b11","last":"10 Nov 2026, 17:36"}],"memberships":[{"id":"m9","role":"internal","uni":null,"company":null,"primary":true}]},{"id":"a10","email":"putri.wulandari@suryakencana.ac.id","active":true,"last":"06 Nov 2026, 09:58","identities":[{"provider":"local","uid":"putri.wulandari@suryakencana.ac.id","last":"06 Nov 2026, 09:58"}],"memberships":[{"id":"m10","role":"cdc_staff","uni":"u11","company":null,"primary":true}]},{"id":"a11","email":"eko.prasetyo@samudrabiru.ac.id","active":false,"last":"21 Okt 2026, 14:12","identities":[{"provider":"local","uid":"eko.prasetyo@samudrabiru.ac.id","last":"21 Okt 2026, 14:12"}],"memberships":[{"id":"m11","role":"university_admin","uni":"u03","company":null,"primary":true}]},{"id":"a12","email":"diah.permata@outlook.com","active":true,"last":"05 Nov 2026, 20:31","identities":[{"provider":"local","uid":"diah.permata@outlook.com","last":"05 Nov 2026, 20:31"}],"memberships":[{"id":"m12","role":"talent","uni":null,"company":null,"primary":true}]}];
+  const PERMISSIONS = [{"slug":"accounts.read","name":"Lihat akun"},{"slug":"accounts.manage","name":"Kelola akun"},{"slug":"alumni.read","name":"Lihat alumni"},{"slug":"audit_logs.read","name":"Lihat log audit"},{"slug":"permissions.read","name":"Lihat permission"},{"slug":"permissions.manage","name":"Kelola permission"},{"slug":"questionnaires.read","name":"Lihat kuesioner"},{"slug":"questionnaires.manage","name":"Kelola kuesioner"},{"slug":"questionnaires.export","name":"Ekspor kuesioner"},{"slug":"roles.read","name":"Lihat role"},{"slug":"roles.manage","name":"Kelola role"},{"slug":"siakad_connections.manage","name":"Kelola koneksi Siakad"},{"slug":"siakad_sync.read","name":"Lihat sinkronisasi Siakad"},{"slug":"siakad_sync.manage","name":"Kelola sinkronisasi Siakad"},{"slug":"study_programs.read","name":"Lihat program studi"},{"slug":"universities.read","name":"Lihat perguruan tinggi"},{"slug":"university_crm_sync.read","name":"Lihat sync CRM"},{"slug":"university_crm_sync.manage","name":"Jalankan sync CRM"}];
+  const ROLES = [{"id":"r1","slug":"talent","name":"Talent","permissions":["universities.read"]},{"id":"r2","slug":"company_admin","name":"Admin Perusahaan","permissions":["universities.read"]},{"id":"r3","slug":"university_admin","name":"Admin Perguruan Tinggi","permissions":["alumni.read","questionnaires.read","questionnaires.manage","questionnaires.export","siakad_sync.read","siakad_sync.manage","study_programs.read","universities.read"]},{"id":"r4","slug":"internal","name":"Internal Sevima","permissions":["accounts.read","accounts.manage","alumni.read","audit_logs.read","permissions.read","permissions.manage","questionnaires.read","questionnaires.manage","questionnaires.export","roles.read","roles.manage","siakad_connections.manage","siakad_sync.read","siakad_sync.manage","study_programs.read","universities.read","university_crm_sync.read","university_crm_sync.manage"]},{"id":"r5","slug":"cdc_staff","name":"Staf CDC","permissions":["alumni.read","questionnaires.read","questionnaires.export","study_programs.read"]}];
+  const SYSTEM_ROLES = ["talent","company_admin","university_admin","internal"];
+  const PROVIDER_LABEL = {"local":"Email & password","sso":"SSO Sevima","siakad":"Siakad"};
+
+  // Konfigurasi Akses - data contoh (tanpa API). Tabel memakai table.js; halaman ini mengurus tab Akun / Role &
+  // Permission (?tab=role), laci kelola akun (?akun=<id>), konfirmasi, modal role dan permission, dan reset password.
+  (function () {
+    var SELF = 'a02'; // akun yang sedang masuk (internal): tidak boleh menonaktifkan/melepas dirinya sendiri
+    var GLOBAL_ROLES = ['internal', 'talent'];
+    var INTERNAL_KEEPS = ['accounts.manage', 'roles.manage'];
+    var MESSAGE = {
+      SELF_LOCKOUT: 'Anda tidak bisa menonaktifkan akun sendiri atau melepas role internal milik sendiri.',
+      MEMBERSHIP_EXISTS: 'Akun ini sudah punya role tersebut di organisasi yang sama.',
+      ROLE_IN_USE: 'Role bawaan sistem atau masih dipakai akun, tidak bisa dihapus.',
+      SLUG_IN_USE: 'Slug role sudah dipakai.',
+    };
+    var byId = function (id) { return document.getElementById(id); };
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var toast = function (type, message) { if (window.KKToast) window.KKToast.show({ type: type, message: message, duration: 3500 }); };
+    var badgeHtml = function (v, label) { return '<span class="badge-' + v + '"><span class="badge-dot bg-' + (v === 'neutral' ? 'neutral-500' : v + '-600') + '"></span>' + label + '</span>'; };
+    var statusBadge = function (active) { return active ? badgeHtml('success', 'Aktif') : badgeHtml('neutral', 'Nonaktif'); };
+    var roleName = function (slug) { var r = ROLES.find(function (x) { return x.slug === slug; }); return r ? r.name : slug; };
+    var scopeOf = function (m) {
+      if (m.uni) { var u = UNIVERSITIES.find(function (x) { return x.id === m.uni; }); return u ? u.name : 'PT ' + m.uni; }
+      if (m.company) return 'Perusahaan ' + m.company;
+      return 'Semua organisasi (global)';
+    };
+
+    /* ---------------------------------------------------------------- combo bantu */
+    function comboValue(el) { return el.dataset.value || ''; }
+    function setCombo(el, value, label) {
+      el.dataset.value = value;
+      var l = el.querySelector('[data-combo-label]');
+      l.textContent = label;
+      l.classList.toggle('combo-placeholder', !value);
+      el.querySelectorAll('[data-combo-item]').forEach(function (i) { i.classList.toggle('is-selected', i.dataset.value === value && value !== ''); });
+    }
+    function onCombo(el, fn) {
+      el.querySelectorAll('[data-combo-item]').forEach(function (item) {
+        item.addEventListener('click', function () { el.dataset.value = item.dataset.value; fn(item.dataset.value); });
+      });
+    }
+
+    /* ---------------------------------------------------------------- konfirmasi */
+    var confirmCb = null;
+    function confirmDialog(title, message, label, cb, danger) {
+      byId('confirmModalTitle').textContent = title;
+      byId('confirmMessage').textContent = message;
+      var ok = byId('confirmOk');
+      ok.textContent = label;
+      ok.className = (danger === false ? 'btn-primary' : 'btn-danger') + ' btn-md';
+      confirmCb = cb;
+      KKModal.open('confirmModal');
+    }
+    byId('confirmOk').addEventListener('click', function () {
+      var cb = confirmCb; confirmCb = null;
+      KKModal.close('confirmModal');
+      if (cb) cb();
+    });
+
+    /* ---------------------------------------------------------------- tab */
+    var tabs = byId('aksesTabs');
+    var q = new URLSearchParams(location.search);
+    function setParam(key, value) {
+      var url = new URL(location.href);
+      if (value) url.searchParams.set(key, value); else url.searchParams.delete(key);
+      history.replaceState(null, '', url);
+    }
+    tabs.querySelectorAll('[data-ui-tab]').forEach(function (t) {
+      t.addEventListener('click', function () { setParam('tab', t.id === 'tabRole' ? 'role' : null); });
+    });
+    if (q.get('tab') === 'role') byId('tabRole').click();
+
+    /* ---------------------------------------------------------------- tabel akun */
+    var akunRoot = byId('akunRoot');
+    var akunTable = window.KKTable.get(akunRoot) || (window.KKTable.init(akunRoot), window.KKTable.get(akunRoot));
+    var fProvider = byId('filterProvider');
+    var fStatus = byId('filterStatus');
+    akunTable.addFilter(function (row) {
+      var p = fProvider.dataset.value, s = fStatus.dataset.value;
+      return (p === 'all' || row.dataset.providers.split(' ').indexOf(p) >= 0) && (s === 'all' || row.dataset.status === s);
+    });
+    [fProvider, fStatus].forEach(function (c) { onCombo(c, function () { akunTable.refresh(); }); });
+    akunTable.refresh();
+
+    /* ---------------------------------------------------------------- laci akun */
+    var drawer = byId('acDrawer');
+    var account = null;
+    drawer.addEventListener('drawer:show', function () {
+      // Sidebar karirlink ber-z-50, di atas backdrop laci bawaan (z-30): naikkan laci dan backdrop supaya sidebar dan topbar ikut gelap.
+      drawer.style.zIndex = '60';
+      document.querySelectorAll('.drawer-backdrop').forEach(function (b) { b.style.zIndex = '59'; });
+    });
+    drawer.addEventListener('drawer:hide', function () {
+      drawer.style.zIndex = '';
+      document.querySelectorAll('.drawer-backdrop').forEach(function (b) { b.style.zIndex = ''; });
+      setParam('akun', null);
+    });
+
+    function renderStatus() {
+      var a = account;
+      var btn = a.active
+        ? '<button type="button" class="btn-outline btn-sm" data-ac="deactivate"><i class="kk kk-prohibit h-4 w-4"></i>Nonaktifkan</button>'
+        : '<button type="button" class="btn-outline btn-sm" data-ac="activate"><i class="kk kk-check-circle h-4 w-4"></i>Aktifkan</button>';
+      byId('acSecStatus').innerHTML =
+        '<div class="flex flex-wrap items-center justify-between gap-3"><div>' + statusBadge(a.active) +
+        '<p class="mt-1 text-xs text-slate-500">' + (a.last ? 'Login terakhir ' + a.last : 'Belum pernah login') + '</p></div>' + btn + '</div>';
+    }
+    function renderIdentities() {
+      var a = account;
+      var list = a.identities.length
+        ? '<ul class="divide-y divide-slate-100 rounded-md border border-slate-200">' + a.identities.map(function (i) {
+            return '<li class="flex items-center gap-3 px-3 py-2"><i class="kk kk-sign-in h-4 w-4 shrink-0 text-slate-500"></i><div class="min-w-0 flex-1">' +
+              '<p class="text-sm font-medium text-slate-800">' + PROVIDER_LABEL[i.provider] + '</p>' +
+              '<p class="truncate text-xs text-slate-500" title="' + esc(i.uid) + '">' + esc(i.provider === 'local' ? a.email : i.uid) + '</p></div>' +
+              '<span class="text-right text-xs text-slate-500">' + (i.last || 'Belum login') + '</span></li>';
+          }).join('') + '</ul>'
+        : '<p class="text-sm text-slate-500">Tidak ada cara masuk.</p>';
+      byId('acSecIdentity').innerHTML = '<h3 id="acIdentityHeading" class="text-sm font-semibold text-slate-800">Cara masuk</h3>' + list;
+    }
+    function renderMemberships() {
+      var a = account;
+      byId('acMemberList').innerHTML = a.memberships.length
+        ? '<ul class="divide-y divide-slate-100 rounded-md border border-slate-200">' + a.memberships.map(function (m) {
+            return '<li class="flex items-center gap-3 px-3 py-2"><div class="min-w-0 flex-1"><p class="text-sm font-medium text-slate-800">' + esc(m.role) +
+              (m.primary ? ' <span class="badge-info ml-2">Utama</span>' : '') + '</p><p class="truncate text-xs text-slate-500">' + esc(scopeOf(m)) + '</p></div>' +
+              '<button type="button" class="btn-outline btn-sm" data-ac="remove" data-mid="' + m.id + '" title="Lepas role" aria-label="Lepas role ' + esc(m.role) + ' (' + esc(scopeOf(m)) + ')"><i class="kk kk-trash h-4 w-4"></i></button></li>';
+          }).join('') + '</ul>'
+        : '<p class="text-sm text-slate-500">Belum punya role. Akun ini tidak bisa membuka menu mana pun.</p>';
+    }
+    function renderPassword() {
+      var hasLocal = account.identities.some(function (i) { return i.provider === 'local'; });
+      byId('acSecPwd').innerHTML = '<h3 id="acPwdHeading" class="text-sm font-semibold text-slate-800">Password</h3>' + (hasLocal
+        ? '<p class="text-sm text-slate-500">Buat password baru bila pengguna lupa. Semua sesi login akun ini akan dikeluarkan.</p>' +
+          '<button type="button" class="btn-outline btn-sm" data-ac="reset"><i class="kk kk-key h-4 w-4"></i>Reset password</button>'
+        : '<p class="text-sm text-slate-500">Akun ini tidak masuk dengan email &amp; password, jadi tidak punya password untuk direset.</p>');
+    }
+    function resetAddForm() {
+      setCombo(byId('addRole'), '', 'Pilih role');
+      setCombo(byId('addOrgType'), 'university', 'Perguruan tinggi');
+      setCombo(byId('addUni'), '', 'Pilih PT');
+      byId('addCompany').value = '';
+      syncOrg();
+      showAddErrors({});
+    }
+    function renderAccount() {
+      byId('acDrTitle').textContent = account.email;
+      renderStatus(); renderIdentities(); renderMemberships(); renderPassword();
+    }
+    function openAccount(id) {
+      account = ACCOUNTS.find(function (x) { return x.id === id; });
+      if (!account) return;
+      setParam('akun', id);
+      renderAccount();
+      resetAddForm();
+      drawer.setAttribute('data-drawer-placement', window.innerWidth >= 640 ? 'right' : 'bottom');
+      KKDrawer.open(drawer);
+    }
+    akunRoot.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-open-account]');
+      if (btn) openAccount(btn.dataset.openAccount);
+    });
+
+    function updateRow(a) {
+      var row = akunRoot.querySelector('tr[data-id="' + a.id + '"]');
+      row.dataset.status = a.active ? 'active' : 'inactive';
+      row.querySelector('[data-cell="status"]').innerHTML = statusBadge(a.active);
+      akunTable.refresh();
+    }
+
+    drawer.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-ac]');
+      if (!btn || !account) return;
+      var act = btn.dataset.ac;
+      if (act === 'activate') {
+        account.active = true; renderStatus(); updateRow(account); toast('success', 'Akun diaktifkan.');
+      } else if (act === 'deactivate') {
+        confirmDialog('Nonaktifkan akun?', account.email + ' tidak bisa login dan sesi yang masih berjalan langsung ditolak. Akun bisa diaktifkan lagi kapan saja.', 'Nonaktifkan', function () {
+          if (account.id === SELF) { toast('danger', MESSAGE.SELF_LOCKOUT); return; }
+          account.active = false; renderStatus(); updateRow(account); toast('success', 'Akun dinonaktifkan.');
+        });
+      } else if (act === 'remove') {
+        var m = account.memberships.find(function (x) { return x.id === btn.dataset.mid; });
+        confirmDialog('Lepas role?', 'Role ' + m.role + ' di ' + scopeOf(m) + ' dilepas dari ' + account.email + '.', 'Lepas role', function () {
+          if (account.id === SELF && m.role === 'internal') { toast('danger', MESSAGE.SELF_LOCKOUT); return; }
+          account.memberships = account.memberships.filter(function (x) { return x !== m; });
+          renderMemberships(); toast('success', 'Role dilepas.');
+        });
+      } else if (act === 'reset') {
+        confirmDialog('Reset password?', 'Password lama ' + account.email + ' tidak berlaku lagi dan semua sesinya dikeluarkan.', 'Reset password', function () {
+          var chars = 'abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789', pw = '';
+          for (var i = 0; i < 14; i++) pw += chars[Math.floor(Math.random() * chars.length)];
+          byId('pwdValue').textContent = pw;
+          byId('pwdNote').textContent = (1 + Math.floor(Math.random() * 3)) + ' sesi login dikeluarkan.';
+          KKModal.open('pwdModal');
+        });
+      }
+    });
+
+    /* ---- tambah role */
+    var addForm = byId('acAddForm');
+    function syncOrg() {
+      var t = comboValue(byId('addOrgType'));
+      byId('addUniWrap').hidden = t !== 'university';
+      byId('addCompanyWrap').hidden = t !== 'company';
+    }
+    function showAddErrors(errs) {
+      addForm.querySelectorAll('[data-err]').forEach(function (p) { var m = errs[p.dataset.err]; p.hidden = !m; p.textContent = m || ''; });
+    }
+    onCombo(byId('addRole'), function (role) {
+      if (GLOBAL_ROLES.indexOf(role) >= 0) setCombo(byId('addOrgType'), 'none', 'Tanpa organisasi (global)');
+      syncOrg(); showAddErrors({});
+    });
+    onCombo(byId('addOrgType'), function () { setCombo(byId('addUni'), '', 'Pilih PT'); byId('addCompany').value = ''; syncOrg(); showAddErrors({}); });
+    onCombo(byId('addUni'), function () { showAddErrors({}); });
+    addForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var role = comboValue(byId('addRole')), type = comboValue(byId('addOrgType'));
+      var orgId = type === 'university' ? comboValue(byId('addUni')) : type === 'company' ? byId('addCompany').value.trim() : '';
+      var errs = {};
+      if (!role) errs.role = 'Pilih role.';
+      if (type === 'none') { if (role && GLOBAL_ROLES.indexOf(role) < 0) errs.orgId = 'Role ini wajib terikat ke PT atau perusahaan.'; }
+      else if (!orgId) errs.orgId = type === 'university' ? 'Pilih PT.' : 'Isi ID perusahaan.';
+      showAddErrors(errs);
+      if (Object.keys(errs).length) return;
+      var uni = type === 'university' ? orgId : null, company = type === 'company' ? orgId : null;
+      var exists = account.memberships.some(function (m) { return m.role === role && m.uni === uni && m.company === company; });
+      if (exists) { toast('danger', MESSAGE.MEMBERSHIP_EXISTS); return; }
+      account.memberships.push({ id: 'm' + Date.now(), role: role, uni: uni, company: company, primary: account.memberships.length === 0 });
+      renderMemberships(); resetAddForm(); toast('success', 'Role ditambahkan.');
+    });
+
+    var param = q.get('akun');
+    if (param) openAccount(param);
+
+    /* ---------------------------------------------------------------- role & permission */
+    var roleRoot = byId('roleRoot');
+    var roleTable = window.KKTable.get(roleRoot) || (window.KKTable.init(roleRoot), window.KKTable.get(roleRoot));
+    var roleBody = byId('roleBody');
+    var roleDlg = null; // role yang sedang diubah (null = role baru)
+    var permRole = null;
+    var granted = null;
+
+    function roleRowHtml(r, n) {
+      var system = SYSTEM_ROLES.indexOf(r.slug) >= 0;
+      return '<tr data-role="' + r.id + '"><td class="table-col-num" data-num>' + n + '</td><td><span class="font-medium text-slate-800" data-cell="name">' + esc(r.name) + '</span>' +
+        (system ? ' <span class="badge-neutral ml-1">Sistem</span>' : '') + '<p class="mt-0.5 font-mono text-xs text-slate-400">' + esc(r.slug) + '</p><p class="mt-0.5 text-xs text-slate-500 sm:hidden"><span data-cell="count">' + r.permissions.length + '</span> permission</p></td>' +
+        '<td class="hidden sm:table-cell"><span class="text-slate-600" data-cell="count">' + r.permissions.length + '</span></td>' +
+        '<td class="table-col-actions"><div class="flex items-center justify-end gap-1">' +
+        '<button type="button" class="btn-outline btn-sm table-action" data-role-act="permissions" data-role-id="' + r.id + '" title="Atur permission" aria-label="Atur permission ' + esc(r.name) + '"><i class="kk kk-shield-check h-4 w-4"></i><span class="table-action-label">Permission</span></button>' +
+        '<button type="button" class="btn-outline btn-sm table-action" data-role-act="rename" data-role-id="' + r.id + '" title="Ubah nama" aria-label="Ubah nama ' + esc(r.name) + '"><i class="kk kk-pencil-simple h-4 w-4"></i><span class="table-action-label">Ubah</span></button>' +
+        (system ? '' : '<button type="button" class="btn-outline btn-sm table-action" data-role-act="delete" data-role-id="' + r.id + '" title="Hapus role" aria-label="Hapus ' + esc(r.name) + '"><i class="kk kk-trash h-4 w-4"></i><span class="table-action-label">Hapus</span></button>') +
+        '</div></td></tr>';
+    }
+    function rebuildRoles() {
+      roleBody.innerHTML = ROLES.map(function (r, i) { return roleRowHtml(r, i + 1); }).join('');
+      roleTable.refresh(); // table.js membaca ulang baris dan menomori ulang
+    }
+
+    /* modal role (baru / ubah nama) */
+    var roleForm = byId('roleForm');
+    function roleErrors(errs) { roleForm.querySelectorAll('[data-err]').forEach(function (p) { var m = errs[p.dataset.err]; p.hidden = !m; p.textContent = m || ''; }); }
+    function openRoleModal(role) {
+      roleDlg = role || null;
+      byId('roleModalTitle').textContent = role ? 'Ubah nama role' : 'Role baru';
+      byId('roleSlug').value = role ? role.slug : '';
+      byId('roleSlug').disabled = !!role;
+      byId('roleName').value = role ? role.name : '';
+      byId('roleSlugHint').textContent = role ? 'Slug tidak bisa diubah.' : 'Huruf kecil, angka, dan _.';
+      roleErrors({});
+      KKModal.open('roleModal');
+    }
+    byId('roleNewBtn').addEventListener('click', function () { openRoleModal(null); });
+    roleForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var slug = byId('roleSlug').value.trim(), name = byId('roleName').value.trim(), errs = {};
+      if (!slug) errs.slug = 'Slug wajib diisi.';
+      else if (!/^[a-z][a-z0-9_]*$/.test(slug)) errs.slug = 'Pakai huruf kecil, angka, dan _ (diawali huruf).';
+      else if (slug.length > 50) errs.slug = 'Maksimal 50 karakter.';
+      if (!name) errs.name = 'Nama wajib diisi.';
+      else if (name.length > 100) errs.name = 'Maksimal 100 karakter.';
+      roleErrors(errs);
+      if (Object.keys(errs).length) return;
+      if (roleDlg) { roleDlg.name = name; }
+      else {
+        if (ROLES.some(function (r) { return r.slug === slug; })) { toast('danger', MESSAGE.SLUG_IN_USE); return; }
+        ROLES.push({ id: 'r' + Date.now(), slug: slug, name: name, permissions: [] });
+      }
+      KKModal.close('roleModal');
+      rebuildRoles();
+      toast('success', roleDlg ? 'Nama role diubah.' : 'Role dibuat.');
+    });
+
+    /* modal permission: kotak centang dikelompokkan per resource */
+    function renderPermissions() {
+      var groups = {};
+      PERMISSIONS.forEach(function (p) { var res = p.slug.split('.')[0]; (groups[res] = groups[res] || []).push(p); });
+      byId('permGroups').innerHTML = Object.keys(groups).sort().map(function (res) {
+        return '<fieldset><legend class="mb-1 font-mono text-xs font-semibold text-slate-700">' + res + '</legend><div class="grid gap-1 sm:grid-cols-2">' +
+          groups[res].map(function (p, i) {
+            var locked = permRole.slug === 'internal' && INTERNAL_KEEPS.indexOf(p.slug) >= 0;
+            var id = 'perm-' + p.slug.replace(/\./g, '-');
+            return '<label class="flex items-start gap-2 py-1 text-sm text-slate-700" for="' + id + '"' + (locked ? ' title="Role internal wajib memegang permission ini."' : '') + '>' +
+              '<input type="checkbox" class="form-check form-check-sm mt-0.5" id="' + id + '" data-perm="' + p.slug + '"' + (granted.has(p.slug) ? ' checked' : '') + (locked ? ' disabled' : '') + ' />' +
+              '<span>' + esc(p.name) + ' <span class="font-mono text-xs text-slate-400">' + p.slug + '</span></span></label>';
+          }).join('') + '</div></fieldset>';
+      }).join('');
+      byId('permSave').textContent = 'Simpan (' + granted.size + ')';
+    }
+    byId('permGroups').addEventListener('change', function (e) {
+      var cb = e.target.closest('[data-perm]');
+      if (!cb) return;
+      if (cb.checked) granted.add(cb.dataset.perm); else granted.delete(cb.dataset.perm);
+      byId('permSave').textContent = 'Simpan (' + granted.size + ')';
+    });
+    byId('permSave').addEventListener('click', function () {
+      permRole.permissions = PERMISSIONS.map(function (p) { return p.slug; }).filter(function (s) { return granted.has(s); });
+      var row = roleBody.querySelector('tr[data-role="' + permRole.id + '"]');
+      if (row) row.querySelectorAll('[data-cell="count"]').forEach(function (c) { c.textContent = permRole.permissions.length; });
+      KKModal.close('permModal');
+      toast('success', 'Permission ' + permRole.name + ' disimpan.');
+    });
+
+    roleBody.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-role-act]');
+      if (!btn) return;
+      var role = ROLES.find(function (r) { return r.id === btn.dataset.roleId; });
+      var act = btn.dataset.roleAct;
+      if (act === 'rename') openRoleModal(role);
+      else if (act === 'permissions') {
+        permRole = role; granted = new Set(role.permissions);
+        byId('permModalTitle').textContent = 'Permission ' + role.name;
+        renderPermissions();
+        KKModal.open('permModal');
+      } else if (act === 'delete') {
+        confirmDialog('Hapus role?', 'Role ' + role.name + ' (' + role.slug + ') dihapus. Role yang masih dipakai akun tidak bisa dihapus.', 'Hapus', function () {
+          var inUse = ACCOUNTS.some(function (a) { return a.memberships.some(function (m) { return m.role === role.slug; }); });
+          if (inUse) { toast('danger', MESSAGE.ROLE_IN_USE); return; }
+          ROLES.splice(ROLES.indexOf(role), 1);
+          rebuildRoles();
+          toast('success', 'Role dihapus.');
+        });
+      }
+    });
+  })();
+
+</script>
+<script src="admin-brand.js"></script>
+</body>
+</html>

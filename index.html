@@ -85,10 +85,10 @@
 <!-- ============================= SIDEBAR (lg ke atas) ============================= -->
 <aside class="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-slate-200/70 bg-white/90 backdrop-blur-md lg:flex" aria-label="Navigasi dokumentasi">
   <div class="flex h-16 shrink-0 items-center border-b border-slate-200/70 px-5">
-    <a href="index.html" class="flex items-center gap-3" aria-label="KarirKit, Design System v1.5.0">
+    <a href="index.html" class="flex items-center gap-3" aria-label="KarirKit, Design System v1.6.0">
       <img src="assets/logo/karirkit-logo.svg" alt="KarirKit" class="logo-on-light h-7 w-auto" />
       <img src="assets/logo/karirkit-logo-white.svg" alt="KarirKit" class="logo-on-dark h-7 w-auto" />
-      <span class="border-l border-slate-200 pl-3 text-xs font-medium text-slate-500">v1.5.0</span>
+      <span class="border-l border-slate-200 pl-3 text-xs font-medium text-slate-500">v1.6.0</span>
     </a>
   </div>
   <div class="flex min-h-0 flex-1 flex-col" data-ds-panel></div>
@@ -152,7 +152,7 @@
       <div class="flex flex-wrap items-center gap-3">
         <img src="assets/logo/karirkit-logo.svg" alt="KarirKit" class="logo-on-light h-9 w-auto" />
         <img src="assets/logo/karirkit-logo-white.svg" alt="KarirKit" class="logo-on-dark h-9 w-auto" />
-        <span class="badge-primary">v1.5.0</span>
+        <span class="badge-primary">v1.6.0</span>
       </div>
       <p class="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600">Kelas komponen Tailwind v4, JavaScript ringan untuk interaksi (Modal, Drawer, Table, dan lainnya), serta ikon KarirIcon. Aplikasi memakai paketnya lewat npm dan membangun CSS-nya sendiri dari tema KarirKit.</p>
       <div class="mt-5 flex flex-wrap gap-2.5">
@@ -175,7 +175,7 @@
         <p class="mt-1 text-sm text-slate-500">Paket dipublikasikan di GitHub Packages, jadi siapkan <span class="kbd">.npmrc</span> lebih dulu (langkahnya ada di README).</p>
         <p class="mt-4 text-xs font-semibold text-slate-700">1. Install</p>
         <div class="relative mt-1.5">
-          <input id="ov-install" type="text" class="input pr-11 font-mono text-sm" value="npm install @foxtrot-sevima/karirkit@1.5.0" readonly aria-label="Perintah install KarirKit" />
+          <input id="ov-install" type="text" class="input pr-11 font-mono text-sm" value="npm install @foxtrot-sevima/karirkit@1.6.0" readonly aria-label="Perintah install KarirKit" />
           <span class="group absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex"><button type="button" class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-fg-subtle transition-colors hover:bg-neutral-100 hover:text-fg" data-clipboard-target="#ov-install" aria-label="Salin perintah install"><span data-clipboard-default><i class="kk kk-copy h-4 w-4"></i></span><span data-clipboard-success class="hidden text-success-600"><i class="kk kk-check h-4 w-4"></i></span></button><span class="tooltip-content">Salin perintah install</span></span>
         </div>
         <p class="mt-4 text-xs font-semibold text-slate-700">2. Impor tema di CSS aplikasi</p>
@@ -794,11 +794,13 @@
       <div>
         <p class="nav-eyebrow mb-3 px-0">Solid</p>
         <div class="flex flex-wrap gap-3">
-          <span class="badge bg-success-600 text-white">Success</span>
-          <span class="badge bg-info-600 text-white">Info</span>
-          <span class="badge bg-warning-600 text-white">Warning</span>
-          <span class="badge bg-danger-600 text-white">Danger</span>
-          <span class="badge bg-slate-800 text-white">Neutral</span>
+          <span class="badge badge-solid badge-primary">Primary</span>
+          <span class="badge badge-solid badge-secondary">Secondary</span>
+          <span class="badge badge-solid badge-success">Success</span>
+          <span class="badge badge-solid badge-info">Info</span>
+          <span class="badge badge-solid badge-warning">Warning</span>
+          <span class="badge badge-solid badge-danger">Danger</span>
+          <span class="badge badge-solid badge-neutral">Neutral</span>
         </div>
       </div>
       <div>
@@ -821,6 +823,12 @@
         <h3 class="mb-3 text-base font-semibold text-slate-900">Default badges</h3>
         <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
           <div class="flex flex-wrap items-center gap-3"><span class="badge badge-primary badge-rounded">Primary</span><span class="badge badge-secondary badge-rounded">Secondary</span><span class="badge badge-neutral badge-rounded">Neutral</span><span class="badge badge-danger badge-rounded">Danger</span><span class="badge badge-success badge-rounded">Success</span><span class="badge badge-warning badge-rounded">Warning</span></div>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col mb-10">
+        <h3 class="mb-3 text-base font-semibold text-slate-900">Solid badges</h3>
+        <div class="flex-1 rounded-xl border border-slate-200/70 bg-slate-50 p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3"><span class="badge badge-solid badge-primary">Primary</span><span class="badge badge-solid badge-secondary">Secondary</span><span class="badge badge-solid badge-neutral">Neutral</span><span class="badge badge-solid badge-danger">Danger</span><span class="badge badge-solid badge-success">Success</span><span class="badge badge-solid badge-warning">Warning</span></div>
         </div>
       </div>
       <div class="flex min-w-0 flex-col mb-10">
@@ -7012,7 +7020,7 @@
 <footer class="mt-10 border-t border-slate-200/70 py-8">
   <div class="flex flex-col items-center justify-between gap-3 px-6 text-xs text-slate-400 sm:flex-row lg:px-10">
     <p>© 2026 KarirKit. Dibangun dengan Tailwind CSS.</p>
-    <p>Design System v1.5.0</p>
+    <p>Design System v1.6.0</p>
   </div>
 </footer>
 
@@ -7359,8 +7367,8 @@
       }).join('');
       return '<div class="shrink-0 px-3 pb-2 pt-3"><div class="relative">' +
         '<span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>' +
-        '<input type="search" class="input h-9 pl-9 pr-12" placeholder="Cari halaman..." aria-label="Cari halaman" data-ds-search />' +
-        '<kbd class="kbd pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 lg:inline-flex">Ctrl K</kbd></div></div>' +
+        '<input type="search" class="peer input h-9 pl-9 pr-3 lg:placeholder-shown:pr-14" placeholder="Cari halaman..." aria-label="Cari halaman" data-ds-search />' +
+        '<kbd class="kbd pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 lg:inline-flex peer-[:not(:placeholder-shown)]:hidden!">Ctrl K</kbd></div></div>' +
         '<nav class="min-h-0 flex-1 space-y-5 overflow-y-auto px-3 py-3" aria-label="Bagian dokumentasi">' + nav +
         '<p class="hidden px-3 text-sm text-fg-muted" data-ds-none>Tidak ada halaman.</p></nav>';
     }

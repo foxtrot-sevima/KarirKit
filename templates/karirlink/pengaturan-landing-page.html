@@ -93,6 +93,10 @@
           <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Mahasiswa/Alumni</span>
         </a>
+        <a href="sinkronisasi-siakad.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Sinkronisasi Siakad" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Sinkronisasi Siakad</span>
+        </a>
         <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Aktivitas Lamaran</span>
@@ -104,6 +108,20 @@
         <a href="pengaturan-landing-page.html" class="nav-item nav-item-active" aria-current="page" data-tooltip-trigger data-tooltip-text="Personalisasi" data-tooltip-side="right">
           <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
           <span class="sidebar-label">Personalisasi</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Internal</p>
+      <div class="space-y-1">
+        <a href="konfigurasi-pt.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi PT" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi PT</span>
+        </a>
+        <a href="konfigurasi-akses.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi Akses" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi Akses</span>
         </a>
       </div>
     </div>
@@ -177,6 +195,10 @@
             <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Mahasiswa/Alumni</span>
           </a>
+          <a href="sinkronisasi-siakad.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Sinkronisasi Siakad</span>
+          </a>
           <a href="aktivitas-lamaran.html" class="nav-item">
             <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Aktivitas Lamaran</span>
@@ -188,6 +210,20 @@
           <a href="pengaturan-landing-page.html" class="nav-item nav-item-active" aria-current="page">
             <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
             <span class="sidebar-label">Personalisasi</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Internal</p>
+        <div class="space-y-1">
+          <a href="konfigurasi-pt.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi PT</span>
+          </a>
+          <a href="konfigurasi-akses.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi Akses</span>
           </a>
         </div>
       </div>
@@ -379,7 +415,7 @@
                   <input type="color" class="h-11 w-12 shrink-0 cursor-pointer rounded-control border border-border bg-surface p-1" aria-label="Pilih warna utama" data-lp-field="primaryColor" />
                   <input id="lpPrimaryHex" type="text" class="input font-mono uppercase" maxlength="7" placeholder="#2361E7" autocomplete="off" spellcheck="false" data-lp-field="primaryColor" />
                 </div>
-                <p class="form-hint">Warna tombol dan tautan. Harus cukup gelap agar teks putih terbaca (kontras minimal 4,5:1).</p>
+                <p class="form-hint">Warna tombol dan tautan. Pilih warna yang tidak terlalu terang supaya tulisan putih di tombol tetap mudah dibaca.</p>
                 <p class="form-error mt-1.5" data-lp-error="primaryColor" hidden></p>
               </div>
               <div>
@@ -536,7 +572,7 @@
             <div><label class="form-label" for="lpAddress">Alamat</label><textarea id="lpAddress" class="input lp-textarea" rows="2" maxlength="200" style="min-height:4rem" data-lp-field="address" placeholder="Masukkan alamat Career Center"></textarea><div class="mt-1.5 flex justify-between gap-3"><p class="form-hint !mt-0">Opsional. Tampil di footer portal.</p><span class="text-xs text-slate-400" data-lp-count="address"></span></div><p class="form-error mt-1.5" data-lp-error="address" hidden></p></div>
             <div><label class="form-label" for="lpIg">Instagram</label><input id="lpIg" class="input" maxlength="30" data-lp-field="instagram" placeholder="Masukkan username Instagram" /><p class="form-error mt-1.5" data-lp-error="instagram" hidden></p></div>
             <div><label class="form-label" for="lpFb">Facebook</label><input id="lpFb" class="input" maxlength="30" data-lp-field="facebook" placeholder="Masukkan username Facebook" /><p class="form-error mt-1.5" data-lp-error="facebook" hidden></p></div>
-            <div><label class="form-label" for="lpYt">YouTube</label><input id="lpYt" class="input" maxlength="30" data-lp-field="youtube" placeholder="Masukkan username (handle) YouTube" /><p class="form-error mt-1.5" data-lp-error="youtube" hidden></p></div>
+            <div><label class="form-label" for="lpYt">YouTube</label><input id="lpYt" class="input" maxlength="30" data-lp-field="youtube" placeholder="Masukkan username YouTube (tanpa @)" /><p class="form-error mt-1.5" data-lp-error="youtube" hidden></p></div>
           </div>
           <div class="lp-foot"><button type="button" class="btn-outline btn-md" data-lp-cancel>Batal</button><button type="button" class="btn-primary btn-md" data-lp-save>Simpan</button></div>
         </div>
@@ -920,8 +956,8 @@
         if (!state.primaryColor) return {};
         const p = LP.hex6(state.primaryColor), c = LP.hex6(state.secondaryColor);
         return {
-          primaryColor: !p ? 'Isi warna dengan format hex, mis. #2361E7' : LP.contrast(p) < LP.MIN_CONTRAST ? 'Warna terlalu terang (kontras ' + LP.contrast(p).toFixed(1).replace('.', ',') + ':1). Pilih warna lebih gelap agar teks putih di tombol terbaca (minimal 4,5:1).' : '',
-          secondaryColor: state.secondaryColor && !c ? 'Isi warna dengan format hex, mis. #F67E28' : ''
+          primaryColor: !p ? 'Tulis kode warna dengan benar, contoh #2361E7' : LP.contrast(p) < LP.MIN_CONTRAST ? 'Warna ini terlalu terang, tulisan putih di tombol akan sulit dibaca. Pilih warna yang lebih gelap.' : '',
+          secondaryColor: state.secondaryColor && !c ? 'Tulis kode warna dengan benar, contoh #F67E28' : ''
         };
       },
       testimoni: () => ({}),
