@@ -311,13 +311,6 @@
       </div>
     </div>
   </header>
-  <style>
-    /* Sidebar karirlink ber-z-50, di atas backdrop laci bawaan (z-30): saat laci detail terbuka, naikkan backdrop dan laci
-       supaya sidebar dan topbar ikut gelap (sama seperti aturan z-[60] untuk modal di halaman karirlink). Menu mobile tidak terpengaruh. */
-    body.al-drawer-open .drawer-backdrop { z-index: 59; }
-    body.al-drawer-open #alDrawer { z-index: 60; }
-  </style>
-
   <!-- ============================= CONTENT =============================
        Aktivitas Lamaran Alumni (revamp). Alur data mengikuti KarirLink produksi (UniversityController@getAlumniActivity), UX disusun
        untuk pekerjaan admin Pusat Karier: (1) lihat denyut lamaran, (2) temukan yang perlu ditindaklanjuti, (3) telusuri per status /
@@ -478,7 +471,7 @@
   </main>
 
   <!-- Detail lamaran: laci kanan di desktop, lembar bawah di ponsel -->
-  <div class="drawer drawer-right w-full sm:max-w-md" id="alDrawer" aria-label="Detail lamaran">
+  <div class="drawer drawer-right drawer-over-shell w-full sm:max-w-md" id="alDrawer" aria-label="Detail lamaran">
     <div class="drawer-header">
       <div class="min-w-0">
         <h3 class="drawer-title truncate" id="alDrName">Nama Alumni</h3>
@@ -952,8 +945,6 @@
 
     // ---- detail lamaran (laci)
     const drawer = el('alDrawer');
-    drawer.addEventListener('drawer:show', () => document.body.classList.add('al-drawer-open'));
-    drawer.addEventListener('drawer:hide', () => document.body.classList.remove('al-drawer-open'));
     function openDetail(id) {
       const a = AL.apps.find((x) => x.id === id); if (!a) return;
       const b = AL.BADGE[a.status];
