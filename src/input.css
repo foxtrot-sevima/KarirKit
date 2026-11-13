@@ -254,10 +254,6 @@ html[data-theme="dark"] .bg-slate-900\/30 { background-color: rgb(0 0 0 / 0.55);
 html[data-theme="dark"] .bg-brand-gradient {
   background-image: linear-gradient(135deg, #1950c8 0%, #2361e7 55%, #3d74eb 100%);
 }
-html[data-theme="dark"] .btn-primary:hover:not(:disabled) { background-color: #1950c8; }
-html[data-theme="dark"] .btn-danger:hover:not(:disabled) { background-color: #b91c1c; }
-html[data-theme="dark"] .btn-success:hover:not(:disabled) { background-color: #047857; }
-html[data-theme="dark"] .btn-warning:hover:not(:disabled) { background-color: #d97706; }
 html[data-theme="dark"] .input-group-btn:hover { background-color: #1950c8; }
 html[data-theme="dark"] .modal-backdrop { background-color: rgb(0 0 0 / 0.6); }
 html[data-theme="dark"] .badge.bg-slate-800 { background-color: #334155; }
@@ -19381,6 +19377,48 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .btn-social-github { @apply bg-[#24292f] px-4 py-2 text-sm text-white hover:bg-[#24292f]/90 focus-visible:ring-neutral-400; }
   .btn-social-google { @apply bg-[#4285f4] px-4 py-2 text-sm text-white hover:bg-[#357ae8] focus-visible:ring-[#4285f4]/40; }
   .btn-social-apple { @apply bg-black px-4 py-2 text-sm text-white hover:bg-[#262626] focus-visible:ring-neutral-400; }
+
+  /* ==== Buttons: semi-3D solid colors ====
+     Tombol solid (primary, accent, danger, success, warning) memakai gradien atas-bawah dari satu warna dasar (--btn-base):
+     sisi atas lebih terang, sisi bawah = warna dasar. Kesan timbul dibuat oleh highlight 1px di atas, bayangan 1px di bawah,
+     tepi tipis yang lebih gelap, dan bayangan jatuh kecil. Hover menggelapkan gradien. Semua diturunkan dari token warna 600/500
+     lewat color-mix, jadi ikut tema (termasuk mode gelap) tanpa token baru. Bayangan memakai --tw-shadow agar cincin fokus
+     (ring) tetap tersusun di atasnya. */
+  .btn-primary,
+  .btn-accent,
+  .btn-danger,
+  .btn-success,
+  .btn-warning {
+    background-image: linear-gradient(180deg, var(--btn-top) 0%, var(--btn-base) 100%);
+    --btn-top: color-mix(in srgb, var(--btn-base) 84%, white);
+    --btn-edge: color-mix(in srgb, var(--btn-base) 80%, black);
+    --tw-shadow:
+      0 0 0 1px var(--btn-edge),
+      inset 0 1px 0 rgb(255 255 255 / 0.28),
+      inset 0 -1px 0 rgb(0 0 0 / 0.14),
+      0 1px 2px rgb(15 23 42 / 0.16);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .btn-primary { --btn-base: var(--color-primary-600); }
+  .btn-accent { --btn-base: var(--color-secondary-600); }
+  .btn-danger { --btn-base: var(--color-danger-600); }
+  .btn-success { --btn-base: var(--color-success-600); }
+  .btn-warning { --btn-base: var(--color-warning-500); }
+  .btn-primary:hover:not(:disabled),
+  .btn-accent:hover:not(:disabled),
+  .btn-danger:hover:not(:disabled),
+  .btn-success:hover:not(:disabled),
+  .btn-warning:hover:not(:disabled) {
+    background-image: linear-gradient(180deg, var(--btn-base) 0%, color-mix(in srgb, var(--btn-base) 86%, black) 100%);
+  }
+  .btn-primary:active:not(:disabled),
+  .btn-accent:active:not(:disabled),
+  .btn-danger:active:not(:disabled),
+  .btn-success:active:not(:disabled),
+  .btn-warning:active:not(:disabled) {
+    background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn-base) 92%, black) 0%, color-mix(in srgb, var(--btn-base) 82%, black) 100%);
+    --tw-shadow: 0 0 0 1px var(--btn-edge), inset 0 1px 2px rgb(0 0 0 / 0.22);
+  }
 
   /* ==== Button group ==== */
   .btn-group { @apply inline-flex rounded-control shadow-xs; }

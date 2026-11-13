@@ -6,6 +6,10 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+### Changed
+
+- **Tombol solid bergaya semi-3D** (`.btn-primary`, `.btn-accent`, `.btn-danger`, `.btn-success`, `.btn-warning`): warna kini berupa gradien atas-bawah dari satu warna dasar, dengan highlight tipis di tepi atas, bayangan 1px di bawah, tepi yang lebih gelap, dan bayangan jatuh kecil. Hover menggelapkan gradien, tekan (`:active`) menampilkan kesan menekan ke dalam, dan cincin fokus tetap tersusun di atas bayangan. Seluruhnya diturunkan dari token warna yang sudah ada lewat `color-mix` (tanpa token `@theme` baru), sehingga ikut mode gelap. Nama kelas dan markup tidak berubah.
+
 ## [1.5.0] - 2026-10-29
 
 ### Added
