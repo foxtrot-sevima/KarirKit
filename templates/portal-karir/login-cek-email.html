@@ -130,12 +130,17 @@
 
 <script>
   // Pesan di halaman ini sama untuk email terdaftar maupun tidak (tidak membocorkan siapa yang punya akun).
-  const email = new URLSearchParams(window.location.search).get('email');
+  const qs = new URLSearchParams(window.location.search);
+  const email = qs.get('email');
+  // ?next= (tujuan setelah masuk) diteruskan ke langkah berikutnya; divalidasi lagi di halaman yang memakainya.
+  const nextParam = qs.get('next');
+  const nextQuery = nextParam ? '&next=' + encodeURIComponent(nextParam) : '';
   if (email) {
     document.getElementById('ceEmail').textContent = email;
-    document.getElementById('cePassword').href = 'login-password.html?email=' + encodeURIComponent(email);
-    document.getElementById('ceBack').href = 'login.html?email=' + encodeURIComponent(email);
+    document.getElementById('cePassword').href = 'login-password.html?email=' + encodeURIComponent(email) + nextQuery;
+    document.getElementById('ceBack').href = 'login.html?email=' + encodeURIComponent(email) + nextQuery;
   }
+  document.getElementById('mockOpenEmail').href = 'email-masuk.html' + (nextParam ? '?next=' + encodeURIComponent(nextParam) : '');
   document.getElementById('ceResend').addEventListener('click', () => document.getElementById('ceResent').classList.remove('hidden'));
 
   document.querySelectorAll('.js-current-year').forEach((el) => {
