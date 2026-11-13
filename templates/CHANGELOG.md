@@ -8,6 +8,19 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-13
+
+Dasar KarirKit: v1.7.0
+
+### Changed
+- **Sepuluh halaman tidak lagi punya blok `<style>` lokal**; semuanya memakai komponen KarirKit (`npm run check:templates` kini bersih):
+  - Laci detail di `aktivitas-lamaran`, `event`, dan `kerjasama` memakai `.drawer-over-shell` (menggantikan aturan z-index per halaman dan penanda kelas pada `body`).
+  - `portal-karir/index` dan `riasec-tes` (serta salinan `custom/portal-karir`) memakai `.anim-orbit`, `.anim-orbit-rev`, `.anim-float`, `.anim-pulse`, `.anim-enter`.
+  - `kuesioner-simulasi` memakai `.radio-card`, `.scale-pill`, `.sticky-actions`, `.form-question`, dan `.anim-enter`; penyembunyian elemen per format instrumen (`data-fmt`) kini dilakukan skrip halaman, bukan aturan CSS.
+  - `pengaturan-landing-page` memakai `.list-menu-*`, `.textarea-autogrow`, dan `.upload-thumb`.
+  - `kuesioner` memakai `.qr-present` (layar penuh dan lembar cetak QR), `.option-card`, `.grid-collapse`, `.swap-fade`, dan `.scale-pill`.
+- Tampilan dan perilaku tidak berubah; diperiksa lewat perbandingan nilai CSS terhitung dengan halaman sebelumnya. Aturan layar penuh QR tidak bisa dijalankan di peramban uji tanpa gestur pengguna, jadi diperiksa dengan membandingkan teks aturannya.
+
 ## 2026-11-11
 
 Dasar KarirKit: v1.5.0
