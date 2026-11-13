@@ -19479,12 +19479,12 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
 
   /* ==== Buttons: semi-3D light surfaces ====
      Tombol terang (secondary, tertiary, outline, white, social netral): versi tipis dari gaya yang sama, hanya gradien halus
-     dan bayangan 1px, karena tepi gelap tidak cocok di latar terang. --btn-base = warna dasar, --btn-hover-base = saat hover. */
-  .btn-secondary,
-  .btn-tertiary,
-  .btn-outline,
-  .btn-white,
-  .btn-social {
+     dan bayangan 1px, karena tepi gelap tidak cocok di latar terang. Tombol yang memberi utilitas bg-* sendiri (mis. !bg-transparent di atas latar gelap) dibiarkan datar. --btn-base = warna dasar, --btn-hover-base = saat hover. */
+  .btn-secondary:where(:not([class*="bg-"])),
+  .btn-tertiary:where(:not([class*="bg-"])),
+  .btn-outline:where(:not([class*="bg-"])),
+  .btn-white:where(:not([class*="bg-"])),
+  .btn-social:where(:not([class*="bg-"])) {
     background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn-base) 55%, white) 0%, var(--btn-base) 100%);
     --tw-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), 0 1px 2px rgb(15 23 42 / 0.08);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -19494,11 +19494,11 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .btn-outline,
   .btn-white,
   .btn-social { --btn-base: var(--color-surface); --btn-hover-base: var(--color-neutral-50); }
-  .btn-secondary:hover:not(:disabled),
-  .btn-tertiary:hover:not(:disabled),
-  .btn-outline:hover:not(:disabled),
-  .btn-white:hover:not(:disabled),
-  .btn-social:hover:not(:disabled) {
+  .btn-secondary:where(:not([class*="bg-"])):hover:not(:disabled),
+  .btn-tertiary:where(:not([class*="bg-"])):hover:not(:disabled),
+  .btn-outline:where(:not([class*="bg-"])):hover:not(:disabled),
+  .btn-white:where(:not([class*="bg-"])):hover:not(:disabled),
+  .btn-social:where(:not([class*="bg-"])):hover:not(:disabled) {
     background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn-hover-base) 55%, white) 0%, var(--btn-hover-base) 100%);
   }
 
@@ -19529,6 +19529,45 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
   .btn-group-item-success { @apply border-success-700 bg-success-600 text-white hover:bg-[#047857] hover:text-white; }
   .btn-group-item-danger { @apply border-danger-700 bg-danger-600 text-white hover:bg-[#b91c1c] hover:text-white; }
   .btn-group-item-dark { @apply border-[#0f172a] bg-[#1e293b] text-white hover:bg-[#0f172a] hover:text-white; }
+
+  /* Semi-3D untuk item grup: hanya gradien vertikal dan highlight 1px di atas (tanpa tepi gelap dan bayangan jatuh), karena
+     item berhimpitan dan sudah punya border sendiri. Warna lewat --btn-base / --btn-hover-base; item aktif memakai primary-50. Item yang memberi utilitas bg-* sendiri (mis. varian outline) dibiarkan datar. */
+  .btn-group-item:where(:not([class*="bg-"])),
+  .btn-group-item-primary,
+  .btn-group-item-success,
+  .btn-group-item-danger,
+  .btn-group-item-dark {
+    background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn-base) 55%, white) 0%, var(--btn-base) 100%);
+    --tw-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .btn-group-item { --btn-base: var(--color-surface); --btn-hover-base: var(--color-neutral-50); }
+  .btn-group-item[aria-current="true"],
+  .btn-group-item.is-active { --btn-base: var(--color-primary-50); --btn-hover-base: var(--color-primary-50); }
+  .btn-group-item-primary,
+  .btn-group-item-success,
+  .btn-group-item-danger,
+  .btn-group-item-dark {
+    background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn-base) 84%, white) 0%, var(--btn-base) 100%);
+    --tw-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28);
+  }
+  .btn-group-item-primary { --btn-base: var(--color-primary-600); --btn-hover-base: #1950c8; }
+  .btn-group-item-success { --btn-base: var(--color-success-600); --btn-hover-base: #047857; }
+  .btn-group-item-danger { --btn-base: var(--color-danger-600); --btn-hover-base: #b91c1c; }
+  .btn-group-item-dark { --btn-base: #1e293b; --btn-hover-base: #0f172a; }
+  .btn-group-item:where(:not([class*="bg-"])):hover:not(:disabled),
+  .btn-group-item-primary:hover:not(:disabled),
+  .btn-group-item-success:hover:not(:disabled),
+  .btn-group-item-danger:hover:not(:disabled),
+  .btn-group-item-dark:hover:not(:disabled) {
+    background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn-hover-base) 55%, white) 0%, var(--btn-hover-base) 100%);
+  }
+  .btn-group-item-primary:hover:not(:disabled),
+  .btn-group-item-success:hover:not(:disabled),
+  .btn-group-item-danger:hover:not(:disabled),
+  .btn-group-item-dark:hover:not(:disabled) {
+    background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn-hover-base) 84%, white) 0%, var(--btn-hover-base) 100%);
+  }
 
   /* ==== Pagination ====
      Daftar halaman: <nav aria-label="Paginasi"><ul class="pagination"><li><a class="pagination-link">...</a></li></ul></nav>.
