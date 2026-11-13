@@ -20,6 +20,8 @@ Panel yang meluncur dari tepi layar. Anatomi: \`.drawer\` (+ \`.drawer-left|righ
 
 Drawer bawah dengan \`.drawer-edge\` menyisakan pegangan yang terlihat saat tertutup (\`.drawer-handle\` + \`.drawer-grab\`). Event \`drawer:show\` / \`drawer:hide\`. API: \`KKDrawer.open(el)\`, \`.close(el)\`, \`.toggle(el)\`, \`.closeAll()\`, \`.isOpen(el)\`.
 
+Layer: aplikasi dengan sidebar atau topbar ber-z-50 menambahkan \`.drawer-over-shell\` pada drawer supaya drawer dan latarnya tampil di atas shell (laci z-60, latar z-59; \`drawer.js\` menambahkan \`.drawer-backdrop-over-shell\` pada latarnya). \`.drawer-contained\` (di dalam kotak ber-\`relative\`) memakai z-index lokal sehingga tidak menimpa header atau latar drawer lain.
+
 Aksesibilitas: \`role="dialog"\` dan \`aria-labelledby\` dipasang otomatis; fokus berpindah ke drawer dan kembali ke pemicu saat ditutup; Tab tetap di dalam drawer selama ada latar gelap.
 `,
       },

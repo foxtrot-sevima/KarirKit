@@ -10,6 +10,7 @@
                data-drawer-body-scrolling="true"   keep the page scrollable while open (default: locked when there is a backdrop)
                data-drawer-keyboard="false"    Escape does NOT close it
    Edge:       .drawer-edge keeps a strip visible while closed (bottom sheet); its handle is a data-drawer-toggle button
+   Layer:      .drawer-over-shell lifts the drawer AND its backdrop above an app shell with a sidebar/topbar (z-50); .drawer-contained stays inside its own box
    Events:     drawer:show / drawer:hide (bubble from the drawer, detail.trigger = opening trigger)
    API:        KKDrawer.open(elOrId, { trigger }), .close(el), .toggle(el), .closeAll(), .isOpen(el)
 
@@ -63,7 +64,7 @@
   function showBackdrop(d) {
     if (!hasBackdrop(d)) return;
     var b = document.createElement('div');
-    b.className = 'drawer-backdrop';
+    b.className = 'drawer-backdrop' + (d.classList.contains('drawer-over-shell') ? ' drawer-backdrop-over-shell' : '');
     b.setAttribute('aria-hidden', 'true');
     document.body.appendChild(b);
     d._kkBackdrop = b;
