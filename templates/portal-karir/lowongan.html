@@ -69,7 +69,7 @@
           <div class="lg:w-40"><p class="form-label lg:sr-only">Jenis Pekerjaan</p><div id="hJenis"></div></div>
           <div class="lg:w-40"><p class="form-label lg:sr-only">Model Kerja</p><div id="hMode"></div></div>
           <div class="lg:w-40"><p class="form-label lg:sr-only">Urutkan</p><div id="hSort"></div></div>
-          <button type="button" class="hidden px-1 text-sm font-semibold text-danger-600 hover:text-danger-700 lg:inline" data-reset>Reset</button>
+          <button type="button" id="resetDesk" class="hidden px-1 text-sm font-semibold text-danger-600 hover:text-danger-700 lg:inline" data-reset>Reset</button>
           <button type="button" id="savedBack" class="hidden items-center gap-1.5 rounded-full bg-primary-50 px-3 py-1.5 text-sm font-semibold text-primary-700 hover:bg-primary-100 lg:ml-auto" data-clear="saved" hidden><i class="kk kk-bookmark-simple kk-fill h-4 w-4" aria-hidden="true"></i>Tersimpan<i class="kk kk-x h-3.5 w-3.5" aria-hidden="true"></i></button>
         </div>
         <div class="drawer-footer lg:hidden"><button type="button" class="btn-primary btn-md w-full" data-drawer-hide="filterPanel">Lihat hasil</button></div>
@@ -115,6 +115,8 @@
     </div>
     <form id="applyForm" class="flex min-h-0 flex-1 flex-col" novalidate>
       <div class="modal-body space-y-4">
+        <div id="applyJobCard" class="flex items-start gap-3 rounded-xl border border-border p-3"></div>
+        <div id="applyError" class="callout-critical text-sm text-slate-700" role="alert" hidden></div>
         <div class="flex items-center gap-3 rounded-xl bg-neutral-50 p-3">
           <span class="avatar h-10 w-10 text-sm" data-user-initials>U</span>
           <div class="min-w-0 flex-1">
@@ -124,7 +126,7 @@
           <span id="applyPct" class="badge-primary shrink-0">0%</span>
         </div>
         <div id="applyHint" class="callout-warning text-sm text-slate-600" hidden>
-          Profilmu belum lengkap, jadi peluangmu bisa tampak lebih rendah di mata perusahaan. Lengkapi data di halaman profil.
+          Profilmu belum lengkap, jadi peluangmu bisa tampak lebih rendah di mata perusahaan. Kamu tetap bisa melamar, atau <a href="profil.html" class="font-semibold text-primary-700 hover:underline">lengkapi profil</a> dulu.
         </div>
         <div>
           <label class="form-label" for="applyNote">Catatan untuk perusahaan <span class="font-normal text-slate-400">(opsional)</span></label>
@@ -174,10 +176,15 @@
     var JENIS = ['Magang', 'Penuh waktu', 'Paruh waktu', 'Kontrak', 'Freelance'];
     var MODE = ['Di kantor', 'Hybrid', 'Remote'];
 
+    // "Paling cocok" memakai hasil Tes RIASEC terbaru: tanpa hasil tes pilihan itu tidak ada dan urutan bawaannya Terbaru.
+    var HAS_FIT = !!PK.riasecCode();
+    var DEF_SORT = HAS_FIT ? 'cocok' : 'terbaru';
     var params = new URLSearchParams(location.search);
+    var urut = params.get('urut');
+    if (!urut || (urut === 'cocok' && !HAS_FIT)) urut = DEF_SORT;
     var state = {
       q: params.get('q') || '', bidang: params.get('bidang') || '', kota: params.get('kota') || '',
-      jenis: params.get('jenis') || '', mode: params.get('mode') || '', sort: params.get('urut') || 'cocok',
+      jenis: params.get('jenis') || '', mode: params.get('mode') || '', sort: urut,
       saved: params.get('simpan') === '1', page: parseInt(params.get('page'), 10) || 1,
       id: parseInt(params.get('id'), 10) || null
     };
@@ -192,7 +199,11 @@
     $('hKota').innerHTML = PK.comboHtml({ id: 'fKota', all: 'Semua kota', label: 'Kota', triggerClass: 'lg:!h-10 lg:!rounded-full lg:!text-sm', search: 'Cari kota...', value: state.kota, options: opts(KOTA) });
     $('hJenis').innerHTML = PK.comboHtml({ id: 'fJenis', all: 'Semua jenis', label: 'Jenis pekerjaan', triggerClass: 'lg:!h-10 lg:!rounded-full lg:!text-sm', search: 'Cari jenis pekerjaan...', value: state.jenis, options: opts(JENIS) });
     $('hMode').innerHTML = PK.comboHtml({ id: 'fMode', all: 'Semua model', label: 'Model kerja', triggerClass: 'lg:!h-10 lg:!rounded-full lg:!text-sm', value: state.mode, options: opts(MODE) });
-    $('hSort').innerHTML = PK.comboHtml({ id: 'fSort', all: 'Paling cocok', label: 'Urutkan', triggerClass: 'lg:!h-10 lg:!rounded-full lg:!text-sm', value: state.sort === 'cocok' ? '' : state.sort, options: [['terbaru', 'Terbaru'], ['gaji', 'Gaji tertinggi']] });
+    $('hSort').innerHTML = PK.comboHtml({
+      id: 'fSort', all: HAS_FIT ? 'Paling cocok' : 'Terbaru', label: 'Urutkan', triggerClass: 'lg:!h-10 lg:!rounded-full lg:!text-sm',
+      value: state.sort === DEF_SORT ? '' : state.sort,
+      options: HAS_FIT ? [['terbaru', 'Terbaru'], ['gaji', 'Gaji tertinggi']] : [['gaji', 'Gaji tertinggi']]
+    });
     PK.initCombos(document);
     $('fQ').value = state.q;
 
@@ -205,7 +216,7 @@
       if (state.kota) p.set('kota', state.kota);
       if (state.jenis) p.set('jenis', state.jenis);
       if (state.mode) p.set('mode', state.mode);
-      if (state.sort !== 'cocok') p.set('urut', state.sort);
+      if (state.sort !== DEF_SORT) p.set('urut', state.sort);
       if (state.saved) p.set('simpan', '1');
       if (state.page > 1) p.set('page', state.page);
       if (state.id) p.set('id', state.id);
@@ -221,6 +232,7 @@
       });
       $('filterBadge').hidden = !n;
       $('filterBadge').textContent = n;
+      $('resetDesk').textContent = n ? 'Reset (' + n + ')' : 'Reset';
     }
 
     // desktop: daftar + detail berdampingan; mobile bergantian (daftar atau detail satu layar); tanpa hasil: hanya satu empty state
@@ -294,10 +306,12 @@
     function sideRow(ic, label, value) {
       return '<div class="flex items-center justify-between gap-3"><dt class="flex items-center gap-2 text-slate-500">' + PK.icon(ic, 'h-4 w-4') + label + '</dt><dd class="text-right font-medium text-slate-900">' + esc(value) + '</dd></div>';
     }
-    function applyBtn(j, applied, cls) {
-      return applied
-        ? '<a href="lamaran.html?id=' + j.id + '" class="btn-secondary ' + cls + '">' + PK.icon('check', 'h-4 w-4') + '<span class="truncate">Lamaran terkirim<span class="hidden sm:inline">, lihat status</span></span></a>'
-        : '<button type="button" class="btn-primary ' + cls + '" data-apply>' + PK.icon('paper-plane-tilt', 'h-4 w-4') + 'Lamar Sekarang</button>';
+    // Lowongan wajib dokumen: lamaran dilanjutkan di aplikasi Karirlink (alur lama), bukan lewat form di halaman ini.
+    var KARIRLINK_APP = 'https://karirlink.id';
+    function applyBtn(j, applied, cls, needDocs) {
+      if (applied) return '<a href="lamaran.html?id=' + j.id + '" class="btn-secondary ' + cls + '">' + PK.icon('check', 'h-4 w-4') + '<span class="truncate">Lamaran terkirim<span class="hidden sm:inline">, lihat status</span></span></a>';
+      if (needDocs) return '<a href="' + KARIRLINK_APP + '" target="_blank" rel="noopener" class="btn-primary ' + cls + '">' + PK.icon('arrow-square-out', 'h-4 w-4') + '<span class="truncate">Lamar di Karirlink</span></a>';
+      return '<button type="button" class="btn-primary ' + cls + '" data-apply>' + PK.icon('paper-plane-tilt', 'h-4 w-4') + 'Lamar Sekarang</button>';
     }
     function saveBtn(j, cls) {
       var on = PK.isSaved(j.id);
@@ -310,14 +324,15 @@
       $('detailMain').innerHTML =
         '<div class="p-5 sm:p-6">' +
           '<div class="flex items-start justify-between gap-3">' + PK.logo(j, 'h-14 w-14 text-base') +
-            '<div class="flex shrink-0 gap-2 max-lg:hidden">' + saveBtn(j, 'btn-md') + applyBtn(j, res.applied, 'btn-md') + '</div>' +
+            '<div class="flex shrink-0 gap-2 max-lg:hidden">' + saveBtn(j, 'btn-md') + applyBtn(j, res.applied, 'btn-md', d.needDocs) + '</div>' +
           '</div>' +
           '<h1 class="mt-4 font-display text-xl font-bold leading-snug text-slate-900 sm:text-2xl">' + esc(j.title) + '</h1>' +
           '<p class="mt-1 flex flex-wrap items-center gap-x-2 text-sm text-slate-500"><span class="font-medium text-primary-600">' + esc(j.company) + '</span><span aria-hidden="true">&middot;</span>' + PK.icon('map-pin', 'h-3.5 w-3.5') + esc(j.city) + '</p>' +
-          '<div class="mt-3 flex flex-wrap gap-1.5">' + PK.tag(j.type, 'badge-neutral') + PK.tag(j.mode, 'badge-neutral') + PK.tag(j.field, 'badge-primary') + '</div>' +
+          '<div class="mt-3 flex flex-wrap gap-1.5">' + PK.tag(j.type, 'badge-neutral') + PK.tag(j.mode, 'badge-neutral') + PK.tag(j.field, 'badge-primary') + (d.needDocs ? PK.tag('Wajib dokumen', 'badge-warning') : '') + '</div>' +
           '<dl class="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 rounded-xl bg-neutral-50 p-4 sm:grid-cols-3">' +
             stat('Kisaran gaji', j.pay) + stat('Tanggal publish', PK.dateOf(j.posted)) + stat('Batas lamar', PK.dateOf(-d.deadline)) +
           '</dl>' +
+          (d.needDocs && !res.applied ? '<div class="callout-warning mt-4 flex items-start gap-2 text-sm text-slate-700">' + PK.icon('file-text', 'mt-0.5 h-4 w-4 shrink-0 text-warning-600') + '<p><span class="font-semibold">Lowongan ini mewajibkan dokumen</span> (misalnya CV atau transkrip). Lamaranmu dilanjutkan lewat aplikasi Karirlink, bukan form di halaman ini.</p></div>' : '') +
           (res.applied ? '<a href="lamaran.html?id=' + j.id + '" class="callout-success mt-4 flex items-center gap-2 text-sm font-medium text-success-700">' + PK.icon('check-circle', 'kk-fill h-4 w-4 shrink-0') + 'Kamu sudah melamar lowongan ini. Lihat status lamaran<span class="ml-auto">' + PK.icon('arrow-right', 'h-4 w-4') + '</span></a>' : '') +
 
           '<h2 class="mt-7 text-base font-semibold text-slate-900">Tentang pekerjaan</h2>' +
@@ -342,7 +357,7 @@
             ? '<h2 class="mt-8 text-base font-semibold text-slate-900">Lowongan serupa</h2><div class="mt-3 space-y-3">' + res.similar.map(function (x) { return PK.jobRow(x, false, true, true); }).join('') + '</div>'
             : '') +
         '</div>';
-      $('detailBar').innerHTML = saveBtn(j, 'btn-lg shrink-0') + applyBtn(j, res.applied, 'btn-lg min-w-0 flex-1');
+      $('detailBar').innerHTML = saveBtn(j, 'btn-lg shrink-0') + applyBtn(j, res.applied, 'btn-lg min-w-0 flex-1', d.needDocs);
       $('detailBar').hidden = false;
     }
 
@@ -394,7 +409,12 @@
       if (!current) return;
       var j = current.rank.job;
       var p = PK.profile();
-      $('applyDesc').textContent = j.title + ' di ' + j.company;
+      $('applyDesc').textContent = 'Periksa ringkasan lowongan, lalu kirim.';
+      $('applyJobCard').innerHTML = PK.logo(j, 'h-11 w-11 text-sm') +
+        '<div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">' + esc(j.title) + '</p>' +
+        '<p class="mt-0.5 text-xs text-slate-500">' + esc(j.company) + ' &middot; ' + esc(j.city) + '</p>' +
+        '<div class="mt-2 flex flex-wrap items-center gap-1.5">' + PK.tag(j.type, 'badge-neutral') + PK.tag(j.mode, 'badge-neutral') + '<span class="text-xs font-semibold text-slate-800">' + esc(j.pay) + '</span></div></div>';
+      $('applyError').hidden = true;
       $('applyPct').textContent = 'Profil ' + p.pct + '%';
       $('applyHint').hidden = p.pct >= 100;
       $('applyNote').value = ''; $('noteCount').textContent = '0';
@@ -409,14 +429,17 @@
       var j = current.rank.job;
       var btn = $('applySubmit');
       btn.disabled = true; btn.classList.add('btn-loading');
-      api.applyJob(j.id, $('applyNote').value).then(function () {
+      $('applyError').hidden = true;
+      api.applyJob(j.id, $('applyNote').value, $('applyAgree').checked).then(function () {
         KKModal.close('applyModal');
         btn.disabled = false; btn.classList.remove('btn-loading');
         PK.toast('success', 'Lamaran untuk ' + j.title + ' di ' + j.company + ' terkirim.');
         loadDetail(true);
-      }).catch(function () {
+      }).catch(function (err) {
         btn.disabled = false; btn.classList.remove('btn-loading');
-        PK.toast('danger', 'Lamaran belum terkirim. Periksa koneksimu lalu coba lagi.');
+        // gagal: modal tetap terbuka dengan catatan dan persetujuan yang sudah diisi, pesan dari server tampil di atas form
+        $('applyError').innerHTML = '<p class="font-semibold">Lamaran belum terkirim.</p><p class="mt-0.5">' + esc((err && err.message) || 'Periksa koneksimu lalu coba lagi.') + '</p>';
+        $('applyError').hidden = false;
       });
     });
 
@@ -463,7 +486,7 @@
       state.bidang = $('fBidang').dataset.value; state.kota = $('fKota').dataset.value; state.jenis = $('fJenis').dataset.value; state.mode = $('fMode').dataset.value;
       state.page = 1; state.id = null; loadList();
     });
-    $('fSort').addEventListener('combo:change', function (e) { state.sort = e.detail.value || 'cocok'; state.page = 1; state.id = null; loadList(); });
+    $('fSort').addEventListener('combo:change', function (e) { state.sort = e.detail.value || DEF_SORT; state.page = 1; state.id = null; loadList(); });
     $('filterForm').addEventListener('submit', function (e) { e.preventDefault(); state.q = $('fQ').value; state.page = 1; state.id = null; loadList(); });
 
     layout();
