@@ -37,10 +37,15 @@
 
 <main class="flex-1">
   <div data-shell="band">
-    <h1 id="pageTitle" class="font-display text-2xl font-bold sm:text-3xl">Cari lowongan</h1>
-    <p id="pageSub" class="mt-1 text-sm text-white/80">Jelajahi lowongan, lalu pilih satu untuk melihat detail dan melamar.</p>
+    <div class="flex items-start justify-between gap-3">
+      <div class="min-w-0">
+        <h1 id="pageTitle" class="font-display text-2xl font-bold sm:text-3xl">Cari lowongan</h1>
+        <p id="pageSub" class="mt-1 text-sm text-white/80">Jelajahi lowongan, lalu pilih satu untuk melihat detail dan melamar.</p>
+      </div>
+      <button type="button" id="savedBack" class="hidden shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary-700 transition-colors hover:bg-primary-50" data-clear="saved" aria-label="Keluar dari daftar tersimpan" hidden><i class="kk kk-bookmark-simple kk-fill h-4 w-4" aria-hidden="true"></i>Tersimpan<i class="kk kk-x h-3.5 w-3.5" aria-hidden="true"></i></button>
+    </div>
     <!-- Bilah cari + chip filter (langsung di atas latar halaman) -->
-    <div class="mt-5 flex flex-wrap items-center gap-2">
+    <div class="mt-5 flex flex-wrap items-start gap-2 lg:flex-nowrap lg:gap-3">
       <form id="filterForm" role="search" class="flex min-w-0 flex-1 gap-2 lg:w-72 lg:flex-none">
         <div class="relative min-w-0 flex-1">
           <label for="fQ" class="sr-only">Kata kunci</label>
@@ -66,7 +71,6 @@
           <div class="lg:w-40"><p class="form-label lg:sr-only">Model Kerja</p><div id="hMode"></div></div>
           <div class="lg:w-40"><p class="form-label lg:sr-only">Urutkan</p><div id="hSort"></div></div>
           <button type="button" id="resetDesk" class="hidden px-1 text-sm font-semibold text-white/90 hover:text-white lg:inline" data-reset>Reset</button>
-          <button type="button" id="savedBack" class="hidden items-center gap-1.5 rounded-full bg-primary-50 px-3 py-1.5 text-sm font-semibold text-primary-700 hover:bg-primary-100 lg:ml-auto" data-clear="saved" hidden><i class="kk kk-bookmark-simple kk-fill h-4 w-4" aria-hidden="true"></i>Tersimpan<i class="kk kk-x h-3.5 w-3.5" aria-hidden="true"></i></button>
         </div>
         <div class="drawer-footer lg:hidden"><button type="button" class="btn-primary btn-md w-full" data-drawer-hide="filterPanel">Lihat hasil</button></div>
       </aside>
