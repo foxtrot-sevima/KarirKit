@@ -272,6 +272,8 @@
     return rows.reverse();
   }
 
+  // Lowongan yang mewajibkan dokumen (`is_required_document` di API): lamarannya dialihkan ke aplikasi Karirlink.
+  var DOC_REQUIRED = [5, 7];
   function detailOf(job) {
     var t = FIELD_TEXT[job.field] || FIELD_TEXT['Teknologi & IT'];
     var perks = job.type === 'Magang'
@@ -284,7 +286,8 @@
       perks: perks,
       size: sizes[job.id % sizes.length],
       founded: 1998 + (job.id * 3) % 24,
-      deadline: Math.max(2, 14 - job.posted)
+      deadline: Math.max(2, 14 - job.posted),
+      needDocs: DOC_REQUIRED.indexOf(job.id) !== -1
     };
   }
 
@@ -405,8 +408,16 @@
         return { app: a };
       });
     },
-    applyJob: function (id) {
-      return simulate(function () { return { ok: apply(id) }; }, 700);
+    // Kontrak: POST /api/jobs/:id/apply { note (maks 300), agree (wajib) } -> { ok }.
+    // Ditolak bila tanpa persetujuan, catatan > 300 karakter, sudah pernah melamar, atau lowongan wajib dokumen (dialihkan ke Karirlink).
+    applyJob: function (id, note, agree) {
+      return simulate(function () {
+        if (!agree) throw new Error('Persetujuan berbagi profil wajib dicentang.');
+        if ((note || '').length > 300) throw new Error('Catatan maksimal 300 karakter.');
+        if (hasApplied(id)) throw new Error('Kamu sudah melamar lowongan ini.');
+        if (DOC_REQUIRED.indexOf(id) !== -1) throw new Error('Lowongan ini mewajibkan dokumen. Lamar lewat aplikasi Karirlink.');
+        return { ok: apply(id) };
+      }, 700);
     }
   };
 
