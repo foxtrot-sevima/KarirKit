@@ -272,6 +272,8 @@
     return rows.reverse();
   }
 
+  // Lowongan yang mewajibkan dokumen (`is_required_document` di API): lamarannya dialihkan ke aplikasi Karirlink.
+  var DOC_REQUIRED = [5, 7];
   function detailOf(job) {
     var t = FIELD_TEXT[job.field] || FIELD_TEXT['Teknologi & IT'];
     var perks = job.type === 'Magang'
@@ -284,7 +286,8 @@
       perks: perks,
       size: sizes[job.id % sizes.length],
       founded: 1998 + (job.id * 3) % 24,
-      deadline: Math.max(2, 14 - job.posted)
+      deadline: Math.max(2, 14 - job.posted),
+      needDocs: DOC_REQUIRED.indexOf(job.id) !== -1
     };
   }
 
@@ -405,8 +408,16 @@
         return { app: a };
       });
     },
-    applyJob: function (id) {
-      return simulate(function () { return { ok: apply(id) }; }, 700);
+    // Kontrak: POST /api/jobs/:id/apply { note (maks 300), agree (wajib) } -> { ok }.
+    // Ditolak bila tanpa persetujuan, catatan > 300 karakter, sudah pernah melamar, atau lowongan wajib dokumen (dialihkan ke Karirlink).
+    applyJob: function (id, note, agree) {
+      return simulate(function () {
+        if (!agree) throw new Error('Persetujuan berbagi profil wajib dicentang.');
+        if ((note || '').length > 300) throw new Error('Catatan maksimal 300 karakter.');
+        if (hasApplied(id)) throw new Error('Kamu sudah melamar lowongan ini.');
+        if (DOC_REQUIRED.indexOf(id) !== -1) throw new Error('Lowongan ini mewajibkan dokumen. Lamar lewat aplikasi Karirlink.');
+        return { ok: apply(id) };
+      }, 700);
     }
   };
 
@@ -686,6 +697,12 @@
           if (a.closest('#pkDrawer')) { a.classList.remove('text-fg', 'hover:bg-neutral-50'); a.classList.add('bg-primary-50', 'text-primary-700'); }
         });
       }
+      // Band judul: kerangka dari shell.js; isi tulisan halaman (judul, deskripsi, form) dipindah ke slot, id-nya tetap
+      if (kind === 'band') {
+        var sec = wrap.firstElementChild, slot = sec.querySelector('[data-band-slot]');
+        if (ph.getAttribute('data-id')) sec.id = ph.getAttribute('data-id');
+        while (ph.firstChild) slot.appendChild(ph.firstChild);
+      }
       var frag = document.createDocumentFragment();
       while (wrap.firstChild) frag.appendChild(wrap.firstChild);
       ph.replaceWith(frag);
@@ -746,14 +763,24 @@
     syncCols(); if (mq.addEventListener) mq.addEventListener('change', syncCols);
   }
 
+  // Nama dan foto pengguna di navbar, drawer akun, dan form: profil (kk_portal_profile) menimpa data akun.
+  // Dipanggil saat halaman dimuat dan setiap profil berubah (PK.refreshUser).
+  function applyUser() {
+    var p = read('kk_portal_profile', null) || {};
+    var name = (p.name || user.name || 'Pengguna').trim();
+    document.querySelectorAll('[data-user-initials]').forEach(function (el) {
+      if (p.photo) { el.classList.add('overflow-hidden', 'ring-1', 'ring-white/60'); el.innerHTML = '<img src="' + p.photo + '" alt="" class="h-full w-full rounded-full object-cover" />'; }
+      else el.textContent = initials(p.name || user.name);
+    });
+    document.querySelectorAll('[data-user-name]').forEach(function (el) { el.textContent = name; });
+    document.querySelectorAll('[data-user-first]').forEach(function (el) { el.textContent = name.split(/\s+/)[0]; }); // navbar: nama depan saja, nama lengkap ada di menu akun
+    document.querySelectorAll('[data-user-email]').forEach(function (el) { el.textContent = user.email || 'Email belum diisi'; });
+  }
   function initShell() {
     mountShell();
     initNav();
     initFooter();
-    var name = user.name || 'Pengguna';
-    document.querySelectorAll('[data-user-initials]').forEach(function (el) { el.textContent = initials(user.name); });
-    document.querySelectorAll('[data-user-name]').forEach(function (el) { el.textContent = name; });
-    document.querySelectorAll('[data-user-email]').forEach(function (el) { el.textContent = user.email || 'Email belum diisi'; });
+    applyUser();
     document.querySelectorAll('.js-current-year').forEach(function (el) { el.textContent = new Date().getFullYear(); });
   }
 
@@ -1263,7 +1290,7 @@
     TINT: TINT, rootUrl: ROOT, fmtDate: fmtDate, cardSection: cardSection, TESTS: TESTS, TEST_CATS: TEST_CATS, RIASEC: RIASEC, RIASEC_ORDER: RIASEC_ORDER, RIASEC_QS: RIASEC_QS, RIASEC_SCALE: SCALE, testCard: testCard, codeChips: codeChips, riasecCode: function () { return riasecCode; },
     CAMPUS: CAMPUS, tracerLink: tracerLink, COURSES: COURSES, COURSE_CATS: COURSE_CATS, courseCard: courseCard, courseDuration: courseDuration, lessonsOf: lessonsOf, courseProgress: courseProgress, TINT_OF: tintOfCat, eventCard: eventCard, EVENTS: EVENTS, EVENT_CATS: EVENT_CATS, eventRegistered: eventRegistered, evDay: evDay, evMonth: evMonth, evWeekday: evWeekday, evFull: evFull,
     JOBS: JOBS, STATUSES: STATUSES, STEPS: STEPS, FIELDS: FIELDS, api: api,
-    user: user, prefs: prefs, onboarded: onboarded, hasPrefs: hasPrefs,
+    user: user, refreshUser: applyUser, prefs: prefs, onboarded: onboarded, hasPrefs: hasPrefs,
     esc: esc, initials: initials, when: when, postedLabel: postedLabel, dateOf: dateOf, icon: icon, profile: profile,
     statusOf: statusOf, tintOf: tintOf, isActive: isActive, history: history, hasApplied: hasApplied,
     isSaved: isSaved, savedCount: function () { return savedIds.length; }, toast: toast,

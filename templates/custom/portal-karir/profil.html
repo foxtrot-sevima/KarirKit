@@ -35,78 +35,73 @@
 <div data-shell="nav" data-page="profile"></div>
 
 <main class="flex-1">
-  <div id="publicBanner" class="border-b border-info-200 bg-info-50" hidden>
-    <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-2.5 text-sm text-info-800 sm:px-6">
-      <p class="flex items-center gap-2"><i class="kk kk-globe-hemisphere-west h-4 w-4" aria-hidden="true"></i>Kamu melihat profil ini seperti yang dilihat publik.</p>
-      <a href="profil.html" class="font-semibold underline-offset-2 hover:underline">Kembali ke profilku</a>
-    </div>
-  </div>
 
-  <div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
-
-    <!-- ============================= BANNER + IDENTITAS ============================= -->
-    <section class="card overflow-hidden" aria-labelledby="profName">
-      <div id="profBanner" class="relative aspect-[6/1] w-full overflow-hidden bg-gradient-to-r from-primary-800 via-primary-600 to-primary-500">
-        <img id="bannerImg" alt="" class="absolute inset-0 h-full w-full object-cover object-center" hidden />
-        <div aria-hidden="true" class="absolute inset-0 opacity-30" style="background-image: radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 22px 22px;"></div>
-      </div>
-
-      <div class="px-5 pb-7 sm:px-8">
-        <div class="flex flex-wrap items-end justify-between gap-4">
-          <span class="avatar-wrap -mt-10 sm:-mt-16 lg:-mt-20">
-            <span id="profAvatar" class="avatar h-24 w-24 text-3xl ring-4 ring-surface sm:h-32 sm:w-32 sm:text-4xl lg:h-40 lg:w-40 lg:text-5xl">U</span>
-            <span id="onlineDot" class="avatar-dot avatar-dot-br avatar-dot-success !bottom-2 !right-2 !h-5 !w-5 !border-4" title="Terbuka untuk peluang"></span>
-          </span>
-          <div class="flex flex-wrap gap-2 pt-4" id="profActions"></div>
-        </div>
-
-        <div class="mt-4 min-w-0">
-          <h1 id="profName" class="font-display text-2xl font-bold text-fg sm:text-3xl">Pengguna</h1>
-          <p id="profHeadline" class="mt-1 max-w-3xl text-base text-fg"></p>
-          <p class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-fg-muted">
+  <!-- ============================= BAND IDENTITAS ============================= -->
+  <div data-shell="band">
+    <p id="publicNote" class="mb-5 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white ring-1 ring-white/25 backdrop-blur-md" hidden>
+      <span class="inline-flex items-center gap-2"><i class="kk kk-globe-hemisphere-west h-4 w-4" aria-hidden="true"></i>Tampilan publik</span>
+      <a href="profil.html" class="font-semibold underline underline-offset-2 hover:text-white">Kembali ke profilku</a>
+    </p>
+    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div class="flex min-w-0 items-center gap-4 text-left sm:gap-6">
+        <span class="avatar-wrap shrink-0">
+          <span id="profAvatar" class="avatar h-20 w-20 overflow-hidden text-2xl ring-4 ring-white/25 sm:h-28 sm:w-28 sm:text-4xl">U</span>
+        </span>
+        <div class="min-w-0">
+          <h1 id="profName" class="font-display text-2xl font-bold sm:text-3xl">Pengguna</h1>
+          <p id="profHeadline" class="mt-1 max-w-2xl text-sm text-white/85 sm:text-base"></p>
+          <p class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-white/75">
             <span class="inline-flex items-center gap-1.5"><i class="kk kk-map-pin h-4 w-4" aria-hidden="true"></i><span id="profLocation"></span></span>
             <span class="inline-flex items-center gap-1.5"><i class="kk kk-graduation-cap h-4 w-4" aria-hidden="true"></i><span id="profCampus"></span></span>
           </p>
-          <div id="profStats" class="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm sm:gap-x-0 sm:divide-x sm:divide-border"></div>
-          <span id="profBadge" class="badge-success mt-4"><span class="badge-dot bg-success-500"></span>Terbuka untuk peluang kerja dan magang</span>
         </div>
       </div>
-    </section>
+      <div id="profActions" class="flex flex-wrap gap-2"></div>
+    </div>
+  </div>
 
-    <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+  <div class="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+
       <div class="min-w-0 space-y-6 lg:col-span-2">
         <section class="card card-body" aria-labelledby="aboutTitle">
-          <div class="flex items-center justify-between gap-3"><h2 id="aboutTitle" class="card-title flex items-center gap-2">Tentang</h2><button type="button" class="owner-only btn-ghost btn-sm" data-edit="profile"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i>Ubah</button></div>
-          <p id="profAbout" class="card-text mt-3 whitespace-pre-line leading-relaxed"></p>
+          <div class="flex items-center justify-between gap-3"><h2 id="aboutTitle" class="card-title">Tentang</h2><button type="button" class="owner-only btn-ghost btn-sm" data-edit="about"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i>Ubah</button></div>
+          <div id="profAbout"></div>
         </section>
 
         <section class="card card-body" aria-labelledby="expTitle">
-          <div class="flex items-center justify-between gap-3"><h2 id="expTitle" class="card-title flex items-center gap-2">Pengalaman <span id="nExp" class="badge-neutral"></span></h2><button type="button" class="owner-only btn-outline btn-sm" data-soon="Menambah pengalaman"><i class="kk kk-calendar-plus h-4 w-4" aria-hidden="true"></i>Tambah</button></div>
-          <ol id="profExp" class="timeline mt-6 ms-3"></ol>
+          <div class="flex items-center justify-between gap-3"><h2 id="expTitle" class="card-title flex items-center gap-2">Pengalaman <span id="nExp" class="badge-neutral"></span></h2><button type="button" class="owner-only btn-outline btn-sm" data-edit="exp"><i class="kk kk-plus h-4 w-4" aria-hidden="true"></i>Tambah</button></div>
+          <div id="profExp"></div>
         </section>
 
         <section class="card card-body" aria-labelledby="eduTitle">
-          <div class="flex items-center justify-between gap-3"><h2 id="eduTitle" class="card-title flex items-center gap-2">Pendidikan <span id="nEdu" class="badge-neutral"></span></h2><button type="button" class="owner-only btn-outline btn-sm" data-soon="Menambah pendidikan"><i class="kk kk-calendar-plus h-4 w-4" aria-hidden="true"></i>Tambah</button></div>
-          <ol id="profEdu" class="timeline mt-6 ms-3"></ol>
+          <div class="flex items-center justify-between gap-3"><h2 id="eduTitle" class="card-title flex items-center gap-2">Pendidikan <span id="nEdu" class="badge-neutral"></span></h2><button type="button" class="owner-only btn-outline btn-sm" data-edit="edu"><i class="kk kk-plus h-4 w-4" aria-hidden="true"></i>Tambah</button></div>
+          <div id="profEdu"></div>
         </section>
 
-        <section class="card card-body" aria-labelledby="skillTitle">
-          <div class="flex items-center justify-between gap-3"><h2 id="skillTitle" class="card-title flex items-center gap-2">Keahlian <span id="nSkill" class="badge-neutral"></span></h2><button type="button" class="owner-only btn-ghost btn-sm" data-edit="skills"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i>Ubah</button></div>
-          <div id="profSkills" class="mt-4 flex flex-wrap gap-2"></div>
-        </section>
-
-        <section class="card card-body" aria-labelledby="interestTitle">
-          <div class="flex items-center justify-between gap-3"><h2 id="interestTitle" class="card-title flex items-center gap-2">Minat karier</h2></div>
-          <div id="profInterests" class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2"></div>
+        <section id="secSkills" class="card card-body" aria-labelledby="skillTitle">
+          <h2 id="skillTitle" class="card-title">Keahlian dan minat</h2>
+          <div class="mt-5 flex items-center justify-between gap-3"><h3 class="flex items-center gap-2 text-sm font-semibold text-fg">Keahlian <span id="nSkill" class="badge-neutral"></span></h3><button type="button" class="owner-only btn-ghost btn-sm" data-edit="skills"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i>Ubah</button></div>
+          <div id="profSkills"></div>
+          <div class="mt-6 border-t border-border pt-5">
+            <div class="flex items-center justify-between gap-3"><h3 class="text-sm font-semibold text-fg">Minat karier</h3><button type="button" class="owner-only btn-ghost btn-sm" data-edit="interests"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i>Ubah</button></div>
+            <div id="profInterests"></div>
+          </div>
         </section>
 
         <section id="activityCard" class="card owner-only overflow-hidden" aria-labelledby="actTitle">
-          <div class="flex items-center justify-between gap-3 p-6 pb-3"><h2 id="actTitle" class="card-title">Aktivitas terbaru</h2><a href="lamaran.html" class="card-link">Semua lamaran</a></div>
+          <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 p-6 pb-3"><div><h2 id="actTitle" class="card-title">Aktivitas terbaru</h2><p id="profStats" class="card-text mt-0.5 text-xs"></p></div><a href="lamaran.html" class="card-link">Semua lamaran</a></div>
           <ul id="profActivity" class="list-group list-group-flush"></ul>
         </section>
       </div>
 
       <aside class="min-w-0 space-y-6" aria-label="Informasi tambahan">
+        <section class="card owner-only card-body" aria-labelledby="completeTitle">
+          <div class="flex items-center justify-between"><h2 id="completeTitle" class="card-title">Kelengkapan profil</h2><span id="pPct" class="badge-primary">0%</span></div>
+          <div class="progress-track mt-3 h-1.5"><div id="pBar" class="progress-bar" style="width: 0%"></div></div>
+          <ul id="pSteps" class="mt-4 space-y-1 text-sm"></ul>
+        </section>
+
         <section class="card overflow-hidden" aria-labelledby="infoTitle">
           <div class="flex items-center justify-between gap-3 p-6 pb-3"><h2 id="infoTitle" class="card-title">Informasi pribadi</h2><button type="button" class="owner-only btn-ghost btn-sm w-8 px-0" data-edit="profile" aria-label="Ubah informasi pribadi"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i></button></div>
           <ul id="profInfo" class="list-group list-group-flush"></ul>
@@ -115,23 +110,17 @@
         <section class="card owner-only card-body" aria-labelledby="visTitle">
           <h2 id="visTitle" class="card-title">Visibilitas profil</h2>
           <div class="mt-4 flex items-start justify-between gap-4">
-            <label for="publicToggle" class="min-w-0 cursor-pointer"><span class="block text-sm font-medium text-fg">Profil publik</span><span class="card-text mt-0.5 block text-xs">Siapa pun dengan tautan bisa melihat profilmu.</span></label>
+            <label for="publicToggle" class="min-w-0 cursor-pointer"><span class="block text-sm font-medium text-fg">Profil publik</span><span class="card-text mt-0.5 block text-xs">Siapa pun dengan tautan bisa melihat profilmu. Email dan telepon tidak ditampilkan.</span></label>
             <span class="toggle"><input id="publicToggle" type="checkbox" class="toggle-input" checked /><span class="toggle-track"></span></span>
           </div>
           <div class="mt-4 flex items-center gap-2 rounded-control bg-neutral-50 p-2.5 text-xs text-fg-muted"><i class="kk kk-link-simple h-4 w-4 shrink-0 text-fg-subtle" aria-hidden="true"></i><span id="profUrl" class="min-w-0 flex-1 truncate"></span></div>
-          <div class="mt-3 grid grid-cols-2 gap-2"><button type="button" class="btn-outline btn-sm" id="copyUrl"><i class="kk kk-copy h-4 w-4" aria-hidden="true"></i>Salin</button><a href="profil.html?publik=1" class="btn-outline btn-sm"><i class="kk kk-globe-hemisphere-west h-4 w-4" aria-hidden="true"></i>Lihat publik</a></div>
+          <div class="mt-3 grid grid-cols-2 gap-2"><button type="button" class="btn-outline btn-sm" id="copyUrl"><i class="kk kk-copy h-4 w-4" aria-hidden="true"></i>Salin</button><a href="profil.html?publik=1" class="btn-outline btn-sm"><i class="kk kk-eye h-4 w-4" aria-hidden="true"></i>Lihat publik</a></div>
         </section>
 
         <section class="card owner-only card-body" aria-labelledby="secTitle">
           <h2 id="secTitle" class="card-title">Keamanan akun</h2>
           <p class="card-text mt-1 text-xs">Ganti password secara berkala agar akun tetap aman.</p>
           <a href="ubah-password.html" class="btn-outline btn-sm mt-4 w-full"><i class="kk kk-key h-4 w-4" aria-hidden="true"></i>Ubah Password</a>
-        </section>
-
-        <section class="card owner-only card-body" aria-labelledby="completeTitle">
-          <div class="flex items-center justify-between"><h2 id="completeTitle" class="card-title">Kelengkapan profil</h2><span id="pPct" class="badge-primary">0%</span></div>
-          <div class="progress-track mt-3 h-1.5"><div id="pBar" class="progress-bar" style="width: 0%"></div></div>
-          <ul id="pSteps" class="mt-4 space-y-2.5 text-sm"></ul>
         </section>
       </aside>
     </div>
@@ -140,7 +129,7 @@
 
 <div data-shell="footer"></div>
 
-<!-- ============================= UBAH PROFIL ============================= -->
+<!-- ============================= UBAH / TAMBAH ============================= -->
 <div class="modal-backdrop z-[60]" id="editModal">
   <div class="modal-panel modal-lg">
     <div class="modal-header">
@@ -148,11 +137,17 @@
       <button type="button" class="modal-close" data-modal-hide="editModal" aria-label="Tutup"><i class="kk kk-x h-4 w-4"></i></button>
     </div>
     <form id="editForm" class="flex min-h-0 flex-1 flex-col" novalidate>
-      <div class="modal-body space-y-4" id="editBody"></div>
+      <div class="modal-body space-y-4">
+        <div id="editBody" class="space-y-4"></div>
+        <p id="editErr" class="form-error" hidden></p>
+      </div>
       <div class="modal-footer">
-        <div class="flex w-full justify-end gap-2">
-          <button type="button" class="btn-outline btn-md" data-modal-hide="editModal">Batal</button>
-          <button type="submit" class="btn-primary btn-md">Simpan</button>
+        <div class="flex w-full items-center gap-2">
+          <button type="button" id="editDelete" class="btn-ghost btn-md !text-danger-600" hidden><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i>Hapus</button>
+          <div class="ml-auto flex gap-2">
+            <button type="button" class="btn-outline btn-md" data-modal-hide="editModal">Batal</button>
+            <button type="submit" class="btn-primary btn-md">Simpan</button>
+          </div>
         </div>
       </div>
     </form>
@@ -167,8 +162,9 @@
 <script src="campus.js"></script>
 <script src="../../portal-karir/portal.js"></script>
 <script>
-  /* Profil pribadi: tampilan pemilik (dengan kontrol ubah, statistik lamaran, aktivitas) dan tampilan publik (?publik=1).
-     Data profil di localStorage (kk_portal_profile); minat dan keahlian berasal dari onboarding. Statistik pemilik lewat PK.api. */
+  /* Profil pribadi: tampilan pemilik (kontrol tambah/ubah, kelengkapan, aktivitas) dan tampilan publik (?publik=1, tanpa email dan telepon).
+     Data profil di localStorage (kk_portal_profile); keahlian dan minat awal dari onboarding. Aktivitas pemilik lewat PK.api.
+     Tiap bagian punya tiga keadaan: berisi, kosong (ajakan mengisi), dan gagal memuat (?galat=1 untuk mencobanya). */
   (function () {
     var PK = window.PK;
     var api = PK.api;
@@ -178,18 +174,22 @@
 
     var KEY = 'kk_portal_profile';
     var isPublic = /[?&]publik=1/.test(location.search);
+    var failed = /[?&]galat=1/.test(location.search);
     function read() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
     function write(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) { /* tanpa penyimpanan */ } }
 
-    var name = PK.user.name || 'Pengguna';
-    var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'pengguna';
+    var name, slug; // nama dari profil (bila diubah), kalau tidak dari akun
+    function setName() {
+      name = (d.name || PK.user.name || 'Pengguna').trim();
+      slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'pengguna';
+    }
     var DEFAULTS = {
       headline: 'Mahasiswa tingkat akhir yang mencari peluang magang dan posisi junior',
       location: 'Bandung, Jawa Barat', campus: 'Universitas Foxtrot, Sistem Informasi', phone: '+62 812-3456-7890',
       about: 'Mahasiswa tingkat akhir dengan minat pada pengembangan produk digital. Terbiasa bekerja dalam tim, belajar cepat, dan senang membangun hal yang berguna bagi pengguna.\nSedang mencari kesempatan magang atau posisi junior untuk menerapkan ilmu sekaligus bertumbuh bersama tim yang suportif.',
-      open: true, banner: '', skills: [],
+      skills: [],
       exp: [
-        { role: 'Magang Pengembangan Web', org: 'PT Nusantara Digital', period: 'Jun 2025 sampai Agu 2025', desc: 'Membangun komponen antarmuka dan memperbaiki bug pada aplikasi internal. Berkolaborasi dengan desainer dan engineer senior.' },
+        { role: 'Magang Pengembangan Web', org: 'PT Nusantara Digital', period: 'Jun 2025 sampai Agu 2025', desc: 'Membangun komponen antarmuka dan memperbaiki bug pada aplikasi internal. Berkolaborasi dengan desainer dan engineer.' },
         { role: 'Asisten Laboratorium Basis Data', org: 'Program Studi Sistem Informasi', period: 'Sep 2024 sampai Jan 2025', desc: 'Membimbing 40 mahasiswa dalam praktikum SQL dan perancangan basis data.' }
       ],
       edu: [
@@ -199,100 +199,179 @@
     };
     var d = Object.assign({}, DEFAULTS, read());
     if (!d.skills || !d.skills.length) d.skills = PK.prefs.skills.length ? PK.prefs.skills.slice() : ['JavaScript', 'SQL', 'Figma'];
+    if (!d.interests) d.interests = PK.prefs.interests.length ? PK.prefs.interests.slice() : ['Teknologi & IT'];
 
     if (isPublic && d.public === false) {
-      document.querySelector('main').innerHTML = '<div class="mx-auto max-w-lg px-4 py-24 text-center">' + PK.emptyBox('default', 'Profil ini tidak dipublikasikan', 'Pemilik profil memilih untuk tidak menampilkannya ke publik.', '<a href="index.html" class="btn-primary btn-sm">Ke beranda</a>') + '</div>';
+      document.querySelector('main').innerHTML = '<div class="mx-auto max-w-lg px-4 py-24 text-center">' + PK.emptyBox('default', 'Profil ini tidak dipublikasikan', 'Pemilik profil memilih untuk tidak menampilkannya ke publik.', '<a href="index.html" class="btn-outline btn-sm">Ke beranda</a>') + '</div>';
       return;
     }
     document.querySelectorAll('.owner-only').forEach(function (el) { el.hidden = isPublic; });
-    $('publicBanner').hidden = !isPublic;
+    // bagian gagal dimuat: tombol tambah/ubah per bagian disembunyikan sampai berhasil dimuat
+    if (failed) document.querySelectorAll('section.card > div:first-child > button[data-edit], #secSkills [data-edit]').forEach(function (el) { el.hidden = true; });
+    $('publicNote').hidden = !isPublic;
 
-    var INFO_ICON = { Lokasi: 'map-pin', Kampus: 'graduation-cap', Email: 'link-simple', Telepon: 'phone', LinkedIn: 'linkedin-logo' };
+    // ---- tiga keadaan per bagian
+    function emptyBlock(msg, btn) {
+      return '<div class="mt-4 flex flex-col items-start gap-3 rounded-2xl border border-dashed border-border bg-neutral-50 p-5 sm:flex-row sm:items-center sm:justify-between"><p class="text-sm text-fg-muted">' + esc(msg) + '</p>' + (isPublic ? '' : btn || '') + '</div>';
+    }
+    function addBtn(key, label) { return '<button type="button" class="btn-outline btn-sm shrink-0" data-edit="' + key + '"><i class="kk kk-plus h-4 w-4" aria-hidden="true"></i>' + esc(label) + '</button>'; }
+    function failBlock() {
+      return '<div role="alert" class="mt-4 flex flex-col items-start gap-3 rounded-2xl border border-danger-200 bg-danger-50/50 p-5 sm:flex-row sm:items-center sm:justify-between"><p class="flex items-center gap-2 text-sm text-fg">' + PK.icon('seal-warning', 'h-5 w-5 shrink-0 text-danger-600') + 'Bagian ini belum bisa dimuat.</p><button type="button" class="btn-outline btn-sm shrink-0" data-retry>Coba lagi</button></div>';
+    }
+    function section(el, ok, html, msg, btn) { el.innerHTML = failed ? failBlock() : ok ? html : emptyBlock(msg, btn); }
+
+    var INFO_ICON = { Lokasi: 'map-pin', Kampus: 'graduation-cap', Email: 'envelope-simple', Telepon: 'phone', LinkedIn: 'linkedin-logo' };
     function infoRow(label, value) {
-      return '<li class="list-group-item gap-3 !px-6 !py-3.5 font-normal"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">' + PK.icon(INFO_ICON[label] || 'user-circle', 'h-[18px] w-[18px]') + '</span><span class="min-w-0"><span class="block text-xs text-fg-muted">' + label + '</span><span class="block truncate font-medium text-fg">' + value + '</span></span></li>';
+      return '<li class="list-group-item gap-3 !px-6 !py-3.5 font-normal"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">' + PK.icon(INFO_ICON[label] || 'user-circle', 'h-[18px] w-[18px]') + '</span><span class="min-w-0"><span class="block text-xs text-fg-subtle">' + label + '</span><span class="block break-words text-sm font-medium text-fg">' + value + '</span></span></li>';
     }
-    function timelineItem(ic, a, b, c, desc) {
-      return '<li class="timeline-item"><span class="timeline-marker">' + PK.icon(ic, 'h-3 w-3') + '</span><time class="timeline-time">' + esc(c) + '</time><h3 class="timeline-title !text-base">' + esc(a) + '</h3><p class="text-sm font-medium text-fg">' + esc(b) + '</p>' + (desc ? '<p class="timeline-body mt-1 !text-sm">' + esc(desc) + '</p>' : '') + '</li>';
-    }
-    function stat(ic, value, label) {
-      return '<span class="sm:px-4 sm:first:pl-0"><span class="font-semibold text-fg">' + value + '</span> <span class="text-fg-muted">' + label + '</span></span>';
+    function timelineItem(ic, a, b, c, desc, key, i) {
+      return '<li class="timeline-item"><span class="timeline-marker">' + PK.icon(ic, 'h-3 w-3') + '</span><div class="flex items-start justify-between gap-3"><div class="min-w-0"><time class="timeline-time">' + esc(c) + '</time><h3 class="timeline-title !text-base">' + esc(a) + '</h3><p class="text-sm font-medium text-fg-muted">' + esc(b) + '</p></div>' +
+        (isPublic ? '' : '<button type="button" class="btn-ghost btn-sm w-8 shrink-0 px-0" data-edit="' + key + '" data-index="' + i + '" aria-label="Ubah ' + esc(a) + '"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i></button>') + '</div>' +
+        (desc ? '<p class="card-text mt-2 text-sm">' + esc(desc) + '</p>' : '') + '</li>';
     }
     var counts = null;
+    var BTN_WHITE = 'inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-primary-700 transition-colors hover:bg-primary-50';
+    var BTN_GLASS = 'inline-flex h-11 items-center gap-2 rounded-full bg-white/10 px-5 text-sm font-semibold text-white ring-1 ring-white/30 backdrop-blur-md transition-colors hover:bg-white/20';
     function render() {
-      $('profAvatar').textContent = PK.initials(name);
-      $('bannerImg').hidden = !d.banner; if (d.banner) $('bannerImg').src = d.banner;
+      setName();
+      $('profAvatar').innerHTML = d.photo ? '<img src="' + d.photo + '" alt="" class="h-full w-full rounded-full object-cover" />' : esc(PK.initials(name));
       $('profName').textContent = name;
       document.title = name + ' | Profil KarirLink';
       $('profHeadline').textContent = d.headline;
       $('profLocation').textContent = d.location;
       $('profCampus').textContent = d.campus;
-      $('profAbout').textContent = d.about;
-      $('profBadge').hidden = d.open === false; $('onlineDot').hidden = d.open === false;
       $('nExp').textContent = d.exp.length; $('nEdu').textContent = d.edu.length; $('nSkill').textContent = d.skills.length;
+      ['nExp', 'nEdu', 'nSkill'].forEach(function (k) { $(k).hidden = failed; });
       $('publicToggle').checked = d.public !== false;
       $('profUrl').textContent = (location.host || 'karirlink.id') + '/profil/' + slug;
       $('profActions').innerHTML = isPublic
-        ? '<button type="button" class="btn-primary btn-md" data-soon="Menghubungi"><i class="kk kk-paper-plane-tilt h-4 w-4" aria-hidden="true"></i>Hubungi</button><button type="button" class="btn-outline btn-md" data-share><i class="kk kk-share-network h-4 w-4" aria-hidden="true"></i>Bagikan</button>'
-        : '<button type="button" class="btn-primary btn-md" data-edit="profile"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i>Ubah profil</button><button type="button" class="btn-outline btn-md" data-share><i class="kk kk-share-network h-4 w-4" aria-hidden="true"></i>Bagikan</button>';
-      $('profStats').innerHTML = isPublic
-        ? stat('briefcase', d.exp.length, 'Pengalaman') + stat('lightbulb', d.skills.length, 'Keahlian') + stat('graduation-cap', d.edu.length, 'Pendidikan')
-        : stat('file-text', counts ? counts.all : '-', 'Lamaran') + stat('calendar-check', counts ? counts.Wawancara : '-', 'Wawancara') + stat('bookmark-simple', PK.savedCount(), 'Tersimpan');
+        ? '<button type="button" class="' + BTN_WHITE + '" data-soon="Menghubungi"><i class="kk kk-paper-plane-tilt h-4 w-4" aria-hidden="true"></i>Hubungi</button><button type="button" class="' + BTN_GLASS + '" data-share><i class="kk kk-share-network h-4 w-4" aria-hidden="true"></i>Bagikan</button>'
+        : '<button type="button" class="' + BTN_WHITE + '" data-edit="profile"><i class="kk kk-pencil-simple h-4 w-4" aria-hidden="true"></i>Ubah profil</button><button type="button" class="' + BTN_GLASS + '" data-share><i class="kk kk-share-network h-4 w-4" aria-hidden="true"></i>Bagikan</button>';
       $('profInfo').innerHTML = infoRow('Lokasi', esc(d.location)) + infoRow('Kampus', esc(d.campus)) +
         (isPublic ? '' : infoRow('Email', esc(PK.user.email || 'Belum diisi')) + infoRow('Telepon', esc(d.phone))) +
         infoRow('LinkedIn', 'linkedin.com/in/' + slug);
-      $('profExp').innerHTML = d.exp.map(function (x) { return timelineItem('briefcase', x.role, x.org, x.period, x.desc); }).join('');
-      $('profEdu').innerHTML = d.edu.map(function (x) { return timelineItem('graduation-cap', x.school, x.degree, x.period, x.desc); }).join('');
-      $('profSkills').innerHTML = d.skills.map(function (s, i) { return '<span class="badge-primary !px-3 !py-1.5 !text-sm">' + esc(s) + '</span>'; }).join('');
-      var ints = PK.prefs.interests, modes = PK.prefs.jobTypes.concat(PK.prefs.workModes);
-      $('profInterests').innerHTML = (ints.length ? ints : ['Teknologi & IT']).map(function (f) {
-        var t = PK.tintOf({ field: f }), meta = PK.FIELDS[f] || { icon: 'briefcase' };
-        return '<div class="flex items-center gap-3 rounded-2xl p-4 ' + t.soft + '"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white ' + t.text + '">' + PK.icon(meta.icon, 'h-5 w-5') + '</span><span class="text-sm font-semibold text-slate-900">' + esc(f) + '</span></div>';
-      }).join('') + (modes.length ? '<div class="flex flex-wrap gap-2 pt-1 sm:col-span-2">' + modes.map(function (m) { return '<span class="badge-neutral">' + esc(m) + '</span>'; }).join('') + '</div>' : '');
-      var steps = [['Foto dan nama', true], ['Ringkasan tentang', !!d.about], ['Pengalaman', d.exp.length > 0], ['Pendidikan', d.edu.length > 0], ['Keahlian', d.skills.length > 0], ['Minat karier', PK.prefs.interests.length > 0]];
+
+      section($('profAbout'), !!d.about, '<p class="card-text mt-3 whitespace-pre-line leading-relaxed">' + esc(d.about) + '</p>', 'Ceritakan dirimu singkat agar perusahaan cepat mengenalmu.', addBtn('about', 'Tulis tentang dirimu'));
+      section($('profExp'), d.exp.length > 0, '<ol class="timeline mt-6 ms-3">' + d.exp.map(function (x, i) { return timelineItem('briefcase', x.role, x.org, x.period, x.desc, 'exp', i); }).join('') + '</ol>', 'Belum ada pengalaman. Magang, organisasi, dan proyek juga dihitung.', addBtn('exp', 'Tambah pengalaman'));
+      section($('profEdu'), d.edu.length > 0, '<ol class="timeline mt-6 ms-3">' + d.edu.map(function (x, i) { return timelineItem('graduation-cap', x.school, x.degree, x.period, x.desc, 'edu', i); }).join('') + '</ol>', 'Belum ada riwayat pendidikan.', addBtn('edu', 'Tambah pendidikan'));
+      section($('profSkills'), d.skills.length > 0, '<div class="mt-4 flex flex-wrap gap-2">' + d.skills.map(function (s) { return '<span class="badge-primary !px-3 !py-1.5 !text-sm">' + esc(s) + '</span>'; }).join('') + '</div>', 'Tambahkan keahlian agar lowongan yang cocok lebih mudah ditemukan.', addBtn('skills', 'Tambah keahlian'));
+      var modes = PK.prefs.jobTypes.concat(PK.prefs.workModes);
+      section($('profInterests'), d.interests.length > 0,
+        '<div class="mt-4 flex flex-wrap gap-2">' + d.interests.map(function (f) {
+          var t = PK.tintOf({ field: f }), meta = PK.FIELDS[f] || { icon: 'briefcase' };
+          return '<span class="inline-flex items-center gap-2 rounded-full py-1.5 pl-2.5 pr-3.5 text-sm font-medium text-fg ' + t.soft + '"><span class="' + t.text + '">' + PK.icon(meta.icon, 'h-4 w-4') + '</span>' + esc(f) + '</span>';
+        }).join('') + modes.map(function (m) { return '<span class="badge-neutral !px-3 !py-1.5 !text-sm">' + esc(m) + '</span>'; }).join('') + '</div>',
+        'Pilih bidang yang kamu minati agar rekomendasi lowongan sesuai.', addBtn('interests', 'Pilih minat'));
+
+      var steps = [['Foto profil', !!d.photo, 'profile'], ['Ringkasan tentang', !!d.about, 'about'], ['Pengalaman', d.exp.length > 0, 'exp'], ['Pendidikan', d.edu.length > 0, 'edu'], ['Keahlian', d.skills.length > 0, 'skills'], ['Minat karier', d.interests.length > 0, 'interests']];
       var pct = Math.round(steps.filter(function (s) { return s[1]; }).length / steps.length * 100);
       $('pPct').textContent = pct + '%'; $('pBar').style.width = pct + '%';
       $('pSteps').innerHTML = steps.map(function (s) {
-        return s[1] ? '<li class="flex items-center gap-2.5 text-slate-700">' + PK.icon('check-circle', 'kk-fill h-[18px] w-[18px] shrink-0 text-success-600') + esc(s[0]) + '</li>'
-          : '<li class="flex items-center gap-2.5 text-slate-500"><span class="flex h-[18px] w-[18px] shrink-0 rounded-full border-2 border-dashed border-neutral-300"></span>' + esc(s[0]) + '</li>';
+        return s[1] ? '<li class="flex items-center gap-2.5 py-1 text-slate-700">' + PK.icon('check-circle', 'kk-fill h-[18px] w-[18px] shrink-0 text-success-600') + esc(s[0]) + '</li>'
+          : '<li><button type="button" class="flex w-full items-center gap-2.5 rounded-lg py-1 text-left text-slate-500 hover:text-primary-700" data-edit="' + s[2] + '"><span class="flex h-[18px] w-[18px] shrink-0 rounded-full border-2 border-dashed border-neutral-300"></span><span class="flex-1">' + esc(s[0]) + '</span>' + PK.icon('plus', 'h-4 w-4') + '</button></li>';
       }).join('');
+      PK.refreshUser();
+      if (!isPublic) $('profStats').textContent = counts ? counts.all + ' lamaran, ' + counts.Wawancara + ' wawancara, ' + PK.savedCount() + ' tersimpan' : '';
     }
     render();
 
-    // ---- statistik dan aktivitas pemilik (lewat API)
+    // ---- aktivitas pemilik (lewat API)
     if (!isPublic) {
       $('profActivity').innerHTML = '<li class="list-group-item"><span class="block h-4 w-2/3 animate-pulse rounded bg-neutral-200"></span></li>';
-      api.listApplications({ pageSize: 5 }).then(function (res) {
+      (failed ? Promise.reject(new Error('galat')) : api.listApplications({ pageSize: 5 })).then(function (res) {
         counts = res.counts; render();
         $('profActivity').innerHTML = res.items.length ? res.items.map(function (a) {
           var st = PK.statusOf(a.status);
-          return '<li><a href="lamaran.html?id=' + a.id + '" class="list-group-item list-group-item-action !px-6 !py-3.5 font-normal"><span class="min-w-0 flex-1 truncate text-fg-muted">' + (a.status === 'Terkirim' ? 'Melamar' : 'Status ' + esc(a.status.toLowerCase()) + ':') + ' <span class="font-medium text-fg">' + esc(a.job.title) + '</span> di ' + esc(a.job.company) + '</span><span class="badge-neutral shrink-0">' + PK.when(a.upd) + '</span></a></li>';
-        }).join('') : '<li class="list-group-item justify-center !py-6 text-fg-muted">Belum ada aktivitas.</li>';
-      }).catch(function () { $('profActivity').innerHTML = '<li class="list-group-item text-fg-muted">Aktivitas belum bisa dimuat.</li>'; });
+          return '<li><a href="lamaran.html?id=' + a.id + '" class="list-group-item list-group-item-action !px-6 !py-3.5 font-normal"><span class="min-w-0 flex-1 truncate text-fg-muted">' + (a.status === 'Terkirim' ? 'Melamar' : 'Status lamaran') + ' <span class="font-medium text-fg">' + esc(a.job.title) + '</span> di ' + esc(a.job.company) + '</span><span class="' + st.badge + ' shrink-0">' + esc(a.status) + '</span></a></li>';
+        }).join('') : '<li class="list-group-item justify-center !py-6 text-fg-muted">Belum ada aktivitas. <a href="lowongan.html" class="card-link ml-1">Cari lowongan</a></li>';
+      }).catch(function () { $('profActivity').innerHTML = '<li class="list-group-item justify-between text-fg-muted">Aktivitas belum bisa dimuat.<button type="button" class="btn-outline btn-sm" data-retry>Coba lagi</button></li>'; });
     }
 
-    // ---- ubah lewat modal
-    var editing = null;
+    // ---- tambah dan ubah lewat modal
+    var editing = null, editIndex = -1;
+    function field(id, label, value, opts) {
+      opts = opts || {};
+      return '<div><label class="form-label" for="' + id + '">' + label + (opts.req ? ' <span class="text-danger-600">*</span>' : '') + '</label>' +
+        (opts.area ? '<textarea id="' + id + '" class="input h-auto min-h-' + opts.area + ' py-2.5" rows="' + (opts.rows || 4) + '" maxlength="' + (opts.max || 600) + '"' + (opts.ph ? ' placeholder="' + esc(opts.ph) + '"' : '') + '>' + esc(value || '') + '</textarea>'
+                   : '<input id="' + id + '" class="input" maxlength="' + (opts.max || 120) + '" value="' + esc(value || '') + '"' + (opts.ph ? ' placeholder="' + esc(opts.ph) + '"' : '') + ' />') +
+        (opts.hint ? '<p class="form-hint">' + opts.hint + '</p>' : '') + '</div>';
+    }
+    function need(ids) { for (var i = 0; i < ids.length; i++) if (!$(ids[i]).value.trim()) { $(ids[i]).focus(); return false; } return true; }
     var FORMS = {
-      profile: { title: 'Ubah profil', desc: 'Informasi dasar yang tampil di bagian atas profilmu.', html: function () {
-        return '<div><label class="form-label" for="eBanner">Gambar banner (URL)</label><input id="eBanner" class="input" placeholder="https://..." value="' + esc(d.banner || '') + '" /><p class="form-hint">Ukuran ideal 1800 x 300 px (rasio 6:1). Gambar mengisi banner penuh dan dipusatkan, jadi pastikan elemen penting ada di tengah.</p></div>' +
-          '<div><label class="form-label" for="eHead">Headline</label><input id="eHead" class="input" maxlength="120" value="' + esc(d.headline) + '" /></div>' +
-          '<div class="grid gap-4 sm:grid-cols-2"><div><label class="form-label" for="eLoc">Lokasi</label><input id="eLoc" class="input" value="' + esc(d.location) + '" /></div><div><label class="form-label" for="eCampus">Kampus dan program studi</label><input id="eCampus" class="input" value="' + esc(d.campus) + '" /></div></div>' +
-          '<div><label class="form-label" for="ePhone">Telepon</label><input id="ePhone" class="input" value="' + esc(d.phone) + '" /></div>' +
-          '<div><label class="form-label" for="eAbout">Tentang</label><textarea id="eAbout" class="input h-auto min-h-32 py-2.5" rows="6" maxlength="1000">' + esc(d.about) + '</textarea></div>' +
-          '<label class="flex items-center gap-2.5 text-sm text-slate-700"><input type="checkbox" id="eOpen" class="form-check" ' + (d.open !== false ? 'checked' : '') + ' />Tampilkan "Terbuka untuk peluang"</label>'; },
-        save: function () { d.banner = $('eBanner').value.trim(); d.headline = $('eHead').value.trim() || d.headline; d.location = $('eLoc').value.trim() || d.location; d.campus = $('eCampus').value.trim() || d.campus; d.phone = $('ePhone').value.trim(); d.about = $('eAbout').value.trim(); d.open = $('eOpen').checked; } },
-      skills: { title: 'Ubah keahlian', desc: 'Pisahkan dengan koma. Keahlian ini ikut dipakai untuk rekomendasi lowongan.', html: function () {
-        return '<div><label class="form-label" for="eSkills">Keahlian</label><input id="eSkills" class="input" value="' + esc(d.skills.join(', ')) + '" /></div>'; },
-        save: function () { d.skills = $('eSkills').value.split(',').map(function (x) { return x.trim(); }).filter(Boolean); } }
+      profile: { title: 'Ubah profil', desc: 'Foto, nama, dan informasi dasar yang tampil di bagian atas profilmu.', bind: bindPhoto,
+        html: function () {
+          return photoField() + field('eName', 'Nama lengkap', d.name || PK.user.name || '', { req: true, ph: 'Nama sesuai identitasmu' }) + field('eHead', 'Headline', d.headline, { req: true }) +
+            '<div class="grid gap-4 sm:grid-cols-2">' + field('eLoc', 'Lokasi', d.location, { req: true }) + field('eCampus', 'Kampus dan program studi', d.campus, { req: true }) + '</div>' +
+            field('ePhone', 'Telepon', d.phone, { hint: 'Hanya terlihat olehmu dan perusahaan yang kamu lamar. Tidak tampil di profil publik.' }); },
+        save: function () { if (!need(['eName', 'eHead', 'eLoc', 'eCampus'])) return false; d.name = $('eName').value.trim(); d.headline = $('eHead').value.trim(); d.location = $('eLoc').value.trim(); d.campus = $('eCampus').value.trim(); d.phone = $('ePhone').value.trim(); if (pendingPhoto !== undefined) d.photo = pendingPhoto; } },
+      about: { title: 'Ubah tentang', desc: 'Ringkasan singkat tentang dirimu dan yang kamu cari.',
+        html: function () { return field('eAbout', 'Tentang', d.about, { area: '40', rows: 7, max: 1000 }); },
+        save: function () { d.about = $('eAbout').value.trim(); } },
+      exp: { title: 'Pengalaman', desc: 'Magang, pekerjaan, organisasi, atau proyek.', list: 'exp',
+        html: function (i) { var x = i >= 0 ? d.exp[i] : {};
+          return field('eRole', 'Posisi', x.role, { req: true }) + field('eOrg', 'Organisasi atau perusahaan', x.org, { req: true }) + field('ePeriod', 'Periode', x.period, { ph: 'Mis. Jun 2025 sampai Agu 2025' }) + field('eDesc', 'Deskripsi', x.desc, { area: '28', rows: 4 }); },
+        save: function (i) { if (!need(['eRole', 'eOrg'])) return false; var x = { role: $('eRole').value.trim(), org: $('eOrg').value.trim(), period: $('ePeriod').value.trim(), desc: $('eDesc').value.trim() }; if (i >= 0) d.exp[i] = x; else d.exp.unshift(x); } },
+      edu: { title: 'Pendidikan', desc: 'Sekolah, kampus, atau kursus formal.', list: 'edu',
+        html: function (i) { var x = i >= 0 ? d.edu[i] : {};
+          return field('eSchool', 'Institusi', x.school, { req: true }) + field('eDegree', 'Gelar atau jurusan', x.degree, { req: true }) + field('ePeriod', 'Periode', x.period, { ph: 'Mis. 2022 sampai sekarang' }) + field('eDesc', 'Deskripsi', x.desc, { area: '28', rows: 3 }); },
+        save: function (i) { if (!need(['eSchool', 'eDegree'])) return false; var x = { school: $('eSchool').value.trim(), degree: $('eDegree').value.trim(), period: $('ePeriod').value.trim(), desc: $('eDesc').value.trim() }; if (i >= 0) d.edu[i] = x; else d.edu.unshift(x); } },
+      skills: { title: 'Ubah keahlian', desc: 'Pisahkan dengan koma. Keahlian ikut dipakai untuk rekomendasi lowongan.',
+        html: function () { return field('eSkills', 'Keahlian', d.skills.join(', '), { area: '28', rows: 3, max: 400, ph: 'JavaScript, SQL, Figma' }); },
+        save: function () { d.skills = $('eSkills').value.split(',').map(function (x) { return x.trim(); }).filter(Boolean); } },
+      interests: { title: 'Ubah minat karier', desc: 'Pilih bidang yang kamu minati. Dipakai untuk mengurutkan lowongan.',
+        html: function () { return '<div class="grid gap-2 sm:grid-cols-2">' + Object.keys(PK.FIELDS).map(function (f) {
+          return '<label class="flex items-center gap-2.5 rounded-xl border border-border p-3 text-sm text-slate-700"><input type="checkbox" class="form-check" data-interest value="' + esc(f) + '" ' + (d.interests.indexOf(f) !== -1 ? 'checked' : '') + ' />' + esc(f) + '</label>'; }).join('') + '</div>'; },
+        save: function () { d.interests = Array.prototype.map.call(document.querySelectorAll('[data-interest]:checked'), function (c) { return c.value; }); } }
     };
+    var pendingPhoto; // undefined = tidak berubah, '' = dihapus, teks = foto baru (data URL)
+    var NO_PHOTO = '<i class="kk kk-user-circle h-5 w-5 text-slate-300" aria-hidden="true"></i>';
+    function photoField() {
+      return '<div><span class="form-label">Foto profil</span><div class="upload upload-compact mt-1"><label class="upload-drop"><input id="ePhotoFile" type="file" accept=".jpg,.jpeg,.png" class="sr-only" />' +
+        '<span id="ePhotoThumb" class="upload-thumb rounded-full">' + (d.photo ? '<img src="' + d.photo + '" alt="" class="h-full w-full object-cover" />' : NO_PHOTO) + '</span>' +
+        '<span class="upload-text"><span id="ePhotoName" class="upload-title truncate !font-medium !text-neutral-700">' + (d.photo ? 'Ganti foto' : 'Klik untuk pilih foto') + '</span><span class="upload-hint">JPG atau PNG, maks. 2 MB. Dipotong persegi.</span></span></label></div>' +
+        '<button type="button" id="ePhotoDel" class="btn-ghost btn-sm mt-2 !text-danger-600"' + (d.photo ? '' : ' hidden') + '><i class="kk kk-trash h-4 w-4" aria-hidden="true"></i>Hapus foto</button>' +
+        '<p id="ePhotoErr" class="form-error mt-1" hidden></p></div>';
+    }
+    function bindPhoto() {
+      $('ePhotoFile').addEventListener('change', function () {
+        var file = this.files[0], err = $('ePhotoErr'), inp = this;
+        if (!file) return;
+        err.hidden = true;
+        if (!/^image\/(jpeg|png)$/.test(file.type)) { err.textContent = 'Format harus JPG atau PNG.'; err.hidden = false; inp.value = ''; return; }
+        if (file.size > 2 * 1024 * 1024) { err.textContent = 'Ukuran foto maksimal 2 MB.'; err.hidden = false; inp.value = ''; return; }
+        var reader = new FileReader();
+        reader.onload = function () {
+          var img = new Image();
+          img.onload = function () {
+            var s = Math.min(img.width, img.height), c = document.createElement('canvas');
+            c.width = c.height = 256;
+            c.getContext('2d').drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 256, 256);
+            pendingPhoto = c.toDataURL('image/jpeg', 0.85);
+            $('ePhotoThumb').innerHTML = '<img src="' + pendingPhoto + '" alt="" class="h-full w-full object-cover" />';
+            $('ePhotoName').textContent = file.name; $('ePhotoDel').hidden = false;
+          };
+          img.onerror = function () { err.textContent = 'Foto tidak bisa dibaca. Coba file lain.'; err.hidden = false; };
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+      $('ePhotoDel').addEventListener('click', function () {
+        pendingPhoto = ''; $('ePhotoThumb').innerHTML = NO_PHOTO; $('ePhotoName').textContent = 'Klik untuk pilih foto';
+        $('ePhotoFile').value = ''; this.hidden = true;
+      });
+    }
+    function openEdit(key, index) {
+      editing = FORMS[key]; editIndex = isNaN(index) ? -1 : index;
+      $('editTitle').textContent = editing.list ? (editIndex >= 0 ? 'Ubah ' : 'Tambah ') + editing.title.toLowerCase() : editing.title;
+      $('editDesc').textContent = editing.desc; $('editBody').innerHTML = editing.html(editIndex);
+      pendingPhoto = undefined; if (editing.bind) editing.bind();
+      $('editErr').hidden = true; $('editDelete').hidden = !(editing.list && editIndex >= 0);
+      KKModal.open('editModal');
+    }
     document.addEventListener('click', function (e) {
       var ed = e.target.closest('[data-edit]');
-      if (ed) {
-        editing = FORMS[ed.getAttribute('data-edit')];
-        $('editTitle').textContent = editing.title; $('editDesc').textContent = editing.desc; $('editBody').innerHTML = editing.html();
-        KKModal.open('editModal');
-        return;
-      }
+      if (ed) { openEdit(ed.getAttribute('data-edit'), parseInt(ed.getAttribute('data-index'), 10)); return; }
+      if (e.target.closest('[data-retry]')) { location.href = location.pathname + (isPublic ? '?publik=1' : ''); return; }
       var soon = e.target.closest('[data-soon]');
       if (soon) { PK.toast('info', soon.getAttribute('data-soon') + ' akan tersedia segera.'); return; }
       if (e.target.closest('[data-share]') || e.target.closest('#copyUrl')) {
@@ -301,9 +380,15 @@
         try { navigator.clipboard.writeText(url).then(done, done); } catch (err) { done(); }
       }
     });
+    $('editDelete').addEventListener('click', function () {
+      if (!editing || !editing.list || editIndex < 0) return;
+      d[editing.list].splice(editIndex, 1);
+      write(d); render(); KKModal.close('editModal'); PK.toast('success', 'Dihapus dari profil.');
+    });
     $('editForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      if (editing) editing.save();
+      if (!editing) return;
+      if (editing.save(editIndex) === false) { $('editErr').textContent = 'Lengkapi kolom yang bertanda bintang.'; $('editErr').hidden = false; return; }
       write(d); render(); KKModal.close('editModal');
       PK.toast('success', 'Profil diperbarui.');
     });

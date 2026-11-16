@@ -8,6 +8,23 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-16
+
+Dasar KarirKit: v1.7.0
+
+### Changed
+- **Hero Beranda Portal Karir dirombak, band judul disatukan, dan halaman Profil dibangun ulang** (`templates/portal-karir/index.html`, `shell.js`, `portal.js`, `profil.html`, halaman Event, Lowongan, Pengembangan, Tracer Study, RIASEC, dan Job Fair; tanpa komponen atau gaya baru):
+  - **Hero Beranda:** latar gradasi biru merek dengan navbar kaca, satu judul "Akselerasi Karier Impian Bersama <nama kampus>", satu bilah cari berbentuk pil (kata kunci, bidang, jenis) dan empat kartu layanan kaca (Lowongan, Event, Course, Portofolio) selebar bilah itu. Orbit, pola titik, dan kartu melayang dihapus; dasar hero melengkung dan jarak atas-bawah sama. Isinya statis, tanpa data langsung. Pengaturan gambar hero di Personalisasi Portal belum tersambung ke hero ini.
+  - **Band judul bersama:** halaman Event, Event Detail, Lowongan, Pengembangan, Tracer Study, RIASEC, Hasil RIASEC, dan Job Fair kini memakai satu kerangka band (`data-shell="band"` di `shell.js`): gradasi merek polos dengan dasar melengkung, tanpa pola titik atau cahaya blur. Lowongan memindahkan judul, kolom cari, dan filter ke dalam band. Teks band Tracer Study diringkas menjadi satu kalimat.
+  - **Profil (FOX-1350):** band identitas (foto, nama, headline, lokasi, kampus); tiap bagian punya keadaan berisi, kosong, dan gagal memuat (`?galat=1`); modal tambah, ubah, dan hapus untuk Pengalaman dan Pendidikan serta modal Tentang, Keahlian, Minat karier, dan informasi dasar; Keahlian dan Minat karier digabung dalam satu kartu; daftar kelengkapan bisa diklik. Formulir Ubah profil memuat foto (unggah JPG atau PNG maks. 2 MB, dipotong persegi) dan nama lengkap. Tampilan publik (`?publik=1`) tanpa email dan telepon.
+  - **Navbar dan menu akun mengikuti profil:** nama dan foto dari profil menimpa data akun di semua halaman (`PK.refreshUser`); navbar desktop menampilkan nama depan saja dan kapsul avatar di ponsel diberi jarak.
+- **Portal Karir, halaman Lowongan disempurnakan untuk desain final (FOX-1351)** (`templates/portal-karir/lowongan.html`, `portal.js`, dan versi white-label):
+  - Form kirim lamaran kini diawali ringkasan lowongan (logo, judul, penyelenggara, kota, jenis, model kerja, gaji). Bila profil belum lengkap, peringatan menautkan ke halaman profil dan menegaskan lamaran tetap bisa dikirim.
+  - Lamaran yang gagal (belum menyetujui berbagi profil, sudah pernah melamar, koneksi) menampilkan pesan di dalam form; form tetap terbuka dengan catatan dan persetujuan yang sudah diisi.
+  - Lowongan yang mewajibkan dokumen tetap tampil dengan penanda "Wajib dokumen", catatan penjelasan, dan tombol "Lamar di Karirlink" yang menggantikan form (lamarannya dilanjutkan di aplikasi Karirlink).
+  - Urutan "Paling cocok" hanya tersedia bagi mahasiswa yang punya hasil Tes RIASEC; tanpa hasil tes, urutan bawaan Terbaru. Tombol Reset di desktop menampilkan jumlah filter aktif.
+  - Kontrak `PK.api.applyJob(id, note, agree)` kini menolak lamaran tanpa persetujuan, yang kedua kali, dan ke lowongan wajib dokumen; `getJob` mengembalikan `detail.needDocs`.
+
 ## 2026-11-13
 
 Dasar KarirKit: v1.7.0
