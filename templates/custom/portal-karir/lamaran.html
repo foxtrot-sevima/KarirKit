@@ -34,29 +34,32 @@
 <!-- ============================= NAVBAR ============================= -->
 <div data-shell="nav" data-page="apps"></div>
 
-<main class="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6">
+<main class="flex-1">
 
-  <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-    <div>
-      <h1 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Lamaran saya</h1>
-      <p id="lead" class="mt-1 text-sm text-slate-500">Pantau tahap setiap lamaranmu di sini.</p>
+  <div data-shell="band">
+    <div class="flex items-start justify-between gap-3">
+      <div class="min-w-0">
+        <h1 class="font-display text-2xl font-bold sm:text-3xl">Lamaran saya</h1>
+        <p id="lead" class="mt-1 text-sm text-white/80">Pantau tahap setiap lamaranmu di sini.</p>
+      </div>
+      <a href="lowongan.html" class="inline-flex h-11 shrink-0 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-primary-700 transition-colors hover:bg-primary-50 max-sm:hidden"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i>Cari Lowongan</a>
     </div>
-    <a href="lowongan.html" class="btn-primary btn-md shrink-0 self-start sm:self-auto"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i>Cari Lowongan</a>
+
+    <!-- Bilah cari + tab status (sama dengan halaman lowongan) -->
+    <div class="mt-5 flex flex-wrap items-start gap-2 lg:flex-nowrap lg:gap-3">
+      <div class="relative w-full lg:w-72 lg:flex-none">
+        <label for="fQ" class="sr-only">Cari lamaran</label>
+        <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+        <input id="fQ" type="search" class="input pl-9 lg:h-10 lg:rounded-full" placeholder="Cari posisi atau perusahaan" autocomplete="off" />
+      </div>
+      <div id="statusTabs" class="flex min-w-0 gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-lg:-mx-4 max-lg:w-[calc(100%+2rem)] max-lg:px-4 max-lg:pb-1 lg:flex-1 lg:flex-wrap" role="radiogroup" aria-label="Filter status lamaran"></div>
+      <button type="button" class="hidden px-1 text-sm font-semibold text-white/90 hover:text-white lg:inline lg:self-center" data-reset>Reset</button>
+    </div>
   </div>
 
-  <!-- Bilah cari + chip status (sama dengan halaman lowongan) -->
-  <div class="mt-5 flex flex-wrap items-center gap-2">
-    <div class="relative w-full lg:w-64">
-      <label for="fQ" class="sr-only">Cari lamaran</label>
-      <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
-      <input id="fQ" type="search" class="input pl-9 lg:h-10 lg:rounded-full" placeholder="Cari posisi atau perusahaan" autocomplete="off" />
-    </div>
-    <div id="statusTabs" class="flex min-w-0 gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-lg:-mx-4 max-lg:w-[calc(100%+2rem)] max-lg:px-4 max-lg:pb-1 lg:flex-wrap" role="radiogroup" aria-label="Filter status lamaran"></div>
-    <button type="button" class="hidden px-1 text-sm font-semibold text-danger-600 hover:text-danger-700 lg:inline" data-reset>Reset</button>
-  </div>
-
-  <div id="listTop" class="mt-5 grid scroll-mt-24 grid-cols-1 gap-5 lg:grid-cols-[26rem_minmax(0,1fr)] lg:items-start">
-    <div class="min-w-0">
+  <div class="mx-auto w-full max-w-7xl px-4 pb-8 pt-5 sm:px-6">
+  <div id="listTop" class="grid scroll-mt-24 grid-cols-1 gap-5 lg:grid-cols-[26rem_minmax(0,1fr)] lg:items-start">
+    <div id="listCol" class="min-w-0">
       <div id="appList" class="transition-opacity" aria-live="polite"></div>
       <div id="pager" class="mt-5"></div>
     </div>
@@ -67,6 +70,7 @@
       </div>
       <div id="detailBody"></div>
     </section>
+  </div>
   </div>
 </main>
 
@@ -117,11 +121,17 @@
       var keys = [{ key: '', label: 'Semua', n: counts && counts.all }].concat(PK.STATUSES.map(function (s) { return { key: s.key, label: s.key, n: counts && counts[s.key] }; }));
       $('statusTabs').innerHTML = keys.map(function (k) {
         var on = state.status === k.key;
-        return '<button type="button" role="radio" aria-checked="' + on + '" class="inline-flex h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors ' + (on ? 'border-primary-400 bg-primary-50 text-primary-700' : 'border-border bg-surface text-slate-600 hover:bg-neutral-50') + '" data-tab="' + k.key + '">' + k.label +
-          (counts ? '<span class="rounded-full px-1.5 text-xs font-semibold ' + (on ? 'bg-white text-primary-700' : 'bg-neutral-100 text-neutral-600') + '">' + k.n + '</span>' : '') + '</button>';
+        return '<button type="button" role="radio" aria-checked="' + on + '" class="inline-flex h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors ' + (on ? 'border-transparent bg-white text-primary-700' : 'border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20') + '" data-tab="' + k.key + '">' + k.label +
+          (counts ? '<span class="rounded-full px-1.5 text-xs font-semibold ' + (on ? 'bg-primary-50 text-primary-700' : 'bg-white/20 text-white') + '">' + k.n + '</span>' : '') + '</button>';
       }).join('');
     }
 
+    // keadaan kosong: belum pernah melamar, tab status tanpa lamaran, dan pencarian tanpa hasil
+    function emptyApps() {
+      if (state.q) return PK.emptyBox('document', 'Tidak ada hasil untuk "' + state.q + '"', 'Coba kata kunci lain atau periksa ejaannya.', '<button type="button" class="btn-outline btn-sm" data-reset>Hapus pencarian</button>');
+      if (state.status) return PK.emptyBox('document', 'Belum ada lamaran berstatus ' + state.status, 'Pilih tab Semua untuk melihat lamaran lainnya.', '<button type="button" class="btn-outline btn-sm" data-reset>Lihat semua lamaran</button>');
+      return PK.emptyBox('document', 'Kamu belum melamar lowongan apa pun', 'Lamaran yang kamu kirim akan muncul di sini beserta tahap dan jadwal wawancaranya.', '<a href="lowongan.html" class="btn-primary btn-sm">Cari lowongan</a>');
+    }
     function renderList() {
       var res = lastRes;
       $('appList').innerHTML = res.items.length ? '<div class="space-y-3">' + res.items.map(function (a) {
@@ -137,8 +147,9 @@
           '<div class="mt-3 flex flex-wrap items-center gap-1.5">' + PK.tag(a.job.type, muted) + PK.tag(a.job.mode, muted) + '</div>' +
           '<div class="mt-3 flex items-center justify-between gap-2 text-xs"><span class="font-semibold text-slate-800">' + esc(a.job.pay) + '</span><span class="text-slate-400">Dikirim ' + PK.when(a.sent).toLowerCase() + '</span></div></article>';
       }).join('') + '</div>'
-        : PK.emptyBox('document', state.q || state.status ? 'Tidak ada lamaran yang cocok' : 'Belum ada lamaran', state.q || state.status ? 'Coba kata kunci lain atau pilih tab Semua.' : 'Lamaran yang kamu kirim akan muncul di sini.',
-            state.q || state.status ? '<button type="button" class="btn-outline btn-sm" data-reset>Hapus filter</button>' : '<a href="lowongan.html" class="btn-primary btn-sm">Cari lowongan</a>');
+        : emptyApps();
+      $('listCol').classList.toggle('lg:col-span-2', !res.items.length);
+      $('detailPane').classList.toggle('lg:hidden', !res.items.length);
       PK.pager($('pager'), res, 'lamaran');
     }
 
