@@ -686,6 +686,12 @@
           if (a.closest('#pkDrawer')) { a.classList.remove('text-fg', 'hover:bg-neutral-50'); a.classList.add('bg-primary-50', 'text-primary-700'); }
         });
       }
+      // Band judul: kerangka dari shell.js; isi tulisan halaman (judul, deskripsi, form) dipindah ke slot, id-nya tetap
+      if (kind === 'band') {
+        var sec = wrap.firstElementChild, slot = sec.querySelector('[data-band-slot]');
+        if (ph.getAttribute('data-id')) sec.id = ph.getAttribute('data-id');
+        while (ph.firstChild) slot.appendChild(ph.firstChild);
+      }
       var frag = document.createDocumentFragment();
       while (wrap.firstChild) frag.appendChild(wrap.firstChild);
       ph.replaceWith(frag);
