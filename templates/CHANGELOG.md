@@ -8,6 +8,18 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-16
+
+Dasar KarirKit: v1.7.0
+
+### Changed
+- **Portal Karir, halaman Lowongan disempurnakan untuk desain final (FOX-1351)** (`templates/portal-karir/lowongan.html`, `portal.js`, dan versi white-label):
+  - Form kirim lamaran kini diawali ringkasan lowongan (logo, judul, penyelenggara, kota, jenis, model kerja, gaji). Bila profil belum lengkap, peringatan menautkan ke halaman profil dan menegaskan lamaran tetap bisa dikirim.
+  - Lamaran yang gagal (belum menyetujui berbagi profil, sudah pernah melamar, koneksi) menampilkan pesan di dalam form; form tetap terbuka dengan catatan dan persetujuan yang sudah diisi.
+  - Lowongan yang mewajibkan dokumen tetap tampil dengan penanda "Wajib dokumen", catatan penjelasan, dan tombol "Lamar di Karirlink" yang menggantikan form (lamarannya dilanjutkan di aplikasi Karirlink).
+  - Urutan "Paling cocok" hanya tersedia bagi mahasiswa yang punya hasil Tes RIASEC; tanpa hasil tes, urutan bawaan Terbaru. Tombol Reset di desktop menampilkan jumlah filter aktif.
+  - Kontrak `PK.api.applyJob(id, note, agree)` kini menolak lamaran tanpa persetujuan, yang kedua kali, dan ke lowongan wajib dokumen; `getJob` mengembalikan `detail.needDocs`.
+
 ## 2026-11-13
 
 Dasar KarirKit: v1.7.0
