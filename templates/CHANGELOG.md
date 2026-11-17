@@ -13,6 +13,8 @@ Aturan singkat:
 Dasar KarirKit: v1.7.0
 
 ### Changed
+- **Wording Daftar Mitra**: subjudul di `templates/portal-karir/mitra-daftar.html` menjadi "Pasang lowongan dan jangkau mahasiswa/alumni kampus lewat KarirLink. Pendaftaran gratis!" (deskripsi meta ikut disesuaikan).
+- **Tombol "Lanjutkan dengan Google" dan teks "Belum punya akun? Daftar sekarang" disembunyikan sementara** (`templates/portal-karir/login.html`, `login-password.html`, `register.html`): keduanya dibungkus komentar HTML (bukan dihapus) dan bisa ditampilkan lagi dengan membuka komentarnya. Tombol "Lanjutkan dengan SiAkadCloud", pemisah "atau", dan formulir email tidak berubah.
 - **Halaman detail Portal Karir tanpa tombol kembali** (`templates/portal-karir/event-detail.html`, `riasec.html`, `riasec-hasil.html`, `job-fair-lowongan.html`, `job-fair-perusahaan.html` dan versi white-label): tautan "Semua event", "Pengembangan Diri", breadcrumb di band, "Job Fair", dan tombol "Kembali ke semua lowongan" dihapus karena navbar sudah menunjukkan posisi pengguna dan tombol kembali browser tersedia; judul kini langsung di bawah navbar dengan jarak yang seragam. Nama job fair yang tadinya jadi teks tautan kembali dipindah ke baris keterangan di Lowongan Job Fair. Yang sengaja dipertahankan: kontrol kembali di panel detail mobile Lowongan dan Lamaran Saya (itu penutup panel, bukan navigasi antar halaman), tombol langkah (Sebelumnya di course, pertanyaan RIASEC, dan onboarding), komponen Breadcrumb KarirKit di course dan job-fair-perusahaan, dan tautan "Kembali ke profil" di Ubah Password.
 
 ## 2026-11-16
