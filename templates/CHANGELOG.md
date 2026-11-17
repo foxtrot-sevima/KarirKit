@@ -8,6 +8,13 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-17
+
+Dasar KarirKit: v1.7.0
+
+### Changed
+- **Halaman detail Portal Karir tanpa tombol kembali** (`templates/portal-karir/event-detail.html`, `riasec.html`, `riasec-hasil.html`, `job-fair-lowongan.html`, `job-fair-perusahaan.html` dan versi white-label): tautan "Semua event", "Pengembangan Diri", breadcrumb di band, "Job Fair", dan tombol "Kembali ke semua lowongan" dihapus karena navbar sudah menunjukkan posisi pengguna dan tombol kembali browser tersedia; judul kini langsung di bawah navbar dengan jarak yang seragam. Nama job fair yang tadinya jadi teks tautan kembali dipindah ke baris keterangan di Lowongan Job Fair. Yang sengaja dipertahankan: kontrol kembali di panel detail mobile Lowongan dan Lamaran Saya (itu penutup panel, bukan navigasi antar halaman), tombol langkah (Sebelumnya di course, pertanyaan RIASEC, dan onboarding), komponen Breadcrumb KarirKit di course dan job-fair-perusahaan, dan tautan "Kembali ke profil" di Ubah Password.
+
 ## 2026-11-16
 
 Dasar KarirKit: v1.7.0
