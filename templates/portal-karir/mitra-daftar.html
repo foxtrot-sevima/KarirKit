@@ -51,27 +51,32 @@
             <p class="form-error hidden" data-error-for="fNama">Nama perusahaan wajib diisi.</p>
           </div>
           <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div>
-            <label for="fNib" class="form-label">NIB (13 digit) <span class="text-danger-600" aria-hidden="true">*</span></label>
-            <input id="fNib" name="fNib" type="text" required class="input" placeholder="1234567890123" inputmode="numeric" maxlength="13" />
-            <p class="form-error hidden" data-error-for="fNib">NIB harus 13 digit angka.</p>
-          </div>
-          <div>
-            <label for="fBidang" class="form-label">Bidang Usaha <span class="text-danger-600" aria-hidden="true">*</span></label>
-            <input id="fBidang" name="fBidang" type="text" required class="input" placeholder="mis. Teknologi"  />
-            <p class="form-error hidden" data-error-for="fBidang">Bidang usaha wajib diisi.</p>
-          </div>
+            <div>
+              <label for="fNib" class="form-label">NIB (13 digit) <span class="text-danger-600" aria-hidden="true">*</span></label>
+              <input id="fNib" name="fNib" type="text" required class="input" placeholder="1234567890123" inputmode="numeric" maxlength="13" />
+              <p class="form-error hidden" data-error-for="fNib">NIB harus 13 digit angka.</p>
+            </div>
+            <div>
+              <label for="fNpwp" class="form-label">NPWP (15 atau 16 digit) <span class="text-danger-600" aria-hidden="true">*</span></label>
+              <input id="fNpwp" name="fNpwp" type="text" required class="input" placeholder="012345678901000" inputmode="numeric" maxlength="24" autocomplete="off" />
+              <p class="form-error hidden" data-error-for="fNpwp">NPWP harus 15 atau 16 digit angka.</p>
+            </div>
           </div>
           <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div>
-            <label for="fKota" class="form-label">Kota <span class="text-danger-600" aria-hidden="true">*</span></label>
-            <input id="fKota" name="fKota" type="text" required class="input" placeholder="mis. Surabaya"  />
-            <p class="form-error hidden" data-error-for="fKota">Kota wajib diisi.</p>
+            <div>
+              <label for="fBidang" class="form-label">Bidang Usaha <span class="text-danger-600" aria-hidden="true">*</span></label>
+              <input id="fBidang" name="fBidang" type="text" required class="input" placeholder="mis. Teknologi" />
+              <p class="form-error hidden" data-error-for="fBidang">Bidang usaha wajib diisi.</p>
+            </div>
+            <div>
+              <label for="fKota" class="form-label">Kota <span class="text-danger-600" aria-hidden="true">*</span></label>
+              <input id="fKota" name="fKota" type="text" required class="input" placeholder="mis. Surabaya" />
+              <p class="form-error hidden" data-error-for="fKota">Kota wajib diisi.</p>
+            </div>
           </div>
           <div>
             <label for="fWeb" class="form-label">Situs Web <span class="font-normal text-slate-400">(opsional)</span></label>
             <input id="fWeb" name="fWeb" type="text" class="input" placeholder="perusahaan.co.id" />
-          </div>
           </div>
         </fieldset>
 
@@ -198,7 +203,7 @@
     if (qs.get('kampus')) { document.getElementById('campusName').textContent = qs.get('kampus'); document.getElementById('campusNote').hidden = false; }
     function err(id, show) { var e = document.querySelector('[data-error-for="' + id + '"]'); if (e) e.classList.toggle('hidden', !show); var el = document.getElementById(id); if (el && el.type !== 'checkbox') el.classList.toggle('is-invalid', show); return show; }
     var rules = {
-      fNama: function (v) { return v.trim().length > 0; }, fNib: function (v) { return /^\d{13}$/.test(v.trim()); }, fBidang: function (v) { return v.trim().length > 0; }, fKota: function (v) { return v.trim().length > 0; },
+      fNama: function (v) { return v.trim().length > 0; }, fNib: function (v) { return /^\d{13}$/.test(v.trim()); }, fNpwp: function (v) { var t = v.trim(); return /^[\d.\-\s]+$/.test(t) && /^\d{15,16}$/.test(t.replace(/\D/g, '')); }, fBidang: function (v) { return v.trim().length > 0; }, fKota: function (v) { return v.trim().length > 0; },
       fPic: function (v) { return v.trim().length > 0; }, fJabatan: function (v) { return v.trim().length > 0; },
       fEmail: function (v) { var m = /^[^\s@]+@([^\s@]+\.[^\s@]+)$/.exec(v.trim()); return !!m && FREE.indexOf(m[1].toLowerCase()) === -1; },
       fTelp: function (v) { return v.replace(/[^0-9]/g, '').length >= 8; }, fPass: function (v) { return v.length >= 8; }
