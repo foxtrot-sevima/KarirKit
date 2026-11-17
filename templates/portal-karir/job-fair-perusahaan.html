@@ -79,8 +79,7 @@
         '<p class="mt-1 text-sm text-fg-muted">Peserta ' + esc(f.name) + ' &middot; ' + esc(c.city) + '</p></div>' +
         '<div class="rounded-xl bg-primary-50 px-5 py-3 text-center sm:shrink-0"><p class="text-2xl font-bold text-primary-700">' + c.jobList.length + '</p><p class="text-xs text-primary-700">lowongan dibuka</p></div></section>' +
         '<section class="mt-8"><h2 class="font-display text-xl font-bold text-fg">Lowongan di Job Fair ini</h2>' +
-        '<div class="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">' + c.jobList.map(function (r) { return PK.jobCard(r); }).join('') + '</div>' +
-        '<a href="' + PK.fairUrl('job-fair-lowongan', f.slug, fp.preview) + '" class="btn-outline btn-md mt-6">' + PK.icon('arrow-left', 'h-4 w-4') + 'Kembali ke semua lowongan</a></section>';
+        '<div class="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">' + c.jobList.map(function (r) { return PK.jobCard(r); }).join('') + '</div></section>';
       $('page').innerHTML = h;
     }
     function load() {
