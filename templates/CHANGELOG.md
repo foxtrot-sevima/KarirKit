@@ -13,6 +13,7 @@ Aturan singkat:
 Dasar KarirKit: v1.7.0
 
 ### Changed
+- **Daftar Mitra: kolom NPWP ditambahkan di samping NIB** (`templates/portal-karir/mitra-daftar.html`): NPWP wajib diisi dan harus 15 atau 16 digit angka; titik, strip, dan spasi pemisah (format NPWP lama, mis. 01.234.567.8-901.000) diterima. Baris data perusahaan disusun ulang menjadi NIB dan NPWP, lalu Bidang Usaha dan Kota, lalu Situs Web di baris sendiri; di ponsel semuanya tersusun ke bawah. Di profil perusahaan (`templates/mitra`) dan detail kerja sama di admin KarirLink NPWP belum ditampilkan.
 - **Halaman detail Portal Karir tanpa tombol kembali** (`templates/portal-karir/event-detail.html`, `riasec.html`, `riasec-hasil.html`, `job-fair-lowongan.html`, `job-fair-perusahaan.html` dan versi white-label): tautan "Semua event", "Pengembangan Diri", breadcrumb di band, "Job Fair", dan tombol "Kembali ke semua lowongan" dihapus karena navbar sudah menunjukkan posisi pengguna dan tombol kembali browser tersedia; judul kini langsung di bawah navbar dengan jarak yang seragam. Nama job fair yang tadinya jadi teks tautan kembali dipindah ke baris keterangan di Lowongan Job Fair. Yang sengaja dipertahankan: kontrol kembali di panel detail mobile Lowongan dan Lamaran Saya (itu penutup panel, bukan navigasi antar halaman), tombol langkah (Sebelumnya di course, pertanyaan RIASEC, dan onboarding), komponen Breadcrumb KarirKit di course dan job-fair-perusahaan, dan tautan "Kembali ke profil" di Ubah Password.
 
 ## 2026-11-16
