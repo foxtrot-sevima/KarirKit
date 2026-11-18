@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Profil Perusahaan | Portal Karir KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../../dist/output.css" />
+<meta name="description" content="Profil perusahaan mitra KarirLink dan lowongan yang mereka buka." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/custom/portal-karir/perusahaan-detail.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Profil Perusahaan | Portal Karir KarirLink" />
+<meta property="og:description" content="Profil perusahaan mitra KarirLink dan lowongan yang mereka buka." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/custom/portal-karir/perusahaan-detail.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Profil Perusahaan | Portal Karir KarirLink" />
+<meta name="twitter:description" content="Profil perusahaan mitra KarirLink dan lowongan yang mereka buka." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="flex min-h-screen flex-col bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= NAVBAR ============================= -->
+<div data-shell="nav" data-page="company"></div>
+
+<main class="flex-1">
+
+  <div data-shell="band">
+    <div id="head" class="flex flex-wrap items-center gap-4">
+      <span class="h-16 w-16 shrink-0 animate-pulse rounded-2xl bg-white/20"></span>
+      <div class="min-w-0"><h1 class="font-display text-2xl font-bold sm:text-3xl">Profil perusahaan</h1></div>
+    </div>
+    <nav id="tabs" class="mt-5 hidden gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-sm:-mx-4 max-sm:w-[calc(100%+2rem)] max-sm:px-4 max-sm:pb-1" aria-label="Bagian profil"></nav>
+  </div>
+
+  <div id="body" class="mx-auto w-full max-w-7xl px-4 pb-8 pt-6 sm:px-6" aria-live="polite"></div>
+</main>
+
+<div data-shell="footer"></div>
+
+<script src="../../../assets/js/ui.js"></script>
+<script src="../../../assets/js/toast.js"></script>
+<script src="../../portal-karir/shell.js"></script>
+<script src="campus.js"></script>
+<script src="../../portal-karir/portal.js"></script>
+<script>
+  /* Profil perusahaan: data lewat PK.api (getCompany). Satu halaman, bagian-bagiannya (Review, Lowongan, Kabar, Tentang) berurutan dan dituju lewat tautan jangkar. */
+  (function () {
+    var PK = window.PK, esc = PK.esc;
+    function $(id) { return document.getElementById(id); }
+    PK.initShell();
+    var slug = new URLSearchParams(location.search).get('slug') || '';
+    var FOLLOW = 'kk_portal_follow';
+    function followed() { try { return JSON.parse(localStorage.getItem(FOLLOW) || '[]'); } catch (e) { return []; } }
+    function setFollow(on) {
+      var list = followed().filter(function (x) { return x !== slug; }); if (on) list.push(slug);
+      try { localStorage.setItem(FOLLOW, JSON.stringify(list)); } catch (e) {}
+    }
+    function followBtn() {
+      var on = followed().indexOf(slug) !== -1;
+      return '<button type="button" id="follow" aria-pressed="' + on + '" class="inline-flex h-11 shrink-0 items-center gap-2 rounded-full px-5 text-sm font-semibold transition-colors ' + (on ? 'border border-white/40 bg-white/10 text-white hover:bg-white/20' : 'bg-white text-primary-700 hover:bg-primary-50') + '">' + PK.icon(on ? 'check' : 'plus', 'h-4 w-4') + (on ? 'Mengikuti' : 'Ikuti') + '</button>';
+    }
+    function stars(v) { return v.toFixed(1).replace('.', ','); }
+    function card(inner, cls) { return '<section class="rounded-2xl border border-border/70 bg-white p-5 sm:p-6 ' + (cls || '') + '">' + inner + '</section>'; }
+    function h2(t) { return '<h2 class="text-base font-semibold text-slate-900">' + t + '</h2>'; }
+
+    function ratingCard(r) {
+      var full = Math.round(r.overall), pct = Math.round(r.recommend / r.count * 100), starRow = '';
+      for (var i = 1; i <= 5; i++) starRow += PK.icon('star', 'kk-fill h-4 w-4 ' + (i <= full ? 'text-warning-500' : 'text-neutral-200'));
+      return card('<div class="grid grid-cols-1 gap-6 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-8">' +
+        '<div class="flex flex-col items-center justify-center text-center sm:border-r sm:border-border/70 sm:pr-8"><p class="font-display text-6xl font-bold leading-none text-slate-900">' + stars(r.overall) + '</p>' +
+          '<div class="mt-3 flex items-center gap-0.5" aria-hidden="true">' + starRow + '</div>' +
+          '<p class="mt-2 text-sm text-slate-500">dari 5 &middot; ' + r.count + ' review</p>' +
+          '<p class="mt-4 whitespace-nowrap rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-700">' + pct + '% menyarankan ke teman</p></div>' +
+        '<div class="flex flex-col justify-center gap-3.5">' + r.cats.map(function (x) {
+          return '<div class="grid grid-cols-[minmax(0,1fr)_2.25rem] items-center gap-x-3 gap-y-1.5 sm:grid-cols-[11rem_minmax(0,1fr)_2.25rem] sm:gap-x-4"><span class="text-sm text-slate-600 max-sm:col-span-2">' + esc(x.label) + '</span>' +
+            '<span class="h-2.5 overflow-hidden rounded-full bg-neutral-100"><span class="block h-full rounded-full ' + (x.v < 3.5 ? 'bg-secondary-500' : 'bg-primary-600') + '" style="width:' + Math.round(x.v / 5 * 100) + '%"></span></span>' +
+            '<span class="text-right text-sm font-semibold text-slate-800">' + stars(x.v) + '</span></div>';
+        }).join('') + '</div></div>');
+    }
+    function reviewCard(v) {
+      return card('<div class="flex items-start justify-between gap-3"><div class="min-w-0"><h3 class="text-sm font-semibold text-slate-900">' + esc(v.role) + '</h3><p class="mt-0.5 text-xs text-slate-500">' + esc(v.meta) + '</p></div>' +
+        '<div class="flex shrink-0 items-center gap-2"><span class="hidden rounded-full bg-primary-50 px-2.5 py-1 text-xs font-medium text-primary-700 sm:inline">Alumni terverifikasi</span><span class="text-sm font-bold text-slate-900">' + stars(v.score) + '</span></div></div>' +
+        '<div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2"><div><p class="text-[11px] font-semibold uppercase tracking-wider text-primary-700">Yang disukai</p><p class="mt-1 text-sm leading-relaxed text-slate-600">' + esc(v.like) + '</p></div>' +
+        '<div><p class="text-[11px] font-semibold uppercase tracking-wider text-secondary-700">Yang perlu diperbaiki</p><p class="mt-1 text-sm leading-relaxed text-slate-600">' + esc(v.fix) + '</p></div></div>' +
+        (v.reply ? '<div class="mt-4 rounded-xl bg-neutral-50 p-4"><p class="text-xs font-semibold text-slate-900">Jawaban perusahaan</p><p class="mt-1 text-sm leading-relaxed text-slate-600">' + esc(v.reply) + '</p></div>' : ''));
+    }
+    function jobItem(j) {
+      return '<a href="lowongan.html?id=' + j.id + '" class="group flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-4 transition-colors hover:border-primary-200 hover:bg-neutral-50">' +
+        '<div class="min-w-0 flex-1"><p class="truncate text-sm font-semibold text-slate-900">' + esc(j.title) + '</p>' +
+        '<p class="mt-0.5 truncate text-xs text-slate-500">' + esc(j.type) + ' &middot; ' + esc(j.mode) + ' &middot; ' + esc(j.city) + '</p></div>' +
+        '<span class="hidden shrink-0 text-xs font-semibold text-slate-800 sm:inline">' + esc(j.pay) + '</span>' +
+        '<span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-600 group-hover:text-white">' + PK.icon('arrow-right', 'h-4 w-4') + '</span></a>';
+    }
+    function info(icon, label, value) {
+      return '<div class="flex items-start gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600">' + PK.icon(icon, 'h-[18px] w-[18px]') + '</span>' +
+        '<div class="min-w-0"><p class="text-xs text-slate-500">' + label + '</p><p class="truncate text-sm font-semibold text-slate-900">' + value + '</p></div></div>';
+    }
+    function notFound() {
+      $('head').innerHTML = '<div><h1 class="font-display text-2xl font-bold sm:text-3xl">Perusahaan tidak ditemukan</h1><p class="mt-1 text-sm text-white/80">Profil yang kamu cari tidak ada atau sudah dihapus.</p></div>';
+      $('body').innerHTML = '<a href="perusahaan.html" class="btn-primary btn-md">Lihat semua perusahaan</a>';
+    }
+
+    PK.api.getCompany(slug).then(function (res) {
+      var c = res.company, r = c.rating;
+      document.title = c.name + ' | Portal Karir KarirLink';
+      $('head').innerHTML = PK.logo({ company: c.name, field: c.field }, 'h-16 w-16 text-xl !rounded-2xl') +
+        '<div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-x-3 gap-y-1"><h1 class="font-display text-2xl font-bold sm:text-3xl">' + esc(c.name) + '</h1>' +
+        '<span class="inline-flex items-center text-white" title="Perusahaan terverifikasi" role="img" aria-label="Perusahaan terverifikasi">' + PK.icon('seal-check', 'kk-fill h-6 w-6') + '</span></div>' +
+        '<p class="mt-1 text-sm text-white/80">' + esc(c.field) + ' &middot; ' + esc(c.city) + ' &middot; ' + esc(c.size) + '</p></div>' + followBtn();
+      var tabs = [['review', 'Review (' + r.count + ')'], ['lowongan', 'Lowongan (' + res.jobs.length + ')'], ['kabar', 'Kabar'], ['tentang', 'Tentang']];
+      $('tabs').classList.remove('hidden'); $('tabs').classList.add('flex');
+      $('tabs').innerHTML = tabs.map(function (t) {
+        return '<a href="#' + t[0] + '" class="inline-flex h-10 shrink-0 items-center whitespace-nowrap rounded-full border border-white/30 bg-white/10 px-4 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/20">' + t[1] + '</a>';
+      }).join('');
+      $('body').innerHTML = '<div class="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">' +
+        '<div class="min-w-0 space-y-5">' +
+          '<div id="review" class="scroll-mt-24 space-y-5">' + ratingCard(r) + c.reviews.map(reviewCard).join('') + '</div>' +
+          '<section id="lowongan" class="scroll-mt-24"><h2 class="mb-3 text-base font-semibold text-slate-900">Lowongan dibuka</h2><div class="space-y-3">' + res.jobs.map(jobItem).join('') + '</div></section>' +
+          '<section id="kabar" class="scroll-mt-24"><h2 class="mb-3 text-base font-semibold text-slate-900">Kabar</h2><div class="space-y-3">' + c.news.map(function (n) {
+            return '<article class="rounded-2xl border border-border/70 bg-white p-5"><p class="text-xs text-slate-500">' + esc(n.date) + '</p><h3 class="mt-1 text-sm font-semibold text-slate-900">' + esc(n.title) + '</h3><p class="mt-1 text-sm leading-relaxed text-slate-600">' + esc(n.body) + '</p></article>';
+          }).join('') + '</div></section>' +
+          card(h2('Tentang perusahaan') + '<p class="mt-2 text-sm leading-relaxed text-slate-600">' + esc(c.about) + '</p>' +
+            '<div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">' + info('buildings', 'Bidang usaha', esc(c.field)) + info('map-pin', 'Lokasi', esc(c.city)) + info('users-three', 'Ukuran', esc(c.size)) + info('globe', 'Situs web', esc(c.site)) + '</div>', 'scroll-mt-24" id="tentang') +
+        '</div>' +
+        '<aside class="space-y-5 lg:sticky lg:top-24">' +
+          '<section class="rounded-2xl border border-secondary-200 bg-secondary-50 p-5 sm:p-6"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-secondary-600 ring-1 ring-secondary-200">' + PK.icon('chat-circle-text', 'h-5 w-5') + '</span>' +
+            '<h2 class="mt-4 text-base font-semibold text-slate-900">Pernah bekerja di sini?</h2><p class="mt-1.5 text-sm leading-relaxed text-slate-600">Ceritamu membantu adik tingkat memilih tempat kerja. Namamu tidak ditampilkan.</p>' +
+            '<a href="segera-hadir.html" class="btn-accent btn-md mt-5 w-full">Tulis review</a></section>' +
+          card(h2('Cara kami menjaga review') + '<ul class="mt-3 space-y-2 text-sm text-slate-600">' + ['Penulis terbukti pernah atau sedang bekerja di sini', 'Nama dan kampus penulis disembunyikan', 'Kata kasar dan nama orang disaring sebelum tampil', 'Perusahaan boleh menjawab, tidak boleh menghapus'].map(function (t) {
+            return '<li class="flex items-start gap-2"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-500"></span><span>' + t + '</span></li>'; }).join('') + '</ul>') +
+          card(h2('Lowongan yang sedang dibuka') + '<ul class="mt-3 space-y-2">' + res.jobs.slice(0, 3).map(function (j) {
+            return '<li><a href="lowongan.html?id=' + j.id + '" class="text-sm font-medium text-primary-700 underline-offset-2 hover:underline">' + esc(j.title) + '</a></li>'; }).join('') + '</ul>') +
+        '</aside></div>';
+      $('head').addEventListener('click', function (e) {
+        if (!e.target.closest('#follow')) return;
+        var on = followed().indexOf(slug) === -1; setFollow(on);
+        var tmp = document.createElement('div'); tmp.innerHTML = followBtn(); $('follow').replaceWith(tmp.firstChild);
+        if (PK.toast) PK.toast('success', on ? 'Kamu mengikuti ' + c.name : 'Berhenti mengikuti ' + c.name);
+      });
+    }, notFound);
+  })();
+</script>
+</body>
+</html>

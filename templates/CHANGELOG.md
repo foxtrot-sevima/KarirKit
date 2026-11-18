@@ -8,11 +8,22 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-18
+
+Dasar KarirKit: v1.7.0
+
+### Added
+- **Halaman Perusahaan dan Profil Perusahaan** (`templates/portal-karir/perusahaan.html`, `perusahaan-detail.html`, `PK.api.listCompanies` dan `getCompany`): daftar perusahaan dengan kolom cari, filter bidang berupa pil, dan kartu per perusahaan (logo inisial, nama, kota, bidang) tanpa angka atau posisi yang berubah-ubah; halaman bernomor. Kartu membuka profil perusahaan (satu halaman, bagiannya dituju lewat tab jangkar di band): header dengan logo, ikon centang terverifikasi di samping nama (keterangan Perusahaan terverifikasi muncul saat disorot), ukuran perusahaan, dan tombol Ikuti; Review (ringkasan nilai per aspek, kartu review Yang disukai dan Yang perlu diperbaiki, jawaban perusahaan), Lowongan, Kabar, dan Tentang; kolom samping berisi ajakan Tulis review, cara review dijaga, dan lowongan yang sedang dibuka. Review, kabar, dan ukuran hanyalah contoh data dari PK.api.getCompany. Dibangkitkan juga ke versi white-label dan ditambahkan ke story Portal Karir.
+
+### Changed
+- **Navbar Portal Karir: menu Layanan disembunyikan sementara, menu Perusahaan ditambahkan** (`templates/portal-karir/shell.js`): dropdown Layanan di desktop dan bagian Layanan di drawer ponsel dibungkus komentar HTML (bukan dihapus); menu Perusahaan ditambahkan setelah Event di keduanya. Kolom Layanan di footer tidak berubah.
+
 ## 2026-11-17
 
 Dasar KarirKit: v1.7.0
 
 ### Changed
+- **Daftar Mitra: tautan Masuk sama dengan halaman Daftar** (`templates/portal-karir/mitra-daftar.html`): teks "Sudah punya akun mitra?" menjadi "Sudah punya akun?" dan tautan Masuk mengarah ke `login.html` (sebelumnya `segera-hadir.html`). Panel ilustrasi disusun seperti di login: logo dan label Mitra Perusahaan sebaris di atas, judul dan deskripsi, lalu pratinjau dekoratif berupa tumpukan kartu (lowongan, verifikasi perusahaan, pelamar, kerja sama kampus) dengan satu kartu menonjol dan sisanya memudar. Daftar langkah pendaftaran bergaris penghubung dihapus, begitu pula teks "Portal karier kampus dari SEVIMA." di dasar panel.
 - **Halaman Masuk, Daftar, dan Daftar Mitra tanpa latar biru** (`templates/portal-karir/login.html`, `login-password.html`, `login-cek-email.html`, `register.html`, `mitra-daftar.html`): panel ilustrasi di kanan tidak lagi berlatar biru bergradasi berpola titik. Di login, kotak dan isinya (judul, deskripsi, dan kartu lowongan, event, serta lamaran) tidak berubah dan kotak putihnya diberi garis tipis agar tetap terlihat di atas halaman putih. Di Daftar Mitra panel yang tadinya seluruhnya biru dengan teks putih disamakan bentuknya dengan login (kotak putih bergaris tipis berisi panel pastel), dengan logo berwarna, judul dan langkah berwarna gelap, ikon langkah di cakram putih, dan garis penghubung langkah berwarna biru muda; isi dan urutan langkahnya tidak berubah. `onboarding` punya tata letak sendiri dan belum diubah.
 - **Daftar Mitra: kolom NPWP ditambahkan di samping NIB** (`templates/portal-karir/mitra-daftar.html`): NPWP wajib diisi dan harus 15 atau 16 digit angka; titik, strip, dan spasi pemisah (format NPWP lama, mis. 01.234.567.8-901.000) diterima. Baris data perusahaan disusun ulang menjadi NIB dan NPWP, lalu Bidang Usaha dan Kota, lalu Situs Web di baris sendiri; di ponsel semuanya tersusun ke bawah. Di profil perusahaan (`templates/mitra`) dan detail kerja sama di admin KarirLink NPWP belum ditampilkan.
 - **Wording Daftar Mitra**: subjudul di `templates/portal-karir/mitra-daftar.html` menjadi "Pasang lowongan dan jangkau mahasiswa/alumni kampus lewat KarirLink. Pendaftaran gratis!" (deskripsi meta ikut disesuaikan).

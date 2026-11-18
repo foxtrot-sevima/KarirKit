@@ -370,6 +370,63 @@
         return paginate(list, o.page, o.pageSize || 8);
       });
     },
+    // Daftar perusahaan: lowongan dikelompokkan per perusahaan. GET /api/companies?q&bidang&page&pageSize -> { items:[{ slug, name, field, city }], total, page, pages }
+    listCompanies: function (o) {
+      o = o || {};
+      return simulate(function () {
+        var q = (o.q || '').trim().toLowerCase(), map = {};
+        JOBS.forEach(function (j) {
+          var k = slugify(j.company);
+          map[k] = map[k] || { slug: k, name: j.company, field: j.field, city: j.city };
+        });
+        var list = Object.keys(map).map(function (k) { return map[k]; }).filter(function (x) {
+          return (!o.bidang || x.field === o.bidang) && (!q || (x.name + ' ' + x.field + ' ' + x.city).toLowerCase().indexOf(q) !== -1);
+        }).sort(function (x, y) { return y.jobs - x.jobs || x.name.localeCompare(y.name); });
+        return paginate(list, o.page, o.pageSize || 12);
+      });
+    },
+    // Profil perusahaan: GET /api/companies/:slug -> { company:{ slug, name, field, city, size, about, site, rating, reviews, news }, jobs:[job] } (404 bila tidak ada).
+    // Review dan kabar di bawah hanya contoh yang dibangkitkan dari slug supaya tampilannya stabil.
+    getCompany: function (slug) {
+      return simulate(function () {
+        var jobs = JOBS.filter(function (j) { return slugify(j.company) === slug; });
+        if (!jobs.length) throw new Error('Perusahaan tidak ditemukan');
+        var j0 = jobs[0], remote = j0.city === 'Di mana saja', seed = 0, i;
+        for (i = 0; i < slug.length; i++) seed = (seed * 31 + slug.charCodeAt(i)) % 100003;
+        function pick(list, n) { return list[(seed + n * 7) % list.length]; }
+        function num(min, max, n) { return min + ((seed * (n + 3) + n * 17) % (max - min + 1)); }
+        var cats = ['Kesempatan belajar', 'Atasan dan rekan kerja', 'Gaji dan tunjangan', 'Jenjang karir', 'Waktu kerja'].map(function (label, n) {
+          return { label: label, v: Math.round((3.2 + (num(0, 17, n) / 10)) * 10) / 10 };
+        });
+        var overall = Math.round(cats.reduce(function (a, x) { return a + x.v; }, 0) / cats.length * 10) / 10;
+        var count = num(8, 24, 1), recommend = Math.round(count * (0.6 + num(0, 3, 2) / 10));
+        var likes = ['Atasan sabar mengajari dari nol. Dalam setahun saya sudah dipercaya memegang satu tanggung jawab kecil.', 'Datanya nyata dan banyak. Bagus untuk belajar langsung terasa dampaknya ke lapangan.', 'Anak magang diberi pekerjaan sungguhan, bukan hanya fotokopi. Ada uang saku dan makan siang.', 'Rekan satu tim terbuka berbagi ilmu dan tidak pelit koreksi. Suasananya santai tapi serius soal hasil.'];
+        var fixes = ['Akhir bulan hampir pasti lembur karena tutup buku. Sebaiknya jadwalnya dibagi lebih rata.', 'Jenjang karir untuk analis belum tertulis. Saya tidak tahu harus mencapai apa untuk naik tingkat.', 'Minggu pertama agak bingung karena belum ada pengenalan yang rapi.', 'Proses persetujuan lintas divisi kadang lambat sehingga pekerjaan menumpuk di akhir.'];
+        var roles = jobs.map(function (j) { return j.title; }).concat(['Staf Operasional', 'Peserta Magang', 'Analis']);
+        var tenure = ['Bekerja 2 tahun, masih di sini', 'Bekerja 1 tahun, sudah keluar', 'Magang 6 bulan'], when = ['Oktober 2026', 'September 2026', 'Agustus 2026'];
+        var reviews = [0, 1, 2].map(function (n) {
+          return {
+            role: pick(roles, n), meta: pick(tenure, n) + ' \u00b7 ditulis ' + when[n], score: Math.round((3.4 + num(0, 16, n + 4) / 10) * 10) / 10,
+            like: pick(likes, n), fix: pick(fixes, n + 1),
+            reply: n === 0 ? 'Terima kasih masukannya. Mulai Januari 2027 kami membagi tutup buku menjadi dua gelombang supaya lembur berkurang.' : ''
+          };
+        });
+        var sizes = ['50 sampai 200 karyawan', '200 sampai 500 karyawan', '500 sampai 1.000 karyawan'];
+        return {
+          company: {
+            slug: slug, name: j0.company, field: j0.field, city: j0.city, size: pick(sizes, 0), site: slug.replace(/-/g, '') + '.co.id',
+            about: j0.company + ' bergerak di bidang ' + j0.field.toLowerCase() + (remote ? ' dan bekerja secara remote.' : ' dan berkantor di ' + j0.city + '.') +
+              ' Perusahaan ini menjadi mitra KarirLink untuk menjangkau mahasiswa dan alumni dari berbagai kampus, serta membuka kesempatan magang dan kerja bagi mereka.',
+            rating: { overall: overall, count: count, recommend: recommend, cats: cats }, reviews: reviews,
+            news: [
+              { date: 'November 2026', title: 'Program magang batch 2027 dibuka', body: j0.company + ' menerima mahasiswa tingkat akhir untuk program magang enam bulan, lengkap dengan mentor dan uang saku.' },
+              { date: 'Oktober 2026', title: 'Hadir di Job Fair kampus mitra', body: 'Tim rekrutmen ' + j0.company + ' membuka sesi konsultasi CV dan wawancara singkat bagi alumni.' }
+            ]
+          },
+          jobs: jobs
+        };
+      });
+    },
     getJob: function (id) {
       return simulate(function () {
         var r = rankOf(id);
@@ -684,7 +741,7 @@
   // Merek di navbar selalu logo KarirLink SEVIMA; nama dan logo kampus hanya tampil di hero Beranda (dan identitas di footer).
 
   // ---- shell bersama: navbar, drawer, dan footer (markup di shell.js)
-  var PAGE_FILE = { home: 'index.html', jobs: 'lowongan.html', event: 'event.html', grow: 'pengembangan.html', tracer: 'tracer-study.html' };
+  var PAGE_FILE = { home: 'index.html', jobs: 'lowongan.html', event: 'event.html', grow: 'pengembangan.html', tracer: 'tracer-study.html', company: 'perusahaan.html' };
   function mountShell() {
     var S = window.PK_SHELL; if (!S) return;
     document.querySelectorAll('[data-shell]').forEach(function (ph) {
