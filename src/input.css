@@ -20114,6 +20114,20 @@ html[data-theme="dark"] .logo-on-dark { display: block; }
 
   /* ----- File Upload ----- */
   .input-file { @apply h-auto cursor-pointer overflow-hidden p-0 text-fg-muted leading-10 file:mr-3 file:h-10 file:cursor-pointer file:border-0 file:border-r file:border-border file:bg-neutral-50 file:px-3.5 file:text-sm file:font-medium file:text-neutral-700 hover:file:bg-neutral-100; }
+  /* Cropper: pangkas gambar dengan seret dan zoom (assets/js/cropper.js) */
+  .cropper { @apply w-full; }
+  .cropper-stage {
+    @apply relative mx-auto w-full max-w-[22rem] cursor-grab touch-none select-none overflow-hidden rounded-card bg-neutral-900 outline-none focus-visible:ring-4 focus-visible:ring-primary-500/30 active:cursor-grabbing;
+    aspect-ratio: var(--cropper-ratio, 1);
+  }
+  .cropper-image { @apply pointer-events-none absolute left-0 top-0 max-w-none select-none; transform-origin: 0 0; will-change: transform; }
+  .cropper-frame { @apply pointer-events-none absolute inset-0 rounded-card; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.55); }
+  .cropper-round .cropper-frame { @apply rounded-full; box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.55), inset 0 0 0 2px rgb(255 255 255 / 0.9); }
+  .cropper-controls { @apply mx-auto mt-4 flex w-full max-w-[22rem] items-center gap-3; }
+  .cropper-step { @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/20 max-sm:h-11 max-sm:w-11; }
+  .cropper-zoom { @apply h-1.5 min-w-0 flex-1 cursor-pointer appearance-none rounded-full bg-neutral-200 outline-none focus-visible:ring-4 focus-visible:ring-primary-500/20; }
+  .cropper-zoom::-webkit-slider-thumb { @apply h-5 w-5 appearance-none rounded-full border-2 border-white bg-primary-600 shadow-md; }
+  .cropper-zoom::-moz-range-thumb { @apply h-5 w-5 rounded-full border-2 border-white bg-primary-600 shadow-md; }
   .upload { @apply w-full; }
   .upload-drop {
     @apply flex min-h-[var(--upload-h,11rem)] w-full cursor-pointer flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-neutral-300 bg-neutral-50 px-4 py-8 text-center transition-colors

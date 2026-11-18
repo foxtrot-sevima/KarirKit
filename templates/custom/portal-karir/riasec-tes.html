@@ -11,11 +11,6 @@
 <link rel="canonical" href="https://karirkit.vercel.app/templates/custom/portal-karir/riasec-tes.html" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#2361e7" />
-<style>
-  @keyframes q-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .q-in { animation: q-in .24s ease-out; }
-  @media (prefers-reduced-motion: reduce) { .q-in { animation: none; } }
-</style>
 </head>
 <body class="font-sans text-slate-800 antialiased">
 
@@ -97,7 +92,7 @@
       }).join('');
       var banner = fresh && i > 0 && i % PER === 0 ? '<div class="callout-success mb-6 flex items-center gap-2.5 py-2.5">' + ic('seal-check', 'kk-fill h-5 w-5 shrink-0 text-success-600') + '<p class="text-sm font-medium text-fg">Bagian ' + sec + ' selesai. Lanjut ke bagian ' + (sec + 1) + '.</p></div>' : '';
       var qEl = $('question');
-      qEl.className = fresh ? 'q-in' : '';
+      qEl.className = fresh ? 'anim-enter' : '';
       qEl.innerHTML = banner +
         '<div class="flex items-center gap-3"><span class="flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm ' + TINT[type.tone].logo + '">' + ic(type.icon, 'h-7 w-7') + '</span><div><p class="text-xs font-semibold uppercase tracking-wider text-primary-600">Bagian ' + (sec + 1) + ' dari ' + SECTIONS + '</p><p class="text-sm text-fg-muted">' + SEC_TITLE[sec] + ' &middot; pernyataan ' + (i + 1) + '</p></div></div>' +
         '<h1 id="runTitle" tabindex="-1" class="mt-5 font-display text-2xl font-bold leading-snug text-slate-900 outline-none sm:text-3xl">Seberapa kamu suka ' + esc(q) + '?</h1>' +

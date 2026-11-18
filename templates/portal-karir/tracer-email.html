@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
 <script src="../campus-theme.js"></script>
-<meta name="description" content="Contoh email Tracer Study untuk alumni: link unik, tanpa login, tanpa password." />
+<meta name="description" content="Contoh email Tracer Study untuk alumni: tombol membuka halaman masuk, lalu kuesioner langsung terbuka." />
 <meta name="author" content="SEVIMA" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#2361e7" />
@@ -15,8 +15,10 @@
 <body class="bg-shell font-sans text-slate-800 antialiased">
 
 <!-- ============================= EMAIL =============================
-     Halaman ini hanya berisi emailnya (FOX-1329, BR-01): tanpa password, NIM, atau tanggal lahir.
-     Tombol di dalam email membuka tracer-validasi.html (tampilan penerima). Nama, tanggal, dan tautan hanyalah contoh. -->
+     Halaman ini hanya berisi emailnya (FOX-1294): tanpa password, NIM, atau tanggal lahir di dalam email.
+     Tombol di dalam email membuka login.html?next=... (alumni masuk lebih dulu); setelah masuk, kuesioner
+     (kuesioner-simulasi.html) langsung terbuka tanpa verifikasi NIM dan tanggal lahir karena alumni sudah login.
+     Nama, tanggal, dan tautan hanyalah contoh. -->
 <main class="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-10">
   <article class="card overflow-hidden" aria-label="Email Tracer Study alumni">
 
@@ -46,11 +48,11 @@
           <div class="space-y-3">
             <p><strong class="font-semibold text-slate-800">Universitas Foxtrot</strong> mengundang Anda mengisi <strong class="font-semibold text-slate-800">Tracer Study Pasca-Lulus 1</strong>.</p>
             <p>Jawaban Anda membantu kampus meningkatkan kualitas pendidikan dan layanan karir bagi alumni, serta memperkuat penilaian mutu program studi Anda. Mengisi hanya butuh sekitar 10 menit.</p>
-            <p>Batas akhir pengisian: <strong class="font-semibold text-slate-800">Rabu, 30 Desember 2026</strong>. Anda tidak perlu login; cukup verifikasi NIM dan tanggal lahir di halaman berikutnya.</p>
+            <p>Batas akhir pengisian: <strong class="font-semibold text-slate-800">Rabu, 30 Desember 2026</strong>. Masuk ke akun KarirLink Anda di halaman berikutnya; setelah itu kuesioner langsung terbuka.</p>
           </div>
           <div class="pt-1 text-center">
-            <a href="tracer-validasi.html" class="btn-primary btn-lg w-full justify-center sm:w-auto">Isi Tracer Study</a>
-            <p class="mt-3 break-words text-xs text-slate-400">Atau salin tautan ini ke peramban Anda:<br /><span class="font-medium text-primary-600">karirlink.id/tracer/7c1e4b92</span></p>
+            <a href="login.html?next=..%2Fkarirlink%2Fkuesioner-simulasi.html%3Ftracer%3Dpasca-1th" class="btn-primary btn-lg w-full justify-center sm:w-auto">Isi Tracer Study</a>
+            <p class="mt-3 break-words text-xs text-slate-400">Atau salin tautan ini ke peramban Anda:<br /><span class="font-medium text-primary-600">karirlink.id/login?next=/tracer/7c1e4b92</span></p>
           </div>
           <p class="text-xs text-slate-500">Tautan ini untuk Anda pribadi, jangan diteruskan ke orang lain. Jika sudah mengisi, abaikan email ini.</p>
           <p>Hormat kami,<br /><span class="font-medium text-slate-700">Pusat Karir Universitas Foxtrot</span></p>

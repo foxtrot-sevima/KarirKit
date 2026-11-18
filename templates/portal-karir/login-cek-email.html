@@ -72,10 +72,8 @@
   </div>
 
   <!-- ============================= VISUAL PANEL ============================= -->
-  <div class="relative hidden overflow-hidden bg-brand-gradient lg:sticky lg:top-0 lg:block lg:h-screen lg:w-1/2 lg:self-start lg:p-4">
-    <!-- Dot texture -->
-    <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
-    <div class="relative h-full rounded-3xl bg-white p-2">
+  <div class="relative hidden overflow-hidden lg:sticky lg:top-0 lg:block lg:h-screen lg:w-1/2 lg:self-start lg:p-4">
+    <div class="relative h-full rounded-3xl border border-border/70 bg-white p-2">
       <div class="h-full overflow-hidden rounded-[1.25rem] p-8 xl:p-12" style="background-image: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-100) 58%, var(--color-secondary-50) 100%);">
         <div class="flex items-center justify-between gap-4">
           <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
@@ -130,12 +128,17 @@
 
 <script>
   // Pesan di halaman ini sama untuk email terdaftar maupun tidak (tidak membocorkan siapa yang punya akun).
-  const email = new URLSearchParams(window.location.search).get('email');
+  const qs = new URLSearchParams(window.location.search);
+  const email = qs.get('email');
+  // ?next= (tujuan setelah masuk) diteruskan ke langkah berikutnya; divalidasi lagi di halaman yang memakainya.
+  const nextParam = qs.get('next');
+  const nextQuery = nextParam ? '&next=' + encodeURIComponent(nextParam) : '';
   if (email) {
     document.getElementById('ceEmail').textContent = email;
-    document.getElementById('cePassword').href = 'login-password.html?email=' + encodeURIComponent(email);
-    document.getElementById('ceBack').href = 'login.html?email=' + encodeURIComponent(email);
+    document.getElementById('cePassword').href = 'login-password.html?email=' + encodeURIComponent(email) + nextQuery;
+    document.getElementById('ceBack').href = 'login.html?email=' + encodeURIComponent(email) + nextQuery;
   }
+  document.getElementById('mockOpenEmail').href = 'email-masuk.html' + (nextParam ? '?next=' + encodeURIComponent(nextParam) : '');
   document.getElementById('ceResend').addEventListener('click', () => document.getElementById('ceResent').classList.remove('hidden'));
 
   document.querySelectorAll('.js-current-year').forEach((el) => {

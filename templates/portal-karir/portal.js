@@ -272,6 +272,8 @@
     return rows.reverse();
   }
 
+  // Lowongan yang mewajibkan dokumen (`is_required_document` di API): lamarannya dialihkan ke aplikasi Karirlink.
+  var DOC_REQUIRED = [5, 7];
   function detailOf(job) {
     var t = FIELD_TEXT[job.field] || FIELD_TEXT['Teknologi & IT'];
     var perks = job.type === 'Magang'
@@ -284,7 +286,8 @@
       perks: perks,
       size: sizes[job.id % sizes.length],
       founded: 1998 + (job.id * 3) % 24,
-      deadline: Math.max(2, 14 - job.posted)
+      deadline: Math.max(2, 14 - job.posted),
+      needDocs: DOC_REQUIRED.indexOf(job.id) !== -1
     };
   }
 
@@ -297,6 +300,135 @@
       { label: 'Keahlian', done: prefs.skills.length > 0 }
     ];
     return { steps: steps, pct: Math.round(steps.filter(function (s) { return s.done; }).length / steps.length * 100) };
+  }
+
+  // ---- data profil (dipakai profil.html dan cv.html) dan CV ramah ATS
+  var PROFILE_KEY = 'kk_portal_profile';
+  var PROFILE_DEFAULTS = {
+    headline: 'Mahasiswa tingkat akhir yang mencari peluang magang dan posisi junior',
+    location: 'Bandung, Jawa Barat', campus: 'Universitas Foxtrot, Sistem Informasi', phone: '+62 812-3456-7890',
+    about: 'Mahasiswa tingkat akhir dengan minat pada pengembangan produk digital. Terbiasa bekerja dalam tim, belajar cepat, dan senang membangun hal yang berguna bagi pengguna.\nSedang mencari kesempatan magang atau posisi junior untuk menerapkan ilmu sekaligus bertumbuh bersama tim yang suportif.',
+    skills: [],
+    exp: [
+      { role: 'Magang Pengembangan Web', org: 'PT Nusantara Digital', period: 'Jun 2025 sampai Agu 2025', desc: 'Membangun komponen antarmuka dan memperbaiki bug pada aplikasi internal. Berkolaborasi dengan desainer dan engineer.' },
+      { role: 'Asisten Laboratorium Basis Data', org: 'Program Studi Sistem Informasi', period: 'Sep 2024 sampai Jan 2025', desc: 'Membimbing 40 mahasiswa dalam praktikum SQL dan perancangan basis data.' }
+    ],
+    edu: [
+      { school: 'Universitas Foxtrot', degree: 'S1 Sistem Informasi', period: '2022 sampai sekarang', desc: 'IPK 3,62. Aktif di himpunan mahasiswa bidang teknologi.' },
+      { school: 'SMA Negeri 1 Bandung', degree: 'IPA', period: '2019 sampai 2022', desc: '' }
+    ]
+  };
+  function profileData() {
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(PROFILE_KEY)) || {}; } catch (e) { /* tanpa penyimpanan */ }
+    var d = Object.assign({}, PROFILE_DEFAULTS, saved);
+    if (!d.skills || !d.skills.length) d.skills = prefs.skills.length ? prefs.skills.slice() : ['JavaScript', 'SQL', 'Figma'];
+    if (!d.interests) d.interests = prefs.interests.length ? prefs.interests.slice() : ['Teknologi & IT'];
+    return d;
+  }
+
+  // Model CV untuk berkas PDF. Satu kolom, judul bagian baku, tanpa tabel, gambar, atau ikon.
+  function cvModel() {
+    var d = profileData(), name = (d.name || user.name || 'Pengguna').trim(), sections = [];
+    if (d.about) sections.push({ title: 'Ringkasan', text: d.about.replace(/\s*\n\s*/g, ' ') });
+    if (d.exp.length) sections.push({ title: 'Pengalaman', items: d.exp.map(function (x) { return { head: x.role + ', ' + x.org, meta: x.period, text: x.desc }; }) });
+    if (d.edu.length) sections.push({ title: 'Pendidikan', items: d.edu.map(function (x) { return { head: x.degree + ', ' + x.school, meta: x.period, text: x.desc }; }) });
+    if (d.skills.length) sections.push({ title: 'Keahlian', text: d.skills.join(', ') });
+    return { name: name, slug: slugify(name) || 'pengguna', headline: d.headline || '', contact: [user.email, d.phone, d.location].filter(Boolean), sections: sections };
+  }
+
+  // PDF teks murni (Helvetica, satu kolom, tanpa tabel atau gambar): teks bisa dipilih dan dibaca mesin ATS. Warna hanya hiasan.
+  // Lebar baris diukur dengan canvas. Tanggal rata kanan satu baris dengan jabatan; deskripsi dipecah per kalimat menjadi butir.
+  function cvPdf(m) {
+    var W = 595, H = 842, M = 52, pages = [], ops = '', y = 0;
+    var INK = '0.11 0.13 0.18', MUTED = '0.40 0.44 0.52', ACCENT = '0.137 0.380 0.906';
+    var ctx = document.createElement('canvas').getContext('2d');
+    function clean(s) {
+      return String(s).replace(/[–—]/g, '-').replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/•/g, '\x95')
+        .replace(/[^\x20-\xff]/g, '?').replace(/([\\()])/g, '\\$1');
+    }
+    function width(text, size, bold) { ctx.font = (bold ? 'bold ' : '') + size + 'px Helvetica, Arial, sans-serif'; return ctx.measureText(text).width; }
+    function newPage() { if (ops) pages.push(ops); ops = ''; y = H - M; }
+    function room(need) { if (y - need < M) newPage(); }
+    function wrap(text, size, bold, max) {
+      var words = String(text).split(/\s+/), lines = [], cur = '';
+      words.forEach(function (w) {
+        var t = cur ? cur + ' ' + w : w;
+        if (cur && width(t, size, bold) > max) { lines.push(cur); cur = w; } else cur = t;
+      });
+      if (cur) lines.push(cur);
+      return lines;
+    }
+    function put(text, x, size, bold, color, spacing) {
+      ops += 'BT ' + color + ' rg /' + (bold ? 'F2' : 'F1') + ' ' + size + ' Tf ' + (spacing || 0) + ' Tc ' + x.toFixed(2) + ' ' + y.toFixed(2) + ' Td (' + clean(text) + ') Tj ET\n';
+    }
+    // satu paragraf: lines dengan jarak antarbaris 1.4; indent untuk butir
+    function para(text, size, o) {
+      o = o || {};
+      var x = M + (o.indent || 0), max = W - M - x - (o.rightPad || 0), lead = size * 1.4;
+      wrap(text, size, o.bold, max).forEach(function (l, i) {
+        room(lead); y -= lead;
+        if (o.bullet && i === 0) put('•', M + 2, size, false, o.color || INK);
+        put(l, x, size, o.bold, o.color || INK, o.spacing);
+        if (o.right && i === 0) put(o.right, W - M - width(o.right, size - 0.5, false), size - 0.5, false, MUTED);
+      });
+      y -= o.after || 0;
+    }
+    function heading(title) {
+      room(46); y -= 12;
+      para(title.toUpperCase(), 10, { bold: true, color: ACCENT, spacing: 1.2 });
+      ops += '0.5 w ' + ACCENT + ' RG ' + M + ' ' + (y - 4).toFixed(2) + ' m ' + (W - M) + ' ' + (y - 4).toFixed(2) + ' l S\n';
+      y -= 8;
+    }
+    function bullets(text) {
+      var parts = String(text).split(/(?<=[.!?])\s+/).filter(Boolean);
+      if (parts.length < 2) { para(text, 10); return; }
+      parts.forEach(function (s) { para(s, 10, { bullet: true, indent: 12, after: 1 }); });
+    }
+    newPage();
+    para(m.name, 22, { bold: true, after: 2 });
+    if (m.headline) para(m.headline, 11, { color: MUTED });
+    if (m.contact.length) para(m.contact.join('  |  '), 9.5, { color: MUTED, after: 2 });
+    m.sections.forEach(function (s) {
+      heading(s.title);
+      if (s.text) para(s.text, 10, { after: 2 });
+      (s.items || []).forEach(function (it) {
+        room(44);
+        var sep = it.head.lastIndexOf(', '), role = sep > 0 ? it.head.slice(0, sep) : it.head, org = sep > 0 ? it.head.slice(sep + 2) : '';
+        para(role, 10.5, { bold: true, right: it.meta, rightPad: it.meta ? width(it.meta, 10, false) + 14 : 0 });
+        if (org) para(org, 10, { color: MUTED, after: 1 });
+        if (it.text) bullets(it.text);
+        y -= 7;
+      });
+    });
+    pages.push(ops);
+    var objs = ['<< /Type /Catalog /Pages 2 0 R >>', '', '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>', '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>'], kids = [];
+    pages.forEach(function (c, i) {
+      var pn = 5 + i * 2;
+      kids.push(pn + ' 0 R');
+      objs.push('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + W + ' ' + H + '] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ' + (pn + 1) + ' 0 R >>');
+      objs.push('<< /Length ' + c.length + ' >>\nstream\n' + c + 'endstream');
+    });
+    objs[1] = '<< /Type /Pages /Kids [' + kids.join(' ') + '] /Count ' + pages.length + ' >>';
+    objs.push('<< /Title (' + clean('CV ' + m.name) + ') /Producer (KarirLink) >>');
+    var out = '%PDF-1.4\n', offs = [];
+    objs.forEach(function (o, i) { offs.push(out.length); out += (i + 1) + ' 0 obj\n' + o + '\nendobj\n'; });
+    var xref = out.length;
+    out += 'xref\n0 ' + (objs.length + 1) + '\n0000000000 65535 f \n' + offs.map(function (o) { return ('0000000000' + o).slice(-10) + ' 00000 n \n'; }).join('');
+    out += 'trailer\n<< /Size ' + (objs.length + 1) + ' /Root 1 0 R /Info ' + objs.length + ' 0 R >>\nstartxref\n' + xref + '\n%%EOF';
+    var bytes = new Uint8Array(out.length);
+    for (var i = 0; i < out.length; i++) bytes[i] = out.charCodeAt(i) & 255;
+    return new Blob([bytes], { type: 'application/pdf' });
+  }
+  // Unduh langsung: tanpa pengaturan. Mockup membuat PDF di browser; di produksi berkas dibuat server dari data profil yang sama.
+  function downloadCv() {
+    var m = cvModel(), a = document.createElement('a');
+    a.href = URL.createObjectURL(cvPdf(m));
+    a.download = 'CV-' + m.slug + '.pdf';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1500);
+    toast('success', 'CV berhasil diunduh.');
+    return m;
   }
 
   // ---- tindakan: simpan dan lamar
@@ -367,6 +499,63 @@
         return paginate(list, o.page, o.pageSize || 8);
       });
     },
+    // Daftar perusahaan: lowongan dikelompokkan per perusahaan. GET /api/companies?q&bidang&page&pageSize -> { items:[{ slug, name, field, city }], total, page, pages }
+    listCompanies: function (o) {
+      o = o || {};
+      return simulate(function () {
+        var q = (o.q || '').trim().toLowerCase(), map = {};
+        JOBS.forEach(function (j) {
+          var k = slugify(j.company);
+          map[k] = map[k] || { slug: k, name: j.company, field: j.field, city: j.city };
+        });
+        var list = Object.keys(map).map(function (k) { return map[k]; }).filter(function (x) {
+          return (!o.bidang || x.field === o.bidang) && (!q || (x.name + ' ' + x.field + ' ' + x.city).toLowerCase().indexOf(q) !== -1);
+        }).sort(function (x, y) { return y.jobs - x.jobs || x.name.localeCompare(y.name); });
+        return paginate(list, o.page, o.pageSize || 12);
+      });
+    },
+    // Profil perusahaan: GET /api/companies/:slug -> { company:{ slug, name, field, city, size, about, site, rating, reviews, news }, jobs:[job] } (404 bila tidak ada).
+    // Review dan kabar di bawah hanya contoh yang dibangkitkan dari slug supaya tampilannya stabil.
+    getCompany: function (slug) {
+      return simulate(function () {
+        var jobs = JOBS.filter(function (j) { return slugify(j.company) === slug; });
+        if (!jobs.length) throw new Error('Perusahaan tidak ditemukan');
+        var j0 = jobs[0], remote = j0.city === 'Di mana saja', seed = 0, i;
+        for (i = 0; i < slug.length; i++) seed = (seed * 31 + slug.charCodeAt(i)) % 100003;
+        function pick(list, n) { return list[(seed + n * 7) % list.length]; }
+        function num(min, max, n) { return min + ((seed * (n + 3) + n * 17) % (max - min + 1)); }
+        var cats = ['Kesempatan belajar', 'Atasan dan rekan kerja', 'Gaji dan tunjangan', 'Jenjang karir', 'Waktu kerja'].map(function (label, n) {
+          return { label: label, v: Math.round((3.2 + (num(0, 17, n) / 10)) * 10) / 10 };
+        });
+        var overall = Math.round(cats.reduce(function (a, x) { return a + x.v; }, 0) / cats.length * 10) / 10;
+        var count = num(8, 24, 1), recommend = Math.round(count * (0.6 + num(0, 3, 2) / 10));
+        var likes = ['Atasan sabar mengajari dari nol. Dalam setahun saya sudah dipercaya memegang satu tanggung jawab kecil.', 'Datanya nyata dan banyak. Bagus untuk belajar langsung terasa dampaknya ke lapangan.', 'Anak magang diberi pekerjaan sungguhan, bukan hanya fotokopi. Ada uang saku dan makan siang.', 'Rekan satu tim terbuka berbagi ilmu dan tidak pelit koreksi. Suasananya santai tapi serius soal hasil.'];
+        var fixes = ['Akhir bulan hampir pasti lembur karena tutup buku. Sebaiknya jadwalnya dibagi lebih rata.', 'Jenjang karir untuk analis belum tertulis. Saya tidak tahu harus mencapai apa untuk naik tingkat.', 'Minggu pertama agak bingung karena belum ada pengenalan yang rapi.', 'Proses persetujuan lintas divisi kadang lambat sehingga pekerjaan menumpuk di akhir.'];
+        var roles = jobs.map(function (j) { return j.title; }).concat(['Staf Operasional', 'Peserta Magang', 'Analis']);
+        var tenure = ['Bekerja 2 tahun, masih di sini', 'Bekerja 1 tahun, sudah keluar', 'Magang 6 bulan'], when = ['Oktober 2026', 'September 2026', 'Agustus 2026'];
+        var reviews = [0, 1, 2].map(function (n) {
+          return {
+            role: pick(roles, n), meta: pick(tenure, n) + ' \u00b7 ditulis ' + when[n], score: Math.round((3.4 + num(0, 16, n + 4) / 10) * 10) / 10,
+            like: pick(likes, n), fix: pick(fixes, n + 1),
+            reply: n === 0 ? 'Terima kasih masukannya. Mulai Januari 2027 kami membagi tutup buku menjadi dua gelombang supaya lembur berkurang.' : ''
+          };
+        });
+        var sizes = ['50 sampai 200 karyawan', '200 sampai 500 karyawan', '500 sampai 1.000 karyawan'];
+        return {
+          company: {
+            slug: slug, name: j0.company, field: j0.field, city: j0.city, size: pick(sizes, 0), site: slug.replace(/-/g, '') + '.co.id',
+            about: j0.company + ' bergerak di bidang ' + j0.field.toLowerCase() + (remote ? ' dan bekerja secara remote.' : ' dan berkantor di ' + j0.city + '.') +
+              ' Perusahaan ini menjadi mitra KarirLink untuk menjangkau mahasiswa dan alumni dari berbagai kampus, serta membuka kesempatan magang dan kerja bagi mereka.',
+            rating: { overall: overall, count: count, recommend: recommend, cats: cats }, reviews: reviews,
+            news: [
+              { date: 'November 2026', title: 'Program magang batch 2027 dibuka', body: j0.company + ' menerima mahasiswa tingkat akhir untuk program magang enam bulan, lengkap dengan mentor dan uang saku.' },
+              { date: 'Oktober 2026', title: 'Hadir di Job Fair kampus mitra', body: 'Tim rekrutmen ' + j0.company + ' membuka sesi konsultasi CV dan wawancara singkat bagi alumni.' }
+            ]
+          },
+          jobs: jobs
+        };
+      });
+    },
     getJob: function (id) {
       return simulate(function () {
         var r = rankOf(id);
@@ -405,8 +594,16 @@
         return { app: a };
       });
     },
-    applyJob: function (id) {
-      return simulate(function () { return { ok: apply(id) }; }, 700);
+    // Kontrak: POST /api/jobs/:id/apply { note (maks 300), agree (wajib) } -> { ok }.
+    // Ditolak bila tanpa persetujuan, catatan > 300 karakter, sudah pernah melamar, atau lowongan wajib dokumen (dialihkan ke Karirlink).
+    applyJob: function (id, note, agree) {
+      return simulate(function () {
+        if (!agree) throw new Error('Persetujuan berbagi profil wajib dicentang.');
+        if ((note || '').length > 300) throw new Error('Catatan maksimal 300 karakter.');
+        if (hasApplied(id)) throw new Error('Kamu sudah melamar lowongan ini.');
+        if (DOC_REQUIRED.indexOf(id) !== -1) throw new Error('Lowongan ini mewajibkan dokumen. Lamar lewat aplikasi Karirlink.');
+        return { ok: apply(id) };
+      }, 700);
     }
   };
 
@@ -673,7 +870,7 @@
   // Merek di navbar selalu logo KarirLink SEVIMA; nama dan logo kampus hanya tampil di hero Beranda (dan identitas di footer).
 
   // ---- shell bersama: navbar, drawer, dan footer (markup di shell.js)
-  var PAGE_FILE = { home: 'index.html', jobs: 'lowongan.html', event: 'event.html', grow: 'pengembangan.html', tracer: 'tracer-study.html' };
+  var PAGE_FILE = { home: 'index.html', jobs: 'lowongan.html', event: 'event.html', grow: 'pengembangan.html', tracer: 'tracer-study.html', company: 'perusahaan.html' };
   function mountShell() {
     var S = window.PK_SHELL; if (!S) return;
     document.querySelectorAll('[data-shell]').forEach(function (ph) {
@@ -685,6 +882,12 @@
           a.setAttribute('aria-current', 'page');
           if (a.closest('#pkDrawer')) { a.classList.remove('text-fg', 'hover:bg-neutral-50'); a.classList.add('bg-primary-50', 'text-primary-700'); }
         });
+      }
+      // Band judul: kerangka dari shell.js; isi tulisan halaman (judul, deskripsi, form) dipindah ke slot, id-nya tetap
+      if (kind === 'band') {
+        var sec = wrap.firstElementChild, slot = sec.querySelector('[data-band-slot]');
+        if (ph.getAttribute('data-id')) sec.id = ph.getAttribute('data-id');
+        while (ph.firstChild) slot.appendChild(ph.firstChild);
       }
       var frag = document.createDocumentFragment();
       while (wrap.firstChild) frag.appendChild(wrap.firstChild);
@@ -746,14 +949,24 @@
     syncCols(); if (mq.addEventListener) mq.addEventListener('change', syncCols);
   }
 
+  // Nama dan foto pengguna di navbar, drawer akun, dan form: profil (kk_portal_profile) menimpa data akun.
+  // Dipanggil saat halaman dimuat dan setiap profil berubah (PK.refreshUser).
+  function applyUser() {
+    var p = read('kk_portal_profile', null) || {};
+    var name = (p.name || user.name || 'Pengguna').trim();
+    document.querySelectorAll('[data-user-initials]').forEach(function (el) {
+      if (p.photo) { el.classList.add('overflow-hidden', 'ring-1', 'ring-white/60'); el.innerHTML = '<img src="' + p.photo + '" alt="" class="h-full w-full rounded-full object-cover" />'; }
+      else el.textContent = initials(p.name || user.name);
+    });
+    document.querySelectorAll('[data-user-name]').forEach(function (el) { el.textContent = name; });
+    document.querySelectorAll('[data-user-first]').forEach(function (el) { el.textContent = name.split(/\s+/)[0]; }); // navbar: nama depan saja, nama lengkap ada di menu akun
+    document.querySelectorAll('[data-user-email]').forEach(function (el) { el.textContent = user.email || 'Email belum diisi'; });
+  }
   function initShell() {
     mountShell();
     initNav();
     initFooter();
-    var name = user.name || 'Pengguna';
-    document.querySelectorAll('[data-user-initials]').forEach(function (el) { el.textContent = initials(user.name); });
-    document.querySelectorAll('[data-user-name]').forEach(function (el) { el.textContent = name; });
-    document.querySelectorAll('[data-user-email]').forEach(function (el) { el.textContent = user.email || 'Email belum diisi'; });
+    applyUser();
     document.querySelectorAll('.js-current-year').forEach(function (el) { el.textContent = new Date().getFullYear(); });
   }
 
@@ -1263,7 +1476,7 @@
     TINT: TINT, rootUrl: ROOT, fmtDate: fmtDate, cardSection: cardSection, TESTS: TESTS, TEST_CATS: TEST_CATS, RIASEC: RIASEC, RIASEC_ORDER: RIASEC_ORDER, RIASEC_QS: RIASEC_QS, RIASEC_SCALE: SCALE, testCard: testCard, codeChips: codeChips, riasecCode: function () { return riasecCode; },
     CAMPUS: CAMPUS, tracerLink: tracerLink, COURSES: COURSES, COURSE_CATS: COURSE_CATS, courseCard: courseCard, courseDuration: courseDuration, lessonsOf: lessonsOf, courseProgress: courseProgress, TINT_OF: tintOfCat, eventCard: eventCard, EVENTS: EVENTS, EVENT_CATS: EVENT_CATS, eventRegistered: eventRegistered, evDay: evDay, evMonth: evMonth, evWeekday: evWeekday, evFull: evFull,
     JOBS: JOBS, STATUSES: STATUSES, STEPS: STEPS, FIELDS: FIELDS, api: api,
-    user: user, prefs: prefs, onboarded: onboarded, hasPrefs: hasPrefs,
+    user: user, refreshUser: applyUser, prefs: prefs, PROFILE_KEY: PROFILE_KEY, profileData: profileData, cvModel: cvModel, downloadCv: downloadCv, onboarded: onboarded, hasPrefs: hasPrefs,
     esc: esc, initials: initials, when: when, postedLabel: postedLabel, dateOf: dateOf, icon: icon, profile: profile,
     statusOf: statusOf, tintOf: tintOf, isActive: isActive, history: history, hasApplied: hasApplied,
     isSaved: isSaved, savedCount: function () { return savedIds.length; }, toast: toast,
