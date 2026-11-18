@@ -101,6 +101,7 @@
           <div class="flex items-center justify-between"><h2 id="completeTitle" class="card-title">Kelengkapan profil</h2><span id="pPct" class="badge-primary">0%</span></div>
           <div class="progress-track mt-3 h-1.5"><div id="pBar" class="progress-bar" style="width: 0%"></div></div>
           <ul id="pSteps" class="mt-4 space-y-1 text-sm"></ul>
+          <button type="button" class="btn-primary btn-lg mt-5 w-full" data-cv-download><i class="kk kk-download-simple h-4 w-4" aria-hidden="true"></i>Download CV</button>
         </section>
 
         <section class="card overflow-hidden" aria-labelledby="infoTitle">
@@ -172,7 +173,7 @@
     function $(id) { return document.getElementById(id); }
     PK.initShell();
 
-    var KEY = 'kk_portal_profile';
+    var KEY = PK.PROFILE_KEY;
     var isPublic = /[?&]publik=1/.test(location.search);
     var failed = /[?&]galat=1/.test(location.search);
     function read() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
@@ -183,23 +184,7 @@
       name = (d.name || PK.user.name || 'Pengguna').trim();
       slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'pengguna';
     }
-    var DEFAULTS = {
-      headline: 'Mahasiswa tingkat akhir yang mencari peluang magang dan posisi junior',
-      location: 'Bandung, Jawa Barat', campus: 'Universitas Foxtrot, Sistem Informasi', phone: '+62 812-3456-7890',
-      about: 'Mahasiswa tingkat akhir dengan minat pada pengembangan produk digital. Terbiasa bekerja dalam tim, belajar cepat, dan senang membangun hal yang berguna bagi pengguna.\nSedang mencari kesempatan magang atau posisi junior untuk menerapkan ilmu sekaligus bertumbuh bersama tim yang suportif.',
-      skills: [],
-      exp: [
-        { role: 'Magang Pengembangan Web', org: 'PT Nusantara Digital', period: 'Jun 2025 sampai Agu 2025', desc: 'Membangun komponen antarmuka dan memperbaiki bug pada aplikasi internal. Berkolaborasi dengan desainer dan engineer.' },
-        { role: 'Asisten Laboratorium Basis Data', org: 'Program Studi Sistem Informasi', period: 'Sep 2024 sampai Jan 2025', desc: 'Membimbing 40 mahasiswa dalam praktikum SQL dan perancangan basis data.' }
-      ],
-      edu: [
-        { school: 'Universitas Foxtrot', degree: 'S1 Sistem Informasi', period: '2022 sampai sekarang', desc: 'IPK 3,62. Aktif di himpunan mahasiswa bidang teknologi.' },
-        { school: 'SMA Negeri 1 Bandung', degree: 'IPA', period: '2019 sampai 2022', desc: '' }
-      ]
-    };
-    var d = Object.assign({}, DEFAULTS, read());
-    if (!d.skills || !d.skills.length) d.skills = PK.prefs.skills.length ? PK.prefs.skills.slice() : ['JavaScript', 'SQL', 'Figma'];
-    if (!d.interests) d.interests = PK.prefs.interests.length ? PK.prefs.interests.slice() : ['Teknologi & IT'];
+    var d = PK.profileData();
 
     if (isPublic && d.public === false) {
       document.querySelector('main').innerHTML = '<div class="mx-auto max-w-lg px-4 py-24 text-center">' + PK.emptyBox('default', 'Profil ini tidak dipublikasikan', 'Pemilik profil memilih untuk tidak menampilkannya ke publik.', '<a href="index.html" class="btn-outline btn-sm">Ke beranda</a>') + '</div>';
@@ -209,6 +194,7 @@
     // bagian gagal dimuat: tombol tambah/ubah per bagian disembunyikan sampai berhasil dimuat
     if (failed) document.querySelectorAll('section.card > div:first-child > button[data-edit], #secSkills [data-edit]').forEach(function (el) { el.hidden = true; });
     $('publicNote').hidden = !isPublic;
+    document.addEventListener('click', function (e) { if (e.target.closest('[data-cv-download]')) PK.downloadCv(); });
 
     // ---- tiga keadaan per bagian
     function emptyBlock(msg, btn) {
