@@ -126,6 +126,16 @@ export const JobFairPerusahaan = {
   render: () => pageFrame("/templates/portal-karir/job-fair-perusahaan.html?company=teknologi-cakra", "Portal Karir Perusahaan Job Fair"),
 };
 
+export const Perusahaan = {
+  name: "Perusahaan",
+  render: () => pageFrame("/templates/portal-karir/perusahaan.html", "Portal Karir Perusahaan"),
+};
+
+export const PerusahaanProfil = {
+  name: "Perusahaan - Profil",
+  render: () => pageFrame("/templates/portal-karir/perusahaan-detail.html?slug=teknologi-cakra", "Portal Karir Profil Perusahaan"),
+};
+
 export const PengembanganDiri = {
   name: "Pengembangan Diri",
   render: () => pageFrame("/templates/portal-karir/pengembangan.html", "Portal Karir Pengembangan Diri"),

@@ -8,6 +8,16 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-18
+
+Dasar KarirKit: v1.7.0
+
+### Added
+- **Halaman Perusahaan dan Profil Perusahaan** (`templates/portal-karir/perusahaan.html`, `perusahaan-detail.html`, `PK.api.listCompanies` dan `getCompany`): daftar perusahaan dengan kolom cari, filter bidang berupa pil, dan kartu per perusahaan (logo inisial, nama, kota, bidang) tanpa angka atau posisi yang berubah-ubah; halaman bernomor. Kartu membuka profil perusahaan (satu halaman, bagiannya dituju lewat tab jangkar di band): header dengan logo, ikon centang terverifikasi di samping nama (keterangan Perusahaan terverifikasi muncul saat disorot), ukuran perusahaan, dan tombol Ikuti; Review (ringkasan nilai per aspek, kartu review Yang disukai dan Yang perlu diperbaiki, jawaban perusahaan), Lowongan, Kabar, dan Tentang; kolom samping berisi ajakan Tulis review, cara review dijaga, dan lowongan yang sedang dibuka. Review, kabar, dan ukuran hanyalah contoh data dari PK.api.getCompany. Dibangkitkan juga ke versi white-label dan ditambahkan ke story Portal Karir.
+
+### Changed
+- **Navbar Portal Karir: menu Layanan disembunyikan sementara, menu Perusahaan ditambahkan** (`templates/portal-karir/shell.js`): dropdown Layanan di desktop dan bagian Layanan di drawer ponsel dibungkus komentar HTML (bukan dihapus); menu Perusahaan ditambahkan setelah Event di keduanya. Kolom Layanan di footer tidak berubah.
+
 ## 2026-11-17
 
 Dasar KarirKit: v1.7.0
