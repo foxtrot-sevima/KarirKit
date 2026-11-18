@@ -6,6 +6,12 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-11-18
+
+### Added
+
+- **Cropper** (`.cropper`, `.cropper-round`, `assets/js/cropper.js`): pangkas gambar dengan rasio tetap (default 1:1) sebelum diunggah. Geser, zoom lewat slider, roda mouse, cubit dua jari, atau papan ketik; bingkai bulat untuk foto profil. Isi dibuat otomatis dari `<div class="cropper" data-cropper>`; API `KKCropper.load`, `toDataURL`, `toBlob`, `reset`; opsi `data-cropper-ratio`, `data-cropper-output`, `data-cropper-max-zoom`, `data-cropper-src`; event `cropper:ready`, `cropper:change`, `cropper:error`. Ada di Storybook (Components/Cropper) dan `index.html` (bagian Cropper).
+
 ## [1.7.0] - 2026-11-13
 
 ### Added
