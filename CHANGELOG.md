@@ -10,6 +10,7 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ### Added
 
+- **Cropper** (`.cropper`, `.cropper-round`, `assets/js/cropper.js`): pangkas gambar dengan rasio tetap (default 1:1) sebelum diunggah. Geser, zoom lewat slider, roda mouse, cubit dua jari, atau papan ketik; bingkai bulat untuk foto profil. Isi dibuat otomatis dari `<div class="cropper" data-cropper>`; API `KKCropper.load`, `toDataURL`, `toBlob`, `reset`; opsi `data-cropper-ratio`, `data-cropper-output`, `data-cropper-max-zoom`, `data-cropper-src`; event `cropper:ready`, `cropper:change`, `cropper:error`. Ada di Storybook (Components/Cropper) dan `index.html` (bagian Cropper).
 - **Drawer di atas shell aplikasi** (`.drawer-over-shell`): drawer dan latarnya (`.drawer-backdrop-over-shell`, ditambahkan `drawer.js`) tampil di atas sidebar/topbar ber-z-50 (laci z-60, latar z-59), menggantikan blok `<style>` per halaman.
 - **Kelas animasi** (`.anim-orbit`, `.anim-orbit-rev`, `.anim-float`, `.anim-pulse`, `.anim-enter`): gerak dekoratif dan masuk halus, otomatis mati bila pengguna meminta gerakan dikurangi. Story Components -> Animation.
 - **Radio card dan Scale pill** (`.radio-card`, `.scale-pill`, `.scale-pill-active`): pilihan berupa kartu dengan radio terlihat, dan skala 1-5 sebagai tombol; state dari `:has(input:checked)`, cincin fokus keyboard. Story Radio -> Radio cards, Scale pills.
