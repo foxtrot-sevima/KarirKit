@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
 <link rel="stylesheet" href="../../dist/output.css" />
 <script src="../campus-theme.js"></script>
-<meta name="description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau alumni kampus." />
+<meta name="description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau mahasiswa/alumni kampus." />
 <meta name="author" content="SEVIMA" />
 <link rel="canonical" href="https://karirkit.vercel.app/templates/portal-karir/mitra-daftar.html" />
 <meta name="robots" content="noindex, nofollow" />
@@ -15,13 +15,13 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="KarirKit" />
 <meta property="og:title" content="Daftar Mitra Perusahaan | KarirLink" />
-<meta property="og:description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau alumni kampus." />
+<meta property="og:description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau mahasiswa/alumni kampus." />
 <meta property="og:url" content="https://karirkit.vercel.app/templates/portal-karir/mitra-daftar.html" />
 <meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
 <meta property="og:locale" content="id_ID" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Daftar Mitra Perusahaan | KarirLink" />
-<meta name="twitter:description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau alumni kampus." />
+<meta name="twitter:description" content="Daftarkan perusahaanmu sebagai mitra KarirLink: pasang lowongan dan jangkau mahasiswa/alumni kampus." />
 <meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
 </head>
 <body class="font-sans text-slate-800 antialiased">
@@ -36,7 +36,7 @@
       </a>
 
       <h1 class="font-display text-2xl font-bold text-slate-900">Daftar sebagai mitra perusahaan</h1>
-      <p class="mt-1.5 text-sm text-slate-500">Pasang lowongan dan jangkau alumni kampus lewat KarirLink. Pendaftaran gratis dan tidak perlu lewat kampus.</p>
+      <p class="mt-1.5 text-sm text-slate-500">Pasang lowongan dan jangkau mahasiswa/alumni kampus lewat KarirLink. Pendaftaran gratis!</p>
 
       <div id="campusNote" class="alert alert-info mt-6" role="alert" hidden><i class="kk kk-handshake alert-icon"></i><div>Kamu mendaftar lewat tautan <span class="font-semibold" id="campusName"></span>. Setelah perusahaanmu terverifikasi, pengajuan kerja sama ke kampus ini dikirim otomatis.</div></div>
 
@@ -51,27 +51,32 @@
             <p class="form-error hidden" data-error-for="fNama">Nama perusahaan wajib diisi.</p>
           </div>
           <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div>
-            <label for="fNib" class="form-label">NIB (13 digit) <span class="text-danger-600" aria-hidden="true">*</span></label>
-            <input id="fNib" name="fNib" type="text" required class="input" placeholder="1234567890123" inputmode="numeric" maxlength="13" />
-            <p class="form-error hidden" data-error-for="fNib">NIB harus 13 digit angka.</p>
-          </div>
-          <div>
-            <label for="fBidang" class="form-label">Bidang Usaha <span class="text-danger-600" aria-hidden="true">*</span></label>
-            <input id="fBidang" name="fBidang" type="text" required class="input" placeholder="mis. Teknologi"  />
-            <p class="form-error hidden" data-error-for="fBidang">Bidang usaha wajib diisi.</p>
-          </div>
+            <div>
+              <label for="fNib" class="form-label">NIB (13 digit) <span class="text-danger-600" aria-hidden="true">*</span></label>
+              <input id="fNib" name="fNib" type="text" required class="input" placeholder="1234567890123" inputmode="numeric" maxlength="13" />
+              <p class="form-error hidden" data-error-for="fNib">NIB harus 13 digit angka.</p>
+            </div>
+            <div>
+              <label for="fNpwp" class="form-label">NPWP (15 atau 16 digit) <span class="text-danger-600" aria-hidden="true">*</span></label>
+              <input id="fNpwp" name="fNpwp" type="text" required class="input" placeholder="012345678901000" inputmode="numeric" maxlength="24" autocomplete="off" />
+              <p class="form-error hidden" data-error-for="fNpwp">NPWP harus 15 atau 16 digit angka.</p>
+            </div>
           </div>
           <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div>
-            <label for="fKota" class="form-label">Kota <span class="text-danger-600" aria-hidden="true">*</span></label>
-            <input id="fKota" name="fKota" type="text" required class="input" placeholder="mis. Surabaya"  />
-            <p class="form-error hidden" data-error-for="fKota">Kota wajib diisi.</p>
+            <div>
+              <label for="fBidang" class="form-label">Bidang Usaha <span class="text-danger-600" aria-hidden="true">*</span></label>
+              <input id="fBidang" name="fBidang" type="text" required class="input" placeholder="mis. Teknologi" />
+              <p class="form-error hidden" data-error-for="fBidang">Bidang usaha wajib diisi.</p>
+            </div>
+            <div>
+              <label for="fKota" class="form-label">Kota <span class="text-danger-600" aria-hidden="true">*</span></label>
+              <input id="fKota" name="fKota" type="text" required class="input" placeholder="mis. Surabaya" />
+              <p class="form-error hidden" data-error-for="fKota">Kota wajib diisi.</p>
+            </div>
           </div>
           <div>
             <label for="fWeb" class="form-label">Situs Web <span class="font-normal text-slate-400">(opsional)</span></label>
             <input id="fWeb" name="fWeb" type="text" class="input" placeholder="perusahaan.co.id" />
-          </div>
           </div>
         </fieldset>
 
@@ -127,63 +132,62 @@
       </form>
 
       <p class="mt-6 text-center text-sm text-slate-500">
-        Sudah punya akun mitra?
-        <a href="segera-hadir.html" class="font-semibold text-primary-600 hover:text-primary-700">Masuk</a>
+        Sudah punya akun?
+        <a href="login.html" class="font-semibold text-primary-600 hover:text-primary-700">Masuk</a>
       </p>
       <p class="mt-8 text-center text-xs text-fg-subtle">&copy; <span class="js-current-year">2026</span> SEVIMA. All Rights Reserved.</p>
     </div>
   </div>
 
   <!-- ============================= VISUAL PANEL ============================= -->
-  <div class="relative hidden overflow-hidden bg-brand-gradient lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:p-12 xl:p-16">
-    <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
-
-    <div class="relative"><img src="../../assets/logo/karirlink-sevima-white.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" /></div>
-
-    <div class="relative max-w-md">
-      <span class="badge bg-white/15 text-white">Mitra Perusahaan</span>
-      <h2 class="mt-5 font-display text-3xl font-bold leading-tight text-white xl:text-4xl">
-        Temukan talenta dari banyak kampus, tanpa perantara.
-      </h2>
-      <p class="mt-4 text-sm text-primary-100/90 sm:text-base">
-        Daftarkan perusahaanmu, lewati verifikasi satu kali, lalu terbitkan lowongan yang bisa dilamar alumni.
-      </p>
-      <ol class="mt-9 space-y-6">
-        <li class="relative flex gap-4">
-          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-envelope-simple h-5 w-5"></i></span>
-          <div class="pt-0.5">
-            <p class="text-sm font-semibold text-white">Verifikasi email</p>
-            <p class="mt-0.5 text-xs text-primary-100/80">Klik tautan yang kami kirim ke email kerjamu.</p>
+  <div class="relative hidden overflow-hidden lg:sticky lg:top-0 lg:block lg:h-screen lg:w-1/2 lg:self-start lg:p-4">
+    <div class="relative h-full rounded-3xl border border-border/70 bg-white p-2">
+      <div class="h-full overflow-hidden rounded-[1.25rem] p-8 xl:p-12" style="background-image: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-100) 58%, var(--color-secondary-50) 100%);">
+        <div class="flex items-center justify-between gap-4">
+          <img src="../../assets/logo/karirlink-sevima.svg" alt="KarirLink SEVIMA" class="h-9 w-auto" />
+          <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-primary-200 bg-white/80 px-3 py-1 text-xs font-semibold text-primary-700"><i class="kk kk-buildings h-3.5 w-3.5" aria-hidden="true"></i>Mitra Perusahaan</span>
+        </div>
+        <h2 class="mt-6 font-display text-3xl font-bold leading-snug text-fg xl:text-4xl">Temukan talenta dari banyak kampus, tanpa perantara.</h2>
+        <p class="mt-4 max-w-lg text-sm leading-relaxed text-slate-600 sm:text-base">Daftarkan perusahaanmu, lewati verifikasi satu kali, lalu terbitkan lowongan yang bisa dilamar mahasiswa/alumni.</p>
+        <!-- Pratinjau dekoratif: lowongan, verifikasi, dan pelamar; satu kartu menonjol, sisanya memudar (sama dengan login) -->
+        <div class="relative mx-auto mt-8 w-full max-w-md [zoom:1.125]" aria-hidden="true">
+          <div class="rounded-[2rem] border border-white/70 bg-white/50 p-3 sm:p-4">
+          <div class="space-y-2.5">
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-briefcase h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Staf Pemasaran Digital</p><p class="text-xs text-slate-500">Tayang di KarirLink &middot; Magang</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-success-50 text-success-700">Lowongan</span>
           </div>
-          <span class="absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full bg-white/25"></span>
-        </li>
-        <li class="relative flex gap-4">
-          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-shield-check h-5 w-5"></i></span>
-          <div class="pt-0.5">
-            <p class="text-sm font-semibold text-white">Verifikasi perusahaan</p>
-            <p class="mt-0.5 text-xs text-primary-100/80">Tim KarirLink memeriksa NIB, biasanya 1-2 hari kerja.</p>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-shield-check h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Perusahaan terverifikasi</p><p class="text-xs text-slate-500">Dicek tim KarirLink satu kali</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-secondary-50 text-secondary-700">Verifikasi</span>
           </div>
-          <span class="absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full bg-white/25"></span>
-        </li>
-        <li class="relative flex gap-4">
-          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-briefcase h-5 w-5"></i></span>
-          <div class="pt-0.5">
-            <p class="text-sm font-semibold text-white">Terbitkan lowongan</p>
-            <p class="mt-0.5 text-xs text-primary-100/80">Tampil di KarirLink dan bisa dilamar alumni.</p>
+          <div class="relative z-10 -mx-5 flex items-center gap-3 rounded-2xl border border-primary-100 bg-white p-4 shadow-card-lg sm:-mx-8">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-paper-plane-tilt h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">UI/UX Designer</p><p class="text-xs text-slate-500">Lamaran dari alumni masuk langsung</p></div>
+            <span class="rounded-full border border-primary-200 bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-700">Pelamar</span>
           </div>
-          <span class="absolute -bottom-6 left-5 top-10 w-0.5 -translate-x-1/2 rounded-full bg-white/25"></span>
-        </li>
-        <li class="relative flex gap-4">
-          <span class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"><i class="kk kk-handshake h-5 w-5"></i></span>
-          <div class="pt-0.5">
-            <p class="text-sm font-semibold text-white">Ajukan kerja sama kampus</p>
-            <p class="mt-0.5 text-xs text-primary-100/80">Opsional: kampus yang menyetujui memberi penanda mitra.</p>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-60 blur-[1.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-handshake h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Kerja sama kampus</p><p class="text-xs text-slate-500">Penanda mitra dari kampus</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Mitra</span>
           </div>
-        </li>
-      </ol>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-40 blur-[2.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-warning-50 text-warning-600"><i class="kk kk-graduation-cap h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Magang Software Engineer</p><p class="text-xs text-slate-500">Terbuka untuk mahasiswa dan alumni</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Lowongan</span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-border/70 bg-white p-3 opacity-25 blur-[3.5px]">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-danger-50 text-danger-600"><i class="kk kk-buildings h-5 w-5"></i></span>
+            <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900">Profil perusahaan</p><p class="text-xs text-slate-500">Tampil di semua kampus mitra</p></div>
+            <span class="rounded-full px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-500">Profil</span>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <p class="relative text-xs text-primary-100/70">Portal karier kampus dari SEVIMA.</p>
   </div>
 </div>
 
@@ -195,7 +199,7 @@
     if (qs.get('kampus')) { document.getElementById('campusName').textContent = qs.get('kampus'); document.getElementById('campusNote').hidden = false; }
     function err(id, show) { var e = document.querySelector('[data-error-for="' + id + '"]'); if (e) e.classList.toggle('hidden', !show); var el = document.getElementById(id); if (el && el.type !== 'checkbox') el.classList.toggle('is-invalid', show); return show; }
     var rules = {
-      fNama: function (v) { return v.trim().length > 0; }, fNib: function (v) { return /^\d{13}$/.test(v.trim()); }, fBidang: function (v) { return v.trim().length > 0; }, fKota: function (v) { return v.trim().length > 0; },
+      fNama: function (v) { return v.trim().length > 0; }, fNib: function (v) { return /^\d{13}$/.test(v.trim()); }, fNpwp: function (v) { var t = v.trim(); return /^[\d.\-\s]+$/.test(t) && /^\d{15,16}$/.test(t.replace(/\D/g, '')); }, fBidang: function (v) { return v.trim().length > 0; }, fKota: function (v) { return v.trim().length > 0; },
       fPic: function (v) { return v.trim().length > 0; }, fJabatan: function (v) { return v.trim().length > 0; },
       fEmail: function (v) { var m = /^[^\s@]+@([^\s@]+\.[^\s@]+)$/.exec(v.trim()); return !!m && FREE.indexOf(m[1].toLowerCase()) === -1; },
       fTelp: function (v) { return v.replace(/[^0-9]/g, '').length >= 8; }, fPass: function (v) { return v.length >= 8; }

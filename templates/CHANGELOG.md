@@ -8,11 +8,72 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-18
+
+Dasar KarirKit: v1.7.0
+
+### Added
+- **Download CV** (`templates/portal-karir/profil.html`, `portal.js`): tombol "Download CV" di dalam kartu Kelengkapan profil (kolom samping, pemilik saja); satu klik langsung mengunduh PDF tanpa pengaturan dan tanpa halaman pratinjau. Templat satu kolom tanpa tabel, gambar, atau ikon, berteks asli (bisa dibaca mesin ATS), judul baku (Ringkasan, Pengalaman, Pendidikan, Keahlian), nama besar, judul bagian berwarna biru dengan garis tipis di bawahnya, jabatan tebal dengan periode rata kanan, nama organisasi di bawahnya, dan deskripsi dipecah menjadi butir. Data profil dipakai bersama lewat `PK.profileData()` dan `PK.cvModel()`. Pembuatan PDF di mockup dilakukan di browser; di produksi dibuat server dari data yang sama. Ditambahkan juga logika bersama di `portal.js`.
+- **Halaman Perusahaan dan Profil Perusahaan** (`templates/portal-karir/perusahaan.html`, `perusahaan-detail.html`, `PK.api.listCompanies` dan `getCompany`): daftar perusahaan dengan kolom cari, filter bidang berupa pil, dan kartu per perusahaan (logo inisial, nama, kota, bidang) tanpa angka atau posisi yang berubah-ubah; halaman bernomor. Kartu membuka profil perusahaan (satu halaman, bagiannya dituju lewat tab jangkar di band): header dengan logo, ikon centang terverifikasi di samping nama (keterangan Perusahaan terverifikasi muncul saat disorot), ukuran perusahaan, dan tombol Ikuti; Review (ringkasan nilai per aspek, kartu review Yang disukai dan Yang perlu diperbaiki, jawaban perusahaan), Lowongan, Kabar, dan Tentang; kolom samping berisi ajakan Tulis review, cara review dijaga, dan lowongan yang sedang dibuka. Review, kabar, dan ukuran hanyalah contoh data dari PK.api.getCompany. Dibangkitkan juga ke versi white-label dan ditambahkan ke story Portal Karir.
+
+### Changed
+- **Navbar Portal Karir: menu Layanan disembunyikan sementara, menu Perusahaan ditambahkan** (`templates/portal-karir/shell.js`): dropdown Layanan di desktop dan bagian Layanan di drawer ponsel dibungkus komentar HTML (bukan dihapus); menu Perusahaan ditambahkan setelah Event di keduanya. Kolom Layanan di footer tidak berubah.
+
+## 2026-11-17
+
+Dasar KarirKit: v1.7.0
+
+### Changed
+- **Daftar Mitra: tautan Masuk sama dengan halaman Daftar** (`templates/portal-karir/mitra-daftar.html`): teks "Sudah punya akun mitra?" menjadi "Sudah punya akun?" dan tautan Masuk mengarah ke `login.html` (sebelumnya `segera-hadir.html`). Panel ilustrasi disusun seperti di login: logo dan label Mitra Perusahaan sebaris di atas, judul dan deskripsi, lalu pratinjau dekoratif berupa tumpukan kartu (lowongan, verifikasi perusahaan, pelamar, kerja sama kampus) dengan satu kartu menonjol dan sisanya memudar. Daftar langkah pendaftaran bergaris penghubung dihapus, begitu pula teks "Portal karier kampus dari SEVIMA." di dasar panel.
+- **Halaman Masuk, Daftar, dan Daftar Mitra tanpa latar biru** (`templates/portal-karir/login.html`, `login-password.html`, `login-cek-email.html`, `register.html`, `mitra-daftar.html`): panel ilustrasi di kanan tidak lagi berlatar biru bergradasi berpola titik. Di login, kotak dan isinya (judul, deskripsi, dan kartu lowongan, event, serta lamaran) tidak berubah dan kotak putihnya diberi garis tipis agar tetap terlihat di atas halaman putih. Di Daftar Mitra panel yang tadinya seluruhnya biru dengan teks putih disamakan bentuknya dengan login (kotak putih bergaris tipis berisi panel pastel), dengan logo berwarna, judul dan langkah berwarna gelap, ikon langkah di cakram putih, dan garis penghubung langkah berwarna biru muda; isi dan urutan langkahnya tidak berubah. `onboarding` punya tata letak sendiri dan belum diubah.
+- **Daftar Mitra: kolom NPWP ditambahkan di samping NIB** (`templates/portal-karir/mitra-daftar.html`): NPWP wajib diisi dan harus 15 atau 16 digit angka; titik, strip, dan spasi pemisah (format NPWP lama, mis. 01.234.567.8-901.000) diterima. Baris data perusahaan disusun ulang menjadi NIB dan NPWP, lalu Bidang Usaha dan Kota, lalu Situs Web di baris sendiri; di ponsel semuanya tersusun ke bawah. Di profil perusahaan (`templates/mitra`) dan detail kerja sama di admin KarirLink NPWP belum ditampilkan.
+- **Wording Daftar Mitra**: subjudul di `templates/portal-karir/mitra-daftar.html` menjadi "Pasang lowongan dan jangkau mahasiswa/alumni kampus lewat KarirLink. Pendaftaran gratis!" (deskripsi meta ikut disesuaikan).
+- **Tombol "Lanjutkan dengan Google" dan teks "Belum punya akun? Daftar sekarang" disembunyikan sementara** (`templates/portal-karir/login.html`, `login-password.html`, `register.html`): keduanya dibungkus komentar HTML (bukan dihapus) dan bisa ditampilkan lagi dengan membuka komentarnya. Tombol "Lanjutkan dengan SiAkadCloud", pemisah "atau", dan formulir email tidak berubah.
+- **Halaman detail Portal Karir tanpa tombol kembali** (`templates/portal-karir/event-detail.html`, `riasec.html`, `riasec-hasil.html`, `job-fair-lowongan.html`, `job-fair-perusahaan.html` dan versi white-label): tautan "Semua event", "Pengembangan Diri", breadcrumb di band, "Job Fair", dan tombol "Kembali ke semua lowongan" dihapus karena navbar sudah menunjukkan posisi pengguna dan tombol kembali browser tersedia; judul kini langsung di bawah navbar dengan jarak yang seragam. Nama job fair yang tadinya jadi teks tautan kembali dipindah ke baris keterangan di Lowongan Job Fair. Yang sengaja dipertahankan: kontrol kembali di panel detail mobile Lowongan dan Lamaran Saya (itu penutup panel, bukan navigasi antar halaman), tombol langkah (Sebelumnya di course, pertanyaan RIASEC, dan onboarding), komponen Breadcrumb KarirKit di course dan job-fair-perusahaan, dan tautan "Kembali ke profil" di Ubah Password.
+
+## 2026-11-16
+
+Dasar KarirKit: v1.7.0
+
+### Changed
+- **Kapsul avatar di navbar Portal Karir diseimbangkan secara visual** (`templates/portal-karir/shell.js`, berlaku di semua halaman termasuk white-label): perbaikan sebelumnya hanya menyamakan jarak pusat, padahal avatar berupa cakram berwarna sedangkan panah hanya garis tipis sehingga ujung kanan tampak melayang dan celah nama-ke-panah jauh lebih lebar daripada avatar-ke-nama. Panah kini berada di cakram halus seukuran avatar (36px) sehingga susunannya cakram, nama, cakram dengan inset kiri dan kanan 6px dan celah 8px di kedua sisi nama. Di ponsel tombol menu juga memakai cakram halus 40px seperti avatar sehingga avatar dan menu saling mencerminkan (inset dan celah 4px), termasuk saat kapsul berubah putih setelah digulir.
+- **Lowongan: toolbar cari dan filter dirapikan, chip "Tersimpan" pindah ke baris judul** (`templates/portal-karir/lowongan.html` dan versi white-label): bilah cari dan filter kini rata atas sehingga bilah cari tidak lagi terdorong ke tengah saat filter melipat, chip "Tersimpan" (keluar dari daftar simpanan) tidak lagi turun ke baris sendiri di bawah filter dan tampil di kanan judul di semua ukuran layar (termasuk ponsel), dan tiap filter tetap selebar 160px agar labelnya tidak terpotong.
+- **Lamaran Saya memakai band bersama dan keadaan kosong dibedakan (FOX-1352)** (`templates/portal-karir/lamaran.html` dan versi white-label): judul, tombol "Cari Lowongan", bilah cari, dan tab status (Semua, Terkirim, Diproses, Wawancara, Diterima, Ditolak, masing-masing dengan jumlah) kini berada di band gradasi merek seperti Lowongan; tab berbentuk kaca dan yang aktif putih, dan di ponsel tab bisa digeser ke samping. Tiga keadaan kosong kini terpisah: belum pernah melamar (ajakan Cari lowongan), tab status tanpa lamaran (ajakan Lihat semua lamaran), dan pencarian tanpa hasil (menyebut kata yang dicari, tombol Hapus pencarian). Saat tidak ada hasil, daftar membentang penuh dan panel detail disembunyikan.
+- **Avatar di navbar Portal Karir simetris di semua keadaan** (`templates/portal-karir/shell.js`, berlaku juga di versi white-label karena kerangkanya dipakai bersama): di desktop, saat kapsul kembali ke atas setelah digulir, avatar berjarak 6px dari tepi kiri sedangkan panah berjarak sekitar 18px dari tepi kanan sehingga timpang; panah kini berada di lingkaran seukuran avatar sehingga kedua ujung kapsul berjarak 6px dan pusatnya sama-sama 24px dari tepi. Di ponsel avatar dibuat 40px seperti tombol menu sehingga jaraknya ke tepi kapsul 4px di semua sisi (sebelumnya 4px di kiri tetapi 6px di atas dan bawah).
+- **Hero Beranda Portal Karir dirombak, band judul disatukan, dan halaman Profil dibangun ulang** (`templates/portal-karir/index.html`, `shell.js`, `portal.js`, `profil.html`, halaman Event, Lowongan, Pengembangan, Tracer Study, RIASEC, dan Job Fair; tanpa komponen atau gaya baru):
+  - **Hero Beranda:** latar gradasi biru merek dengan navbar kaca, satu judul "Akselerasi Karier Impian Bersama <nama kampus>", satu bilah cari berbentuk pil (kata kunci, bidang, jenis) dan empat kartu layanan kaca (Lowongan, Event, Course, Portofolio) selebar bilah itu. Orbit, pola titik, dan kartu melayang dihapus; dasar hero melengkung dan jarak atas-bawah sama. Isinya statis, tanpa data langsung. Pengaturan gambar hero di Personalisasi Portal belum tersambung ke hero ini.
+  - **Band judul bersama:** halaman Event, Event Detail, Lowongan, Pengembangan, Tracer Study, RIASEC, Hasil RIASEC, dan Job Fair kini memakai satu kerangka band (`data-shell="band"` di `shell.js`): gradasi merek polos dengan dasar melengkung, tanpa pola titik atau cahaya blur. Lowongan memindahkan judul, kolom cari, dan filter ke dalam band. Teks band Tracer Study diringkas menjadi satu kalimat.
+  - **Profil (FOX-1350):** band identitas (foto, nama, headline, lokasi, kampus); tiap bagian punya keadaan berisi, kosong, dan gagal memuat (`?galat=1`); modal tambah, ubah, dan hapus untuk Pengalaman dan Pendidikan serta modal Tentang, Keahlian, Minat karier, dan informasi dasar; Keahlian dan Minat karier digabung dalam satu kartu; daftar kelengkapan bisa diklik. Formulir Ubah profil memuat foto (unggah JPG atau PNG maks. 2 MB, dipotong persegi) dan nama lengkap. Tampilan publik (`?publik=1`) tanpa email dan telepon.
+  - **Navbar dan menu akun mengikuti profil:** nama dan foto dari profil menimpa data akun di semua halaman (`PK.refreshUser`); navbar desktop menampilkan nama depan saja dan kapsul avatar di ponsel diberi jarak.
+- **Portal Karir, halaman Lowongan disempurnakan untuk desain final (FOX-1351)** (`templates/portal-karir/lowongan.html`, `portal.js`, dan versi white-label):
+  - Form kirim lamaran kini diawali ringkasan lowongan (logo, judul, penyelenggara, kota, jenis, model kerja, gaji). Bila profil belum lengkap, peringatan menautkan ke halaman profil dan menegaskan lamaran tetap bisa dikirim.
+  - Lamaran yang gagal (belum menyetujui berbagi profil, sudah pernah melamar, koneksi) menampilkan pesan di dalam form; form tetap terbuka dengan catatan dan persetujuan yang sudah diisi.
+  - Lowongan yang mewajibkan dokumen tetap tampil dengan penanda "Wajib dokumen", catatan penjelasan, dan tombol "Lamar di Karirlink" yang menggantikan form (lamarannya dilanjutkan di aplikasi Karirlink).
+  - Urutan "Paling cocok" hanya tersedia bagi mahasiswa yang punya hasil Tes RIASEC; tanpa hasil tes, urutan bawaan Terbaru. Tombol Reset di desktop menampilkan jumlah filter aktif.
+  - Kontrak `PK.api.applyJob(id, note, agree)` kini menolak lamaran tanpa persetujuan, yang kedua kali, dan ke lowongan wajib dokumen; `getJob` mengembalikan `detail.needDocs`.
+
 ## 2026-11-13
 
 Dasar KarirKit: v1.7.0
 
 ### Changed
+- **Alur Alumni dari email Tracer diubah: login dulu, tanpa verifikasi NIM (FOX-1294)**, menggantikan alur tanpa login FOX-1329 (2026-11-09):
+
+  ```mermaid
+  flowchart TD
+      EM["tracer-email.html<br/>tombol Isi Tracer Study"] --> L["login.html?next=...<br/>SSO, magic link, atau password"]
+      L --> Q["kuesioner-simulasi.html?tracer=pasca-1th<br/>langsung terbuka, tanpa validasi karena sudah login"]
+      Q -->|Status Bekerja| D["Data Atasan<br/>disimpan, sistem otomatis kirim email<br/>Survei Pengguna Lulusan ke atasan"]
+      Q -->|Status lain| S["Pop-up Kuesioner Berhasil Dikirim!"]
+      D --> S
+      S -->|Pop-up lalu redirect| P["index.html<br/>Portal Karir"]
+  ```
+  - `tracer-email.html`: tombol membuka `login.html` dengan tujuan kuesioner (`?next=`); teks "tidak perlu login, verifikasi NIM" diganti ajakan masuk ke akun.
+  - Login yang dibuka dari undangan (`?next=`) menyembunyikan tombol Google, "Belum punya akun? Daftar sekarang", dan ajakan daftar sebagai mitra.
+  - `login.html`, `login-cek-email.html`, `login-password.html`, `email-masuk.html`: membawa `?next=` sepanjang alur masuk (SSO, link email, password) dan membukanya setelah masuk, bukan Onboarding/Beranda. Hanya jalur `.html` relatif yang diterima; selain itu diabaikan.
+  - `kuesioner-simulasi.html`: Data Atasan tidak lagi membuat link; tombol "Buat Link Survei Pengguna Lulusan" dan kotak link dihapus, diganti "Simpan Data Atasan" yang membuat sistem langsung mengirim email survei ke atasan. Setelah selesai, alumni melihat pop-up Modal "Kuesioner Berhasil Dikirim!" (ajakan menjelajahi Portal Karir dan mencari lowongan) lalu dialihkan ke Portal Karir: otomatis setelah hitung mundur 5 detik atau langsung lewat tombol "Jelajahi Portal Karir". Atasan di Survei Pengguna Lulusan dan simulasi admin tetap memakai layar sukses di halaman (simulasi admin punya Isi Ulang dan Kembali ke Kuesioner).
+  - `kuesioner-mail.html`: komentar diperbarui (email atasan dikirim sistem, bukan dari link alumni).
+  - `tracer-validasi.html` tidak lagi ada di alur; berkasnya belum dihapus.
 - **Sepuluh halaman tidak lagi punya blok `<style>` lokal**; semuanya memakai komponen KarirKit (`npm run check:templates` kini bersih):
   - Laci detail di `aktivitas-lamaran`, `event`, dan `kerjasama` memakai `.drawer-over-shell` (menggantikan aturan z-index per halaman dan penanda kelas pada `body`).
   - `portal-karir/index` dan `riasec-tes` (serta salinan `custom/portal-karir`) memakai `.anim-orbit`, `.anim-orbit-rev`, `.anim-float`, `.anim-pulse`, `.anim-enter`.
@@ -20,6 +81,12 @@ Dasar KarirKit: v1.7.0
   - `pengaturan-landing-page` memakai `.list-menu-*`, `.textarea-autogrow`, dan `.upload-thumb`.
   - `kuesioner` memakai `.qr-present` (layar penuh dan lembar cetak QR), `.option-card`, `.grid-collapse`, `.swap-fade`, dan `.scale-pill`.
 - Tampilan dan perilaku tidak berubah; diperiksa lewat perbandingan nilai CSS terhitung dengan halaman sebelumnya. Aturan layar penuh QR tidak bisa dijalankan di peramban uji tanpa gestur pengguna, jadi diperiksa dengan membandingkan teks aturannya.
+- **Kuesioner Kosong mengikuti aplikasi**: `kuesioner-builder.html?tpl=kosong` kini dialihkan ke halaman baru `kuesioner-kosong.html`; mode versi Kosong ("Tambah Versi Baru", "Versi 1.0") dihapus karena aplikasi tidak memakai versi pada Kuesioner Kosong. Tautan Buat dan Edit di `kuesioner.html` diarahkan ke halaman baru.
+
+### Added
+- **Pemilih PT di header admin** (24 halaman `templates/karirlink`, skrip bersama `admin-pt-picker.js`), mengikuti aplikasi: kombo yang bisa dicari ("Pilih PT...", "Cari PT..."), tampil mulai lebar `xl`, pilihan tersimpan di peramban. Di aplikasi pemilih ini hanya muncul untuk role internal.
+- **Halaman `kuesioner-kosong.html`**: tata letak Kuesioner Kosong seperti di aplikasi, satu halaman per kuesioner (`?id=kosong-1`, tanpa id = kuesioner baru). Kartu Judul Kuesioner (maks. 150 karakter) dan Deskripsi (maks. 1000) dengan penghitung karakter, kartu pertanyaan Custom (atau keadaan kosong dengan ajakan menambah), dan Simpan yang memvalidasi judul. Di ponsel header kartu pertanyaan menjadi kolom dan tombol Tambah Pertanyaan penuh lebar.
+- **Toolbar builder seperti aplikasi** (`kuesioner-builder.html` dan `kuesioner-kosong.html`, skrip bersama `kuesioner-toolbar.js`): "Simpan Perubahan" nonaktif sampai ada perubahan; saat ada perubahan muncul lencana "Ada perubahan belum disimpan" dan tombol Batalkan (membuang perubahan).
 
 ## 2026-11-11
 

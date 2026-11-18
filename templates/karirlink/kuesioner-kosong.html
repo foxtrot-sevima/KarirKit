@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<base href="/templates/karirlink/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kuesioner Kosong | KarirLink</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/logo/karirlink-mark.svg" />
+<link rel="stylesheet" href="../../dist/output.css" />
+<script src="../campus-theme.js"></script>
+<meta name="description" content="Susun kuesioner dari awal: isi judul, deskripsi, lalu tambahkan pertanyaan Custom Anda sendiri - di panel admin KarirLink." />
+<meta name="author" content="SEVIMA" />
+<link rel="canonical" href="https://karirkit.vercel.app/templates/karirlink/kuesioner-kosong.html" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#2361e7" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="KarirKit" />
+<meta property="og:title" content="Kuesioner Kosong | KarirLink" />
+<meta property="og:description" content="Susun kuesioner dari awal: isi judul, deskripsi, lalu tambahkan pertanyaan Custom Anda sendiri - di panel admin KarirLink." />
+<meta property="og:url" content="https://karirkit.vercel.app/templates/karirlink/kuesioner-kosong.html" />
+<meta property="og:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Kuesioner Kosong | KarirLink" />
+<meta name="twitter:description" content="Susun kuesioner dari awal: isi judul, deskripsi, lalu tambahkan pertanyaan Custom Anda sendiri - di panel admin KarirLink." />
+<meta name="twitter:image" content="https://karirkit.vercel.app/assets/social/og-image.png" />
+</head>
+<body class="bg-shell font-sans text-slate-800 antialiased">
+
+<!-- ============================= SIDEBAR ============================= -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 hidden w-[264px] flex-col lg:flex border-r border-slate-200/70 bg-white/90 backdrop-blur-md transition-[transform,width] duration-300 ease-in-out">
+  <div class="sidebar-header flex h-16 items-center justify-between border-b border-slate-200/70 px-5">
+    <a href="../../index.html" class="sidebar-logo-full flex items-center">
+      <img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" />
+    </a>
+    <a href="../../index.html" class="sidebar-logo-mark hidden items-center">
+      <img src="../../assets/logo/karirlink-mark.svg" alt="KarirLink" class="h-8 w-8" />
+    </a>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto scrollbar-none px-3 py-5">
+    <div>
+      <div class="space-y-1">
+        <a href="index.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Overview" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Overview</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Tracer</p>
+      <div class="space-y-1">
+        <a href="kuesioner.html" class="nav-item nav-item-active" data-tooltip-trigger data-tooltip-text="Kuesioner" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kuesioner</span>
+        </a>
+        <a href="yudisium.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Daftar Yudisium" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Daftar Yudisium</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Portal Karir</p>
+      <div class="space-y-1">
+        <a href="kerjasama.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Kerjasama" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Kerjasama</span>
+        </a>
+        <a href="lowongan.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Lowongan" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Lowongan</span>
+        </a>
+        <a href="event.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Event" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Event</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">General</p>
+      <div class="space-y-1">
+        <a href="mahasiswa-alumni.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Mahasiswa/Alumni" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Mahasiswa/Alumni</span>
+        </a>
+        <a href="sinkronisasi-siakad.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Sinkronisasi Siakad" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Sinkronisasi Siakad</span>
+        </a>
+        <a href="aktivitas-lamaran.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Aktivitas Lamaran" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Aktivitas Lamaran</span>
+        </a>
+        <a href="segera-hadir.html?menu=Report" class="nav-item" data-tooltip-trigger data-tooltip-text="Report" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Report</span>
+        </a>
+        <a href="pengaturan-landing-page.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Personalisasi" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Personalisasi</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="nav-eyebrow mb-2">Internal</p>
+      <div class="space-y-1">
+        <a href="konfigurasi-pt.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi PT" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi PT</span>
+        </a>
+        <a href="konfigurasi-akses.html" class="nav-item" data-tooltip-trigger data-tooltip-text="Konfigurasi Akses" data-tooltip-side="right">
+          <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+          <span class="sidebar-label">Konfigurasi Akses</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="space-y-1 border-t border-slate-200/70 px-3 py-3">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item" data-tooltip-trigger data-tooltip-text="Panduan Pengguna" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+    <button type="button" id="collapseSidebarBtn" class="nav-item sidebar-collapse-btn hidden w-full lg:flex" aria-label="Lipat atau buka menu" data-tooltip-trigger data-tooltip-text="Buka Menu" data-tooltip-side="right">
+      <span class="nav-item-icon"><i class="kk kk-caret-circle-left h-5 w-5 shrink-0 sidebar-collapse-icon"></i></span>
+      <span class="sidebar-label">Lipat Menu</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============================= MENU MOBILE (Drawer KarirKit, di bawah lg) ============================= -->
+<div class="drawer drawer-left lg:hidden" id="adminMenu" aria-label="Menu utama">
+  <div class="drawer-header">
+    <a href="../../index.html" class="drawer-title flex items-center"><img src="../../assets/logo/karirlink-logo.svg" alt="KarirLink" class="h-8 w-auto" /></a>
+    <button type="button" class="drawer-close" data-drawer-hide="adminMenu" aria-label="Tutup menu"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-3">
+    <nav class="space-y-6" aria-label="Menu admin">
+      <div>
+        <div class="space-y-1">
+          <a href="index.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-house h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Tracer</p>
+        <div class="space-y-1">
+          <a href="kuesioner.html" class="nav-item nav-item-active">
+            <span class="nav-item-icon"><i class="kk kk-clipboard-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kuesioner</span>
+          </a>
+          <a href="yudisium.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-check-circle h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Daftar Yudisium</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Portal Karir</p>
+        <div class="space-y-1">
+          <a href="kerjasama.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-handshake h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Kerjasama</span>
+          </a>
+          <a href="lowongan.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-briefcase h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Lowongan</span>
+          </a>
+          <a href="event.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-calendar-blank h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Event</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">General</p>
+        <div class="space-y-1">
+          <a href="mahasiswa-alumni.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-graduation-cap h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Mahasiswa/Alumni</span>
+          </a>
+          <a href="sinkronisasi-siakad.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-arrows-clockwise h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Sinkronisasi Siakad</span>
+          </a>
+          <a href="aktivitas-lamaran.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-file-text h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Aktivitas Lamaran</span>
+          </a>
+          <a href="segera-hadir.html?menu=Report" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-chart-bar h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Report</span>
+          </a>
+          <a href="pengaturan-landing-page.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-monitor h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Personalisasi</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="nav-eyebrow mb-2">Internal</p>
+        <div class="space-y-1">
+          <a href="konfigurasi-pt.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-gear-six h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi PT</span>
+          </a>
+          <a href="konfigurasi-akses.html" class="nav-item">
+            <span class="nav-item-icon"><i class="kk kk-users-three h-5 w-5 shrink-0"></i></span>
+            <span class="sidebar-label">Konfigurasi Akses</span>
+          </a>
+        </div>
+      </div>
+  
+    </nav>
+  </div>
+  <div class="drawer-footer">
+    <a href="https://knowledge.sevima.com/e-modul-karirlink" target="_blank" rel="noopener noreferrer" class="nav-item w-full">
+      <span class="nav-item-icon"><i class="kk kk-question h-5 w-5 shrink-0"></i></span>
+      <span class="sidebar-label">Panduan Pengguna</span>
+    </a>
+  </div>
+</div>
+
+<!-- Akun di perangkat kecil: lembar bawah (Drawer) -->
+<div class="drawer drawer-bottom lg:hidden" id="adminAccount" aria-label="Akun">
+  <div class="drawer-header">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="avatar h-11 w-11 text-sm">RK</span>
+      <div class="min-w-0"><p class="truncate text-sm font-semibold text-fg">Rina Kartika</p><p class="truncate text-xs text-fg-muted">rina.kartika@kampus.ac.id</p></div>
+    </div>
+    <button type="button" class="drawer-close" data-drawer-hide="adminAccount" aria-label="Tutup"><i class="kk kk-x h-5 w-5"></i></button>
+  </div>
+  <div class="drawer-body !p-2">
+    <div class="space-y-0.5">
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-gear-six h-4 w-4"></i>Pengaturan Akun</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm"><i class="kk kk-question h-4 w-4"></i>Bantuan</button>
+      <button type="button" class="dropdown-item !px-3 !py-3.5 !text-sm dropdown-item-danger"><i class="kk kk-sign-out h-4 w-4"></i>Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MAIN COLUMN ============================= -->
+<div id="mainColumn" class="flex min-h-screen flex-col transition-[padding] duration-300 ease-in-out lg:pl-[264px]">
+  <!-- Topbar -->
+  <header class="navbar navbar-sticky navbar-app">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <button type="button" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden" data-drawer-toggle="adminMenu" aria-controls="adminMenu" aria-label="Buka menu">
+        <i class="kk kk-list h-5 w-5"></i>
+      </button>
+      <nav class="breadcrumb min-w-0 flex-nowrap" aria-label="Breadcrumb">
+        <a href="index.html" class="breadcrumb-link shrink-0">
+          <i class="kk kk-house h-4 w-4"></i>
+          <span class="hidden sm:inline">Overview</span>
+        </a>
+        <span class="breadcrumb-separator shrink-0"><i class="kk kk-caret-right h-3 w-3"></i></span>
+        <a href="kuesioner.html" class="breadcrumb-link hidden min-w-[4rem] shrink sm:flex"><span class="truncate">Kuesioner</span></a>
+        <span class="breadcrumb-separator hidden shrink-0 sm:flex"><i class="kk kk-caret-right h-3 w-3"></i></span>
+        <span class="breadcrumb-current min-w-min shrink-[4]" aria-current="page">
+          <span class="leading-tight">Kuesioner Kosong</span>
+        </span>
+      </nav>
+    </div>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <div class="hidden w-56 xl:block">
+        <span id="ptPickerLabel" class="sr-only">Pilih perguruan tinggi</span>
+        <div class="combo combo-full" data-pt-picker>
+          <button type="button" class="combo-trigger" data-pt-trigger aria-haspopup="listbox" aria-labelledby="ptPickerLabel">
+            <span data-pt-label class="combo-placeholder">Pilih PT...</span>
+            <i class="kk kk-caret-down combo-chevron"></i>
+          </button>
+          <div class="combo-menu" data-pt-menu>
+            <div class="combo-search-wrap">
+              <div class="combo-search-field">
+                <span class="combo-search-icon"><i class="kk kk-magnifying-glass h-4 w-4"></i></span>
+                <input type="text" class="combo-search" placeholder="Cari PT..." aria-label="Cari PT" data-pt-search />
+              </div>
+            </div>
+            <div class="combo-list" data-pt-list>
+              <button type="button" class="combo-item" data-pt-item data-label="Institut Seni dan Budaya Tirta">Institut Seni dan Budaya Tirta</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Institut Teknologi Cendekia">Institut Teknologi Cendekia</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Politeknik Kesehatan Harapan">Politeknik Kesehatan Harapan</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Politeknik Negeri Bumi Pertiwi">Politeknik Negeri Bumi Pertiwi</button>
+              <button type="button" class="combo-item" data-pt-item data-label="Universitas Sentra Vidya Utama">Universitas Sentra Vidya Utama</button>
+            </div>
+            <p class="combo-empty hidden" data-pt-empty>Tidak ada PT yang cocok.</p>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-500 lg:hidden" data-drawer-toggle="adminAccount" aria-controls="adminAccount" aria-label="Menu akun"><span class="avatar h-9 w-9 text-sm">RK</span></button>
+      <div class="relative hidden lg:block">
+        <button id="profileMenuBtn" type="button" class="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 text-left transition-colors hover:bg-slate-100 sm:gap-3">
+          <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+          <span class="hidden min-w-0 sm:block">
+            <span class="block truncate text-sm font-semibold text-slate-800">Rina Kartika</span>
+            <span class="block truncate text-xs text-slate-400">Admin Karir</span>
+          </span>
+          <i class="kk kk-caret-down hidden h-4 w-4 shrink-0 text-slate-400 transition-transform sm:block" data-profile-chevron></i>
+        </button>
+        <div id="profileMenu" class="dropdown-menu hidden w-64">
+          <div class="dropdown-header">
+            <span class="avatar h-9 w-9 shrink-0 text-sm">RK</span>
+            <div class="min-w-0 flex-1">
+              <p class="dropdown-header-title">Rina Kartika</p>
+              <p class="dropdown-header-desc">rina.kartika@kampus.ac.id</p>
+            </div>
+          </div>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-gear-six h-4 w-4"></i>
+            Pengaturan Akun
+          </button>
+          <button type="button" class="dropdown-item">
+            <i class="kk kk-question h-4 w-4"></i>
+            Bantuan
+          </button>
+          <hr class="dropdown-divider" />
+          <button type="button" class="dropdown-item dropdown-item-danger">
+            <i class="kk kk-sign-out h-4 w-4"></i>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= CONTENT ============================= -->
+  <main class="mx-auto w-full flex-1 space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+
+    <!-- Toolbar: judul halaman + aksi (sama dengan builder kuesioner lain) -->
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="min-w-0">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Kuesioner Kosong</h2>
+          <span id="builderDirtyBadge" class="badge-warning hidden whitespace-nowrap"><span class="badge-dot bg-warning-600"></span>Ada perubahan belum disimpan</span>
+        </div>
+        <p class="mt-1 text-sm text-slate-500">Susun kuesioner dari awal: isi judul, deskripsi, lalu tambahkan pertanyaan Custom Anda sendiri.</p>
+      </div>
+      <div class="flex shrink-0 flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+        <button type="button" id="builderDiscardBtn" class="btn-outline btn-md hidden">Batalkan</button>
+        <button type="button" id="builderSaveBtn" class="btn-primary btn-md w-full sm:w-auto" disabled>Simpan Perubahan</button>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <!-- Judul dan deskripsi: disimpan bersama pertanyaannya -->
+      <div class="card space-y-4 p-5">
+        <div>
+          <label class="form-label" for="blankTitle">Judul Kuesioner *</label>
+          <input id="blankTitle" type="text" class="input" maxlength="150" placeholder="Contoh: Survei Kepuasan Layanan Karir 2026" data-dirty-field />
+          <p id="blankTitleHint" class="form-hint">0/150 karakter</p>
+          <p id="blankTitleError" class="form-error hidden">Judul tidak boleh kosong.</p>
+        </div>
+        <div>
+          <label class="form-label" for="blankDesc">Deskripsi</label>
+          <textarea id="blankDesc" class="input textarea-autogrow h-auto py-2.5" rows="3" maxlength="1000" placeholder="Jelaskan tujuan kuesioner ini (opsional)" data-dirty-field></textarea>
+          <p id="blankDescHint" class="form-hint">0/1000 karakter</p>
+        </div>
+      </div>
+
+      <!-- Pertanyaan: hanya pertanyaan Custom (tanpa Core/Optional bawaan sistem) -->
+      <div class="card p-5">
+        <div id="blankEmpty" class="rounded-xl border border-dashed border-border p-10 text-center">
+          <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral-100 text-fg-subtle"><i class="kk kk-clipboard-text h-5 w-5"></i></span>
+          <p class="mt-3 text-sm font-medium text-neutral-600">Belum ada pertanyaan di kuesioner ini</p>
+          <p class="mx-auto mt-1 max-w-md text-sm text-fg-subtle">Kuesioner Kosong tidak punya pertanyaan Core/Optional bawaan sistem — susun dari awal dengan menambahkan pertanyaan Custom Anda sendiri.</p>
+          <button type="button" class="btn-primary btn-md mt-4 js-add-custom" data-target="customRowsKosong">
+            <i class="kk kk-plus h-4 w-4 shrink-0"></i>
+            Tambah Pertanyaan
+          </button>
+        </div>
+        <div id="blankListCard" class="hidden overflow-hidden rounded-xl border border-border-subtle">
+          <div class="flex flex-col gap-2 border-b border-border-subtle p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="badge-secondary">Custom</span>
+              <h3 class="text-sm font-semibold text-neutral-800">Pertanyaan Buatan Admin</h3>
+            </div>
+            <button type="button" class="btn-outline btn-sm w-full sm:w-auto js-add-custom" data-target="customRowsKosong">
+              <i class="kk kk-plus h-3.5 w-3.5 shrink-0"></i>
+              Tambah Pertanyaan
+            </button>
+          </div>
+          <div class="divide-y divide-border-subtle" id="customRowsKosong" data-sortable-list></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer footer-bar">
+    <p>&copy; 2005-2026 SEVIMA. All Rights Reserved.</p>
+    <p>KarirLink</p>
+  </footer>
+</div>
+
+<!-- ============================= TAMBAH/EDIT PERTANYAAN CUSTOM MODAL ============================= -->
+<div id="customQOverlay" class="fixed inset-0 z-50 hidden bg-slate-900/30 p-4">
+  <div class="flex h-full items-center justify-center">
+    <div id="customQPanel" class="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white shadow-card-lg" data-combo-boundary>
+      <div class="flex items-center justify-between border-b border-slate-100 p-5">
+        <h3 id="customQTitle" class="text-base font-semibold text-slate-800">Tambah Pertanyaan Custom</h3>
+        <button type="button" id="customQCloseBtn" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+          <i class="kk kk-x h-4 w-4"></i>
+        </button>
+      </div>
+      <div class="space-y-4 p-5">
+        <div>
+          <label class="form-label">Pertanyaan</label>
+          <textarea id="customQText" class="input textarea-autogrow h-auto py-2.5" rows="3" placeholder="Tulis pertanyaan..."></textarea>
+          <p id="customQError" class="mt-1.5 hidden text-xs font-medium text-danger-600">Pertanyaan tidak boleh kosong.</p>
+        </div>
+        <div>
+          <label class="form-label">Tipe Jawaban</label>
+          <div class="combo combo-full" data-combo id="customQTypeCombo">
+            <button type="button" class="combo-trigger" data-combo-trigger>
+              <span data-combo-label>Teks Singkat</span>
+              <i class="kk kk-caret-down combo-chevron"></i>
+            </button>
+            <div class="combo-menu" data-combo-menu>
+              <div class="combo-list" data-combo-list>
+                <button type="button" class="combo-item is-selected" data-combo-item data-label="Teks Singkat">Teks Singkat</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Teks Panjang">Teks Panjang</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Skala">Skala</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Pilihan Ganda">Pilihan Ganda</button>
+                <button type="button" class="combo-item" data-combo-item data-label="Ya/Tidak">Ya/Tidak</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <label class="flex cursor-pointer items-center justify-between rounded-xl border border-slate-100 p-3">
+          <span class="text-sm font-medium text-slate-700">Wajib diisi</span>
+          <span class="relative">
+            <input type="checkbox" id="customQRequired" class="peer sr-only" />
+            <span class="block h-5 w-9 rounded-full bg-slate-200 transition-colors peer-checked:bg-primary-600"></span>
+            <span class="absolute left-1 top-1 h-3 w-3 rounded-full bg-white transition-transform peer-checked:translate-x-4"></span>
+          </span>
+        </label>
+      </div>
+      <div class="flex items-center justify-end gap-2.5 border-t border-slate-100 p-5">
+        <button type="button" id="customQCancelBtn" class="btn-outline btn-md">Batal</button>
+        <button type="button" id="customQSaveBtn" class="btn-primary btn-md">Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= HAPUS PERTANYAAN CONFIRM MODAL ============================= -->
+<div id="deleteCustomOverlay" class="fixed inset-0 z-50 hidden bg-slate-900/30 p-4">
+  <div class="flex h-full items-center justify-center">
+    <div id="deleteCustomPanel" class="w-full max-w-sm rounded-2xl bg-white p-5 shadow-card-lg">
+      <div class="flex items-start gap-3">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-danger-50 text-danger-600">
+          <i class="kk kk-trash h-5 w-5"></i>
+        </span>
+        <div>
+          <h3 class="text-base font-semibold text-slate-800">Hapus pertanyaan ini?</h3>
+          <p class="mt-1 text-sm text-slate-500">Tindakan ini tidak dapat dibatalkan.</p>
+        </div>
+      </div>
+      <div class="mt-5 flex justify-end gap-2.5">
+        <button type="button" id="deleteCustomCancelBtn" class="btn-outline btn-md">Batal</button>
+        <button type="button" id="deleteCustomOkBtn" class="btn-danger btn-md">Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tooltipFixed" class="tooltip-fixed" role="tooltip"></div>
+
+<script src="../../assets/js/drawer.js"></script>
+<script>
+  const sidebar = document.getElementById('sidebar');
+  // Menu mobile dan akun memakai komponen Drawer (assets/js/drawer.js); sidebar hanya tampil di desktop.
+
+  (function () {
+    const mainColumn = document.getElementById('mainColumn');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    if (!sidebar || !mainColumn || !collapseBtn) return;
+
+    const STORAGE_KEY = 'karirlink-sidebar-collapsed';
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('sidebar-collapsed', collapsed);
+      mainColumn.classList.toggle('lg:pl-[264px]', !collapsed);
+      mainColumn.classList.toggle('lg:pl-[72px]', collapsed);
+    }
+
+    let collapsed = false;
+    try {
+      collapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch (e) {}
+    applyCollapsed(collapsed);
+
+    collapseBtn.addEventListener('click', () => {
+      collapsed = !collapsed;
+      applyCollapsed(collapsed);
+      try {
+        localStorage.setItem(STORAGE_KEY, String(collapsed));
+      } catch (e) {}
+    });
+  })();
+
+  // Topbar profile dropdown menu.
+  (function () {
+    const btn = document.getElementById("profileMenuBtn");
+    const menu = document.getElementById("profileMenu");
+    const chevron = document.querySelector("[data-profile-chevron]");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden", isOpen);
+      chevron?.classList.toggle("rotate-180", !isOpen);
+    });
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      chevron?.classList.remove("rotate-180");
+    });
+  })();
+
+  // Footer copyright year - kept current automatically (no backend templating here).
+  document.querySelectorAll(".js-current-year").forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+
+  // KarirKit `.combo` dropdown (self-positioning, flips up/down and
+  // start/end based on viewport) — same component used across the app
+  // (dashboard filters, kuesioner-simulasi). Used here for "Tipe Jawaban"
+  // instead of a native <select>.
+  (function () {
+    function getBoundary(root) {
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const boundEl = root.closest('[data-combo-boundary]');
+      if (!boundEl) return { top: 0, left: 0, right: vw, bottom: vh };
+      const r = boundEl.getBoundingClientRect();
+      return {
+        top: Math.max(0, r.top),
+        left: Math.max(0, r.left),
+        right: Math.min(vw, r.right),
+        bottom: Math.min(vh, r.bottom),
+      };
+    }
+
+    function setupCombo(root) {
+      const trigger = root.querySelector('[data-combo-trigger]');
+      const menu = root.querySelector('[data-combo-menu]');
+      if (!trigger || !menu) return;
+
+      const labelEl = root.querySelector('[data-combo-label]');
+      const getItems = () => Array.from(menu.querySelectorAll('[data-combo-item]'));
+
+      function place() {
+        const boundary = getBoundary(root);
+        const tRect = trigger.getBoundingClientRect();
+        const mRect = menu.getBoundingClientRect();
+
+        const spaceBelow = boundary.bottom - tRect.bottom;
+        const spaceAbove = tRect.top - boundary.top;
+        const fitsBelow = spaceBelow >= mRect.height + 8;
+        const vertical = fitsBelow || spaceBelow >= spaceAbove ? 'bottom' : 'top';
+
+        const spaceRight = boundary.right - tRect.left;
+        const spaceLeft = tRect.right - boundary.left;
+        const fitsStart = spaceRight >= mRect.width + 8;
+        const horizontal = fitsStart || spaceRight >= spaceLeft ? 'start' : 'end';
+
+        menu.setAttribute('data-placement', vertical + '-' + horizontal);
+
+        const comboRect = root.getBoundingClientRect();
+        const desiredLeft = horizontal === 'start' ? tRect.left : tRect.right - mRect.width;
+        const maxLeft = Math.max(boundary.right - mRect.width - 8, boundary.left + 8);
+        const clampedLeft = Math.min(Math.max(desiredLeft, boundary.left + 8), maxLeft);
+        menu.style.left = clampedLeft - comboRect.left + 'px';
+        menu.style.right = 'auto';
+      }
+
+      function isOpen() {
+        return menu.classList.contains('is-open');
+      }
+
+      function open() {
+        if (root.dataset.locked === 'true' || isOpen()) return;
+        document.querySelectorAll('.combo-menu.is-open').forEach((m) => {
+          if (m !== menu) m.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-combo][data-open="true"]').forEach((c) => {
+          if (c !== root) c.removeAttribute('data-open');
+        });
+        place();
+        menu.classList.add('is-open');
+        root.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.addEventListener('click', onOutsideClick, true);
+        document.addEventListener('keydown', onKeydown);
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+      }
+
+      function close() {
+        if (!isOpen()) return;
+        menu.classList.remove('is-open');
+        root.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onOutsideClick, true);
+        document.removeEventListener('keydown', onKeydown);
+        window.removeEventListener('resize', place);
+        window.removeEventListener('scroll', place, true);
+      }
+
+      function onOutsideClick(e) {
+        if (!root.contains(e.target)) close();
+      }
+      function onKeydown(e) {
+        if (e.key === 'Escape') close();
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isOpen() ? close() : open();
+      });
+
+      function selectItem(item) {
+        getItems().forEach((i) => i.classList.remove('is-selected'));
+        item.classList.add('is-selected');
+        const label = item.getAttribute('data-label') || item.textContent.trim();
+        const value = item.hasAttribute('data-value') ? item.getAttribute('data-value') : label;
+        if (labelEl) labelEl.textContent = label;
+        root.dataset.value = value;
+        root.dispatchEvent(new CustomEvent('combochange', { bubbles: true, detail: { value, label } }));
+      }
+
+      getItems().forEach((item) => {
+        item.addEventListener('click', () => {
+          selectItem(item);
+          close();
+        });
+      });
+
+      const initialSelected = getItems().find((i) => i.classList.contains('is-selected')) || getItems()[0];
+      if (initialSelected) {
+        const label = initialSelected.getAttribute('data-label') || initialSelected.textContent.trim();
+        root.dataset.value = initialSelected.hasAttribute('data-value') ? initialSelected.getAttribute('data-value') : label;
+      }
+
+      place();
+    }
+
+    window.setComboValue = function (id, value) {
+      const root = document.getElementById(id);
+      if (!root) return;
+      const item = Array.from(root.querySelectorAll('[data-combo-item]')).find((i) => (i.dataset.value ?? i.textContent.trim()) === value);
+      if (!item) return;
+      root.querySelectorAll('[data-combo-item]').forEach((i) => i.classList.remove('is-selected'));
+      item.classList.add('is-selected');
+      const labelEl = root.querySelector('[data-combo-label]');
+      const label = item.getAttribute('data-label') || item.textContent.trim();
+      if (labelEl) labelEl.textContent = label;
+      root.dataset.value = value;
+    };
+
+    window.getComboValue = function (id) {
+      const root = document.getElementById(id);
+      return root ? root.dataset.value : undefined;
+    };
+
+    document.querySelectorAll('[data-combo]').forEach(setupCombo);
+  })();
+
+  // Drag-to-reorder for every question list (Core, Optional, Custom, and each
+  // status branch inside "Pertanyaan Bercabang") — admin can rearrange
+  // questions anywhere a [data-sort-handle] grab icon shows up. A row is only
+  // draggable while its handle is actually pressed, so clicking a toggle,
+  // edit, or delete button inside the row never accidentally starts a drag.
+  (function () {
+    function bindRow(row) {
+      if (row.dataset.sortBound === 'true') return;
+      const handle = row.querySelector('[data-sort-handle]');
+      if (!handle) return;
+      // Skip if the handle actually belongs to a nested sortable-list (e.g. a
+      // "Pertanyaan bercabang" wrapper that contains its own mini lists) —
+      // otherwise this outer wrapper gets falsely bound as draggable too.
+      for (let el = handle.parentElement; el && el !== row; el = el.parentElement) {
+        if (el.hasAttribute('data-sortable-list')) return;
+      }
+      row.dataset.sortBound = 'true';
+      handle.addEventListener('mousedown', () => {
+        row.setAttribute('draggable', 'true');
+      });
+      row.addEventListener('dragstart', (e) => {
+        row.classList.add('opacity-40');
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', '');
+      });
+      row.addEventListener('dragend', () => {
+        row.classList.remove('opacity-40');
+        row.removeAttribute('draggable');
+      });
+    }
+
+    function getAfterElement(container, y, dragging) {
+      const rows = Array.from(container.children).filter((el) => el !== dragging);
+      return rows.reduce(
+        (closest, child) => {
+          const box = child.getBoundingClientRect();
+          const offset = y - box.top - box.height / 2;
+          return offset < 0 && offset > closest.offset ? { offset, element: child } : closest;
+        },
+        { offset: Number.NEGATIVE_INFINITY, element: null }
+      ).element;
+    }
+
+    function initSortableList(container) {
+      if (!container || container.dataset.sortListBound === 'true') return;
+      container.dataset.sortListBound = 'true';
+      Array.from(container.children).forEach(bindRow);
+      container.addEventListener('dragover', (e) => {
+        const dragging = container.querySelector(':scope > .opacity-40');
+        if (!dragging) return;
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        const after = getAfterElement(container, e.clientY, dragging);
+        if (after == null) {
+          container.appendChild(dragging);
+        } else if (after !== dragging) {
+          container.insertBefore(dragging, after);
+        }
+      });
+      // Without a drop handler that calls preventDefault, the browser treats
+      // the drop as rejected and animates the dragged row snapping back to
+      // where it started — even though the reorder above already happened.
+      container.addEventListener('drop', (e) => e.preventDefault());
+    }
+
+    document.querySelectorAll('[data-sortable-list]').forEach(initSortableList);
+
+    // Safety net: rows shift live as you drag, so a fast release can land
+    // outside the list's own bounds. Without this, the browser treats that
+    // drop as rejected and snaps the row back — even though the reorder
+    // already happened in the DOM.
+    document.addEventListener('dragover', (e) => {
+      if (document.querySelector('.opacity-40[draggable="true"]')) e.preventDefault();
+    });
+    document.addEventListener('drop', (e) => {
+      if (document.querySelector('.opacity-40[draggable="true"]')) e.preventDefault();
+    });
+
+    // Exposed so newly-added rows (Tambah Pertanyaan) and dynamically-built
+    // containers (the "Kosong" empty-state's first Custom card) hook in too.
+    window.bindSortableRow = bindRow;
+    window.initSortableList = initSortableList;
+  })();
+
+  // Custom question flow: add, edit, delete. One shared modal is reused by
+  // every Custom section (flat templates and each gelombang) — which row
+  // list it targets is read from the clicked button's data-target/closest
+  // row, so no per-section wiring is needed.
+  (function () {
+    const overlay = document.getElementById('customQOverlay');
+    const titleEl = document.getElementById('customQTitle');
+    const textEl = document.getElementById('customQText');
+    const requiredEl = document.getElementById('customQRequired');
+    const errorEl = document.getElementById('customQError');
+    const closeBtn = document.getElementById('customQCloseBtn');
+    const cancelBtn = document.getElementById('customQCancelBtn');
+    const saveBtn = document.getElementById('customQSaveBtn');
+    const deleteOverlay = document.getElementById('deleteCustomOverlay');
+    const deleteCancelBtn = document.getElementById('deleteCustomCancelBtn');
+    const deleteOkBtn = document.getElementById('deleteCustomOkBtn');
+    if (!overlay || !deleteOverlay) return;
+
+    let state = { mode: 'add', containerId: null, row: null };
+    let rowPendingDelete = null;
+
+    function fillRow(row, text, type, required) {
+      row.querySelector('[data-q-text]').textContent = text;
+      row.querySelector('[data-q-type]').textContent = `Tipe: ${type}`;
+      row.querySelector('[data-q-required]').checked = required;
+      row.querySelector('[data-q-required-label]').textContent = required ? 'Wajib' : 'Opsional';
+    }
+
+    function buildRow(text, type, required) {
+      const row = document.createElement('div');
+      row.className = 'flex flex-wrap items-center gap-x-3 gap-y-1.5 p-4 sm:flex-nowrap';
+      row.setAttribute('data-custom-row', '');
+      row.innerHTML = `
+        <i class="kk kk-dots-three-vertical hidden h-4 w-4 shrink-0 cursor-grab text-slate-300 sm:inline-block" data-sort-handle></i>
+        <div class="w-full sm:w-auto sm:min-w-0 sm:flex-1">
+          <p class="text-sm text-slate-700 sm:truncate" data-q-text></p>
+          <p class="text-xs text-slate-400" data-q-type></p>
+        </div>
+        <label class="flex shrink-0 cursor-pointer items-center gap-2 text-xs text-slate-500">
+          <span data-q-required-label></span>
+          <span class="relative">
+            <input type="checkbox" class="peer sr-only" data-q-required />
+            <span class="block h-5 w-9 rounded-full bg-slate-200 transition-colors peer-checked:bg-primary-600"></span>
+            <span class="absolute left-1 top-1 h-3 w-3 rounded-full bg-white transition-transform peer-checked:translate-x-4"></span>
+          </span>
+        </label>
+        <button type="button" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+          <i class="kk kk-pencil-simple h-4 w-4"></i>
+        </button>
+        <button type="button" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 hover:bg-danger-50 hover:text-danger-600">
+          <i class="kk kk-trash h-4 w-4"></i>
+        </button>
+      `;
+      fillRow(row, text, type, required);
+      return row;
+    }
+
+    window.KKBuildCustomRow = buildRow;
+
+    function openModal() {
+      errorEl.classList.add('hidden');
+      overlay.classList.remove('hidden');
+    }
+    function closeModal() {
+      overlay.classList.add('hidden');
+    }
+
+    function comboHasItem(comboId, label) {
+      const root = document.getElementById(comboId);
+      return !!root && Array.from(root.querySelectorAll('[data-combo-item]')).some((i) => (i.dataset.value ?? i.textContent.trim()) === label);
+    }
+
+    function openAddModal(containerId) {
+      state = { mode: 'add', containerId, row: null };
+      titleEl.textContent = 'Tambah Pertanyaan Custom';
+      textEl.value = '';
+      setComboValue('customQTypeCombo', 'Teks Singkat');
+      requiredEl.checked = false;
+      openModal();
+    }
+
+    function openEditModal(row) {
+      state = { mode: 'edit', containerId: null, row };
+      titleEl.textContent = 'Edit Pertanyaan Custom';
+      textEl.value = row.querySelector('[data-q-text]').textContent;
+      const typeText = row.querySelector('[data-q-type]').textContent.replace('Tipe:', '').trim();
+      setComboValue('customQTypeCombo', comboHasItem('customQTypeCombo', typeText) ? typeText : 'Teks Singkat');
+      requiredEl.checked = row.querySelector('[data-q-required]').checked;
+      openModal();
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+
+      if (btn.classList.contains('js-add-custom')) {
+        openAddModal(btn.dataset.target);
+        return;
+      }
+
+      const row = btn.closest('[data-custom-row]');
+      if (row && btn.querySelector('.kk-pencil-simple')) {
+        openEditModal(row);
+        return;
+      }
+      if (row && btn.querySelector('.kk-trash')) {
+        rowPendingDelete = row;
+        deleteOverlay.classList.remove('hidden');
+      }
+    });
+
+    saveBtn.addEventListener('click', () => {
+      const text = textEl.value.trim();
+      if (!text) {
+        errorEl.classList.remove('hidden');
+        return;
+      }
+      const type = getComboValue('customQTypeCombo');
+      const required = requiredEl.checked;
+
+      if (state.mode === 'edit' && state.row) {
+        fillRow(state.row, text, type, required);
+      } else if (state.mode === 'add' && state.containerId) {
+        const container = document.getElementById(state.containerId);
+        if (container) {
+          const row = buildRow(text, type, required);
+          container.appendChild(row);
+          window.bindSortableRow?.(row);
+        }
+      }
+      closeModal();
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+      if (!e.target.closest('#customQPanel')) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        deleteOverlay.classList.add('hidden');
+      }
+    });
+
+    function closeDeleteConfirm() {
+      deleteOverlay.classList.add('hidden');
+      rowPendingDelete = null;
+    }
+
+    deleteOkBtn.addEventListener('click', () => {
+      rowPendingDelete?.remove();
+      closeDeleteConfirm();
+    });
+    deleteCancelBtn.addEventListener('click', closeDeleteConfirm);
+    deleteOverlay.addEventListener('click', (e) => {
+      if (!e.target.closest('#deleteCustomPanel')) closeDeleteConfirm();
+    });
+  })();
+
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden/short accordion card entirely via
+  // position: fixed computed from getBoundingClientRect(), instead of CSS
+  // group-hover, so it can never be clipped or covered no matter what
+  // contains the trigger.
+  // Fixed-position tooltip (see .tooltip-fixed in src/input.css) - escapes
+  // any ancestor's overflow-hidden entirely via position: fixed computed
+  // from getBoundingClientRect(), instead of CSS group-hover. Used both for
+  // the sidebar's collapsed icon rail (data-tooltip-side="right", shown only
+  // while .sidebar-collapsed is active - the label text already does the
+  // job when expanded) and for any other trigger that just needs the
+  // default above/below placement.
+  (function () {
+    const tip = document.getElementById('tooltipFixed');
+    if (!tip) return;
+    const GAP = 8;
+
+    function place(trigger) {
+      const r = trigger.getBoundingClientRect();
+      const tipRect = tip.getBoundingClientRect();
+      if (trigger.dataset.tooltipSide === 'right') {
+        const left = r.right + GAP;
+        let top = r.top + (r.height - tipRect.height) / 2;
+        top = Math.max(8, Math.min(top, window.innerHeight - tipRect.height - 8));
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        return;
+      }
+      let top = r.top - tipRect.height - GAP;
+      if (top < 8) top = r.bottom + GAP;
+      let left = Math.min(r.left, window.innerWidth - tipRect.width - 8);
+      left = Math.max(8, left);
+      tip.style.top = top + 'px';
+      tip.style.left = left + 'px';
+    }
+
+    document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+      function show() {
+        if (trigger.dataset.tooltipSide === 'right' && !sidebar?.classList.contains('sidebar-collapsed')) return;
+        tip.textContent = trigger.dataset.tooltipText;
+        tip.style.opacity = '0';
+        requestAnimationFrame(() => {
+          place(trigger);
+          tip.style.opacity = '1';
+        });
+      }
+      function hide() {
+        tip.style.opacity = '0';
+      }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  })();
+
+
+  // Kuesioner Kosong: satu halaman per kuesioner, seperti di aplikasi. ?id=kosong-1 membuka contoh yang sudah ada,
+  // tanpa id = kuesioner baru. Data contoh lokal; di aplikasi disimpan lewat API.
+  (function () {
+    const SAMPLE = {
+      'kosong-1': {
+        title: 'Survei Kepuasan Layanan Karir 2026',
+        description: 'Menilai layanan pusat karir selama satu tahun terakhir.',
+        questions: [
+          { text: 'Seberapa puas Anda dengan layanan konsultasi karir?', type: 'Skala', required: true },
+          { text: 'Layanan apa yang paling Anda butuhkan tahun depan?', type: 'Teks Panjang', required: false },
+        ],
+      },
+      'kosong-2': { title: 'Evaluasi Job Fair Oktober', description: '', questions: [] },
+    };
+    const title = document.getElementById('blankTitle');
+    const desc = document.getElementById('blankDesc');
+    const titleHint = document.getElementById('blankTitleHint');
+    const descHint = document.getElementById('blankDescHint');
+    const titleError = document.getElementById('blankTitleError');
+    const rows = document.getElementById('customRowsKosong');
+    const empty = document.getElementById('blankEmpty');
+    const listCard = document.getElementById('blankListCard');
+
+    function counts() {
+      titleHint.textContent = title.value.length + '/' + title.maxLength + ' karakter';
+      descHint.textContent = desc.value.length + '/' + desc.maxLength + ' karakter';
+    }
+    function syncQuestions() {
+      const has = rows.children.length > 0;
+      empty.classList.toggle('hidden', has);
+      listCard.classList.toggle('hidden', !has);
+    }
+    function clearTitleError() {
+      titleError.classList.add('hidden');
+      title.classList.remove('input-error');
+    }
+
+    const data = SAMPLE[new URLSearchParams(location.search).get('id')];
+    if (data) {
+      title.value = data.title;
+      desc.value = data.description;
+      data.questions.forEach((q) => {
+        const row = window.KKBuildCustomRow(q.text, q.type, q.required);
+        rows.appendChild(row);
+        window.bindSortableRow?.(row);
+      });
+    }
+    counts();
+    syncQuestions();
+    new MutationObserver(syncQuestions).observe(rows, { childList: true });
+
+    title.addEventListener('input', () => { counts(); clearTitleError(); });
+    desc.addEventListener('input', counts);
+
+    // Simpan: judul wajib diisi; bila kosong tampilkan galat dan biarkan perubahan tetap belum tersimpan.
+    window.KKBuilderBeforeSave = function () {
+      if (title.value.trim()) { clearTitleError(); return true; }
+      titleError.classList.remove('hidden');
+      title.classList.add('input-error');
+      title.focus();
+      return false;
+    };
+  })();
+</script>
+<script src="admin-brand.js"></script>
+<script src="admin-pt-picker.js"></script>
+<script src="kuesioner-toolbar.js"></script>
+</body>
+</html>

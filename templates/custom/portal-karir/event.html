@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Event | Portal Karir KarirLink</title>
 <link rel="icon" type="image/svg+xml" href="../../../assets/logo/karirlink-mark.svg" />
-<link rel="stylesheet" href="../../../dist/output.css" />
+<link rel="stylesheet" href="../../../dist/output.css" />
 <meta name="description" content="Daftar event dan kegiatan pusat karier kampus: job fair, workshop, webinar, pelatihan, dan kegiatan kampus." />
 <meta name="author" content="SEVIMA" />
 <link rel="canonical" href="https://karirkit.vercel.app/templates/custom/portal-karir/event.html" />
@@ -37,11 +37,7 @@
 <main class="flex-1">
 
   <!-- ============================= BAND JUDUL + PENCARIAN ============================= -->
-  <section data-nav-hero class="relative bg-brand-gradient text-white">
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
-      <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
-    </div>
-    <div class="relative mx-auto w-full max-w-7xl px-4 pb-10 pt-24 sm:px-6">
+  <div data-shell="band">
       <h1 class="font-display text-2xl font-bold sm:text-3xl">Event dan kegiatan</h1>
       <p class="mt-1 max-w-2xl text-sm text-white/80">Job fair, workshop, webinar, pelatihan, dan kegiatan kampus untuk mahasiswa dan alumni.</p>
       <form id="filterForm" role="search" class="card mt-5 p-4" data-combo-boundary>
@@ -58,8 +54,7 @@
           <button type="submit" class="btn-primary btn-md sm:col-span-2 lg:col-span-1">Cari</button>
         </div>
       </form>
-    </div>
-  </section>
+  </div>
 
   <!-- ============================= DAFTAR EVENT ============================= -->
   <div class="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10">

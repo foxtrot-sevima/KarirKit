@@ -38,11 +38,8 @@
 <main class="flex-1">
 
   <!-- ============================= BAND JUDUL + FILTER ============================= -->
-  <section id="head" data-nav-hero class="relative bg-brand-gradient text-white">
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden"><div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div></div>
-    <div class="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-24 sm:px-6">
-      <a id="back" href="job-fair.html" class="inline-flex items-center gap-1.5 text-sm text-white/80 hover:text-white"><i class="kk kk-arrow-left h-4 w-4" aria-hidden="true"></i><span id="backText">Job Fair</span></a>
-      <h1 class="mt-2 font-display text-2xl font-bold sm:text-3xl">Lowongan Job Fair</h1>
+  <div data-shell="band" data-id="head">
+      <h1 class="font-display text-2xl font-bold sm:text-3xl">Lowongan Job Fair</h1>
       <p id="sub" class="mt-1 text-sm text-white/80">Memuat lowongan...</p>
       <form id="filterForm" role="search" class="card mt-5 p-4" data-combo-boundary>
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_16rem_12rem_auto] sm:items-end">
@@ -58,8 +55,7 @@
           <button type="submit" class="btn-primary btn-md">Cari</button>
         </div>
       </form>
-    </div>
-  </section>
+  </div>
 
   <div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
     <div id="notice" class="mb-5" hidden></div>
@@ -92,7 +88,6 @@
   }
     var PAGE_SIZE = 9, state = { company: fp.company, jenis: fp.jenis, q: fp.q, page: fp.page }, built = false, token = PK.latest();
     $('fQ').value = state.q;
-    $('back').href = PK.fairUrl('job-fair', fp.slug, fp.preview);
     function syncUrl() {
       var q = 'slug=' + encodeURIComponent(fp.slug) + (fp.preview ? '&preview' : '');
       if (state.company) q += '&company=' + encodeURIComponent(state.company);
@@ -114,8 +109,7 @@
         if (!ok()) return;
         if (!built) buildCombos(res);
         state.page = res.page; syncUrl();
-        $('backText').textContent = res.fair.name;
-        $('sub').textContent = res.total + ' lowongan dari ' + res.companies.length + ' perusahaan peserta.';
+        $('sub').textContent = res.fair.name + ': ' + res.total + ' lowongan dari ' + res.companies.length + ' perusahaan peserta.';
         $('notice').hidden = !fp.preview; $('notice').innerHTML = fp.preview ? previewNote() : '';
         grid.innerHTML = res.items.length ? res.items.map(function (r) { return PK.jobCard(r); }).join('')
           : '<div class="col-span-full">' + PK.emptyBox('default', 'Belum ada lowongan yang cocok', 'Coba ubah perusahaan, tipe pekerjaan, atau kata kunci.', '<button type="button" class="btn-outline btn-md" data-reset>Atur ulang filter</button>') + '</div>';

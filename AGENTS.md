@@ -6,7 +6,8 @@ Satu-satunya sumber aturan untuk **semua** AI agent (Cursor, Claude Code, Codex,
 
 - `CLAUDE.md` dan `GEMINI.md` hanya meng-import `@AGENTS.md`. **Jangan** membuat file aturan agent lain (`.cursor/rules/`, `.github/copilot-instructions.md`, `.windsurfrules`, dan sejenisnya): aturan baru masuk ke `AGENTS.md` atau ke skill.
 - Jika `AGENTS.md` tidak terbaca, berhenti dan laporkan ke user; jangan mengubah kode.
-- Agent bekerja di **worktree sementara** (`npm run mockup:new <fitur>` membuatnya dari `origin/staging`), tidak di checkout utama; checkout utama milik engineer dan sering berisi pekerjaan setengah jadi (`copy`, `backup`, WIP). Sebelum mengubah file, jalankan `git status`. File yang berubah dan bukan kamu yang mengubahnya adalah pekerjaan orang/sesi lain: jangan commit, jangan revert, jangan pindah branch di atasnya.
+- Agent bekerja **langsung di checkout repo ini, di branch fitur**: `npm run mockup:new <fitur>` memotong `mockup/<fitur>` dari `origin/staging` terbaru lalu pindah ke sana. **Tanpa worktree** (alur worktree sementara sudah tidak dipakai). Checkout sering berisi file belum ter-track milik engineer (`copy`, `backup`, WIP); itu tidak ikut commit karena staging per path. Sebelum mengubah file dan sebelum pindah branch, jalankan `git status`. Perubahan tracked yang bukan kamu yang membuatnya adalah pekerjaan orang/sesi lain: jangan commit, jangan revert, jangan pindah branch di atasnya; berhenti dan minta user menyimpannya dulu.
+- Selaras dengan `karirlink-agent-kit` (v0.6.1): repo ini **tidak** memakai kit-sync. `AGENTS.md` ini di-commit karena memuat keputusan khusus design system; aturan kit untuk app Karirlink (Core Go, FE Next, devplan di `docs/development-plan`, MR ke `development`) tidak berlaku di sini. Aturan lintas repo yang diselaraskan: merge dan commit (bagian "Git & push"), tanpa atribusi AI, dan buang slop di diff (bagian "Kualitas diff"). Tiga skill kit (`karirlink-devplan`, `karirlink-qa-plan`, `karirlink-mr-draft`) dipakai di repo app (`karirlink-core`, `portal-karirlink`); jangan menyalinnya ke sini dan jangan dicampur dengan skill `karirlink-admin-pages` milik repo ini.
 - Aturan ini mencatat **keputusan tim**, bukan isi kode. Mengubah aturan = ubah file ini atau skill-nya di commit yang sama dengan perubahan kebiasaannya.
 
 ## Skill (baca sesuai topik)
@@ -65,19 +66,30 @@ Satu-satunya sumber aturan untuk **semua** AI agent (Cursor, Claude Code, Codex,
 
 - Engineer menarik hasil dengan `npm run sync` (fetch, `merge --ff-only --autostash`, lalu build); cukup sekali `git config merge.autoStash true` agar `git pull --ff-only` biasa pun menyimpan dan mengembalikan perubahan lokal sendiri. Melihat hasil tidak perlu pull: `dev-karirkit.vercel.app` ter-build dari `staging`.
 - `templates/CHANGELOG.md` memakai `merge=union` (`.gitattributes`): entri dua fitur di section tanggal yang sama tergabung otomatis; periksa hasilnya sekilas setelah merge.
-- Merge antar-branch memakai merge commit (jejak "Merge branch ..."); tidak squash. Jangan merge cabang utama ke branch fitur; menyusul base lewat rebase.
+- Merge antar-branch memakai merge commit `--no-ff` (jejak "Merge branch ..."); dilarang fast-forward dan squash. Jangan merge cabang utama ke branch fitur; menyusul base lewat `git rebase`. Menarik branch yang sama dari remote memakai `--ff-only`. Commit "wip" dirapikan (rebase) di branch sendiri sebelum digabung; hanya untuk branch yang belum dipush.
 - `git push origin <branch>` mengirim ke GitHub **dan** GitLab. Tag dipush eksplisit. Bila "Out of memory, malloc failed": `git -c http.postBuffer=1048576 push ...`. Setelah push penting, bandingkan `LC_ALL=C git ls-remote --heads <url>` di kedua sisi.
 - GitLab `main` berisi satu commit README yang tidak terkait: jangan disentuh. **Jangan force-push atau menghapus ref** tanpa izin.
-- Merge dari branch kerja ke cabang utama dikerjakan di worktree sementara agar working tree yang berisi pekerjaan lain tidak terganggu. Tanpa `gh`, merge dilakukan lokal lalu dipush.
-- Commit bermakna, dalam bahasa Inggris dengan prefiks lingkup (lihat keputusan 3). **Tanpa atribusi AI** di commit dan PR: jangan menambah `Co-Authored-By:` untuk AI, trailer sesi agent, atau "Generated with ...". Jangan bypass hook dengan `--no-verify`.
+- Merge dari branch kerja ke cabang utama dikerjakan di checkout ini, tanpa worktree: `git status`, `git switch <cabang utama>`, `git merge --no-ff <branch fitur>`, periksa hasilnya, push, lalu kembali ke branch kerja. Bila perubahan tracked milik orang/sesi lain menghalangi pindah branch, berhenti dan minta user menyimpannya. Agent hanya merge bila diminta user. Tanpa `gh`, merge dilakukan lokal lalu dipush.
+- Commit bermakna, dalam bahasa Inggris dengan prefiks lingkup (lihat keputusan 3). **Tanpa atribusi AI** di commit dan PR: jangan menambah `Co-Authored-By:` untuk AI, trailer sesi agent, atau "Generated with ...". Jangan bypass hook dengan `--no-verify`. Matikan juga atribusi di setting agent masing-masing (Claude Code: `"attribution": {"commit": "", "pr": ""}`).
 
 ## Deploy (Vercel, tim foxtrot-sevima)
 
 - Release: sumber > `master` > `release` > `karirkit/vercel` (`karirkit.vercel.app` + storybook rilis). Staging: sumber > `staging` > `karirkit/staging-vercel` (`dev-karirkit.vercel.app` + storybook staging).
 - Push ke `release` memicu `publish.yml` (GitHub Packages) yang menolak versi yang sudah terbit (E409). Rilis mockup tanpa versi baru tidak boleh memicu publish: workflow perlu guard sebelum jalur mockup ke `release` dipakai.
 - Build Command `npm run build` harus terisi di project Vercel `karirkit` dan `dev-karirkit` sebelum branch deploy menerima commit tanpa `dist/` (tanpa itu halaman mockup kehilangan CSS). Jangan memakai `vercel.json` untuk ini: berlaku ke semua project dan menimpa build Storybook. `vercel.json` hanya boleh berisi `git.deploymentEnabled` (lihat di bawah); jangan menambah `buildCommand`, `builds`, atau `outputDirectory`.
-- **Hanya cabang deploy yang dibangun.** Tampilan hasil cukup production dan dev: `karirkit/vercel` (`karirkit.vercel.app`) dan `karirkit/staging-vercel` (`dev-karirkit.vercel.app`). Vercel membatasi **100 deployment per hari** (`api-deployments-free-per-day`), dan setiap push cabang lain membuat deployment preview (tampil "Canceled" karena Ignored Build Step, tetapi tetap terhitung); setelah kuota habis, push ke cabang deploy tidak menghasilkan apa-apa tanpa galat di sisi git. Karena itu `vercel.json` mematikan deployment untuk `mockup/*`, `master`, `staging`, dan `release`, dan **branch fitur tidak dipush** sebelum digabung (merge `--no-ff` di worktree sementara, lalu push hanya `staging` dan `karirkit/staging-vercel`; satu rilis = `master` lalu `karirkit/vercel`). Setelah push ke cabang deploy, cek deployment-nya benar-benar ada (`vercel ls <project> --scope foxtrot-sevima`) dan jangan menyatakan produksi sudah berubah sebelum itu.
+- **Hanya cabang deploy yang dibangun.** Tampilan hasil cukup production dan dev: `karirkit/vercel` (`karirkit.vercel.app`) dan `karirkit/staging-vercel` (`dev-karirkit.vercel.app`). Vercel membatasi **100 deployment per hari** (`api-deployments-free-per-day`), dan setiap push cabang lain membuat deployment preview (tampil "Canceled" karena Ignored Build Step, tetapi tetap terhitung); setelah kuota habis, push ke cabang deploy tidak menghasilkan apa-apa tanpa galat di sisi git. Karena itu `vercel.json` mematikan deployment untuk `mockup/*`, `master`, `staging`, dan `release`, dan **branch fitur tidak dipush** sebelum digabung (merge `--no-ff` di checkout ini, lalu push hanya `staging` dan `karirkit/staging-vercel`; satu rilis = `master` lalu `karirkit/vercel`). Setelah push ke cabang deploy, cek deployment-nya benar-benar ada (`vercel ls <project> --scope foxtrot-sevima`) dan jangan menyatakan produksi sudah berubah sebelum itu.
 - Jangan commit secret atau file contoh milik proyek lain.
+
+## Kualitas diff
+
+Bandingkan diff dengan base saat menulis dan sebelum minta digabung; buang slop di branch yang sama. Perilaku tetap; edit minimal, jangan rewrite lebar.
+
+- Komentar yang mengulang kode, atau yang tidak dipakai file di sekitarnya.
+- Pemeriksaan defensif atau `try`/`catch` di jalur yang sudah dipercaya; `catch {}` kosong tetap dilarang.
+- Cast atau tipe longgar (`any`) hanya untuk meloloskan kompiler.
+- Nesting dalam yang bisa jadi early return.
+- Kode baru yang tidak mengubah perilaku yang diminta: pembungkus sekali pakai, parameter untuk kebutuhan yang belum ada.
+- Template hanya memakai komponen KarirKit (keputusan 5): kelas, blok `<style>`, atau logika komponen buatan sendiri di template juga termasuk slop.
 
 ## Pengecualian
 

@@ -38,41 +38,42 @@
 <main class="flex-1">
 
   <!-- ============================= HERO ============================= -->
-  <section data-nav-hero class="relative overflow-hidden bg-brand-gradient text-white">
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
-      <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px); background-size: 22px 22px;"></div>
-    </div>
-    <div id="heroGrid" class="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:grid-cols-[1.3fr_0.7fr]">
-      <div class="min-w-0">
-        <p id="heroUnit" class="text-sm font-semibold uppercase tracking-wider text-white/80"></p>
-        <h1 id="heroCampus" class="mt-3 text-balance font-display font-bold leading-tight tracking-tight"></h1>
-        <p id="heroDesc" class="mt-4 max-w-xl text-base text-white/85 sm:text-lg">Lowongan, event, course, dan portofolio dalam satu tempat, dari masa kuliah sampai setelah lulus.</p>
-
-        <form id="heroSearch" role="search" class="card mt-8 max-w-2xl p-2 text-fg sm:flex sm:items-center sm:gap-2" data-combo-boundary>
-          <label class="relative min-w-0 flex-1">
-            <span class="sr-only">Kata kunci</span>
-            <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
-            <input id="heroQ" type="search" class="input border-0 pl-9 shadow-none focus:ring-0" placeholder="Cari apa hari ini?" autocomplete="off" />
-          </label>
-          <div id="heroTypeHost" class="border-t border-border pt-2 sm:w-44 sm:border-l sm:border-t-0 sm:pl-2 sm:pt-0"></div>
-          <button type="submit" class="btn-primary btn-md mt-2 w-full sm:mt-0 sm:w-auto">Cari</button>
-        </form>
+  <section id="hero" data-nav-hero class="relative rounded-b-[2rem] bg-brand-gradient text-white sm:rounded-b-[3rem]">
+    <div class="mx-auto w-full max-w-7xl px-4 pb-10 pt-[6.5rem] text-center sm:px-6 sm:pb-20 sm:pt-36">
+      <div class="mx-auto max-w-4xl">
+        <p class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white ring-1 ring-white/25 backdrop-blur-md"><span class="h-1.5 w-1.5 rounded-full bg-secondary-500"></span><span id="heroUnit">Pusat Karier dan Alumni</span></p>
+        <h1 id="heroCampus" class="mt-6 text-balance font-display text-4xl font-bold leading-[1.06] tracking-[-0.03em] text-white sm:text-5xl lg:text-[3.75rem]"><span class="block">Akselerasi Karier Impian</span><span class="block text-white/60">Bersama <span id="heroName" class="text-white">Universitas Foxtrot</span></span></h1>
+        <p id="heroDesc" class="mx-auto mt-6 max-w-2xl text-balance text-base text-white/80 sm:text-lg">Lowongan, event, course, dan portofolio dalam satu tempat, dari masa kuliah sampai setelah lulus terhubung langsung dengan perusahaan mitra terverifikasi.</p>
       </div>
 
-      <div class="relative mx-auto hidden h-[26rem] w-full max-w-md lg:block" aria-hidden="true">
-        <!-- cincin orbit -->
-        <div class="absolute left-1/2 top-1/2 h-[23rem] w-[23rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15"></div>
-        <div class="anim-pulse absolute left-1/2 top-1/2 h-[12rem] w-[12rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-secondary-300/40 blur-2xl"></div>
-        <div class="absolute left-1/2 top-1/2 h-[16rem] w-[16rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/35 anim-orbit"></div>
-        <div class="absolute left-1/2 top-1/2 h-[10rem] w-[10rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-white/25 to-white/5 ring-1 ring-white/30 backdrop-blur-sm"></div>
-        <!-- pusat -->
-        <div class="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-2xl shadow-primary-950/40 ring-8 ring-white/20"><img id="heroLogo" src="../../../assets/logo/karirlink-mark.svg" alt="" class="h-14 w-14" /></div>
-        <!-- titik penghias -->
-        <span class="absolute left-[18%] top-[48%] h-2.5 w-2.5 rounded-full bg-secondary-300"></span><span class="absolute right-[16%] top-[56%] h-2 w-2 rounded-full bg-white/70"></span><span class="absolute left-[46%] top-[6%] h-2 w-2 rounded-full bg-white/60"></span><span class="absolute bottom-[8%] right-[40%] h-2.5 w-2.5 rounded-full bg-secondary-300"></span>
-        <div style="animation-delay:0s" class="anim-float absolute left-0 top-8 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-50 text-primary-600"><i class="kk kk-briefcase h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Lowongan</span></div>
-        <div style="animation-delay:-1.5s" class="anim-float absolute right-0 top-20 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600"><i class="kk kk-calendar-check h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Event</span></div>
-        <div style="animation-delay:-3s" class="anim-float absolute bottom-20 left-2 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-success-50 text-success-600"><i class="kk kk-graduation-cap h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Course</span></div>
-        <div style="animation-delay:-4.5s" class="anim-float absolute bottom-6 right-6 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-4 shadow-xl shadow-primary-950/25 ring-1 ring-white/60"><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-info-50 text-info-600"><i class="kk kk-palette h-6 w-6"></i></span><span class="text-sm font-semibold text-slate-900">Portofolio</span></div>
+      <form id="heroSearch" role="search" class="mx-auto mt-10 flex max-w-3xl flex-col gap-2 rounded-3xl bg-white p-2 text-left text-fg shadow-xl shadow-primary-950/25 md:flex-row md:items-center md:rounded-full" data-combo-boundary>
+        <label class="relative min-w-0 flex-1">
+          <span class="sr-only">Kata kunci</span>
+          <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-fg-subtle"><i class="kk kk-magnifying-glass h-4 w-4" aria-hidden="true"></i></span>
+          <input id="heroQ" type="search" class="input border-0 pl-10 shadow-none focus:ring-0 md:rounded-full" placeholder="Cari posisi atau keahlian..." autocomplete="off" />
+        </label>
+        <div id="heroBidangHost" class="border-t border-border pt-2 md:w-44 md:border-l md:border-t-0 md:pl-2 md:pt-0"></div>
+        <div id="heroTypeHost" class="border-t border-border pt-2 md:w-44 md:border-l md:border-t-0 md:pl-2 md:pt-0"></div>
+        <button type="submit" class="btn-primary btn-md w-full !rounded-full md:w-auto md:px-6">Cari<i class="kk kk-arrow-right h-4 w-4" aria-hidden="true"></i></button>
+      </form>
+
+      <div class="mx-auto mt-3 grid max-w-3xl grid-cols-2 gap-3 text-left lg:grid-cols-4">
+        <a href="lowongan.html" class="group flex flex-col items-start gap-3 rounded-2xl bg-white/10 p-3.5 ring-1 ring-white/20 sm:flex-row sm:items-center sm:gap-3 sm:p-3.5 lg:gap-2.5 lg:p-3 backdrop-blur-md transition-colors hover:bg-white/[.16]">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white"><i class="kk kk-briefcase h-5 w-5" aria-hidden="true"></i></span>
+          <span class="min-w-0 flex-1"><span class="block text-sm font-semibold text-white">Lowongan</span><span class="block truncate text-xs text-white/70">Eksplorasi Karir</span></span>
+        </a>
+        <a href="event.html" class="group flex flex-col items-start gap-3 rounded-2xl bg-white/10 p-3.5 ring-1 ring-white/20 sm:flex-row sm:items-center sm:gap-3 sm:p-3.5 lg:gap-2.5 lg:p-3 backdrop-blur-md transition-colors hover:bg-white/[.16]">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white"><i class="kk kk-calendar-check h-5 w-5" aria-hidden="true"></i></span>
+          <span class="min-w-0 flex-1"><span class="block text-sm font-semibold text-white">Event</span><span class="block truncate text-xs text-white/70">Seminar &amp; Expo</span></span>
+        </a>
+        <a href="pengembangan.html" class="group flex flex-col items-start gap-3 rounded-2xl bg-white/10 p-3.5 ring-1 ring-white/20 sm:flex-row sm:items-center sm:gap-3 sm:p-3.5 lg:gap-2.5 lg:p-3 backdrop-blur-md transition-colors hover:bg-white/[.16]">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white"><i class="kk kk-graduation-cap h-5 w-5" aria-hidden="true"></i></span>
+          <span class="min-w-0 flex-1"><span class="block text-sm font-semibold text-white">Course</span><span class="block truncate text-xs text-white/70">Upgrade Skill</span></span>
+        </a>
+        <a href="profil.html" class="group flex flex-col items-start gap-3 rounded-2xl bg-white/10 p-3.5 ring-1 ring-white/20 sm:flex-row sm:items-center sm:gap-3 sm:p-3.5 lg:gap-2.5 lg:p-3 backdrop-blur-md transition-colors hover:bg-white/[.16]">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white"><i class="kk kk-palette h-5 w-5" aria-hidden="true"></i></span>
+          <span class="min-w-0 flex-1"><span class="block text-sm font-semibold text-white">Portofolio</span><span class="block truncate text-xs text-white/70">Showcase Diri</span></span>
+        </a>
       </div>
     </div>
   </section>
@@ -249,27 +250,22 @@
     PK.initShell();
 
     $('heroUnit').textContent = PK.CAMPUS.unit;
-    // logo di tengah orbit hero = logo kampus (white-label) bila diisi; gagal dimuat = logo KarirLink bawaan
-    if (PK.CAMPUS.logo) {
-      var hl = $('heroLogo'), dflt = hl.getAttribute('src');
-      hl.className = 'h-[4.25rem] w-[4.25rem] rounded-md object-contain';
-      hl.addEventListener('error', function () { hl.onerror = null; hl.src = dflt; hl.className = 'h-14 w-14'; });
-      hl.src = new URL(PK.CAMPUS.logo, location.href).href;
-    }
-    $('heroCampus').textContent = PK.CAMPUS.name;
-    // ukuran judul mengikuti panjang nama kampus supaya nama panjang tidak memenuhi hero
-    var nl = PK.CAMPUS.name.length;
-    $('heroCampus').className += nl <= 22 ? ' text-4xl sm:text-5xl lg:text-6xl' : nl <= 34 ? ' text-3xl sm:text-4xl lg:text-5xl' : ' text-2xl sm:text-3xl lg:text-4xl';
-    document.querySelectorAll('.js-campus').forEach(function (el) { el.textContent = PK.CAMPUS.name; });
-
-    // pencarian terpadu: pilih jenis, lalu menuju halaman yang sesuai
-    $('heroTypeHost').innerHTML = PK.comboHtml({ id: 'heroType', all: 'Lowongan', label: 'Cari di', triggerClass: 'border-0 shadow-none focus-visible:ring-0', options: [['event', 'Event'], ['pengembangan', 'Tes dan course']] });
+    $('heroName').textContent = PK.CAMPUS.name;
+    // pencarian terpadu: kata kunci, bidang, dan jenis; menuju halaman yang sesuai
+    var BIDANG = Object.keys(PK.FIELDS).map(function (f) { return [f, f]; });
+    $('heroBidangHost').innerHTML = PK.comboHtml({ id: 'heroBidang', all: 'Semua Bidang', label: 'Bidang', triggerClass: 'border-0 shadow-none focus-visible:ring-0', search: 'Cari bidang...', options: BIDANG });
+    $('heroTypeHost').innerHTML = PK.comboHtml({ id: 'heroType', all: 'Lowongan Kerja', label: 'Cari di', triggerClass: 'border-0 shadow-none focus-visible:ring-0', options: [['event', 'Event'], ['pengembangan', 'Course']] });
     PK.initCombos($('heroSearch'));
     $('heroSearch').addEventListener('submit', function (e) {
       e.preventDefault();
-      var type = $('heroType').dataset.value || 'lowongan', q = $('heroQ').value.trim();
-      location.href = type + '.html' + (q ? '?q=' + encodeURIComponent(q) : '');
+      var type = $('heroType').dataset.value || 'lowongan', q = $('heroQ').value.trim(), f = $('heroBidang').dataset.value || '';
+      var p = new URLSearchParams();
+      if (q) p.set('q', q);
+      if (f && type === 'lowongan') p.set('bidang', f);
+      location.href = type + '.html' + (p.toString() ? '?' + p : '');
     });
+
+    document.querySelectorAll('.js-campus').forEach(function (el) { el.textContent = PK.CAMPUS.name; });
 
     var CAT_TONE = { 'Job Fair': 'badge-primary', 'Workshop': 'badge-secondary', 'Webinar': 'badge-info', 'Pelatihan': 'badge-success', 'Kegiatan Kampus': 'badge-warning' };
     function dateBox(e) { return '<span class="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-control bg-primary-50 text-primary-700"><span class="text-base font-bold leading-none">' + PK.evDay(e) + '</span><span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider">' + PK.evMonth(e) + '</span></span>'; }
