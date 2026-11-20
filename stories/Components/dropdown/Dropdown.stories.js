@@ -9,7 +9,7 @@ export default {
         component: `
 Menu yang terbuka dari sebuah tombol. Anatomi: \`.dropdown\` > tombol \`[data-ui-dropdown]\` + \`.dropdown-menu\` (tersembunyi lewat \`hidden\`) > \`.dropdown-item\`. Perilaku buka/tutup (klik, Escape, klik di luar) ada di \`assets/js/ui.js\`; CSS saja cukup untuk tampilan.
 
-**Selalu di dalam layar:** `assets/js/position.js` (dimuat otomatis oleh `ui.js`) memindahkan menu ke sisi seberang (flip) bila tidak muat dan menggesernya (shift) bila hampir keluar tepi layar, sehingga posisi tidak perlu diatur manual per halaman. Opt-out: `data-kk-position=\"off\"`.
+**Selalu di dalam layar:** \`assets/js/position.js\` (dimuat otomatis oleh \`ui.js\`) memindahkan menu ke sisi seberang (flip) bila tidak muat dan menggesernya (shift) bila hampir keluar tepi layar, sehingga posisi tidak perlu diatur manual per halaman. Opt-out: \`data-kk-position="off"\`.
 
 **Bagian menu:** \`.dropdown-header\` (+ \`-title\`, \`-desc\`) · \`.dropdown-divider\` · \`.dropdown-item-danger\` · \`.dropdown-item-check\` (+ \`.dropdown-item-title\`, \`.dropdown-item-desc\`) · \`.dropdown-search\` · \`.dropdown-scroll\` · \`.dropdown-footer\`. Lebar menu lewat utilitas \`w-*\`.
 
