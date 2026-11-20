@@ -13,6 +13,7 @@ Aturan singkat:
 Dasar KarirKit: v1.8.0
 
 ### Changed
+- **Pemilih perguruan tinggi bisa dipakai di semua ukuran layar** (`templates/karirlink/*.html`, `admin-pt-picker.js`): sebelumnya dropdown PT hanya tampil dari lebar `xl` sehingga user internal di ponsel dan tablet tidak bisa mengganti PT. Sekarang dropdown tampil dari `lg` (saat sidebar tetap terlihat), dan di bawah `lg` muncul tombol ringkas di topbar (ikon gedung; dari `sm` plus nama PT yang dipilih) yang membuka bottom sheet Drawer berisi kolom cari dan daftar PT dengan target ketuk 44 px. Pilihan dari dropdown dan sheet saling sinkron dan sama-sama tersimpan.
 - **Pemilih perguruan tinggi di sidebar admin tidak turun baris** (`templates/karirlink/*.html`, `admin-pt-picker.js`): nama PT yang panjang (mis. "Institut Teknologi Cendekia") sekarang tetap satu baris dan dipotong dengan elipsis, memakai kait `data-combo-label` bawaan komponen Combo; nama lengkap muncul sebagai tooltip saat disorot.
 - **Wording pengiriman otomatis Kuesioner Lulus** (`templates/karirlink/yudisium-detail.html`): keterangan di atas daftar gelombang menjadi "Pengiriman otomatis dijalankan mulai pukul 09.00 WIB pada tanggal mulai tiap gelombang di bawah ini." (sebelumnya "setiap pukul"); versi ponsel disesuaikan menjadi "Dikirim otomatis mulai pukul 09.00 WIB pada tanggal mulai tiap gelombang.".
 
