@@ -8,6 +8,13 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-20
+
+Dasar KarirKit: v1.8.0
+
+### Changed
+- **Wording pengiriman otomatis Kuesioner Lulus** (`templates/karirlink/yudisium-detail.html`): keterangan di atas daftar gelombang menjadi "Pengiriman otomatis dijalankan mulai pukul 09.00 WIB pada tanggal mulai tiap gelombang di bawah ini." (sebelumnya "setiap pukul"); versi ponsel disesuaikan menjadi "Dikirim otomatis mulai pukul 09.00 WIB pada tanggal mulai tiap gelombang.".
+
 ## 2026-11-18
 
 Dasar KarirKit: v1.8.0 (memuat komponen Cropper; entri lain di tanggal ini sudah memakai v1.7.0)
