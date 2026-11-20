@@ -50,6 +50,7 @@
       if (!match) return;
       items.forEach(function (it) { it.classList.toggle('is-selected', it === match); });
       label.textContent = name;
+      label.title = name;
       label.classList.remove('combo-placeholder');
       if (persist) write(name);
     }
