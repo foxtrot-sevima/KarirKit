@@ -6,6 +6,10 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+### Fixed
+
+- **Build Storybook**: deskripsi komponen Dropdown (dokumentasi Position di 1.9.0) memuat tanda kutip balik yang tidak di-escape sehingga `storybook build` gagal ("Unable to index Dropdown.stories.js") dan deploy Storybook ikut gagal; sudah diperbaiki. Paket npm tidak terpengaruh.
+
 ## [1.9.0] - 2026-11-20
 
 ### Added
