@@ -8,15 +8,26 @@ Aturan singkat:
 - Tiap tanggal menyebut versi KarirKit yang dipakai ("Dasar KarirKit").
 - **Gerbang produksi:** mockup masuk `master`/`release` hanya bila "Dasar KarirKit" adalah versi yang sudah dirilis (bertag). Dasar yang belum rilis ditandai "(belum dirilis)" dan mockupnya tertahan di staging (`dev-karirkit`). Cek dengan `npm run check:templates`.
 
+## 2026-11-20
+
+Dasar KarirKit: v1.8.0
+
+### Changed
+- **Pemilih perguruan tinggi bisa dipakai di semua ukuran layar** (`templates/karirlink/*.html`, `admin-pt-picker.js`): sebelumnya dropdown PT hanya tampil dari lebar `xl` sehingga user internal di ponsel dan tablet tidak bisa mengganti PT. Sekarang dropdown tampil dari `lg` (saat sidebar tetap terlihat), dan di bawah `lg` muncul tombol ringkas di topbar (ikon gedung; dari `sm` plus nama PT yang dipilih) yang membuka bottom sheet Drawer berisi kolom cari dan daftar PT dengan target ketuk 44 px. Pilihan dari dropdown dan sheet saling sinkron dan sama-sama tersimpan.
+- **Pemilih perguruan tinggi di sidebar admin tidak turun baris** (`templates/karirlink/*.html`, `admin-pt-picker.js`): nama PT yang panjang (mis. "Institut Teknologi Cendekia") sekarang tetap satu baris dan dipotong dengan elipsis, memakai kait `data-combo-label` bawaan komponen Combo; nama lengkap muncul sebagai tooltip saat disorot.
+- **Wording pengiriman otomatis Kuesioner Lulus** (`templates/karirlink/yudisium-detail.html`): keterangan di atas daftar gelombang menjadi "Pengiriman otomatis dijalankan mulai pukul 09.00 WIB pada tanggal mulai tiap gelombang di bawah ini." (sebelumnya "setiap pukul"); versi ponsel disesuaikan menjadi "Dikirim otomatis mulai pukul 09.00 WIB pada tanggal mulai tiap gelombang.".
+
 ## 2026-11-18
 
-Dasar KarirKit: v1.7.0
+Dasar KarirKit: v1.8.0 (memuat komponen Cropper; entri lain di tanggal ini sudah memakai v1.7.0)
 
 ### Added
+- **Ganti foto profil dengan pangkas 1:1** (`templates/portal-karir/profil.html`): ikon kamera di tepi avatar (pemilik profil saja) membuka pemilih berkas, lalu modal "Atur foto profil" memakai komponen Cropper KarirKit (bingkai bulat, geser, zoom lewat slider, roda mouse, cubit, atau tombol +/-). Simpan foto menyimpan hasil persegi 400 x 400 dan memperbarui avatar di profil serta navbar. Kolom foto dihapus dari formulir Ubah profil (sebelumnya kotak unggah, lalu dipotong otomatis dari tengah): foto hanya diganti lewat ikon kamera, dan langkah "Foto profil" di Kelengkapan profil membuka pemilih foto yang sama. Ikon kamera berupa lingkaran putih kecil (28 px) berbayang lembut tanpa garis tepi, diletakkan di sudut kanan bawah avatar dengan offset tetap per ukuran avatar (96 px di ponsel, 112 px dari `sm`) sehingga pusatnya selalu tepat di garis tepi lingkaran, tanpa rumus `calc`, supaya tidak menutupi foto; area ketuknya tetap lebih besar. Batas ukuran berkas naik dari 2 MB ke 5 MB karena hasilnya diperkecil. Komponen Cropper dirilis di KarirKit v1.8.0.
 - **Download CV** (`templates/portal-karir/profil.html`, `portal.js`): tombol "Download CV" di dalam kartu Kelengkapan profil (kolom samping, pemilik saja); satu klik langsung mengunduh PDF tanpa pengaturan dan tanpa halaman pratinjau. Templat satu kolom tanpa tabel, gambar, atau ikon, berteks asli (bisa dibaca mesin ATS), judul baku (Ringkasan, Pengalaman, Pendidikan, Keahlian), nama besar, judul bagian berwarna biru dengan garis tipis di bawahnya, jabatan tebal dengan periode rata kanan, nama organisasi di bawahnya, dan deskripsi dipecah menjadi butir. Data profil dipakai bersama lewat `PK.profileData()` dan `PK.cvModel()`. Pembuatan PDF di mockup dilakukan di browser; di produksi dibuat server dari data yang sama. Ditambahkan juga logika bersama di `portal.js`.
 - **Halaman Perusahaan dan Profil Perusahaan** (`templates/portal-karir/perusahaan.html`, `perusahaan-detail.html`, `PK.api.listCompanies` dan `getCompany`): daftar perusahaan dengan kolom cari, filter bidang berupa pil, dan kartu per perusahaan (logo inisial, nama, kota, bidang) tanpa angka atau posisi yang berubah-ubah; halaman bernomor. Kartu membuka profil perusahaan (satu halaman, bagiannya dituju lewat tab jangkar di band): header dengan logo, ikon centang terverifikasi di samping nama (keterangan Perusahaan terverifikasi muncul saat disorot), ukuran perusahaan, dan tombol Ikuti; Review (ringkasan nilai per aspek, kartu review Yang disukai dan Yang perlu diperbaiki, jawaban perusahaan), Lowongan, Kabar, dan Tentang; kolom samping berisi ajakan Tulis review, cara review dijaga, dan lowongan yang sedang dibuka. Review, kabar, dan ukuran hanyalah contoh data dari PK.api.getCompany. Dibangkitkan juga ke versi white-label dan ditambahkan ke story Portal Karir.
 
 ### Changed
+- **Hero profil di ponsel ditata ulang** (`templates/portal-karir/profil.html`): di bawah lebar `sm` avatar 96 px di atas dan nama, headline, lokasi, dan kampus tersusun ke bawah dengan tetap rata kiri (lokasi dan kampus masing-masing satu baris), lalu tombol Ubah profil dan Bagikan sama lebar dua kolom. Dari `sm` ke atas tata letak baris tetap seperti sebelumnya.
 - **Navbar Portal Karir: menu Layanan disembunyikan sementara, menu Perusahaan ditambahkan** (`templates/portal-karir/shell.js`): dropdown Layanan di desktop dan bagian Layanan di drawer ponsel dibungkus komentar HTML (bukan dihapus); menu Perusahaan ditambahkan setelah Event di keduanya. Kolom Layanan di footer tidak berubah.
 
 ## 2026-11-17

@@ -2,7 +2,7 @@ export default {
   title: "Components/Tooltip",
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "Hover atau fokus keyboard (Tab) - pakai `.tooltip-content` di dalam `.group`." } },
+    docs: { description: { component: "Hover atau fokus keyboard (Tab) - pakai `.tooltip-content` di dalam `.group`. Posisinya menyesuaikan layar otomatis lewat `assets/js/position.js` (flip dan shift)." } },
   },
 };
 
