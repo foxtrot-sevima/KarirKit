@@ -6,6 +6,10 @@ File ini hanya untuk **komponen design system KarirKit** (semver `X.Y.Z`). Perub
 
 ## [Unreleased]
 
+### Added
+
+- **Position** (`assets/js/position.js`, `KKPosition`): elemen berlapis tetap di dalam layar tanpa diatur manual di halaman. Menu Dropdown (`.dropdown-menu`), Combo (`.combo-menu`), menu WYSIWYG, dan Tooltip (`.tooltip-content`) pindah ke sisi seberang (flip) bila sisi pilihan tidak muat dan bergeser (shift) bila masih melewati tepi layar, dengan jarak aman 8 px; dihitung ulang saat dibuka, jendela diubah ukurannya, dan digulir. Hanya mengubah gaya inline top/bottom/margin dan membersihkannya saat tertutup, sehingga tidak bentrok dengan animasi komponen. `ui.js` memuatnya otomatis dari folder yang sama; opt-out `data-kk-position="off"`, elemen lain `data-kk-position`.
+
 ## [1.8.0] - 2026-11-18
 
 ### Added

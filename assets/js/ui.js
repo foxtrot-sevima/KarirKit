@@ -15,8 +15,18 @@
               (option value = a tab's data-ui-tab id) mirrors the tabs on small screens.
               <div data-ui-tabs>
                 <button role="tab" data-ui-tab="id" aria-selected="true|false">
-                <div role="tabpanel" id="id" class="hidden?">  */
+                <div role="tabpanel" id="id" class="hidden?">
+   Posisi:    ui.js memuat assets/js/position.js otomatis, yang menjaga menu Dropdown, Combo, dan Tooltip tetap di dalam layar. */
 (function () {
+  // Penempatan berlapis (assets/js/position.js): dimuat otomatis dari folder yang sama bila belum ada di halaman.
+  (function () {
+    var me = document.currentScript;
+    if (!me || !me.src || window.KKPosition || document.querySelector('script[src*="position.js"]')) return;
+    var s = document.createElement('script');
+    s.src = me.src.replace(/ui\.js(\?.*)?$/, 'position.js');
+    document.head.appendChild(s);
+  })();
+
   function dismiss(btn) {
     var target = btn.closest(btn.getAttribute('data-ui-dismiss') || '.alert');
     if (!target) return;
