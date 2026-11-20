@@ -13,6 +13,7 @@ Aturan singkat:
 Dasar KarirKit: v1.8.0
 
 ### Changed
+- **Pemilih perguruan tinggi di sidebar admin tidak turun baris** (`templates/karirlink/*.html`, `admin-pt-picker.js`): nama PT yang panjang (mis. "Institut Teknologi Cendekia") sekarang tetap satu baris dan dipotong dengan elipsis, memakai kait `data-combo-label` bawaan komponen Combo; nama lengkap muncul sebagai tooltip saat disorot.
 - **Wording pengiriman otomatis Kuesioner Lulus** (`templates/karirlink/yudisium-detail.html`): keterangan di atas daftar gelombang menjadi "Pengiriman otomatis dijalankan mulai pukul 09.00 WIB pada tanggal mulai tiap gelombang di bawah ini." (sebelumnya "setiap pukul"); versi ponsel disesuaikan menjadi "Dikirim otomatis mulai pukul 09.00 WIB pada tanggal mulai tiap gelombang.".
 
 ## 2026-11-18
